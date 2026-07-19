@@ -16,19 +16,21 @@
                     },
                     fontFamily: {
                         sans: ['"Noto Sans JP"', 'sans-serif'],
-                        // IMPACTフォント
-                        impact: ['Impact', 'Charcoal', 'sans-serif'],
+                        // ステンシルフォント(Black Ops One)の設定
+                        stencil: ['"Black Ops One"', 'system-ui', 'sans-serif'],
                     }
                 }
             }
         }
     </script>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+    <!-- Google Fonts (Noto Sans JP と Black Ops One) -->
+    <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
         /* ドロワーメニュー用 */
         #drawer-menu { transition: transform 0.3s ease-in-out; }
         .drawer-closed { transform: translateX(-100%); }
         .drawer-open { transform: translateX(0); }
+
         /* ボタンの輝き */
         .shiny-btn { position: relative; overflow: hidden; }
         .shiny-btn::after {
@@ -51,19 +53,19 @@
             <svg class="w-6 h-6 text-slate-800" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
         </button>
 
-        <!-- メインロゴ (文字と★をさらに大きく、ガッチリ密着) -->
-        <div class="absolute left-1/2 -translate-x-1/2 flex items-center justify-center">
-            <span class="text-2xl md:text-3xl tracking-widest text-slate-900 leading-none flex items-center font-impact">
+        <!-- メインロゴ (本来のステンシルフォントに戻す) -->
+        <div class="absolute left-1/2 -translate-x-1/2 flex items-center justify-center mt-1">
+            <span class="text-2xl md:text-3xl tracking-widest text-slate-900 leading-none flex items-center font-stencil">
                 ONE
-                <!-- ★画像 (サイズをさらにアップし、マイナスマージンで文字と重ねる) -->
-                <img src="ONESTAR.PNG" alt="★" class="w-[60px] h-[60px] md:w-[75px] md:h-[75px] mx-[-12px] md:mx-[-14px] object-contain -translate-y-[2px]">
+                <!-- ★画像 -->
+                <img src="ONESTAR.PNG" alt="★" class="w-[45px] h-[45px] md:w-[55px] md:h-[55px] mx-[-4px] md:mx-[-6px] object-contain -translate-y-[4px]">
                 STAR
             </span>
         </div>
 
         <!-- PC用電話ボタン -->
         <div class="hidden md:flex items-center space-x-3">
-            <a href="tel:090-0000-0000" class="bg-slate-900 hover:bg-slate-800 text-neon px-4 py-1.5 rounded-full text-xs font-bold border border-slate-700 flex items-center space-x-1 transition-all">
+            <a href="tel:090-0000-0000" class="bg-slate-900 hover:bg-slate-800 text-neon px-4 py-1.5 rounded-full text-xs font-black border border-slate-700 flex items-center space-x-1 transition-all">
                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
                 <span>電話相談</span>
             </a>
@@ -79,28 +81,28 @@
                 
                 <div class="p-3 bg-white flex justify-end">
                     <button id="menu-close-btn" class="p-2 hover:bg-slate-100 rounded-lg">
-                        <svg class="w-6 h-6 text-slate-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+                        <svg class="w-6 h-6 text-slate-500" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
                     </button>
                 </div>
 
                 <div class="bg-blue-600 py-3 px-6">
-                    <h2 class="text-white font-bold tracking-wider text-sm">MENU</h2>
+                    <h2 class="text-white font-black tracking-wider text-sm font-stencil">MENU</h2>
                 </div>
 
                 <nav class="flex-1 px-4 py-2 space-y-1 overflow-y-auto">
-                    <a href="#hero" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-bold text-slate-700">
+                    <a href="#hero" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
                         <span class="mr-2 text-slate-400">＞</span>トップページ
                     </a>
-                    <a href="#process" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-bold text-slate-700">
+                    <a href="#process" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
                         <span class="mr-2 text-slate-400">＞</span>作業の流れ
                     </a>
-                    <a href="#pricing" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-bold text-slate-700">
+                    <a href="#pricing" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
                         <span class="mr-2 text-slate-400">＞</span>料金プラン
                     </a>
-                    <a href="#gallery" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-bold text-slate-700">
+                    <a href="#gallery" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
                         <span class="mr-2 text-slate-400">＞</span>施工事例
                     </a>
-                    <a href="#about" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-bold text-slate-700">
+                    <a href="#about" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
                         <span class="mr-2 text-slate-400">＞</span>代表挨拶
                     </a>
                 </nav>
@@ -112,14 +114,13 @@
     <!-- MAIN -->
     <main class="pt-14 pb-20 md:pb-12">
 
-        <!-- HERO (余白を削って限界までスマートに) -->
+        <!-- HERO -->
         <section id="hero" class="relative pt-4 pb-8 px-4 max-w-3xl mx-auto flex flex-col items-center justify-center text-center">
             
             <!-- メインコピー画像 -->
             <img src="HERO.PNG" alt="エアコンクリーニングに年中夢中！" class="w-full max-w-lg mx-auto mb-3 object-contain">
             
-            <!-- サブコピー -->
-            <p class="text-[13px] md:text-sm text-slate-600 font-bold mb-6 max-w-lg leading-relaxed">
+            <p class="text-[13px] md:text-sm text-slate-700 font-black mb-6 max-w-lg leading-relaxed">
                 お客様の大切なエアコン1台1台を心を込めて洗浄します。<br>
                 迅速な作業と気持ちの良い対応をお約束します。
             </p>
@@ -128,21 +129,21 @@
             <div class="grid grid-cols-3 gap-2 mb-6 w-full max-w-md mx-auto">
                 <div class="bg-slate-50 py-2 rounded-lg border border-slate-100">
                     <span class="block text-sm md:text-base font-black text-blue-600">愛知県内</span>
-                    <span class="text-[9px] text-slate-500 font-bold">出張費0円</span>
+                    <span class="text-[9px] text-slate-500 font-black">出張費0円</span>
                 </div>
                 <div class="bg-slate-50 py-2 rounded-lg border border-slate-100">
                     <span class="block text-sm md:text-base font-black text-emerald-500">プロ品質</span>
-                    <span class="text-[9px] text-slate-500 font-bold">高圧洗浄</span>
+                    <span class="text-[9px] text-slate-500 font-black">高圧洗浄</span>
                 </div>
                 <div class="bg-slate-50 py-2 rounded-lg border border-slate-100">
                     <span class="block text-sm md:text-base font-black text-amber-500">明朗会計</span>
-                    <span class="text-[9px] text-slate-500 font-bold">追加請求なし</span>
+                    <span class="text-[9px] text-slate-500 font-black">追加請求なし</span>
                 </div>
             </div>
 
             <!-- 電話ボタン -->
-            <a href="tel:090-0000-0000" class="shiny-btn inline-flex w-full sm:w-auto items-center justify-center space-x-2 bg-slate-900 text-neon font-bold px-10 py-4 md:py-5 rounded-xl shadow-lg border border-slate-700 text-lg transition-transform active:scale-95">
-                <svg class="w-6 h-6 animate-pulse" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+            <a href="tel:090-0000-0000" class="shiny-btn inline-flex w-full sm:w-auto items-center justify-center space-x-2 bg-slate-900 text-neon font-black px-10 py-4 md:py-5 rounded-xl shadow-lg border border-slate-700 text-lg transition-transform active:scale-95">
+                <svg class="w-6 h-6 animate-pulse" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
                 <span>今すぐ電話で相談・見積り</span>
             </a>
             
@@ -154,38 +155,38 @@
                 <h2 class="text-xl md:text-2xl font-black text-center mb-8">作業の流れ</h2>
                 <div class="space-y-3">
                     <div class="flex items-center p-4 bg-white rounded-xl border border-slate-200 shadow-sm">
-                        <span class="w-10 h-10 bg-slate-900 text-neon font-impact text-xl rounded-lg flex items-center justify-center mr-4 shrink-0">1</span>
+                        <span class="w-10 h-10 bg-slate-900 text-neon font-stencil text-xl rounded-lg flex items-center justify-center mr-4 shrink-0 mt-1">1</span>
                         <div>
-                            <h3 class="font-bold text-sm">動作確認・養生</h3>
-                            <p class="text-xs text-slate-500 mt-1">お部屋が汚れないよう、しっかりと専用シートで保護します。</p>
+                            <h3 class="font-black text-sm">動作確認・養生</h3>
+                            <p class="text-xs text-slate-600 font-bold mt-1">お部屋が汚れないよう、しっかりと専用シートで保護します。</p>
                         </div>
                     </div>
                     <div class="flex items-center p-4 bg-white rounded-xl border border-slate-200 shadow-sm">
-                        <span class="w-10 h-10 bg-slate-900 text-neon font-impact text-xl rounded-lg flex items-center justify-center mr-4 shrink-0">2</span>
+                        <span class="w-10 h-10 bg-slate-900 text-neon font-stencil text-xl rounded-lg flex items-center justify-center mr-4 shrink-0 mt-1">2</span>
                         <div>
-                            <h3 class="font-bold text-sm">パーツ取り外し</h3>
-                            <p class="text-xs text-slate-500 mt-1">カバーやフィルターを安全に取り外します。</p>
+                            <h3 class="font-black text-sm">パーツ取り外し</h3>
+                            <p class="text-xs text-slate-600 font-bold mt-1">カバーやフィルターを安全に取り外します。</p>
                         </div>
                     </div>
                     <div class="flex items-center p-4 bg-white rounded-xl border border-slate-200 shadow-sm">
-                        <span class="w-10 h-10 bg-slate-900 text-neon font-impact text-xl rounded-lg flex items-center justify-center mr-4 shrink-0">3</span>
+                        <span class="w-10 h-10 bg-slate-900 text-neon font-stencil text-xl rounded-lg flex items-center justify-center mr-4 shrink-0 mt-1">3</span>
                         <div>
-                            <h3 class="font-bold text-sm">専用洗剤＆高圧洗浄</h3>
-                            <p class="text-xs text-slate-500 mt-1">専用洗剤と高圧洗浄機で、奥のカビや汚れを一気に洗い流します。</p>
+                            <h3 class="font-black text-sm">専用洗剤＆高圧洗浄</h3>
+                            <p class="text-xs text-slate-600 font-bold mt-1">専用洗剤と高圧洗浄機で、奥のカビや汚れを一気に洗い流します。</p>
                         </div>
                     </div>
                     <div class="flex items-center p-4 bg-white rounded-xl border border-slate-200 shadow-sm">
-                        <span class="w-10 h-10 bg-slate-900 text-neon font-impact text-xl rounded-lg flex items-center justify-center mr-4 shrink-0">4</span>
+                        <span class="w-10 h-10 bg-slate-900 text-neon font-stencil text-xl rounded-lg flex items-center justify-center mr-4 shrink-0 mt-1">4</span>
                         <div>
                             <h3 class="font-bold text-sm">組み立て・動作チェック</h3>
-                            <p class="text-xs text-slate-500 mt-1">元通りに組み立て、正常に動作するかチェックして完了です。</p>
+                            <p class="text-xs text-slate-600 font-bold mt-1">元通りに組み立て、正常に動作するかチェックして完了です。</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="mt-6 p-4 border-2 border-slate-900 rounded-xl flex items-center justify-between bg-white shadow-sm">
-                    <span class="text-sm font-bold text-slate-900">💡 安心のお約束</span>
-                    <ul class="text-[11px] text-slate-600 space-y-1 text-right font-medium">
+                    <span class="text-sm font-black text-slate-900">💡 安心のお約束</span>
+                    <ul class="text-[11px] text-slate-700 space-y-1 text-right font-black">
                         <li>清潔な身だしなみで訪問</li>
                         <li>水回りの原状回復</li>
                         <li>損害賠償保険加入済み</li>
@@ -206,61 +207,61 @@
                         
                         <!-- 一般壁掛け -->
                         <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm relative pt-8">
-                            <span class="bg-slate-200 text-slate-600 text-[10px] font-bold px-2 py-1 rounded absolute top-0 left-4 -translate-y-1/2">一般タイプ</span>
-                            <h3 class="text-lg font-bold">壁掛けエアコン</h3>
+                            <span class="bg-slate-200 text-slate-700 text-[10px] font-black px-2 py-1 rounded absolute top-0 left-4 -translate-y-1/2">一般タイプ</span>
+                            <h3 class="text-lg font-black">壁掛けエアコン</h3>
                             <div class="mt-2 flex items-end justify-between">
                                 <span class="text-2xl font-black text-slate-900">¥9,500</span>
-                                <span class="text-xs text-emerald-600 font-bold">2台目〜 ¥8,400</span>
+                                <span class="text-xs text-emerald-600 font-black">2台目〜 ¥8,400</span>
                             </div>
                         </div>
 
                         <!-- お掃除機能付き -->
                         <div class="bg-white p-6 rounded-2xl border-2 border-slate-900 shadow-sm relative pt-8">
-                            <span class="bg-slate-900 text-neon text-[10px] font-bold px-2 py-1 rounded absolute top-0 left-4 -translate-y-1/2">高機能タイプ</span>
-                            <h3 class="text-lg font-bold">お掃除機能付き</h3>
+                            <span class="bg-slate-900 text-neon text-[10px] font-black px-2 py-1 rounded absolute top-0 left-4 -translate-y-1/2">高機能タイプ</span>
+                            <h3 class="text-lg font-black">お掃除機能付き</h3>
                             <div class="mt-2 flex items-end justify-between">
                                 <span class="text-2xl font-black text-slate-900">¥15,800</span>
-                                <span class="text-xs text-emerald-600 font-bold">2台目〜 ¥14,800</span>
+                                <span class="text-xs text-emerald-600 font-black">2台目〜 ¥14,800</span>
                             </div>
                         </div>
 
                         <!-- 業務用 壁掛け幅広 -->
                         <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm relative pt-8">
-                            <span class="bg-slate-200 text-slate-600 text-[10px] font-bold px-2 py-1 rounded absolute top-0 left-4 -translate-y-1/2">業務用</span>
-                            <h3 class="text-lg font-bold">壁掛け幅広タイプ</h3>
+                            <span class="bg-slate-200 text-slate-700 text-[10px] font-black px-2 py-1 rounded absolute top-0 left-4 -translate-y-1/2">業務用</span>
+                            <h3 class="text-lg font-black">壁掛け幅広タイプ</h3>
                             <div class="mt-2 flex items-end justify-between">
                                 <span class="text-2xl font-black text-slate-900">¥15,000</span>
-                                <span class="text-xs text-emerald-600 font-bold">2台目〜 ¥13,000</span>
+                                <span class="text-xs text-emerald-600 font-black">2台目〜 ¥13,000</span>
                             </div>
                         </div>
 
                         <!-- 業務用 天カセ4方向 -->
                         <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm relative pt-8">
-                            <span class="bg-slate-200 text-slate-600 text-[10px] font-bold px-2 py-1 rounded absolute top-0 left-4 -translate-y-1/2">業務用</span>
-                            <h3 class="text-lg font-bold">天カセ-4方向</h3>
+                            <span class="bg-slate-200 text-slate-700 text-[10px] font-black px-2 py-1 rounded absolute top-0 left-4 -translate-y-1/2">業務用</span>
+                            <h3 class="text-lg font-black">天カセ-4方向</h3>
                             <div class="mt-2 flex items-end justify-between">
                                 <span class="text-2xl font-black text-slate-900">¥20,400</span>
-                                <span class="text-xs text-emerald-600 font-bold">2台目〜 ¥18,000</span>
+                                <span class="text-xs text-emerald-600 font-black">2台目〜 ¥18,000</span>
                             </div>
                         </div>
 
                         <!-- 業務用 天カセ1・2方向 -->
                         <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm relative pt-8">
-                            <span class="bg-slate-200 text-slate-600 text-[10px] font-bold px-2 py-1 rounded absolute top-0 left-4 -translate-y-1/2">業務用</span>
-                            <h3 class="text-lg font-bold">天カセ-1方向・2方向</h3>
+                            <span class="bg-slate-200 text-slate-700 text-[10px] font-black px-2 py-1 rounded absolute top-0 left-4 -translate-y-1/2">業務用</span>
+                            <h3 class="text-lg font-black">天カセ-1方向・2方向</h3>
                             <div class="mt-2 flex items-end justify-between">
                                 <span class="text-2xl font-black text-slate-900">¥22,000</span>
-                                <span class="text-xs text-emerald-600 font-bold">2台目〜 ¥20,000</span>
+                                <span class="text-xs text-emerald-600 font-black">2台目〜 ¥20,000</span>
                             </div>
                         </div>
 
                         <!-- 業務用 天吊り -->
                         <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm relative pt-8">
-                            <span class="bg-slate-200 text-slate-600 text-[10px] font-bold px-2 py-1 rounded absolute top-0 left-4 -translate-y-1/2">業務用</span>
-                            <h3 class="text-lg font-bold">天吊り</h3>
+                            <span class="bg-slate-200 text-slate-700 text-[10px] font-black px-2 py-1 rounded absolute top-0 left-4 -translate-y-1/2">業務用</span>
+                            <h3 class="text-lg font-black">天吊り</h3>
                             <div class="mt-2 flex items-end justify-between">
                                 <span class="text-2xl font-black text-slate-900">¥22,000</span>
-                                <span class="text-xs text-emerald-600 font-bold">2台目〜 ¥20,000</span>
+                                <span class="text-xs text-emerald-600 font-black">2台目〜 ¥20,000</span>
                             </div>
                         </div>
 
@@ -276,83 +277,83 @@
                             <div class="space-y-2">
                                 <!-- 一般壁掛け -->
                                 <div class="flex items-center justify-between bg-white p-2.5 rounded-lg border border-slate-200">
-                                    <span class="text-[11px] font-bold text-slate-700">一般壁掛け</span>
+                                    <span class="text-[11px] font-black text-slate-700">一般壁掛け</span>
                                     <div class="flex items-center space-x-2">
-                                        <button class="qty-btn minus w-7 h-7 bg-slate-100 rounded text-slate-600 font-bold shadow-sm active:bg-slate-200" data-type="standard">-</button>
-                                        <span class="w-5 text-center font-bold text-sm" id="qty-standard">1</span>
-                                        <button class="qty-btn plus w-7 h-7 bg-slate-100 rounded text-slate-600 font-bold shadow-sm active:bg-slate-200" data-type="standard">+</button>
+                                        <button class="qty-btn minus w-7 h-7 bg-slate-100 rounded text-slate-600 font-black shadow-sm active:bg-slate-200" data-type="standard">-</button>
+                                        <span class="w-5 text-center font-black text-sm" id="qty-standard">1</span>
+                                        <button class="qty-btn plus w-7 h-7 bg-slate-100 rounded text-slate-600 font-black shadow-sm active:bg-slate-200" data-type="standard">+</button>
                                     </div>
                                 </div>
                                 <!-- お掃除機能付 -->
                                 <div class="flex items-center justify-between bg-white p-2.5 rounded-lg border border-slate-200">
-                                    <span class="text-[11px] font-bold text-slate-700">お掃除機能付</span>
+                                    <span class="text-[11px] font-black text-slate-700">お掃除機能付</span>
                                     <div class="flex items-center space-x-2">
-                                        <button class="qty-btn minus w-7 h-7 bg-slate-100 rounded text-slate-600 font-bold shadow-sm active:bg-slate-200" data-type="auto">-</button>
-                                        <span class="w-5 text-center font-bold text-sm" id="qty-auto">0</span>
-                                        <button class="qty-btn plus w-7 h-7 bg-slate-100 rounded text-slate-600 font-bold shadow-sm active:bg-slate-200" data-type="auto">+</button>
+                                        <button class="qty-btn minus w-7 h-7 bg-slate-100 rounded text-slate-600 font-black shadow-sm active:bg-slate-200" data-type="auto">-</button>
+                                        <span class="w-5 text-center font-black text-sm" id="qty-auto">0</span>
+                                        <button class="qty-btn plus w-7 h-7 bg-slate-100 rounded text-slate-600 font-black shadow-sm active:bg-slate-200" data-type="auto">+</button>
                                     </div>
                                 </div>
                                 <!-- 壁掛幅広 -->
                                 <div class="flex items-center justify-between bg-white p-2.5 rounded-lg border border-slate-200">
-                                    <span class="text-[11px] font-bold text-slate-700">壁掛幅広 (業務用)</span>
+                                    <span class="text-[11px] font-black text-slate-700">壁掛幅広 (業務用)</span>
                                     <div class="flex items-center space-x-2">
-                                        <button class="qty-btn minus w-7 h-7 bg-slate-100 rounded text-slate-600 font-bold shadow-sm active:bg-slate-200" data-type="biz_wide">-</button>
-                                        <span class="w-5 text-center font-bold text-sm" id="qty-biz_wide">0</span>
-                                        <button class="qty-btn plus w-7 h-7 bg-slate-100 rounded text-slate-600 font-bold shadow-sm active:bg-slate-200" data-type="biz_wide">+</button>
+                                        <button class="qty-btn minus w-7 h-7 bg-slate-100 rounded text-slate-600 font-black shadow-sm active:bg-slate-200" data-type="biz_wide">-</button>
+                                        <span class="w-5 text-center font-black text-sm" id="qty-biz_wide">0</span>
+                                        <button class="qty-btn plus w-7 h-7 bg-slate-100 rounded text-slate-600 font-black shadow-sm active:bg-slate-200" data-type="biz_wide">+</button>
                                     </div>
                                 </div>
                                 <!-- 天カセ4方向 -->
                                 <div class="flex items-center justify-between bg-white p-2.5 rounded-lg border border-slate-200">
-                                    <span class="text-[11px] font-bold text-slate-700">天カセ4方向 (業務用)</span>
+                                    <span class="text-[11px] font-black text-slate-700">天カセ4方向 (業務用)</span>
                                     <div class="flex items-center space-x-2">
-                                        <button class="qty-btn minus w-7 h-7 bg-slate-100 rounded text-slate-600 font-bold shadow-sm active:bg-slate-200" data-type="biz_4way">-</button>
-                                        <span class="w-5 text-center font-bold text-sm" id="qty-biz_4way">0</span>
-                                        <button class="qty-btn plus w-7 h-7 bg-slate-100 rounded text-slate-600 font-bold shadow-sm active:bg-slate-200" data-type="biz_4way">+</button>
+                                        <button class="qty-btn minus w-7 h-7 bg-slate-100 rounded text-slate-600 font-black shadow-sm active:bg-slate-200" data-type="biz_4way">-</button>
+                                        <span class="w-5 text-center font-black text-sm" id="qty-biz_4way">0</span>
+                                        <button class="qty-btn plus w-7 h-7 bg-slate-100 rounded text-slate-600 font-black shadow-sm active:bg-slate-200" data-type="biz_4way">+</button>
                                     </div>
                                 </div>
                                 <!-- 天カセ1・2方向 -->
                                 <div class="flex items-center justify-between bg-white p-2.5 rounded-lg border border-slate-200">
-                                    <span class="text-[10px] font-bold text-slate-700">天カセ1・2方向 (業務用)</span>
+                                    <span class="text-[10px] font-black text-slate-700">天カセ1・2方向 (業務用)</span>
                                     <div class="flex items-center space-x-2">
-                                        <button class="qty-btn minus w-7 h-7 bg-slate-100 rounded text-slate-600 font-bold shadow-sm active:bg-slate-200" data-type="biz_12way">-</button>
-                                        <span class="w-5 text-center font-bold text-sm" id="qty-biz_12way">0</span>
-                                        <button class="qty-btn plus w-7 h-7 bg-slate-100 rounded text-slate-600 font-bold shadow-sm active:bg-slate-200" data-type="biz_12way">+</button>
+                                        <button class="qty-btn minus w-7 h-7 bg-slate-100 rounded text-slate-600 font-black shadow-sm active:bg-slate-200" data-type="biz_12way">-</button>
+                                        <span class="w-5 text-center font-black text-sm" id="qty-biz_12way">0</span>
+                                        <button class="qty-btn plus w-7 h-7 bg-slate-100 rounded text-slate-600 font-black shadow-sm active:bg-slate-200" data-type="biz_12way">+</button>
                                     </div>
                                 </div>
                                 <!-- 天吊り -->
                                 <div class="flex items-center justify-between bg-white p-2.5 rounded-lg border border-slate-200">
-                                    <span class="text-[11px] font-bold text-slate-700">天吊り (業務用)</span>
+                                    <span class="text-[11px] font-black text-slate-700">天吊り (業務用)</span>
                                     <div class="flex items-center space-x-2">
-                                        <button class="qty-btn minus w-7 h-7 bg-slate-100 rounded text-slate-600 font-bold shadow-sm active:bg-slate-200" data-type="biz_hang">-</button>
-                                        <span class="w-5 text-center font-bold text-sm" id="qty-biz_hang">0</span>
-                                        <button class="qty-btn plus w-7 h-7 bg-slate-100 rounded text-slate-600 font-bold shadow-sm active:bg-slate-200" data-type="biz_hang">+</button>
+                                        <button class="qty-btn minus w-7 h-7 bg-slate-100 rounded text-slate-600 font-black shadow-sm active:bg-slate-200" data-type="biz_hang">-</button>
+                                        <span class="w-5 text-center font-black text-sm" id="qty-biz_hang">0</span>
+                                        <button class="qty-btn plus w-7 h-7 bg-slate-100 rounded text-slate-600 font-black shadow-sm active:bg-slate-200" data-type="biz_hang">+</button>
                                     </div>
                                 </div>
                                 
                                 <!-- オプション: 家庭用室外機洗浄 -->
                                 <div class="flex items-center justify-between bg-slate-100 p-2.5 rounded-lg border border-slate-200 mt-2">
-                                    <span class="text-[11px] font-bold text-slate-700">室外機洗浄 (家庭用)<br><span class="text-[9px] text-slate-500 font-normal">¥4,000 <span class="text-rose-500 font-bold">(2台以上: ¥3,000/台)</span></span></span>
+                                    <span class="text-[11px] font-black text-slate-700">室外機洗浄 (家庭用)<br><span class="text-[9px] text-slate-600 font-bold">¥4,000 <span class="text-rose-500 font-black">(2台以上: ¥3,000/台)</span></span></span>
                                     <div class="flex items-center space-x-2">
-                                        <button class="opt-btn minus w-7 h-7 bg-white rounded text-slate-600 font-bold shadow-sm active:bg-slate-50" data-opt="family">-</button>
-                                        <span class="w-5 text-center font-bold text-sm" id="qty-outdoor-family">0</span>
-                                        <button class="opt-btn plus w-7 h-7 bg-white rounded text-slate-600 font-bold shadow-sm active:bg-slate-50" data-opt="family">+</button>
+                                        <button class="opt-btn minus w-7 h-7 bg-white rounded text-slate-600 font-black shadow-sm active:bg-slate-50" data-opt="family">-</button>
+                                        <span class="w-5 text-center font-black text-sm" id="qty-outdoor-family">0</span>
+                                        <button class="opt-btn plus w-7 h-7 bg-white rounded text-slate-600 font-black shadow-sm active:bg-slate-50" data-opt="family">+</button>
                                     </div>
                                 </div>
 
                                 <!-- オプション: 業務用室外機洗浄 -->
                                 <div class="flex items-center justify-between bg-slate-100 p-2.5 rounded-lg border border-slate-200">
-                                    <span class="text-[11px] font-bold text-slate-700">室外機洗浄 (業務用)<br><span class="text-[9px] text-slate-500 font-normal">一律 ¥4,000/台</span></span>
+                                    <span class="text-[11px] font-black text-slate-700">室外機洗浄 (業務用)<br><span class="text-[9px] text-slate-600 font-bold">一律 ¥4,000/台</span></span>
                                     <div class="flex items-center space-x-2">
-                                        <button class="opt-btn minus w-7 h-7 bg-white rounded text-slate-600 font-bold shadow-sm active:bg-slate-50" data-opt="biz">-</button>
-                                        <span class="w-5 text-center font-bold text-sm" id="qty-outdoor-biz">0</span>
-                                        <button class="opt-btn plus w-7 h-7 bg-white rounded text-slate-600 font-bold shadow-sm active:bg-slate-50" data-opt="biz">+</button>
+                                        <button class="opt-btn minus w-7 h-7 bg-white rounded text-slate-600 font-black shadow-sm active:bg-slate-50" data-opt="biz">-</button>
+                                        <span class="w-5 text-center font-black text-sm" id="qty-outdoor-biz">0</span>
+                                        <button class="opt-btn plus w-7 h-7 bg-white rounded text-slate-600 font-black shadow-sm active:bg-slate-50" data-opt="biz">+</button>
                                     </div>
                                 </div>
 
                                 <!-- 合計 -->
                                 <div class="bg-slate-900 p-4 rounded-xl text-center shadow-md mt-4">
-                                    <span class="text-[10px] text-neon">お見積り合計(税込)</span>
-                                    <div id="calc-total-price" class="text-3xl font-black text-white mt-1">¥9,500</div>
+                                    <span class="text-[10px] font-bold text-neon">お見積り合計(税込)</span>
+                                    <div id="calc-total-price" class="text-3xl font-black text-white mt-1 tracking-tight">¥9,500</div>
                                 </div>
                             </div>
                         </div>
@@ -374,19 +375,19 @@
                             <!-- BEFORE 画像 -->
                             <div class="w-1/2 bg-cover bg-center flex items-end p-2 relative" style="background-image: url('BLACK.jpg');">
                                 <div class="absolute inset-0 bg-black/30"></div>
-                                <span class="absolute top-2 left-2 bg-slate-900 text-white text-[9px] px-2 rounded z-10">BEFORE</span>
-                                <span class="text-xs font-bold text-white z-10 drop-shadow-md">カビがぎっしり…</span>
+                                <span class="absolute top-2 left-2 bg-slate-900 text-white text-[9px] px-2 rounded z-10 font-bold">BEFORE</span>
+                                <span class="text-xs font-black text-white z-10 drop-shadow-md">カビがぎっしり…</span>
                             </div>
                             <!-- AFTER 画像 -->
                             <div class="w-1/2 bg-cover bg-center flex items-end p-2 relative border-l border-white" style="background-image: url('WHITE.jpg');">
                                 <div class="absolute inset-0 bg-black/10"></div>
-                                <span class="absolute top-2 left-2 bg-emerald-500 text-white text-[9px] px-2 rounded z-10">AFTER</span>
-                                <span class="text-xs font-bold text-white z-10 drop-shadow-md">本来の白さに！</span>
+                                <span class="absolute top-2 left-2 bg-emerald-500 text-white text-[9px] px-2 rounded z-10 font-bold">AFTER</span>
+                                <span class="text-xs font-black text-white z-10 drop-shadow-md">本来の白さに！</span>
                             </div>
                         </div>
                         <div class="p-4">
-                            <h3 class="font-bold text-sm">岡崎市 M様（一般壁掛け）</h3>
-                            <p class="text-xs text-slate-500 mt-1">「気になっていた酸っぱいニオイが完全に消えました！対応も早くて助かりました。」</p>
+                            <h3 class="font-black text-sm">岡崎市 M様（一般壁掛け）</h3>
+                            <p class="text-xs text-slate-600 mt-1 font-bold">「気になっていた酸っぱいニオイが完全に消えました！対応も早くて助かりました。」</p>
                         </div>
                     </div>
                     <!-- Case 2: 画像差し替え (BAD.jpg / GOOD.jpg) -->
@@ -395,19 +396,19 @@
                             <!-- BEFORE 画像 -->
                             <div class="w-1/2 bg-cover bg-center flex items-end p-2 relative" style="background-image: url('BAD.jpg');">
                                 <div class="absolute inset-0 bg-black/30"></div>
-                                <span class="absolute top-2 left-2 bg-slate-900 text-white text-[9px] px-2 rounded z-10">BEFORE</span>
-                                <span class="text-xs font-bold text-white z-10 drop-shadow-md">お掃除ロボの裏に埃</span>
+                                <span class="absolute top-2 left-2 bg-slate-900 text-white text-[9px] px-2 rounded z-10 font-bold">BEFORE</span>
+                                <span class="text-xs font-black text-white z-10 drop-shadow-md">お掃除ロボの裏に埃</span>
                             </div>
                             <!-- AFTER 画像 -->
                             <div class="w-1/2 bg-cover bg-center flex items-end p-2 relative border-l border-white" style="background-image: url('GOOD.jpg');">
                                 <div class="absolute inset-0 bg-black/10"></div>
-                                <span class="absolute top-2 left-2 bg-emerald-500 text-white text-[9px] px-2 rounded z-10">AFTER</span>
-                                <span class="text-xs font-bold text-white z-10 drop-shadow-md">隙間までスッキリ！</span>
+                                <span class="absolute top-2 left-2 bg-emerald-500 text-white text-[9px] px-2 rounded z-10 font-bold">AFTER</span>
+                                <span class="text-xs font-black text-white z-10 drop-shadow-md">隙間までスッキリ！</span>
                             </div>
                         </div>
                         <div class="p-4">
-                            <h3 class="font-bold text-sm">豊田市 K様（お掃除機能付）</h3>
-                            <p class="text-xs text-slate-500 mt-1">「複雑な機械も手際よく外して洗浄してくれました。風が気持ち良いです。」</p>
+                            <h3 class="font-black text-sm">豊田市 K様（お掃除機能付）</h3>
+                            <p class="text-xs text-slate-600 mt-1 font-bold">「複雑な機械も手際よく外して洗浄してくれました。風が気持ち良いです。」</p>
                         </div>
                     </div>
                 </div>
@@ -420,19 +421,19 @@
                 
                 <div class="bg-slate-50 rounded-3xl p-6 md:p-8 border border-slate-200 shadow-sm mb-8 text-center">
                     
-                    <!-- ロゴ (★を限界まで巨大化) -->
+                    <!-- ロゴ (さらに大きく、文字と密着) -->
                     <div class="flex items-center justify-center mb-4">
-                        <span class="text-4xl md:text-5xl tracking-widest text-slate-900 leading-none flex items-center font-impact">
+                        <span class="text-4xl md:text-5xl tracking-widest text-slate-900 leading-none flex items-center font-stencil mt-1">
                             ONE
                             <!-- ★画像 -->
-                            <img src="ONESTAR.PNG" alt="★" class="w-[100px] h-[100px] md:w-[130px] md:h-[130px] mx-[-16px] md:mx-[-22px] object-contain -translate-y-1">
+                            <img src="ONESTAR.PNG" alt="★" class="w-[85px] h-[85px] md:w-[100px] md:h-[100px] mx-[-12px] md:mx-[-16px] object-contain -translate-y-[4px]">
                             STAR
                         </span>
                     </div>
 
                     <h2 class="text-lg font-black mb-1">川崎 一平</h2>
-                    <p class="text-[10px] text-slate-500 font-bold mb-4">株式会社ECS 専属プロスタッフ</p>
-                    <p class="text-xs md:text-sm text-slate-800 leading-relaxed max-w-xl mx-auto font-bold">
+                    <p class="text-[10px] text-slate-500 font-black mb-4">株式会社ECS 専属プロスタッフ</p>
+                    <p class="text-xs md:text-sm text-slate-800 leading-relaxed max-w-xl mx-auto font-black">
                         エアコンクリーニングに年中夢中！<br>
                         難関機種や、他店で断られたエアコンも大歓迎！<br>
                         壊れていなければ、どんなエアコンでも、おまかせください。
@@ -477,14 +478,14 @@
     <footer class="bg-slate-900 text-white pt-8 pb-20 md:pb-8 border-t-[6px] border-neon text-center">
         <div class="mb-4">
             <!-- フッターロゴ -->
-            <span class="text-3xl md:text-4xl tracking-widest text-white flex items-center justify-center font-impact">
+            <span class="text-3xl md:text-4xl tracking-widest text-white flex items-center justify-center font-stencil mt-1">
                 ONE
-                <img src="ONESTAR.PNG" alt="★" class="w-[80px] h-[80px] md:w-[100px] md:h-[100px] mx-[-12px] md:mx-[-16px] object-contain -translate-y-1">
+                <img src="ONESTAR.PNG" alt="★" class="w-[60px] h-[60px] md:w-[75px] md:h-[75px] mx-[-8px] md:mx-[-12px] object-contain -translate-y-[4px]">
                 STAR
             </span>
-            <p class="text-[9px] text-neon font-bold mt-2">株式会社ECS専属プロスタッフ</p>
+            <p class="text-[9px] text-neon font-black mt-2">株式会社ECS専属プロスタッフ</p>
         </div>
-        <p class="text-[9px] text-slate-500">© 2026 ONE★STAR. All Rights Reserved.</p>
+        <p class="text-[9px] text-slate-500 font-bold">© 2026 ONE★STAR. All Rights Reserved.</p>
     </footer>
 
     <!-- MOBILE BOTTOM NAVIGATION (画像通りの3分割デザイン) -->
@@ -492,19 +493,19 @@
         
         <!-- メニュー (黒) -->
         <button id="nav-btn-menu" class="flex flex-col items-center justify-center w-1/4 border-r border-slate-700 active:bg-slate-800">
-            <svg class="w-6 h-6 mb-0.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
-            <span class="text-[10px] font-bold">メニュー</span>
+            <svg class="w-6 h-6 mb-0.5 text-white" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+            <span class="text-[10px] font-black">メニュー</span>
         </button>
         
         <!-- 料金 (黒) -->
         <a href="#pricing" class="flex flex-col items-center justify-center w-1/4 active:bg-slate-800">
-            <svg class="w-6 h-6 mb-0.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-            <span class="text-[10px] font-bold">料金</span>
+            <svg class="w-6 h-6 mb-0.5 text-white" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <span class="text-[10px] font-black">料金</span>
         </a>
         
         <!-- 電話する (蛍光イエロー) -->
         <a href="tel:090-0000-0000" class="flex items-center justify-center bg-neon text-slate-900 w-1/2 font-black text-lg active:bg-yellow-400 transition-colors">
-            <svg class="w-6 h-6 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2.5" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+            <svg class="w-6 h-6 mr-1.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
             電話する
         </a>
         
