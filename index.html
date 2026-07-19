@@ -51,13 +51,11 @@
             <svg class="w-6 h-6 text-slate-800" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
         </button>
 
-        <!-- メインロゴ (間隔を狭め、サイズアップ) -->
+        <!-- メインロゴ -->
         <div class="absolute left-1/2 -translate-x-1/2 flex items-center justify-center">
-            <span class="text-2xl md:text-3xl tracking-widest text-slate-900 leading-none flex items-center font-impact">
+            <span class="text-xl md:text-2xl tracking-widest text-slate-900 leading-none flex items-center font-impact">
                 ONE
-                <svg class="w-[34px] h-[34px] md:w-[40px] md:h-[40px] mx-0.5 text-neon -translate-y-[1px]" viewBox="0 0 24 24" fill="currentColor" stroke="#0F172A" stroke-width="1.5" stroke-linejoin="round">
-                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                </svg>
+                <img src="ONESTAR.PNG" alt="★" class="w-[30px] h-[30px] md:w-[36px] md:h-[36px] mx-1.5 object-contain -translate-y-[1px]">
                 STAR
             </span>
         </div>
@@ -177,7 +175,7 @@
                     <div class="flex items-center p-4 bg-white rounded-xl border border-slate-200 shadow-sm">
                         <span class="w-10 h-10 bg-slate-900 text-neon font-impact text-xl rounded-lg flex items-center justify-center mr-4 shrink-0">3</span>
                         <div>
-                            <h3 class="font-bold text-sm">エコ洗剤＆高圧洗浄</h3>
+                            <h3 class="font-bold text-sm">専用洗剤＆高圧洗浄</h3>
                             <p class="text-xs text-slate-500 mt-1">専用洗剤と高圧洗浄機で、奥のカビや汚れを一気に洗い流します。</p>
                         </div>
                     </div>
@@ -368,9 +366,7 @@
                     <div class="flex items-center justify-center mb-4">
                         <span class="text-3xl md:text-4xl tracking-widest text-slate-900 leading-none flex items-center font-impact">
                             ONE
-                            <svg class="w-[42px] h-[42px] md:w-[50px] md:h-[50px] mx-0.5 text-neon -translate-y-[1px]" viewBox="0 0 24 24" fill="currentColor" stroke="#0F172A" stroke-width="1.5" stroke-linejoin="round">
-                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                            </svg>
+                            <img src="ONESTAR.PNG" alt="★" class="w-[42px] h-[42px] md:w-[50px] md:h-[50px] mx-0.5 object-contain -translate-y-[1px]">
                             STAR
                         </span>
                     </div>
@@ -424,9 +420,7 @@
             <!-- フッターロゴ -->
             <span class="text-2xl md:text-3xl tracking-widest text-white flex items-center justify-center font-impact">
                 ONE
-                <svg class="w-[34px] h-[34px] md:w-[40px] md:h-[40px] mx-0.5 text-neon -translate-y-[1px]" viewBox="0 0 24 24" fill="currentColor" stroke="#0F172A" stroke-width="1.5" stroke-linejoin="round">
-                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                </svg>
+                <img src="ONESTAR.PNG" alt="★" class="w-[34px] h-[34px] md:w-[40px] md:h-[40px] mx-0.5 object-contain -translate-y-[1px]">
                 STAR
             </span>
             <p class="text-[9px] text-neon font-bold mt-2">株式会社ECS専属プロスタッフ</p>
@@ -512,10 +506,16 @@
 
             const calcEstimate = () => {
                 const data = pricingData[currentType];
-                // 1台目は基本料金、2台目以降は割引料金
-                let total = data.base + (currentQty > 1 ? (currentQty - 1) * data.multi : 0);
                 
-                // オプション
+                // ★修正箇所：1台なら基本料金、2台以上なら「割引料金 × 台数」
+                let total = 0;
+                if (currentQty === 1) {
+                    total = data.base;
+                } else {
+                    total = data.multi * currentQty;
+                }
+                
+                // オプション (室外機洗浄は台数分かかる)
                 if (optOutdoor.checked) total += 4000 * currentQty;
 
                 priceDisplay.textContent = '¥' + total.toLocaleString();
