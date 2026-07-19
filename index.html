@@ -1,0 +1,555 @@
+```html
+<!DOCTYPE html>
+<html lang="ja" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ONE★STAR | 愛知県のエアコンクリーニング</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        neon: '#EFFF00' // トレードカラー：蛍光イエロー
+                    },
+                    fontFamily: {
+                        sans: ['"Noto Sans JP"', 'sans-serif'],
+                        // IMPACTフォント
+                        impact: ['Impact', 'Charcoal', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        /* ドロワーメニュー用 */
+        #drawer-menu { transition: transform 0.3s ease-in-out; }
+        .drawer-closed { transform: translateX(-100%); }
+        .drawer-open { transform: translateX(0); }
+        /* ボタンの輝き */
+        .shiny-btn { position: relative; overflow: hidden; }
+        .shiny-btn::after {
+            content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+            background: linear-gradient(to bottom right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0) 100%);
+            transform: rotate(45deg); animation: shine 4s infinite;
+        }
+        @keyframes shine {
+            0% { transform: translate(-30%, -30%) rotate(45deg); }
+            100% { transform: translate(130%, 130%) rotate(45deg); }
+        }
+    </style>
+</head>
+<body class="font-sans text-slate-800 bg-white antialiased overflow-x-hidden">
+
+    <!-- HEADER -->
+    <header class="fixed top-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md shadow-sm border-b border-slate-100 h-14 flex items-center justify-between px-4">
+        <!-- メニューボタン -->
+        <button id="menu-open-btn" class="p-2 hover:bg-slate-100 rounded-lg" aria-label="メニュー">
+            <svg class="w-6 h-6 text-slate-800" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+
+        <!-- メインロゴ (間隔を狭め、サイズアップ) -->
+        <div class="absolute left-1/2 -translate-x-1/2 flex items-center justify-center">
+            <span class="text-2xl md:text-3xl tracking-widest text-slate-900 leading-none flex items-center font-impact">
+                ONE
+                <svg class="w-[34px] h-[34px] md:w-[40px] md:h-[40px] mx-0.5 text-neon -translate-y-[1px]" viewBox="0 0 24 24" fill="currentColor" stroke="#0F172A" stroke-width="1.5" stroke-linejoin="round">
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                </svg>
+                STAR
+            </span>
+        </div>
+
+        <!-- PC用電話ボタン -->
+        <div class="hidden md:flex items-center space-x-3">
+            <a href="tel:090-0000-0000" class="bg-slate-900 hover:bg-slate-800 text-neon px-4 py-1.5 rounded-full text-xs font-bold border border-slate-700 flex items-center space-x-1 transition-all">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                <span>電話相談</span>
+            </a>
+        </div>
+        <div class="w-10 md:hidden"></div>
+    </header>
+
+    <!-- DRAWER MENU -->
+    <div id="drawer-container" class="fixed inset-0 z-50 overflow-hidden hidden">
+        <div id="drawer-backdrop" class="absolute inset-0 bg-slate-900/60 opacity-0 transition-opacity duration-300"></div>
+        <div class="pointer-events-none fixed inset-y-0 left-0 flex max-w-full">
+            <div id="drawer-menu" class="pointer-events-auto w-64 drawer-closed bg-white shadow-2xl flex flex-col h-full">
+                
+                <div class="p-3 bg-white flex justify-end">
+                    <button id="menu-close-btn" class="p-2 hover:bg-slate-100 rounded-lg">
+                        <svg class="w-6 h-6 text-slate-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+                    </button>
+                </div>
+
+                <div class="bg-blue-600 py-3 px-6">
+                    <h2 class="text-white font-bold tracking-wider text-sm">MENU</h2>
+                </div>
+
+                <nav class="flex-1 px-4 py-2 space-y-1 overflow-y-auto">
+                    <a href="#hero" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-bold text-slate-700">
+                        <span class="mr-2 text-slate-400">＞</span>トップページ
+                    </a>
+                    <a href="#process" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-bold text-slate-700">
+                        <span class="mr-2 text-slate-400">＞</span>作業の流れ
+                    </a>
+                    <a href="#pricing" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-bold text-slate-700">
+                        <span class="mr-2 text-slate-400">＞</span>料金プラン
+                    </a>
+                    <a href="#gallery" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-bold text-slate-700">
+                        <span class="mr-2 text-slate-400">＞</span>施工事例
+                    </a>
+                    <a href="#about" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-bold text-slate-700">
+                        <span class="mr-2 text-slate-400">＞</span>代表挨拶
+                    </a>
+                </nav>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN -->
+    <main class="pt-14 pb-20 md:pb-12">
+
+        <!-- HERO -->
+        <section id="hero" class="relative py-16 px-4 max-w-3xl mx-auto flex flex-col items-center justify-center text-center">
+            
+            <h1 class="text-4xl md:text-5xl font-black text-slate-900 leading-tight mb-8">
+                エアコン<br>
+                クリーニングに<br>
+                <span class="relative inline-block mt-2">
+                    年中夢中！
+                    <span class="absolute left-0 bottom-1 w-full h-3 bg-neon -z-10 opacity-90"></span>
+                </span>
+            </h1>
+            
+            <p class="text-sm md:text-base text-slate-600 font-medium mb-10 max-w-lg leading-relaxed">
+                お客様の大切なエアコン1台1台を<br>
+                心を込めて洗浄します。<br>
+                迅速な作業と気持ちの良い対応をお約束します。
+            </p>
+            
+            <!-- 3つのポイント -->
+            <div class="grid grid-cols-3 gap-3 mb-10 w-full max-w-md mx-auto">
+                <div class="bg-slate-50 p-3 rounded-lg border border-slate-100">
+                    <span class="block text-sm md:text-base font-black text-blue-600">愛知県内</span>
+                    <span class="text-[10px] text-slate-500 font-bold">出張費0円</span>
+                </div>
+                <div class="bg-slate-50 p-3 rounded-lg border border-slate-100">
+                    <span class="block text-sm md:text-base font-black text-emerald-500">プロ品質</span>
+                    <span class="text-[10px] text-slate-500 font-bold">高圧洗浄</span>
+                </div>
+                <div class="bg-slate-50 p-3 rounded-lg border border-slate-100">
+                    <span class="block text-sm md:text-base font-black text-amber-500">明朗会計</span>
+                    <span class="text-[10px] text-slate-500 font-bold">追加請求なし</span>
+                </div>
+            </div>
+
+            <!-- 電話ボタン -->
+            <a href="tel:090-0000-0000" class="shiny-btn inline-flex w-full sm:w-auto items-center justify-center space-x-2 bg-slate-900 text-neon font-bold px-10 py-5 rounded-xl shadow-lg border border-slate-700 text-lg transition-transform active:scale-95">
+                <svg class="w-6 h-6 animate-pulse" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                <span>今すぐ電話で相談・見積り</span>
+            </a>
+            
+        </section>
+
+        <!-- PROCESS -->
+        <section id="process" class="py-12 bg-slate-50 border-t border-slate-100">
+            <div class="max-w-4xl mx-auto px-4">
+                <h2 class="text-xl md:text-2xl font-black text-center mb-8">作業の流れ</h2>
+                <div class="space-y-3">
+                    <div class="flex items-center p-4 bg-white rounded-xl border border-slate-200 shadow-sm">
+                        <span class="w-10 h-10 bg-slate-900 text-neon font-impact text-xl rounded-lg flex items-center justify-center mr-4 shrink-0">1</span>
+                        <div>
+                            <h3 class="font-bold text-sm">動作確認・養生</h3>
+                            <p class="text-xs text-slate-500 mt-1">お部屋が汚れないよう、しっかりと専用シートで保護します。</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center p-4 bg-white rounded-xl border border-slate-200 shadow-sm">
+                        <span class="w-10 h-10 bg-slate-900 text-neon font-impact text-xl rounded-lg flex items-center justify-center mr-4 shrink-0">2</span>
+                        <div>
+                            <h3 class="font-bold text-sm">パーツ取り外し</h3>
+                            <p class="text-xs text-slate-500 mt-1">カバーやフィルターを安全に取り外します。</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center p-4 bg-white rounded-xl border border-slate-200 shadow-sm">
+                        <span class="w-10 h-10 bg-slate-900 text-neon font-impact text-xl rounded-lg flex items-center justify-center mr-4 shrink-0">3</span>
+                        <div>
+                            <h3 class="font-bold text-sm">エコ洗剤＆高圧洗浄</h3>
+                            <p class="text-xs text-slate-500 mt-1">専用洗剤と高圧洗浄機で、奥のカビや汚れを一気に洗い流します。</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center p-4 bg-white rounded-xl border border-slate-200 shadow-sm">
+                        <span class="w-10 h-10 bg-slate-900 text-neon font-impact text-xl rounded-lg flex items-center justify-center mr-4 shrink-0">4</span>
+                        <div>
+                            <h3 class="font-bold text-sm">組み立て・動作チェック</h3>
+                            <p class="text-xs text-slate-500 mt-1">元通りに組み立て、正常に動作するかチェックして完了です。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-6 p-4 border-2 border-slate-900 rounded-xl flex items-center justify-between bg-white shadow-sm">
+                    <span class="text-sm font-bold text-slate-900">💡 安心のお約束</span>
+                    <ul class="text-[11px] text-slate-600 space-y-1 text-right font-medium">
+                        <li>清潔な身だしなみで訪問</li>
+                        <li>水回りの原状回復</li>
+                        <li>損害賠償保険加入済み</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- PRICING & CALCULATOR -->
+        <section id="pricing" class="py-12 bg-white border-t border-slate-100">
+            <div class="max-w-5xl mx-auto px-4">
+                <h2 class="text-xl md:text-2xl font-black text-center mb-8">料金プラン・お見積り</h2>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+                    
+                    <!-- 料金表 -->
+                    <div class="space-y-6">
+                        
+                        <!-- 一般壁掛け -->
+                        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm relative pt-8">
+                            <span class="bg-slate-200 text-slate-600 text-[10px] font-bold px-2 py-1 rounded absolute top-0 left-4 -translate-y-1/2">一般タイプ</span>
+                            <h3 class="text-lg font-bold">壁掛けエアコン</h3>
+                            <div class="mt-2 flex items-end justify-between">
+                                <span class="text-2xl font-black text-slate-900">¥9,500</span>
+                                <span class="text-xs text-emerald-600 font-bold">2台目〜 ¥8,400</span>
+                            </div>
+                        </div>
+
+                        <!-- お掃除機能付き -->
+                        <div class="bg-white p-6 rounded-2xl border-2 border-slate-900 shadow-sm relative pt-8">
+                            <span class="bg-slate-900 text-neon text-[10px] font-bold px-2 py-1 rounded absolute top-0 left-4 -translate-y-1/2">高機能タイプ</span>
+                            <h3 class="text-lg font-bold">お掃除機能付き</h3>
+                            <div class="mt-2 flex items-end justify-between">
+                                <span class="text-2xl font-black text-slate-900">¥15,800</span>
+                                <span class="text-xs text-emerald-600 font-bold">2台目〜 ¥14,800</span>
+                            </div>
+                        </div>
+
+                        <!-- 業務用 壁掛け幅広 -->
+                        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm relative pt-8">
+                            <span class="bg-slate-200 text-slate-600 text-[10px] font-bold px-2 py-1 rounded absolute top-0 left-4 -translate-y-1/2">業務用</span>
+                            <h3 class="text-lg font-bold">壁掛け幅広タイプ</h3>
+                            <div class="mt-2 flex items-end justify-between">
+                                <span class="text-2xl font-black text-slate-900">¥15,000</span>
+                                <span class="text-xs text-emerald-600 font-bold">2台目〜 ¥13,000</span>
+                            </div>
+                        </div>
+
+                        <!-- 業務用 天カセ4方向 -->
+                        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm relative pt-8">
+                            <span class="bg-slate-200 text-slate-600 text-[10px] font-bold px-2 py-1 rounded absolute top-0 left-4 -translate-y-1/2">業務用</span>
+                            <h3 class="text-lg font-bold">天カセ-4方向</h3>
+                            <div class="mt-2 flex items-end justify-between">
+                                <span class="text-2xl font-black text-slate-900">¥20,400</span>
+                                <span class="text-xs text-emerald-600 font-bold">2台目〜 ¥18,000</span>
+                            </div>
+                        </div>
+
+                        <!-- 業務用 天カセ1・2方向 -->
+                        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm relative pt-8">
+                            <span class="bg-slate-200 text-slate-600 text-[10px] font-bold px-2 py-1 rounded absolute top-0 left-4 -translate-y-1/2">業務用</span>
+                            <h3 class="text-lg font-bold">天カセ-1方向・2方向</h3>
+                            <div class="mt-2 flex items-end justify-between">
+                                <span class="text-2xl font-black text-slate-900">¥22,000</span>
+                                <span class="text-xs text-emerald-600 font-bold">2台目〜 ¥20,000</span>
+                            </div>
+                        </div>
+
+                        <!-- 業務用 天吊り -->
+                        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm relative pt-8">
+                            <span class="bg-slate-200 text-slate-600 text-[10px] font-bold px-2 py-1 rounded absolute top-0 left-4 -translate-y-1/2">業務用</span>
+                            <h3 class="text-lg font-bold">天吊り</h3>
+                            <div class="mt-2 flex items-end justify-between">
+                                <span class="text-2xl font-black text-slate-900">¥22,000</span>
+                                <span class="text-xs text-emerald-600 font-bold">2台目〜 ¥20,000</span>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- 計算機 (右側スティッキー配置) -->
+                    <div class="lg:sticky lg:top-20">
+                        <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200 shadow-sm">
+                            <h3 class="font-bold text-sm mb-4">かんたん料金シミュレーター</h3>
+                            <div class="space-y-4">
+                                <!-- プラン選択 -->
+                                <div class="grid grid-cols-2 gap-2">
+                                    <button class="calc-type-btn p-2 border-2 border-slate-900 bg-neon text-slate-900 font-bold text-xs rounded-lg" data-type="standard">一般壁掛け</button>
+                                    <button class="calc-type-btn p-2 border border-slate-200 bg-white text-slate-600 font-bold text-xs rounded-lg" data-type="auto">お掃除機能付</button>
+                                    <button class="calc-type-btn p-2 border border-slate-200 bg-white text-slate-600 font-bold text-xs rounded-lg" data-type="biz_wide">壁掛幅広</button>
+                                    <button class="calc-type-btn p-2 border border-slate-200 bg-white text-slate-600 font-bold text-xs rounded-lg" data-type="biz_4way">天カセ4方向</button>
+                                    <button class="calc-type-btn p-2 border border-slate-200 bg-white text-slate-600 font-bold text-[10px] rounded-lg" data-type="biz_12way">天カセ1・2方向</button>
+                                    <button class="calc-type-btn p-2 border border-slate-200 bg-white text-slate-600 font-bold text-xs rounded-lg" data-type="biz_hang">天吊り</button>
+                                </div>
+                                <!-- 台数 -->
+                                <div class="flex items-center space-x-3 p-2 bg-white rounded-lg border border-slate-200">
+                                    <span class="text-xs font-bold text-slate-500 w-12 text-center">台数</span>
+                                    <button id="calc-qty-minus" class="w-8 h-8 bg-slate-100 rounded shadow-sm font-bold hover:bg-slate-200">-</button>
+                                    <span id="calc-qty-display" class="flex-1 text-center font-bold text-lg">1 台</span>
+                                    <button id="calc-qty-plus" class="w-8 h-8 bg-slate-100 rounded shadow-sm font-bold hover:bg-slate-200">+</button>
+                                </div>
+                                <!-- オプション -->
+                                <div class="space-y-2">
+                                    <label class="flex items-center text-xs font-bold cursor-pointer bg-white p-2 rounded border border-slate-100">
+                                        <input type="checkbox" id="calc-opt-outdoor" class="mr-2 rounded text-slate-900 focus:ring-0 w-4 h-4"> 
+                                        室外機洗浄 (+¥4,000)
+                                    </label>
+                                </div>
+                                <!-- 合計 -->
+                                <div class="bg-slate-900 p-4 rounded-xl text-center shadow-md">
+                                    <span class="text-[10px] text-neon">目安金額(税込)</span>
+                                    <div id="calc-total-price" class="text-3xl font-black text-white mt-1">¥9,500</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- GALLERY & REVIEWS -->
+        <section id="gallery" class="py-12 bg-slate-50 border-t border-slate-100">
+            <div class="max-w-5xl mx-auto px-4">
+                <h2 class="text-xl md:text-2xl font-black text-center mb-8">施工事例 ＆ お客様の声</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Case 1 -->
+                    <div class="border border-slate-200 bg-white rounded-xl overflow-hidden shadow-sm">
+                        <div class="flex h-32">
+                            <div class="w-1/2 bg-slate-200 flex items-end p-2 relative">
+                                <span class="absolute top-2 left-2 bg-slate-900 text-white text-[9px] px-2 rounded">BEFORE</span>
+                                <span class="text-xs font-bold text-slate-700">カビがぎっしり…</span>
+                            </div>
+                            <div class="w-1/2 bg-emerald-50 flex items-end p-2 relative border-l border-white">
+                                <span class="absolute top-2 left-2 bg-emerald-500 text-white text-[9px] px-2 rounded">AFTER</span>
+                                <span class="text-xs font-bold text-emerald-700">本来の白さに！</span>
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-bold text-sm">岡崎市 M様（一般壁掛け）</h3>
+                            <p class="text-xs text-slate-500 mt-1">「気になっていた酸っぱいニオイが完全に消えました！対応も早くて助かりました。」</p>
+                        </div>
+                    </div>
+                    <!-- Case 2 -->
+                    <div class="border border-slate-200 bg-white rounded-xl overflow-hidden shadow-sm">
+                        <div class="flex h-32">
+                            <div class="w-1/2 bg-slate-200 flex items-end p-2 relative">
+                                <span class="absolute top-2 left-2 bg-slate-900 text-white text-[9px] px-2 rounded">BEFORE</span>
+                                <span class="text-xs font-bold text-slate-700">お掃除ロボの裏に埃</span>
+                            </div>
+                            <div class="w-1/2 bg-emerald-50 flex items-end p-2 relative border-l border-white">
+                                <span class="absolute top-2 left-2 bg-emerald-500 text-white text-[9px] px-2 rounded">AFTER</span>
+                                <span class="text-xs font-bold text-emerald-700">隙間までスッキリ！</span>
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-bold text-sm">豊田市 K様（お掃除機能付）</h3>
+                            <p class="text-xs text-slate-500 mt-1">「複雑な機械も手際よく外して洗浄してくれました。風が気持ち良いです。」</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ABOUT & CONTACT -->
+        <section id="about" class="py-12 bg-white">
+            <div class="max-w-4xl mx-auto px-4">
+                
+                <div class="bg-slate-50 rounded-3xl p-6 md:p-8 border border-slate-200 shadow-sm mb-8 text-center">
+                    
+                    <!-- ロゴ -->
+                    <div class="flex items-center justify-center mb-4">
+                        <span class="text-3xl md:text-4xl tracking-widest text-slate-900 leading-none flex items-center font-impact">
+                            ONE
+                            <svg class="w-[42px] h-[42px] md:w-[50px] md:h-[50px] mx-0.5 text-neon -translate-y-[1px]" viewBox="0 0 24 24" fill="currentColor" stroke="#0F172A" stroke-width="1.5" stroke-linejoin="round">
+                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                            </svg>
+                            STAR
+                        </span>
+                    </div>
+
+                    <h2 class="text-lg font-black mb-1">川崎 一平</h2>
+                    <p class="text-[10px] text-slate-500 font-bold mb-4">株式会社ECS 専属プロスタッフ</p>
+                    <p class="text-xs md:text-sm text-slate-800 leading-relaxed max-w-xl mx-auto font-bold">
+                        エアコンクリーニングに年中夢中！<br>
+                        難関機種や、他店で断られたエアコンも大歓迎！<br>
+                        壊れていなければ、どんなエアコンでも、おまかせください。
+                    </p>
+                </div>
+
+                <!-- 夜間対応アピール -->
+                <div class="bg-slate-900 rounded-2xl p-6 mb-8 text-center shadow-md relative overflow-hidden">
+                    <div class="absolute left-0 top-0 bottom-0 w-2 bg-neon"></div>
+                    <h3 class="text-neon font-black text-lg mb-2 flex items-center justify-center">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2.5" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+                        夜間作業も対応可能です！
+                    </h3>
+                    <p class="text-white text-xs md:text-sm font-bold">
+                        定休日のない飲食店様など、閉店後の夜間作業も大歓迎です！<br>
+                        お時間・日程など柔軟に調整いたしますので、お気軽にご相談ください。
+                    </p>
+                </div>
+
+                <div id="contact" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <a href="tel:090-0000-0000" class="flex flex-col items-center justify-center p-6 bg-slate-900 text-neon rounded-2xl hover:bg-slate-800 transition-all border border-slate-700 shadow-sm">
+                        <svg class="w-8 h-8 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                        <span class="font-impact tracking-wider text-xl">090-0000-0000</span>
+                        <span class="text-[10px] text-slate-300 mt-1 font-bold">タップして電話発信</span>
+                    </a>
+                    <a href="https://instagram.com" target="_blank" class="flex flex-col items-center justify-center p-6 bg-gradient-to-r from-pink-500 to-rose-500 text-white rounded-2xl hover:opacity-90 transition-all shadow-sm">
+                        <svg class="w-8 h-8 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><path stroke-width="2" d="M17.5 6.5h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        <span class="font-black text-lg">インスタでDM相談</span>
+                        <span class="text-[10px] mt-1 font-bold">24時間受付中</span>
+                    </a>
+                </div>
+
+                <p class="text-center text-[10px] text-slate-500 mt-4 font-bold">
+                    【出張エリア】愛知県内無料（岡崎・名古屋・豊田など）。静岡・岐阜・三重などは要相談。
+                </p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-900 text-white pt-8 pb-20 md:pb-8 border-t-[6px] border-neon text-center">
+        <div class="mb-4">
+            <!-- フッターロゴ -->
+            <span class="text-2xl md:text-3xl tracking-widest text-white flex items-center justify-center font-impact">
+                ONE
+                <svg class="w-[34px] h-[34px] md:w-[40px] md:h-[40px] mx-0.5 text-neon -translate-y-[1px]" viewBox="0 0 24 24" fill="currentColor" stroke="#0F172A" stroke-width="1.5" stroke-linejoin="round">
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                </svg>
+                STAR
+            </span>
+            <p class="text-[9px] text-neon font-bold mt-2">株式会社ECS専属プロスタッフ</p>
+        </div>
+        <p class="text-[9px] text-slate-500">© 2026 ONE★STAR. All Rights Reserved.</p>
+    </footer>
+
+    <!-- MOBILE BOTTOM NAVIGATION (画像通りの3分割デザイン) -->
+    <div class="fixed bottom-0 left-0 right-0 z-45 bg-slate-900 md:hidden h-[60px] flex items-stretch text-white shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.3)]">
+        
+        <!-- メニュー (黒) -->
+        <button id="nav-btn-menu" class="flex flex-col items-center justify-center w-1/4 border-r border-slate-700 active:bg-slate-800">
+            <svg class="w-6 h-6 mb-0.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+            <span class="text-[10px] font-bold">メニュー</span>
+        </button>
+        
+        <!-- 料金 (黒) -->
+        <a href="#pricing" class="flex flex-col items-center justify-center w-1/4 active:bg-slate-800">
+            <svg class="w-6 h-6 mb-0.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <span class="text-[10px] font-bold">料金</span>
+        </a>
+        
+        <!-- 電話する (蛍光イエロー) -->
+        <a href="tel:090-0000-0000" class="flex items-center justify-center bg-neon text-slate-900 w-1/2 font-black text-lg active:bg-yellow-400 transition-colors">
+            <svg class="w-6 h-6 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2.5" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+            電話する
+        </a>
+        
+    </div>
+
+    <!-- SCRIPTS -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // メニュー開閉
+            const drawerContainer = document.getElementById('drawer-container');
+            const drawerMenu = document.getElementById('drawer-menu');
+            const drawerBackdrop = document.getElementById('drawer-backdrop');
+            
+            const toggleMenu = (show) => {
+                if (show) {
+                    drawerContainer.classList.remove('hidden');
+                    setTimeout(() => {
+                        drawerBackdrop.classList.remove('opacity-0');
+                        drawerBackdrop.classList.add('opacity-100');
+                        drawerMenu.classList.remove('drawer-closed');
+                        drawerMenu.classList.add('drawer-open');
+                    }, 10);
+                } else {
+                    drawerBackdrop.classList.remove('opacity-100');
+                    drawerBackdrop.classList.add('opacity-0');
+                    drawerMenu.classList.remove('drawer-open');
+                    drawerMenu.classList.add('drawer-closed');
+                    setTimeout(() => drawerContainer.classList.add('hidden'), 300);
+                }
+            };
+
+            document.getElementById('menu-open-btn').addEventListener('click', () => toggleMenu(true));
+            document.getElementById('nav-btn-menu').addEventListener('click', () => toggleMenu(true));
+            document.getElementById('menu-close-btn').addEventListener('click', () => toggleMenu(false));
+            document.getElementById('drawer-backdrop').addEventListener('click', () => toggleMenu(false));
+            document.querySelectorAll('.menu-link').forEach(link => link.addEventListener('click', () => toggleMenu(false)));
+
+
+            // 料金シミュレーター
+            // プランと料金の定義
+            const pricingData = {
+                'standard':  { base: 9500,  multi: 8400 },
+                'auto':      { base: 15800, multi: 14800 },
+                'biz_wide':  { base: 15000, multi: 13000 },
+                'biz_4way':  { base: 20400, multi: 18000 },
+                'biz_12way': { base: 22000, multi: 20000 },
+                'biz_hang':  { base: 22000, multi: 20000 }
+            };
+
+            let currentType = 'standard'; 
+            let currentQty = 1;
+
+            const priceDisplay = document.getElementById('calc-total-price');
+            const qtyDisplay = document.getElementById('calc-qty-display');
+            const typeBtns = document.querySelectorAll('.calc-type-btn');
+            const optOutdoor = document.getElementById('calc-opt-outdoor');
+
+            const calcEstimate = () => {
+                const data = pricingData[currentType];
+                // 1台目は基本料金、2台目以降は割引料金
+                let total = data.base + (currentQty > 1 ? (currentQty - 1) * data.multi : 0);
+                
+                // オプション
+                if (optOutdoor.checked) total += 4000 * currentQty;
+
+                priceDisplay.textContent = '¥' + total.toLocaleString();
+                qtyDisplay.textContent = currentQty + ' 台';
+            };
+
+            // 各種プランボタンのクリックイベント
+            typeBtns.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    // 全ボタンを未選択状態にリセット
+                    typeBtns.forEach(b => {
+                        b.className = "calc-type-btn p-2 border border-slate-200 bg-white text-slate-600 font-bold text-xs rounded-lg";
+                    });
+                    
+                    // クリックされたボタンを選択状態に
+                    const clickedBtn = e.target;
+                    clickedBtn.className = "calc-type-btn p-2 border-2 border-slate-900 bg-neon text-slate-900 font-bold text-xs rounded-lg";
+                    
+                    currentType = clickedBtn.getAttribute('data-type');
+                    calcEstimate();
+                });
+            });
+
+            // 台数増減
+            document.getElementById('calc-qty-plus').addEventListener('click', () => { currentQty++; calcEstimate(); });
+            document.getElementById('calc-qty-minus').addEventListener('click', () => { if(currentQty > 1) { currentQty--; calcEstimate(); } });
+            
+            // オプション切り替え
+            optOutdoor.addEventListener('change', calcEstimate);
+
+        });
+    </script>
+</body>
+</html>
+
+
+```
