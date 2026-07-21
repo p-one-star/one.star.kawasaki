@@ -55,7 +55,7 @@
         <div class="absolute left-1/2 -translate-x-1/2 flex items-center justify-center mt-1">
             <span class="text-2xl md:text-3xl tracking-widest text-slate-900 leading-none flex items-center font-impact">
                 ONE
-                <img src="ONESTAR.PNG" alt="★" class="w-[45px] h-[45px] md:w-[55px] md:h-[55px] mx-[-4px] md:mx-[-6px] object-contain -translate-y-[4px]">
+                <img src="ONESTAR.PNG" alt="★" class="w-[45px] h-[45px] md:w-[55px] md:h-[55px] mx-[-4px] md:mx-[-6px] object-contain -translate-y-[4px]" onerror="this.style.display='none'">
                 STAR
             </span>
         </div>
@@ -122,7 +122,7 @@
 
         <!-- HERO -->
         <section id="hero" class="relative pt-4 pb-8 px-4 max-w-3xl mx-auto flex flex-col items-center justify-center text-center">
-            <img src="HERO.PNG" alt="エアコンクリーニングに年中夢中！" class="w-full max-w-lg mx-auto mb-3 object-contain">
+            <img src="HERO.PNG" alt="エアコンクリーニングに年中夢中！" class="w-full max-w-lg mx-auto mb-3 object-contain" onerror="this.style.display='none'">
             <p class="text-[13px] md:text-sm text-slate-700 font-black mb-6 max-w-lg leading-relaxed">
                 お客様の大切なエアコン1台1台を<br class="sm:hidden">心を込めて洗浄します。<br>
                 迅速な作業と気持ちの良い対応を<br class="sm:hidden">お約束します。
@@ -318,12 +318,19 @@
                             当店が普段通りに通常分解で洗浄した後、<br class="sm:hidden">実際に壁から取り外してバラバラに分解し、<br class="sm:hidden">「どれくらい洗い残しがあるか」を検証した画像です。<br>手抜きなしの通常分解の実力をご覧ください。
                         </p>
                         
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <!-- 3枚の画像用のグリッド（スマホ〜タブレット〜PCで列数を調整） -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                             <!-- 検証画像1 (half.jpg) -->
-                            <div class="aspect-video bg-cover bg-center rounded-xl border border-slate-700 relative overflow-hidden" style="background-image: url('half.jpg');">
+                            <div class="aspect-video bg-cover bg-center rounded-xl border border-slate-700 relative overflow-hidden bg-slate-800" style="background-image: url('half.jpg');">
+                                <span class="absolute inset-0 flex items-center justify-center text-slate-500 text-xs">(画像: half.jpg)</span>
                             </div>
                             <!-- 検証画像2 (DAIKIN.jpg) -->
-                            <div class="aspect-video bg-cover bg-center rounded-xl border border-slate-700 relative overflow-hidden" style="background-image: url('DAIKIN.jpg');">
+                            <div class="aspect-video bg-cover bg-center rounded-xl border border-slate-700 relative overflow-hidden bg-slate-800" style="background-image: url('DAIKIN.jpg');">
+                                <span class="absolute inset-0 flex items-center justify-center text-slate-500 text-xs">(画像: DAIKIN.jpg)</span>
+                            </div>
+                            <!-- 検証画像3 (uragawa.jpg) -->
+                            <div class="aspect-video bg-cover bg-center rounded-xl border border-slate-700 relative overflow-hidden bg-slate-800" style="background-image: url('uragawa.jpg');">
+                                <span class="absolute inset-0 flex items-center justify-center text-slate-500 text-xs">(画像: uragawa.jpg)</span>
                             </div>
                         </div>
                     </div>
@@ -344,7 +351,8 @@
                             
                             <!-- 工具 1: 手動ドライバー -->
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
-                                <div class="aspect-video bg-cover bg-center rounded-xl border border-slate-200 shadow-sm" style="background-image: url('Driver.jpg');">
+                                <div class="aspect-video bg-cover bg-center rounded-xl border border-slate-200 shadow-sm bg-slate-200 flex items-center justify-center text-slate-400 text-xs" style="background-image: url('Driver.jpg');">
+                                    (画像: Driver.jpg)
                                 </div>
                                 <div>
                                     <h4 class="font-black text-lg text-slate-900 mb-3 border-l-4 border-neon pl-2">【家庭用】樹脂パーツを守る<br class="sm:hidden">「手動＆USBドライバー」</h4>
@@ -357,7 +365,8 @@
 
                             <!-- 工具 2: ペン型インパクト不要論 -->
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
-                                <div class="aspect-video bg-cover bg-center rounded-xl border border-slate-200 shadow-sm md:order-last relative" style="background-image: url('tool.jpg');">
+                                <div class="aspect-video bg-cover bg-center rounded-xl border border-slate-200 shadow-sm md:order-last relative bg-slate-200 flex items-center justify-center text-slate-400 text-xs" style="background-image: url('tool.jpg');">
+                                    (画像: tool.jpg)
                                 </div>
                                 <div class="md:text-right">
                                     <h4 class="font-black text-lg text-slate-900 mb-3 border-r-4 border-neon pr-2 md:border-l-0 border-l-4 pl-2 md:pl-0 inline-block">「ペン型インパクト」は<br class="sm:hidden">出番なしの結論</h4>
@@ -370,7 +379,8 @@
                             
                             <!-- 工具 3: 業務用18Vインパクト -->
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
-                                <div class="aspect-video bg-cover bg-center rounded-xl border border-slate-200 shadow-sm" style="background-image: url('IMPACT.jpg');">
+                                <div class="aspect-video bg-cover bg-center rounded-xl border border-slate-200 shadow-sm bg-slate-200 flex items-center justify-center text-slate-400 text-xs" style="background-image: url('IMPACT.jpg');">
+                                    (画像: IMPACT.jpg)
                                 </div>
                                 <div>
                                     <h4 class="font-black text-lg text-slate-900 mb-3 border-l-4 border-neon pl-2">【業務用】確実かつ安全な<br class="sm:hidden">「18Vインパクト」</h4>
@@ -383,7 +393,8 @@
 
                             <!-- 工具 4: 噴霧器 (入れ替え済) -->
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
-                                <div class="aspect-video bg-cover bg-center rounded-xl border border-slate-200 shadow-sm md:order-last" style="background-image: url('hunnmuki.PNG');">
+                                <div class="aspect-video bg-cover bg-center rounded-xl border border-slate-200 shadow-sm md:order-last bg-slate-200 flex items-center justify-center text-slate-400 text-xs" style="background-image: url('hunnmuki.PNG');">
+                                    (画像: hunnmuki.PNG)
                                 </div>
                                 <div class="md:text-right">
                                     <h4 class="font-black text-lg text-slate-900 mb-3 border-r-4 border-neon pr-2 md:border-l-0 border-l-4 pl-2 md:pl-0 inline-block">一般的な<br class="sm:hidden">エアコン洗浄機の限界</h4>
@@ -395,7 +406,8 @@
 
                             <!-- 工具 5: ケルヒャー (入れ替え済) -->
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
-                                <div class="aspect-video bg-cover bg-center rounded-xl border border-slate-200 shadow-sm" style="background-image: url('sennzyouki.jpg');">
+                                <div class="aspect-video bg-cover bg-center rounded-xl border border-slate-200 shadow-sm bg-slate-200 flex items-center justify-center text-slate-400 text-xs" style="background-image: url('sennzyouki.jpg');">
+                                    (画像: sennzyouki.jpg)
                                 </div>
                                 <div>
                                     <h4 class="font-black text-lg text-slate-900 mb-3 border-l-4 border-neon pl-2">【圧倒的水圧】<br class="sm:hidden">ケルヒャー × 電圧降下トランス</h4>
@@ -406,10 +418,10 @@
                                 </div>
                             </div>
 
-                            <!-- 工具 6: ジェットブロワー -->
+                            <!-- 工具 6: ジェットブロワー (画像設定済み) -->
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
-                                <div class="aspect-video bg-slate-200 rounded-xl border-2 border-dashed border-slate-300 flex items-center justify-center text-slate-400 font-bold text-sm shadow-inner md:order-last">
-                                    [ ブロワー MK-2の画像 ]<br>後日追加予定
+                                <div class="aspect-video bg-cover bg-center rounded-xl border border-slate-200 shadow-sm md:order-last bg-slate-200 flex items-center justify-center text-slate-400 text-xs" style="background-image: url('MK-2.jpg');">
+                                    (画像: MK-2.jpg)
                                 </div>
                                 <div class="md:text-right">
                                     <h4 class="font-black text-lg text-slate-900 mb-3 border-r-4 border-neon pr-2 md:border-l-0 border-l-4 pl-2 md:pl-0 inline-block">【圧倒的風速】異次元の<br class="sm:hidden">ジェットブロワー MK-2</h4>
@@ -615,13 +627,13 @@
                     <div class="border border-slate-200 bg-slate-50 rounded-xl overflow-hidden shadow-sm">
                         <div class="flex h-32">
                             <!-- BEFORE 画像 -->
-                            <div class="w-1/2 bg-cover bg-center flex items-end p-2 relative" style="background-image: url('BLACK.jpg');">
+                            <div class="w-1/2 bg-cover bg-center flex items-end p-2 relative bg-slate-300" style="background-image: url('BLACK.jpg');">
                                 <div class="absolute inset-0 bg-black/30"></div>
                                 <span class="absolute top-2 left-2 bg-slate-900 text-white text-[9px] px-2 rounded z-10 font-bold">BEFORE</span>
                                 <span class="text-xs font-black text-white z-10 drop-shadow-md">カビがぎっしり…</span>
                             </div>
                             <!-- AFTER 画像 -->
-                            <div class="w-1/2 bg-cover bg-center flex items-end p-2 relative border-l border-white" style="background-image: url('WHITE.jpg');">
+                            <div class="w-1/2 bg-cover bg-center flex items-end p-2 relative border-l border-white bg-slate-200" style="background-image: url('WHITE.jpg');">
                                 <div class="absolute inset-0 bg-black/10"></div>
                                 <span class="absolute top-2 left-2 bg-emerald-500 text-white text-[9px] px-2 rounded z-10 font-bold">AFTER</span>
                                 <span class="text-xs font-black text-white z-10 drop-shadow-md">本来の白さに！</span>
@@ -637,13 +649,13 @@
                     <div class="border border-slate-200 bg-slate-50 rounded-xl overflow-hidden shadow-sm">
                         <div class="flex h-32">
                             <!-- BEFORE 画像 -->
-                            <div class="w-1/2 bg-cover bg-center flex items-end p-2 relative" style="background-image: url('BAD.jpg');">
+                            <div class="w-1/2 bg-cover bg-center flex items-end p-2 relative bg-slate-300" style="background-image: url('BAD.jpg');">
                                 <div class="absolute inset-0 bg-black/30"></div>
                                 <span class="absolute top-2 left-2 bg-slate-900 text-white text-[9px] px-2 rounded z-10 font-bold">BEFORE</span>
                                 <span class="text-xs font-black text-white z-10 drop-shadow-md">お掃除ロボの裏に埃</span>
                             </div>
                             <!-- AFTER 画像 -->
-                            <div class="w-1/2 bg-cover bg-center flex items-end p-2 relative border-l border-white" style="background-image: url('GOOD.jpg');">
+                            <div class="w-1/2 bg-cover bg-center flex items-end p-2 relative border-l border-white bg-slate-200" style="background-image: url('GOOD.jpg');">
                                 <div class="absolute inset-0 bg-black/10"></div>
                                 <span class="absolute top-2 left-2 bg-emerald-500 text-white text-[9px] px-2 rounded z-10 font-bold">AFTER</span>
                                 <span class="text-xs font-black text-white z-10 drop-shadow-md">隙間までスッキリ！</span>
@@ -659,13 +671,13 @@
                     <div class="border border-slate-200 bg-slate-50 rounded-xl overflow-hidden shadow-sm">
                         <div class="flex h-32">
                             <!-- BEFORE 画像 -->
-                            <div class="w-1/2 bg-cover bg-center flex items-end p-2 relative" style="background-image: url('SHARP1.jpg');">
+                            <div class="w-1/2 bg-cover bg-center flex items-end p-2 relative bg-slate-300" style="background-image: url('SHARP1.jpg');">
                                 <div class="absolute inset-0 bg-black/30"></div>
                                 <span class="absolute top-2 left-2 bg-slate-900 text-white text-[9px] px-2 rounded z-10 font-bold">BEFORE</span>
                                 <span class="text-xs font-black text-white z-10 drop-shadow-md">他店NGの難関機種</span>
                             </div>
                             <!-- AFTER 画像 -->
-                            <div class="w-1/2 bg-cover bg-center flex items-end p-2 relative border-l border-white" style="background-image: url('SHARP2.jpg');">
+                            <div class="w-1/2 bg-cover bg-center flex items-end p-2 relative border-l border-white bg-slate-200" style="background-image: url('SHARP2.jpg');">
                                 <div class="absolute inset-0 bg-black/10"></div>
                                 <span class="absolute top-2 left-2 bg-emerald-500 text-white text-[9px] px-2 rounded z-10 font-bold">AFTER</span>
                                 <span class="text-xs font-black text-white z-10 drop-shadow-md">徹底分解で綺麗に！</span>
@@ -690,7 +702,7 @@
                     <div class="flex items-center justify-center mb-4">
                         <span class="text-4xl md:text-5xl tracking-widest text-slate-900 leading-none flex items-center font-impact mt-2">
                             ONE
-                            <img src="ONESTAR.PNG" alt="★" class="w-[85px] h-[85px] md:w-[100px] md:h-[100px] mx-[-12px] md:mx-[-16px] object-contain -translate-y-2">
+                            <img src="ONESTAR.PNG" alt="★" class="w-[85px] h-[85px] md:w-[100px] md:h-[100px] mx-[-12px] md:mx-[-16px] object-contain -translate-y-2" onerror="this.style.display='none'">
                             STAR
                         </span>
                     </div>
@@ -762,7 +774,7 @@
             <!-- フッターロゴ -->
             <span class="text-3xl md:text-4xl tracking-widest text-white flex items-center justify-center font-impact mt-1">
                 ONE
-                <img src="ONESTAR.PNG" alt="★" class="w-[60px] h-[60px] md:w-[75px] md:h-[75px] mx-[-8px] md:mx-[-12px] object-contain -translate-y-[4px]">
+                <img src="ONESTAR.PNG" alt="★" class="w-[60px] h-[60px] md:w-[75px] md:h-[75px] mx-[-8px] md:mx-[-12px] object-contain -translate-y-[4px]" onerror="this.style.display='none'">
                 STAR
             </span>
             <p class="text-[9px] text-neon font-black mt-2">株式会社ECS専属プロスタッフ</p>
