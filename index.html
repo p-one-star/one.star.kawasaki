@@ -314,16 +314,16 @@
                         <p class="text-sm md:text-base font-black text-center mb-6 text-neon">
                             【検証】通常分解で<br class="sm:hidden">どこまで綺麗になるのか？
                         </p>
-                        <p class="text-xs text-slate-300 font-bold leading-relaxed mb-6 text-center">
+                        <p class="text-[11px] md:text-xs text-slate-300 font-bold leading-relaxed mb-6 text-center">
                             当店が普段通りに通常分解で洗浄した後、<br class="sm:hidden">実際に壁から取り外してバラバラに分解し、<br class="sm:hidden">「どれくらい洗い残しがあるか」を検証した画像です。<br>手抜きなしの通常分解の実力をご覧ください。
                         </p>
                         
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            <div class="aspect-video bg-slate-800 rounded-xl border border-slate-700 flex items-center justify-center text-slate-500 font-bold text-sm">
-                                [ 検証画像 1 ]<br>後日追加予定
+                            <!-- 検証画像1 (half.jpg) -->
+                            <div class="aspect-video bg-cover bg-center rounded-xl border border-slate-700 relative overflow-hidden" style="background-image: url('half.jpg');">
                             </div>
-                            <div class="aspect-video bg-slate-800 rounded-xl border border-slate-700 flex items-center justify-center text-slate-500 font-bold text-sm">
-                                [ 検証画像 2 ]<br>後日追加予定
+                            <!-- 検証画像2 (DAIKIN.jpg) -->
+                            <div class="aspect-video bg-cover bg-center rounded-xl border border-slate-700 relative overflow-hidden" style="background-image: url('DAIKIN.jpg');">
                             </div>
                         </div>
                     </div>
@@ -344,8 +344,7 @@
                             
                             <!-- 工具 1: 手動ドライバー -->
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
-                                <div class="aspect-video bg-slate-200 rounded-xl border-2 border-dashed border-slate-300 flex items-center justify-center text-slate-400 font-bold text-sm shadow-inner">
-                                    [ 手動・USBドライバーの画像 ]<br>後日追加予定
+                                <div class="aspect-video bg-cover bg-center rounded-xl border border-slate-200 shadow-sm" style="background-image: url('Driver.jpg');">
                                 </div>
                                 <div>
                                     <h4 class="font-black text-lg text-slate-900 mb-3 border-l-4 border-neon pl-2">【家庭用】樹脂パーツを守る<br class="sm:hidden">「手動＆USBドライバー」</h4>
@@ -358,8 +357,7 @@
 
                             <!-- 工具 2: ペン型インパクト不要論 -->
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
-                                <div class="aspect-video bg-slate-200 rounded-xl border-2 border-dashed border-slate-300 flex items-center justify-center text-slate-400 font-bold text-sm shadow-inner md:order-last">
-                                    [ ペン型インパクトなどの画像 ]<br>後日追加予定
+                                <div class="aspect-video bg-cover bg-center rounded-xl border border-slate-200 shadow-sm md:order-last relative" style="background-image: url('tool.jpg');">
                                 </div>
                                 <div class="md:text-right">
                                     <h4 class="font-black text-lg text-slate-900 mb-3 border-r-4 border-neon pr-2 md:border-l-0 border-l-4 pl-2 md:pl-0 inline-block">「ペン型インパクト」は<br class="sm:hidden">出番なしの結論</h4>
@@ -372,8 +370,7 @@
                             
                             <!-- 工具 3: 業務用18Vインパクト -->
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
-                                <div class="aspect-video bg-slate-200 rounded-xl border-2 border-dashed border-slate-300 flex items-center justify-center text-slate-400 font-bold text-sm shadow-inner">
-                                    [ 18Vインパクトの画像 ]<br>後日追加予定
+                                <div class="aspect-video bg-cover bg-center rounded-xl border border-slate-200 shadow-sm" style="background-image: url('IMPACT.jpg');">
                                 </div>
                                 <div>
                                     <h4 class="font-black text-lg text-slate-900 mb-3 border-l-4 border-neon pl-2">【業務用】確実かつ安全な<br class="sm:hidden">「18Vインパクト」</h4>
@@ -384,30 +381,27 @@
                                 </div>
                             </div>
 
-                            <!-- 工具 4: ケルヒャー高圧洗浄機 -->
+                            <!-- 工具 4: 噴霧器 (入れ替え済) -->
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
-                                <div class="aspect-video bg-slate-200 rounded-xl border-2 border-dashed border-slate-300 flex items-center justify-center text-slate-400 font-bold text-sm shadow-inner md:order-last">
-                                    [ ケルヒャー＆トランスの画像 ]<br>後日追加予定
+                                <div class="aspect-video bg-cover bg-center rounded-xl border border-slate-200 shadow-sm md:order-last" style="background-image: url('hunnmuki.PNG');">
                                 </div>
                                 <div class="md:text-right">
-                                    <h4 class="font-black text-lg text-slate-900 mb-3 border-r-4 border-neon pr-2 md:border-l-0 border-l-4 pl-2 md:pl-0 inline-block">【圧倒的水圧】ケルヒャー ×<br class="sm:hidden"> 電圧降下トランス</h4>
+                                    <h4 class="font-black text-lg text-slate-900 mb-3 border-r-4 border-neon pr-2 md:border-l-0 border-l-4 pl-2 md:pl-0 inline-block">一般的な<br class="sm:hidden">エアコン洗浄機の限界</h4>
                                     <p class="text-[13px] text-slate-600 font-bold leading-relaxed">
-                                        一般的なエアコン洗浄機は水圧が弱く（2〜3MPa）、<br class="sm:hidden">熱交換器の奥まで水が届きません。<br>私は5年以上前から<span class="text-slate-900 font-black">最大8MPaを誇る<br class="sm:hidden">『ケルヒャー』一択</span>です。<br><br>
-                                        そのままでは威力が強すぎるため、<br class="sm:hidden">スピードコントローラー（電圧降下トランス）を介して<br class="sm:hidden">電圧を下げ、水圧を自在にコントロールしています。<br>分厚い熱交換器やガンコな汚れを貫くためには、<br><span class="text-blue-600 font-black">「圧力こそが正義」</span>なのです。
+                                        一般的なエアコン洗浄機は水圧が弱く（2〜3MPa）、<br class="sm:hidden">熱交換器の奥まで水が届きません。<br>もちろん洗浄できないわけではありませんが、<br class="sm:hidden">分厚い熱交換器やガンコな汚れを貫くためには、<br class="sm:hidden">この水圧では不十分だと私は考えています。<br><span class="text-blue-600 font-black">「圧力こそが正義」</span>なのです。
                                     </p>
                                 </div>
                             </div>
 
-                            <!-- 工具 5: ECS流 洗剤の打ち込み -->
+                            <!-- 工具 5: ケルヒャー (入れ替え済) -->
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
-                                <div class="aspect-video bg-slate-200 rounded-xl border-2 border-dashed border-slate-300 flex items-center justify-center text-slate-400 font-bold text-sm shadow-inner">
-                                    [ 洗浄作業の画像 ]<br>後日追加予定
+                                <div class="aspect-video bg-cover bg-center rounded-xl border border-slate-200 shadow-sm" style="background-image: url('sennzyouki.jpg');">
                                 </div>
                                 <div>
-                                    <h4 class="font-black text-lg text-slate-900 mb-3 border-l-4 border-neon pl-2">【ECS流】洗剤の塗布から<br class="sm:hidden">「高圧洗浄機」を使用</h4>
+                                    <h4 class="font-black text-lg text-slate-900 mb-3 border-l-4 border-neon pl-2">【圧倒的水圧】<br class="sm:hidden">ケルヒャー × 電圧降下トランス</h4>
                                     <p class="text-[13px] text-slate-600 font-bold leading-relaxed">
-                                        多くの業者は、手動スプレー等で洗剤をかけ、<br class="sm:hidden">水洗い時のみ高圧洗浄機を使います。<br>しかし、それだと洗剤は表面にしか届きません。<br><br>
-                                        私達株式会社ECSのスタッフは<br><span class="text-rose-600 font-black">『洗剤の塗布から高圧洗浄機を使用する』</span><br class="sm:hidden">ことを徹底しています。<br>洗剤の消費量も経費も跳ね上がりますが、<br class="sm:hidden">嘘や手抜きはしたくありません！<br>高圧でたっぷりの洗剤を奥まで浸透させ、<br class="sm:hidden">ケルヒャーの高水圧で一気に洗い流す。<br>これが私の譲れない拘りです。
+                                        私は5年以上前から<span class="text-slate-900 font-black">最大8MPaを誇る<br class="sm:hidden">『ケルヒャー』一択</span>です。<br>そのままでは威力が強すぎるため、<br class="sm:hidden">スピードコントローラー（電圧降下トランス）を介して<br class="sm:hidden">電圧を下げ、水圧を自在にコントロールしています。<br><br>
+                                        私達株式会社ECSのスタッフは<br><span class="text-rose-600 font-black">『洗剤の塗布から高圧洗浄機を使用する』</span><br class="sm:hidden">ことを徹底しています。洗剤の消費量も経費も跳ね上がりますが、<br class="sm:hidden">嘘や手抜きはしたくありません！<br>高圧でたっぷりの洗剤を奥まで浸透させ、<br class="sm:hidden">ケルヒャーの高水圧で一気に洗い流す。<br>これが私の譲れない拘りです。
                                     </p>
                                 </div>
                             </div>
