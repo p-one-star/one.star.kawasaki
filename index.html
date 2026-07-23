@@ -597,8 +597,8 @@
                                 </div>
                             </div>
 
-                            <!-- 工具 5: ケルヒャー -->
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+                            <!-- 工具 5: ケルヒャー (前半) -->
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
                                 <div>
                                     <div class="aspect-video bg-cover bg-center rounded-xl border border-slate-200 shadow-sm bg-slate-200" style="background-image: url('sennzyouki.jpg');">
                                     </div>
@@ -612,15 +612,29 @@
                                 </div>
                                 <div>
                                     <h4 class="font-black text-lg text-slate-900 mb-3 border-l-4 border-neon pl-2">【圧倒的水圧】<br>ケルヒャー × 電圧降下トランス</h4>
-                                    <p class="text-[13px] text-slate-600 font-bold leading-relaxed">
+                                    <p class="text-[13px] text-slate-600 font-bold leading-relaxed mb-8">
                                         私は5年以上前から<br>
                                         <span class="text-slate-900 font-black block mt-1 mb-1">最大8MPaを誇る『ケルヒャー』一択です。</span>
                                         そのままでは威力が強すぎるため、<br>
                                         スピードコントローラー（電圧降下トランス）を介して<br>
-                                        電圧を下げ、水圧を自在にコントロールしています。<br><br>
-                                        
-                                        私達株式会社ECSのスタッフは
-                                        <span class="text-rose-600 font-black block mt-2 mb-2">『洗剤の塗布から高圧洗浄機を使用する』</span>
+                                        電圧を下げ、水圧を自在にコントロールしています。
+                                    </p>
+
+                                    <!-- 蓄圧式噴霧器の挿入 -->
+                                    <div class="aspect-video bg-cover bg-center rounded-xl border border-slate-200 shadow-sm bg-slate-200 mt-4" style="background-image: url('tikuatu.PNG');">
+                                    </div>
+                                    <p class="text-[11px] md:text-xs text-slate-500 font-bold mt-2 px-1 leading-relaxed mb-8">
+                                        これらは蓄圧式噴霧器<br>
+                                        どう考えても圧力不足です。<br>
+                                        農薬散布用ですね。<br>
+                                        洗剤を塗布できるのは表面だけです。<br>
+                                        エアコンクリーニングに使う物ではないと思っていますが、<br>
+                                        使ってる清掃業者は珍しくないように思います。
+                                    </p>
+                                    
+                                    <p class="text-[13px] text-slate-600 font-bold leading-relaxed">
+                                        私達株式会社ECSのスタッフは<br>
+                                        <span class="text-rose-600 font-black block mt-2 mb-2 text-[14px]">『洗剤から機械を通して高圧力で洗浄する』</span>
                                         ことを徹底しています。<br>
                                         洗剤の消費量も経費も跳ね上がりますが、<br>
                                         嘘や手抜きはしたくありません！<br>
@@ -1154,7 +1168,7 @@
                 }
 
                 for (let key in qty) {
-                    if (qty[key] === 0) continue;
+                    if (key === 0) continue;
                     
                     if (key === 'standard') {
                         if (totalQty >= 2) {
