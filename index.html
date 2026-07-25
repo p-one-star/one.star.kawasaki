@@ -53,11 +53,11 @@
         </button>
 
         <div class="absolute left-1/2 -translate-x-1/2 flex items-center justify-center mt-1">
-            <span class="text-2xl md:text-3xl tracking-widest text-slate-900 leading-none flex items-center font-impact">
+            <a href="/" class="text-2xl md:text-3xl tracking-widest text-slate-900 leading-none flex items-center font-impact">
                 ONE
                 <img src="ONESTAR.PNG" alt="★" class="w-[45px] h-[45px] md:w-[55px] md:h-[55px] mx-[-4px] md:mx-[-6px] object-contain -translate-y-[4px]" onerror="this.style.display='none'">
                 STAR
-            </span>
+            </a>
         </div>
 
         <div class="hidden md:flex items-center space-x-3">
@@ -86,25 +86,25 @@
                 </div>
 
                 <nav class="flex-1 px-4 py-2 space-y-1 overflow-y-auto">
-                    <a href="#hero" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                    <a href="/" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
                         <span class="mr-2 text-slate-400">＞</span>トップページ
                     </a>
-                    <a href="#process" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
-                        <span class="mr-2 text-slate-400">＞</span>作業の流れ
-                    </a>
-                    <a href="#passion" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
-                        <span class="mr-2 text-slate-400">＞</span>当店のこだわり
-                    </a>
-                    <a href="#pricing" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                    <a href="/price" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
                         <span class="mr-2 text-slate-400">＞</span>料金プラン
                     </a>
-                    <a href="#gallery" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                    <a href="/gallery" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
                         <span class="mr-2 text-slate-400">＞</span>施工事例
                     </a>
-                    <a href="#about" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
-                        <span class="mr-2 text-slate-400">＞</span>代表挨拶
+                    <a href="/mind" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                        <span class="mr-2 text-slate-400">＞</span>ONE★STARの想い
                     </a>
-                    <a href="#line-stickers" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-[#06C755]">
+                    <a href="/pride" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                        <span class="mr-2 text-slate-400">＞</span>職人のこだわり
+                    </a>
+                    <a href="/trash" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                        <span class="mr-2 text-slate-400">＞</span>業界の不都合な真実
+                    </a>
+                    <a href="/products" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-[#06C755]">
                         <span class="mr-2 text-slate-400">＞</span>オリジナルLINEスタンプ
                     </a>
                 </nav>
@@ -123,7 +123,7 @@
     <!-- MAIN -->
     <main class="pt-14 pb-20 md:pb-12">
 
-        <!-- HERO -->
+        <!-- ①〜③ HERO & 特徴 & 今すぐ電話 -->
         <section id="hero" class="relative pt-4 pb-8 px-4 max-w-3xl mx-auto flex flex-col items-center justify-center text-center">
             <img src="HERO.PNG" alt="エアコンクリーニングに年中夢中！" class="w-full max-w-lg mx-auto mb-3 object-contain" onerror="this.style.display='none'">
             <p class="text-[13px] md:text-sm text-slate-700 font-black mb-6 max-w-lg leading-relaxed">
@@ -144,13 +144,18 @@
                     <span class="text-[9px] text-slate-500 font-black">追加請求なし</span>
                 </div>
             </div>
-            <a href="tel:08000807788" class="shiny-btn inline-flex w-full sm:w-auto items-center justify-center space-x-2 bg-slate-900 text-neon font-black px-10 py-4 md:py-5 rounded-xl shadow-lg border border-slate-700 text-lg transition-transform active:scale-95">
+            
+            <a href="tel:08000807788" class="shiny-btn inline-flex w-full sm:w-auto items-center justify-center space-x-2 bg-slate-900 text-neon font-black px-10 py-4 md:py-5 rounded-xl shadow-lg border border-slate-700 text-lg transition-transform active:scale-95 mb-4">
                 <svg class="w-6 h-6 animate-pulse" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
                 <span>今すぐ電話で相談・見積り</span>
             </a>
+            
+            <a href="/price" class="text-xs md:text-sm font-black text-blue-600 underline underline-offset-4 hover:opacity-70 transition-opacity">
+                料金プラン・お見積りシミュレーターはこちら
+            </a>
         </section>
 
-        <!-- PROCESS -->
+        <!-- ④ PROCESS -->
         <section id="process" class="py-12 bg-slate-50 border-t border-slate-100">
             <div class="max-w-4xl mx-auto px-4">
                 <h2 class="text-xl md:text-2xl font-black text-center mb-8">作業の流れ</h2>
@@ -196,755 +201,55 @@
             </div>
         </section>
 
-        <!-- PASSION (こだわり・情熱セクション) -->
-        <section id="passion" class="py-20 bg-white border-t border-slate-100">
-            <div class="max-w-4xl mx-auto px-4">
-                
-                <!-- 大見出し -->
-                <div class="text-center mb-12">
-                    <h2 class="text-2xl md:text-3xl font-black text-slate-900 leading-tight">
-                        <span class="block text-sm md:text-base text-neon bg-slate-900 px-4 py-1 inline-block rounded-full mb-3 shadow-md">ONE★STARの心臓部</span><br>
-                        エアコンクリーニング専門店<br>としての拘りと情熱！
-                    </h2>
-                </div>
-
-                <div class="space-y-12">
+        <!-- ⑤ ONE★STARの想い (超短く) -->
+        <section id="mind-short" class="py-16 bg-slate-900 text-white border-t-4 border-neon">
+            <div class="max-w-3xl mx-auto px-4 text-center">
+                <h2 class="text-2xl md:text-3xl font-black mb-6 tracking-widest font-impact text-neon">
+                    PRIDE & MIND
+                </h2>
+                <p class="text-[13px] md:text-sm text-slate-200 font-bold leading-loose mb-8">
+                    価格ではなく、<span class="border-b-2 border-neon pb-0.5 text-white font-black">仕事で選ばれたい。</span><br><br>
                     
-                    <!-- 1. 分解手法の解説ブロック -->
-                    <div class="bg-slate-50 p-6 md:p-8 rounded-3xl border border-slate-200 shadow-sm">
-                        <h3 class="text-lg md:text-xl font-black mb-6 text-slate-900 text-center border-b border-slate-300 pb-4">クリーニングの<br>【分解手法】について</h3>
-                        
-                        <p class="text-[13px] md:text-sm text-slate-700 font-bold leading-relaxed mb-6 text-left md:text-center">
-                            エアコンクリーニングには、業者によって<br>様々な「分解の手法」があるのをご存知ですか？<br><br>
-                            当店は、一部で過剰に推奨されている高額な
-                            <span class="text-rose-600 font-black block mt-2 mb-2">【完全分解】や【背抜き】といった手法には<br>「あまりオススメしていません」。</span>
-                            技術自体は素晴らしいものですが、<br>なぜオススメしないのか？<br>
-                            それを包み隠さずお伝えするために、<br>まずは主な分解手法を解説します。
-                        </p>
-
-                        <div class="space-y-4">
-                            <!-- 通常分解 -->
-                            <div class="bg-white p-4 rounded-2xl border-l-4 border-slate-900 shadow-sm relative overflow-hidden">
-                                <div class="absolute right-0 top-0 w-16 h-16 overflow-hidden">
-                                    <div class="bg-slate-900 text-neon text-[9px] font-black py-1 w-24 text-center absolute top-3 -right-6 rotate-45 shadow-sm">ECS基本プラン</div>
-                                </div>
-                                <div class="flex items-center justify-between mb-1 pr-10">
-                                    <h4 class="font-black text-[15px] text-slate-900">【通常分解】</h4>
-                                    <span class="text-[10px] font-bold text-slate-500 bg-slate-100 px-2 py-1 rounded">難易度 ★☆☆☆☆</span>
-                                </div>
-                                <p class="text-xs text-slate-600 font-bold leading-relaxed">
-                                    外装ケース・フィルター・ルーバー・お掃除ユニット等を外し、<br>洗浄カバーを被せて洗う最も一般的な手法。<br>
-                                    <span class="font-black">株式会社ECSの基本プラン</span>はこちらになります。
-                                </p>
-                            </div>
-                            <!-- ドレンパン分解 -->
-                            <div class="bg-white p-4 rounded-2xl border-l-4 border-neon shadow-sm relative overflow-hidden">
-                                <div class="absolute right-0 top-0 w-16 h-16 overflow-hidden">
-                                    <div class="bg-neon text-slate-900 text-[8.5px] font-black py-1 w-24 text-center absolute top-3 -right-6 rotate-45 shadow-sm">川崎のこだわり</div>
-                                </div>
-                                <div class="flex items-center justify-between mb-1 pr-10">
-                                    <h4 class="font-black text-[15px] text-slate-900">【ドレンパン分解】</h4>
-                                    <span class="text-[10px] font-bold text-slate-500 bg-slate-100 px-2 py-1 rounded">難易度 ★★☆☆☆</span>
-                                </div>
-                                <p class="text-xs text-slate-600 font-bold leading-relaxed">
-                                    通常分解に加え、水受け（ドレンパン）まで分解。<br>通常では洗えない裏側もキレイになります。<br>
-                                    <span class="text-rose-600 font-black mt-2 block">※ECSの基本プランにはありませんが、<br>時間に余裕がある時は私の趣味(こだわり)として、<br>追加料金無しでドレンパンまで分解しています！<br><span class="text-[9px] text-slate-400 font-normal">（機種や設置状況によります）</span></span>
-                                </p>
-                            </div>
-                            <!-- ファン抜き -->
-                            <div class="bg-white p-4 rounded-2xl border-l-4 border-emerald-400 shadow-sm">
-                                <div class="flex items-center justify-between mb-1">
-                                    <h4 class="font-black text-[15px] text-slate-900">【ファン抜き】</h4>
-                                    <span class="text-[10px] font-bold text-slate-500 bg-slate-100 px-2 py-1 rounded">難易度 ★★★☆☆</span>
-                                </div>
-                                <p class="text-xs text-slate-600 font-bold leading-relaxed">
-                                    送風ファンも取り外し、<br>熱交換器の裏側まで徹底洗浄。<br>
-                                    <span class="text-[9px] text-slate-400 font-normal block mt-1">※設置状況により可能な場合に対応</span>
-                                </p>
-                            </div>
-                            <!-- 背抜き・完全分解 -->
-                            <div class="bg-slate-100 p-4 rounded-2xl border border-slate-200">
-                                <div class="flex items-center justify-between mb-1">
-                                    <h4 class="font-black text-[15px] text-slate-700">【背抜き / 完全分解】</h4>
-                                    <span class="text-[10px] font-bold text-slate-500 bg-white px-2 py-1 rounded border border-slate-200">難易度 MAX</span>
-                                </div>
-                                <p class="text-xs text-slate-600 font-bold leading-relaxed">
-                                    壁から取り外したり、背板だけ残して<br>全て分解する手法。<br>
-                                    新品同様になりますが、料金が通常の2倍以上かかり、<br>破損やガス漏れのリスクも伴います。
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- 2. なぜ否定派なのか？ の本編 -->
-                    <div class="px-2">
-                        <h3 class="text-xl md:text-2xl font-black text-slate-900 mb-6 text-center">なぜ、当店は高額な<br>「完全分解」を<br>あまりオススメしないのか？</h3>
-                        
-                        <div class="space-y-8">
-                            <!-- 理由1 -->
-                            <div>
-                                <h4 class="text-base md:text-lg font-black text-slate-900 mb-2 border-l-4 border-neon pl-3">不安を煽るマーケティングへの違和感</h4>
-                                <p class="text-[13px] md:text-sm text-slate-700 font-bold leading-relaxed">
-                                    背抜きや完全分解の施工技術自体は<br>
-                                    本当に素晴らしいものですし、<br>
-                                    見合った料金設定であればオススメできます。<br>
-                                    これは紛れもない事実です。<br><br>
-                                    
-                                    しかし、一部の業者が
-                                    <span class="text-rose-600 font-black block mt-2 mb-2">
-                                        「通常分解は洗い残しだらけで意味がない」と<br>
-                                        極端に汚い（素人が洗ったような）手抜き作業の写真を使い、<br>
-                                        お客様の不安を過剰に煽って高額プランへ誘導
-                                    </span>
-                                    している現状があります。<br><br>
-                                    
-                                    確かに見えない部分を手抜きする<br>
-                                    悪徳業者は許せません。<br>
-                                    しかし、それを利用して「通常分解＝悪」と決めつけ、<br>
-                                    お客様を煽って集客するやり方も、<br>
-                                    私は最低だと思っています。<br>
-                                    私は絶対に嘘をつきたくありません。<br>
-                                    通常分解でも、可能な限り徹底的に洗います。
-                                </p>
-                            </div>
-
-                            <!-- 理由2 -->
-                            <div>
-                                <h4 class="text-base md:text-lg font-black text-slate-900 mb-2 border-l-4 border-neon pl-3">エアコンクリーニングの「本質」とは？</h4>
-                                <p class="text-[13px] md:text-sm text-slate-700 font-bold leading-relaxed">
-                                    確かに、通常分解では物理的に洗いきれない<br>
-                                    「裏側のわずかな汚れ」が残るのは事実です。<br><br>
-                                    
-                                    しかし、例えるなら<br>
-                                    冷蔵庫や洗濯機の裏側と同じです。<br>
-                                    普段見えない部分に汚れは必ず溜まりますが、<br>
-                                    そこの汚れを取るためだけに、
-                                    <span class="text-slate-900 font-black bg-neon px-2 py-1 inline-block mt-2 mb-2 rounded shadow-sm">
-                                        わざわざ通常の2倍以上もの高額な料金を<br>
-                                        支払う必要が本当にあるのでしょうか？
-                                    </span><br>
-                                    
-                                    エアコンクリーニングの最大の目的は<br>
-                                    「裏の裏まで100%綺麗にすること」ではなく、
-                                    <span class="text-blue-600 font-black block mt-2 mb-2 text-[14px]">
-                                        「お部屋の空気を綺麗で心地よいものにすること」
-                                    </span>
-                                    だと私は考えています。<br>
-                                    やらなくても良い高額な作業を押し付け、<br>
-                                    お客様より「自分の利益」を優先するような商売は<br>
-                                    したくありません。
-                                </p>
-                            </div>
-
-                            <!-- 理由3 -->
-                            <div>
-                                <h4 class="text-base md:text-lg font-black text-slate-900 mb-2 border-l-4 border-neon pl-3">「できない」から否定するわけではありません</h4>
-                                <p class="text-[13px] md:text-sm text-slate-700 font-bold leading-relaxed">
-                                    こう言うと「お前が完全分解の技術を持ってないから<br>
-                                    僻んでるんだろ」と言われます。<br>
-                                    だからこそ、私は背抜きも取り外しの完全分解も、<br>
-                                    日々練習し、技術として習得しています。<br><br>
-                                    
-                                    そのメリットも、伴うリスクも、かかるコストも
-                                    <span class="border-b-2 border-slate-900 pb-0.5 inline-block mt-2 mb-2 font-black">
-                                        「すべて経験して知った上で」
-                                    </span>、<br>
-                                    お客様にとって一番価値のある<br>
-                                    「適正価格での通常分解（＋ドレンパン分解）」を<br>
-                                    誇りを持って提供しています。<br><br>
-                                    
-                                    すべての事実を知った上で、<br>
-                                    適正価格の当店に頼むのか、<br>
-                                    倍の料金を払って完全分解の業者に頼むのか。<br>
-                                    それを決めるのはお客様自身です。<br>
-                                    私は、利他の精神で、ただ誠実にお客様の大切な<br>
-                                    エアコンと向き合い続けます。
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- 3. 検証画像 (画像とテキストのセットに変更) -->
-                    <div class="bg-slate-900 text-white p-6 md:p-8 rounded-3xl shadow-lg mt-10">
-                        <p class="text-sm md:text-base font-black text-center mb-6 text-neon">
-                            【検証】通常分解で<br>どこまで綺麗になるのか？
-                        </p>
-                        <p class="text-[11px] md:text-xs text-slate-300 font-bold leading-relaxed mb-6 text-center">
-                            当店が普段通りに通常分解で洗浄した後、<br>
-                            実際に壁から取り外してバラバラに分解し、<br>
-                            「どれくらい洗い残しがあるか」を検証した画像です。<br>
-                            手抜きなしの通常分解の実力をご覧ください。
-                        </p>
-                        
-                        <!-- 4枚の画像用のグリッド（2列×2行） -->
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-6">
-                            
-                            <!-- 1枚目 (half.jpg) -->
-                            <div>
-                                <div class="aspect-video bg-cover bg-center rounded-xl border border-slate-700 relative overflow-hidden bg-slate-800" style="background-image: url('half.jpg');">
-                                </div>
-                                <div class="mt-2 text-[11px] md:text-xs text-slate-300 font-bold leading-relaxed">
-                                    <div class="flex justify-between text-neon font-black mb-1 px-1">
-                                        <span>BEFORE</span>
-                                        <span>AFTER</span>
-                                    </div>
-                                    <p>タバコのヤニと油で<br>酷く汚れたエアコンの外装パーツです。</p>
-                                </div>
-                            </div>
-                            
-                            <!-- 2枚目 (DAIKIN.jpg) -->
-                            <div>
-                                <div class="aspect-video bg-cover bg-center rounded-xl border border-slate-700 relative overflow-hidden bg-slate-800" style="background-image: url('DAIKIN.jpg');">
-                                </div>
-                                <div class="mt-3 text-[11px] md:text-xs text-slate-300 font-bold leading-relaxed">
-                                    <p>同じエアコンを通常分解後のケーシングです。<br>僅かに残っていますが、<br>キレイになったと思います。</p>
-                                </div>
-                            </div>
-                            
-                            <!-- 3枚目 (uragawa.jpg) -->
-                            <div>
-                                <div class="aspect-video bg-cover bg-center rounded-xl border border-slate-700 relative overflow-hidden bg-slate-800" style="background-image: url('uragawa.jpg');">
-                                </div>
-                                <div class="mt-3 text-[11px] md:text-xs text-slate-300 font-bold leading-relaxed">
-                                    <p>ほとんどの業者が洗い残す、<br>ドレンパンの裏側。<br>道具選びや使い方で<br>通常分解でも、ここまでキレイにできます。</p>
-                                </div>
-                            </div>
-
-                            <!-- 4枚目 (netukou.jpg) -->
-                            <div>
-                                <div class="aspect-video bg-cover bg-center rounded-xl border border-slate-700 relative overflow-hidden bg-slate-800" style="background-image: url('netukou.jpg');">
-                                </div>
-                                <div class="mt-3 text-[11px] md:text-xs text-slate-300 font-bold leading-relaxed">
-                                    <p>熱交換器の裏側。<br>素人が洗うとファンを回しすぎて<br>飛び散ったカビだらけになる部分です。<br>そのリスクを分かった上で正しく洗えば、<br>通常分解でも、ここまでキレイにできます。</p>
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <!-- 総評コメント -->
-                        <div class="mt-10 bg-slate-800/80 p-5 md:p-6 rounded-2xl border-l-4 border-neon shadow-inner">
-                            <p class="text-[12px] md:text-[13px] text-slate-200 font-bold leading-loose">
-                                いかがでしたか？<br>
-                                SNS等で一部「悪」のように<br>語られがちな『通常分解』ですが、<br>
-                                知識・道具・技術、そして<br>
-                                <span class="text-white font-black border-b border-neon inline-block mb-1 mt-1">「心を込めて洗うこと」</span>を徹底すれば、<br>
-                                ここまでキレイにできます。<br><br>
-                                
-                                もちろん、物理的に手の届かない部分があり、<br>
-                                機種によっては汚れが<br>残りやすいのも事実です。<br>
-                                しかし、<br>
-                                <span class="text-white font-black inline-block mt-2">「そこを完璧にするためだけに、</span><br>
-                                <span class="text-white font-black inline-block mb-2">　余分にお金を払う価値が本当にあるのか？」</span><br>
-                                私はそう問いかけたいのです。<br><br>
-                                
-                                <span class="text-slate-400 text-[11px] leading-relaxed block">
-                                一部の悪質な業者が、素人が洗ったような<br>
-                                酷い洗い残しの写真を巧妙に使い、<br>
-                                お客様の不安を過剰に煽って<br>
-                                高額プランへ誘導する現状。<br>
-                                そして、実際に手抜き作業をしてしまう業者が<br>
-                                無数に存在している事実には、<br>
-                                私も本当に憤りを感じています。
-                                </span><br>
-                                
-                                だからこそ、当店は嘘をつきません。<br>
-                                見えない部分にわずかな汚れが残るリスクも<br>
-                                正直にお伝えした上で、<br>
-                                <span class="text-neon font-black inline-block mt-2 mb-1 text-[14px]">「お部屋の空気を綺麗にする」</span><br>
-                                という本来の目的を、<br>
-                                適正と思える価格でご提供します。<br><br>
-                                
-                                お客様の生活を豊かにするための、<br>
-                                手抜き一切なしの「本気の通常分解」。<br>
-                                ぜひ一度、ご体感ください！
-                            </p>
-                        </div>
-
-                    </div>
-
-                    <!-- 4. 使用工具への拘り -->
-                    <div class="bg-slate-50 p-6 md:p-10 rounded-3xl border border-slate-200 shadow-sm mt-12">
-                        <h3 class="text-xl md:text-2xl font-black mb-6 text-slate-900 text-center border-b border-slate-300 pb-4">
-                            プロフェッショナルとしての<br>
-                            <span class="text-neon bg-slate-900 px-3 py-1 rounded inline-block mt-2">【使用工具への拘り】</span>
-                        </h3>
-                        
-                        <p class="text-[13px] md:text-sm text-slate-700 font-bold leading-relaxed mb-8">
-                            質の高いクリーニングは、腕だけでなく<br>
-                            「一流の道具の選択」があってこそ実現します。<br>
-                            当店が厳選し、現場で実際に使用している<br>
-                            こだわりの工具をご紹介します。
-                        </p>
-
-                        <!-- 工具リスト -->
-                        <div class="space-y-10">
-                            
-                            <!-- 工具 1: 手動ドライバー -->
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
-                                <div>
-                                    <div class="aspect-video bg-cover bg-center rounded-xl border border-slate-200 shadow-sm bg-slate-200" style="background-image: url('Driver.jpg');">
-                                    </div>
-                                    <p class="text-[11px] md:text-xs text-slate-500 font-bold mt-2 px-1 leading-relaxed">
-                                        私が愛用しているドライバーです。
-                                    </p>
-                                </div>
-                                <div>
-                                    <h4 class="font-black text-lg text-slate-900 mb-3 border-l-4 border-neon pl-2">【家庭用】樹脂パーツを守る<br>「手動＆USBドライバー」</h4>
-                                    <p class="text-[13px] text-slate-600 font-bold leading-relaxed">
-                                        ご家庭のエアコンのパーツは<br>
-                                        「樹脂（プラスチック）」で出来ています。<br>
-                                        そこに強い力でネジを締め付けると、ネジ穴が広がり、<br>
-                                        空回りしてネジの意味を果たさなくなってしまいます。<br><br>
-                                        
-                                        当店ではエアコンを絶対に破壊しないよう、<br>
-                                        時間はかかっても
-                                        <span class="text-slate-900 font-black block mt-2 mb-2">
-                                            「手回しの手動工具＋<br>
-                                            USB充電式ドライバー」
-                                        </span>
-                                        を使用し、<br>
-                                        優しく丁寧に組み付けを行っています。<br>
-                                        遅れた時間は、私のテキパキとした動きで<br>
-                                        いくらでも挽回できます！
-                                    </p>
-                                </div>
-                            </div>
-
-                            <!-- 工具 2: ペン型インパクト不要論 -->
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
-                                <div class="md:order-last">
-                                    <div class="aspect-video bg-cover bg-center rounded-xl border border-slate-200 shadow-sm relative bg-slate-200" style="background-image: url('hakai.jpg');">
-                                    </div>
-                                    <p class="text-[11px] md:text-xs text-slate-500 font-bold mt-2 px-1 leading-relaxed">
-                                        インパクトによって破壊された物です。<br>
-                                        お掃除ロボット取り付け部なのですが、<br>
-                                        この裏は水の受け皿(ドレンパン)です。<br>
-                                        貫通して、ここから水漏れしていました…
-                                    </p>
-                                </div>
-                                <div class="md:text-right">
-                                    <h4 class="font-black text-lg text-slate-900 mb-3 border-r-4 border-neon pr-2 md:border-l-0 border-l-4 pl-2 md:pl-0 inline-block">「ペン型インパクト」は<br>出番なしの結論</h4>
-                                    <p class="text-[13px] text-slate-600 font-bold leading-relaxed">
-                                        実は、8〜9割の業者が作業効率を優先して<br>
-                                        「ペン型インパクト（打撃）」を使用しています。<br>
-                                        「徹底的に綺麗にします」と言いながら、<br>
-                                        インパクトでエアコンを破壊していては本末転倒です。<br><br>
-                                        
-                                        私は自腹で全ての工具を購入し検証しました。<br>
-                                        その結果、
-                                        <span class="text-rose-600 font-black block mt-2 mb-2 text-[14px]">
-                                            「エアコンクリーニングにおいて<br>
-                                            ペン型インパクトの出番は一切ない」
-                                        </span>
-                                        という結論に達しました。<br>
-                                        どんなドライバーを使っているかで、<br>
-                                        その業者のエアコンへの愛情が判断できます。
-                                    </p>
-                                </div>
-                            </div>
-                            
-                            <!-- 工具 3: 業務用18Vインパクト -->
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
-                                <div>
-                                    <div class="aspect-video bg-cover bg-center rounded-xl border border-slate-200 shadow-sm bg-slate-200" style="background-image: url('IMPACT.jpg');">
-                                    </div>
-                                    <p class="text-[11px] md:text-xs text-slate-500 font-bold mt-2 px-1 leading-relaxed">
-                                        左はペン型(不用品)<br>
-                                        右は愛用のインパクト！<br>
-                                        SHOPオリジナルのリペイントがお気に入りです。
-                                    </p>
-                                </div>
-                                <div>
-                                    <h4 class="font-black text-lg text-slate-900 mb-3 border-l-4 border-neon pl-2">【業務用】確実かつ安全な<br>「18Vインパクト」</h4>
-                                    <p class="text-[13px] text-slate-600 font-bold leading-relaxed">
-                                        逆に、固く締まった業務用エアコンの分解では、<br>
-                                        ペン型だとトルク不足で「ガガガッ！」と鳴るだけで<br>
-                                        ネジが回らず、お客様を不安にさせてしまいます。<br><br>
-                                        
-                                        当店では業務用にはプロ仕様の
-                                        <span class="text-slate-900 font-black block mt-2 mb-2">「18Vインパクトドライバー」</span>
-                                        を使用。<br>
-                                        最新のトルク調整機能で初めから弱く設定できるため、<br>
-                                        ペン型よりも優しく、かつ圧倒的なパワーで<br>
-                                        安全・確実に分解と組み付けが可能です。
-                                    </p>
-                                </div>
-                            </div>
-
-                            <!-- 工具 4: 噴霧器 -->
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
-                                <div class="md:order-last">
-                                    <div class="aspect-video bg-cover bg-center rounded-xl border border-slate-200 shadow-sm bg-slate-200" style="background-image: url('hunnmuki.PNG');">
-                                    </div>
-                                    <p class="text-[11px] md:text-xs text-slate-500 font-bold mt-2 px-1 leading-relaxed">
-                                        高圧洗浄機ではなく動力噴霧器<br><br>
-                                        多くの業者が使用<br>
-                                        最大許容圧力／3.5MPa<br>
-                                        吐出水量／3.3L／min<br>
-                                        常にガラガラと音が煩い…
-                                    </p>
-                                </div>
-                                <div class="md:text-right">
-                                    <h4 class="font-black text-lg text-slate-900 mb-3 border-r-4 border-neon pr-2 md:border-l-0 border-l-4 pl-2 md:pl-0 inline-block">一般的な<br>エアコン洗浄機の限界</h4>
-                                    <p class="text-[13px] text-slate-600 font-bold leading-relaxed">
-                                        一般的なエアコン洗浄機は水圧が弱く（2〜3MPa）、<br>
-                                        熱交換器の奥まで水が届きません。<br>
-                                        もちろん洗浄できないわけではありませんが、<br>
-                                        分厚い熱交換器やガンコな汚れを貫くためには、<br>
-                                        この水圧では不十分だと私は考えています。<br>
-                                        <span class="text-blue-600 font-black block mt-2">「圧力こそが正義」なのです。</span>
-                                    </p>
-                                </div>
-                            </div>
-
-                            <!-- 工具 5: ケルヒャー (前半) -->
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
-                                <div>
-                                    <div class="aspect-video bg-cover bg-center rounded-xl border border-slate-200 shadow-sm bg-slate-200" style="background-image: url('sennzyouki.jpg');">
-                                    </div>
-                                    <p class="text-[11px] md:text-xs text-slate-500 font-bold mt-2 px-1 leading-relaxed">
-                                        これが高圧洗浄機<br><br>
-                                        当店愛用のK2 Little<br>
-                                        最大許容圧力／8MPa<br>
-                                        吐出水量／5.5L／min<br>
-                                        とても静かです。
-                                    </p>
-                                </div>
-                                <div>
-                                    <h4 class="font-black text-lg text-slate-900 mb-3 border-l-4 border-neon pl-2">【圧倒的水圧】<br>ケルヒャー × 電圧降下トランス</h4>
-                                    <p class="text-[13px] text-slate-600 font-bold leading-relaxed mb-8">
-                                        私は5年以上前から<br>
-                                        <span class="text-slate-900 font-black block mt-1 mb-1">最大8MPaを誇る『ケルヒャー』一択です。</span>
-                                        そのままでは威力が強すぎるため、<br>
-                                        スピードコントローラー（電圧降下トランス）を介して<br>
-                                        電圧を下げ、水圧を自在にコントロールしています。
-                                    </p>
-
-                                    <!-- 蓄圧式噴霧器の挿入 -->
-                                    <div class="aspect-video bg-cover bg-center rounded-xl border border-slate-200 shadow-sm bg-slate-200 mt-4" style="background-image: url('tikuatu.PNG');">
-                                    </div>
-                                    <p class="text-[11px] md:text-xs text-slate-500 font-bold mt-2 px-1 leading-relaxed mb-8">
-                                        これらは蓄圧式噴霧器<br>
-                                        どう考えても圧力不足です。<br>
-                                        農薬散布用ですね。<br>
-                                        洗剤を塗布できるのは表面だけです。<br>
-                                        エアコンクリーニングに使う物ではないと思っていますが、<br>
-                                        使ってる清掃業者は珍しくないように思います。
-                                    </p>
-                                    
-                                    <p class="text-[13px] text-slate-600 font-bold leading-relaxed">
-                                        私達株式会社ECSのスタッフは<br>
-                                        <span class="text-rose-600 font-black block mt-2 mb-2 text-[14px]">『洗剤から機械を通して高圧力で洗浄する』</span>
-                                        ことを徹底しています。<br>
-                                        洗剤の消費量も経費も跳ね上がりますが、<br>
-                                        嘘や手抜きはしたくありません！<br>
-                                        高圧でたっぷりの洗剤を奥まで浸透させ、<br>
-                                        ケルヒャーの高水圧で一気に洗い流す。<br>
-                                        これが私の譲れない拘りです。
-                                    </p>
-                                </div>
-                            </div>
-
-                            <!-- 工具 6: ジェットブロワー -->
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
-                                <div class="aspect-video bg-cover bg-center rounded-xl border border-slate-200 shadow-sm md:order-last bg-slate-200" style="background-image: url('MK-2.jpg');">
-                                </div>
-                                <div class="md:text-right">
-                                    <h4 class="font-black text-lg text-slate-900 mb-3 border-r-4 border-neon pr-2 md:border-l-0 border-l-4 pl-2 md:pl-0 inline-block">【圧倒的風速】異次元の<br>ジェットブロワー MK-2</h4>
-                                    <p class="text-[13px] text-slate-600 font-bold leading-relaxed">
-                                        洗浄後の水滴を吹き飛ばす送風機。<br>
-                                        以前は大手メーカーの最新エアダスターを愛用し<br>
-                                        「これ以上はない」と思っていましたが、<br>
-                                        現在はそれを遥かに凌駕するエアロツールズの<br>
-                                        「MK-2」を使用しています。<br><br>
-                                        
-                                        <span class="text-slate-900 font-black block mb-1 mt-2">風速270km/h、超高速76650rpm。</span>
-                                        大容量バッテリーがわずか7分で空になるほどの<br>
-                                        規格外のハイパワーで、作業効率が爆発的に向上。<br>
-                                        一度使えば、もう過去の道具には戻れません。
-                                    </p>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </section>
-
-        <!-- 多重下請け構造の闇（不都合な真実）セクション -->
-        <section class="py-12 bg-white">
-            <div class="max-w-4xl mx-auto px-4">
-                <div class="mt-8 bg-white p-6 md:p-12 rounded-3xl border-4 border-slate-900 shadow-xl relative overflow-hidden">
-                    <div class="absolute top-0 left-0 w-full h-3 bg-neon"></div>
-                    <div class="text-center mb-10">
-                        <span class="inline-block bg-slate-900 text-neon font-black px-4 py-1 rounded text-sm md:text-base mb-3 tracking-widest">業界の裏話</span>
-                        <h3 class="text-xl md:text-2xl font-black text-slate-900 leading-tight">
-                            エアコンクリーニング業界の<br class="sm:hidden">
-                            <span class="text-rose-600 border-b-2 border-rose-600 pb-1 inline-block mt-2">不都合な真実</span>
-                        </h3>
-                    </div>
-
-                    <div class="max-w-2xl mx-auto space-y-10 text-center">
-                        <!-- 段落1 -->
-                        <p class="text-[13px] md:text-sm text-slate-700 font-bold leading-loose">
-                            私は、この業界で何年も仕事をしています。<br><br>
-                            だからこそ言えることがあります。<br><br>
-                            お客様は、知らないうちに<br class="sm:hidden">
-                            <span class="text-slate-900 font-black text-base bg-neon px-2 py-1 mx-1">「作業」ではなく「仕組み」</span>に<br class="sm:hidden">
-                            お金を払っていることがあります。
-                        </p>
-
-                        <!-- 段落2 -->
-                        <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200 text-left md:text-center shadow-sm">
-                            <h4 class="font-black text-slate-900 text-base md:text-lg mb-4 text-center">あなたは誰にお金を<br class="sm:hidden">払っていますか？</h4>
-                            <p class="text-[13px] md:text-sm text-slate-700 font-bold leading-loose">
-                                エアコンクリーニングを依頼するとき、<br>
-                                あなたがお金を払っている相手は、<br>
-                                本当にエアコンを掃除する職人でしょうか？<br><br>
-                                それとも、<br>
-                                その職人を紹介した会社でしょうか？
-                            </p>
-                        </div>
-
-                        <!-- 段落3 -->
-                        <div class="bg-white p-6 rounded-2xl border-2 border-slate-100 shadow-sm text-left md:text-center">
-                            <h4 class="font-black text-slate-900 text-base md:text-lg mb-4 text-center">もし同じ職人が来るなら？</h4>
-                            <p class="text-[13px] md:text-sm text-slate-700 font-bold leading-loose">
-                                私が直接ご依頼を受けても、<br>
-                                紹介会社経由でご依頼を受けても、<br>
-                                現場で作業するのは私です。<br><br>
-                                エアコンを分解する人も、<br>
-                                洗う人も、組み立てる人も、<br>
-                                <span class="text-slate-900 font-black text-base">私です。</span><br><br>
-                                違うのは、<br>
-                                <span class="text-rose-600 font-black text-base border-b border-rose-600">誰がお金を受け取るか。</span>
-                            </p>
-                        </div>
-
-                        <!-- 段落4 -->
-                        <p class="text-[13px] md:text-sm text-slate-700 font-bold leading-loose">
-                            「有名だから安心。」<br>
-                            「CMで見たから安心。」<br>
-                            「大手だから安心。」<br><br>
-                            本当にそうでしょうか？<br><br>
-                            大切なのは、<br>
-                            どこの会社に頼むかではありません。<br><br>
-                            <span class="text-slate-900 font-black text-[15px] md:text-base border-b-2 border-neon inline-block pb-1">誰が来て、誰が施工するか</span>です。
-                        </p>
-
-                        <!-- 段落5 結論 -->
-                        <div class="bg-slate-900 text-white p-8 rounded-2xl shadow-lg mt-8 relative overflow-hidden">
-                            <div class="absolute left-0 top-0 bottom-0 w-2 bg-neon"></div>
-                            <p class="text-[13px] md:text-sm font-bold leading-loose text-center">
-                                私は<span class="text-neon font-black text-base mx-1">広告より技術</span>を選びました。<br><br>
-                                テレビCMもありません。<br>
-                                芸能人も使っていません。<br>
-                                営業マンもいません。<br><br>
-                                
-                                <span class="block w-12 h-px bg-slate-700 mx-auto my-6"></span>
-                                
-                                その代わりにあるのは、<br><br>
-                                <span class="text-neon font-black text-base">工具</span>です。<br>
-                                <span class="text-neon font-black text-base">経験</span>です。<br>
-                                そして、<br>
-                                <span class="text-neon font-black text-base">一台一台と向き合う時間</span>です。<br><br>
-                                
-                                だから私は、<br>
-                                価格ではなく、<br class="sm:hidden">
-                                <span class="text-white border-b-2 border-neon font-black text-base md:text-lg tracking-widest inline-block mt-2 pb-1">仕事で選ばれたい。</span>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- PRICING & CALCULATOR -->
-        <section id="pricing" class="py-16 bg-slate-50 border-t border-slate-200">
-            <div class="max-w-5xl mx-auto px-4">
-                <h2 class="text-xl md:text-2xl font-black text-center mb-10">料金プラン・お見積り</h2>
-                
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                    無駄な中間マージンを省きました。<br>
+                    【直接依頼】だからこそ実現できる<br>
+                    適正価格での本気のエアコンクリーニング。<br><br>
                     
-                    <!-- 料金表 (左側 7カラム分) -->
-                    <div class="lg:col-span-7 space-y-6">
-                        
-                        <!-- 一般壁掛け -->
-                        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm relative pt-8">
-                            <span class="bg-slate-200 text-slate-700 text-[10px] font-black px-2 py-1 rounded absolute top-0 left-4 -translate-y-1/2">一般タイプ</span>
-                            <h3 class="text-lg font-black">壁掛けエアコン</h3>
-                            <div class="mt-2 flex items-end justify-between">
-                                <span class="text-2xl font-black text-slate-900">¥9,500</span>
-                                <span class="text-xs text-emerald-600 font-black">2台目〜 ¥8,400</span>
-                            </div>
-                        </div>
-
-                        <!-- お掃除機能付き -->
-                        <div class="bg-white p-6 rounded-2xl border-2 border-slate-900 shadow-sm relative pt-8">
-                            <span class="bg-slate-900 text-neon text-[10px] font-black px-2 py-1 rounded absolute top-0 left-4 -translate-y-1/2">高機能タイプ</span>
-                            <h3 class="text-lg font-black">お掃除機能付き</h3>
-                            <div class="mt-2 flex items-end justify-between">
-                                <span class="text-2xl font-black text-slate-900">¥15,800</span>
-                                <span class="text-xs text-emerald-600 font-black">2台目〜 ¥14,800</span>
-                            </div>
-                        </div>
-
-                        <!-- 業務用 壁掛け幅広 -->
-                        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm relative pt-8">
-                            <span class="bg-slate-200 text-slate-700 text-[10px] font-black px-2 py-1 rounded absolute top-0 left-4 -translate-y-1/2">業務用</span>
-                            <h3 class="text-lg font-black">壁掛け幅広タイプ</h3>
-                            <div class="mt-2 flex items-end justify-between">
-                                <span class="text-2xl font-black text-slate-900">¥15,000</span>
-                                <span class="text-xs text-emerald-600 font-black">2台目〜 ¥13,000</span>
-                            </div>
-                        </div>
-
-                        <!-- 業務用 天カセ4方向 -->
-                        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm relative pt-8">
-                            <span class="bg-slate-200 text-slate-700 text-[10px] font-black px-2 py-1 rounded absolute top-0 left-4 -translate-y-1/2">業務用</span>
-                            <h3 class="text-lg font-black">天カセ-4方向</h3>
-                            <div class="mt-2 flex items-end justify-between">
-                                <span class="text-2xl font-black text-slate-900">¥20,400</span>
-                                <span class="text-xs text-emerald-600 font-black">2台目〜 ¥18,000</span>
-                            </div>
-                        </div>
-
-                        <!-- 業務用 天カセ1・2方向 -->
-                        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm relative pt-8">
-                            <span class="bg-slate-200 text-slate-700 text-[10px] font-black px-2 py-1 rounded absolute top-0 left-4 -translate-y-1/2">業務用</span>
-                            <h3 class="text-lg font-black">天カセ-1方向・2方向</h3>
-                            <div class="mt-2 flex items-end justify-between">
-                                <span class="text-2xl font-black text-slate-900">¥22,000</span>
-                                <span class="text-xs text-emerald-600 font-black">2台目〜 ¥20,000</span>
-                            </div>
-                        </div>
-
-                        <!-- 業務用 天吊り -->
-                        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm relative pt-8">
-                            <span class="bg-slate-200 text-slate-700 text-[10px] font-black px-2 py-1 rounded absolute top-0 left-4 -translate-y-1/2">業務用</span>
-                            <h3 class="text-lg font-black">天吊り</h3>
-                            <div class="mt-2 flex items-end justify-between">
-                                <span class="text-2xl font-black text-slate-900">¥22,000</span>
-                                <span class="text-xs text-emerald-600 font-black">2台目〜 ¥20,000</span>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <!-- 計算機 (右側 5カラム分) -->
-                    <div class="lg:col-span-5 lg:sticky lg:top-20">
-                        <div class="bg-white p-5 rounded-3xl border border-slate-200 shadow-lg">
-                            <h3 class="font-black text-sm mb-4 text-center bg-slate-50 py-3 rounded-xl border border-slate-100 shadow-sm">
-                                組み合わせ自由！<br class="sm:hidden">料金シミュレーター
-                            </h3>
-                            
-                            <div class="space-y-2">
-                                <!-- 一般壁掛け -->
-                                <div class="flex items-center justify-between bg-white p-2.5 rounded-lg border border-slate-200">
-                                    <span class="text-[11px] font-black text-slate-700">一般壁掛け</span>
-                                    <div class="flex items-center space-x-2">
-                                        <button class="qty-btn minus w-7 h-7 bg-slate-100 rounded text-slate-600 font-black shadow-sm active:bg-slate-200" data-type="standard">-</button>
-                                        <span class="w-5 text-center font-black text-sm" id="qty-standard">1</span>
-                                        <button class="qty-btn plus w-7 h-7 bg-slate-100 rounded text-slate-600 font-black shadow-sm active:bg-slate-200" data-type="standard">+</button>
-                                    </div>
-                                </div>
-                                <!-- お掃除機能付 -->
-                                <div class="flex items-center justify-between bg-white p-2.5 rounded-lg border border-slate-200">
-                                    <span class="text-[11px] font-black text-slate-700">お掃除機能付</span>
-                                    <div class="flex items-center space-x-2">
-                                        <button class="qty-btn minus w-7 h-7 bg-slate-100 rounded text-slate-600 font-black shadow-sm active:bg-slate-200" data-type="auto">-</button>
-                                        <span class="w-5 text-center font-black text-sm" id="qty-auto">0</span>
-                                        <button class="qty-btn plus w-7 h-7 bg-slate-100 rounded text-slate-600 font-black shadow-sm active:bg-slate-200" data-type="auto">+</button>
-                                    </div>
-                                </div>
-                                <!-- 壁掛幅広 -->
-                                <div class="flex items-center justify-between bg-white p-2.5 rounded-lg border border-slate-200">
-                                    <span class="text-[11px] font-black text-slate-700">壁掛幅広 (業務用)</span>
-                                    <div class="flex items-center space-x-2">
-                                        <button class="qty-btn minus w-7 h-7 bg-slate-100 rounded text-slate-600 font-black shadow-sm active:bg-slate-200" data-type="biz_wide">-</button>
-                                        <span class="w-5 text-center font-black text-sm" id="qty-biz_wide">0</span>
-                                        <button class="qty-btn plus w-7 h-7 bg-slate-100 rounded text-slate-600 font-black shadow-sm active:bg-slate-200" data-type="biz_wide">+</button>
-                                    </div>
-                                </div>
-                                <!-- 天カセ4方向 -->
-                                <div class="flex items-center justify-between bg-white p-2.5 rounded-lg border border-slate-200">
-                                    <span class="text-[11px] font-black text-slate-700">天カセ4方向 (業務用)</span>
-                                    <div class="flex items-center space-x-2">
-                                        <button class="qty-btn minus w-7 h-7 bg-slate-100 rounded text-slate-600 font-black shadow-sm active:bg-slate-200" data-type="biz_4way">-</button>
-                                        <span class="w-5 text-center font-black text-sm" id="qty-biz_4way">0</span>
-                                        <button class="qty-btn plus w-7 h-7 bg-slate-100 rounded text-slate-600 font-black shadow-sm active:bg-slate-200" data-type="biz_4way">+</button>
-                                    </div>
-                                </div>
-                                <!-- 天カセ1・2方向 -->
-                                <div class="flex items-center justify-between bg-white p-2.5 rounded-lg border border-slate-200">
-                                    <span class="text-[10px] font-black text-slate-700">天カセ1・2方向 (業務用)</span>
-                                    <div class="flex items-center space-x-2">
-                                        <button class="qty-btn minus w-7 h-7 bg-slate-100 rounded text-slate-600 font-black shadow-sm active:bg-slate-200" data-type="biz_12way">-</button>
-                                        <span class="w-5 text-center font-black text-sm" id="qty-biz_12way">0</span>
-                                        <button class="qty-btn plus w-7 h-7 bg-slate-100 rounded text-slate-600 font-black shadow-sm active:bg-slate-200" data-type="biz_12way">+</button>
-                                    </div>
-                                </div>
-                                <!-- 天吊り -->
-                                <div class="flex items-center justify-between bg-white p-2.5 rounded-lg border border-slate-200">
-                                    <span class="text-[11px] font-black text-slate-700">天吊り (業務用)</span>
-                                    <div class="flex items-center space-x-2">
-                                        <button class="qty-btn minus w-7 h-7 bg-slate-100 rounded text-slate-600 font-black shadow-sm active:bg-slate-200" data-type="biz_hang">-</button>
-                                        <span class="w-5 text-center font-black text-sm" id="qty-biz_hang">0</span>
-                                        <button class="qty-btn plus w-7 h-7 bg-slate-100 rounded text-slate-600 font-black shadow-sm active:bg-slate-200" data-type="biz_hang">+</button>
-                                    </div>
-                                </div>
-                                
-                                <!-- オプション: 家庭用室外機洗浄 -->
-                                <div class="flex items-center justify-between bg-slate-100 p-2.5 rounded-lg border border-slate-200 mt-2">
-                                    <span class="text-[11px] font-black text-slate-700">室外機洗浄 (家庭用)<br><span class="text-[9px] text-slate-600 font-bold">¥4,000 <span class="text-rose-500 font-black">(2台以上: ¥3,000/台)</span></span></span>
-                                    <div class="flex items-center space-x-2">
-                                        <button class="opt-btn minus w-7 h-7 bg-white rounded text-slate-600 font-black shadow-sm active:bg-slate-50" data-opt="family">-</button>
-                                        <span class="w-5 text-center font-black text-sm" id="qty-outdoor-family">0</span>
-                                        <button class="opt-btn plus w-7 h-7 bg-white rounded text-slate-600 font-black shadow-sm active:bg-slate-50" data-opt="family">+</button>
-                                    </div>
-                                </div>
-
-                                <!-- オプション: 業務用室外機洗浄 -->
-                                <div class="flex items-center justify-between bg-slate-100 p-2.5 rounded-lg border border-slate-200">
-                                    <span class="text-[11px] font-black text-slate-700">室外機洗浄 (業務用)<br><span class="text-[9px] text-slate-600 font-bold">一律 ¥4,000/台</span></span>
-                                    <div class="flex items-center space-x-2">
-                                        <button class="opt-btn minus w-7 h-7 bg-white rounded text-slate-600 font-black shadow-sm active:bg-slate-50" data-opt="biz">-</button>
-                                        <span class="w-5 text-center font-black text-sm" id="qty-outdoor-biz">0</span>
-                                        <button class="opt-btn plus w-7 h-7 bg-white rounded text-slate-600 font-black shadow-sm active:bg-slate-50" data-opt="biz">+</button>
-                                    </div>
-                                </div>
-
-                                <!-- 合計 -->
-                                <div class="bg-slate-900 p-6 rounded-2xl text-center shadow-md mt-6">
-                                    <span class="text-xs font-bold text-neon tracking-widest">お見積り合計(税込)</span>
-                                    <div id="calc-total-price" class="text-4xl font-black text-white mt-2 tracking-tight">¥9,500</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
+                    過剰な広告費も、営業マンも持たない私たちが<br>
+                    お客様にお約束できるのは、<br>
+                    洗練された<span class="text-neon font-black">工具</span>と<span class="text-neon font-black">経験</span>、<br>
+                    そして一台一台と向き合う<span class="text-neon font-black">時間</span>です。<br><br>
+                    
+                    業界の「不都合な真実」にも真正面から向き合い、<br>
+                    お部屋の空気を本気でキレイにします。
+                </p>
+                
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                    <a href="/mind" class="w-full sm:w-auto bg-white text-slate-900 hover:bg-slate-100 font-black px-8 py-3.5 rounded-full shadow-md text-sm transition-transform active:scale-95">
+                        私たちの想いを見る
+                    </a>
+                    <a href="/trash" class="w-full sm:w-auto bg-transparent border-2 border-slate-600 text-white hover:border-slate-400 font-black px-8 py-3.5 rounded-full text-sm transition-colors">
+                        業界の裏話を知る
+                    </a>
                 </div>
             </div>
         </section>
 
-        <!-- GALLERY & REVIEWS -->
-        <section id="gallery" class="py-12 bg-white border-t border-slate-100">
+        <!-- ⑥ GALLERY (3件だけ) -->
+        <section id="gallery-short" class="py-12 bg-white border-t border-slate-100">
             <div class="max-w-5xl mx-auto px-4">
                 <h2 class="text-xl md:text-2xl font-black text-center mb-8">施工事例 ＆ お客様の声</h2>
                 
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
                     <!-- Case 1 -->
                     <div class="border border-slate-200 bg-slate-50 rounded-xl overflow-hidden shadow-sm">
                         <div class="flex h-32">
-                            <!-- BEFORE 画像 -->
+                            <!-- BEFORE -->
                             <div class="w-1/2 bg-cover bg-center flex items-end p-2 relative bg-slate-300" style="background-image: url('BLACK.jpg');">
                                 <div class="absolute inset-0 bg-black/30"></div>
                                 <span class="absolute top-2 left-2 bg-slate-900 text-white text-[9px] px-2 rounded z-10 font-bold">BEFORE</span>
                                 <span class="text-xs font-black text-white z-10 drop-shadow-md">カビがぎっしり…</span>
                             </div>
-                            <!-- AFTER 画像 -->
+                            <!-- AFTER -->
                             <div class="w-1/2 bg-cover bg-center flex items-end p-2 relative border-l border-white bg-slate-200" style="background-image: url('WHITE.jpg');">
                                 <div class="absolute inset-0 bg-black/10"></div>
                                 <span class="absolute top-2 left-2 bg-emerald-500 text-white text-[9px] px-2 rounded z-10 font-bold">AFTER</span>
@@ -960,13 +265,11 @@
                     <!-- Case 2 -->
                     <div class="border border-slate-200 bg-slate-50 rounded-xl overflow-hidden shadow-sm">
                         <div class="flex h-32">
-                            <!-- BEFORE 画像 -->
                             <div class="w-1/2 bg-cover bg-center flex items-end p-2 relative bg-slate-300" style="background-image: url('BAD.jpg');">
                                 <div class="absolute inset-0 bg-black/30"></div>
                                 <span class="absolute top-2 left-2 bg-slate-900 text-white text-[9px] px-2 rounded z-10 font-bold">BEFORE</span>
                                 <span class="text-xs font-black text-white z-10 drop-shadow-md">お掃除ロボの裏に埃</span>
                             </div>
-                            <!-- AFTER 画像 -->
                             <div class="w-1/2 bg-cover bg-center flex items-end p-2 relative border-l border-white bg-slate-200" style="background-image: url('GOOD.jpg');">
                                 <div class="absolute inset-0 bg-black/10"></div>
                                 <span class="absolute top-2 left-2 bg-emerald-500 text-white text-[9px] px-2 rounded z-10 font-bold">AFTER</span>
@@ -982,13 +285,11 @@
                     <!-- Case 3 -->
                     <div class="border border-slate-200 bg-slate-50 rounded-xl overflow-hidden shadow-sm">
                         <div class="flex h-32">
-                            <!-- BEFORE 画像 -->
                             <div class="w-1/2 bg-cover bg-center flex items-end p-2 relative bg-slate-300" style="background-image: url('SHARP1.jpg');">
                                 <div class="absolute inset-0 bg-black/30"></div>
                                 <span class="absolute top-2 left-2 bg-slate-900 text-white text-[9px] px-2 rounded z-10 font-bold">BEFORE</span>
                                 <span class="text-xs font-black text-white z-10 drop-shadow-md">他店NGの難関機種</span>
                             </div>
-                            <!-- AFTER 画像 -->
                             <div class="w-1/2 bg-cover bg-center flex items-end p-2 relative border-l border-white bg-slate-200" style="background-image: url('SHARP2.jpg');">
                                 <div class="absolute inset-0 bg-black/10"></div>
                                 <span class="absolute top-2 left-2 bg-emerald-500 text-white text-[9px] px-2 rounded z-10 font-bold">AFTER</span>
@@ -1001,14 +302,21 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="text-center">
+                    <a href="/gallery" class="inline-flex items-center text-sm font-black text-blue-600 hover:text-blue-500 transition-colors">
+                        施工事例をもっと見る
+                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                    </a>
+                </div>
             </div>
         </section>
 
-        <!-- ABOUT & CONTACT -->
-        <section id="about" class="pt-12 pb-8 bg-white">
+        <!-- ⑦ ABOUT & CONTACT -->
+        <section id="about" class="pt-12 pb-8 bg-slate-50 border-t border-slate-200">
             <div class="max-w-4xl mx-auto px-4">
                 
-                <div class="bg-slate-50 rounded-3xl p-6 md:p-8 border border-slate-200 shadow-sm mb-8 text-center">
+                <div class="bg-white rounded-3xl p-6 md:p-8 border border-slate-200 shadow-sm mb-8 text-center">
                     
                     <!-- ロゴ -->
                     <div class="flex items-center justify-center mb-4">
@@ -1033,11 +341,13 @@
                     <div class="absolute left-0 top-0 bottom-0 w-2 bg-neon"></div>
                     <h3 class="text-neon font-black text-lg mb-2 flex items-center justify-center">
                         <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2.5" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
-                        夜間作業も対応可能です！
+                        夜間作業も大歓迎♫
                     </h3>
-                    <p class="text-white text-xs md:text-sm font-bold">
+                    <p class="text-white text-xs md:text-sm font-bold leading-relaxed">
                         定休日のない飲食店様など、<br class="sm:hidden">閉店後の夜間作業も大歓迎です！<br>
-                        お時間・日程など柔軟に調整いたしますので、<br class="sm:hidden">お気軽にご相談ください。
+                        お時間・日程など柔軟に調整いたしますので、<br class="sm:hidden">お気軽にご相談ください。<br><br>
+                        <span class="text-neon border-b border-neon inline-block mb-1">夜間作業だからと言って<br class="sm:hidden">追加料金は発生しません！</span><br>
+                        とことんキレイにさせていただきます！
                     </p>
                 </div>
 
@@ -1051,7 +361,7 @@
                         </svg>
                         <a href="tel:08000807788" class="font-impact tracking-widest text-2xl hover:opacity-80 transition-opacity">0800-080-7788</a>
                         <p class="text-[11px] text-white font-bold mt-3 text-center leading-relaxed">
-                            お電話の際に<br><span class="text-neon text-sm font-black tracking-widest">「担当は川崎指定」</span><br>とお伝えください。
+                            お電話の際に<br><span class="text-neon text-sm font-black tracking-widest">「担当は川崎指定」</span><br>と必ずお伝えください。
                         </p>
                         <span class="text-[9px] text-slate-400 mt-3 font-bold">受付専用フリーダイヤル (8:00〜20:00)</span>
                     </div>
@@ -1078,63 +388,9 @@
             </div>
         </section>
 
-        <!-- LINE STICKERS (おまけコンテンツ) -->
-        <section id="line-stickers" class="py-12 bg-slate-50 border-t border-slate-200">
-            <div class="max-w-3xl mx-auto px-4 text-center">
-                
-                <h2 class="text-lg md:text-xl font-black text-slate-800 mb-4 flex items-center justify-center">
-                    <span class="text-2xl mr-2">🎨</span>
-                    オリジナルLINEスタンプ制作
-                </h2>
-                
-                <p class="text-xs md:text-sm text-slate-600 font-bold leading-relaxed mb-8 max-w-xl mx-auto">
-                    実はクリエイターとしての1面もあり、<br class="sm:hidden">現場で働く職人さん向けのオリジナルLINEスタンプを<br class="sm:hidden">制作・販売しています！<br><br>
-                    今後、すべての職種を網羅する予定です。<br>
-                    職人仲間とのやり取りにぜひ使ってみてください😁
-                </p>
-
-                <!-- スタンプ画像グリッド -->
-                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-8 max-w-xl mx-auto">
-                    <!-- スタンプ1 -->
-                    <div class="bg-white p-2 rounded-xl shadow-sm border border-slate-200">
-                        <div class="aspect-square bg-slate-100 rounded-lg mb-2 bg-cover bg-center" style="background-image: url('stamp1.jpg');">
-                        </div>
-                        <p class="text-[10px] font-black text-slate-700 leading-tight">エアコン<br>クリーニング職人</p>
-                    </div>
-                    <!-- スタンプ2 -->
-                    <div class="bg-white p-2 rounded-xl shadow-sm border border-slate-200">
-                        <div class="aspect-square bg-slate-100 rounded-lg mb-2 bg-cover bg-center" style="background-image: url('stamp2.jpg');">
-                        </div>
-                        <p class="text-[10px] font-black text-slate-700 leading-tight">エアコン<br>取り付け職人</p>
-                    </div>
-                    <!-- スタンプ3 -->
-                    <div class="bg-white p-2 rounded-xl shadow-sm border border-slate-200">
-                        <div class="aspect-square bg-slate-100 rounded-lg mb-2 bg-cover bg-center" style="background-image: url('stamp3.jpg');">
-                        </div>
-                        <p class="text-[10px] font-black text-slate-700 leading-tight mt-3">電気工事士</p>
-                    </div>
-                    <!-- 今後追加予定(カミングスーン的な) -->
-                    <div class="bg-slate-100 p-2 rounded-xl border border-dashed border-slate-300 flex flex-col items-center justify-center h-full min-h-[120px]">
-                        <span class="text-2xl mb-1">👷‍♂️</span>
-                        <p class="text-[10px] font-black text-slate-400 leading-tight">全職種網羅へ<br>制作中！</p>
-                    </div>
-                </div>
-
-                <!-- LINE STOREリンクボタン -->
-                <a href="#" target="_blank" class="inline-flex items-center justify-center space-x-2 bg-[#06C755] hover:bg-[#05b34c] text-white font-black px-6 py-3.5 rounded-full shadow-md text-sm transition-transform active:scale-95">
-                    <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M22.5 10.1c0-4.3-4.1-7.9-9.1-7.9-5.1 0-9.2 3.5-9.2 7.9 0 3.9 2.5 7.2 6.1 7.7.2.1.6.2.7.4.1.2.1.5.1.5s-.1.6-.1.8c-.1.3-.2.8-.2.8 0 0-.1.5.5.3s3-1.8 4.2-3.1c1.5-1.5 2.5-3.3 2.5-5.3h-5.5z"/>
-                    </svg>
-                    <span>LINE STOREで全種類を見る</span>
-                </a>
-                <p class="text-[9px] text-slate-400 font-bold mt-3">※別ウィンドウでLINE公式ストアが開きます</p>
-
-            </div>
-        </section>
-
     </main>
 
-    <!-- FOOTER -->
+    <!-- ⑧ FOOTER -->
     <footer class="bg-slate-900 text-white pt-8 pb-20 md:pb-8 border-t-[6px] border-neon text-center">
         <div class="mb-4">
             <!-- フッターロゴ -->
@@ -1145,10 +401,13 @@
             </span>
             <p class="text-[9px] text-neon font-black mt-2">株式会社ECS専属プロスタッフ</p>
         </div>
+        <p class="text-[9px] text-slate-500 font-bold mb-2">
+            <a href="/products" class="hover:text-white transition-colors underline">オリジナルLINEスタンプ販売中</a>
+        </p>
         <p class="text-[9px] text-slate-500 font-bold">© 2026 ONE★STAR. All Rights Reserved.</p>
     </footer>
 
-    <!-- MOBILE BOTTOM NAVIGATION (画像通りの3分割デザイン) -->
+    <!-- MOBILE BOTTOM NAVIGATION -->
     <div class="fixed bottom-0 left-0 right-0 z-45 bg-slate-900 md:hidden h-[60px] flex items-stretch text-white shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.3)]">
         
         <!-- メニュー (黒) -->
@@ -1157,8 +416,8 @@
             <span class="text-[10px] font-black">メニュー</span>
         </button>
         
-        <!-- 料金 (黒) -->
-        <a href="#pricing" class="flex flex-col items-center justify-center w-1/4 active:bg-slate-800">
+        <!-- 料金 (黒) ※下層ページへのリンクに変更 -->
+        <a href="/price" class="flex flex-col items-center justify-center w-1/4 active:bg-slate-800">
             <svg class="w-6 h-6 mb-0.5 text-white" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
             <span class="text-[10px] font-black">料金</span>
         </a>
@@ -1202,97 +461,9 @@
             document.getElementById('nav-btn-menu').addEventListener('click', () => toggleMenu(true));
             document.getElementById('menu-close-btn').addEventListener('click', () => toggleMenu(false));
             document.getElementById('drawer-backdrop').addEventListener('click', () => toggleMenu(false));
+            
+            // 下層ページへのリンククリック時にもメニューを閉じる
             document.querySelectorAll('.menu-link').forEach(link => link.addEventListener('click', () => toggleMenu(false)));
-
-
-            // 料金シミュレーター
-            const pricingData = {
-                'standard':  { base: 9500,  multi: 8400 },
-                'auto':      { base: 15800, multi: 14800 },
-                'biz_wide':  { base: 15000, multi: 13000 },
-                'biz_4way':  { base: 20400, multi: 18000 },
-                'biz_12way': { base: 22000, multi: 20000 },
-                'biz_hang':  { base: 22000, multi: 20000 }
-            };
-
-            const qty = {
-                standard: 1, 
-                auto: 0,
-                biz_wide: 0,
-                biz_4way: 0,
-                biz_12way: 0,
-                biz_hang: 0
-            };
-
-            const updateDisplay = () => {
-                let total = 0;
-                let totalQty = 0; 
-                
-                for (let key in qty) {
-                    totalQty += qty[key];
-                    document.getElementById(`qty-${key}`).textContent = qty[key];
-                }
-
-                for (let key in qty) {
-                    if (key === 0) continue;
-                    
-                    if (key === 'standard') {
-                        if (totalQty >= 2) {
-                            total += qty[key] * pricingData[key].multi;
-                        } else {
-                            total += qty[key] * pricingData[key].base;
-                        }
-                    } else {
-                        if (qty[key] >= 2) {
-                            total += qty[key] * pricingData[key].multi;
-                        } else {
-                            total += qty[key] * pricingData[key].base;
-                        }
-                    }
-                }
-
-                // オプション
-                if (outdoorQtyFamily >= 2) {
-                    total += 3000 * outdoorQtyFamily;
-                } else {
-                    total += 4000 * outdoorQtyFamily;
-                }
-                total += 4000 * outdoorQtyBiz;
-
-                document.getElementById('qty-outdoor-family').textContent = outdoorQtyFamily;
-                document.getElementById('qty-outdoor-biz').textContent = outdoorQtyBiz;
-                document.getElementById('calc-total-price').textContent = '¥' + total.toLocaleString();
-            };
-
-            let outdoorQtyFamily = 0;
-            let outdoorQtyBiz = 0;
-
-            document.querySelectorAll('.qty-btn').forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    const type = e.currentTarget.getAttribute('data-type');
-                    const isPlus = e.currentTarget.classList.contains('plus');
-                    if (isPlus) qty[type]++;
-                    else if (qty[type] > 0) qty[type]--;
-                    updateDisplay();
-                });
-            });
-
-            document.querySelectorAll('.opt-btn').forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    const isPlus = e.currentTarget.classList.contains('plus');
-                    const optType = e.currentTarget.getAttribute('data-opt');
-                    if (optType === 'family') {
-                        if (isPlus) outdoorQtyFamily++;
-                        else if (outdoorQtyFamily > 0) outdoorQtyFamily--;
-                    } else if (optType === 'biz') {
-                        if (isPlus) outdoorQtyBiz++;
-                        else if (outdoorQtyBiz > 0) outdoorQtyBiz--;
-                    }
-                    updateDisplay();
-                });
-            });
-
-            updateDisplay();
 
         });
     </script>
