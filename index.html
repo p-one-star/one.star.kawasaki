@@ -313,80 +313,92 @@
         </section>
 
         <!-- ⑦ CONTACT & NEWS -->
-        <section id="contact-and-news" class="pt-12 pb-8 bg-slate-50 border-t border-slate-200">
+        <section id="contact-and-news" class="pt-12 pb-12 bg-slate-50 border-t border-slate-200">
             <div class="max-w-3xl mx-auto px-4">
                 
                 <!-- お問い合わせ -->
-                <div class="text-center mb-8">
-                    <hr class="border-slate-300 my-6">
-                    
-                    <div class="grid grid-cols-1 gap-4 max-w-md mx-auto">
-                        <!-- 電話相談枠 -->
-                        <div class="flex flex-col items-center justify-center p-6 bg-slate-900 text-neon rounded-2xl border border-slate-700 shadow-sm relative">
-                            <span class="text-4xl mb-3 mt-1">➿</span>
-                            <a href="tel:08000807788" class="font-impact tracking-wider text-[26px] sm:text-3xl hover:opacity-80 transition-opacity whitespace-nowrap">0800-080-7788</a>
-                            <p class="text-[11px] text-white font-bold mt-4 text-center leading-relaxed">
-                                お電話の際に<br><span class="text-neon text-sm font-black tracking-widest">「担当は川崎指定」</span><br>と必ずお伝えください。
+                <div class="text-center mb-10">
+                    <div class="grid grid-cols-1 gap-5 max-w-md mx-auto">
+                        <!-- 電話ボタン -->
+                        <div class="flex flex-col items-center justify-center py-8 px-4 bg-slate-900 text-neon rounded-3xl border border-slate-800 shadow-md relative overflow-hidden group">
+                            <div class="absolute top-0 left-0 w-full h-1 bg-neon opacity-50"></div>
+                            <span class="text-5xl mb-4 mt-2">➿</span>
+                            <a href="tel:08000807788" class="font-impact tracking-widest text-[32px] sm:text-4xl group-hover:opacity-80 transition-opacity whitespace-nowrap">0800-080-7788</a>
+                            <p class="text-xs text-white font-bold mt-5 text-center leading-relaxed">
+                                お電話の際に<br>
+                                <span class="text-neon text-sm font-black tracking-widest inline-block mt-1 mb-1">「担当は川崎指定」</span><br>
+                                と必ずお伝えください。
                             </p>
-                            <span class="text-[9px] text-slate-400 mt-4 font-bold">受付専用フリーダイヤル (8:00〜20:00)</span>
+                            <span class="text-[10px] text-slate-400 mt-4 font-bold">受付専用フリーダイヤル (8:00〜20:00)</span>
                         </div>
 
-                        <!-- インスタ枠 -->
-                        <a href="https://www.instagram.com/one.star.kawasaki?igsh=anZpYnpxcDdqOXRh&utm_source=qr" target="_blank" class="flex flex-col items-center justify-center p-6 bg-gradient-to-r from-pink-500 to-rose-500 text-white rounded-2xl hover:opacity-90 transition-all shadow-sm">
-                            <div class="flex items-center mb-1">
-                                <span class="text-2xl mr-2">📷</span>
-                                <span class="font-black text-lg">Instagram</span>
-                            </div>
-                            <span class="text-[10px] font-bold text-pink-100">DM相談・24時間受付中</span>
+                        <!-- インスタボタン -->
+                        <a href="https://www.instagram.com/one.star.kawasaki?igsh=anZpYnpxcDdqOXRh&utm_source=qr" target="_blank" class="flex flex-col items-center justify-center py-8 px-4 bg-gradient-to-r from-pink-500 to-rose-500 text-white rounded-3xl hover:opacity-90 transition-all shadow-md">
+                            <!-- Instagram SVG Icon -->
+                            <svg class="w-12 h-12 mb-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                            </svg>
+                            <span class="font-black text-2xl mb-1">インスタでDM相談</span>
+                            <span class="text-xs font-bold text-pink-100">24時間受付中</span>
                         </a>
                     </div>
-                    <p class="text-[10px] text-slate-500 font-bold mt-6 leading-relaxed">
-                        愛知県内出張無料！<br>
+                    <p class="text-xs text-slate-600 font-black mt-6 mb-1">愛知県内出張無料！</p>
+                    <p class="text-[10px] text-slate-500 font-bold leading-relaxed">
                         ※フリーダイヤルは愛知県外からは繋がりません。<br>
                         静岡、岐阜、三重などはDMにて御相談ください。
                     </p>
                 </div>
                 
-                <hr class="border-slate-300 my-8">
+                <hr class="border-slate-300 my-10">
 
                 <!-- NEWS -->
-                <div class="max-w-lg mx-auto mb-8">
-                    <h3 class="text-lg font-black text-slate-900 mb-4 flex items-center justify-center">
-                        <span class="text-xl mr-2">📡</span> ONE★STAR NEWS
+                <div class="max-w-lg mx-auto">
+                    <h3 class="text-lg md:text-xl font-black text-slate-900 mb-5 flex items-center justify-center tracking-widest font-impact">
+                        <span class="text-2xl mr-3">📡</span> ONE★STAR NEWS
                     </h3>
-                    <ul class="bg-white rounded-xl border border-slate-200 p-5 space-y-4 shadow-sm text-left">
+                    <ul class="bg-white rounded-2xl border border-slate-200 p-6 space-y-5 shadow-sm text-left">
                         <li class="flex items-start">
-                            <span class="text-neon text-xs font-black mr-3 mt-1 shadow-sm">■</span>
-                            <p class="text-sm font-bold text-slate-700">7/29 空きあります</p>
+                            <span class="text-neon text-sm font-black mr-3 mt-0.5 drop-shadow-sm">■</span>
+                            <p class="text-[15px] font-bold text-slate-800">7/29 空きあります</p>
                         </li>
-                        <li class="flex items-start border-t border-slate-100 pt-4">
-                            <span class="text-neon text-xs font-black mr-3 mt-1 shadow-sm">■</span>
-                            <p class="text-sm font-bold text-slate-700">夜間作業も大歓迎！随時受付中です</p>
+                        <li class="flex items-start border-t border-slate-100 pt-5">
+                            <span class="text-neon text-sm font-black mr-3 mt-0.5 drop-shadow-sm">■</span>
+                            <p class="text-[15px] font-bold text-slate-800">夜間作業も大歓迎！随時受付中です</p>
                         </li>
-                        <li class="flex items-start border-t border-slate-100 pt-4">
-                            <span class="text-neon text-xs font-black mr-3 mt-1 shadow-sm">■</span>
-                            <p class="text-sm font-bold text-slate-700">施工事例を追加しました</p>
+                        <li class="flex items-start border-t border-slate-100 pt-5">
+                            <span class="text-neon text-sm font-black mr-3 mt-0.5 drop-shadow-sm">■</span>
+                            <p class="text-[15px] font-bold text-slate-800">施工事例を追加しました</p>
                         </li>
                     </ul>
                 </div>
-                
-                <hr class="border-slate-300 mt-8 mb-4">
                 
             </div>
         </section>
 
     </main>
 
-    <!-- ⑧ FOOTER -->
-    <footer class="bg-slate-900 text-white pt-6 pb-20 md:pb-6 border-t-[6px] border-neon text-center">
-        <p class="text-[9px] text-slate-400 font-bold mb-2">
-            <a href="/products" class="hover:text-white transition-colors underline">オリジナルLINEスタンプ販売中</a>
+    <!-- ⑧ FOOTER (ロゴ入りのリッチなデザインに変更) -->
+    <footer class="bg-slate-900 text-white pt-12 pb-24 md:pb-12 border-t-[6px] border-neon text-center">
+        <div class="mb-6 flex flex-col items-center justify-center">
+            <!-- フッターロゴ -->
+            <span class="text-4xl md:text-5xl tracking-widest text-white flex items-center justify-center font-impact mt-1">
+                ONE
+                <img src="ONESTAR.PNG" alt="★" class="w-[80px] h-[80px] md:w-[100px] md:h-[100px] mx-[-10px] md:mx-[-16px] object-contain -translate-y-2" onerror="this.style.display='none'">
+                STAR
+            </span>
+            <p class="text-xs text-neon font-black mt-2 tracking-widest">株式会社ECS専属プロスタッフ</p>
+        </div>
+        
+        <p class="text-[11px] text-slate-400 font-bold mb-4">
+            <a href="/products" class="hover:text-white transition-colors underline underline-offset-4">オリジナルLINEスタンプ販売中</a>
         </p>
-        <p class="text-[9px] text-slate-400 font-bold">© 2026 ONE★STAR. All Rights Reserved.</p>
+        <p class="text-[10px] text-slate-500 font-bold tracking-wider">© 2026 ONE★STAR. All Rights Reserved.</p>
     </footer>
 
     <!-- MOBILE BOTTOM NAVIGATION -->
-    <div class="fixed bottom-0 left-0 right-0 z-45 bg-slate-900 md:hidden h-[60px] flex items-stretch text-white shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.3)]">
+    <div class="fixed bottom-0 left-0 right-0 z-45 bg-slate-900 md:hidden h-[60px] flex items-stretch text-white shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.3)] border-t border-slate-800">
         
         <!-- メニュー (黒) -->
         <button id="nav-btn-menu" class="flex flex-col items-center justify-center w-1/4 border-r border-slate-700 active:bg-slate-800">
