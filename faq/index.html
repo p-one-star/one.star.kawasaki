@@ -1,0 +1,483 @@
+```html
+<!DOCTYPE html>
+<html lang="ja" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>よくある質問 | ONE★STAR</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        neon: '#EFFF00' // トレードカラー：蛍光イエロー
+                    },
+                    fontFamily: {
+                        sans: ['"Noto Sans JP"', 'sans-serif'],
+                        // ステンシルフォント(Black Ops One)の設定
+                        impact: ['"Black Ops One"', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts (Noto Sans JP と Black Ops One) -->
+    <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        /* ドロワーメニュー用 */
+        #drawer-menu { transition: transform 0.3s ease-in-out; }
+        .drawer-closed { transform: translateX(-100%); }
+        .drawer-open { transform: translateX(0); }
+    </style>
+</head>
+<body class="font-sans text-slate-800 bg-slate-50 antialiased overflow-x-hidden">
+
+    <!-- HEADER -->
+    <header class="fixed top-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md shadow-sm border-b border-slate-100 h-14 flex items-center justify-between px-4">
+        <button id="menu-open-btn" class="p-2 hover:bg-slate-100 rounded-lg" aria-label="メニュー">
+            <svg class="w-6 h-6 text-slate-800" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+
+        <div class="absolute left-1/2 -translate-x-1/2 flex items-center justify-center mt-1">
+            <a href="/" class="text-2xl md:text-3xl tracking-widest text-slate-900 leading-none flex items-center font-impact">
+                ONE
+                <img src="ONESTAR.PNG" alt="★" class="w-[45px] h-[45px] md:w-[55px] md:h-[55px] mx-[-4px] md:mx-[-6px] object-contain -translate-y-[4px]" onerror="this.style.display='none'">
+                STAR
+            </a>
+        </div>
+
+        <div class="hidden md:flex items-center space-x-3">
+            <a href="tel:08000807788" class="bg-slate-900 hover:bg-slate-800 text-neon px-4 py-1.5 rounded-full text-xs font-black border border-slate-700 flex items-center space-x-1 transition-all">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                <span>電話相談</span>
+            </a>
+        </div>
+        <div class="w-10 md:hidden"></div>
+    </header>
+
+    <!-- DRAWER MENU -->
+    <div id="drawer-container" class="fixed inset-0 z-50 overflow-hidden hidden">
+        <div id="drawer-backdrop" class="absolute inset-0 bg-slate-900/60 opacity-0 transition-opacity duration-300"></div>
+        <div class="pointer-events-none fixed inset-y-0 left-0 flex max-w-full">
+            <div id="drawer-menu" class="pointer-events-auto w-64 drawer-closed bg-white shadow-2xl flex flex-col h-full">
+                
+                <div class="p-3 bg-white flex justify-end">
+                    <button id="menu-close-btn" class="p-2 hover:bg-slate-100 rounded-lg">
+                        <svg class="w-6 h-6 text-slate-500" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+                    </button>
+                </div>
+
+                <div class="bg-blue-600 py-3 px-6">
+                    <h2 class="text-white font-black tracking-wider text-sm">MENU</h2>
+                </div>
+
+                <nav class="flex-1 px-4 py-2 overflow-y-auto">
+                    <div class="space-y-1">
+                        <a href="/" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>トップページ
+                        </a>
+                        <a href="/price" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>料金プラン
+                        </a>
+                        <a href="/gallery" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>施工事例
+                        </a>
+                        <a href="/mind" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>ONE★STARの想い
+                        </a>
+                        <a href="/pride" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>プロとしての拘り
+                        </a>
+                        <a href="/trash" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>業界の不都合な真実
+                        </a>
+                        <a href="/before" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>ご予約の前に
+                        </a>
+                        <!-- FAQは現在地なので少し色を変える -->
+                        <a href="/faq" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-blue-600">
+                            <span class="mr-2 text-blue-600">＞</span>よくある質問
+                        </a>
+                        <a href="/notes" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>注意事項
+                        </a>
+                        
+                        <a href="/products" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-[#06C755]">
+                            <span class="mr-2 text-slate-400">＞</span>オリジナルLINEスタンプ
+                        </a>
+                    </div>
+                    
+                    <hr class="border-slate-300 border-dashed my-4">
+                    <a href="https://www.edge-cleanservice.com" target="_blank" rel="noopener noreferrer" class="menu-link flex items-center py-2 text-sm font-black text-slate-900 hover:text-blue-600 transition-colors">
+                        株式会社ECS公式サイト
+                        <svg class="w-3.5 h-3.5 ml-1.5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                    </a>
+                </nav>
+
+                <div class="p-4 bg-slate-50 border-t border-slate-100 text-center mt-auto">
+                    <p class="text-[9px] text-slate-500 font-bold leading-relaxed mb-2">
+                        株式会社ECS EDGE CLEAN SERVICE<br>専属プロスタッフとして<br>愛知県全域で毎日奮闘中❣️
+                    </p>
+                    <a href="tel:08000807788" class="block w-full py-3 bg-emerald-500 text-white font-bold rounded-lg text-sm shadow">直接電話する</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN (FAQ CONTENTS) -->
+    <main class="pt-20 pb-28 md:pb-20">
+        
+        <!-- ページタイトル -->
+        <div class="text-center mb-8 px-4">
+            <h1 class="text-4xl md:text-5xl font-impact tracking-widest text-slate-900 mb-2">FAQ</h1>
+            <p class="text-sm md:text-base font-black text-slate-600">よくある質問</p>
+        </div>
+
+        <!-- Q&Aリスト -->
+        <div class="max-w-3xl mx-auto px-4 space-y-6">
+            
+            <!-- Q1 -->
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+                <div class="flex items-start p-4 bg-slate-50 border-b border-slate-100">
+                    <span class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-slate-900 text-neon font-impact text-lg rounded-lg mr-3 mt-0.5">Q</span>
+                    <h3 class="font-black text-[15px] md:text-base text-slate-900 leading-snug pt-1.5">お掃除機能付きエアコンも対応していますか？</h3>
+                </div>
+                <div class="flex items-start p-4">
+                    <span class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-slate-200 text-slate-600 font-impact text-lg rounded-lg mr-3 mt-0.5">A</span>
+                    <div class="text-sm md:text-[15px] font-bold text-slate-700 leading-relaxed pt-1.5 w-full">
+                        <p class="mb-3">はい、幅広く対応しております。</p>
+                        <ul class="space-y-2 bg-slate-50 p-3 rounded-lg border border-slate-100">
+                            <li class="flex items-start">
+                                <span class="text-blue-500 mr-2">・</span>
+                                <span>富士通 ノクリアX<br><span class="text-xs text-slate-500">(サイドファン分解は別料金)</span></span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-blue-500 mr-2">・</span>
+                                <span>三菱電気 FZシリーズ<br><span class="text-xs text-emerald-600">対応可能です。</span></span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-blue-500 mr-2">・</span>
+                                <span>SHARP エアレスト<br><span class="text-xs text-red-500">対応不可となります。</span></span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Q2 -->
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+                <div class="flex items-start p-4 bg-slate-50 border-b border-slate-100">
+                    <span class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-slate-900 text-neon font-impact text-lg rounded-lg mr-3 mt-0.5">Q</span>
+                    <h3 class="font-black text-[15px] md:text-base text-slate-900 leading-snug pt-1.5">作業時間はどれくらいですか？</h3>
+                </div>
+                <div class="flex items-start p-4">
+                    <span class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-slate-200 text-slate-600 font-impact text-lg rounded-lg mr-3 mt-0.5">A</span>
+                    <div class="text-sm md:text-[15px] font-bold text-slate-700 leading-relaxed pt-1.5">
+                        <p>一般的な壁掛けエアコンは<span class="text-blue-600">約1時間</span>、<br>お掃除機能付きは<span class="text-blue-600">約2〜3時間</span>が目安です。</p>
+                        <p class="text-xs text-slate-500 mt-2">※機種や設置状況、汚れ具合によって前後する場合があります。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Q3 -->
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+                <div class="flex items-start p-4 bg-slate-50 border-b border-slate-100">
+                    <span class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-slate-900 text-neon font-impact text-lg rounded-lg mr-3 mt-0.5">Q</span>
+                    <h3 class="font-black text-[15px] md:text-base text-slate-900 leading-snug pt-1.5">作業中は家にいないとダメですか？</h3>
+                </div>
+                <div class="flex items-start p-4">
+                    <span class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-slate-200 text-slate-600 font-impact text-lg rounded-lg mr-3 mt-0.5">A</span>
+                    <div class="text-sm md:text-[15px] font-bold text-slate-700 leading-relaxed pt-1.5">
+                        <p>作業開始時と終了時にご確認いただければ大丈夫な場合もあります。<br>ご希望があれば事前にご相談ください。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Q4 -->
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+                <div class="flex items-start p-4 bg-slate-50 border-b border-slate-100">
+                    <span class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-slate-900 text-neon font-impact text-lg rounded-lg mr-3 mt-0.5">Q</span>
+                    <h3 class="font-black text-[15px] md:text-base text-slate-900 leading-snug pt-1.5">駐車場がありません。</h3>
+                </div>
+                <div class="flex items-start p-4">
+                    <span class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-slate-200 text-slate-600 font-impact text-lg rounded-lg mr-3 mt-0.5">A</span>
+                    <div class="text-sm md:text-[15px] font-bold text-slate-700 leading-relaxed pt-1.5 w-full">
+                        <p>近隣のコインパーキングを利用します。<br>駐車場料金は、お客様ご負担となります。</p>
+                        <div class="mt-3 p-3 bg-red-50 text-red-600 border border-red-100 rounded-lg text-xs flex items-start">
+                            <svg class="w-4 h-4 mr-1.5 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+                            <span>※路上駐車での作業は、いかなる場合においても対応不可となります。</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Q5 -->
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+                <div class="flex items-start p-4 bg-slate-50 border-b border-slate-100">
+                    <span class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-slate-900 text-neon font-impact text-lg rounded-lg mr-3 mt-0.5">Q</span>
+                    <h3 class="font-black text-[15px] md:text-base text-slate-900 leading-snug pt-1.5">夜間の作業はできますか？</h3>
+                </div>
+                <div class="flex items-start p-4">
+                    <span class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-slate-200 text-slate-600 font-impact text-lg rounded-lg mr-3 mt-0.5">A</span>
+                    <div class="text-sm md:text-[15px] font-bold text-slate-700 leading-relaxed pt-1.5">
+                        <p class="mb-2"><span class="text-lg">はい。大歓迎です。</span></p>
+                        <p>飲食店・美容室・店舗など、営業時間外の夜間作業にも早朝作業にも対応しております。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Q6 -->
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+                <div class="flex items-start p-4 bg-slate-50 border-b border-slate-100">
+                    <span class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-slate-900 text-neon font-impact text-lg rounded-lg mr-3 mt-0.5">Q</span>
+                    <h3 class="font-black text-[15px] md:text-base text-slate-900 leading-snug pt-1.5">エアコンの下は片付けた方がいいですか？</h3>
+                </div>
+                <div class="flex items-start p-4">
+                    <span class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-slate-200 text-slate-600 font-impact text-lg rounded-lg mr-3 mt-0.5">A</span>
+                    <div class="text-sm md:text-[15px] font-bold text-slate-700 leading-relaxed pt-1.5 space-y-3 w-full">
+                        <p>可能な範囲で家具や家電を移動していただけるとスムーズです。</p>
+                        <p class="bg-slate-50 p-3 rounded-lg border border-slate-100 text-xs">
+                            バケツ／脚立／洗浄機などを置きます。<br>
+                            <span class="text-blue-600">2×2mぐらいの作業スペース</span>をお借りします。
+                        </p>
+                        <p>移動が難しい場合は養生を行って作業いたします。<br>薄型テレビ等は移動せずに養生で作業可能です。</p>
+                        <div class="mt-3 p-3 bg-red-50 text-red-600 border border-red-100 rounded-lg text-xs">
+                            <strong class="block mb-1 text-sm">【重要】ベッドについて</strong>
+                            ベッドの上に乗っての作業は、安全面を考慮し、お断りさせていただいております。<br>
+                            <span class="font-black underline underline-offset-2">必ず事前にご移動をお願いします。</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Q7 -->
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+                <div class="flex items-start p-4 bg-slate-50 border-b border-slate-100">
+                    <span class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-slate-900 text-neon font-impact text-lg rounded-lg mr-3 mt-0.5">Q</span>
+                    <h3 class="font-black text-[15px] md:text-base text-slate-900 leading-snug pt-1.5">小さな子どもやペットがいても大丈夫ですか？</h3>
+                </div>
+                <div class="flex items-start p-4">
+                    <span class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-slate-200 text-slate-600 font-impact text-lg rounded-lg mr-3 mt-0.5">A</span>
+                    <div class="text-sm md:text-[15px] font-bold text-slate-700 leading-relaxed pt-1.5 w-full">
+                        <p>はい、大丈夫です。<br>安全に配慮しながら作業いたしますのでご安心ください。</p>
+                        <p class="mt-2 text-xs text-amber-600 bg-amber-50 p-2 rounded-lg">
+                            ※両手が塞がったまま玄関から出入りします。<br>
+                            わんちゃん・ねこちゃんの脱走には十分ご注意ください。
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Q8 -->
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+                <div class="flex items-start p-4 bg-slate-50 border-b border-slate-100">
+                    <span class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-slate-900 text-neon font-impact text-lg rounded-lg mr-3 mt-0.5">Q</span>
+                    <h3 class="font-black text-[15px] md:text-base text-slate-900 leading-snug pt-1.5">作業後すぐに使えますか？</h3>
+                </div>
+                <div class="flex items-start p-4">
+                    <span class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-slate-200 text-slate-600 font-impact text-lg rounded-lg mr-3 mt-0.5">A</span>
+                    <div class="text-sm md:text-[15px] font-bold text-slate-700 leading-relaxed pt-1.5">
+                        <p>はい。<br>動作確認後、そのまま通常どおりご使用いただけます。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Q9 -->
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+                <div class="flex items-start p-4 bg-slate-50 border-b border-slate-100">
+                    <span class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-slate-900 text-neon font-impact text-lg rounded-lg mr-3 mt-0.5">Q</span>
+                    <h3 class="font-black text-[15px] md:text-base text-slate-900 leading-snug pt-1.5">汚れや臭いは必ず取れますか？</h3>
+                </div>
+                <div class="flex items-start p-4">
+                    <span class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-slate-200 text-slate-600 font-impact text-lg rounded-lg mr-3 mt-0.5">A</span>
+                    <div class="text-sm md:text-[15px] font-bold text-slate-700 leading-relaxed pt-1.5">
+                        <p>カビやホコリによる汚れ・臭いは大幅に改善することがほとんどです。</p>
+                        <p class="mt-2 text-xs text-slate-500">※ただし、長年の劣化や部品自体に染み付いた臭いなどは完全に除去できない場合があります。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Q10 -->
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+                <div class="flex items-start p-4 bg-slate-50 border-b border-slate-100">
+                    <span class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-slate-900 text-neon font-impact text-lg rounded-lg mr-3 mt-0.5">Q</span>
+                    <h3 class="font-black text-[15px] md:text-base text-slate-900 leading-snug pt-1.5">対応エリアを教えてください。</h3>
+                </div>
+                <div class="flex items-start p-4">
+                    <span class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-slate-200 text-slate-600 font-impact text-lg rounded-lg mr-3 mt-0.5">A</span>
+                    <div class="text-sm md:text-[15px] font-bold text-slate-700 leading-relaxed pt-1.5">
+                        <p><span class="text-blue-600 font-black">愛知県</span>を中心に対応しております。<br>対応エリア外でもご相談いただければ可能な場合があります。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Q11 -->
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+                <div class="flex items-start p-4 bg-slate-50 border-b border-slate-100">
+                    <span class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-slate-900 text-neon font-impact text-lg rounded-lg mr-3 mt-0.5">Q</span>
+                    <h3 class="font-black text-[15px] md:text-base text-slate-900 leading-snug pt-1.5">支払い方法は？</h3>
+                </div>
+                <div class="flex items-start p-4">
+                    <span class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-slate-200 text-slate-600 font-impact text-lg rounded-lg mr-3 mt-0.5">A</span>
+                    <div class="text-sm md:text-[15px] font-bold text-slate-700 leading-relaxed pt-1.5">
+                        <p>作業完了後にお支払いいただきます。<br>対応しているお支払い方法については、<span class="text-slate-900 font-black underline underline-offset-4 decoration-neon decoration-4">現金のみ</span>となります。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Q12 -->
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+                <div class="flex items-start p-4 bg-slate-50 border-b border-slate-100">
+                    <span class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-slate-900 text-neon font-impact text-lg rounded-lg mr-3 mt-0.5">Q</span>
+                    <h3 class="font-black text-[15px] md:text-base text-slate-900 leading-snug pt-1.5">予約はいつ頃すればいいですか？</h3>
+                </div>
+                <div class="flex items-start p-4">
+                    <span class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-slate-200 text-slate-600 font-impact text-lg rounded-lg mr-3 mt-0.5">A</span>
+                    <div class="text-sm md:text-[15px] font-bold text-slate-700 leading-relaxed pt-1.5">
+                        <p>夏前や繁忙期は予約が集中します。<br>ご希望の日程がある場合は、お早めのご予約をおすすめします。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Q13 -->
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+                <div class="flex items-start p-4 bg-slate-50 border-b border-slate-100">
+                    <span class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-slate-900 text-neon font-impact text-lg rounded-lg mr-3 mt-0.5">Q</span>
+                    <h3 class="font-black text-[15px] md:text-base text-slate-900 leading-snug pt-1.5">他社との違いは何ですか？</h3>
+                </div>
+                <div class="flex items-start p-4">
+                    <span class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-slate-200 text-slate-600 font-impact text-lg rounded-lg mr-3 mt-0.5">A</span>
+                    <div class="text-sm md:text-[15px] font-bold text-slate-700 leading-relaxed pt-1.5">
+                        <p>ONE★STARでは、一件一件の施工品質を大切にしています。<br>職人が最初から最後まで責任を持って施工し、お客様に安心してご依頼いただけるよう丁寧な作業を心掛けています。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Q14 -->
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+                <div class="flex items-start p-4 bg-slate-50 border-b border-slate-100">
+                    <span class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-slate-900 text-neon font-impact text-lg rounded-lg mr-3 mt-0.5">Q</span>
+                    <h3 class="font-black text-[15px] md:text-base text-slate-900 leading-snug pt-1.5">見積もりだけでも大丈夫ですか？</h3>
+                </div>
+                <div class="flex items-start p-4">
+                    <span class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-slate-200 text-slate-600 font-impact text-lg rounded-lg mr-3 mt-0.5">A</span>
+                    <div class="text-sm md:text-[15px] font-bold text-slate-700 leading-relaxed pt-1.5">
+                        <p>もちろんです。<br>ご不明な点がありましたら、お気軽にお問い合わせください。お電話、DMにて対応させていただきます。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Q15 -->
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden border-b-4 border-b-neon">
+                <div class="flex items-start p-4 bg-slate-50 border-b border-slate-100">
+                    <span class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-slate-900 text-neon font-impact text-lg rounded-lg mr-3 mt-0.5">Q</span>
+                    <h3 class="font-black text-[15px] md:text-base text-slate-900 leading-snug pt-1.5">マッチングサイトより直接依頼するメリットはありますか？</h3>
+                </div>
+                <div class="flex items-start p-4">
+                    <span class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-slate-200 text-slate-600 font-impact text-lg rounded-lg mr-3 mt-0.5">A</span>
+                    <div class="text-sm md:text-[15px] font-bold text-slate-700 leading-relaxed pt-1.5">
+                        <p class="mb-2"><span class="text-lg text-slate-900 font-black">あります。</span></p>
+                        <p>作業する職人と直接やり取りできるため、ご要望が伝わりやすく、仲介手数料も発生しません。</p>
+                        <p class="mt-2 text-slate-900 font-black">「誰が来るかわからない」<br>という不安がなく、</p>
+                        <p>施工前から施工後まで安心してご相談いただけます。</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- ⑧ FOOTER -->
+    <footer class="bg-slate-900 text-white pt-12 pb-24 md:pb-12 border-t-[6px] border-neon text-center">
+        <div class="mb-6 flex flex-col items-center justify-center">
+            <!-- フッターロゴ -->
+            <span class="text-4xl md:text-5xl tracking-widest text-white flex items-center justify-center font-impact mt-1">
+                ONE
+                <img src="ONESTAR.PNG" alt="★" class="w-[80px] h-[80px] md:w-[100px] md:h-[100px] mx-[-10px] md:mx-[-16px] object-contain -translate-y-2" onerror="this.style.display='none'">
+                STAR
+            </span>
+            <p class="text-xs text-neon font-black mt-2 tracking-widest">株式会社ECS専属プロスタッフ</p>
+        </div>
+        
+        <p class="text-[11px] text-slate-400 font-bold mb-3">
+            <a href="/products" class="hover:text-white transition-colors underline underline-offset-4">オリジナルLINEスタンプ販売中</a>
+        </p>
+        <p class="text-[10px] text-slate-500 font-bold mb-4">
+            <a href="/privacy" class="hover:text-white transition-colors">プライバシーポリシー</a>
+        </p>
+        <p class="text-[10px] text-slate-500 font-bold tracking-wider">© 2026 ONE★STAR. All Rights Reserved.</p>
+    </footer>
+
+    <!-- MOBILE BOTTOM NAVIGATION -->
+    <div class="fixed bottom-0 left-0 right-0 z-45 bg-slate-900 md:hidden h-[60px] flex items-stretch text-white shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.3)] border-t border-slate-800">
+        
+        <!-- 料金 (黒) -->
+        <a href="/price" class="flex flex-col items-center justify-center w-[20%] border-r border-slate-700 active:bg-slate-800">
+            <svg class="w-5 h-5 mb-1 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <span class="text-[9px] font-black">料金</span>
+        </a>
+        
+        <!-- 想い (黒) -->
+        <a href="/mind" class="flex flex-col items-center justify-center w-[20%] border-r border-slate-700 active:bg-slate-800">
+            <svg class="w-5 h-5 mb-1 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+            <span class="text-[9px] font-black">想い</span>
+        </a>
+
+        <!-- 拘り (黒) -->
+        <a href="/pride" class="flex flex-col items-center justify-center w-[20%] active:bg-slate-800">
+            <svg class="w-5 h-5 mb-1 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+            <span class="text-[9px] font-black">拘り</span>
+        </a>
+        
+        <!-- 電話する (蛍光イエロー) -->
+        <a href="tel:08000807788" class="flex items-center justify-center bg-neon text-slate-900 w-[40%] font-black text-base active:bg-yellow-400 transition-colors">
+            <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+            電話する
+        </a>
+        
+    </div>
+
+    <!-- SCRIPTS -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // メニュー開閉
+            const drawerContainer = document.getElementById('drawer-container');
+            const drawerMenu = document.getElementById('drawer-menu');
+            const drawerBackdrop = document.getElementById('drawer-backdrop');
+            
+            const toggleMenu = (show) => {
+                if (show) {
+                    drawerContainer.classList.remove('hidden');
+                    setTimeout(() => {
+                        drawerBackdrop.classList.remove('opacity-0');
+                        drawerBackdrop.classList.add('opacity-100');
+                        drawerMenu.classList.remove('drawer-closed');
+                        drawerMenu.classList.add('drawer-open');
+                    }, 10);
+                } else {
+                    drawerBackdrop.classList.remove('opacity-100');
+                    drawerBackdrop.classList.add('opacity-0');
+                    drawerMenu.classList.remove('drawer-open');
+                    drawerMenu.classList.add('drawer-closed');
+                    setTimeout(() => drawerContainer.classList.add('hidden'), 300);
+                }
+            };
+
+            document.getElementById('menu-open-btn').addEventListener('click', () => toggleMenu(true));
+            document.getElementById('menu-close-btn').addEventListener('click', () => toggleMenu(false));
+            document.getElementById('drawer-backdrop').addEventListener('click', () => toggleMenu(false));
+            
+            // 下層ページへのリンククリック時にもメニューを閉じる
+            document.querySelectorAll('.menu-link').forEach(link => link.addEventListener('click', () => toggleMenu(false)));
+
+        });
+    </script>
+</body>
+</html>
+
+
+```
