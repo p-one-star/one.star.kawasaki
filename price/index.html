@@ -1,0 +1,447 @@
+```html
+<!DOCTYPE html>
+<html lang="ja" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>料金プラン | ONE★STAR</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        neon: '#EFFF00' // トレードカラー：蛍光イエロー
+                    },
+                    fontFamily: {
+                        sans: ['"Noto Sans JP"', 'sans-serif'],
+                        impact: ['"Black Ops One"', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        /* ドロワーメニュー用 */
+        #drawer-menu { transition: transform 0.3s ease-in-out; }
+        .drawer-closed { transform: translateX(-100%); }
+        .drawer-open { transform: translateX(0); }
+        /* シミュレーターの数値選択でテキスト選択を防ぐ */
+        .no-select { user-select: none; -webkit-user-select: none; }
+    </style>
+</head>
+<body class="font-sans text-slate-800 bg-slate-50 antialiased overflow-x-hidden pb-[60px]">
+
+    <!-- HEADER -->
+    <header class="fixed top-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md shadow-sm border-b border-slate-100 h-14 flex items-center justify-between px-4">
+        <button id="menu-open-btn" class="p-2 hover:bg-slate-100 rounded-lg" aria-label="メニュー">
+            <svg class="w-6 h-6 text-slate-800" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+
+        <div class="absolute left-1/2 -translate-x-1/2 flex items-center justify-center mt-1">
+            <a href="/" class="text-2xl md:text-3xl tracking-widest text-slate-900 leading-none flex items-center font-impact">
+                ONE
+                <img src="ONESTAR.PNG" alt="ロゴ" class="w-[45px] h-[45px] md:w-[55px] md:h-[55px] mx-[-4px] md:mx-[-6px] object-contain -translate-y-[4px]">
+                STAR
+            </a>
+        </div>
+
+        <div class="hidden md:flex items-center space-x-3">
+            <a href="tel:08000807788" class="bg-slate-900 hover:bg-slate-800 text-neon px-4 py-1.5 rounded-full text-xs font-black border border-slate-700 flex items-center space-x-1 transition-all">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                <span>電話相談</span>
+            </a>
+        </div>
+        <div class="w-10 md:hidden"></div>
+    </header>
+
+    <!-- DRAWER MENU -->
+    <div id="drawer-container" class="fixed inset-0 z-50 overflow-hidden hidden">
+        <div id="drawer-backdrop" class="absolute inset-0 bg-slate-900/60 opacity-0 transition-opacity duration-300"></div>
+        <div class="pointer-events-none fixed inset-y-0 left-0 flex max-w-full">
+            <div id="drawer-menu" class="pointer-events-auto w-64 drawer-closed bg-white shadow-2xl flex flex-col h-full">
+                
+                <div class="p-3 bg-white flex justify-end">
+                    <button id="menu-close-btn" class="p-2 hover:bg-slate-100 rounded-lg">
+                        <svg class="w-6 h-6 text-slate-500" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+                    </button>
+                </div>
+
+                <div class="bg-blue-600 py-3 px-6">
+                    <h2 class="text-white font-black tracking-wider text-sm">MENU</h2>
+                </div>
+
+                <nav class="flex-1 px-4 py-2 overflow-y-auto">
+                    <div class="space-y-1">
+                        <a href="/" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>トップページ
+                        </a>
+                        <!-- 現在地: 料金プラン -->
+                        <a href="/price" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-blue-600">
+                            <span class="mr-2 text-blue-600">＞</span>料金プラン
+                        </a>
+                        <a href="/gallery" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>施工事例
+                        </a>
+                        <a href="/mind" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>ONE★STARの想い
+                        </a>
+                        <a href="/pride" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>プロとしての拘り
+                        </a>
+                        <a href="/trash" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>業界の不都合な真実
+                        </a>
+                        <a href="/before" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>ご予約の前に
+                        </a>
+                        <a href="/faq" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>よくある質問
+                        </a>
+                        <a href="/notes" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>注意事項
+                        </a>
+                        
+                        <a href="/products" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-[#06C755]">
+                            <span class="mr-2 text-slate-400">＞</span>オリジナルLINEスタンプ
+                        </a>
+                    </div>
+                    
+                    <hr class="border-slate-300 border-dashed my-4">
+                    <a href="https://www.edge-cleanservice.com" target="_blank" rel="noopener noreferrer" class="menu-link flex items-center py-2 text-sm font-black text-slate-900 hover:text-blue-600 transition-colors">
+                        株式会社ECS公式サイト
+                        <svg class="w-3.5 h-3.5 ml-1.5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                    </a>
+                </nav>
+
+                <div class="p-4 bg-slate-50 border-t border-slate-100 text-center mt-auto">
+                    <p class="text-[9px] text-slate-500 font-bold leading-relaxed mb-2">
+                        株式会社ECS EDGE CLEAN SERVICE<br>専属プロスタッフとして<br>愛知県全域で毎日奮闘中❣️
+                    </p>
+                    <a href="tel:08000807788" class="block w-full py-3 bg-emerald-500 text-white font-bold rounded-lg text-sm shadow">直接電話する</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN -->
+    <main class="pt-24 pb-12 px-4 max-w-3xl mx-auto">
+
+        <!-- ページタイトル -->
+        <h1 class="text-2xl md:text-3xl font-black text-slate-900 text-center mb-8 tracking-wider">
+            料金プラン・お見積り
+        </h1>
+
+        <!-- 料金プラン一覧 -->
+        <div class="space-y-4 mb-16">
+            
+            <!-- 一般壁掛け -->
+            <div class="bg-white rounded-2xl p-5 shadow-sm border border-slate-200 relative pt-7">
+                <span class="absolute top-0 left-0 bg-slate-200 text-slate-600 text-[10px] font-black px-3 py-1 rounded-br-lg rounded-tl-2xl">一般タイプ</span>
+                <h3 class="font-black text-lg text-slate-900 mb-2">壁掛けエアコン</h3>
+                <div class="flex items-end justify-between">
+                    <span class="font-black text-3xl md:text-4xl text-slate-900 tracking-wider">¥9,500</span>
+                    <span class="font-bold text-sm text-emerald-600 mb-1">2台目〜 ¥8,400</span>
+                </div>
+            </div>
+
+            <!-- お掃除機能付き (ダークテーマ) -->
+            <div class="bg-slate-900 text-white rounded-2xl p-5 shadow-md border border-slate-800 relative pt-7">
+                <span class="absolute top-0 left-0 bg-neon text-slate-900 text-[10px] font-black px-3 py-1 rounded-br-lg rounded-tl-2xl">高機能タイプ</span>
+                <h3 class="font-black text-lg mb-2">お掃除機能付き</h3>
+                <div class="flex items-end justify-between">
+                    <span class="font-black text-3xl md:text-4xl tracking-wider">¥15,800</span>
+                    <span class="font-bold text-sm text-emerald-400 mb-1">2台目〜 ¥14,800</span>
+                </div>
+            </div>
+
+            <!-- 壁掛幅広タイプ (業務用) -->
+            <div class="bg-white rounded-2xl p-5 shadow-sm border border-slate-200 relative pt-7">
+                <span class="absolute top-0 left-0 bg-slate-200 text-slate-600 text-[10px] font-black px-3 py-1 rounded-br-lg rounded-tl-2xl">業務用</span>
+                <h3 class="font-black text-lg text-slate-900 mb-2">壁掛け幅広タイプ</h3>
+                <div class="flex items-end justify-between">
+                    <span class="font-black text-3xl md:text-4xl text-slate-900 tracking-wider">¥15,000</span>
+                    <span class="font-bold text-sm text-emerald-600 mb-1">2台目〜 ¥13,000</span>
+                </div>
+            </div>
+
+            <!-- 天カセ-4方向 -->
+            <div class="bg-white rounded-2xl p-5 shadow-sm border border-slate-200 relative pt-7">
+                <span class="absolute top-0 left-0 bg-slate-200 text-slate-600 text-[10px] font-black px-3 py-1 rounded-br-lg rounded-tl-2xl">業務用</span>
+                <h3 class="font-black text-lg text-slate-900 mb-2">天カセ-4方向</h3>
+                <div class="flex items-end justify-between">
+                    <span class="font-black text-3xl md:text-4xl text-slate-900 tracking-wider">¥20,400</span>
+                    <span class="font-bold text-sm text-emerald-600 mb-1">2台目〜 ¥18,000</span>
+                </div>
+            </div>
+
+            <!-- 天カセ-1方向・2方向 -->
+            <div class="bg-white rounded-2xl p-5 shadow-sm border border-slate-200 relative pt-7">
+                <span class="absolute top-0 left-0 bg-slate-200 text-slate-600 text-[10px] font-black px-3 py-1 rounded-br-lg rounded-tl-2xl">業務用</span>
+                <h3 class="font-black text-lg text-slate-900 mb-2">天カセ-1方向・2方向</h3>
+                <div class="flex items-end justify-between">
+                    <span class="font-black text-3xl md:text-4xl text-slate-900 tracking-wider">¥22,000</span>
+                    <span class="font-bold text-sm text-emerald-600 mb-1">2台目〜 ¥20,000</span>
+                </div>
+            </div>
+
+            <!-- 天吊り -->
+            <div class="bg-white rounded-2xl p-5 shadow-sm border border-slate-200 relative pt-7">
+                <span class="absolute top-0 left-0 bg-slate-200 text-slate-600 text-[10px] font-black px-3 py-1 rounded-br-lg rounded-tl-2xl">業務用</span>
+                <h3 class="font-black text-lg text-slate-900 mb-2">天吊り</h3>
+                <div class="flex items-end justify-between">
+                    <span class="font-black text-3xl md:text-4xl text-slate-900 tracking-wider">¥22,000</span>
+                    <span class="font-bold text-sm text-emerald-600 mb-1">2台目〜 ¥20,000</span>
+                </div>
+            </div>
+
+        </div>
+
+
+        <!-- 料金シミュレーター -->
+        <div class="bg-white rounded-[32px] shadow-sm border border-slate-200 p-6 md:p-8 mb-10" id="simulator">
+            <div class="text-center mb-6">
+                <h2 class="text-lg md:text-xl font-black text-slate-900 leading-snug">
+                    組み合わせ自由！<br>料金シミュレーター
+                </h2>
+            </div>
+
+            <div class="space-y-2 no-select">
+                
+                <!-- 一般壁掛け -->
+                <div class="flex justify-between items-center bg-slate-50 rounded-xl p-3 border border-slate-100">
+                    <span class="font-black text-sm md:text-base text-slate-800">一般壁掛け</span>
+                    <div class="flex items-center space-x-3">
+                        <button onclick="updateCount('normal', -1)" class="w-8 h-8 flex items-center justify-center bg-white border border-slate-200 rounded-md font-bold text-slate-600 shadow-sm active:bg-slate-100 transition-colors">-</button>
+                        <span id="count-normal" class="w-4 text-center font-black text-lg text-slate-900">1</span>
+                        <button onclick="updateCount('normal', 1)" class="w-8 h-8 flex items-center justify-center bg-white border border-slate-200 rounded-md font-bold text-slate-600 shadow-sm active:bg-slate-100 transition-colors">+</button>
+                    </div>
+                </div>
+
+                <!-- お掃除機能付 -->
+                <div class="flex justify-between items-center bg-slate-50 rounded-xl p-3 border border-slate-100">
+                    <span class="font-black text-sm md:text-base text-slate-800">お掃除機能付</span>
+                    <div class="flex items-center space-x-3">
+                        <button onclick="updateCount('cleaning', -1)" class="w-8 h-8 flex items-center justify-center bg-white border border-slate-200 rounded-md font-bold text-slate-600 shadow-sm active:bg-slate-100 transition-colors">-</button>
+                        <span id="count-cleaning" class="w-4 text-center font-black text-lg text-slate-900">0</span>
+                        <button onclick="updateCount('cleaning', 1)" class="w-8 h-8 flex items-center justify-center bg-white border border-slate-200 rounded-md font-bold text-slate-600 shadow-sm active:bg-slate-100 transition-colors">+</button>
+                    </div>
+                </div>
+
+                <!-- 壁掛幅広 (業務用) -->
+                <div class="flex justify-between items-center bg-slate-50 rounded-xl p-3 border border-slate-100">
+                    <span class="font-black text-sm md:text-base text-slate-800">壁掛幅広 <span class="text-xs text-slate-500 font-bold">(業務用)</span></span>
+                    <div class="flex items-center space-x-3">
+                        <button onclick="updateCount('wide', -1)" class="w-8 h-8 flex items-center justify-center bg-white border border-slate-200 rounded-md font-bold text-slate-600 shadow-sm active:bg-slate-100 transition-colors">-</button>
+                        <span id="count-wide" class="w-4 text-center font-black text-lg text-slate-900">0</span>
+                        <button onclick="updateCount('wide', 1)" class="w-8 h-8 flex items-center justify-center bg-white border border-slate-200 rounded-md font-bold text-slate-600 shadow-sm active:bg-slate-100 transition-colors">+</button>
+                    </div>
+                </div>
+
+                <!-- 天カセ4方向 (業務用) -->
+                <div class="flex justify-between items-center bg-slate-50 rounded-xl p-3 border border-slate-100">
+                    <span class="font-black text-sm md:text-base text-slate-800">天カセ4方向 <span class="text-xs text-slate-500 font-bold">(業務用)</span></span>
+                    <div class="flex items-center space-x-3">
+                        <button onclick="updateCount('ceiling4', -1)" class="w-8 h-8 flex items-center justify-center bg-white border border-slate-200 rounded-md font-bold text-slate-600 shadow-sm active:bg-slate-100 transition-colors">-</button>
+                        <span id="count-ceiling4" class="w-4 text-center font-black text-lg text-slate-900">0</span>
+                        <button onclick="updateCount('ceiling4', 1)" class="w-8 h-8 flex items-center justify-center bg-white border border-slate-200 rounded-md font-bold text-slate-600 shadow-sm active:bg-slate-100 transition-colors">+</button>
+                    </div>
+                </div>
+
+                <!-- 天カセ1・2方向 (業務用) -->
+                <div class="flex justify-between items-center bg-slate-50 rounded-xl p-3 border border-slate-100">
+                    <span class="font-black text-sm md:text-base text-slate-800">天カセ1・2方向 <span class="text-xs text-slate-500 font-bold">(業務用)</span></span>
+                    <div class="flex items-center space-x-3">
+                        <button onclick="updateCount('ceiling12', -1)" class="w-8 h-8 flex items-center justify-center bg-white border border-slate-200 rounded-md font-bold text-slate-600 shadow-sm active:bg-slate-100 transition-colors">-</button>
+                        <span id="count-ceiling12" class="w-4 text-center font-black text-lg text-slate-900">0</span>
+                        <button onclick="updateCount('ceiling12', 1)" class="w-8 h-8 flex items-center justify-center bg-white border border-slate-200 rounded-md font-bold text-slate-600 shadow-sm active:bg-slate-100 transition-colors">+</button>
+                    </div>
+                </div>
+
+                <!-- 天吊り (業務用) -->
+                <div class="flex justify-between items-center bg-slate-50 rounded-xl p-3 border border-slate-100">
+                    <span class="font-black text-sm md:text-base text-slate-800">天吊り <span class="text-xs text-slate-500 font-bold">(業務用)</span></span>
+                    <div class="flex items-center space-x-3">
+                        <button onclick="updateCount('hanging', -1)" class="w-8 h-8 flex items-center justify-center bg-white border border-slate-200 rounded-md font-bold text-slate-600 shadow-sm active:bg-slate-100 transition-colors">-</button>
+                        <span id="count-hanging" class="w-4 text-center font-black text-lg text-slate-900">0</span>
+                        <button onclick="updateCount('hanging', 1)" class="w-8 h-8 flex items-center justify-center bg-white border border-slate-200 rounded-md font-bold text-slate-600 shadow-sm active:bg-slate-100 transition-colors">+</button>
+                    </div>
+                </div>
+
+                <!-- 室外機洗浄 (家庭用) -->
+                <div class="flex justify-between items-center bg-slate-50 rounded-xl p-3 border border-slate-100">
+                    <div>
+                        <span class="block font-black text-sm md:text-base text-slate-800">室外機洗浄 <span class="text-xs text-slate-500 font-bold">(家庭用)</span></span>
+                        <span class="block text-[10px] font-bold text-slate-500">¥4,000 <span class="text-red-500">(2台以上: ¥3,000/台)</span></span>
+                    </div>
+                    <div class="flex items-center space-x-3">
+                        <button onclick="updateCount('outdoorHome', -1)" class="w-8 h-8 flex items-center justify-center bg-white border border-slate-200 rounded-md font-bold text-slate-600 shadow-sm active:bg-slate-100 transition-colors">-</button>
+                        <span id="count-outdoorHome" class="w-4 text-center font-black text-lg text-slate-900">0</span>
+                        <button onclick="updateCount('outdoorHome', 1)" class="w-8 h-8 flex items-center justify-center bg-white border border-slate-200 rounded-md font-bold text-slate-600 shadow-sm active:bg-slate-100 transition-colors">+</button>
+                    </div>
+                </div>
+
+                <!-- 室外機洗浄 (業務用) -->
+                <div class="flex justify-between items-center bg-slate-50 rounded-xl p-3 border border-slate-100">
+                    <div>
+                        <span class="block font-black text-sm md:text-base text-slate-800">室外機洗浄 <span class="text-xs text-slate-500 font-bold">(業務用)</span></span>
+                        <span class="block text-[10px] font-bold text-slate-500">一律 ¥4,000/台</span>
+                    </div>
+                    <div class="flex items-center space-x-3">
+                        <button onclick="updateCount('outdoorBiz', -1)" class="w-8 h-8 flex items-center justify-center bg-white border border-slate-200 rounded-md font-bold text-slate-600 shadow-sm active:bg-slate-100 transition-colors">-</button>
+                        <span id="count-outdoorBiz" class="w-4 text-center font-black text-lg text-slate-900">0</span>
+                        <button onclick="updateCount('outdoorBiz', 1)" class="w-8 h-8 flex items-center justify-center bg-white border border-slate-200 rounded-md font-bold text-slate-600 shadow-sm active:bg-slate-100 transition-colors">+</button>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- 合計金額 -->
+            <div class="bg-slate-900 rounded-[24px] p-6 text-center mt-6 shadow-md border-t-4 border-neon">
+                <span class="text-neon font-black text-sm tracking-wider mb-2 block">お見積り合計(税込)</span>
+                <div class="font-black text-white text-5xl md:text-6xl tracking-wider" id="total-price">
+                    ¥9,500
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- ⑧ FOOTER -->
+    <footer class="bg-slate-900 text-white pt-12 pb-24 md:pb-12 border-t-[6px] border-neon text-center">
+        <div class="mb-6 flex flex-col items-center justify-center">
+            <span class="text-4xl md:text-5xl tracking-widest text-white flex items-center justify-center font-impact mt-1">
+                ONE
+                <img src="ONESTAR.PNG" alt="ロゴ" class="w-[80px] h-[80px] md:w-[100px] md:h-[100px] mx-[-10px] md:mx-[-16px] object-contain -translate-y-2">
+                STAR
+            </span>
+            <p class="text-xs text-neon font-black mt-2 tracking-widest">株式会社ECS専属プロスタッフ</p>
+        </div>
+        
+        <p class="text-[11px] text-slate-400 font-bold mb-3">
+            <a href="/products" class="hover:text-white transition-colors underline underline-offset-4">オリジナルLINEスタンプ販売中</a>
+        </p>
+        <p class="text-[10px] text-slate-500 font-bold mb-4">
+            <a href="/privacy" class="hover:text-white transition-colors">プライバシーポリシー</a>
+        </p>
+        <p class="text-[10px] text-slate-500 font-bold tracking-wider">© 2026 ONE★STAR. All Rights Reserved.</p>
+    </footer>
+
+    <!-- MOBILE BOTTOM NAVIGATION -->
+    <div class="fixed bottom-0 left-0 right-0 z-45 bg-slate-900 md:hidden h-[60px] flex items-stretch text-white shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.3)] border-t border-slate-800">
+        
+        <!-- 料金 (黒) -->
+        <a href="/price" class="flex flex-col items-center justify-center w-[20%] border-r border-slate-700 active:bg-slate-800">
+            <svg class="w-5 h-5 mb-1 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <span class="text-[9px] font-black">料金</span>
+        </a>
+        
+        <!-- 想い (黒) -->
+        <a href="/mind" class="flex flex-col items-center justify-center w-[20%] border-r border-slate-700 active:bg-slate-800">
+            <svg class="w-5 h-5 mb-1 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+            <span class="text-[9px] font-black">想い</span>
+        </a>
+
+        <!-- 拘り (黒) -->
+        <a href="/pride" class="flex flex-col items-center justify-center w-[20%] active:bg-slate-800">
+            <svg class="w-5 h-5 mb-1 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+            <span class="text-[9px] font-black">拘り</span>
+        </a>
+        
+        <!-- 電話する (蛍光イエロー) -->
+        <a href="tel:08000807788" class="flex items-center justify-center bg-neon text-slate-900 w-[40%] font-black text-base active:bg-yellow-400 transition-colors">
+            <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+            電話する
+        </a>
+        
+    </div>
+
+    <!-- SCRIPTS -->
+    <script>
+        // === メニュー開閉用 ===
+        document.addEventListener('DOMContentLoaded', () => {
+            const drawerContainer = document.getElementById('drawer-container');
+            const drawerMenu = document.getElementById('drawer-menu');
+            const drawerBackdrop = document.getElementById('drawer-backdrop');
+            
+            const toggleMenu = (show) => {
+                if (show) {
+                    drawerContainer.classList.remove('hidden');
+                    setTimeout(() => {
+                        drawerBackdrop.classList.remove('opacity-0');
+                        drawerBackdrop.classList.add('opacity-100');
+                        drawerMenu.classList.remove('drawer-closed');
+                        drawerMenu.classList.add('drawer-open');
+                    }, 10);
+                } else {
+                    drawerBackdrop.classList.remove('opacity-100');
+                    drawerBackdrop.classList.add('opacity-0');
+                    drawerMenu.classList.remove('drawer-open');
+                    drawerMenu.classList.add('drawer-closed');
+                    setTimeout(() => drawerContainer.classList.add('hidden'), 300);
+                }
+            };
+
+            document.getElementById('menu-open-btn').addEventListener('click', () => toggleMenu(true));
+            document.getElementById('menu-close-btn').addEventListener('click', () => toggleMenu(false));
+            document.getElementById('drawer-backdrop').addEventListener('click', () => toggleMenu(false));
+            document.querySelectorAll('.menu-link').forEach(link => link.addEventListener('click', () => toggleMenu(false)));
+        });
+
+        // === 料金シミュレーター用 ===
+        const prices = {
+            normal: { price1: 9500, price2: 8400, count: 1 }, // 初期値1台
+            cleaning: { price1: 15800, price2: 14800, count: 0 },
+            wide: { price1: 15000, price2: 13000, count: 0 },
+            ceiling4: { price1: 20400, price2: 18000, count: 0 },
+            ceiling12: { price1: 22000, price2: 20000, count: 0 },
+            hanging: { price1: 22000, price2: 20000, count: 0 },
+            outdoorHome: { count: 0 }, // 特殊計算: 1台=4000, 2台目以降=3000
+            outdoorBiz: { count: 0 }   // 1台一律 4000
+        };
+
+        function updateCount(item, change) {
+            const newCount = prices[item].count + change;
+            if (newCount >= 0 && newCount <= 20) { // 上限を20台に設定（適宜変更してください）
+                prices[item].count = newCount;
+                document.getElementById('count-' + item).innerText = newCount;
+                calculateTotal();
+            }
+        }
+
+        function calculateTotal() {
+            let total = 0;
+
+            for (const key in prices) {
+                const data = prices[key];
+                if (data.count > 0) {
+                    if (key === 'outdoorHome') {
+                        // 家庭用室外機：1台なら4000円、2台以上なら 台数×3000円
+                        total += data.count === 1 ? 4000 : data.count * 3000;
+                    } else if (key === 'outdoorBiz') {
+                        // 業務用室外機：一律4000円
+                        total += data.count * 4000;
+                    } else {
+                        // 通常のエアコン：1台目は通常価格、2台目から割引価格を追加
+                        total += data.price1 + (data.count - 1) * data.price2;
+                    }
+                }
+            }
+
+            // カンマ区切りで表示
+            document.getElementById('total-price').innerText = '¥' + total.toLocaleString();
+        }
+
+        // 初期ロード時に合計金額を計算
+        window.onload = calculateTotal;
+    </script>
+</body>
+</html>
+
+
+```
