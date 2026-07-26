@@ -44,7 +44,7 @@
         <div class="absolute left-1/2 -translate-x-1/2 flex items-center justify-center mt-1">
             <a href="/" class="text-2xl md:text-3xl tracking-widest text-slate-900 leading-none flex items-center font-impact">
                 ONE
-                <img src="ONESTAR.PNG" alt="ロゴ" class="w-[45px] h-[45px] md:w-[55px] md:h-[55px] mx-[-4px] md:mx-[-6px] object-contain -translate-y-[4px]">
+                <img src="ONESTAR.PNG" alt="ロゴ" class="w-[45px] h-[45px] md:w-[55px] md:h-[55px] mx-[-4px] md:mx-[-6px] object-contain -translate-y-[4px]" onerror="this.style.display='none'">
                 STAR
             </a>
         </div>
@@ -272,32 +272,6 @@
                     </div>
                 </div>
 
-                <!-- 室外機洗浄 (家庭用) -->
-                <div class="flex justify-between items-center bg-slate-50 rounded-xl p-3 border border-slate-100">
-                    <div>
-                        <span class="block font-black text-sm md:text-base text-slate-800">室外機洗浄 <span class="text-xs text-slate-500 font-bold">(家庭用)</span></span>
-                        <span class="block text-[10px] font-bold text-slate-500">¥4,000 <span class="text-red-500">(2台以上: ¥3,000/台)</span></span>
-                    </div>
-                    <div class="flex items-center space-x-3">
-                        <button onclick="updateCount('outdoorHome', -1)" class="w-8 h-8 flex items-center justify-center bg-white border border-slate-200 rounded-md font-bold text-slate-600 shadow-sm active:bg-slate-100 transition-colors">-</button>
-                        <span id="count-outdoorHome" class="w-4 text-center font-black text-lg text-slate-900">0</span>
-                        <button onclick="updateCount('outdoorHome', 1)" class="w-8 h-8 flex items-center justify-center bg-white border border-slate-200 rounded-md font-bold text-slate-600 shadow-sm active:bg-slate-100 transition-colors">+</button>
-                    </div>
-                </div>
-
-                <!-- 室外機洗浄 (業務用) -->
-                <div class="flex justify-between items-center bg-slate-50 rounded-xl p-3 border border-slate-100">
-                    <div>
-                        <span class="block font-black text-sm md:text-base text-slate-800">室外機洗浄 <span class="text-xs text-slate-500 font-bold">(業務用)</span></span>
-                        <span class="block text-[10px] font-bold text-slate-500">一律 ¥4,000/台</span>
-                    </div>
-                    <div class="flex items-center space-x-3">
-                        <button onclick="updateCount('outdoorBiz', -1)" class="w-8 h-8 flex items-center justify-center bg-white border border-slate-200 rounded-md font-bold text-slate-600 shadow-sm active:bg-slate-100 transition-colors">-</button>
-                        <span id="count-outdoorBiz" class="w-4 text-center font-black text-lg text-slate-900">0</span>
-                        <button onclick="updateCount('outdoorBiz', 1)" class="w-8 h-8 flex items-center justify-center bg-white border border-slate-200 rounded-md font-bold text-slate-600 shadow-sm active:bg-slate-100 transition-colors">+</button>
-                    </div>
-                </div>
-
             </div>
 
             <!-- 合計金額 -->
@@ -317,7 +291,7 @@
         <div class="mb-6 flex flex-col items-center justify-center">
             <span class="text-4xl md:text-5xl tracking-widest text-white flex items-center justify-center font-impact mt-1">
                 ONE
-                <img src="ONESTAR.PNG" alt="ロゴ" class="w-[80px] h-[80px] md:w-[100px] md:h-[100px] mx-[-10px] md:mx-[-16px] object-contain -translate-y-2">
+                <img src="ONESTAR.PNG" alt="ロゴ" class="w-[80px] h-[80px] md:w-[100px] md:h-[100px] mx-[-10px] md:mx-[-16px] object-contain -translate-y-2" onerror="this.style.display='none'">
                 STAR
             </span>
             <p class="text-xs text-neon font-black mt-2 tracking-widest">株式会社ECS専属プロスタッフ</p>
@@ -400,14 +374,12 @@
             wide: { price1: 15000, price2: 13000, count: 0 },
             ceiling4: { price1: 20400, price2: 18000, count: 0 },
             ceiling12: { price1: 22000, price2: 20000, count: 0 },
-            hanging: { price1: 22000, price2: 20000, count: 0 },
-            outdoorHome: { count: 0 }, // 特殊計算: 1台=4000, 2台目以降=3000
-            outdoorBiz: { count: 0 }   // 1台一律 4000
+            hanging: { price1: 22000, price2: 20000, count: 0 }
         };
 
         function updateCount(item, change) {
             const newCount = prices[item].count + change;
-            if (newCount >= 0 && newCount <= 20) { // 上限を20台に設定（適宜変更してください）
+            if (newCount >= 0 && newCount <= 20) { // 上限を20台に設定
                 prices[item].count = newCount;
                 document.getElementById('count-' + item).innerText = newCount;
                 calculateTotal();
@@ -416,19 +388,32 @@
 
         function calculateTotal() {
             let total = 0;
+            let totalAircons = 0;
+
+            // エアコンの総台数を計算
+            for (const key in prices) {
+                totalAircons += prices[key].count;
+            }
 
             for (const key in prices) {
                 const data = prices[key];
-                if (data.count > 0) {
-                    if (key === 'outdoorHome') {
-                        // 家庭用室外機：1台なら4000円、2台以上なら 台数×3000円
-                        total += data.count === 1 ? 4000 : data.count * 3000;
-                    } else if (key === 'outdoorBiz') {
-                        // 業務用室外機：一律4000円
-                        total += data.count * 4000;
+                const count = data.count;
+                
+                if (count > 0) {
+                    if (key === 'normal') {
+                        // ノーマルは、全体の台数が2台以上なら全て割引価格
+                        if (totalAircons >= 2) {
+                            total += count * data.price2;
+                        } else {
+                            total += count * data.price1;
+                        }
                     } else {
-                        // 通常のエアコン：1台目は通常価格、2台目から割引価格を追加
-                        total += data.price1 + (data.count - 1) * data.price2;
+                        // その他の機種は、その機種単体で2台以上なら全て割引価格
+                        if (count >= 2) {
+                            total += count * data.price2;
+                        } else {
+                            total += count * data.price1;
+                        }
                     }
                 }
             }
