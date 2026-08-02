@@ -1,0 +1,750 @@
+```html
+<!DOCTYPE html>
+<html lang="ja" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>使用工具への拘り | ONE★STAR</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        neon: '#EFFF00' // トレードカラー：蛍光イエロー
+                    },
+                    fontFamily: {
+                        sans: ['"Noto Sans JP"', 'sans-serif'],
+                        impact: ['"Black Ops One"', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        /* ドロワーメニュー用 */
+        #drawer-menu { transition: transform 0.3s ease-in-out; }
+        .drawer-closed { transform: translateX(-100%); }
+        .drawer-open { transform: translateX(0); }
+    </style>
+</head>
+<body class="font-sans text-slate-900 bg-slate-50 antialiased overflow-x-hidden pb-[60px]">
+
+    <!-- HEADER -->
+    <header class="fixed top-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md shadow-sm border-b border-slate-100 h-14 flex items-center justify-between px-4">
+        <button id="menu-open-btn" class="p-2 hover:bg-slate-100 rounded-lg" aria-label="メニュー">
+            <svg class="w-6 h-6 text-slate-800" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+
+        <div class="absolute left-1/2 -translate-x-1/2 flex items-center justify-center mt-1">
+            <a href="/" class="text-2xl md:text-3xl tracking-widest text-slate-900 leading-none flex items-center font-impact">
+                ONE
+                <img src="ONESTAR.PNG" alt="ロゴ" class="w-[45px] h-[45px] md:w-[55px] md:h-[55px] mx-[-4px] md:mx-[-6px] object-contain -translate-y-[4px]" onerror="this.style.display='none'">
+                STAR
+            </a>
+        </div>
+
+        <div class="hidden md:flex items-center space-x-3">
+            <a href="tel:08000807788" class="bg-slate-900 hover:bg-slate-800 text-neon px-4 py-1.5 rounded-full text-xs font-black border border-slate-700 flex items-center space-x-1 transition-all">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                <span>電話相談</span>
+            </a>
+        </div>
+        <div class="w-10 md:hidden"></div>
+    </header>
+
+    <!-- DRAWER MENU -->
+    <div id="drawer-container" class="fixed inset-0 z-[60] overflow-hidden hidden">
+        <div id="drawer-backdrop" class="absolute inset-0 bg-slate-900/60 opacity-0 transition-opacity duration-300"></div>
+        <div class="pointer-events-none fixed inset-y-0 left-0 flex max-w-full">
+            <div id="drawer-menu" class="pointer-events-auto w-64 drawer-closed bg-white shadow-2xl flex flex-col h-full">
+                
+                <div class="p-3 bg-white flex justify-end">
+                    <button id="menu-close-btn" class="p-2 hover:bg-slate-100 rounded-lg">
+                        <svg class="w-6 h-6 text-slate-500" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+                    </button>
+                </div>
+
+                <div class="bg-blue-600 py-3 px-6">
+                    <h2 class="text-white font-black tracking-wider text-sm">MENU</h2>
+                </div>
+
+                <nav class="flex-1 px-4 py-2 overflow-y-auto">
+                    <div class="space-y-1">
+                        <a href="/" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>トップページ
+                        </a>
+                        <a href="/price" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>料金プラン
+                        </a>
+                        <a href="/gallery" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>施工事例
+                        </a>
+                        <a href="/mind" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>ONE★STARの想い
+                        </a>
+                        <a href="/pride" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-blue-600">
+                            <span class="mr-2 text-blue-600">＞</span>プロとしての拘り
+                        </a>
+                        <a href="/trash" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>業界の不都合な真実
+                        </a>
+                        <a href="/before" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>ご予約の前に
+                        </a>
+                        <a href="/faq" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>よくある質問
+                        </a>
+                        <a href="/notes" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>注意事項
+                        </a>
+                        <a href="/products" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-[#06C755]">
+                            <span class="mr-2 text-slate-400">＞</span>オリジナルLINEスタンプ
+                        </a>
+                    </div>
+                    <hr class="border-slate-300 border-dashed my-4">
+                    <a href="https://www.edge-cleanservice.com" target="_blank" rel="noopener noreferrer" class="menu-link flex items-center py-2 text-sm font-black text-slate-900 hover:text-blue-600 transition-colors">
+                        株式会社ECS公式サイト
+                        <svg class="w-3.5 h-3.5 ml-1.5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                    </a>
+                </nav>
+
+                <div class="p-4 bg-slate-50 border-t border-slate-100 text-center mt-auto">
+                    <p class="text-[9px] text-slate-500 font-bold leading-relaxed mb-2">
+                        株式会社ECS EDGE CLEAN SERVICE<br>専属プロスタッフとして<br>愛知県全域で毎日奮闘中❣️
+                    </p>
+                    <a href="tel:08000807788" class="block w-full py-3 bg-emerald-500 text-white font-bold rounded-lg text-sm shadow">直接電話する</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN (拘り) -->
+    <main class="pt-24 pb-12 px-4 max-w-3xl mx-auto">
+
+        <!-- 白背景のメインコンテナ -->
+        <div class="bg-white rounded-[32px] p-6 md:p-10 shadow-sm border border-slate-200">
+            
+            <!-- ページタイトル -->
+            <h1 class="text-center font-black text-slate-900 text-[20px] md:text-2xl leading-[1.6] mb-8 tracking-wide">
+                プロフェッショナルとしての<br>
+                <span class="inline-block bg-slate-900 text-neon px-4 py-2 mt-2 rounded-md tracking-wider shadow-sm">【使用工具への拘り】</span>
+            </h1>
+
+            <hr class="border-slate-200 mb-8 w-full">
+
+            <!-- リード文 -->
+            <p class="text-[14px] md:text-base font-bold text-slate-800 leading-[1.8] mb-12">
+                質の高いクリーニングは、<br>
+                腕だけでなく「厳選した工具」<br>
+                があってこそ実現します。<br>
+                <br>
+                当店が厳選し、<br>
+                現場で実際に使用している<br>
+                こだわりの工具をご紹介します。
+            </p>
+
+            <!-- ==========================================
+                 大見出し: ドライバーへの拘り
+            =========================================== -->
+            <div class="text-center mb-10 mt-12">
+                <span class="inline-block bg-slate-900 text-neon text-[16px] md:text-xl font-black px-6 py-2.5 rounded-lg tracking-widest shadow-md border-b-4 border-neon">
+                    【ドライバーへの拘り】
+                </span>
+            </div>
+
+            <!-- ① 手動ドライバー -->
+            <div class="mb-14">
+                <!-- 見出し -->
+                <h2 class="text-[18px] md:text-xl font-black text-slate-900 leading-[1.6] border-l-[5px] border-neon pl-3 mb-6">
+                    【家庭用】樹脂パーツを守る<br>
+                    「手動＆USBドライバー」
+                </h2>
+
+                <p class="text-[14px] md:text-base font-bold text-slate-800 leading-[1.8] mb-6">
+                    ご家庭のエアコンのパーツは<br>
+                    「樹脂（プラスチック）」で<br>
+                    出来ています。<br>
+                    <br>
+                    そこに強力な力でネジを締め付けると、<br>
+                    ネジ穴が広がり、<br>
+                    空回りしてネジの意味を果たさなくなって<br>
+                    しまいます。
+                </p>
+
+                <p class="text-[14px] md:text-base font-bold text-slate-800 leading-[1.8] mb-6">
+                    当店ではエアコンへの負担を最小限に<br class="md:hidden">抑えるため、<br>
+                    時間はかかっても
+                </p>
+
+                <p class="text-[16px] md:text-lg font-black text-slate-900 leading-[1.8] mb-6">
+                    「手回しの手動工具＋<br>
+                    USB充電式ドライバー」
+                </p>
+
+                <p class="text-[14px] md:text-base font-bold text-slate-800 leading-[1.8] mb-10">
+                    を使用し、<br>
+                    優しく丁寧に組み付けを行っています。<br>
+                    <br>
+                    遅れた時間は、<br>
+                    私のテキパキとした動きで<br>
+                    いくらでも挽回できます！
+                </p>
+
+                <!-- 画像1: ドライバー -->
+                <img src="https://placehold.co/600x360/f1f5f9/94a3b8?text=Driver+Image" alt="愛用しているドライバー" class="w-full aspect-[5/3] rounded-2xl mb-3 object-cover shadow-sm bg-slate-100 border border-slate-200">
+                <p class="text-[12px] md:text-[13px] text-slate-500 font-bold leading-relaxed mb-12 pl-1">私が愛用しているドライバーです。</p>
+            </div>
+
+
+            <!-- ② 業務用 18Vインパクト -->
+            <div class="mb-14 pt-4 border-t border-slate-100">
+                <!-- 見出し -->
+                <h2 class="text-[18px] md:text-xl font-black text-slate-900 leading-[1.6] border-l-[5px] border-neon pl-3 mb-6">
+                    【業務用】確実かつ安全な<br>
+                    「18Vインパクト」
+                </h2>
+
+                <p class="text-[14px] md:text-base font-bold text-slate-800 leading-[1.8] mb-6">
+                    業務用エアコンにはプロ仕様の
+                </p>
+
+                <p class="text-[16px] md:text-lg font-black text-slate-900 leading-[1.8] mb-6">
+                    【18Vインパクトドライバー】
+                </p>
+
+                <p class="text-[14px] md:text-base font-bold text-slate-800 leading-[1.8] mb-10">
+                    最新のトルク調整機能で<br>
+                    初めから弱く設定できるため、<br>
+                    ペン型よりも優しく、<br>
+                    かつ圧倒的なパワーで<br>
+                    安全かつ確実な分解・組み付けを行っています。
+                </p>
+
+                <!-- 画像2: 18Vインパクト専用の画像スペース -->
+                <img src="https://placehold.co/600x360/f1f5f9/94a3b8?text=18V+Impact+Driver" alt="18Vインパクトドライバー" class="w-full aspect-[5/3] rounded-2xl mb-3 object-cover shadow-sm bg-slate-100 border border-slate-200">
+                <p class="text-[12px] md:text-[13px] text-slate-500 font-bold leading-relaxed mb-12 pl-1">私が愛用している18Vインパクトドライバーです。</p>
+            </div>
+
+
+            <!-- ③ ペン型インパクトは出番なしの結論 -->
+            <div class="mb-14 pt-4 border-t border-slate-100">
+                <!-- 見出し -->
+                <h2 class="text-[18px] md:text-xl font-black text-slate-900 leading-[1.6] border-l-[5px] border-neon pl-3 mb-6">
+                    「ペン型インパクト」は<br>
+                    出番なしの結論
+                </h2>
+
+                <p class="text-[14px] md:text-base font-bold text-slate-800 leading-[1.8] mb-6">
+                    固く締まった業務用エアコンの分解では、<br>
+                    ペン型ではトルク不足で<br>
+                    「ガガガッ！」と鳴るだけで<br>
+                    ネジが回らないことがあります。<br>
+                    <br>
+                    無理に回そうとすると、<br>
+                    ネジの頭が潰れてしまい、<br>
+                    取り外しが困難になるケースもあります。
+                </p>
+
+                <p class="text-[14px] md:text-base font-bold text-slate-800 leading-[1.8] mb-6">
+                    家庭用エアコンにおいては<br>
+                    締め付けトルクが強すぎて<br>
+                    樹脂パーツを破損させやすくなります。
+                </p>
+
+                <p class="text-[14px] md:text-base font-bold text-slate-800 leading-[1.8] mb-6">
+                    実際にネジが効かなくなったエアコンを、<br>
+                    何度も目にしてきました。
+                </p>
+
+                <p class="text-[14px] md:text-base font-bold text-slate-800 leading-[1.8] mb-6">
+                    私が対応した時には、<br>
+                    <br>
+                    ｢爪楊枝の様な物をネジ穴に侵入｣<br>
+                    <br>
+                    ｢メーカー純正より少し太めな汎用ネジ｣<br>
+                    <br>
+                    これらで応急処置は可能です。
+                </p>
+
+                <p class="text-[14px] md:text-base font-bold text-slate-800 leading-[1.8] mb-6">
+                    しかし、<br>
+                    破損させないよう配慮する。<br>
+                    <br>
+                    これが最善だと私は考えます。
+                </p>
+
+                <p class="text-[14px] md:text-base font-bold text-slate-800 leading-[1.8] mb-6">
+                    私は自腹で全ての工具を購入し<br>
+                    検証しました。<br>
+                    その結果、
+                </p>
+
+                <p class="text-[16px] md:text-lg font-black text-red-600 leading-[1.6] mb-6">
+                    「エアコンクリーニングにおいて<br>
+                    ペン型インパクトの出番は一切ない」
+                </p>
+
+                <p class="text-[14px] md:text-base font-bold text-slate-800 leading-[1.8] mb-8">
+                    という結論に達しました。
+                </p>
+
+                <p class="text-[14px] md:text-base font-bold text-slate-800 leading-[1.8] mb-10">
+                    どんな工具を選ぶかで、<br>
+                    その職人の仕事に対する姿勢が表れます。
+                </p>
+
+                <!-- 画像3: インパクトドライバー2種 -->
+                <img src="https://placehold.co/600x360/f1f5f9/94a3b8?text=Impact+Driver+Image" alt="インパクトドライバー" class="w-full aspect-[5/3] rounded-2xl mb-3 object-cover shadow-sm bg-slate-100 border border-slate-200">
+                <p class="text-[12px] md:text-[13px] text-slate-500 font-bold leading-relaxed mb-12 pl-1">
+                    左はペン型(不用品)<br>
+                    右は愛用のインパクト！<br>
+                    SHOPオリジナルのリペイントがお気に入りです。
+                </p>
+            </div>
+
+
+            <!-- ④ インパクトで破壊された画像と補足 -->
+            <div class="mb-4 pt-4 border-t border-slate-100">
+                <!-- 補足追加部分 -->
+                <div class="bg-slate-50 border border-slate-200 p-4 md:p-5 rounded-xl mb-6">
+                    <p class="text-[13px] md:text-[14px] text-slate-700 font-bold leading-relaxed">
+                        ※ペン型でも、インパクトの無い<br class="md:hidden">
+                        <span class="text-slate-900 font-black">スクリュードライバー</span>なら<br class="md:hidden">
+                        破損を減らせるでしょう。
+                    </p>
+                </div>
+
+                <!-- 画像4: 破壊されたパーツ -->
+                <img src="https://placehold.co/600x360/f1f5f9/94a3b8?text=Broken+Parts+Image" alt="破損されたパーツ" class="w-full aspect-[5/3] rounded-2xl mb-3 object-cover shadow-sm bg-slate-100 border border-slate-200">
+                <p class="text-[12px] md:text-[13px] text-slate-500 font-bold leading-relaxed mb-4 pl-1">
+                    実際に、インパクトドライバーによって破損した部品です。<br>
+                    お掃除ロボット取り付け部なのですが、<br>
+                    この裏は水の受け皿(ドレンパン)です。<br>
+                    貫通して、ここから水漏れしていました…
+                </p>
+            </div>
+
+            <!-- ⑤ ドライバー編の〆のコメント -->
+            <div class="mb-14 mt-10 bg-slate-50 p-6 md:p-8 rounded-2xl border border-slate-200 shadow-sm relative overflow-hidden">
+                <!-- 装飾ライン -->
+                <div class="absolute left-0 top-0 w-1.5 h-full bg-slate-900"></div>
+                
+                <p class="text-[14px] md:text-base font-bold text-slate-800 leading-[1.8] mb-6">
+                    近年は<br>
+                    「どこまで分解するか」<br>
+                    が注目されがちです。
+                </p>
+
+                <p class="text-[14px] md:text-base font-bold text-slate-800 leading-[1.8] mb-6">
+                    しかし私は、<br>
+                    それ以上に大切にしたい事があります。
+                </p>
+
+                <p class="text-[16px] md:text-lg font-black text-slate-900 leading-[1.8] mb-6">
+                    分解手法だけでは測れない、<br>
+                    <span class="inline-block border-b-[3px] border-neon pb-0.5 mt-1">長く安全にお使いいただくための配慮。</span>
+                </p>
+
+                <p class="text-[15px] md:text-[17px] font-black text-slate-900 leading-[1.8]">
+                    それこそが、私の考えるプロの仕事です。
+                </p>
+            </div>
+
+
+            <!-- ==========================================
+                 大見出し: 洗浄機への拘り
+            =========================================== -->
+            <div class="text-center mb-10 mt-20 border-t-2 border-slate-100 pt-12">
+                <span class="inline-block bg-slate-900 text-neon text-[16px] md:text-xl font-black px-6 py-2.5 rounded-lg tracking-widest shadow-md border-b-4 border-neon">
+                    【洗浄機への拘り】
+                </span>
+            </div>
+
+            <!-- ① ケルヒャーセクション -->
+            <div class="mb-14">
+                <!-- 見出し -->
+                <h2 class="text-[18px] md:text-xl font-black text-slate-900 leading-[1.6] border-l-[5px] border-neon pl-3 mb-6">
+                    【静音×高水圧】<br>
+                    ケルヒャー × 電圧降下トランス
+                </h2>
+
+                <p class="text-[14px] md:text-base font-bold text-slate-800 leading-[1.8] mb-6">
+                    私は5年以上前から<br>
+                    <span class="font-black text-[15px]">最大8MPaを誇る『ケルヒャー』一択です。</span>
+                </p>
+
+                <p class="text-[14px] md:text-base font-bold text-slate-800 leading-[1.8] mb-10">
+                    そのままでは威力が強すぎるため、<br>
+                    スピードコントローラー<br>
+                    （電圧降下トランス）を介して<br>
+                    電圧を下げ、<br>
+                    水圧を自在にコントロールしています。
+                </p>
+
+                <!-- ② ケルヒャーの画像とコメント -->
+                <img src="https://placehold.co/600x360/f1f5f9/94a3b8?text=Karcher+Image" alt="ケルヒャー高圧洗浄機" class="w-full aspect-[5/3] rounded-2xl mb-3 object-cover shadow-sm bg-slate-100 border border-slate-200">
+                <p class="text-[12px] md:text-[13px] text-slate-500 font-bold leading-relaxed mb-12 pl-1">
+                    当店愛用のK2 Little<br>
+                    最大許容圧力／8MPa<br>
+                    吐出水量／5.5L／min<br>
+                    とても静かです。
+                </p>
+            </div>
+
+
+            <!-- ③ 一般的な洗浄機セクション -->
+            <div class="mb-14 pt-4 border-t border-slate-100">
+                <!-- 見出し -->
+                <h2 class="text-[18px] md:text-xl font-black text-slate-900 leading-[1.6] border-l-[5px] border-neon pl-3 mb-6">
+                    エアコン洗浄用として<br>
+                    売られている洗浄機の場合
+                </h2>
+
+                <p class="text-[14px] md:text-base font-bold text-slate-800 leading-[1.8] mb-6">
+                    一般的なエアコン洗浄機は<br>
+                    あまり水圧が高くありません。
+                </p>
+
+                <p class="text-[14px] md:text-base font-bold text-slate-800 leading-[1.8] mb-6">
+                    軽度な汚れに対しては<br>
+                    全く問題ありませんが、<br>
+                    状況によっては力不足と言えるでしょう。
+                </p>
+
+                <p class="text-[14px] md:text-base font-bold text-slate-800 leading-[1.8] mb-10">
+                    もちろん洗浄できないわけではありませんが、<br>
+                    分厚い熱交換器やガンコな汚れを貫くためには、<br>
+                    この水圧では不十分だと私は考えています。
+                </p>
+
+                <!-- ④ 動力噴霧器の画像とコメント -->
+                <img src="https://placehold.co/600x360/f1f5f9/94a3b8?text=Sprayer+Image" alt="動力噴霧器" class="w-full aspect-[5/3] rounded-2xl mb-3 object-cover shadow-sm bg-slate-100 border border-slate-200">
+                <p class="text-[12px] md:text-[13px] text-slate-500 font-bold leading-relaxed mb-12 pl-1">
+                    これらは高圧洗浄機ではなく動力噴霧器です。<br><br>
+                    最大許容圧力／3.5MPa<br>
+                    吐出水量／3.3L／min<br>
+                    常にガラガラと音が煩い…<br>
+                    <br>
+                    私も以前は<br>
+                    動力噴霧器を愛用していました。<br>
+                    しかしケルヒャーと比較すると<br>
+                    <br>
+                    重量・騒音・圧力・価格・売場<br>
+                    <br>
+                    全てにおいて<br>
+                    ケルヒャーが圧勝です。
+                </p>
+
+                <!-- 追加: 充電式の噴霧器の画像とコメント -->
+                <img src="https://placehold.co/600x360/f1f5f9/94a3b8?text=Cordless+Sprayer+Image" alt="充電式の噴霧器" class="w-full aspect-[5/3] rounded-2xl mb-3 object-cover shadow-sm bg-slate-100 border border-slate-200">
+                <p class="text-[12px] md:text-[13px] text-slate-500 font-bold leading-relaxed mb-12 pl-1">
+                    これらは充電式の噴霧器<br>
+                    1.5MPa〜2MPaほど。<br>
+                    電源が無い現場だと<br>
+                    充電式は重宝しますね。<br>
+                    しかし圧力は弱く<br>
+                    電源がある場面では<br>
+                    出番はありません。<br>
+                    <br>
+                    万が一の時のため<br>
+                    予備として持っておくには<br>
+                    良い道具だと思います。
+                </p>
+
+                <!-- ⑤ 蓄圧式噴霧器の画像とコメント -->
+                <img src="https://placehold.co/600x360/f1f5f9/94a3b8?text=Manual+Sprayer+Image" alt="蓄圧式噴霧器" class="w-full aspect-[5/3] rounded-2xl mb-3 object-cover shadow-sm bg-slate-100 border border-slate-200">
+                <p class="text-[12px] md:text-[13px] text-slate-500 font-bold leading-relaxed mb-12 pl-1">
+                    これらは蓄圧式噴霧器<br>
+                    どう考えても圧力不足です。<br>
+                    農薬散布用ですね。<br>
+                    <br>
+                    洗剤を塗布できるのは表面だけです。<br>
+                    エアコンクリーニングに使う物ではないと<br>
+                    思っていますが、<br>
+                    使ってる清掃業者は珍しくないように思います。
+                </p>
+            </div>
+
+
+            <!-- ⑥ 洗剤と高圧力 -->
+            <div class="mb-14 pt-4 border-t border-slate-100">
+                <p class="text-[14px] md:text-base font-bold text-slate-800 leading-[1.8] mb-6">
+                    私達株式会社ECSのスタッフは
+                </p>
+
+                <p class="text-[16px] md:text-lg font-black text-red-600 leading-[1.6] mb-6">
+                    『洗剤から機械を通して<br>
+                    高圧力で洗浄する』
+                </p>
+
+                <p class="text-[14px] md:text-base font-bold text-slate-800 leading-[1.8] mb-12">
+                    ことを徹底しています。<br>
+                    <br>
+                    洗剤の消費量も経費も跳ね上がりますが、<br>
+                    嘘や手抜きはしたくありません！<br>
+                    <br>
+                    高圧でたっぷりの洗剤を奥まで浸透させ、<br>
+                    ケルヒャーの高水圧で一気に洗い流す。<br>
+                    <br>
+                    これが私の譲れない拘りです。
+                </p>
+            </div>
+
+
+            <!-- ==========================================
+                 大見出し: 送風機への拘り
+            =========================================== -->
+            <div class="text-center mb-10 mt-20 border-t-2 border-slate-100 pt-12">
+                <span class="inline-block bg-slate-900 text-neon text-[16px] md:text-xl font-black px-6 py-2.5 rounded-lg tracking-widest shadow-md border-b-4 border-neon">
+                    【送風機への拘り】
+                </span>
+            </div>
+
+            <!-- ⑦ ブロワー -->
+            <div class="mb-10">
+                <!-- 見出し -->
+                <h2 class="text-[18px] md:text-xl font-black text-slate-900 leading-[1.6] border-l-[5px] border-neon pl-3 mb-6">
+                    【圧倒的風速】異次元の<br>
+                    ジェットブロワー MK-2
+                </h2>
+
+                <p class="text-[14px] md:text-base font-bold text-slate-800 leading-[1.8] mb-8">
+                    洗浄後の水滴を吹き飛ばす送風機。<br>
+                    <br>
+                    以前は大手メーカーの<br>
+                    最新エアダスターを愛用し<br>
+                    「これ以上はない」と思っていましたが、<br>
+                    <br>
+                    現在はそれを遥かに凌駕する<br>
+                    エアロツールズの「MK-2」を使用しています。
+                </p>
+                
+                <p class="text-[15px] md:text-[17px] font-black text-slate-900 leading-[1.8] mb-6">
+                    風速270km/h、超高速76650rpm。
+                </p>
+                
+                <p class="text-[14px] md:text-base font-bold text-slate-800 leading-[1.8] mb-10">
+                    大容量バッテリーがわずか7分で<br>
+                    空になるほどの規格外のハイパワーで、<br>
+                    作業効率が爆発的に向上。<br>
+                    <br>
+                    一度使えば、<br>
+                    もう過去の道具には戻れません。
+                </p>
+
+                <!-- 画像7: ブロワー -->
+                <img src="https://placehold.co/600x360/f1f5f9/94a3b8?text=Blower+Image" alt="ジェットブロワー MK-2" class="w-full aspect-[5/3] rounded-2xl mb-3 object-cover shadow-sm bg-slate-100 border border-slate-200">
+                <p class="text-[12px] md:text-[13px] text-slate-500 font-bold leading-relaxed pl-1">私が愛用しているジェットブロワーです。</p>
+            </div>
+
+            <!-- ==========================================
+                 大見出し: 腰道具への拘り
+            =========================================== -->
+            <div class="text-center mb-10 mt-20 border-t-2 border-slate-100 pt-12">
+                <span class="inline-block bg-slate-900 text-neon text-[16px] md:text-xl font-black px-6 py-2.5 rounded-lg tracking-widest shadow-md border-b-4 border-neon">
+                    【腰道具への拘り】
+                </span>
+            </div>
+
+            <!-- ⑧ 腰道具 -->
+            <div class="mb-10">
+                <!-- 見出し -->
+                <h2 class="text-[18px] md:text-xl font-black text-slate-900 leading-[1.6] border-l-[5px] border-neon pl-3 mb-6">
+                    家庭用エアコン洗浄では<br>
+                    腰道具は使用しません！
+                </h2>
+
+                <p class="text-[14px] md:text-base font-bold text-slate-800 leading-[1.8] mb-6">
+                    私は家庭用エアコンクリーニングにおいて、<br>
+                    腰道具は絶対に使用しません。
+                </p>
+
+                <p class="text-[14px] md:text-base font-bold text-slate-800 leading-[1.8] mb-6">
+                    コレには明確な理由があります。<br>
+                    <br>
+                    腰道具はとても便利です。<br>
+                    沢山の工具を身につけることで<br>
+                    作業効率は上がります。
+                </p>
+
+                <p class="text-[14px] md:text-base font-bold text-slate-800 leading-[1.8] mb-6">
+                    私も業務用エアコンには<br>
+                    ガッツリと腰道具を着用します。
+                </p>
+
+                <p class="text-[14px] md:text-base font-bold text-slate-800 leading-[1.8] mb-6">
+                    しかし一般家庭での作業の場合<br>
+                    狭い廊下や階段<br>
+                    エアコン取り付け位置が<br>
+                    左右の壁際だったりします。
+                </p>
+
+                <p class="text-[14px] md:text-base font-bold text-slate-800 leading-[1.8] mb-6">
+                    そんな状況下で<br>
+                    腰道具を着用していると、<br>
+                    クロス、壁紙に<br>
+                    <span class="text-[15px] font-black text-slate-900">キズをつけてしまうリスクが増します。</span>
+                </p>
+
+                <p class="text-[14px] md:text-base font-bold text-slate-800 leading-[1.8] mb-6">
+                    もちろん<br>
+                    【慣れ】や【配慮】で<br>
+                    このリスクは軽減できます。<br>
+                    <br>
+                    しかし絶対ではありません。<br>
+                    <br>
+                    どれだけ慣れていても<br>
+                    万が一、運悪く<br>
+                    キズつけてしまうかもしれません。
+                </p>
+
+                <p class="text-[14px] md:text-base font-bold text-slate-800 leading-[1.8] mb-6">
+                    配慮して動きにくい体制での<br>
+                    無理な作業では<br>
+                    余計に時間がかかる事も。
+                </p>
+
+                <p class="text-[14px] md:text-base font-bold text-slate-800 leading-[1.8] mb-6">
+                    そのため私は<br>
+                    <span class="text-[15px] font-black text-slate-900">必要最低限の手工具を<br>
+                    脚立に集約させています。</span>
+                </p>
+
+                <p class="text-[14px] md:text-base font-bold text-slate-800 leading-[1.8] mb-10">
+                    これにより<br>
+                    腰道具を使う時と同様に<br>
+                    工具の持ち替えのために<br>
+                    何度も無駄に脚立を昇り降り<br>
+                    する必要は無くなります。<br>
+                    <br>
+                    安全かつ手際よく作業に集中できます。
+                </p>
+
+                <!-- 画像8: 腰道具と脚立 -->
+                <img src="https://placehold.co/600x360/f1f5f9/94a3b8?text=Tool+Image" alt="脚立に集約した工具" class="w-full aspect-[5/3] rounded-2xl mb-3 object-cover shadow-sm bg-slate-100 border border-slate-200">
+                <p class="text-[12px] md:text-[13px] text-slate-500 font-bold leading-relaxed pl-1">手工具は脚立にセットし、安全・安心を最優先しています。</p>
+            </div>
+
+            <!-- ==========================================
+                 最後のメッセージ（締めくくり）
+            =========================================== -->
+            <div class="bg-[#111827] text-white p-8 md:p-10 rounded-3xl shadow-xl border-l-[6px] border-neon text-center mt-16 relative overflow-hidden">
+                <p class="text-[16px] md:text-xl font-black leading-loose mb-6 tracking-wide">
+                    エアコンに<span class="text-neon">優しく</span><br>
+                    汚れには<span class="text-neon">厳しく！</span>
+                </p>
+                
+                <div class="flex justify-center mb-6">
+                    <div class="w-10 h-[2px] bg-slate-600 rounded-full"></div>
+                </div>
+
+                <p class="text-[15px] md:text-lg font-black leading-loose mb-8 tracking-wide">
+                    ケルヒャーの<span class="text-neon">高水圧</span>と<br>
+                    MK-2の<span class="text-neon">爆風</span>で<br>
+                    奥の奥まで徹底洗浄！
+                </p>
+                
+                <div class="flex justify-center mb-6">
+                    <div class="w-10 h-[2px] bg-slate-600 rounded-full"></div>
+                </div>
+                
+                <p class="text-[16px] md:text-xl font-black leading-loose tracking-wider">
+                    これが私の<br class="md:hidden">
+                    <span class="inline-block border-b-[3px] border-neon pb-1 mt-1 text-white">譲れない拘り</span>です！
+                </p>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-900 text-white pt-12 pb-24 md:pb-12 border-t-[6px] border-neon text-center mt-6">
+        <div class="mb-6 flex flex-col items-center justify-center">
+            <span class="text-4xl md:text-5xl tracking-widest text-white flex items-center justify-center font-impact mt-1">
+                ONE
+                <img src="ONESTAR.PNG" alt="ロゴ" class="w-[80px] h-[80px] md:w-[100px] md:h-[100px] mx-[-10px] md:mx-[-16px] object-contain -translate-y-2" onerror="this.style.display='none'">
+                STAR
+            </span>
+            <p class="text-xs text-neon font-black mt-2 tracking-widest">株式会社ECS専属プロスタッフ</p>
+        </div>
+        
+        <p class="text-[11px] text-slate-400 font-bold mb-3">
+            <a href="/products" class="hover:text-white transition-colors underline underline-offset-4">オリジナルLINEスタンプ販売中</a>
+        </p>
+        <p class="text-[10px] text-slate-500 font-bold mb-4">
+            <a href="/privacy" class="hover:text-white transition-colors">プライバシーポリシー</a>
+        </p>
+        <p class="text-[10px] text-slate-500 font-bold tracking-wider">© 2026 ONE★STAR. All Rights Reserved.</p>
+    </footer>
+
+    <!-- MOBILE BOTTOM NAVIGATION -->
+    <div class="fixed bottom-0 left-0 right-0 z-50 bg-slate-900 md:hidden h-[60px] flex items-stretch text-white shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.3)] border-t border-slate-800">
+        
+        <!-- 料金 (黒) -->
+        <a href="/price" class="flex flex-col items-center justify-center w-[20%] border-r border-slate-700 active:bg-slate-800">
+            <svg class="w-5 h-5 mb-1 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <span class="text-[9px] font-black">料金</span>
+        </a>
+        
+        <!-- 想い (黒) -->
+        <a href="/mind" class="flex flex-col items-center justify-center w-[20%] border-r border-slate-700 active:bg-slate-800">
+            <svg class="w-5 h-5 mb-1 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+            <span class="text-[9px] font-black">想い</span>
+        </a>
+
+        <!-- 拘り (黒) -->
+        <a href="/pride" class="flex flex-col items-center justify-center w-[20%] active:bg-slate-800">
+            <svg class="w-5 h-5 mb-1 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+            <span class="text-[9px] font-black">拘り</span>
+        </a>
+        
+        <!-- 電話する (蛍光イエロー) -->
+        <a href="tel:08000807788" class="flex items-center justify-center bg-neon text-slate-900 w-[40%] font-black text-base active:bg-yellow-400 transition-colors">
+            <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+            電話する
+        </a>
+        
+    </div>
+
+    <!-- SCRIPTS -->
+    <script>
+        // === メニュー開閉用 ===
+        document.addEventListener('DOMContentLoaded', () => {
+            const drawerContainer = document.getElementById('drawer-container');
+            const drawerMenu = document.getElementById('drawer-menu');
+            const drawerBackdrop = document.getElementById('drawer-backdrop');
+            
+            const toggleMenu = (show) => {
+                if (show) {
+                    drawerContainer.classList.remove('hidden');
+                    setTimeout(() => {
+                        drawerBackdrop.classList.remove('opacity-0');
+                        drawerBackdrop.classList.add('opacity-100');
+                        drawerMenu.classList.remove('drawer-closed');
+                        drawerMenu.classList.add('drawer-open');
+                    }, 10);
+                } else {
+                    drawerBackdrop.classList.remove('opacity-100');
+                    drawerBackdrop.classList.add('opacity-0');
+                    drawerMenu.classList.remove('drawer-open');
+                    drawerMenu.classList.add('drawer-closed');
+                    setTimeout(() => drawerContainer.classList.add('hidden'), 300);
+                }
+            };
+
+            document.getElementById('menu-open-btn').addEventListener('click', () => toggleMenu(true));
+            document.getElementById('menu-close-btn').addEventListener('click', () => toggleMenu(false));
+            document.getElementById('drawer-backdrop').addEventListener('click', () => toggleMenu(false));
+            document.querySelectorAll('.menu-link').forEach(link => link.addEventListener('click', () => toggleMenu(false)));
+        });
+    </script>
+</body>
+</html>
+
+
+```
