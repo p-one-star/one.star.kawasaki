@@ -1,0 +1,433 @@
+```html
+<!DOCTYPE html>
+<html lang="ja" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ここだけの話 | ONE★STAR</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        neon: '#EFFF00' // トレードカラー：蛍光イエロー
+                    },
+                    fontFamily: {
+                        sans: ['"Noto Sans JP"', 'sans-serif'],
+                        impact: ['"Black Ops One"', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        /* ドロワーメニュー用 */
+        #drawer-menu { transition: transform 0.3s ease-in-out; }
+        .drawer-closed { transform: translateX(-100%); }
+        .drawer-open { transform: translateX(0); }
+    </style>
+</head>
+<body class="font-sans text-slate-800 bg-slate-50 antialiased overflow-x-hidden pb-[60px]">
+
+    <!-- HEADER -->
+    <header class="fixed top-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md shadow-sm border-b border-slate-100 h-14 flex items-center justify-between px-4">
+        <button id="menu-open-btn" class="p-2 hover:bg-slate-100 rounded-lg" aria-label="メニュー">
+            <svg class="w-6 h-6 text-slate-800" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+
+        <div class="absolute left-1/2 -translate-x-1/2 flex items-center justify-center mt-1">
+            <a href="/" class="text-2xl md:text-3xl tracking-widest text-slate-900 leading-none flex items-center font-impact">
+                ONE
+                <img src="ONESTAR.PNG" alt="ロゴ" class="w-[45px] h-[45px] md:w-[55px] md:h-[55px] mx-[-4px] md:mx-[-6px] object-contain -translate-y-[4px]" onerror="this.style.display='none'">
+                STAR
+            </a>
+        </div>
+
+        <div class="hidden md:flex items-center space-x-3">
+            <a href="tel:08000807788" class="bg-slate-900 hover:bg-slate-800 text-neon px-4 py-1.5 rounded-full text-xs font-black border border-slate-700 flex items-center space-x-1 transition-all">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                <span>電話相談</span>
+            </a>
+        </div>
+        <div class="w-10 md:hidden"></div>
+    </header>
+
+    <!-- DRAWER MENU -->
+    <div id="drawer-container" class="fixed inset-0 z-50 overflow-hidden hidden">
+        <div id="drawer-backdrop" class="absolute inset-0 bg-slate-900/60 opacity-0 transition-opacity duration-300"></div>
+        <div class="pointer-events-none fixed inset-y-0 left-0 flex max-w-full">
+            <div id="drawer-menu" class="pointer-events-auto w-64 drawer-closed bg-white shadow-2xl flex flex-col h-full">
+                
+                <div class="p-3 bg-white flex justify-end">
+                    <button id="menu-close-btn" class="p-2 hover:bg-slate-100 rounded-lg">
+                        <svg class="w-6 h-6 text-slate-500" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+                    </button>
+                </div>
+
+                <div class="bg-blue-600 py-3 px-6">
+                    <h2 class="text-white font-black tracking-wider text-sm">MENU</h2>
+                </div>
+
+                <nav class="flex-1 px-4 py-2 overflow-y-auto">
+                    <div class="space-y-1">
+                        <a href="/" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>トップページ
+                        </a>
+                        <a href="/price" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>料金プラン
+                        </a>
+                        <a href="/gallery" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>施工事例
+                        </a>
+                        <a href="/mind" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>ONE★STARの想い
+                        </a>
+                        <a href="/pride" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>プロとしての拘り
+                        </a>
+                        <!-- 現在地: ここだけの話 -->
+                        <a href="/trash" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-blue-600">
+                            <span class="mr-2 text-blue-600">＞</span>ここだけの話
+                        </a>
+                        <a href="/before" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>ご予約の前に
+                        </a>
+                        <a href="/faq" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>よくある質問
+                        </a>
+                        <a href="/notes" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>注意事項
+                        </a>
+                        
+                        <a href="/products" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-[#06C755]">
+                            <span class="mr-2 text-slate-400">＞</span>オリジナルLINEスタンプ
+                        </a>
+                    </div>
+                    
+                    <hr class="border-slate-300 border-dashed my-4">
+                    <a href="https://www.edge-cleanservice.com" target="_blank" rel="noopener noreferrer" class="menu-link flex items-center py-2 text-sm font-black text-slate-900 hover:text-blue-600 transition-colors">
+                        株式会社ECS公式サイト
+                        <svg class="w-3.5 h-3.5 ml-1.5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                    </a>
+                </nav>
+
+                <div class="p-4 bg-slate-50 border-t border-slate-100 text-center mt-auto">
+                    <p class="text-[9px] text-slate-500 font-bold leading-relaxed mb-2">
+                        株式会社ECS EDGE CLEAN SERVICE<br>専属プロスタッフとして<br>愛知県全域で毎日奮闘中❣️
+                    </p>
+                    <a href="tel:08000807788" class="block w-full py-3 bg-emerald-500 text-white font-bold rounded-lg text-sm shadow">直接電話する</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN (業界の不都合な真実) -->
+    <main class="pt-24 pb-12 px-4 max-w-3xl mx-auto">
+
+        <!-- 白いメインカード -->
+        <div class="bg-white rounded-[24px] border-2 border-slate-900 overflow-hidden shadow-sm mb-10">
+            <!-- 上部の黄色いライン -->
+            <div class="h-3 w-full bg-neon"></div>
+
+            <div class="p-6 md:p-8 text-center">
+                
+                <!-- バッジ (賢い業者の選び方のみ・ネイビー×蛍光イエロー) -->
+                <div class="flex justify-center mb-10">
+                    <span class="inline-block bg-slate-900 text-neon text-xs md:text-sm font-black px-5 py-2 rounded shadow-sm tracking-wider">
+                        賢い業者の選び方
+                    </span>
+                </div>
+
+                <!-- タイトル (文字をさらに大きく強調！) -->
+                <h1 class="text-3xl md:text-[40px] font-black text-slate-900 mb-16 leading-[1.6] tracking-widest">
+                    知らずに損する話。<br>
+                    知って得する話。
+                </h1>
+
+                <!-- リード文 -->
+                <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose mb-10 text-left md:text-center inline-block">
+                    <span class="text-red-600 font-black text-lg">ここだけの話ですが…</span><br><br>
+                    
+                    エアコンクリーニングを<br class="md:hidden">依頼するとき、<br>
+                    多くのお客様は<br class="md:hidden">
+                    <span class="bg-neon px-1 text-slate-900 inline-block">「作業」</span>にお金を<br class="md:hidden">払っていると思っています。<br><br>
+
+                    実は、<span class="text-red-600 font-black">そうとは限りません。</span><br><br>
+
+                    私は、この業界で何年も<br class="md:hidden">仕事をしています。<br>
+                    だからこそ言えることがあります。<br><br>
+
+                    お客様は、知らないうちに<br>
+                    <span class="text-lg font-black border-b-2 border-red-200 inline-block mt-1 pb-0.5">「作業」ではなく「仕組み」</span> に<br>
+                    お金を払っていることがあります。
+                </p>
+
+                <!-- グレーのインナーカード -->
+                <div class="bg-slate-50 rounded-[20px] p-6 md:p-8 mb-14 text-center">
+                    <h2 class="text-lg md:text-xl font-black text-slate-900 mb-6 leading-relaxed">
+                        あなたは誰にお金を<br>払っていますか？
+                    </h2>
+                    
+                    <p class="text-sm md:text-base font-bold text-slate-700 leading-loose mb-10 text-left md:text-center inline-block">
+                        エアコンクリーニングを依頼するとき、<br>
+                        あなたがお金を払っている相手は、<br>
+                        本当にエアコンを掃除する職人でしょうか？
+                    </p>
+
+                    <h3 class="text-lg md:text-xl font-black text-slate-900 mb-6">
+                        もし同じ職人が来るなら？
+                    </h3>
+
+                    <p class="text-sm md:text-base font-bold text-slate-700 leading-loose text-left md:text-center inline-block">
+                        私が直接ご依頼を受けても、<br>
+                        紹介会社経由でご依頼を受けても、<br>
+                        現場で作業するのは私です。<br><br>
+                        エアコンを分解する人も、<br>
+                        洗う人も、組み立てる人も、<br>
+                        <span class="text-lg md:text-xl font-black text-slate-900">私です。</span><br><br>
+                        違うのは、<br>
+                        <span class="text-red-600 font-black border-b-[3px] border-red-600 pb-0.5 text-base md:text-lg inline-block mt-1">誰がお金を受け取るか。</span>
+                    </p>
+                </div>
+
+                <!-- ＝＝＝ 第2章：マッチングサイトの裏側 ＝＝＝ -->
+                <div class="border-2 border-red-500 rounded-[20px] p-5 md:p-8 mb-16 text-left relative mt-16 shadow-sm">
+                    
+                    <!-- 上部の赤いバッジ -->
+                    <div class="absolute -top-5 left-1/2 -translate-x-1/2 bg-red-600 text-white font-black text-[13px] md:text-sm px-5 py-2 rounded-full shadow-md whitespace-nowrap tracking-wider">
+                        便利なサイトの見えない費用
+                    </div>
+
+                    <h2 class="text-lg md:text-xl font-black text-slate-900 mb-6 text-center mt-3 leading-relaxed">
+                        マッチングサイトの<br>
+                        <span class="text-red-600">「一番賢い使い方」</span>
+                    </h2>
+                    
+                    <p class="text-[14px] md:text-[15px] font-bold text-slate-700 leading-loose mb-8">
+                        価格や口コミを見比べて業者を選べるマッチングサイト。とても便利なツールですよね。<br><br>
+                        しかし、そのままサイト経由で依頼してしまうと、そこには必ず<br class="md:hidden">
+                        <span class="text-red-600 font-black border-b-2 border-red-200 inline-block mt-1">「運営側への手数料（中間マージン）」</span><br class="md:hidden">
+                        が生じます。
+                    </p>
+
+                    <!-- 見出し：知っておきたい 価格の向こう側 -->
+                    <div class="flex flex-col items-center justify-center mt-12 mb-8">
+                        <span class="w-10 h-[3px] bg-neon mb-4 rounded-full"></span>
+                        <span class="text-[13px] md:text-sm font-black text-slate-500 tracking-widest mb-1">知っておきたい</span>
+                        <h3 class="text-[24px] md:text-[28px] font-black text-slate-900 text-center tracking-wider">
+                            価格の向こう側
+                        </h3>
+                    </div>
+
+                    <!-- 具体的な金額・手数料の裏話ブロック -->
+                    <div class="bg-white border border-slate-200 rounded-xl p-5 md:p-6 mb-10 shadow-sm">
+                        <p class="text-[13px] md:text-sm font-bold text-slate-600 leading-relaxed mb-5">
+                            売上の〇〇%や、1件あたり〇〇円など、サイトによって変わりますが、<span class="text-red-600 font-black">無料なものは存在しません。</span>
+                        </p>
+                        
+                        <div class="bg-slate-50 p-4 md:p-5 rounded-lg border border-slate-100">
+                            <p class="text-[14px] md:text-[15px] font-bold text-slate-700 leading-loose">
+                                例えば私なら、<br>
+                                お掃除機能付き1台、直接のご依頼であればお支払い額は<span class="text-lg font-black text-slate-900 inline-block">￥15,800</span>です。<br><br>
+                                
+                                しかしマッチングサイト経由の場合、<br>
+                                私の実入りである<span class="inline-block">￥15,800</span>を確保するため、<br class="md:hidden">
+                                <span class="text-red-600 font-black bg-red-50 px-1 inline-block mt-1">〇〇円や〇〇%上乗せした代金</span><br class="md:hidden">
+                                をお客様にお支払いいただくことになります。
+                            </p>
+                        </div>
+                    </div>
+                    <!-- / 具体的な金額の裏話ブロック -->
+
+
+                    <!-- ステップ解説 -->
+                    <div class="bg-red-50/50 rounded-xl p-4 md:p-6 mb-6 border border-red-100">
+                        <p class="text-[13px] md:text-sm font-black text-red-700 leading-relaxed mb-5 text-center">
+                            無駄なお金を払わないための<br>最高の一手間がこちらです👇
+                        </p>
+                        
+                        <ol class="space-y-5">
+                            <li class="flex items-start">
+                                <span class="flex-shrink-0 w-6 h-6 bg-red-600 text-white font-black rounded-full flex items-center justify-center text-xs mr-3 mt-0.5">1</span>
+                                <span class="text-[14px] md:text-[15px] font-bold text-slate-800 leading-relaxed">
+                                    マッチングアプリは<br class="md:hidden">
+                                    <span class="bg-neon px-1 text-slate-900 inline-block">「業者を探すため」</span>に見る<br>
+                                    <span class="text-slate-500 text-[13px] md:text-sm">（参考程度に）</span>
+                                </span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="flex-shrink-0 w-6 h-6 bg-red-600 text-white font-black rounded-full flex items-center justify-center text-xs mr-3 mt-0.5">2</span>
+                                <span class="text-[14px] md:text-[15px] font-bold text-slate-800 leading-relaxed">
+                                    気になる業者を見つけたら、<br>
+                                    ネットでその業者の<br class="md:hidden">
+                                    <span class="bg-neon px-1 text-slate-900 inline-block">「ホームページ」</span>を検索
+                                </span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="flex-shrink-0 w-6 h-6 bg-red-600 text-white font-black rounded-full flex items-center justify-center text-xs mr-3 mt-0.5">3</span>
+                                <span class="text-[14px] md:text-[15px] font-bold text-slate-800 leading-relaxed">
+                                    自社ホームページから<br class="md:hidden">
+                                    <span class="bg-neon px-1 text-slate-900 inline-block">「直接依頼」</span>
+                                </span>
+                            </li>
+                        </ol>
+                    </div>
+
+                    <p class="text-[14px] md:text-[15px] font-bold text-slate-700 leading-loose">
+                        この一手間で、<br class="md:hidden">
+                        業者は中間マージンを引かれずに済みます。<br><br>
+                        結果として、<br class="md:hidden">
+                        <span class="font-black text-slate-900 border-b-[2px] border-neon pb-0.5 inline-block mt-1">割引価格で依頼できたり、</span><br class="md:hidden">
+                        <span class="font-black text-slate-900 border-b-[2px] border-neon pb-0.5 inline-block mt-1">同じ価格でもより質の高いサービスを</span><br class="md:hidden">
+                        <span class="font-black text-slate-900 border-b-[2px] border-neon pb-0.5 inline-block mt-1">受けられる可能性</span>がグッと上がるのです。
+                    </p>
+                </div>
+                <!-- ★マッチングサイトブロック ここまで★ -->
+
+
+                <!-- ＝＝＝ 第3章：エアコンクリーニングは人で決まる ＝＝＝ -->
+                <div class="flex flex-col items-center justify-center mb-6 mt-10">
+                    <span class="w-10 h-[3px] bg-neon mb-3 rounded-full"></span>
+                    <h2 class="text-lg md:text-xl font-black text-slate-900 text-center leading-relaxed">
+                        エアコンクリーニングは<br class="md:hidden">人で決まる
+                    </h2>
+                </div>
+
+                <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose mb-10">
+                    「有名だから安心。」<br>
+                    「CMで見たから安心。」<br>
+                    「大手だから安心。」<br><br>
+                    本当にそうでしょうか？<br><br>
+                    大切なのは、<br>
+                    どこの会社に頼むかではありません。<br><br>
+                    <span class="text-lg md:text-xl font-black text-slate-900 inline-block mt-1">誰が来て、誰が施工するか</span>です。
+                </p>
+
+            </div>
+        </div>
+
+        <!-- ネイビーのカード (広告より技術) -->
+        <div class="bg-slate-900 rounded-[24px] border-l-[12px] border-neon p-8 md:p-10 text-center shadow-md">
+            
+            <h2 class="text-white font-black text-base md:text-lg leading-relaxed mb-8">
+                私は<span class="text-neon text-lg md:text-xl inline-block">広告より技術</span>を選びました。
+            </h2>
+
+            <p class="text-slate-100 font-bold text-[15px] md:text-base leading-loose mb-8">
+                テレビCMもありません。<br>
+                芸能人も使っていません。<br>
+                営業マンもいません。
+            </p>
+
+            <!-- 区切り線 -->
+            <div class="w-16 h-[1px] bg-slate-600 mx-auto mb-8"></div>
+
+            <p class="text-slate-100 font-bold text-[15px] md:text-base leading-loose mb-10">
+                その代わりにあるのは、<br><br>
+                <span class="text-neon font-black text-lg md:text-xl">工具</span>です。<br>
+                <span class="text-neon font-black text-lg md:text-xl">経験</span>です。<br>
+                そして、<br>
+                <span class="text-neon font-black text-lg md:text-xl inline-block mt-1">一台一台と向き合う時間</span>です。
+            </p>
+
+            <p class="text-slate-100 font-bold text-[15px] md:text-base leading-loose">
+                だから私は、<br>
+                価格ではなく、<br>
+                <span class="text-white font-black text-lg md:text-xl border-b-[3px] border-neon pb-1 inline-block mt-2">仕事で選ばれたい。</span>
+            </p>
+
+        </div>
+
+    </main>
+
+    <!-- ⑧ FOOTER -->
+    <footer class="bg-slate-900 text-white pt-12 pb-24 md:pb-12 border-t-[6px] border-neon text-center mt-12">
+        <div class="mb-6 flex flex-col items-center justify-center">
+            <span class="text-4xl md:text-5xl tracking-widest text-white flex items-center justify-center font-impact mt-1">
+                ONE
+                <img src="ONESTAR.PNG" alt="ロゴ" class="w-[80px] h-[80px] md:w-[100px] md:h-[100px] mx-[-10px] md:mx-[-16px] object-contain -translate-y-2" onerror="this.style.display='none'">
+                STAR
+            </span>
+            <p class="text-xs text-neon font-black mt-2 tracking-widest">株式会社ECS専属プロスタッフ</p>
+        </div>
+        
+        <p class="text-[11px] text-slate-400 font-bold mb-3">
+            <a href="/products" class="hover:text-white transition-colors underline underline-offset-4">オリジナルLINEスタンプ販売中</a>
+        </p>
+        <p class="text-[10px] text-slate-500 font-bold mb-4">
+            <a href="/privacy" class="hover:text-white transition-colors">プライバシーポリシー</a>
+        </p>
+        <p class="text-[10px] text-slate-500 font-bold tracking-wider">© 2026 ONE★STAR. All Rights Reserved.</p>
+    </footer>
+
+    <!-- MOBILE BOTTOM NAVIGATION (指定の4ボタン) -->
+    <div class="fixed bottom-0 left-0 right-0 z-45 bg-slate-900 md:hidden h-[60px] flex items-stretch text-white shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.3)] border-t border-slate-800">
+        
+        <!-- 料金 (黒) : /price -->
+        <a href="/price" class="flex flex-col items-center justify-center w-[20%] border-r border-slate-700 active:bg-slate-800">
+            <svg class="w-5 h-5 mb-1 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <span class="text-[9px] font-black">料金</span>
+        </a>
+        
+        <!-- 想い (黒) : /mind -->
+        <a href="/mind" class="flex flex-col items-center justify-center w-[20%] border-r border-slate-700 active:bg-slate-800">
+            <svg class="w-5 h-5 mb-1 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+            <span class="text-[9px] font-black">想い</span>
+        </a>
+
+        <!-- 拘り (黒) : /pride -->
+        <a href="/pride" class="flex flex-col items-center justify-center w-[20%] active:bg-slate-800">
+            <svg class="w-5 h-5 mb-1 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+            <span class="text-[9px] font-black">拘り</span>
+        </a>
+        
+        <!-- 電話する (蛍光イエロー) : tel:... -->
+        <a href="tel:08000807788" class="flex items-center justify-center bg-neon text-slate-900 w-[40%] font-black text-base active:bg-yellow-400 transition-colors">
+            <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+            電話する
+        </a>
+        
+    </div>
+
+    <!-- SCRIPTS -->
+    <script>
+        // === メニュー開閉用 ===
+        document.addEventListener('DOMContentLoaded', () => {
+            const drawerContainer = document.getElementById('drawer-container');
+            const drawerMenu = document.getElementById('drawer-menu');
+            const drawerBackdrop = document.getElementById('drawer-backdrop');
+            
+            const toggleMenu = (show) => {
+                if (show) {
+                    drawerContainer.classList.remove('hidden');
+                    setTimeout(() => {
+                        drawerBackdrop.classList.remove('opacity-0');
+                        drawerBackdrop.classList.add('opacity-100');
+                        drawerMenu.classList.remove('drawer-closed');
+                        drawerMenu.classList.add('drawer-open');
+                    }, 10);
+                } else {
+                    drawerBackdrop.classList.remove('opacity-100');
+                    drawerBackdrop.classList.add('opacity-0');
+                    drawerMenu.classList.remove('drawer-open');
+                    drawerMenu.classList.add('drawer-closed');
+                    setTimeout(() => drawerContainer.classList.add('hidden'), 300);
+                }
+            };
+
+            document.getElementById('menu-open-btn').addEventListener('click', () => toggleMenu(true));
+            document.getElementById('menu-close-btn').addEventListener('click', () => toggleMenu(false));
+            document.getElementById('drawer-backdrop').addEventListener('click', () => toggleMenu(false));
+            document.querySelectorAll('.menu-link').forEach(link => link.addEventListener('click', () => toggleMenu(false)));
+        });
+    </script>
+</body>
+</html>
+
+
+```
