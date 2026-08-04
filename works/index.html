@@ -147,24 +147,26 @@
             <article class="bg-white rounded-[24px] shadow-sm border border-slate-200 overflow-hidden flex flex-col hover:shadow-md transition-shadow">
                 
                 <!-- 画像エリア (Before / After) -->
-                <div class="relative bg-slate-50 border-b border-slate-100 p-4 md:p-5">
-                    <!-- 地域ラベル -->
-                    <div class="absolute top-4 left-4 z-20 bg-slate-900/95 text-neon text-[10px] md:text-xs font-black px-3.5 py-1.5 rounded-full shadow-md backdrop-blur-sm">
+                <!-- パディングを狭く(p-3)、背景色を少しスッキリと -->
+                <div class="relative bg-slate-50/50 border-b border-slate-100 p-3 md:p-4">
+                    <!-- 地域ラベル (位置を調整) -->
+                    <div class="absolute top-3 left-3 z-20 bg-slate-900/95 text-neon text-[10px] md:text-xs font-black px-3 py-1.5 rounded-full shadow-md backdrop-blur-sm">
                         📍 岡崎市
                     </div>
                     
-                    <div class="grid grid-cols-2 gap-3 md:gap-4 mt-6">
+                    <!-- ギャップを細く(gap-1.5) -->
+                    <div class="grid grid-cols-2 gap-1.5 md:gap-2 mt-7">
                         <!-- Before -->
                         <div class="flex flex-col">
-                            <!-- 角丸＆破線枠のコンテナ -->
-                            <div class="aspect-square relative rounded-2xl border-2 border-dashed border-slate-300 overflow-hidden bg-white shadow-sm group">
+                            <!-- 破線をなくし、角丸を少し控えめ(rounded-xl)に -->
+                            <div class="aspect-square relative rounded-xl overflow-hidden shadow-sm group bg-slate-100 border border-slate-200/50">
                                 <img src="IMG_5873.jpeg" alt="施工前" class="w-full h-full object-cover absolute inset-0 group-hover:scale-105 transition-transform duration-500">
                             </div>
                             <span class="text-[10px] md:text-xs font-bold text-slate-400 text-center mt-2 tracking-wider">BEFORE</span>
                         </div>
                         <!-- After -->
                         <div class="flex flex-col">
-                            <div class="aspect-square relative rounded-2xl border-2 border-dashed border-slate-300 overflow-hidden bg-white shadow-sm group">
+                            <div class="aspect-square relative rounded-xl overflow-hidden shadow-sm group bg-slate-100 border border-slate-200/50">
                                 <img src="IMG_5874.jpeg" alt="施工後" class="w-full h-full object-cover absolute inset-0 group-hover:scale-105 transition-transform duration-500">
                             </div>
                             <span class="text-[10px] md:text-xs font-bold text-slate-400 text-center mt-2 tracking-wider">AFTER</span>
@@ -199,19 +201,19 @@
 
             <!-- カード 2 (ダミー) -->
             <article class="bg-white rounded-[24px] shadow-sm border border-slate-200 overflow-hidden flex flex-col hover:shadow-md transition-shadow">
-                <div class="relative bg-slate-50 border-b border-slate-100 p-4 md:p-5">
-                    <div class="absolute top-4 left-4 z-20 bg-slate-900/95 text-neon text-[10px] md:text-xs font-black px-3.5 py-1.5 rounded-full shadow-md backdrop-blur-sm">
+                <div class="relative bg-slate-50/50 border-b border-slate-100 p-3 md:p-4">
+                    <div class="absolute top-3 left-3 z-20 bg-slate-900/95 text-neon text-[10px] md:text-xs font-black px-3 py-1.5 rounded-full shadow-md backdrop-blur-sm">
                         📍 豊田市
                     </div>
-                    <div class="grid grid-cols-2 gap-3 md:gap-4 mt-6">
+                    <div class="grid grid-cols-2 gap-1.5 md:gap-2 mt-7">
                         <div class="flex flex-col">
-                            <div class="aspect-square relative rounded-2xl border-2 border-dashed border-slate-300 overflow-hidden bg-white shadow-sm group">
+                            <div class="aspect-square relative rounded-xl overflow-hidden shadow-sm group bg-slate-100 border border-slate-200/50">
                                 <img src="https://placehold.co/400x400/f8fafc/94a3b8?text=Before" alt="施工前" class="w-full h-full object-cover absolute inset-0 group-hover:scale-105 transition-transform duration-500">
                             </div>
                             <span class="text-[10px] md:text-xs font-bold text-slate-400 text-center mt-2 tracking-wider">BEFORE</span>
                         </div>
                         <div class="flex flex-col">
-                            <div class="aspect-square relative rounded-2xl border-2 border-dashed border-slate-300 overflow-hidden bg-white shadow-sm group">
+                            <div class="aspect-square relative rounded-xl overflow-hidden shadow-sm group bg-slate-100 border border-slate-200/50">
                                 <img src="https://placehold.co/400x400/f8fafc/94a3b8?text=After" alt="施工後" class="w-full h-full object-cover absolute inset-0 group-hover:scale-105 transition-transform duration-500">
                             </div>
                             <span class="text-[10px] md:text-xs font-bold text-slate-400 text-center mt-2 tracking-wider">AFTER</span>
@@ -239,19 +241,19 @@
 
             <!-- カード 3 (ダミー) -->
             <article class="bg-white rounded-[24px] shadow-sm border border-slate-200 overflow-hidden flex flex-col hover:shadow-md transition-shadow">
-                <div class="relative bg-slate-50 border-b border-slate-100 p-4 md:p-5">
-                    <div class="absolute top-4 left-4 z-20 bg-slate-900/95 text-neon text-[10px] md:text-xs font-black px-3.5 py-1.5 rounded-full shadow-md backdrop-blur-sm">
+                <div class="relative bg-slate-50/50 border-b border-slate-100 p-3 md:p-4">
+                    <div class="absolute top-3 left-3 z-20 bg-slate-900/95 text-neon text-[10px] md:text-xs font-black px-3 py-1.5 rounded-full shadow-md backdrop-blur-sm">
                         📍 刈谷市
                     </div>
-                    <div class="grid grid-cols-2 gap-3 md:gap-4 mt-6">
+                    <div class="grid grid-cols-2 gap-1.5 md:gap-2 mt-7">
                         <div class="flex flex-col">
-                            <div class="aspect-square relative rounded-2xl border-2 border-dashed border-slate-300 overflow-hidden bg-white shadow-sm group">
+                            <div class="aspect-square relative rounded-xl overflow-hidden shadow-sm group bg-slate-100 border border-slate-200/50">
                                 <img src="https://placehold.co/400x400/f8fafc/94a3b8?text=Before" alt="施工前" class="w-full h-full object-cover absolute inset-0 group-hover:scale-105 transition-transform duration-500">
                             </div>
                             <span class="text-[10px] md:text-xs font-bold text-slate-400 text-center mt-2 tracking-wider">BEFORE</span>
                         </div>
                         <div class="flex flex-col">
-                            <div class="aspect-square relative rounded-2xl border-2 border-dashed border-slate-300 overflow-hidden bg-white shadow-sm group">
+                            <div class="aspect-square relative rounded-xl overflow-hidden shadow-sm group bg-slate-100 border border-slate-200/50">
                                 <img src="https://placehold.co/400x400/f8fafc/94a3b8?text=After" alt="施工後" class="w-full h-full object-cover absolute inset-0 group-hover:scale-105 transition-transform duration-500">
                             </div>
                             <span class="text-[10px] md:text-xs font-bold text-slate-400 text-center mt-2 tracking-wider">AFTER</span>
