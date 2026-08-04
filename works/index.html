@@ -1,0 +1,374 @@
+```html
+<!DOCTYPE html>
+<html lang="ja" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>施工事例 | ONE★STAR</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        neon: '#EFFF00' // トレードカラー：蛍光イエロー
+                    },
+                    fontFamily: {
+                        sans: ['"Noto Sans JP"', 'sans-serif'],
+                        impact: ['"Black Ops One"', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        /* ドロワーメニュー用 */
+        #drawer-menu { transition: transform 0.3s ease-in-out; }
+        .drawer-closed { transform: translateX(-100%); }
+        .drawer-open { transform: translateX(0); }
+    </style>
+</head>
+<body class="font-sans text-slate-800 bg-slate-50 antialiased overflow-x-hidden pb-[60px]">
+
+    <!-- HEADER (共通) -->
+    <header class="fixed top-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md shadow-sm border-b border-slate-100 h-14 flex items-center justify-between px-4">
+        <button id="menu-open-btn" class="p-2 hover:bg-slate-100 rounded-lg" aria-label="メニュー">
+            <svg class="w-6 h-6 text-slate-800" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+
+        <div class="absolute left-1/2 -translate-x-1/2 flex items-center justify-center mt-1">
+            <a href="/" class="text-2xl md:text-3xl tracking-widest text-slate-900 leading-none flex items-center font-impact">
+                ONE
+                <img src="ONESTAR.PNG" alt="ロゴ" class="w-[45px] h-[45px] md:w-[55px] md:h-[55px] mx-[-4px] md:mx-[-6px] object-contain -translate-y-[4px]" onerror="this.style.display='none'">
+                STAR
+            </a>
+        </div>
+
+        <div class="hidden md:flex items-center space-x-3">
+            <a href="tel:08000807788" class="bg-slate-900 hover:bg-slate-800 text-neon px-4 py-1.5 rounded-full text-xs font-black border border-slate-700 flex items-center space-x-1 transition-all">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                <span>電話相談</span>
+            </a>
+        </div>
+        <div class="w-10 md:hidden"></div>
+    </header>
+
+    <!-- DRAWER MENU (共通) -->
+    <div id="drawer-container" class="fixed inset-0 z-50 overflow-hidden hidden">
+        <div id="drawer-backdrop" class="absolute inset-0 bg-slate-900/60 opacity-0 transition-opacity duration-300"></div>
+        <div class="pointer-events-none fixed inset-y-0 left-0 flex max-w-full">
+            <div id="drawer-menu" class="pointer-events-auto w-64 drawer-closed bg-white shadow-2xl flex flex-col h-full">
+                
+                <div class="p-3 bg-white flex justify-end">
+                    <button id="menu-close-btn" class="p-2 hover:bg-slate-100 rounded-lg">
+                        <svg class="w-6 h-6 text-slate-500" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+                    </button>
+                </div>
+
+                <div class="bg-blue-600 py-3 px-6">
+                    <h2 class="text-white font-black tracking-wider text-sm">MENU</h2>
+                </div>
+
+                <nav class="flex-1 px-4 py-2 overflow-y-auto">
+                    <div class="space-y-1">
+                        <a href="/" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>トップページ
+                        </a>
+                        <a href="/price" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>料金プラン
+                        </a>
+                        <a href="/works" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>施工事例
+                        </a>
+                        <a href="/mind" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>ONE★STARの想い
+                        </a>
+                        <a href="/pride" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>プロとしての拘り
+                        </a>
+                        <a href="/trash" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>ここだけの話
+                        </a>
+                        <a href="/before" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>ご予約の前に
+                        </a>
+                        <a href="/faq" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>よくある質問
+                        </a>
+                        <a href="/notes" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>注意事項
+                        </a>
+                        
+                        <a href="/products" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-[#06C755]">
+                            <span class="mr-2 text-slate-400">＞</span>オリジナルLINEスタンプ
+                        </a>
+                    </div>
+                    
+                    <hr class="border-slate-300 border-dashed my-4">
+                    <a href="https://www.edge-cleanservice.com" target="_blank" rel="noopener noreferrer" class="menu-link flex items-center py-2 text-sm font-black text-slate-900 hover:text-blue-600 transition-colors">
+                        株式会社ECS公式サイト
+                        <svg class="w-3.5 h-3.5 ml-1.5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                    </a>
+                </nav>
+
+                <div class="p-4 bg-slate-50 border-t border-slate-100 text-center mt-auto">
+                    <p class="text-[9px] text-slate-500 font-bold leading-relaxed mb-2">
+                        株式会社ECS EDGE CLEAN SERVICE<br>専属プロスタッフとして<br>愛知県全域で毎日奮闘中❣️
+                    </p>
+                    <a href="tel:08000807788" class="block w-full py-3 bg-emerald-500 text-white font-bold rounded-lg text-sm shadow">直接電話する</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN (施工事例) -->
+    <main class="pt-24 pb-16 px-4 max-w-5xl mx-auto">
+
+        <!-- ヒーローセクション -->
+        <div class="text-center mb-10">
+            <h1 class="text-2xl md:text-3xl font-black text-slate-900 mb-6 tracking-wider">
+                施工事例
+            </h1>
+            <p class="text-[13px] md:text-base text-slate-900 font-bold leading-loose max-w-2xl mx-auto bg-white p-5 rounded-2xl shadow-sm border border-slate-200">
+                実際にONE★STARが施工した<br class="md:hidden">エアコンクリーニングの一例をご紹介します。<br>
+                メーカーや設置環境によって汚れ方は様々です。<br>
+                ご依頼前の参考としてご覧ください。
+            </p>
+        </div>
+
+        <!-- 施工事例カードリスト (グリッドレイアウト) -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            
+            <!-- カード 1 (テンプレート) -->
+            <article class="bg-white rounded-[24px] shadow-sm border border-slate-200 overflow-hidden flex flex-col hover:shadow-md transition-shadow">
+                
+                <!-- 画像エリア (Before / After) -->
+                <div class="relative bg-slate-50 border-b border-slate-100 p-4 md:p-5">
+                    <!-- 地域ラベル -->
+                    <div class="absolute top-4 left-4 z-20 bg-slate-900/95 text-neon text-[10px] md:text-xs font-black px-3.5 py-1.5 rounded-full shadow-md backdrop-blur-sm">
+                        📍 岡崎市
+                    </div>
+                    
+                    <div class="grid grid-cols-2 gap-3 md:gap-4 mt-6"> <!-- 画像間のギャップ(隙間) -->
+                        <!-- Before -->
+                        <div class="flex flex-col">
+                            <!-- 角丸＆破線枠のコンテナ -->
+                            <div class="aspect-square relative rounded-2xl border-2 border-dashed border-slate-300 overflow-hidden bg-white shadow-sm group">
+                                <img src="https://placehold.co/400x400/f8fafc/94a3b8?text=Before" alt="施工前" class="w-full h-full object-cover absolute inset-0 group-hover:scale-105 transition-transform duration-500">
+                            </div>
+                            <span class="text-[10px] md:text-xs font-bold text-slate-400 text-center mt-2 tracking-wider">BEFORE</span>
+                        </div>
+                        <!-- After -->
+                        <div class="flex flex-col">
+                            <div class="aspect-square relative rounded-2xl border-2 border-dashed border-slate-300 overflow-hidden bg-white shadow-sm group">
+                                <img src="https://placehold.co/400x400/f8fafc/94a3b8?text=After" alt="施工後" class="w-full h-full object-cover absolute inset-0 group-hover:scale-105 transition-transform duration-500">
+                            </div>
+                            <span class="text-[10px] md:text-xs font-bold text-slate-400 text-center mt-2 tracking-wider">AFTER</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- カード内容エリア -->
+                <div class="p-5 flex-1 flex flex-col">
+                    <!-- タグ -->
+                    <div class="flex flex-wrap gap-2 mb-3">
+                        <span class="bg-blue-50 text-blue-600 text-[10px] md:text-xs font-bold px-2.5 py-1 rounded border border-blue-100">ダイキン</span>
+                        <span class="bg-emerald-50 text-emerald-600 text-[10px] md:text-xs font-bold px-2.5 py-1 rounded border border-emerald-100">お掃除機能付き</span>
+                    </div>
+                    
+                    <!-- タイトル -->
+                    <h2 class="font-bold text-slate-900 text-sm md:text-base mb-4 leading-relaxed">
+                        長年蓄積したカビとホコリを徹底洗浄！
+                    </h2>
+                    
+                    <!-- リンクボタン -->
+                    <div class="mt-auto pt-4 border-t border-slate-100">
+                        <a href="/works/okazaki001" class="flex items-center justify-between group py-1">
+                            <span class="text-[13px] md:text-sm font-black text-slate-700 group-hover:text-blue-600 transition-colors">詳しく見る</span>
+                            <span class="bg-slate-900 text-neon w-8 h-8 rounded-full flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition-all transform group-hover:translate-x-1">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7"/></svg>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- カード 2 (複製用サンプル) -->
+            <article class="bg-white rounded-[24px] shadow-sm border border-slate-200 overflow-hidden flex flex-col hover:shadow-md transition-shadow">
+                
+                <div class="relative bg-slate-50 border-b border-slate-100 p-4 md:p-5">
+                    <div class="absolute top-4 left-4 z-20 bg-slate-900/95 text-neon text-[10px] md:text-xs font-black px-3.5 py-1.5 rounded-full shadow-md backdrop-blur-sm">
+                        📍 豊田市
+                    </div>
+                    
+                    <div class="grid grid-cols-2 gap-3 md:gap-4 mt-6">
+                        <div class="flex flex-col">
+                            <div class="aspect-square relative rounded-2xl border-2 border-dashed border-slate-300 overflow-hidden bg-white shadow-sm group">
+                                <img src="https://placehold.co/400x400/f8fafc/94a3b8?text=Before" alt="施工前" class="w-full h-full object-cover absolute inset-0 group-hover:scale-105 transition-transform duration-500">
+                            </div>
+                            <span class="text-[10px] md:text-xs font-bold text-slate-400 text-center mt-2 tracking-wider">BEFORE</span>
+                        </div>
+                        <div class="flex flex-col">
+                            <div class="aspect-square relative rounded-2xl border-2 border-dashed border-slate-300 overflow-hidden bg-white shadow-sm group">
+                                <img src="https://placehold.co/400x400/f8fafc/94a3b8?text=After" alt="施工後" class="w-full h-full object-cover absolute inset-0 group-hover:scale-105 transition-transform duration-500">
+                            </div>
+                            <span class="text-[10px] md:text-xs font-bold text-slate-400 text-center mt-2 tracking-wider">AFTER</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-5 flex-1 flex flex-col">
+                    <div class="flex flex-wrap gap-2 mb-3">
+                        <span class="bg-blue-50 text-blue-600 text-[10px] md:text-xs font-bold px-2.5 py-1 rounded border border-blue-100">パナソニック</span>
+                        <span class="bg-slate-50 text-slate-600 text-[10px] md:text-xs font-bold px-2.5 py-1 rounded border border-slate-200">スタンダード</span>
+                    </div>
+                    <h2 class="font-bold text-slate-900 text-sm md:text-base mb-4 leading-relaxed">
+                        寝室のエアコン、ニオイの元を徹底洗浄
+                    </h2>
+                    <div class="mt-auto pt-4 border-t border-slate-100">
+                        <a href="/works/toyota001" class="flex items-center justify-between group py-1">
+                            <span class="text-[13px] md:text-sm font-black text-slate-700 group-hover:text-blue-600 transition-colors">詳しく見る</span>
+                            <span class="bg-slate-900 text-neon w-8 h-8 rounded-full flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition-all transform group-hover:translate-x-1">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7"/></svg>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- カード 3 (複製用サンプル) -->
+            <article class="bg-white rounded-[24px] shadow-sm border border-slate-200 overflow-hidden flex flex-col hover:shadow-md transition-shadow">
+                
+                <div class="relative bg-slate-50 border-b border-slate-100 p-4 md:p-5">
+                    <div class="absolute top-4 left-4 z-20 bg-slate-900/95 text-neon text-[10px] md:text-xs font-black px-3.5 py-1.5 rounded-full shadow-md backdrop-blur-sm">
+                        📍 刈谷市
+                    </div>
+                    
+                    <div class="grid grid-cols-2 gap-3 md:gap-4 mt-6">
+                        <div class="flex flex-col">
+                            <div class="aspect-square relative rounded-2xl border-2 border-dashed border-slate-300 overflow-hidden bg-white shadow-sm group">
+                                <img src="https://placehold.co/400x400/f8fafc/94a3b8?text=Before" alt="施工前" class="w-full h-full object-cover absolute inset-0 group-hover:scale-105 transition-transform duration-500">
+                            </div>
+                            <span class="text-[10px] md:text-xs font-bold text-slate-400 text-center mt-2 tracking-wider">BEFORE</span>
+                        </div>
+                        <div class="flex flex-col">
+                            <div class="aspect-square relative rounded-2xl border-2 border-dashed border-slate-300 overflow-hidden bg-white shadow-sm group">
+                                <img src="https://placehold.co/400x400/f8fafc/94a3b8?text=After" alt="施工後" class="w-full h-full object-cover absolute inset-0 group-hover:scale-105 transition-transform duration-500">
+                            </div>
+                            <span class="text-[10px] md:text-xs font-bold text-slate-400 text-center mt-2 tracking-wider">AFTER</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-5 flex-1 flex flex-col">
+                    <div class="flex flex-wrap gap-2 mb-3">
+                        <span class="bg-blue-50 text-blue-600 text-[10px] md:text-xs font-bold px-2.5 py-1 rounded border border-blue-100">三菱電機</span>
+                        <span class="bg-emerald-50 text-emerald-600 text-[10px] md:text-xs font-bold px-2.5 py-1 rounded border border-emerald-100">お掃除機能付き</span>
+                    </div>
+                    <h2 class="font-bold text-slate-900 text-sm md:text-base mb-4 leading-relaxed">
+                        リビングの大型エアコンを隅々まで丁寧にクリーニング
+                    </h2>
+                    <div class="mt-auto pt-4 border-t border-slate-100">
+                        <a href="/works/kariya001" class="flex items-center justify-between group py-1">
+                            <span class="text-[13px] md:text-sm font-black text-slate-700 group-hover:text-blue-600 transition-colors">詳しく見る</span>
+                            <span class="bg-slate-900 text-neon w-8 h-8 rounded-full flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition-all transform group-hover:translate-x-1">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7"/></svg>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+            </article>
+
+        </div>
+    </main>
+
+    <!-- FOOTER (共通) -->
+    <footer class="bg-slate-900 text-white pt-12 pb-24 md:pb-12 border-t-[6px] border-neon text-center">
+        <div class="mb-6 flex flex-col items-center justify-center">
+            <span class="text-4xl md:text-5xl tracking-widest text-white flex items-center justify-center font-impact mt-1">
+                ONE
+                <img src="ONESTAR.PNG" alt="ロゴ" class="w-[80px] h-[80px] md:w-[100px] md:h-[100px] mx-[-10px] md:mx-[-16px] object-contain -translate-y-2" onerror="this.style.display='none'">
+                STAR
+            </span>
+            <p class="text-xs text-neon font-black mt-2 tracking-widest">株式会社ECS専属プロスタッフ</p>
+        </div>
+        
+        <p class="text-[11px] text-slate-400 font-bold mb-3">
+            <a href="/products" class="hover:text-white transition-colors underline underline-offset-4">オリジナルLINEスタンプ販売中</a>
+        </p>
+        <p class="text-[10px] text-slate-500 font-bold mb-4">
+            <a href="/privacy" class="hover:text-white transition-colors">プライバシーポリシー</a>
+        </p>
+        <p class="text-[10px] text-slate-500 font-bold tracking-wider">© 2026 ONE★STAR. All Rights Reserved.</p>
+    </footer>
+
+    <!-- MOBILE BOTTOM NAVIGATION (共通) -->
+    <div class="fixed bottom-0 left-0 right-0 z-45 bg-slate-900 md:hidden h-[60px] flex items-stretch text-white shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.3)] border-t border-slate-800">
+        
+        <!-- 料金 (黒) -->
+        <a href="/price" class="flex flex-col items-center justify-center w-[20%] border-r border-slate-700 active:bg-slate-800">
+            <svg class="w-5 h-5 mb-1 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <span class="text-[9px] font-black">料金</span>
+        </a>
+        
+        <!-- 想い (黒) -->
+        <a href="/mind" class="flex flex-col items-center justify-center w-[20%] border-r border-slate-700 active:bg-slate-800">
+            <svg class="w-5 h-5 mb-1 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+            <span class="text-[9px] font-black">想い</span>
+        </a>
+
+        <!-- 拘り (黒) -->
+        <a href="/pride" class="flex flex-col items-center justify-center w-[20%] active:bg-slate-800">
+            <svg class="w-5 h-5 mb-1 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+            <span class="text-[9px] font-black">拘り</span>
+        </a>
+        
+        <!-- 電話する (蛍光イエロー) -->
+        <a href="tel:08000807788" class="flex items-center justify-center bg-neon text-slate-900 w-[40%] font-black text-base active:bg-yellow-400 transition-colors">
+            <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+            電話する
+        </a>
+        
+    </div>
+
+    <!-- SCRIPTS -->
+    <script>
+        // === メニュー開閉用 ===
+        document.addEventListener('DOMContentLoaded', () => {
+            const drawerContainer = document.getElementById('drawer-container');
+            const drawerMenu = document.getElementById('drawer-menu');
+            const drawerBackdrop = document.getElementById('drawer-backdrop');
+            
+            const toggleMenu = (show) => {
+                if (show) {
+                    drawerContainer.classList.remove('hidden');
+                    setTimeout(() => {
+                        drawerBackdrop.classList.remove('opacity-0');
+                        drawerBackdrop.classList.add('opacity-100');
+                        drawerMenu.classList.remove('drawer-closed');
+                        drawerMenu.classList.add('drawer-open');
+                    }, 10);
+                } else {
+                    drawerBackdrop.classList.remove('opacity-100');
+                    drawerBackdrop.classList.add('opacity-0');
+                    drawerMenu.classList.remove('drawer-open');
+                    drawerMenu.classList.add('drawer-closed');
+                    setTimeout(() => drawerContainer.classList.add('hidden'), 300);
+                }
+            };
+
+            document.getElementById('menu-open-btn').addEventListener('click', () => toggleMenu(true));
+            document.getElementById('menu-close-btn').addEventListener('click', () => toggleMenu(false));
+            document.getElementById('drawer-backdrop').addEventListener('click', () => toggleMenu(false));
+            document.querySelectorAll('.menu-link').forEach(link => link.addEventListener('click', () => toggleMenu(false)));
+        });
+    </script>
+</body>
+</html>
+
+
+```
