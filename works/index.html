@@ -147,29 +147,30 @@
             <article class="bg-white rounded-[24px] shadow-sm border border-slate-200 overflow-hidden flex flex-col hover:shadow-md transition-shadow">
                 
                 <!-- 画像エリア (Before / After) -->
-                <!-- パディングを狭く(p-3)、背景色を少しスッキリと -->
                 <div class="relative bg-slate-50/50 border-b border-slate-100 p-3 md:p-4">
-                    <!-- 地域ラベル (位置を調整) -->
+                    <!-- 地域ラベル -->
                     <div class="absolute top-3 left-3 z-20 bg-slate-900/95 text-neon text-[10px] md:text-xs font-black px-3 py-1.5 rounded-full shadow-md backdrop-blur-sm">
                         📍 岡崎市
                     </div>
                     
-                    <!-- ギャップを細く(gap-1.5) -->
                     <div class="grid grid-cols-2 gap-1.5 md:gap-2 mt-7">
                         <!-- Before -->
-                        <div class="flex flex-col">
-                            <!-- 破線をなくし、角丸を少し控えめ(rounded-xl)に -->
-                            <div class="aspect-square relative rounded-xl overflow-hidden shadow-sm group bg-slate-100 border border-slate-200/50">
+                        <div class="flex flex-col items-center">
+                            <div class="w-full aspect-square relative rounded-xl overflow-hidden shadow-sm group bg-slate-100 border border-slate-200/50">
                                 <img src="IMG_5873.jpeg" alt="施工前" class="w-full h-full object-cover absolute inset-0 group-hover:scale-105 transition-transform duration-500">
                             </div>
-                            <span class="text-[10px] md:text-xs font-bold text-slate-400 text-center mt-2 tracking-wider">BEFORE</span>
+                            <span class="text-[10px] md:text-xs font-bold text-slate-400 mt-2 tracking-wider">BEFORE</span>
                         </div>
-                        <!-- After -->
-                        <div class="flex flex-col">
-                            <div class="aspect-square relative rounded-xl overflow-hidden shadow-sm group bg-slate-100 border border-slate-200/50">
+                        <!-- After (修正版マーカー装飾) -->
+                        <div class="flex flex-col items-center">
+                            <div class="w-full aspect-square relative rounded-xl overflow-hidden shadow-sm group bg-slate-100 border border-slate-200/50">
                                 <img src="IMG_5874.jpeg" alt="施工後" class="w-full h-full object-cover absolute inset-0 group-hover:scale-105 transition-transform duration-500">
                             </div>
-                            <span class="text-[10px] md:text-xs font-bold text-slate-400 text-center mt-2 tracking-wider">AFTER</span>
+                            <!-- 修正：z-0 と z-10 を使って確実に背景色の上にマーカーを引く -->
+                            <span class="relative inline-block mt-2">
+                                <span class="text-[10px] md:text-xs font-black text-slate-900 tracking-wider relative z-10 px-0.5">AFTER</span>
+                                <span class="absolute bottom-[2px] left-0 w-full h-[6px] bg-neon z-0 rounded-sm"></span>
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -179,13 +180,12 @@
                     <!-- タグ -->
                     <div class="flex flex-wrap gap-2 mb-3">
                         <span class="bg-blue-50 text-blue-600 text-[10px] md:text-xs font-bold px-2.5 py-1 rounded border border-blue-100">ダイキン</span>
-                        <!-- お掃除機能付きからスタンダードに変更 -->
                         <span class="bg-slate-50 text-slate-600 text-[10px] md:text-xs font-bold px-2.5 py-1 rounded border border-slate-200">スタンダード</span>
                     </div>
                     
                     <!-- タイトル -->
                     <h2 class="font-bold text-slate-900 text-sm md:text-base mb-4 leading-relaxed">
-                        長年蓄積したカビとホコリを徹底洗浄！
+                        新築から5年分の汚れを徹底洗浄！
                     </h2>
                     
                     <!-- リンクボタン -->
@@ -207,17 +207,21 @@
                         📍 刈谷市
                     </div>
                     <div class="grid grid-cols-2 gap-1.5 md:gap-2 mt-7">
-                        <div class="flex flex-col">
-                            <div class="aspect-square relative rounded-xl overflow-hidden shadow-sm group bg-slate-100 border border-slate-200/50">
+                        <div class="flex flex-col items-center">
+                            <div class="w-full aspect-square relative rounded-xl overflow-hidden shadow-sm group bg-slate-100 border border-slate-200/50">
                                 <img src="IMG_5880.jpeg" alt="施工前" class="w-full h-full object-cover absolute inset-0 group-hover:scale-105 transition-transform duration-500">
                             </div>
-                            <span class="text-[10px] md:text-xs font-bold text-slate-400 text-center mt-2 tracking-wider">BEFORE</span>
+                            <span class="text-[10px] md:text-xs font-bold text-slate-400 mt-2 tracking-wider">BEFORE</span>
                         </div>
-                        <div class="flex flex-col">
-                            <div class="aspect-square relative rounded-xl overflow-hidden shadow-sm group bg-slate-100 border border-slate-200/50">
+                        <div class="flex flex-col items-center">
+                            <div class="w-full aspect-square relative rounded-xl overflow-hidden shadow-sm group bg-slate-100 border border-slate-200/50">
                                 <img src="IMG_5881.jpeg" alt="施工後" class="w-full h-full object-cover absolute inset-0 group-hover:scale-105 transition-transform duration-500">
                             </div>
-                            <span class="text-[10px] md:text-xs font-bold text-slate-400 text-center mt-2 tracking-wider">AFTER</span>
+                            <!-- 修正：z-0 と z-10 を使って確実に背景色の上にマーカーを引く -->
+                            <span class="relative inline-block mt-2">
+                                <span class="text-[10px] md:text-xs font-black text-slate-900 tracking-wider relative z-10 px-0.5">AFTER</span>
+                                <span class="absolute bottom-[2px] left-0 w-full h-[6px] bg-neon z-0 rounded-sm"></span>
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -227,7 +231,7 @@
                         <span class="bg-emerald-50 text-emerald-600 text-[10px] md:text-xs font-bold px-2.5 py-1 rounded border border-emerald-100">お掃除機能付き</span>
                     </div>
                     <h2 class="font-bold text-slate-900 text-sm md:text-base mb-4 leading-relaxed">
-                        送風ファンのカビを徹底洗浄
+                        送風ファンのカビも徹底的に洗浄！
                     </h2>
                     <div class="mt-auto pt-4 border-t border-slate-100">
                         <a href="/works/kariya001" class="flex items-center justify-between group py-1">
@@ -247,17 +251,21 @@
                         📍 豊田市
                     </div>
                     <div class="grid grid-cols-2 gap-1.5 md:gap-2 mt-7">
-                        <div class="flex flex-col">
-                            <div class="aspect-square relative rounded-xl overflow-hidden shadow-sm group bg-slate-100 border border-slate-200/50">
+                        <div class="flex flex-col items-center">
+                            <div class="w-full aspect-square relative rounded-xl overflow-hidden shadow-sm group bg-slate-100 border border-slate-200/50">
                                 <img src="IMG_5887.jpeg" alt="施工前" class="w-full h-full object-cover absolute inset-0 group-hover:scale-105 transition-transform duration-500">
                             </div>
-                            <span class="text-[10px] md:text-xs font-bold text-slate-400 text-center mt-2 tracking-wider">BEFORE</span>
+                            <span class="text-[10px] md:text-xs font-bold text-slate-400 mt-2 tracking-wider">BEFORE</span>
                         </div>
-                        <div class="flex flex-col">
-                            <div class="aspect-square relative rounded-xl overflow-hidden shadow-sm group bg-slate-100 border border-slate-200/50">
+                        <div class="flex flex-col items-center">
+                            <div class="w-full aspect-square relative rounded-xl overflow-hidden shadow-sm group bg-slate-100 border border-slate-200/50">
                                 <img src="IMG_5888.jpeg" alt="施工後" class="w-full h-full object-cover absolute inset-0 group-hover:scale-105 transition-transform duration-500">
                             </div>
-                            <span class="text-[10px] md:text-xs font-bold text-slate-400 text-center mt-2 tracking-wider">AFTER</span>
+                            <!-- 修正：z-0 と z-10 を使って確実に背景色の上にマーカーを引く -->
+                            <span class="relative inline-block mt-2">
+                                <span class="text-[10px] md:text-xs font-black text-slate-900 tracking-wider relative z-10 px-0.5">AFTER</span>
+                                <span class="absolute bottom-[2px] left-0 w-full h-[6px] bg-neon z-0 rounded-sm"></span>
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -267,7 +275,7 @@
                         <span class="bg-emerald-50 text-emerald-600 text-[10px] md:text-xs font-bold px-2.5 py-1 rounded border border-emerald-100">お掃除機能付き</span>
                     </div>
                     <h2 class="font-bold text-slate-900 text-sm md:text-base mb-4 leading-relaxed">
-                        エアコン本来の性能を回復
+                        目詰まり解消！エアコン本来の効きへ。
                     </h2>
                     <div class="mt-auto pt-4 border-t border-slate-100">
                         <a href="/works/toyota001" class="flex items-center justify-between group py-1">
@@ -287,19 +295,21 @@
                         📍 安城市
                     </div>
                     <div class="grid grid-cols-2 gap-1.5 md:gap-2 mt-7">
-                        <div class="flex flex-col">
-                            <div class="aspect-square relative rounded-xl overflow-hidden shadow-sm group bg-slate-100 border border-slate-200/50">
-                                <!-- 新しい画像を設定 -->
+                        <div class="flex flex-col items-center">
+                            <div class="w-full aspect-square relative rounded-xl overflow-hidden shadow-sm group bg-slate-100 border border-slate-200/50">
                                 <img src="IMG_5853.jpeg" alt="施工前" class="w-full h-full object-cover absolute inset-0 group-hover:scale-105 transition-transform duration-500">
                             </div>
-                            <span class="text-[10px] md:text-xs font-bold text-slate-400 text-center mt-2 tracking-wider">BEFORE</span>
+                            <span class="text-[10px] md:text-xs font-bold text-slate-400 mt-2 tracking-wider">BEFORE</span>
                         </div>
-                        <div class="flex flex-col">
-                            <div class="aspect-square relative rounded-xl overflow-hidden shadow-sm group bg-slate-100 border border-slate-200/50">
-                                <!-- 新しい画像を設定 -->
+                        <div class="flex flex-col items-center">
+                            <div class="w-full aspect-square relative rounded-xl overflow-hidden shadow-sm group bg-slate-100 border border-slate-200/50">
                                 <img src="IMG_5855.jpeg" alt="施工後" class="w-full h-full object-cover absolute inset-0 group-hover:scale-105 transition-transform duration-500">
                             </div>
-                            <span class="text-[10px] md:text-xs font-bold text-slate-400 text-center mt-2 tracking-wider">AFTER</span>
+                            <!-- 修正：z-0 と z-10 を使って確実に背景色の上にマーカーを引く -->
+                            <span class="relative inline-block mt-2">
+                                <span class="text-[10px] md:text-xs font-black text-slate-900 tracking-wider relative z-10 px-0.5">AFTER</span>
+                                <span class="absolute bottom-[2px] left-0 w-full h-[6px] bg-neon z-0 rounded-sm"></span>
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -309,7 +319,7 @@
                         <span class="bg-emerald-50 text-emerald-600 text-[10px] md:text-xs font-bold px-2.5 py-1 rounded border border-emerald-100">お掃除機能付き</span>
                     </div>
                     <h2 class="font-bold text-slate-900 text-sm md:text-base mb-4 leading-relaxed">
-                        三菱電機｜霧ヶ峰をリフレッシュ
+                        三菱電機｜霧ヶ峰を徹底洗浄！
                     </h2>
                     <div class="mt-auto pt-4 border-t border-slate-100">
                         <a href="/works/anjo001" class="flex items-center justify-between group py-1">
