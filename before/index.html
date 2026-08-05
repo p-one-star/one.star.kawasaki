@@ -1,0 +1,646 @@
+```html
+<!DOCTYPE html>
+<html lang="ja" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ご予約の前に | ONE★STAR</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        neon: '#EFFF00' // トレードカラー：蛍光イエロー
+                    },
+                    fontFamily: {
+                        sans: ['"Noto Sans JP"', 'sans-serif'],
+                        impact: ['"Black Ops One"', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        /* ドロワーメニュー用 */
+        #drawer-menu { transition: transform 0.3s ease-in-out; }
+        .drawer-closed { transform: translateX(-100%); }
+        .drawer-open { transform: translateX(0); }
+    </style>
+</head>
+<body class="font-sans text-slate-800 bg-slate-50 antialiased overflow-x-hidden pb-[60px]">
+
+    <!-- HEADER (共通) -->
+    <header class="fixed top-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md shadow-sm border-b border-slate-100 h-14 flex items-center justify-between px-4">
+        <button id="menu-open-btn" class="p-2 hover:bg-slate-100 rounded-lg" aria-label="メニュー">
+            <svg class="w-6 h-6 text-slate-800" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+
+        <div class="absolute left-1/2 -translate-x-1/2 flex items-center justify-center mt-1">
+            <a href="/" class="text-2xl md:text-3xl tracking-widest text-slate-900 leading-none flex items-center font-impact">
+                ONE
+                <img src="ONESTAR.PNG" alt="ロゴ" class="w-[45px] h-[45px] md:w-[55px] md:h-[55px] mx-[-4px] md:mx-[-6px] object-contain -translate-y-[4px]" onerror="this.style.display='none'">
+                STAR
+            </a>
+        </div>
+
+        <div class="hidden md:flex items-center space-x-3">
+            <a href="tel:08000807788" class="bg-slate-900 hover:bg-slate-800 text-neon px-4 py-1.5 rounded-full text-xs font-black border border-slate-700 flex items-center space-x-1 transition-all">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                <span>電話相談</span>
+            </a>
+        </div>
+        <div class="w-10 md:hidden"></div>
+    </header>
+
+    <!-- DRAWER MENU (共通) -->
+    <div id="drawer-container" class="fixed inset-0 z-50 overflow-hidden hidden">
+        <div id="drawer-backdrop" class="absolute inset-0 bg-slate-900/60 opacity-0 transition-opacity duration-300"></div>
+        <div class="pointer-events-none fixed inset-y-0 left-0 flex max-w-full">
+            <div id="drawer-menu" class="pointer-events-auto w-64 drawer-closed bg-white shadow-2xl flex flex-col h-full">
+                
+                <div class="p-3 bg-white flex justify-end">
+                    <button id="menu-close-btn" class="p-2 hover:bg-slate-100 rounded-lg">
+                        <svg class="w-6 h-6 text-slate-500" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+                    </button>
+                </div>
+
+                <div class="bg-blue-600 py-3 px-6">
+                    <h2 class="text-white font-black tracking-wider text-sm">MENU</h2>
+                </div>
+
+                <nav class="flex-1 px-4 py-2 overflow-y-auto">
+                    <div class="space-y-1">
+                        <a href="/" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>トップページ
+                        </a>
+                        <a href="/price" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>料金プラン
+                        </a>
+                        <a href="/works" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>施工事例
+                        </a>
+                        <a href="/mind" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>ONE★STARの想い
+                        </a>
+                        <a href="/pride" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>プロとしての拘り
+                        </a>
+                        <a href="/trash" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>ここだけの話
+                        </a>
+                        <a href="/before" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>ご予約の前に
+                        </a>
+                        <a href="/faq" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>よくある質問
+                        </a>
+                        <a href="/tips" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>お役立ち情報
+                        </a>
+                        
+                        <a href="/products" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-[#06C755]">
+                            <span class="mr-2 text-slate-400">＞</span>オリジナルLINEスタンプ
+                        </a>
+                    </div>
+                    
+                    <hr class="border-slate-300 border-dashed my-4">
+                    <a href="https://www.edge-cleanservice.com" target="_blank" rel="noopener noreferrer" class="menu-link flex items-center py-2 text-sm font-black text-slate-900 hover:text-blue-600 transition-colors">
+                        株式会社ECS公式サイト
+                        <svg class="w-3.5 h-3.5 ml-1.5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                    </a>
+                </nav>
+
+                <div class="p-4 bg-slate-50 border-t border-slate-100 text-center mt-auto">
+                    <p class="text-[9px] text-slate-500 font-bold leading-relaxed mb-2">
+                        株式会社ECS EDGE CLEAN SERVICE<br>専属プロスタッフとして<br>愛知県全域で毎日奮闘中❣️
+                    </p>
+                    <a href="tel:08000807788" class="block w-full py-3 bg-emerald-500 text-white font-bold rounded-lg text-sm shadow">直接電話する</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN (ご予約の前に) -->
+    <main class="pt-24 pb-16 px-4 max-w-3xl mx-auto">
+
+        <!-- ヒーローセクション -->
+        <div class="text-center mb-10">
+            <h1 class="text-2xl md:text-3xl font-black text-slate-900 mb-6 tracking-wider">
+                ご予約の前に
+            </h1>
+            <p class="text-[13px] md:text-base text-slate-900 font-bold leading-loose max-w-2xl mx-auto bg-white p-5 md:p-6 rounded-2xl shadow-sm border border-slate-200 text-left md:text-center">
+                エアコンクリーニングをスムーズに行うため、<br>
+                ご予約前にご確認いただきたい内容を<br class="md:hidden">まとめました。<br>
+                <br>
+                安心して作業をお任せいただくためにも、<br>
+                ご協力をお願いいたします。
+            </p>
+        </div>
+
+        <!-- 注意事項リスト -->
+        <div class="space-y-4 md:space-y-6">
+
+            <!-- 項目 1 (作業スペース) -->
+            <article class="bg-white rounded-[20px] shadow-sm border border-slate-200 p-5 md:p-6 relative overflow-hidden">
+                <div class="absolute top-0 left-0 w-1.5 h-full bg-blue-500"></div>
+                <h2 class="flex items-center text-sm md:text-base font-black text-slate-900 mb-4">
+                    <span class="text-xl mr-2">📦</span>
+                    作業スペースの確保をお願いします
+                </h2>
+                <div class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">
+                    <p class="mb-4">
+                        エアコンの真下に、<br>
+                        約2m × 2m程度の作業スペースを<br class="md:hidden">ご用意ください。
+                    </p>
+                    
+                    <!-- テレビに関する特記事項 -->
+                    <div class="bg-slate-50 border border-slate-200 p-3.5 rounded-xl mb-3">
+                        <p class="text-[13px] md:text-sm font-black text-slate-900 mb-1 flex items-center">
+                            <span class="mr-1.5">📺</span>テレビなどの家電について
+                        </p>
+                        <p class="text-[11px] md:text-xs text-slate-600 leading-relaxed pl-6">
+                            薄型のテレビなどは、移動せずに<br class="md:hidden">
+                            こちらで専用の養生シートで保護した上で<br class="md:hidden">
+                            作業することが可能です。
+                        </p>
+                    </div>
+
+                    <!-- ベッドに関する特記事項 -->
+                    <div class="bg-slate-50 border border-slate-200 p-3.5 rounded-xl mb-4">
+                        <p class="text-[13px] md:text-sm font-black text-slate-900 mb-2 flex items-center">
+                            <span class="mr-1.5">🛏️</span>ベッド上のエアコンについて
+                        </p>
+                        <div class="pl-6">
+                            <p class="text-[11px] md:text-xs text-slate-600 leading-relaxed mb-2">
+                                安全上の理由から、ベッドの上に乗っての<br class="md:hidden">
+                                作業はお断りしております。
+                            </p>
+                            <p class="text-[11px] md:text-xs text-rose-500 font-bold bg-white border border-rose-100 p-2.5 rounded-lg inline-block leading-relaxed">
+                                ※事前に「布団・マットレス・すのこ」を<br class="md:hidden">
+                                ご移動いただき、<span class="underline decoration-rose-300 underline-offset-2">ベッドの枠内に脚立が<br class="md:hidden">立てられる状態</span>であれば作業可能です！
+                            </p>
+                        </div>
+                    </div>
+
+                    <p class="text-[11px] md:text-xs text-rose-500 bg-rose-50 p-3 rounded-lg mt-1 inline-block leading-relaxed w-full">
+                        ※大型家具など、お客様ご自身で<br class="md:hidden">
+                        移動が難しい場合は、<br class="md:hidden">お気軽にご相談ください。
+                    </p>
+                </div>
+            </article>
+
+            <!-- 項目 2 (駐車スペース) -->
+            <article class="bg-white rounded-[20px] shadow-sm border border-slate-200 p-5 md:p-6 relative overflow-hidden">
+                <div class="absolute top-0 left-0 w-1.5 h-full bg-blue-500"></div>
+                <h2 class="flex items-center text-sm md:text-base font-black text-slate-900 mb-4">
+                    <span class="text-xl mr-2">🚗</span>
+                    駐車スペースについて
+                </h2>
+                <div class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">
+                    <p class="mb-4">
+                        作業車（ハイエース）を停められる<br class="md:hidden">
+                        駐車スペースの確保をお願いいたします。
+                    </p>
+                    
+                    <!-- 高さ制限に関する特記事項 -->
+                    <div class="bg-slate-50 border border-slate-200 p-3.5 rounded-xl mb-4">
+                        <p class="text-[13px] md:text-sm font-black text-slate-900 mb-1 flex items-center">
+                            <span class="mr-1.5">⚠️</span>高さ制限にご注意ください
+                        </p>
+                        <p class="text-[11px] md:text-xs text-slate-600 leading-relaxed pl-6">
+                            屋根にハシゴを積載しているため、<br class="md:hidden">
+                            <span class="font-bold text-slate-900 bg-yellow-200 px-1 rounded">高さ制限「2.1m以上」</span>の<br class="md:hidden">
+                            スペースが必要となります。
+                        </p>
+                    </div>
+
+                    <!-- コインパーキングに関する特記事項 -->
+                    <p class="mb-4">
+                        近隣のコインパーキングを利用する場合、<br>
+                        <span class="text-rose-600 font-black">駐車料金はお客様のご負担</span>となります。<br>
+                        あらかじめご了承ください。
+                    </p>
+                    
+                    <!-- 路上駐車お断り -->
+                    <p class="text-[11px] md:text-xs text-rose-600 bg-rose-50 p-3 rounded-lg inline-block leading-relaxed w-full">
+                        ※駐車禁止区域かどうかにかかわらず、<br class="md:hidden">
+                        いかなる場合においても<br>
+                        <span class="font-black underline decoration-rose-300 underline-offset-2">路上駐車・違法駐車での作業は<br class="md:hidden">お断り</span>させていただきます。
+                    </p>
+                </div>
+            </article>
+
+            <!-- 項目 3 -->
+            <article class="bg-white rounded-[20px] shadow-sm border border-slate-200 p-5 md:p-6 relative overflow-hidden">
+                <div class="absolute top-0 left-0 w-1.5 h-full bg-blue-500"></div>
+                <h2 class="flex items-center text-sm md:text-base font-black text-slate-900 mb-3">
+                    <span class="text-xl mr-2">📱</span>
+                    当日ご連絡が取れる携帯番号について
+                </h2>
+                <div class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">
+                    <p class="mb-3">
+                        前の現場で予想外のトラブルが<br class="md:hidden">発生した場合など、<br>
+                        ご予約時間に遅れてしまう<br class="md:hidden">可能性があります。
+                    </p>
+                    <p>
+                        その際は必ずご連絡いたしますので、<br>
+                        当日つながる携帯電話番号を<br class="md:hidden">お知らせください。
+                    </p>
+                </div>
+            </article>
+
+            <!-- 項目 4 -->
+            <article class="bg-white rounded-[20px] shadow-sm border border-slate-200 p-5 md:p-6 relative overflow-hidden">
+                <div class="absolute top-0 left-0 w-1.5 h-full bg-blue-500"></div>
+                <h2 class="flex items-center text-sm md:text-base font-black text-slate-900 mb-3">
+                    <span class="text-xl mr-2">🪜</span>
+                    高所設置エアコンについて
+                </h2>
+                <div class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">
+                    <p class="mb-3">
+                        吹き抜けや階段上など、<br>
+                        高い位置に設置されているエアコンは、<br>
+                        作業可能かどうか事前確認が必要です。
+                    </p>
+                    <p>
+                        設置状況によっては、<br>
+                        大型脚立などの準備が<br class="md:hidden">必要になる場合がありますので、<br>
+                        ご予約時にお知らせください。
+                    </p>
+                </div>
+            </article>
+
+            <!-- 項目 5 -->
+            <article class="bg-white rounded-[20px] shadow-sm border border-slate-200 p-5 md:p-6 relative overflow-hidden">
+                <div class="absolute top-0 left-0 w-1.5 h-full bg-amber-400"></div>
+                <h2 class="flex items-center text-sm md:text-base font-black text-slate-900 mb-3">
+                    <span class="text-xl mr-2">🕰️</span>
+                    製造から10年以上経過したエアコン
+                </h2>
+                <div class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">
+                    <p class="mb-3">
+                        製造から10年以上経過したエアコンは、<br>
+                        メーカーによる部品供給が<br class="md:hidden">終了している場合があります。
+                    </p>
+                    <p class="mb-3">
+                        細心の注意を払って作業いたしますが、<br>
+                        万が一不具合が発生した場合は、<br>
+                        保証の対象外となります。
+                    </p>
+                    <p>
+                        ご理解・ご納得いただいた上で<br class="md:hidden">作業を承ります。
+                    </p>
+                </div>
+            </article>
+
+            <!-- 項目 6 (お掃除機能付きか分からない場合) -->
+            <article class="bg-white rounded-[20px] shadow-sm border border-slate-200 p-5 md:p-6 relative overflow-hidden">
+                <div class="absolute top-0 left-0 w-1.5 h-full bg-emerald-500"></div>
+                <h2 class="flex items-center text-sm md:text-base font-black text-slate-900 mb-4">
+                    <span class="text-xl mr-2">❓</span>
+                    お掃除機能付きか分からない場合
+                </h2>
+                <div class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">
+                    <p class="mb-3 text-emerald-600 font-black text-base md:text-lg">ご安心ください。</p>
+                    <p class="mb-4">
+                        分からない時は「分からない」と<br class="md:hidden">
+                        そのままお伝えいただいて大丈夫です！
+                    </p>
+                    <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl mb-4">
+                        <p class="mb-2">
+                            スタンダードでご予約いただき、<br>
+                            現場で確認したらお掃除機能付きだった…<br>
+                            <span class="text-[11px] md:text-xs text-slate-500">（もちろん、その逆のパターンも！）</span>
+                        </p>
+                        <p class="text-[12px] md:text-[13px] font-black text-slate-900 bg-yellow-200 inline-block px-2 py-1 rounded">
+                            実はこれ、現場ではよくあることなんです。
+                        </p>
+                    </div>
+                    <p>
+                        その都度、その場でしっかりとご説明し、<br class="md:hidden">
+                        柔軟に対応させていただきますので、<br>
+                        安心してお任せください。
+                    </p>
+                </div>
+            </article>
+
+            <!-- 項目 7 (ペットについて) -->
+            <article class="bg-white rounded-[20px] shadow-sm border border-slate-200 p-5 md:p-6 relative overflow-hidden">
+                <div class="absolute top-0 left-0 w-1.5 h-full bg-orange-400"></div>
+                <h2 class="flex items-center text-sm md:text-base font-black text-slate-900 mb-4">
+                    <span class="text-xl mr-2">🐶</span>
+                    ペットを飼われているお客様へ
+                </h2>
+                <div class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">
+                    
+                    <!-- 脱走に関する注意 -->
+                    <p class="mb-4">
+                        機材の搬入などで、両手が塞がった状態で<br class="md:hidden">
+                        玄関を何度も出入りすることがあります。<br>
+                        <span class="font-bold text-rose-500">大切なペットの脱走には<br class="md:hidden">十分ご注意ください。</span>
+                    </p>
+
+                    <!-- 抜け毛に関するお願いボックス -->
+                    <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl mb-4">
+                        <p class="text-[13px] md:text-sm font-black text-slate-900 mb-2 flex items-center">
+                            <span class="mr-1.5">🧹</span>抜け毛のお掃除について（お願い）
+                        </p>
+                        <div class="pl-6">
+                            <p class="text-[11px] md:text-xs text-slate-600 leading-relaxed mb-3">
+                                私自身、犬も猫も大好きなので<br class="md:hidden">大歓迎なのですが…<br>
+                                作業服や道具は、次のお客様のお宅でも<br class="md:hidden">使用いたします。
+                            </p>
+                            <p class="text-[11px] md:text-xs text-slate-600 leading-relaxed mb-3">
+                                アレルギーをお持ちのお客様も<br class="md:hidden">いらっしゃるため、<br>
+                                <span class="font-bold text-slate-900 bg-yellow-200 px-1 rounded">毛が付着したままで次の現場へ<br class="md:hidden">向かうことはできません。</span>
+                            </p>
+                            <div class="text-[11px] md:text-xs text-slate-700 font-bold bg-white border border-slate-200 p-3 rounded-lg block leading-relaxed">
+                                大変恐縮ですが、私が到着するまでに<br>
+                                可能な限りで構いませんので、<br>
+                                <span class="text-blue-600">・床に落ちた毛</span><br>
+                                <span class="text-blue-600">・エアコン周辺の家具</span><br>
+                                <span class="text-blue-600">・カーテンレール</span><br>
+                                などの抜け毛をお掃除しておいて<br class="md:hidden">いただけますと大変助かります！
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 高圧ホースに関する注意喚起ボックス -->
+                    <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl">
+                        <p class="text-[13px] md:text-sm font-black text-slate-900 mb-2 flex items-center">
+                            <span class="mr-1.5">⚠️</span>高圧ホースに関するお願い
+                        </p>
+                        <div class="pl-6">
+                            <p class="text-[11px] md:text-xs text-slate-600 leading-relaxed mb-3">
+                                作業中は高圧洗浄機のホースが<br class="md:hidden">
+                                お部屋のあちらこちらを移動します。
+                            </p>
+                            <p class="text-[11px] md:text-xs text-slate-600 leading-relaxed mb-4">
+                                万が一、ワンちゃん等がホースを噛んで<br class="md:hidden">穴が開くと、<br>
+                                <span class="font-bold text-slate-900 bg-yellow-200 px-1 rounded">高圧の洗浄液や水が激しく吹き出す</span><br class="md:hidden">
+                                恐れがあり大変危険です。
+                            </p>
+                            <p class="text-[11px] md:text-xs text-rose-600 font-bold bg-white border border-rose-100 p-3 rounded-lg block leading-relaxed">
+                                噛み癖のあるペットは別室へご移動いただくか、<br>
+                                ご家族が散歩に連れて行っていただくなどの<br class="md:hidden">
+                                ご配慮をお願いいたします。
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </article>
+
+            <!-- 項目 8 (作業中にお借りするもの・場所) -->
+            <article class="bg-white rounded-[20px] shadow-sm border border-slate-200 p-5 md:p-6 relative overflow-hidden">
+                <div class="absolute top-0 left-0 w-1.5 h-full bg-cyan-500"></div>
+                <h2 class="flex items-center text-sm md:text-base font-black text-slate-900 mb-4">
+                    <span class="text-xl mr-2">💧</span>
+                    作業中にお借りするもの・場所
+                </h2>
+                <div class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">
+                    
+                    <!-- 電気について -->
+                    <div class="mb-4">
+                        <p class="text-[13px] md:text-sm font-black text-slate-900 mb-1 flex items-center">
+                            <span class="mr-1.5">🔌</span>電気（コンセント）
+                        </p>
+                        <p class="text-[11px] md:text-xs text-slate-600 leading-relaxed pl-6">
+                            高圧洗浄機を使用するため、<br class="md:hidden">コンセントをお借りします。<br>
+                            基本は作業するエアコンの近くですが、<br>
+                            複数台の場合はエアコンとエアコンの<br class="md:hidden">
+                            中間にあるコンセントを<br class="md:hidden">お借りする場合もあります。
+                        </p>
+                    </div>
+
+                    <!-- 水道について -->
+                    <div class="mb-4">
+                        <p class="text-[13px] md:text-sm font-black text-slate-900 mb-1 flex items-center">
+                            <span class="mr-1.5">🚰</span>水（水道・散水栓）
+                        </p>
+                        <p class="text-[11px] md:text-xs text-slate-600 leading-relaxed pl-6">
+                            水は持参いたしますが、<br class="md:hidden">足りなくなったら補充させていただきます。<br>
+                            また、外部での部品洗浄において、<br class="md:hidden">
+                            外の散水栓などを使用させていただく<br class="md:hidden">場合がございます。
+                        </p>
+                    </div>
+
+                    <!-- 洗浄場所についてボックス -->
+                    <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl">
+                        <p class="text-[13px] md:text-sm font-black text-slate-900 mb-2 flex items-center">
+                            <span class="mr-1.5">🧼</span>部品の洗浄場所について
+                        </p>
+                        <div class="pl-6">
+                            <p class="text-[11px] md:text-xs text-slate-600 leading-relaxed mb-3">
+                                分解した部品の洗浄に関しては、<br class="md:hidden">基本的に<span class="font-bold text-slate-900">「駐車場・お庭・ベランダ」</span><br class="md:hidden">などの外部をお借りして作業します。
+                            </p>
+                            
+                            <!-- ミスト注意喚起 -->
+                            <div class="bg-white border border-slate-200 p-3 rounded-lg mb-3">
+                                <p class="text-[11px] md:text-xs text-rose-500 font-bold mb-1">
+                                    ⚠️水しぶきにご注意ください
+                                </p>
+                                <p class="text-[11px] md:text-xs text-slate-600 leading-relaxed">
+                                    高圧洗浄機を使用するため、<br class="md:hidden">ミストが舞い上がります。<br>
+                                    近くに干してある<span class="text-slate-900 font-bold">洗濯物や布団、<br class="md:hidden">濡れて困る物</span>などは、一時的に<br class="md:hidden">室内に回収していただく場合がございます。
+                                </p>
+                            </div>
+
+                            <p class="text-[11px] md:text-xs text-slate-500 bg-slate-200/50 p-3 rounded-lg inline-block leading-relaxed w-full">
+                                ※どうやっても外部やベランダでの<br class="md:hidden">作業が不可能な場合に限り、<br>
+                                <span class="font-bold underline decoration-slate-400 underline-offset-2">最終手段として浴室をお借りしての<br class="md:hidden">作業</span>となります。
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </article>
+
+            <!-- 項目 9 (キャンセルポリシー) -->
+            <article class="bg-white rounded-[20px] shadow-sm border border-slate-200 p-5 md:p-6 relative overflow-hidden">
+                <div class="absolute top-0 left-0 w-1.5 h-full bg-slate-500"></div>
+                <h2 class="flex items-center text-sm md:text-base font-black text-slate-900 mb-4">
+                    <span class="text-xl mr-2">📅</span>
+                    キャンセル・日程変更について
+                </h2>
+                <div class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">
+                    
+                    <!-- 日程変更について -->
+                    <p class="mb-4">
+                        体調不良や急なご予定など、<br>
+                        <span class="font-black text-blue-600">「日程変更」をご希望の場合</span>は、<br class="md:hidden">
+                        お早めにご連絡ください。<br>
+                        できる限り柔軟に対応いたします！
+                    </p>
+
+                    <!-- キャンセル料についてボックス -->
+                    <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl mb-4">
+                        <p class="text-[13px] md:text-sm font-black text-rose-600 mb-3 flex items-center">
+                            <span class="mr-1.5">⚠️</span>キャンセル料金について
+                        </p>
+                        <p class="text-[11px] md:text-xs text-slate-600 leading-relaxed mb-3">
+                            お客様都合によるキャンセルの場合は、<br class="md:hidden">
+                            以下のキャンセル料が発生いたします。
+                        </p>
+                        
+                        <!-- 料金表 -->
+                        <ul class="text-[12px] md:text-[13px] font-black text-slate-900 bg-white border border-slate-200 rounded-lg overflow-hidden mb-3">
+                            <li class="flex justify-between items-center border-b border-slate-100 p-3">
+                                <span>前日キャンセル</span>
+                                <span class="text-rose-500 text-sm md:text-base">作業料金の 50%</span>
+                            </li>
+                            <li class="flex justify-between items-center p-3">
+                                <span>当日キャンセル</span>
+                                <span class="text-rose-500 text-sm md:text-base">作業料金の 100%</span>
+                            </li>
+                        </ul>
+                        
+                        <p class="text-[11px] md:text-xs text-slate-500">
+                            あらかじめご了承ください。
+                        </p>
+                    </div>
+
+                    <!-- なぜキャンセル料がかかるのか（誠実な説明） -->
+                    <div class="pl-2 border-l-2 border-slate-300">
+                        <p class="text-[11px] md:text-xs text-slate-600 leading-relaxed mb-2">
+                            ご予約は「早いもの順」で<br class="md:hidden">承っております。
+                        </p>
+                        <p class="text-[11px] md:text-xs text-slate-600 leading-relaxed mb-3">
+                            前日や当日にキャンセルと<br class="md:hidden">なってしまいますと、<br>
+                            そこで空いてしまった穴（予定）を<br class="md:hidden">
+                            その日のうちに埋めることが<br class="md:hidden">非常に困難となります…。
+                        </p>
+                        <p class="text-[11px] md:text-xs text-slate-700 font-bold bg-slate-100 p-3 rounded-lg block leading-relaxed">
+                            大変心苦しいお願いではございますが、<br>
+                            ご理解の程、宜しくお願いいたします。
+                        </p>
+                    </div>
+
+                </div>
+            </article>
+
+            <!-- 項目 10 (最後に ＆ DMボタン) -->
+            <article class="bg-slate-900 text-white rounded-[20px] shadow-md border border-slate-800 p-6 md:p-8 mt-8 text-center relative overflow-hidden">
+                <div class="absolute -top-10 -right-10 w-32 h-32 bg-neon opacity-10 rounded-full blur-2xl"></div>
+                <h2 class="text-base md:text-lg font-black text-neon mb-5 tracking-wider">
+                    最後に
+                </h2>
+                <div class="text-[13px] md:text-sm font-bold text-slate-200 leading-loose">
+                    <p class="mb-4">
+                        「うちのエアコン、どうなんだろう…？」<br>
+                        「こんなこと聞いてもいいのかな？」<br>
+                        などなど、ご不安なことがありましたら、<br>
+                        小さなことでもお気軽にご相談ください。
+                    </p>
+                    <p>
+                        お客様に安心してご依頼いただけるよう、<br>
+                        事前のご説明も大切にしています。
+                    </p>
+                </div>
+                
+                <div class="mt-8 flex flex-col items-center justify-center">
+                    <p class="text-[11px] md:text-xs text-slate-400 mb-3 font-bold bg-slate-800/50 py-1.5 px-4 rounded-full">
+                        ご予約・ご相談は<span class="text-white">私（本人）に直接繋がる</span>DMから！
+                    </p>
+                    <!-- Instagram DM ボタン -->
+                    <a href="https://www.instagram.com/onestar.clean/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center text-white font-black px-8 py-3.5 rounded-full transition-transform hover:scale-105 shadow-lg shadow-pink-500/20" style="background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);">
+                        <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+                        Instagramで直接相談する
+                    </a>
+                </div>
+            </article>
+
+        </div>
+    </main>
+
+    <!-- FOOTER (共通) -->
+    <footer class="bg-slate-900 text-white pt-12 pb-24 md:pb-12 border-t-[6px] border-neon text-center">
+        <div class="mb-6 flex flex-col items-center justify-center">
+            <span class="text-4xl md:text-5xl tracking-widest text-white flex items-center justify-center font-impact mt-1">
+                ONE
+                <img src="ONESTAR.PNG" alt="ロゴ" class="w-[80px] h-[80px] md:w-[100px] md:h-[100px] mx-[-10px] md:mx-[-16px] object-contain -translate-y-2" onerror="this.style.display='none'">
+                STAR
+            </span>
+            <p class="text-xs text-neon font-black mt-2 tracking-widest">株式会社ECS専属プロスタッフ</p>
+        </div>
+        
+        <p class="text-[11px] text-slate-400 font-bold mb-3">
+            <a href="/products" class="hover:text-white transition-colors underline underline-offset-4">オリジナルLINEスタンプ販売中</a>
+        </p>
+        <p class="text-[10px] text-slate-500 font-bold mb-4">
+            <a href="/privacy" class="hover:text-white transition-colors">プライバシーポリシー</a>
+        </p>
+        <p class="text-[10px] text-slate-500 font-bold tracking-wider">© 2026 ONE★STAR. All Rights Reserved.</p>
+    </footer>
+
+    <!-- MOBILE BOTTOM NAVIGATION (共通) -->
+    <div class="fixed bottom-0 left-0 right-0 z-45 bg-slate-900 md:hidden h-[60px] flex items-stretch text-white shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.3)] border-t border-slate-800">
+        
+        <!-- 料金 (黒) -->
+        <a href="/price" class="flex flex-col items-center justify-center w-[20%] border-r border-slate-700 active:bg-slate-800">
+            <svg class="w-5 h-5 mb-1 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <span class="text-[9px] font-black">料金</span>
+        </a>
+        
+        <!-- 想い (黒) -->
+        <a href="/mind" class="flex flex-col items-center justify-center w-[20%] border-r border-slate-700 active:bg-slate-800">
+            <svg class="w-5 h-5 mb-1 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+            <span class="text-[9px] font-black">想い</span>
+        </a>
+
+        <!-- 拘り (黒) -->
+        <a href="/pride" class="flex flex-col items-center justify-center w-[20%] active:bg-slate-800">
+            <svg class="w-5 h-5 mb-1 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+            <span class="text-[9px] font-black">拘り</span>
+        </a>
+        
+        <!-- 電話する (蛍光イエロー) -->
+        <a href="tel:08000807788" class="flex items-center justify-center bg-neon text-slate-900 w-[40%] font-black text-base active:bg-yellow-400 transition-colors">
+            <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+            電話する
+        </a>
+        
+    </div>
+
+    <!-- SCRIPTS -->
+    <script>
+        // === メニュー開閉用 ===
+        document.addEventListener('DOMContentLoaded', () => {
+            const drawerContainer = document.getElementById('drawer-container');
+            const drawerMenu = document.getElementById('drawer-menu');
+            const drawerBackdrop = document.getElementById('drawer-backdrop');
+            
+            const toggleMenu = (show) => {
+                if (show) {
+                    drawerContainer.classList.remove('hidden');
+                    setTimeout(() => {
+                        drawerBackdrop.classList.remove('opacity-0');
+                        drawerBackdrop.classList.add('opacity-100');
+                        drawerMenu.classList.remove('drawer-closed');
+                        drawerMenu.classList.add('drawer-open');
+                    }, 10);
+                } else {
+                    drawerBackdrop.classList.remove('opacity-100');
+                    drawerBackdrop.classList.add('opacity-0');
+                    drawerMenu.classList.remove('drawer-open');
+                    drawerMenu.classList.add('drawer-closed');
+                    setTimeout(() => drawerContainer.classList.add('hidden'), 300);
+                }
+            };
+
+            document.getElementById('menu-open-btn').addEventListener('click', () => toggleMenu(true));
+            document.getElementById('menu-close-btn').addEventListener('click', () => toggleMenu(false));
+            document.getElementById('drawer-backdrop').addEventListener('click', () => toggleMenu(false));
+            document.querySelectorAll('.menu-link').forEach(link => link.addEventListener('click', () => toggleMenu(false)));
+        });
+    </script>
+</body>
+</html>
+
+
+```
