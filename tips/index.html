@@ -42,7 +42,6 @@
         <div class="absolute left-1/2 -translate-x-1/2 flex items-center justify-center mt-1">
             <a href="/" class="text-2xl md:text-3xl tracking-widest text-slate-900 leading-none flex items-center font-impact">
                 ONE
-                <!-- ▼ 修正箇所： ../ を付けて一つ上の階層の画像を見に行くようにしました -->
                 <img src="../ONESTAR.PNG" alt="ロゴ" class="w-[45px] h-[45px] md:w-[55px] md:h-[55px] mx-[-4px] md:mx-[-6px] object-contain -translate-y-[4px]" onerror="this.style.display='none'">
                 STAR
             </a>
@@ -99,11 +98,9 @@
                         <a href="/faq" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
                             <span class="mr-2 text-slate-400">＞</span>よくある質問
                         </a>
-                        <!-- 現在のページをハイライト -->
                         <a href="/tips" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-blue-600 bg-blue-50/50 -mx-4 px-4">
                             <span class="mr-2 text-blue-500">＞</span>お役立ち情報
                         </a>
-                        
                         <a href="/products" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-[#06C755]">
                             <span class="mr-2 text-slate-400">＞</span>オリジナルLINEスタンプ
                         </a>
@@ -163,12 +160,10 @@
             </div>
         </div>
 
-
         <!-- ==========================================
              🟢 セクション1：教える記事（知識・お手入れ）
         =========================================== -->
         <div class="mb-14">
-            <!-- セクション見出し -->
             <div class="flex items-end border-b-2 border-emerald-500 pb-2 mb-6">
                 <span class="text-2xl md:text-3xl mr-2 leading-none">💡</span>
                 <h2 class="text-[17px] md:text-xl font-black text-slate-900 tracking-wider">
@@ -208,14 +203,13 @@
                     </div>
                 </div>
 
-                <!-- カード 3 -->
+                <!-- カード 3 (画像設定済み) -->
                 <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col transition-all hover:shadow-md border-t-[4px] border-t-emerald-500 relative pt-3">
                     <div class="absolute top-2 left-2 bg-emerald-100 text-emerald-700 text-[9px] font-black px-2 py-0.5 rounded shadow-sm z-10">💡教える</div>
-                    <div class="aspect-square bg-emerald-50/50 border-b border-slate-100 relative flex items-center justify-center mt-2">
-                        <div class="text-center">
-                            <span class="text-4xl md:text-5xl mb-1 block">🐛🚫</span>
-                            <span class="text-[9px] text-slate-400 font-bold tracking-widest">IMAGE</span>
-                        </div>
+                    <!-- overflow-hidden を追加し、はみ出しを防ぐ -->
+                    <div class="aspect-square bg-emerald-50/50 border-b border-slate-100 relative flex items-center justify-center mt-2 overflow-hidden">
+                        <!-- ▼ プレースホルダーから img タグへ変更 -->
+                        <img src="IMG_6033.jpeg" alt="防虫キャップ" class="w-full h-full object-cover">
                     </div>
                     <div class="p-3 md:p-4 flex-1 flex flex-col justify-between">
                         <h3 class="font-black text-slate-900 text-[12px] md:text-[14px] mb-3 text-center leading-[1.6]">防虫キャップって<br>必要なの？</h3>
@@ -321,7 +315,6 @@
              🟡 セクション2：注意記事（やってはいけない）
         =========================================== -->
         <div class="mb-14">
-            <!-- セクション見出し -->
             <div class="flex items-end border-b-2 border-amber-400 pb-2 mb-6">
                 <span class="text-2xl md:text-3xl mr-2 leading-none">⚠️</span>
                 <h2 class="text-[17px] md:text-xl font-black text-slate-900 tracking-wider">
@@ -414,7 +407,6 @@
              🔴 セクション3：トラブル（故障・不具合）
         =========================================== -->
         <div class="mb-14">
-            <!-- セクション見出し -->
             <div class="flex items-end border-b-2 border-rose-500 pb-2 mb-6">
                 <span class="text-2xl md:text-3xl mr-2 leading-none">🚨</span>
                 <h2 class="text-[17px] md:text-xl font-black text-slate-900 tracking-wider">
@@ -539,7 +531,6 @@
         <div class="mb-6 flex flex-col items-center justify-center">
             <span class="text-4xl md:text-5xl tracking-widest text-white flex items-center justify-center font-impact mt-1">
                 ONE
-                <!-- ▼ 修正箇所： ../ を付けて一つ上の階層の画像を見に行くようにしました -->
                 <img src="../ONESTAR.PNG" alt="ロゴ" class="w-[80px] h-[80px] md:w-[100px] md:h-[100px] mx-[-10px] md:mx-[-16px] object-contain -translate-y-2" onerror="this.style.display='none'">
                 STAR
             </span>
