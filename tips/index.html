@@ -1,0 +1,645 @@
+```html
+<!DOCTYPE html>
+<html lang="ja" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>お役立ち情報 | ONE★STAR</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        neon: '#EFFF00' // トレードカラー：蛍光イエロー
+                    },
+                    fontFamily: {
+                        sans: ['"Noto Sans JP"', 'sans-serif'],
+                        impact: ['"Black Ops One"', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        /* ドロワーメニュー用 */
+        #drawer-menu { transition: transform 0.3s ease-in-out; }
+        .drawer-closed { transform: translateX(-100%); }
+        .drawer-open { transform: translateX(0); }
+    </style>
+</head>
+<body class="font-sans text-slate-800 bg-slate-50 antialiased overflow-x-hidden pb-[60px]">
+
+    <!-- HEADER (共通) -->
+    <header class="fixed top-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md shadow-sm border-b border-slate-100 h-14 flex items-center justify-between px-4">
+        <button id="menu-open-btn" class="p-2 hover:bg-slate-100 rounded-lg" aria-label="メニュー">
+            <svg class="w-6 h-6 text-slate-800" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+
+        <div class="absolute left-1/2 -translate-x-1/2 flex items-center justify-center mt-1">
+            <a href="/" class="text-2xl md:text-3xl tracking-widest text-slate-900 leading-none flex items-center font-impact">
+                ONE
+                <img src="ONESTAR.PNG" alt="ロゴ" class="w-[45px] h-[45px] md:w-[55px] md:h-[55px] mx-[-4px] md:mx-[-6px] object-contain -translate-y-[4px]" onerror="this.style.display='none'">
+                STAR
+            </a>
+        </div>
+
+        <div class="hidden md:flex items-center space-x-3">
+            <a href="tel:08000807788" class="bg-slate-900 hover:bg-slate-800 text-neon px-4 py-1.5 rounded-full text-xs font-black border border-slate-700 flex items-center space-x-1 transition-all">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                <span>電話相談</span>
+            </a>
+        </div>
+        <div class="w-10 md:hidden"></div>
+    </header>
+
+    <!-- DRAWER MENU (共通) -->
+    <div id="drawer-container" class="fixed inset-0 z-50 overflow-hidden hidden">
+        <div id="drawer-backdrop" class="absolute inset-0 bg-slate-900/60 opacity-0 transition-opacity duration-300"></div>
+        <div class="pointer-events-none fixed inset-y-0 left-0 flex max-w-full">
+            <div id="drawer-menu" class="pointer-events-auto w-64 drawer-closed bg-white shadow-2xl flex flex-col h-full">
+                
+                <div class="p-3 bg-white flex justify-end">
+                    <button id="menu-close-btn" class="p-2 hover:bg-slate-100 rounded-lg">
+                        <svg class="w-6 h-6 text-slate-500" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+                    </button>
+                </div>
+
+                <div class="bg-blue-600 py-3 px-6">
+                    <h2 class="text-white font-black tracking-wider text-sm">MENU</h2>
+                </div>
+
+                <nav class="flex-1 px-4 py-2 overflow-y-auto">
+                    <div class="space-y-1">
+                        <a href="/" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>トップページ
+                        </a>
+                        <a href="/price" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>料金プラン
+                        </a>
+                        <a href="/works" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>施工事例
+                        </a>
+                        <a href="/mind" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>ONE★STARの想い
+                        </a>
+                        <a href="/pride" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>プロとしての拘り
+                        </a>
+                        <a href="/trash" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>ここだけの話
+                        </a>
+                        <a href="/before" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>ご予約の前に
+                        </a>
+                        <a href="/faq" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>よくある質問
+                        </a>
+                        <!-- 現在のページをハイライト -->
+                        <a href="/tips" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-blue-600 bg-blue-50/50 -mx-4 px-4">
+                            <span class="mr-2 text-blue-500">＞</span>お役立ち情報
+                        </a>
+                        
+                        <a href="/products" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-[#06C755]">
+                            <span class="mr-2 text-slate-400">＞</span>オリジナルLINEスタンプ
+                        </a>
+                    </div>
+                    
+                    <hr class="border-slate-300 border-dashed my-4">
+                    <a href="https://www.edge-cleanservice.com" target="_blank" rel="noopener noreferrer" class="menu-link flex items-center py-2 text-sm font-black text-slate-900 hover:text-blue-600 transition-colors">
+                        株式会社ECS公式サイト
+                        <svg class="w-3.5 h-3.5 ml-1.5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                    </a>
+                </nav>
+
+                <div class="p-4 bg-slate-50 border-t border-slate-100 text-center mt-auto">
+                    <p class="text-[9px] text-slate-500 font-bold leading-relaxed mb-2">
+                        株式会社ECS EDGE CLEAN SERVICE<br>専属プロスタッフとして<br>愛知県全域で毎日奮闘中❣️
+                    </p>
+                    <a href="tel:08000807788" class="block w-full py-3 bg-emerald-500 text-white font-bold rounded-lg text-sm shadow">直接電話する</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN (お役立ち情報) -->
+    <main class="pt-24 pb-16 px-4 max-w-4xl mx-auto">
+
+        <!-- ヒーローセクション（リード文） -->
+        <div class="text-center mb-10">
+            <h1 class="text-2xl md:text-3xl font-black text-slate-900 mb-6 tracking-wider">
+                お役立ち情報
+            </h1>
+            
+            <div class="text-[14px] md:text-[15px] text-slate-800 font-bold leading-[2.2] max-w-2xl mx-auto bg-white p-6 rounded-2xl shadow-sm border border-slate-200 text-left md:text-center relative overflow-hidden">
+                <div class="absolute -top-6 -left-6 w-20 h-20 bg-blue-100 rounded-full blur-xl opacity-70"></div>
+                
+                <p class="mb-5 relative z-10">
+                    インターネットには、<br>
+                    <span class="inline-block">エアコンに関する情報が</span><span class="inline-block">たくさんあります。</span>
+                </p>
+                <p class="mb-5 relative z-10">
+                    しかし、現場では<br>
+                    <span class="inline-block text-rose-600 font-black text-[15px] md:text-[17px] border-b-[3px] border-rose-200 leading-none pb-1 my-1.5">「それはおすすめできません。」</span><br>
+                    <span class="inline-block">と感じるケースも</span><span class="inline-block">少なくありません。</span>
+                </p>
+                <p class="mb-5 relative z-10">
+                    このページでは、<br>
+                    <span class="inline-block">実際の施工経験を</span>もとに、<br>
+                    <span class="inline-block">知っておくと</span>役立つことや、<br>
+                    <span class="inline-block">意外と知られていない</span>注意点を、<br>
+                    <span class="inline-block">できるだけ分かりやすく</span><span class="inline-block">ご紹介します。</span>
+                </p>
+                <p class="text-blue-600 font-black mt-6 relative z-10">
+                    ご家庭のエアコンを、<br>
+                    <span class="inline-block">長く快適に使って</span>いただくための<br>
+                    <span class="inline-block">参考になれば</span>幸いです。
+                </p>
+            </div>
+        </div>
+
+
+        <!-- ==========================================
+             🟢 セクション1：教える記事（知識・お手入れ）
+        =========================================== -->
+        <div class="mb-14">
+            <!-- セクション見出し -->
+            <div class="flex items-end border-b-2 border-emerald-500 pb-2 mb-6">
+                <span class="text-2xl md:text-3xl mr-2 leading-none">💡</span>
+                <h2 class="text-[17px] md:text-xl font-black text-slate-900 tracking-wider">
+                    知識・お手入れ
+                </h2>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-5">
+                
+                <!-- カード 1 -->
+                <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col transition-all hover:shadow-md border-t-[4px] border-t-emerald-500 relative pt-3">
+                    <div class="absolute top-2 left-2 bg-emerald-100 text-emerald-700 text-[9px] font-black px-2 py-0.5 rounded shadow-sm z-10">💡教える</div>
+                    <div class="aspect-square bg-emerald-50/50 border-b border-slate-100 relative flex items-center justify-center mt-2">
+                        <div class="text-center">
+                            <span class="text-4xl md:text-5xl mb-1 block">🧹🚿</span>
+                            <span class="text-[9px] text-slate-400 font-bold tracking-widest">IMAGE</span>
+                        </div>
+                    </div>
+                    <div class="p-3 md:p-4 flex-1 flex flex-col justify-between">
+                        <h3 class="font-black text-slate-900 text-[12px] md:text-[14px] mb-3 text-center leading-[1.6]">フィルター掃除の<br>正しい頻度とやり方</h3>
+                        <a href="#" onclick="showComingSoon(event)" class="block w-full text-center bg-slate-900 text-neon font-black py-2.5 rounded-lg text-xs hover:bg-slate-800 transition-colors shadow">詳しく見る</a>
+                    </div>
+                </div>
+
+                <!-- カード 2 -->
+                <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col transition-all hover:shadow-md border-t-[4px] border-t-emerald-500 relative pt-3">
+                    <div class="absolute top-2 left-2 bg-emerald-100 text-emerald-700 text-[9px] font-black px-2 py-0.5 rounded shadow-sm z-10">💡教える</div>
+                    <div class="aspect-square bg-emerald-50/50 border-b border-slate-100 relative flex items-center justify-center mt-2">
+                        <div class="text-center">
+                            <span class="text-4xl md:text-5xl mb-1 block">🍃💨</span>
+                            <span class="text-[9px] text-slate-400 font-bold tracking-widest">IMAGE</span>
+                        </div>
+                    </div>
+                    <div class="p-3 md:p-4 flex-1 flex flex-col justify-between">
+                        <h3 class="font-black text-slate-900 text-[12px] md:text-[14px] mb-3 text-center leading-[1.6]">冷房後の「送風」で<br>カビを防ぐ！？</h3>
+                        <a href="#" onclick="showComingSoon(event)" class="block w-full text-center bg-slate-900 text-neon font-black py-2.5 rounded-lg text-xs hover:bg-slate-800 transition-colors shadow">詳しく見る</a>
+                    </div>
+                </div>
+
+                <!-- カード 3 -->
+                <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col transition-all hover:shadow-md border-t-[4px] border-t-emerald-500 relative pt-3">
+                    <div class="absolute top-2 left-2 bg-emerald-100 text-emerald-700 text-[9px] font-black px-2 py-0.5 rounded shadow-sm z-10">💡教える</div>
+                    <div class="aspect-square bg-emerald-50/50 border-b border-slate-100 relative flex items-center justify-center mt-2">
+                        <div class="text-center">
+                            <span class="text-4xl md:text-5xl mb-1 block">🐛🚫</span>
+                            <span class="text-[9px] text-slate-400 font-bold tracking-widest">IMAGE</span>
+                        </div>
+                    </div>
+                    <div class="p-3 md:p-4 flex-1 flex flex-col justify-between">
+                        <h3 class="font-black text-slate-900 text-[12px] md:text-[14px] mb-3 text-center leading-[1.6]">防虫キャップって<br>必要なの？</h3>
+                        <a href="#" onclick="showComingSoon(event)" class="block w-full text-center bg-slate-900 text-neon font-black py-2.5 rounded-lg text-xs hover:bg-slate-800 transition-colors shadow">詳しく見る</a>
+                    </div>
+                </div>
+
+                <!-- カード 4 -->
+                <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col transition-all hover:shadow-md border-t-[4px] border-t-emerald-500 relative pt-3">
+                    <div class="absolute top-2 left-2 bg-emerald-100 text-emerald-700 text-[9px] font-black px-2 py-0.5 rounded shadow-sm z-10">💡教える</div>
+                    <div class="aspect-square bg-emerald-50/50 border-b border-slate-100 relative flex items-center justify-center mt-2">
+                        <div class="text-center">
+                            <span class="text-4xl md:text-5xl mb-1 block">🌬️📦</span>
+                            <span class="text-[9px] text-slate-400 font-bold tracking-widest">IMAGE</span>
+                        </div>
+                    </div>
+                    <div class="p-3 md:p-4 flex-1 flex flex-col justify-between">
+                        <h3 class="font-black text-slate-900 text-[12px] md:text-[14px] mb-3 text-center leading-[1.6]">室外機カバーって<br>効果あるの？</h3>
+                        <a href="#" onclick="showComingSoon(event)" class="block w-full text-center bg-slate-900 text-neon font-black py-2.5 rounded-lg text-xs hover:bg-slate-800 transition-colors shadow">詳しく見る</a>
+                    </div>
+                </div>
+
+                <!-- カード 5 -->
+                <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col transition-all hover:shadow-md border-t-[4px] border-t-emerald-500 relative pt-3">
+                    <div class="absolute top-2 left-2 bg-emerald-100 text-emerald-700 text-[9px] font-black px-2 py-0.5 rounded shadow-sm z-10">💡教える</div>
+                    <div class="aspect-square bg-emerald-50/50 border-b border-slate-100 relative flex items-center justify-center mt-2">
+                        <div class="text-center">
+                            <span class="text-4xl md:text-5xl mb-1 block">🤔✨</span>
+                            <span class="text-[9px] text-slate-400 font-bold tracking-widest">IMAGE</span>
+                        </div>
+                    </div>
+                    <div class="p-3 md:p-4 flex-1 flex flex-col justify-between">
+                        <h3 class="font-black text-slate-900 text-[12px] md:text-[14px] mb-3 text-center leading-[1.6]">エアコンクリーニングって<br>本当に必要なの？</h3>
+                        <a href="#" onclick="showComingSoon(event)" class="block w-full text-center bg-slate-900 text-neon font-black py-2.5 rounded-lg text-xs hover:bg-slate-800 transition-colors shadow">詳しく見る</a>
+                    </div>
+                </div>
+
+                <!-- カード 6 -->
+                <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col transition-all hover:shadow-md border-t-[4px] border-t-emerald-500 relative pt-3">
+                    <div class="absolute top-2 left-2 bg-emerald-100 text-emerald-700 text-[9px] font-black px-2 py-0.5 rounded shadow-sm z-10">💡教える</div>
+                    <div class="aspect-square bg-emerald-50/50 border-b border-slate-100 relative flex items-center justify-center mt-2">
+                        <div class="text-center">
+                            <span class="text-4xl md:text-5xl mb-1 block">🗓️🧐</span>
+                            <span class="text-[9px] text-slate-400 font-bold tracking-widest">IMAGE</span>
+                        </div>
+                    </div>
+                    <div class="p-3 md:p-4 flex-1 flex flex-col justify-between">
+                        <h3 class="font-black text-slate-900 text-[12px] md:text-[14px] mb-3 text-center leading-[1.6]">プロに頼む頻度って<br>何年ごとが正解？</h3>
+                        <a href="#" onclick="showComingSoon(event)" class="block w-full text-center bg-slate-900 text-neon font-black py-2.5 rounded-lg text-xs hover:bg-slate-800 transition-colors shadow">詳しく見る</a>
+                    </div>
+                </div>
+
+                <!-- カード 7 -->
+                <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col transition-all hover:shadow-md border-t-[4px] border-t-emerald-500 relative pt-3">
+                    <div class="absolute top-2 left-2 bg-emerald-100 text-emerald-700 text-[9px] font-black px-2 py-0.5 rounded shadow-sm z-10">💡教える</div>
+                    <div class="aspect-square bg-emerald-50/50 border-b border-slate-100 relative flex items-center justify-center mt-2">
+                        <div class="text-center">
+                            <span class="text-4xl md:text-5xl mb-1 block">🤖❓</span>
+                            <span class="text-[9px] text-slate-400 font-bold tracking-widest">IMAGE</span>
+                        </div>
+                    </div>
+                    <div class="p-3 md:p-4 flex-1 flex flex-col justify-between">
+                        <h3 class="font-black text-slate-900 text-[12px] md:text-[14px] mb-3 text-center leading-[1.6]">お掃除機能付きなら<br>何もしなくていい？</h3>
+                        <a href="#" onclick="showComingSoon(event)" class="block w-full text-center bg-slate-900 text-neon font-black py-2.5 rounded-lg text-xs hover:bg-slate-800 transition-colors shadow">詳しく見る</a>
+                    </div>
+                </div>
+
+                <!-- カード 8 -->
+                <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col transition-all hover:shadow-md border-t-[4px] border-t-emerald-500 relative pt-3">
+                    <div class="absolute top-2 left-2 bg-emerald-100 text-emerald-700 text-[9px] font-black px-2 py-0.5 rounded shadow-sm z-10">💡教える</div>
+                    <div class="aspect-square bg-emerald-50/50 border-b border-slate-100 relative flex items-center justify-center mt-2">
+                        <div class="text-center">
+                            <span class="text-4xl md:text-5xl mb-1 block">🔧🔍</span>
+                            <span class="text-[9px] text-slate-400 font-bold tracking-widest">IMAGE</span>
+                        </div>
+                    </div>
+                    <div class="p-3 md:p-4 flex-1 flex flex-col justify-between">
+                        <h3 class="font-black text-slate-900 text-[12px] md:text-[14px] mb-3 text-center leading-[1.6]">「完全分解洗浄」は<br>必ずやるべき？</h3>
+                        <a href="#" onclick="showComingSoon(event)" class="block w-full text-center bg-slate-900 text-neon font-black py-2.5 rounded-lg text-xs hover:bg-slate-800 transition-colors shadow">詳しく見る</a>
+                    </div>
+                </div>
+
+                <!-- カード 9 -->
+                <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col transition-all hover:shadow-md border-t-[4px] border-t-emerald-500 relative pt-3">
+                    <div class="absolute top-2 left-2 bg-emerald-100 text-emerald-700 text-[9px] font-black px-2 py-0.5 rounded shadow-sm z-10">💡教える</div>
+                    <div class="aspect-square bg-emerald-50/50 border-b border-slate-100 relative flex items-center justify-center mt-2">
+                        <div class="text-center">
+                            <span class="text-4xl md:text-5xl mb-1 block">🆕✨</span>
+                            <span class="text-[9px] text-slate-400 font-bold tracking-widest">IMAGE</span>
+                        </div>
+                    </div>
+                    <div class="p-3 md:p-4 flex-1 flex flex-col justify-between">
+                        <h3 class="font-black text-slate-900 text-[12px] md:text-[14px] mb-3 text-center leading-[1.6]">新しいエアコンなら<br>汚れないって本当？</h3>
+                        <a href="#" onclick="showComingSoon(event)" class="block w-full text-center bg-slate-900 text-neon font-black py-2.5 rounded-lg text-xs hover:bg-slate-800 transition-colors shadow">詳しく見る</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- ==========================================
+             🟡 セクション2：注意記事（やってはいけない）
+        =========================================== -->
+        <div class="mb-14">
+            <!-- セクション見出し -->
+            <div class="flex items-end border-b-2 border-amber-400 pb-2 mb-6">
+                <span class="text-2xl md:text-3xl mr-2 leading-none">⚠️</span>
+                <h2 class="text-[17px] md:text-xl font-black text-slate-900 tracking-wider">
+                    注意・NG行動
+                </h2>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-5">
+
+                <!-- カード 10 -->
+                <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col transition-all hover:shadow-md border-t-[4px] border-t-amber-400 relative pt-3">
+                    <div class="absolute top-2 left-2 bg-amber-100 text-amber-700 text-[9px] font-black px-2 py-0.5 rounded shadow-sm z-10">⚠️注意</div>
+                    <div class="aspect-square bg-amber-50/50 border-b border-slate-100 relative flex items-center justify-center mt-2">
+                        <div class="text-center">
+                            <span class="text-4xl md:text-5xl mb-1 block">🧴❌</span>
+                            <span class="text-[9px] text-slate-400 font-bold tracking-widest">IMAGE</span>
+                        </div>
+                    </div>
+                    <div class="p-3 md:p-4 flex-1 flex flex-col justify-between">
+                        <h3 class="font-black text-slate-900 text-[12px] md:text-[14px] mb-3 text-center leading-[1.6]">市販のスプレーで<br>掃除して大丈夫？</h3>
+                        <a href="#" onclick="showComingSoon(event)" class="block w-full text-center bg-slate-900 text-neon font-black py-2.5 rounded-lg text-xs hover:bg-slate-800 transition-colors shadow">詳しく見る</a>
+                    </div>
+                </div>
+
+                <!-- カード 11 -->
+                <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col transition-all hover:shadow-md border-t-[4px] border-t-amber-400 relative pt-3">
+                    <div class="absolute top-2 left-2 bg-amber-100 text-amber-700 text-[9px] font-black px-2 py-0.5 rounded shadow-sm z-10">⚠️注意</div>
+                    <div class="aspect-square bg-amber-50/50 border-b border-slate-100 relative flex items-center justify-center mt-2">
+                        <div class="text-center">
+                            <span class="text-4xl md:text-5xl mb-1 block">🩹❌</span>
+                            <span class="text-[9px] text-slate-400 font-bold tracking-widest">IMAGE</span>
+                        </div>
+                    </div>
+                    <div class="p-3 md:p-4 flex-1 flex flex-col justify-between">
+                        <h3 class="font-black text-slate-900 text-[12px] md:text-[14px] mb-3 text-center leading-[1.6]">貼り付けフィルターって<br>実はNGなの？</h3>
+                        <a href="#" onclick="showComingSoon(event)" class="block w-full text-center bg-slate-900 text-neon font-black py-2.5 rounded-lg text-xs hover:bg-slate-800 transition-colors shadow">詳しく見る</a>
+                    </div>
+                </div>
+
+                <!-- カード 12 -->
+                <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col transition-all hover:shadow-md border-t-[4px] border-t-amber-400 relative pt-3">
+                    <div class="absolute top-2 left-2 bg-amber-100 text-amber-700 text-[9px] font-black px-2 py-0.5 rounded shadow-sm z-10">⚠️注意</div>
+                    <div class="aspect-square bg-amber-50/50 border-b border-slate-100 relative flex items-center justify-center mt-2">
+                        <div class="text-center">
+                            <span class="text-4xl md:text-5xl mb-1 block">🙅‍♂️💦</span>
+                            <span class="text-[9px] text-slate-400 font-bold tracking-widest">IMAGE</span>
+                        </div>
+                    </div>
+                    <div class="p-3 md:p-4 flex-1 flex flex-col justify-between">
+                        <h3 class="font-black text-slate-900 text-[12px] md:text-[14px] mb-3 text-center leading-[1.6]">プロが止める！<br>やってはいけない掃除</h3>
+                        <a href="#" onclick="showComingSoon(event)" class="block w-full text-center bg-slate-900 text-neon font-black py-2.5 rounded-lg text-xs hover:bg-slate-800 transition-colors shadow">詳しく見る</a>
+                    </div>
+                </div>
+
+                <!-- カード 13 -->
+                <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col transition-all hover:shadow-md border-t-[4px] border-t-amber-400 relative pt-3">
+                    <div class="absolute top-2 left-2 bg-amber-100 text-amber-700 text-[9px] font-black px-2 py-0.5 rounded shadow-sm z-10">⚠️注意</div>
+                    <div class="aspect-square bg-amber-50/50 border-b border-slate-100 relative flex items-center justify-center mt-2">
+                        <div class="text-center">
+                            <span class="text-4xl md:text-5xl mb-1 block">📦🚧</span>
+                            <span class="text-[9px] text-slate-400 font-bold tracking-widest">IMAGE</span>
+                        </div>
+                    </div>
+                    <div class="p-3 md:p-4 flex-1 flex flex-col justify-between">
+                        <h3 class="font-black text-slate-900 text-[12px] md:text-[14px] mb-3 text-center leading-[1.6]">要注意！やってはいけない<br>室外機の置き方</h3>
+                        <a href="#" onclick="showComingSoon(event)" class="block w-full text-center bg-slate-900 text-neon font-black py-2.5 rounded-lg text-xs hover:bg-slate-800 transition-colors shadow">詳しく見る</a>
+                    </div>
+                </div>
+
+                <!-- カード 14 -->
+                <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col transition-all hover:shadow-md border-t-[4px] border-t-amber-400 relative pt-3">
+                    <div class="absolute top-2 left-2 bg-amber-100 text-amber-700 text-[9px] font-black px-2 py-0.5 rounded shadow-sm z-10">⚠️注意</div>
+                    <div class="aspect-square bg-amber-50/50 border-b border-slate-100 relative flex items-center justify-center mt-2">
+                        <div class="text-center">
+                            <span class="text-4xl md:text-5xl mb-1 block">⚠️🧹</span>
+                            <span class="text-[9px] text-slate-400 font-bold tracking-widest">IMAGE</span>
+                        </div>
+                    </div>
+                    <div class="p-3 md:p-4 flex-1 flex flex-col justify-between">
+                        <h3 class="font-black text-slate-900 text-[12px] md:text-[14px] mb-3 text-center leading-[1.6]">フィルターが傷む！？<br>NGなお手入れ方法</h3>
+                        <a href="#" onclick="showComingSoon(event)" class="block w-full text-center bg-slate-900 text-neon font-black py-2.5 rounded-lg text-xs hover:bg-slate-800 transition-colors shadow">詳しく見る</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- ==========================================
+             🔴 セクション3：トラブル（故障・不具合）
+        =========================================== -->
+        <div class="mb-14">
+            <!-- セクション見出し -->
+            <div class="flex items-end border-b-2 border-rose-500 pb-2 mb-6">
+                <span class="text-2xl md:text-3xl mr-2 leading-none">🚨</span>
+                <h2 class="text-[17px] md:text-xl font-black text-slate-900 tracking-wider">
+                    トラブル・故障かも？
+                </h2>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-5">
+
+                <!-- カード 15 -->
+                <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col transition-all hover:shadow-md border-t-[4px] border-t-rose-500 relative pt-3">
+                    <div class="absolute top-2 left-2 bg-rose-100 text-rose-700 text-[9px] font-black px-2 py-0.5 rounded shadow-sm z-10">🚨トラブル</div>
+                    <div class="aspect-square bg-rose-50/50 border-b border-slate-100 relative flex items-center justify-center mt-2">
+                        <div class="text-center">
+                            <span class="text-4xl md:text-5xl mb-1 block">💧⚠️</span>
+                            <span class="text-[9px] text-slate-400 font-bold tracking-widest">IMAGE</span>
+                        </div>
+                    </div>
+                    <div class="p-3 md:p-4 flex-1 flex flex-col justify-between">
+                        <h3 class="font-black text-slate-900 text-[12px] md:text-[14px] mb-3 text-center leading-[1.6]">エアコンから水漏れ！<br>原因と応急処置</h3>
+                        <a href="#" onclick="showComingSoon(event)" class="block w-full text-center bg-slate-900 text-neon font-black py-2.5 rounded-lg text-xs hover:bg-slate-800 transition-colors shadow">詳しく見る</a>
+                    </div>
+                </div>
+
+                <!-- カード 16 -->
+                <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col transition-all hover:shadow-md border-t-[4px] border-t-rose-500 relative pt-3">
+                    <div class="absolute top-2 left-2 bg-rose-100 text-rose-700 text-[9px] font-black px-2 py-0.5 rounded shadow-sm z-10">🚨トラブル</div>
+                    <div class="aspect-square bg-rose-50/50 border-b border-slate-100 relative flex items-center justify-center mt-2">
+                        <div class="text-center">
+                            <span class="text-4xl md:text-5xl mb-1 block">❄️🔧</span>
+                            <span class="text-[9px] text-slate-400 font-bold tracking-widest">IMAGE</span>
+                        </div>
+                    </div>
+                    <div class="p-3 md:p-4 flex-1 flex flex-col justify-between">
+                        <h3 class="font-black text-slate-900 text-[12px] md:text-[14px] mb-3 text-center leading-[1.6]">エアコンが冷えない？<br>故障前のチェック事項</h3>
+                        <a href="#" onclick="showComingSoon(event)" class="block w-full text-center bg-slate-900 text-neon font-black py-2.5 rounded-lg text-xs hover:bg-slate-800 transition-colors shadow">詳しく見る</a>
+                    </div>
+                </div>
+
+                <!-- カード 17 -->
+                <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col transition-all hover:shadow-md border-t-[4px] border-t-rose-500 relative pt-3">
+                    <div class="absolute top-2 left-2 bg-rose-100 text-rose-700 text-[9px] font-black px-2 py-0.5 rounded shadow-sm z-10">🚨トラブル</div>
+                    <div class="aspect-square bg-rose-50/50 border-b border-slate-100 relative flex items-center justify-center mt-2">
+                        <div class="text-center">
+                            <span class="text-4xl md:text-5xl mb-1 block">🔊❓</span>
+                            <span class="text-[9px] text-slate-400 font-bold tracking-widest">IMAGE</span>
+                        </div>
+                    </div>
+                    <div class="p-3 md:p-4 flex-1 flex flex-col justify-between">
+                        <h3 class="font-black text-slate-900 text-[12px] md:text-[14px] mb-3 text-center leading-[1.6]">エアコンから変な音が…<br>これって故障？</h3>
+                        <a href="#" onclick="showComingSoon(event)" class="block w-full text-center bg-slate-900 text-neon font-black py-2.5 rounded-lg text-xs hover:bg-slate-800 transition-colors shadow">詳しく見る</a>
+                    </div>
+                </div>
+
+                <!-- カード 18 -->
+                <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col transition-all hover:shadow-md border-t-[4px] border-t-rose-500 relative pt-3">
+                    <div class="absolute top-2 left-2 bg-rose-100 text-rose-700 text-[9px] font-black px-2 py-0.5 rounded shadow-sm z-10">🚨トラブル</div>
+                    <div class="aspect-square bg-rose-50/50 border-b border-slate-100 relative flex items-center justify-center mt-2">
+                        <div class="text-center">
+                            <span class="text-4xl md:text-5xl mb-1 block">⚫️😱</span>
+                            <span class="text-[9px] text-slate-400 font-bold tracking-widest">IMAGE</span>
+                        </div>
+                    </div>
+                    <div class="p-3 md:p-4 flex-1 flex flex-col justify-between">
+                        <h3 class="font-black text-slate-900 text-[12px] md:text-[14px] mb-3 text-center leading-[1.6]">風と一緒に黒い粒が！<br>これって何？</h3>
+                        <a href="#" onclick="showComingSoon(event)" class="block w-full text-center bg-slate-900 text-neon font-black py-2.5 rounded-lg text-xs hover:bg-slate-800 transition-colors shadow">詳しく見る</a>
+                    </div>
+                </div>
+
+                <!-- カード 19 -->
+                <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col transition-all hover:shadow-md border-t-[4px] border-t-rose-500 relative pt-3">
+                    <div class="absolute top-2 left-2 bg-rose-100 text-rose-700 text-[9px] font-black px-2 py-0.5 rounded shadow-sm z-10">🚨トラブル</div>
+                    <div class="aspect-square bg-rose-50/50 border-b border-slate-100 relative flex items-center justify-center mt-2">
+                        <div class="text-center">
+                            <span class="text-4xl md:text-5xl mb-1 block">🫧👂</span>
+                            <span class="text-[9px] text-slate-400 font-bold tracking-widest">IMAGE</span>
+                        </div>
+                    </div>
+                    <div class="p-3 md:p-4 flex-1 flex flex-col justify-between">
+                        <h3 class="font-black text-slate-900 text-[12px] md:text-[14px] mb-3 text-center leading-[1.6]">ポコポコ音がする…<br>原因と簡単な直し方</h3>
+                        <a href="#" onclick="showComingSoon(event)" class="block w-full text-center bg-slate-900 text-neon font-black py-2.5 rounded-lg text-xs hover:bg-slate-800 transition-colors shadow">詳しく見る</a>
+                    </div>
+                </div>
+
+                <!-- カード 20 -->
+                <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col transition-all hover:shadow-md border-t-[4px] border-t-rose-500 relative pt-3">
+                    <div class="absolute top-2 left-2 bg-rose-100 text-rose-700 text-[9px] font-black px-2 py-0.5 rounded shadow-sm z-10">🚨トラブル</div>
+                    <div class="aspect-square bg-rose-50/50 border-b border-slate-100 relative flex items-center justify-center mt-2">
+                        <div class="text-center">
+                            <span class="text-4xl md:text-5xl mb-1 block">🌬️📉</span>
+                            <span class="text-[9px] text-slate-400 font-bold tracking-widest">IMAGE</span>
+                        </div>
+                    </div>
+                    <div class="p-3 md:p-4 flex-1 flex flex-col justify-between">
+                        <h3 class="font-black text-slate-900 text-[12px] md:text-[14px] mb-3 text-center leading-[1.6]">風が弱くなった？<br>考えられる原因3選</h3>
+                        <a href="#" onclick="showComingSoon(event)" class="block w-full text-center bg-slate-900 text-neon font-black py-2.5 rounded-lg text-xs hover:bg-slate-800 transition-colors shadow">詳しく見る</a>
+                    </div>
+                </div>
+
+                <!-- カード 21 -->
+                <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col transition-all hover:shadow-md border-t-[4px] border-t-rose-500 relative pt-3">
+                    <div class="absolute top-2 left-2 bg-rose-100 text-rose-700 text-[9px] font-black px-2 py-0.5 rounded shadow-sm z-10">🚨トラブル</div>
+                    <div class="aspect-square bg-rose-50/50 border-b border-slate-100 relative flex items-center justify-center mt-2">
+                        <div class="text-center">
+                            <span class="text-4xl md:text-5xl mb-1 block">🚨💡</span>
+                            <span class="text-[9px] text-slate-400 font-bold tracking-widest">IMAGE</span>
+                        </div>
+                    </div>
+                    <div class="p-3 md:p-4 flex-1 flex flex-col justify-between">
+                        <h3 class="font-black text-slate-900 text-[12px] md:text-[14px] mb-3 text-center leading-[1.6]">ランプが点滅してる！<br>エラーコードの対処法</h3>
+                        <a href="#" onclick="showComingSoon(event)" class="block w-full text-center bg-slate-900 text-neon font-black py-2.5 rounded-lg text-xs hover:bg-slate-800 transition-colors shadow">詳しく見る</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </main>
+
+    <!-- FOOTER (共通) -->
+    <footer class="bg-slate-900 text-white pt-12 pb-24 md:pb-12 border-t-[6px] border-neon text-center">
+        <div class="mb-6 flex flex-col items-center justify-center">
+            <span class="text-4xl md:text-5xl tracking-widest text-white flex items-center justify-center font-impact mt-1">
+                ONE
+                <img src="ONESTAR.PNG" alt="ロゴ" class="w-[80px] h-[80px] md:w-[100px] md:h-[100px] mx-[-10px] md:mx-[-16px] object-contain -translate-y-2" onerror="this.style.display='none'">
+                STAR
+            </span>
+            <p class="text-xs text-neon font-black mt-2 tracking-widest">株式会社ECS専属プロスタッフ</p>
+        </div>
+        
+        <p class="text-[11px] text-slate-400 font-bold mb-3">
+            <a href="/products" class="hover:text-white transition-colors underline underline-offset-4">オリジナルLINEスタンプ販売中</a>
+        </p>
+        <p class="text-[10px] text-slate-500 font-bold mb-4">
+            <a href="/privacy" class="hover:text-white transition-colors">プライバシーポリシー</a>
+        </p>
+        <p class="text-[10px] text-slate-500 font-bold tracking-wider">© 2026 ONE★STAR. All Rights Reserved.</p>
+    </footer>
+
+    <!-- MOBILE BOTTOM NAVIGATION (共通) -->
+    <div class="fixed bottom-0 left-0 right-0 z-40 bg-slate-900 md:hidden h-[60px] flex items-stretch text-white shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.3)] border-t border-slate-800">
+        
+        <!-- 料金 (黒) -->
+        <a href="/price" class="flex flex-col items-center justify-center w-[20%] border-r border-slate-700 active:bg-slate-800">
+            <svg class="w-5 h-5 mb-1 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <span class="text-[9px] font-black">料金</span>
+        </a>
+        
+        <!-- 想い (黒) -->
+        <a href="/mind" class="flex flex-col items-center justify-center w-[20%] border-r border-slate-700 active:bg-slate-800">
+            <svg class="w-5 h-5 mb-1 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+            <span class="text-[9px] font-black">想い</span>
+        </a>
+
+        <!-- 拘り (黒) -->
+        <a href="/pride" class="flex flex-col items-center justify-center w-[20%] active:bg-slate-800">
+            <svg class="w-5 h-5 mb-1 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+            <span class="text-[9px] font-black">拘り</span>
+        </a>
+        
+        <!-- 電話する (蛍光イエロー) -->
+        <a href="tel:08000807788" class="flex items-center justify-center bg-neon text-slate-900 w-[40%] font-black text-base active:bg-yellow-400 transition-colors">
+            <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+            電話する
+        </a>
+        
+    </div>
+
+    <!-- 準備中トースト通知 -->
+    <div id="toast" class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 bg-slate-900/95 text-white px-6 py-4 rounded-2xl shadow-2xl opacity-0 pointer-events-none transition-opacity duration-300 flex items-center space-x-3 w-max max-w-[90vw]">
+        <svg class="w-6 h-6 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+        <span class="font-black text-[15px] tracking-wider">ただいま準備中です🙇‍♂️</span>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script>
+        // === 準備中メッセージ表示用 ===
+        let toastTimeout;
+        window.showComingSoon = function(e) {
+            e.preventDefault(); // リンク遷移を無効化
+            const toast = document.getElementById('toast');
+            
+            // 表示
+            toast.classList.remove('opacity-0');
+            toast.classList.add('opacity-100');
+            
+            // 2秒後に非表示にするタイマーをリセットして再設定
+            clearTimeout(toastTimeout);
+            toastTimeout = setTimeout(() => {
+                toast.classList.remove('opacity-100');
+                toast.classList.add('opacity-0');
+            }, 2000);
+        };
+
+        // === メニュー開閉用 ===
+        document.addEventListener('DOMContentLoaded', () => {
+            const drawerContainer = document.getElementById('drawer-container');
+            const drawerMenu = document.getElementById('drawer-menu');
+            const drawerBackdrop = document.getElementById('drawer-backdrop');
+            
+            const toggleMenu = (show) => {
+                if (show) {
+                    drawerContainer.classList.remove('hidden');
+                    setTimeout(() => {
+                        drawerBackdrop.classList.remove('opacity-0');
+                        drawerBackdrop.classList.add('opacity-100');
+                        drawerMenu.classList.remove('drawer-closed');
+                        drawerMenu.classList.add('drawer-open');
+                    }, 10);
+                } else {
+                    drawerBackdrop.classList.remove('opacity-100');
+                    drawerBackdrop.classList.add('opacity-0');
+                    drawerMenu.classList.remove('drawer-open');
+                    drawerMenu.classList.add('drawer-closed');
+                    setTimeout(() => drawerContainer.classList.add('hidden'), 300);
+                }
+            };
+
+            document.getElementById('menu-open-btn').addEventListener('click', () => toggleMenu(true));
+            document.getElementById('menu-close-btn').addEventListener('click', () => toggleMenu(false));
+            document.getElementById('drawer-backdrop').addEventListener('click', () => toggleMenu(false));
+            document.querySelectorAll('.menu-link').forEach(link => link.addEventListener('click', () => toggleMenu(false)));
+        });
+    </script>
+</body>
+</html>
+
+
+```
