@@ -129,7 +129,7 @@
     <main class="pt-24 pb-16 px-4 max-w-5xl mx-auto">
 
         <!-- ヒーローセクション -->
-        <div class="text-center mb-10">
+        <div class="text-center mb-8">
             <h1 class="text-2xl md:text-3xl font-black text-slate-900 mb-6 tracking-wider">
                 施工事例
             </h1>
@@ -140,28 +140,38 @@
             </p>
         </div>
 
+        <!-- 絞り込みナビゲーションボタン -->
+        <div class="grid grid-cols-3 gap-2 md:gap-4 mb-10 max-w-3xl mx-auto">
+            <a href="/works/area" class="wip-link bg-white border border-slate-200 rounded-2xl py-3 flex flex-col items-center justify-center shadow-sm hover:shadow-md transition-all group">
+                <span class="text-xl md:text-2xl mb-1 group-hover:scale-110 transition-transform">📍</span>
+                <span class="text-[9px] md:text-sm font-bold text-slate-700 text-center leading-snug">地域別<br>施工事例</span>
+            </a>
+            <a href="/works/maker" class="wip-link bg-white border border-slate-200 rounded-2xl py-3 flex flex-col items-center justify-center shadow-sm hover:shadow-md transition-all group">
+                <span class="text-xl md:text-2xl mb-1 group-hover:scale-110 transition-transform">🏢</span>
+                <span class="text-[9px] md:text-sm font-bold text-slate-700 text-center leading-snug">メーカー別<br>施工事例</span>
+            </a>
+            <a href="/works/type" class="wip-link bg-white border border-slate-200 rounded-2xl py-3 flex flex-col items-center justify-center shadow-sm hover:shadow-md transition-all group">
+                <span class="text-xl md:text-2xl mb-1 group-hover:scale-110 transition-transform">⚙️</span>
+                <span class="text-[9px] md:text-sm font-bold text-slate-700 text-center leading-snug">タイプ別<br>施工事例</span>
+            </a>
+        </div>
+
         <!-- 施工事例カードリスト (グリッドレイアウト) -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             
             <!-- カード 1 (岡崎市) -->
             <article class="bg-white rounded-[24px] shadow-sm border border-slate-200 overflow-hidden flex flex-col hover:shadow-md transition-shadow">
-                
-                <!-- 画像エリア (Before / After) -->
                 <div class="relative bg-slate-50/50 border-b border-slate-100 p-3 md:p-4">
-                    <!-- 地域ラベル -->
                     <div class="absolute top-3 left-3 z-20 bg-slate-900/95 text-neon text-[10px] md:text-xs font-black px-3 py-1.5 rounded-full shadow-md backdrop-blur-sm">
                         📍 岡崎市
                     </div>
-                    
                     <div class="grid grid-cols-2 gap-1.5 md:gap-2 mt-7">
-                        <!-- Before -->
                         <div class="flex flex-col items-center">
                             <div class="w-full aspect-square relative rounded-xl overflow-hidden shadow-sm group bg-slate-100 border border-slate-200/50">
                                 <img src="IMG_5873.jpeg" alt="施工前" class="w-full h-full object-cover absolute inset-0 group-hover:scale-105 transition-transform duration-500">
                             </div>
                             <span class="text-[10px] md:text-xs font-bold text-slate-400 mt-2 tracking-wider">BEFORE</span>
                         </div>
-                        <!-- After -->
                         <div class="flex flex-col items-center">
                             <div class="w-full aspect-square relative rounded-xl overflow-hidden shadow-sm group bg-slate-100 border border-slate-200/50">
                                 <img src="IMG_5874.jpeg" alt="施工後" class="w-full h-full object-cover absolute inset-0 group-hover:scale-105 transition-transform duration-500">
@@ -173,21 +183,14 @@
                         </div>
                     </div>
                 </div>
-                
-                <!-- カード内容エリア -->
                 <div class="p-5 flex-1 flex flex-col">
-                    <!-- タグ -->
                     <div class="flex flex-wrap gap-2 mb-3">
                         <span class="bg-blue-50 text-blue-600 text-[10px] md:text-xs font-bold px-2.5 py-1 rounded border border-blue-100">ダイキン</span>
                         <span class="bg-slate-50 text-slate-600 text-[10px] md:text-xs font-bold px-2.5 py-1 rounded border border-slate-200">スタンダード</span>
                     </div>
-                    
-                    <!-- タイトル -->
                     <h2 class="font-bold text-slate-900 text-sm md:text-base mb-4 leading-relaxed">
                         新築から5年分の汚れを徹底洗浄！
                     </h2>
-                    
-                    <!-- リンクボタン -->
                     <div class="mt-auto pt-4 border-t border-slate-100">
                         <a href="/works/okazaki-01" class="flex items-center justify-between group py-1">
                             <span class="text-[13px] md:text-sm font-black text-slate-700 group-hover:text-blue-600 transition-colors">詳しく見る</span>
@@ -509,8 +512,43 @@
         
     </div>
 
+    <!-- 🌟トースト通知用の要素（初期状態は中央配置で透明・縮小） -->
+    <div id="toast" class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-slate-800/95 backdrop-blur-md text-white px-6 py-4 rounded-full shadow-2xl z-50 transition-all duration-300 opacity-0 scale-95 pointer-events-none flex items-center justify-center space-x-3 border border-slate-700 whitespace-nowrap min-w-max">
+        <span class="text-xl md:text-2xl">🚧</span>
+        <span class="font-bold text-sm md:text-base tracking-wider">ただいま準備中です</span>
+    </div>
+
     <!-- SCRIPTS -->
     <script>
+        // === トースト通知用スクリプト ===
+        document.addEventListener('DOMContentLoaded', () => {
+            const toast = document.getElementById('toast');
+            let toastTimeout;
+
+            const showToast = () => {
+                // クラスを切り替えて表示（中央でフェード＆スケールイン）
+                toast.classList.remove('opacity-0', 'scale-95');
+                toast.classList.add('opacity-100', 'scale-100');
+                
+                // 既存のタイマーがあればリセット
+                clearTimeout(toastTimeout);
+                
+                // 2.5秒後に非表示にする
+                toastTimeout = setTimeout(() => {
+                    toast.classList.remove('opacity-100', 'scale-100');
+                    toast.classList.add('opacity-0', 'scale-95');
+                }, 2500);
+            };
+
+            // wip-link クラスを持つすべてのリンクに対してクリックイベントを設定
+            document.querySelectorAll('.wip-link').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault(); // デフォルトのリンク遷移をキャンセル
+                    showToast();        // トーストを表示
+                });
+            });
+        });
+
         // === メニュー開閉用 ===
         document.addEventListener('DOMContentLoaded', () => {
             const drawerContainer = document.getElementById('drawer-container');
