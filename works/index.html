@@ -142,15 +142,15 @@
 
         <!-- 絞り込みナビゲーションボタン -->
         <div class="grid grid-cols-3 gap-2 md:gap-4 mb-10 max-w-3xl mx-auto">
-            <a href="/works/area" class="wip-link bg-white border border-slate-200 rounded-2xl py-3 flex flex-col items-center justify-center shadow-sm hover:shadow-md transition-all group">
+            <a href="/area" class="bg-white border border-slate-200 rounded-2xl py-3 flex flex-col items-center justify-center shadow-sm hover:shadow-md transition-all group">
                 <span class="text-xl md:text-2xl mb-1 group-hover:scale-110 transition-transform">📍</span>
                 <span class="text-[9px] md:text-sm font-bold text-slate-700 text-center leading-snug">地域別<br>施工事例</span>
             </a>
-            <a href="/works/maker" class="wip-link bg-white border border-slate-200 rounded-2xl py-3 flex flex-col items-center justify-center shadow-sm hover:shadow-md transition-all group">
+            <a href="/maker" class="bg-white border border-slate-200 rounded-2xl py-3 flex flex-col items-center justify-center shadow-sm hover:shadow-md transition-all group">
                 <span class="text-xl md:text-2xl mb-1 group-hover:scale-110 transition-transform">🏢</span>
                 <span class="text-[9px] md:text-sm font-bold text-slate-700 text-center leading-snug">メーカー別<br>施工事例</span>
             </a>
-            <a href="/works/type" class="wip-link bg-white border border-slate-200 rounded-2xl py-3 flex flex-col items-center justify-center shadow-sm hover:shadow-md transition-all group">
+            <a href="/type" class="bg-white border border-slate-200 rounded-2xl py-3 flex flex-col items-center justify-center shadow-sm hover:shadow-md transition-all group">
                 <span class="text-xl md:text-2xl mb-1 group-hover:scale-110 transition-transform">⚙️</span>
                 <span class="text-[9px] md:text-sm font-bold text-slate-700 text-center leading-snug">タイプ別<br>施工事例</span>
             </a>
@@ -512,43 +512,8 @@
         
     </div>
 
-    <!-- 🌟トースト通知用の要素（初期状態は中央配置で透明・縮小） -->
-    <div id="toast" class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-slate-800/95 backdrop-blur-md text-white px-6 py-4 rounded-full shadow-2xl z-50 transition-all duration-300 opacity-0 scale-95 pointer-events-none flex items-center justify-center space-x-3 border border-slate-700 whitespace-nowrap min-w-max">
-        <span class="text-xl md:text-2xl">🚧</span>
-        <span class="font-bold text-sm md:text-base tracking-wider">ただいま準備中です</span>
-    </div>
-
     <!-- SCRIPTS -->
     <script>
-        // === トースト通知用スクリプト ===
-        document.addEventListener('DOMContentLoaded', () => {
-            const toast = document.getElementById('toast');
-            let toastTimeout;
-
-            const showToast = () => {
-                // クラスを切り替えて表示（中央でフェード＆スケールイン）
-                toast.classList.remove('opacity-0', 'scale-95');
-                toast.classList.add('opacity-100', 'scale-100');
-                
-                // 既存のタイマーがあればリセット
-                clearTimeout(toastTimeout);
-                
-                // 2.5秒後に非表示にする
-                toastTimeout = setTimeout(() => {
-                    toast.classList.remove('opacity-100', 'scale-100');
-                    toast.classList.add('opacity-0', 'scale-95');
-                }, 2500);
-            };
-
-            // wip-link クラスを持つすべてのリンクに対してクリックイベントを設定
-            document.querySelectorAll('.wip-link').forEach(link => {
-                link.addEventListener('click', (e) => {
-                    e.preventDefault(); // デフォルトのリンク遷移をキャンセル
-                    showToast();        // トーストを表示
-                });
-            });
-        });
-
         // === メニュー開閉用 ===
         document.addEventListener('DOMContentLoaded', () => {
             const drawerContainer = document.getElementById('drawer-container');
