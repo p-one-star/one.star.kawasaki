@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://onestar-works.com/sitemap.xml
