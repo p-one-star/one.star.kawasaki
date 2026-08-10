@@ -140,7 +140,7 @@
         <article class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden mb-12">
             
             <!-- ヘッダーエリア -->
-            <div class="p-5 md:p-8 bg-white">
+            <div class="p-5 md:p-8 border-b border-slate-100">
                 <div class="flex flex-wrap gap-2 mb-4">
                     <span class="bg-slate-900 text-neon text-[10px] md:text-xs font-black px-3 py-1 rounded-full shadow-sm">📍 豊明市</span>
                     <span class="bg-blue-50 text-blue-600 text-[10px] md:text-xs font-bold px-2.5 py-1 rounded border border-blue-100">ダイキン</span>
@@ -152,23 +152,23 @@
                 <p class="text-xs text-slate-400 font-bold">2026.08.10 UPDATE</p>
             </div>
 
-            <!-- メイン画像 (16:9) 追加 -->
-            <div class="w-full aspect-video relative bg-slate-100 border-y border-slate-100">
-                <div class="absolute inset-0 flex items-center justify-center text-slate-400 text-xs font-bold bg-slate-200/50">画像準備中</div>
-                <img src="IMG_6242.jpeg" alt="豊明市 ダイキン エアコンクリーニング 施工事例" class="w-full h-full object-cover absolute inset-0" onerror="this.style.opacity='0'">
-            </div>
-
             <div class="p-5 md:p-8 space-y-10">
                 
-                <!-- ご依頼内容 -->
+                <!-- ご依頼内容 & メイン画像 -->
                 <section>
                     <div class="flex items-center space-x-2 mb-4">
                         <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/></svg>
                         <h2 class="text-lg font-black text-slate-900 border-b-2 border-neon pb-1">ご依頼内容</h2>
                     </div>
-                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-100 text-sm md:text-base font-medium leading-loose text-slate-700">
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-100 text-sm md:text-base font-medium leading-loose text-slate-700 mb-6">
                         主寝室のエアコンを<br>
                         クリーニングさせていただきました。
+                    </div>
+
+                    <!-- メイン画像 (16:9) ここに移動 -->
+                    <div class="w-full aspect-video relative rounded-xl overflow-hidden shadow-sm bg-slate-100 border border-slate-200">
+                        <div class="absolute inset-0 flex items-center justify-center text-slate-400 text-xs font-bold bg-slate-200/50">画像準備中</div>
+                        <img src="IMG_6242.jpeg" alt="豊明市 ダイキン エアコンクリーニング 施工事例" class="w-full h-full object-cover absolute inset-0" onerror="this.style.opacity='0'">
                     </div>
                 </section>
 
