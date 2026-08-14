@@ -1,0 +1,1481 @@
+```html
+<!DOCTYPE html>
+<html lang="ja" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>室外機カバーって本当に必要なの？ | ONE★STAR</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        neon: '#EFFF00' // トレードカラー：蛍光イエロー
+                    },
+                    fontFamily: {
+                        sans: ['"Noto Sans JP"', 'sans-serif'],
+                        impact: ['"Black Ops One"', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        /* ドロワーメニュー用 */
+        #drawer-menu { transition: transform 0.3s ease-in-out; }
+        .drawer-closed { transform: translateX(-100%); }
+        .drawer-open { transform: translateX(0); }
+    </style>
+</head>
+<body class="font-sans text-slate-800 bg-slate-50 antialiased overflow-x-hidden pb-[60px]">
+
+    <!-- HEADER -->
+    <header class="fixed top-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md shadow-sm border-b border-slate-100 h-14 flex items-center justify-between px-4">
+        <button id="menu-open-btn" class="p-2 hover:bg-slate-100 rounded-lg" aria-label="メニュー">
+            <svg class="w-6 h-6 text-slate-800" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+
+        <div class="absolute left-1/2 -translate-x-1/2 flex items-center justify-center mt-1">
+            <a href="/" class="text-2xl md:text-3xl tracking-widest text-slate-900 leading-none flex items-center font-impact">
+                ONE
+                <img src="ONESTAR.PNG" alt="ロゴ" class="w-[45px] h-[45px] md:w-[55px] md:h-[55px] mx-[-4px] md:mx-[-6px] object-contain -translate-y-[4px]" onerror="this.style.display='none'">
+                STAR
+            </a>
+        </div>
+
+        <div class="hidden md:flex items-center space-x-3">
+            <a href="tel:08000807788" class="js-phone-modal-trigger bg-slate-900 hover:bg-slate-800 text-neon px-4 py-1.5 rounded-full text-xs font-black border border-slate-700 flex items-center space-x-1 transition-all">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                <span>電話相談</span>
+            </a>
+        </div>
+        <div class="w-10 md:hidden"></div>
+    </header>
+
+    <!-- DRAWER MENU -->
+    <div id="drawer-container" class="fixed inset-0 z-50 overflow-hidden hidden">
+        <div id="drawer-backdrop" class="absolute inset-0 bg-slate-900/60 opacity-0 transition-opacity duration-300"></div>
+        <div class="pointer-events-none fixed inset-y-0 left-0 flex max-w-full">
+            <div id="drawer-menu" class="pointer-events-auto w-64 drawer-closed bg-white shadow-2xl flex flex-col h-full">
+                
+                <div class="p-3 bg-white flex justify-end">
+                    <button id="menu-close-btn" class="p-2 hover:bg-slate-100 rounded-lg">
+                        <svg class="w-6 h-6 text-slate-500" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+                    </button>
+                </div>
+
+                <div class="bg-blue-600 py-3 px-6">
+                    <h2 class="text-white font-black tracking-wider text-sm">MENU</h2>
+                </div>
+
+                <nav class="flex-1 px-4 py-2 overflow-y-auto">
+                    <div class="space-y-1">
+                        <a href="/" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>トップページ
+                        </a>
+                        <a href="/price" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>料金プラン
+                        </a>
+                        <a href="/works" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>施工事例
+                        </a>
+                        <a href="/mind" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>ONE★STARの想い
+                        </a>
+                        <a href="/pride" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>プロとしての拘り
+                        </a>
+                        <a href="/trash" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>ここだけの話
+                        </a>
+                        <a href="/before" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>ご予約の前に
+                        </a>
+                        <a href="/faq" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>よくある質問
+                        </a>
+                        <a href="/tips" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-blue-600">
+                            <span class="mr-2 text-blue-600">＞</span>お役立ち情報
+                        </a>
+                        <a href="/products" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-[#06C755]">
+                            <span class="mr-2 text-slate-400">＞</span>オリジナルLINEスタンプ
+                        </a>
+                    </div>
+                    
+                    <hr class="border-slate-300 border-dashed my-4">
+                    <a href="https://www.edge-cleanservice.com" target="_blank" rel="noopener noreferrer" class="menu-link flex items-center py-2 text-sm font-black text-slate-900 hover:text-blue-600 transition-colors">
+                        株式会社ECS公式サイト
+                        <svg class="w-3.5 h-3.5 ml-1.5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                    </a>
+                </nav>
+
+                <div class="p-4 bg-slate-50 border-t border-slate-100 text-center mt-auto">
+                    <p class="text-[9px] text-slate-500 font-bold leading-relaxed mb-2">
+                        株式会社ECS EDGE CLEAN SERVICE<br>専属プロスタッフとして<br>愛知県全域で毎日奮闘中❣️
+                    </p>
+                    <a href="tel:08000807788" class="js-phone-modal-trigger block w-full py-3 bg-emerald-500 text-white font-bold rounded-lg text-sm shadow">直接電話する</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN (お役立ち情報：室外機カバー) -->
+    <main class="pt-24 pb-12 px-4 max-w-3xl mx-auto">
+
+        <!-- 白いメインカード -->
+        <div class="bg-white rounded-[24px] border-2 border-slate-900 overflow-hidden shadow-sm mb-10">
+            <!-- 上部の黄色いライン -->
+            <div class="h-3 w-full bg-neon"></div>
+
+            <div class="p-6 md:p-8">
+                
+                <!-- バッジ -->
+                <div class="flex justify-center mb-8 text-center">
+                    <span class="inline-block bg-slate-900 text-neon text-xs md:text-sm font-black px-5 py-2 rounded shadow-sm tracking-wider">
+                        プロが教えるエアコンの真実
+                    </span>
+                </div>
+
+                <!-- タイトル -->
+                <h1 class="text-[22px] sm:text-[24px] md:text-[32px] font-black text-slate-900 mb-12 leading-relaxed tracking-wide text-center">
+                    室外機カバーって<br>
+                    本当に必要なの？
+                </h1>
+
+                <!-- リード文 -->
+                <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose text-center mb-10">
+                    夏になると、<br>
+                    ホームセンターやネット通販などで<br><br>
+                    
+                    <span class="bg-slate-100 px-3 py-2 rounded-lg border border-slate-200 inline-block mb-2">
+                        「室外機の日よけ」<br>
+                        「室外機カバー」
+                    </span><br><br>
+                    
+                    といった商品を<br>
+                    よく見かけます。<br><br>
+                    
+                    直射日光から室外機を守る。<br>
+                    室外機の温度上昇を抑える。<br>
+                    電気代の節約になる。<br><br>
+                    
+                    そんな説明を見ると、<br><br>
+                    
+                    「付けた方がエアコンに良さそう」<br><br>
+                    
+                    と思いますよね。<br><br>
+
+                    確かに、<br>
+                    室外機へ当たる<br>
+                    直射日光を遮ること自体に、<br>
+                    まったく意味がないとは<br>
+                    言い切れません。<br><br>
+
+                    ですがONE★STARでは、<br><br>
+                    
+                    <span class="text-base font-black text-slate-900 bg-neon px-2">室外機を覆うようなカバーは</span><br>
+                    <span class="text-base font-black text-slate-900 bg-neon px-2">おすすめしていません。</span><br><br>
+
+                    なぜなら、<br><br>
+                    
+                    直射日光を遮ることよりも<br>
+                    <span class="text-red-600 font-black text-lg underline decoration-red-600 decoration-2 underline-offset-4">もっと大切なことが</span><br>
+                    <span class="text-red-600 font-black text-lg underline decoration-red-600 decoration-2 underline-offset-4">あるからです。</span>
+                </p>
+
+
+                <!-- 室外機で一番大切なのは「空気」 -->
+                <div class="mb-16 mt-16">
+                    <div class="flex flex-col items-center justify-center mb-6 text-center">
+                        <span class="w-10 h-[3px] bg-neon mb-4 rounded-full"></span>
+                        <h2 class="text-xl md:text-2xl font-black text-slate-900 tracking-wider leading-relaxed">
+                            室外機で<br>
+                            一番大切なのは「空気」
+                        </h2>
+                    </div>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-800 leading-loose text-center">
+                        室外機について考えるとき、<br>
+                        まず知ってほしいのが、<br><br>
+                        
+                        <span class="text-base font-black text-slate-900 underline decoration-neon decoration-4 underline-offset-4">室外機は大量の空気を</span><br>
+                        <span class="text-base font-black text-slate-900 underline decoration-neon decoration-4 underline-offset-4">必要とする機械</span><br><br>
+                        
+                        だということです。<br><br>
+                        
+                        冷房運転中、<br>
+                        室内機は<br>
+                        部屋の中にある熱を吸収し、<br><br>
+
+                        その熱を<br>
+                        室外機まで運んでいます。<br><br>
+                        
+                        そして室外機は、<br>
+                        運ばれてきた熱を<br>
+                        屋外の空気へ逃がしています。<br><br>
+
+                        そのため、<br>
+                        室外機のファンからは<br>
+                        暖かい空気が<br>
+                        大量に吹き出します。<br><br>
+                        
+                        この熱を、<br>
+                        できるだけ広い空間へ<br>
+                        逃がしてあげること。<br><br>
+                        
+                        そして、<br>
+                        熱を逃がすために必要な<br>
+                        新しい空気を、<br><br>
+
+                        <span class="font-black text-slate-900 text-base">できるだけ邪魔せず</span><br>
+                        <span class="font-black text-slate-900 text-base">吸い込ませてあげること。</span><br><br>
+                        
+                        これが非常に大切です。
+                    </p>
+                </div>
+
+
+                <!-- 室内機と室外機はセットで働いています -->
+                <div class="bg-slate-50 border border-slate-200 rounded-[16px] px-4 md:px-6 py-8 mt-12 mb-16 text-center">
+                    <h3 class="text-lg md:text-xl font-black text-slate-900 mb-6 border-b-2 border-slate-200 pb-3 inline-block leading-relaxed">
+                        室内機と室外機は<br>
+                        セットで働いています
+                    </h3>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
+                        エアコンは、<br>
+                        室内機だけで<br>
+                        部屋を冷やしているわけでは<br>
+                        ありません。<br><br>
+                        
+                        室内機で吸収した熱を<br>
+                        冷媒によって室外機へ運び、<br><br>
+                        
+                        室外機から<br>
+                        屋外へ放出しています。<br><br>
+                        
+                        室内機と室外機が<br>
+                        それぞれ熱交換を行うことで、<br>
+                        初めて部屋を<br>
+                        冷やすことができます。<br><br>
+                        
+                        つまり、<br><br>
+
+                        <span class="font-black text-slate-900 text-base">室外機がうまく</span><br>
+                        <span class="font-black text-slate-900 text-base">熱を捨てられなくなれば、</span><br><br>
+                        
+                        <span class="text-base font-black text-blue-600">室内機側の冷房にも</span><br>
+                        <span class="text-base font-black text-blue-600">影響が出てきます。</span><br><br>
+                        
+                        室外機は、<br>
+                        ただ外に置いてある<br>
+                        箱ではありません。<br><br>
+                        
+                        <span class="font-black text-slate-900 underline decoration-red-500 decoration-2 underline-offset-4">エアコンの冷房を支える</span><br>
+                        <span class="font-black text-slate-900 underline decoration-red-500 decoration-2 underline-offset-4">とても重要な機械です。</span>
+                    </p>
+                </div>
+
+
+                <!-- 吐き出した熱い空気はそのまま逃がしたい -->
+                <div class="mb-16 mt-20">
+                    <div class="flex flex-col items-center justify-center mb-6 text-center">
+                        <span class="w-10 h-[3px] bg-slate-800 mb-4 rounded-full"></span>
+                        <h2 class="text-xl md:text-2xl font-black text-slate-900 leading-relaxed">
+                            吐き出した熱い空気は<br>
+                            そのまま逃がしたい
+                        </h2>
+                    </div>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose text-center">
+                        例えば、<br>
+                        外の気温が30℃だったとします。<br><br>
+                        
+                        冷房運転中の室外機は、<br>
+                        室内から運ばれてきた熱を<br>
+                        屋外へ放出しています。<br><br>
+                        
+                        そのため、<br>
+                        吹出口からは<br>
+                        外気よりも温度の高い空気が<br>
+                        出てきます。<br><br>
+                        
+                        仮に、<br>
+                        室外機から吹き出す空気が<br>
+                        40℃だったとしましょう。<br><br>
+
+                        この40℃の空気は、<br><br>
+                        
+                        <span class="font-black text-slate-900 underline decoration-neon decoration-4 underline-offset-4">そのまま周囲の大気へ</span><br>
+                        <span class="font-black text-slate-900 underline decoration-neon decoration-4 underline-offset-4">逃げていくのが理想です。</span><br><br>
+
+                        室外機の前に<br>
+                        何もなければ、<br>
+                        吹き出した空気は<br>
+                        広い空間へ拡散していきます。<br><br>
+                        
+                        ところが、<br><br>
+                        
+                        室外機をカバーで囲ったり、<br>
+                        吹出口の近くに<br>
+                        障害物があったりすると、<br><br>
+
+                        せっかく吐き出した<br>
+                        熱い空気が、<br><br>
+                        
+                        室外機の周辺へ<br>
+                        戻ってくることがあります。
+                    </p>
+                </div>
+
+
+                <!-- 「ショートサーキット」という現象 -->
+                <div class="mb-16 relative mt-20 text-center">
+                    <!-- 上部の赤いバッジ -->
+                    <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-red-600 text-white font-black text-sm px-5 py-1.5 rounded-full shadow-md whitespace-nowrap">
+                        知っておきたい危険な状態
+                    </div>
+
+                    <h2 class="text-xl md:text-2xl font-black text-slate-900 mb-8 pt-8 leading-relaxed">
+                        「ショートサーキット」<br>
+                        という現象
+                    </h2>
+                    
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
+                        室外機が自分で吐き出した<br>
+                        熱い空気を、<br><br>
+
+                        <span class="text-red-600 font-black underline decoration-red-200 decoration-4 underline-offset-4">再び自分の吸込側から</span><br>
+                        <span class="text-red-600 font-black underline decoration-red-200 decoration-4 underline-offset-4">吸い込んでしまう。</span><br><br>
+
+                        このような状態を、<br><br>
+                        
+                        <span class="bg-red-50 px-3 py-2 rounded-lg font-black text-slate-800 border border-red-100 inline-block mb-2 text-lg">
+                            「ショートサーキット」
+                        </span><br><br>
+                        
+                        と呼びます。<br><br>
+                        
+                        本来なら、<br>
+                        周囲にある空気を<br>
+                        吸い込みたいところへ、<br><br>
+
+                        自分が今吐き出したばかりの<br>
+                        熱い空気が戻ってくる。<br><br>
+
+                        当然、<br>
+                        室外機にとって<br>
+                        良い環境ではありません。<br><br>
+
+                        熱を捨てるために<br>
+                        動いているのに、<br><br>
+                        
+                        捨てたはずの熱を<br>
+                        また吸い込んでしまう。<br><br>
+                        
+                        これでは、<br><br>
+                        
+                        <span class="text-base font-black text-slate-900 bg-neon px-2">室外機が効率よく</span><br>
+                        <span class="text-base font-black text-slate-900 bg-neon px-2">熱交換できなくなってしまいます。</span>
+                    </p>
+                </div>
+
+
+                <!-- 40℃の空気をまた吸い込んだら？ -->
+                <div class="mb-16 mt-20">
+                    <div class="flex flex-col items-center justify-center mb-6 text-center">
+                        <span class="w-10 h-[3px] bg-slate-800 mb-4 rounded-full"></span>
+                        <h2 class="text-xl md:text-2xl font-black text-slate-900 leading-relaxed">
+                            40℃の空気を<br>
+                            また吸い込んだら？
+                        </h2>
+                    </div>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose text-center">
+                        先ほどの例で、<br>
+                        室外機から<br>
+                        40℃の空気が<br>
+                        吹き出していたとします。<br><br>
+
+                        その40℃の空気が、<br><br>
+                        
+                        カバーや障害物によって<br>
+                        うまく逃げられず、<br><br>
+                        
+                        再び室外機の<br>
+                        吸込側へ戻ってきたら？<br><br>
+
+                        今度は、<br><br>
+                        
+                        <span class="font-black text-slate-900 underline decoration-blue-300 decoration-4 underline-offset-4">その高い温度の空気を相手に</span><br>
+                        <span class="font-black text-slate-900 underline decoration-blue-300 decoration-4 underline-offset-4">熱交換しなければなりません。</span><br><br>
+
+                        当然、<br>
+                        最初に30℃の空気を<br>
+                        吸っていたときよりも、<br><br>
+                        
+                        室外機にとって<br>
+                        厳しい運転条件になります。<br><br>
+
+                        だからといって、<br><br>
+                        
+                        40℃。<br>
+                        50℃。<br>
+                        60℃。<br>
+                        70℃。<br><br>
+                        
+                        と、<br>
+                        無限に温度が<br>
+                        上がり続けるわけではありません。<br><br>
+
+                        エアコンには、<br>
+                        異常な温度や圧力などから<br>
+                        機械を守るための、<br><br>
+                        
+                        さまざまな<br>
+                        保護制御があるからです。
+                    </p>
+                </div>
+
+
+                <!-- 50℃でも運転できるエアコンもあります -->
+                <div class="bg-blue-50/50 rounded-[20px] border border-blue-100 p-6 md:p-8 mt-12 mb-16 text-center">
+                    <h3 class="text-xl font-black text-slate-900 text-blue-900 mb-8">
+                        50℃でも運転できる<br>
+                        エアコンもあります
+                    </h3>
+                    
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
+                        近年のルームエアコンには、<br><br>
+                        
+                        室外機の吸込温度が<br>
+                        50℃という高温環境でも、<br><br>
+                        
+                        冷房運転できるように<br>
+                        設計された機種があります。<br><br>
+                        
+                        近年の猛暑を考えれば、<br>
+                        非常に心強い性能です。<br><br>
+                        
+                        ただし、<br><br>
+                        
+                        <span class="text-red-600 font-black text-base">「50℃まで動く」</span><br>
+                        ＝<br>
+                        <span class="text-red-600 font-black text-base">「室外機の周りを塞いでも大丈夫」</span><br><br>
+                        
+                        ではありません。<br><br>
+
+                        そもそも、<br>
+                        メーカーが示している<br>
+                        高外気温での運転も、<br><br>
+                        
+                        <span class="text-base font-black text-slate-900 bg-neon px-2">必要な設置スペースや</span><br>
+                        <span class="text-base font-black text-slate-900 bg-neon px-2">空気の流れが確保されている</span><br>
+                        <span class="text-base font-black text-slate-900 bg-neon px-2">ことが前提です。</span><br><br>
+
+                        わざわざカバーなどを使って、<br><br>
+                        
+                        室外機周辺を<br>
+                        厳しい環境にする必要は<br>
+                        ありません。
+                    </p>
+                </div>
+
+
+                <!-- なぜエアコンには保護機能があるの？ -->
+                <div class="mb-16 mt-20">
+                    <div class="flex flex-col items-center justify-center mb-6 text-center">
+                        <span class="w-10 h-[3px] bg-neon mb-4 rounded-full"></span>
+                        <h2 class="text-xl md:text-2xl font-black text-slate-900 tracking-wider leading-relaxed">
+                            なぜエアコンには<br>
+                            保護機能があるの？
+                        </h2>
+                    </div>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose text-center">
+                        室外機は、<br>
+                        ただ大きなファンを<br>
+                        回しているだけの<br>
+                        機械ではありません。<br><br>
+
+                        内部では、<br>
+                        冷媒と呼ばれるガスを<br>
+                        循環させ、<br><br>
+                        
+                        圧縮したり、<br>
+                        熱交換したりしながら<br>
+                        運転しています。<br><br>
+
+                        そのため、<br><br>
+                        
+                        温度や圧力などが<br>
+                        異常な状態になった場合、<br><br>
+                        
+                        そのまま無理に<br>
+                        運転を続けるのではなく、<br><br>
+                        
+                        能力を抑えたり、<br>
+                        場合によっては<br>
+                        運転を停止したりする、<br><br>
+                        
+                        さまざまな保護制御が<br>
+                        組み込まれています。<br><br>
+
+                        機械を壊さないための、<br><br>
+
+                        <span class="font-black text-slate-900 underline decoration-neon decoration-4 underline-offset-4">とても大切な</span><br>
+                        <span class="font-black text-slate-900 underline decoration-neon decoration-4 underline-offset-4">安全対策です。</span>
+                    </p>
+                </div>
+
+
+                <!-- もし保護機能がなかったら？ -->
+                <div class="mb-16 relative mt-20 text-center">
+                    <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-red-600 text-white font-black text-sm px-5 py-1.5 rounded-full shadow-md whitespace-nowrap">
+                        少し怖いお話
+                    </div>
+
+                    <h2 class="text-xl md:text-2xl font-black text-slate-900 mb-8 pt-8 leading-relaxed">
+                        もし保護機能が<br>
+                        なかったら？
+                    </h2>
+                    
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
+                        ここは、<br>
+                        少し怖い話に<br>
+                        聞こえるかもしれません。<br><br>
+
+                        ですが、<br>
+                        エアコンの仕組みを<br>
+                        理解するうえでは<br>
+                        大切なことです。<br><br>
+                        
+                        エアコンは、<br>
+                        冷媒を密閉した<br>
+                        冷媒回路の中で循環させ、<br><br>
+                        
+                        圧縮機を使って<br>
+                        運転している機械です。<br><br>
+                        
+                        もし、<br><br>
+                        
+                        異常な高温や高圧の状態でも<br>
+                        保護制御が一切働かず、<br>
+                        そのまま無理に<br>
+                        運転を続けたとしたら、<br><br>
+                        
+                        <span class="text-red-600 font-black underline decoration-red-200 decoration-4 underline-offset-4">機器の破損など、</span><br>
+                        <span class="text-red-600 font-black underline decoration-red-200 decoration-4 underline-offset-4">重大な事故に</span><br>
+                        <span class="text-red-600 font-black underline decoration-red-200 decoration-4 underline-offset-4">つながる可能性があります。</span><br><br>
+
+                        条件が重なれば、<br>
+                        最悪の場合には<br>
+                        破裂や爆発といった事故も<br>
+                        考えなければなりません。<br><br>
+                        
+                        もちろん、<br>
+                        これは、<br><br>
+                        
+                        「室外機カバーを付けたら爆発する」<br><br>
+                        
+                        という話ではありません。<br><br>
+
+                        エアコンには、<br>
+                        異常な状態から<br>
+                        機械を守るための<br><br>
+                        
+                        <span class="font-black text-slate-900 underline decoration-neon decoration-2 underline-offset-4 text-base">安全対策や保護制御が</span><br>
+                        <span class="font-black text-slate-900 underline decoration-neon decoration-2 underline-offset-4 text-base">設けられています。</span>
+                    </p>
+                </div>
+
+
+                <!-- 安全装置があるから無理をさせていい？ -->
+                <div class="bg-slate-50 border border-slate-200 rounded-[16px] px-4 md:px-6 py-8 mt-12 mb-16 text-center">
+                    <h3 class="text-lg md:text-xl font-black text-slate-900 mb-6 border-b-2 border-slate-200 pb-3 inline-block leading-relaxed">
+                        安全装置があるから<br>
+                        無理をさせていい？
+                    </h3>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
+                        もちろん、<br>
+                        そんなことはありません。<br><br>
+
+                        安全装置があるから、<br>
+                        室外機の周囲を<br>
+                        塞いでも大丈夫。<br><br>
+                        
+                        ではありません。<br><br>
+                        
+                        むしろ、<br><br>
+                        
+                        <span class="text-base font-black text-blue-600">安全装置が働かなければ</span><br>
+                        <span class="text-base font-black text-blue-600">ならないような環境へ、</span><br>
+                        <span class="text-base font-black text-blue-600">わざわざ近づけないこと。</span><br><br>
+                        
+                        こちらの方が<br>
+                        大切だと考えています。<br><br>
+                        
+                        メーカーが、<br><br>
+                        
+                        温度。<br>圧力。<br>空気の流れ。<br>必要な設置スペース。<br><br>
+                        
+                        さまざまな条件を考えて<br>
+                        設計した機械です。<br><br>
+                        
+                        そこへ後から、<br>
+                        カバーや<br>
+                        その他の物を追加して、<br><br>
+                        
+                        <span class="font-black text-slate-900 underline decoration-red-500 decoration-2 underline-offset-4">本来想定されている空気の流れを、</span><br>
+                        <span class="font-black text-slate-900 underline decoration-red-500 decoration-2 underline-offset-4">わざわざ悪くする必要は</span><br>
+                        <span class="font-black text-slate-900 underline decoration-red-500 decoration-2 underline-offset-4">ないのではないでしょうか。</span>
+                    </p>
+                </div>
+
+
+                <!-- 直射日光より風通しを優先したい -->
+                <div class="mb-16 mt-20">
+                    <div class="flex flex-col items-center justify-center mb-6 text-center">
+                        <span class="w-10 h-[3px] bg-slate-800 mb-4 rounded-full"></span>
+                        <h2 class="text-xl md:text-2xl font-black text-slate-900 leading-relaxed">
+                            直射日光より<br>
+                            風通しを優先したい
+                        </h2>
+                    </div>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose text-center">
+                        室外機の天板へ<br>
+                        直射日光が当たる。<br><br>
+                        
+                        これを避けることで、<br>
+                        表面温度の上昇を<br>
+                        抑えられる可能性はあります。<br><br>
+                        
+                        そのため、<br>
+                        日よけそのものを<br>
+                        完全に否定するつもりはありません。<br><br>
+                        
+                        ただ、<br>
+                        ONE★STARが<br>
+                        もっと大切だと考えているのは、<br><br>
+                        
+                        <span class="font-black text-slate-900 underline decoration-neon decoration-4 underline-offset-4">室外機の空気の流れを</span><br>
+                        <span class="font-black text-slate-900 underline decoration-neon decoration-4 underline-offset-4">邪魔しないこと。</span><br><br>
+
+                        直射日光を避けるために、<br>
+                        吸込口や吹出口を<br>
+                        少しでも塞いでしまう。<br><br>
+                        
+                        これでは、<br>
+                        何のための日よけなのか<br>
+                        分からなくなってしまいます。
+                    </p>
+                </div>
+
+
+                <!-- ビルの屋上を見てみてください -->
+                <div class="bg-blue-50/50 rounded-[20px] border border-blue-100 p-6 md:p-8 mt-12 mb-16 text-center">
+                    <h3 class="text-xl font-black text-slate-900 text-blue-900 mb-8">
+                        ビルの屋上を<br>
+                        見てみてください
+                    </h3>
+                    
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
+                        街中にある<br>
+                        ビルを見てみると、<br><br>
+                        
+                        屋上にたくさんの<br>
+                        室外機が並んでいることがあります。<br><br>
+                        
+                        強い日差しが当たる<br>
+                        屋上でも、<br><br>
+                        
+                        多くの室外機が<br>
+                        屋外に設置されています。<br><br>
+                        
+                        そもそも室外機は、<br><br>
+                        
+                        <span class="font-black text-slate-900 text-base">屋外で使用することを</span><br>
+                        <span class="font-black text-slate-900 text-base">前提に作られた機械です。</span><br><br>
+                        
+                        雨も降ります。<br>
+                        風も吹きます。<br>
+                        夏には、<br>
+                        強い日差しも当たります。<br><br>
+                        
+                        もちろん、<br>
+                        設置環境によっては<br>
+                        日よけが有効になる場合もあります。<br><br>
+                        
+                        ですが、<br><br>
+                        
+                        <span class="text-base font-black text-slate-900 bg-neon px-2">「直射日光が当たるから</span><br>
+                        <span class="text-base font-black text-slate-900 bg-neon px-2">何かで覆わなければならない」</span><br><br>
+                        
+                        とまで考える必要は<br>
+                        ないと思っています。
+                    </p>
+                </div>
+
+
+                <!-- どうしても日よけを付けたいなら？ -->
+                <div class="mb-16 mt-20">
+                    <div class="flex flex-col items-center justify-center mb-8 text-center">
+                        <span class="w-10 h-[3px] bg-neon mb-4 rounded-full"></span>
+                        <h2 class="text-lg md:text-xl font-black text-slate-900 tracking-wider leading-relaxed">
+                            どうしても日よけを<br>
+                            付けたいなら？
+                        </h2>
+                    </div>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose text-center">
+                        それでも、<br><br>
+                        
+                        「天板への直射日光だけは<br>
+                        遮りたい」<br><br>
+                        
+                        という方も<br>
+                        いると思います。<br><br>
+                        
+                        その場合に<br>
+                        ONE★STARが重視するのは、<br><br>
+                        
+                        <span class="text-red-600 font-black text-base">室外機の空気の流れを</span><br>
+                        <span class="text-red-600 font-black text-base">絶対に邪魔しないこと。</span><br><br>
+                        
+                        例えば、<br>
+                        アルミなどの反射材を<br>
+                        使用するのであれば、<br><br>
+                        
+                        室外機の天板から<br>
+                        はみ出さないサイズに<br>
+                        カットする。<br><br>
+                        
+                        そして、<br><br>
+
+                        吸込口や吹出口へ<br>
+                        一切かからないようにする。<br><br>
+
+                        室外機の天板だけに<br>
+                        収まるように設置する。<br><br>
+                        
+                        このような方法なら、<br>
+                        周囲の空気の流れを<br>
+                        邪魔しにくくなります。<br><br>
+                        
+                        ただし、<br>
+                        室外機への物の取り付けは、<br><br>
+                        
+                        機種や固定方法によって<br>
+                        問題になる場合もあります。<br><br>
+                        
+                        メーカーの取扱説明書や<br>
+                        注意事項を確認したうえで、<br><br>
+                        
+                        無理な取り付けは<br>
+                        しないようにしてください。
+                    </p>
+                </div>
+
+
+                <!-- ベルトや紐で縛るタイプは？ -->
+                <div class="mb-16 relative mt-20 text-center">
+                    <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-red-600 text-white font-black text-sm px-5 py-1.5 rounded-full shadow-md whitespace-nowrap">
+                        意外な落とし穴
+                    </div>
+
+                    <h2 class="text-xl md:text-2xl font-black text-slate-900 mb-8 pt-8 leading-relaxed">
+                        ベルトや紐で<br>
+                        縛るタイプは？
+                    </h2>
+                    
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
+                        市販の室外機カバーには、<br>
+                        ベルトや紐を使って<br>
+                        室外機へ固定するものもあります。<br><br>
+
+                        ONE★STARでは、<br>
+                        こうした固定方法も<br>
+                        積極的にはおすすめしていません。<br><br>
+
+                        室外機の周囲には、<br>
+                        できるだけ余計なものが<br>
+                        ない方が理想だからです。<br><br>
+                        
+                        ベルトや紐そのものが、<br>
+                        設置方法によっては<br>
+                        空気の流れを邪魔する<br>
+                        障害物になる可能性もあります。<br><br>
+
+                        さらに、<br>
+                        長期間屋外に置かれた<br>
+                        ベルトや反射材は、<br><br>
+                        
+                        <span class="text-red-600 font-black underline decoration-red-200 decoration-4 underline-offset-4">紫外線や雨風によって</span><br>
+                        <span class="text-red-600 font-black underline decoration-red-200 decoration-4 underline-offset-4">少しずつ劣化します。</span><br><br>
+
+                        数年経ってから<br>
+                        取り外そうとすると、<br><br>
+                        
+                        ベルトがボロボロになったり、<br>
+                        アルミ製の反射材などが<br>
+                        崩れたりすることもあります。
+                    </p>
+                </div>
+
+
+                <!-- 室外機を洗浄するときにも邪魔になります -->
+                <div class="bg-slate-50 border border-slate-200 rounded-[16px] px-4 md:px-6 py-8 mt-12 mb-16 text-center">
+                    <h3 class="text-lg md:text-xl font-black text-slate-900 mb-6 border-b-2 border-slate-200 pb-3 inline-block leading-relaxed">
+                        室外機を洗浄するときにも<br>
+                        邪魔になります
+                    </h3>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
+                        室外機は、<br>
+                        いつでも必ず<br>
+                        洗浄しなければならないものでは<br>
+                        ありません。<br><br>
+                        
+                        ONE★STARでも、<br>
+                        すべてのエアコンに<br>
+                        室外機洗浄をおすすめすることは<br>
+                        ありません。<br><br>
+                        
+                        ですが、<br>
+                        設置環境によっては<br>
+                        室外機の熱交換器に、<br><br>
+                        
+                        大量の汚れが<br>
+                        付着していることがあります。<br><br>
+                        
+                        例えば、<br><br>
+                        
+                        ホコリ。<br>
+                        洗濯物や布団などから出る綿ボコリ。<br>
+                        ペットの毛。<br>
+                        落ち葉。<br>
+                        その他のゴミ。<br><br>
+                        
+                        こうしたものが、<br>
+                        室外機の熱交換器を<br>
+                        覆ってしまうことがあります。<br><br>
+                        
+                        <span class="text-base font-black text-blue-600">熱交換器が汚れで塞がれていれば、</span><br>
+                        <span class="text-base font-black text-blue-600">空気をうまく通すことができません。</span><br><br>
+                        
+                        そんな場合は、<br>
+                        室外機の洗浄を<br>
+                        おすすめすることがあります。
+                    </p>
+                </div>
+
+
+                <!-- 必要なら分解して洗浄します -->
+                <div class="mb-16 mt-20">
+                    <div class="flex flex-col items-center justify-center mb-6 text-center">
+                        <span class="w-10 h-[3px] bg-slate-800 mb-4 rounded-full"></span>
+                        <h2 class="text-xl md:text-2xl font-black text-slate-900 leading-relaxed">
+                            必要なら<br>
+                            分解して洗浄します
+                        </h2>
+                    </div>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose text-center">
+                        汚れの状態によっては、<br>
+                        室外機を分解して、<br><br>
+                        
+                        熱交換器などを<br>
+                        洗浄することもあります。<br><br>
+                        
+                        もちろん、<br>
+                        必要のない室外機まで<br>
+                        何でも洗えばいいとは<br>
+                        考えていません。<br><br>
+                        
+                        状態を確認して、<br>
+                        洗浄する意味がある場合に<br>
+                        ご提案します。<br><br>
+                        
+                        そして、<br>
+                        こうした作業をするとき、<br><br>
+                        
+                        <span class="font-black text-slate-900 underline decoration-neon decoration-4 underline-offset-4">室外機へ巻き付けられた</span><br>
+                        <span class="font-black text-slate-900 underline decoration-neon decoration-4 underline-offset-4">ベルトや紐、カバーなどがあると、</span><br><br>
+                        
+                        それらを最初に<br>
+                        取り外さなければなりません。<br><br>
+                        
+                        長期間使用して<br>
+                        劣化しているものは、<br>
+                        動かしただけで<br>
+                        崩れてしまうこともあります。<br><br>
+                        
+                        室外機洗浄をご希望の場合は、<br><br>
+                        
+                        可能であれば事前に<br>
+                        カバーなどを外しておいていただけると、<br>
+                        作業もスムーズです。
+                    </p>
+                </div>
+
+
+                <!-- 「エアコンが動かない」原因が室外機だったことも -->
+                <div class="bg-blue-50/50 rounded-[20px] border border-blue-100 p-6 md:p-8 mt-12 mb-16 text-center">
+                    <h3 class="text-xl font-black text-slate-900 text-blue-900 mb-8">
+                        「エアコンが動かない」<br>
+                        原因が室外機だったことも
+                    </h3>
+                    
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
+                        実際の現場では、<br><br>
+                        
+                        「エアコンが動かない」<br>
+                        「冷房が効かない」<br><br>
+                        
+                        というご相談を<br>
+                        いただくことがあります。<br><br>
+                        
+                        確認してみると、<br><br>
+                        
+                        室外機の周囲に<br>
+                        物が置かれていたり、<br><br>
+                        
+                        洗濯物などによって<br>
+                        空気の流れが悪くなっていたり、<br><br>
+                        
+                        室外機周辺の環境が<br>
+                        原因になっているケースがあります。<br><br>
+                        
+                        そして、<br>
+                        周囲にあるものを移動させて、<br><br>
+                        
+                        <span class="font-black text-slate-900 text-base">室外機がきちんと</span><br>
+                        <span class="font-black text-slate-900 text-base">空気を吸って吐ける状態にすると、</span><br><br>
+                        
+                        正常に運転することもあります。<br><br>
+                        
+                        室内機だけを見ていると<br>
+                        気付きにくいのですが、<br><br>
+                        
+                        <span class="text-base font-black text-slate-900 bg-neon px-2">エアコンは室外機まで含めて</span><br>
+                        <span class="text-base font-black text-slate-900 bg-neon px-2">ひとつの機械です。</span>
+                    </p>
+                </div>
+
+
+                <!-- クリーニング直後に動かなくなった？ -->
+                <div class="mb-16 mt-20">
+                    <div class="flex flex-col items-center justify-center mb-6 text-center">
+                        <span class="w-10 h-[3px] bg-slate-800 mb-4 rounded-full"></span>
+                        <h2 class="text-xl md:text-2xl font-black text-slate-900 leading-relaxed">
+                            クリーニング直後に<br>
+                            動かなくなった？
+                        </h2>
+                    </div>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose text-center">
+                        実際に、<br>
+                        エアコンクリーニングのあとに、<br><br>
+                        
+                        「さっきまで動いていたのに<br>
+                        エアコンが動かない」<br><br>
+                        
+                        「クリーニングしてから<br>
+                        おかしくなった」<br><br>
+                        
+                        と、<br>
+                        ご連絡をいただいたこともあります。<br><br>
+                        
+                        クリーニング直後なら、<br>
+                        「掃除が原因では？」<br>
+                        と思いますよね。<br><br>
+                        
+                        当然、<br>
+                        作業に問題がなかったか<br>
+                        確認することは大切です。<br><br>
+                        
+                        ですが、<br>
+                        現地へ伺って<br>
+                        確認してみると、<br><br>
+                        
+                        室外機の近くにある<br>
+                        カバーや洗濯物、<br>
+                        その他の障害物によって、<br><br>
+                        
+                        <span class="font-black text-slate-900 underline decoration-neon decoration-4 underline-offset-4">室外機の空気の流れが</span><br>
+                        <span class="font-black text-slate-900 underline decoration-neon decoration-4 underline-offset-4">悪くなっている。</span><br><br>
+
+                        そんなケースもあります。<br><br>
+                        
+                        そして、<br>
+                        それらを移動させて<br>
+                        空気の通り道を確保すると、<br><br>
+                        
+                        はい、普通に動きました。<br><br>
+                        
+                        ということもあります。<br><br>
+                        
+                        実は、<br>
+                        こうしたケースには<br>
+                        毎年のように遭遇します。<br><br>
+                        
+                        だからこそ、<br>
+                        エアコンの調子が悪いときは、<br><br>
+                        
+                        室内機だけではなく、<br>
+                        室外機の周囲も<br>
+                        一度確認してみてください。
+                    </p>
+                </div>
+
+
+                <!-- すだれを使うなら室外機ではなく窓へ -->
+                <div class="bg-slate-50 border border-slate-200 rounded-[16px] px-4 md:px-6 py-8 mt-12 mb-16 text-center">
+                    <h3 class="text-lg md:text-xl font-black text-slate-900 mb-6 border-b-2 border-slate-200 pb-3 inline-block leading-relaxed">
+                        すだれを使うなら<br>
+                        室外機ではなく窓へ
+                    </h3>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
+                        夏の日差し対策として、<br>
+                        すだれやよしずを<br>
+                        使う方もいると思います。<br><br>
+                        
+                        もちろん、<br>
+                        使うこと自体が<br>
+                        悪いわけではありません。<br><br>
+                        
+                        ただし、<br>
+                        室外機の吹出口や吸込口を<br>
+                        塞ぐような位置には<br>
+                        設置しないでください。<br><br>
+                        
+                        ONE★STARでは、<br><br>
+                        
+                        室外機を囲うために<br>
+                        使うというより、<br><br>
+                        
+                        <span class="text-base font-black text-blue-600">室内へ入る日差しを</span><br>
+                        <span class="text-base font-black text-blue-600">窓の外で遮るために使う。</span><br><br>
+                        
+                        こちらをおすすめします。<br><br>
+                        
+                        窓から入る<br>
+                        直射日光を減らせれば、<br><br>
+                        
+                        そもそも室内へ入ってくる<br>
+                        熱を減らすことができます。<br><br>
+                        
+                        <span class="font-black text-slate-900 underline decoration-red-500 decoration-2 underline-offset-4">室外機の仕事を</span><br>
+                        <span class="font-black text-slate-900 underline decoration-red-500 decoration-2 underline-offset-4">邪魔する必要もありません。</span>
+                    </p>
+                </div>
+
+
+                <!-- 室外機の周りには何も置かないのが理想 -->
+                <div class="mb-16 mt-20">
+                    <div class="flex flex-col items-center justify-center mb-6 text-center">
+                        <span class="w-10 h-[3px] bg-neon mb-4 rounded-full"></span>
+                        <h2 class="text-xl md:text-2xl font-black text-slate-900 tracking-wider leading-relaxed">
+                            室外機の周りには<br>
+                            何も置かないのが理想
+                        </h2>
+                    </div>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose text-center">
+                        結局、<br>
+                        ONE★STARが<br>
+                        一番おすすめしたいのは、<br>
+                        とてもシンプルです。<br><br>
+                        
+                        室外機の周りには、<br><br>
+                        
+                        可能な限り<br>
+                        何も置かない。<br><br>
+                        
+                        吹出口を塞がない。<br>
+                        吸込口を塞がない。<br>
+                        洗濯物を近くに垂らさない。<br>
+                        荷物を置かない。<br><br>
+                        
+                        雑草や落ち葉などが<br>
+                        溜まっていたら取り除く。<br><br>
+                        
+                        室外機が、<br>
+                        <span class="text-base font-black text-slate-900 bg-neon px-2">できるだけたくさんの</span><br>
+                        <span class="text-base font-black text-slate-900 bg-neon px-2">新しい空気を吸えるようにする。</span><br><br>
+                        
+                        そして、<br>
+                        <span class="text-base font-black text-slate-900 bg-neon px-2">吐き出した熱い空気を</span><br>
+                        <span class="text-base font-black text-slate-900 bg-neon px-2">できるだけ自由に逃がす。</span><br><br>
+                        
+                        特別な商品を<br>
+                        買わなくても、<br><br>
+                        
+                        まずはこれだけで<br>
+                        十分です。
+                    </p>
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- ネイビーのカード (ONE★STARが大切にしていること) -->
+        <div class="bg-slate-900 rounded-[24px] border-l-[12px] border-neon p-8 md:p-10 text-center shadow-md mb-10">
+            
+            <h2 class="text-white font-black text-xl md:text-2xl leading-relaxed mb-10 tracking-wider">
+                ONE★STARが<br>
+                大切にしていること
+            </h2>
+
+            <p class="text-slate-100 font-bold text-[15px] md:text-base leading-loose mb-10">
+                室外機の日よけには、<br><br>
+                
+                設置環境によって<br>
+                効果がある場合も<br>
+                あるのかもしれません。<br><br>
+                
+                だから、<br>
+                日よけという考え方そのものを<br>
+                否定するつもりはありません。<br><br>
+                
+                ただし、<br><br>
+                
+                <span class="text-neon font-black text-base">室外機を守るために</span><br>
+                <span class="text-neon font-black text-base">取り付けたものが、</span><br>
+                <span class="text-neon font-black text-base">室外機本来の仕事を</span><br>
+                <span class="text-neon font-black text-base">邪魔してしまっては本末転倒です。</span>
+            </p>
+
+            <!-- 区切り線 -->
+            <div class="w-16 h-[1px] bg-slate-600 mx-auto mb-10"></div>
+
+            <p class="text-slate-100 font-bold text-[15px] md:text-base leading-loose mb-10">
+                室外機は、<br><br>
+                
+                大量の空気を吸い込み、<br>
+                大量の空気を吐き出しながら、<br>
+                室内から運ばれてきた熱を<br>
+                外へ逃がしています。<br><br>
+                
+                だからこそ、<br><br>
+                
+                室外機に何かを<br>足すことより、<br><br>
+                
+                <span class="text-white font-black text-base underline decoration-neon decoration-4 underline-offset-4">室外機の仕事を</span><br>
+                <span class="text-white font-black text-base underline decoration-neon decoration-4 underline-offset-4">邪魔しないこと。</span><br><br>
+                
+                こちらを<br>
+                大切にしてほしいと思います。<br><br>
+            </p>
+
+            <!-- 区切り線 -->
+            <div class="w-16 h-[1px] bg-slate-600 mx-auto mb-10"></div>
+
+            <p class="text-slate-100 font-bold text-[15px] md:text-base leading-loose">
+                直射日光が<br>
+                気になるからといって、<br><br>
+                
+                何でも被せる。<br>
+                何でも囲う。<br><br>
+                
+                その前に、<br>
+                室外機の周囲を<br>
+                一度見てみてください。<br><br>
+                
+                しっかり空気を吸えるか。<br>
+                熱い空気を<br>
+                そのまま外へ逃がせるか。<br><br>
+                
+                まず確認するのは、そこです。<br><br>
+                
+                室外機にとって<br>
+                一番大切なのは、<br><br>
+                
+                <span class="text-neon font-black text-base">できるだけ自由に空気を吸って、</span><br>
+                <span class="text-neon font-black text-base">自由に吐ける環境です。</span>
+            </p>
+        </div>
+
+
+        <!-- ご相談誘導ブロック -->
+        <div class="bg-white rounded-2xl border border-slate-200 p-8 text-center shadow-sm mb-12">
+            <h2 class="text-xl md:text-2xl font-black text-slate-900 mb-8 leading-relaxed">
+                室外機の汚れが<br>
+                気になる場合は
+            </h2>
+            
+            <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose mb-10">
+                室外機の熱交換器を見て、<br><br>
+                
+                <span class="text-slate-900 font-black">ホコリや綿ボコリ、<br>ペットの毛などで<br>目詰まりしている。</span><br><br>
+                
+                そんな場合は、<br>
+                洗浄した方が良いケースも<br>
+                あります。<br><br>
+                
+                ただし、<br>
+                室外機は電気部品や<br>
+                冷媒回路を含む機械です。<br><br>
+                
+                無理に分解したり、<br>
+                ご自身で大量の水を<br>
+                かけたりすることは<br>
+                おすすめしません。<br><br>
+                
+                状態が気になる場合は、<br>
+                一度ご相談ください。
+            </p>
+            
+            <a href="tel:08000807788" class="js-phone-modal-trigger inline-flex items-center justify-center bg-slate-900 hover:bg-slate-800 text-neon px-8 py-4 rounded-full text-base font-black shadow-md transition-all active:scale-95">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                <span>電話で相談する</span>
+            </a>
+        </div>
+
+        <!-- 関連する施工事例へのリンク -->
+        <div class="mt-16 text-center">
+            <div class="flex flex-col items-center justify-center mb-6">
+                <span class="w-10 h-[3px] bg-slate-800 mb-4 rounded-full"></span>
+                <h2 class="text-xl md:text-2xl font-black text-slate-900 tracking-wider leading-relaxed">
+                    実際の現場も見てみる
+                </h2>
+            </div>
+            
+            <!-- トーストを表示するボタン -->
+            <button type="button" onclick="showToast(event)" class="block w-full bg-white rounded-2xl border-2 border-slate-900 p-6 md:p-8 shadow-sm hover:shadow-md transition-all active:scale-95 group relative overflow-hidden text-center cursor-pointer">
+                <!-- 装飾 -->
+                <div class="absolute top-0 left-0 w-full h-2 bg-neon"></div>
+                
+                <p class="text-[11px] md:text-sm font-black text-slate-500 mb-3 tracking-widest">
+                    関連する施工事例
+                </p>
+                
+                <h3 class="text-[17px] md:text-xl font-black text-slate-900 mb-8 leading-relaxed">
+                    「室外機の汚れや<br>設置環境を確認した施工事例」
+                </h3>
+                
+                <div class="inline-flex items-center justify-center bg-slate-900 text-neon px-6 py-3.5 rounded-full text-[15px] font-black group-hover:bg-slate-800 transition-colors w-full md:w-auto shadow-md">
+                    ▶ この施工事例を見る
+                </div>
+            </button>
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-900 text-white pt-12 pb-24 md:pb-12 border-t-[6px] border-neon text-center mt-12">
+        <div class="mb-6 flex flex-col items-center justify-center">
+            <span class="text-4xl md:text-5xl tracking-widest text-white flex items-center justify-center font-impact mt-1">
+                ONE
+                <img src="ONESTAR.PNG" alt="ロゴ" class="w-[80px] h-[80px] md:w-[100px] md:h-[100px] mx-[-10px] md:mx-[-16px] object-contain -translate-y-2" onerror="this.style.display='none'">
+                STAR
+            </span>
+            <p class="text-xs text-neon font-black mt-2 tracking-widest">株式会社ECS専属プロスタッフ</p>
+        </div>
+        
+        <p class="text-[11px] text-slate-400 font-bold mb-3">
+            <a href="/products" class="hover:text-white transition-colors underline underline-offset-4">オリジナルLINEスタンプ販売中</a>
+        </p>
+        <p class="text-[10px] text-slate-500 font-bold mb-4">
+            <a href="/privacy" class="hover:text-white transition-colors">プライバシーポリシー</a>
+        </p>
+        <p class="text-[10px] text-slate-500 font-bold tracking-wider">© 2026 ONE★STAR. All Rights Reserved.</p>
+    </footer>
+
+    <!-- MOBILE BOTTOM NAVIGATION -->
+    <div class="fixed bottom-0 left-0 right-0 z-45 bg-slate-900 md:hidden h-[60px] flex items-stretch text-white shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.3)] border-t border-slate-800">
+        
+        <a href="/price" class="flex flex-col items-center justify-center w-[20%] border-r border-slate-700 active:bg-slate-800">
+            <svg class="w-5 h-5 mb-1 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <span class="text-[9px] font-black">料金</span>
+        </a>
+        
+        <a href="/mind" class="flex flex-col items-center justify-center w-[20%] border-r border-slate-700 active:bg-slate-800">
+            <svg class="w-5 h-5 mb-1 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+            <span class="text-[9px] font-black">想い</span>
+        </a>
+
+        <a href="/pride" class="flex flex-col items-center justify-center w-[20%] active:bg-slate-800">
+            <svg class="w-5 h-5 mb-1 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+            <span class="text-[9px] font-black">拘り</span>
+        </a>
+        
+        <a href="tel:08000807788" class="js-phone-modal-trigger flex items-center justify-center bg-neon text-slate-900 w-[40%] font-black text-base active:bg-yellow-400 transition-colors">
+            <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+            電話する
+        </a>
+        
+    </div>
+
+    <!-- 🌟 ご予約・お問い合わせ前のワンクッションモーダル 🌟 -->
+    <div id="phone-modal" class="fixed inset-0 z-[100] hidden flex items-center justify-center px-4">
+        <div id="phone-modal-backdrop" class="absolute inset-0 bg-slate-900/80 backdrop-blur-sm opacity-0 transition-opacity duration-300"></div>
+        
+        <div id="phone-modal-content" class="relative bg-white rounded-3xl shadow-2xl w-full max-w-sm overflow-hidden transform scale-95 opacity-0 transition-all duration-300 border border-slate-100">
+            
+            <button id="phone-modal-close" class="absolute top-4 right-4 p-2 text-slate-400 hover:text-slate-700 bg-slate-100 hover:bg-slate-200 rounded-full transition-colors z-10">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+            
+            <div class="p-6 md:p-8 text-center pt-10">
+                
+                <h3 class="text-xl font-black text-slate-900 mb-6 border-b-4 border-[#EFFF00] inline-block pb-1">
+                    ご予約・お問い合わせの前に
+                </h3>
+                
+                <div class="text-[13px] text-slate-700 font-bold leading-relaxed mb-8 space-y-4 text-left bg-slate-50 p-5 rounded-2xl border border-slate-100 shadow-inner">
+                    <p>
+                        <span class="text-slate-900 font-black text-sm">ONE★STAR</span>は<br>
+                        株式会社ECS（エッジクリーンサービス）の専属プロスタッフとして活動しています。
+                    </p>
+                    <p class="pt-2 border-t border-slate-200">
+                        お電話は<br>
+                        <span class="text-slate-900 font-black">株式会社ECSの予約受付</span>につながります。
+                    </p>
+                    
+                    <div class="bg-rose-50 border border-rose-200 p-3 rounded-xl text-center shadow-sm">
+                        <p class="text-rose-600 font-black text-[13px] leading-tight">
+                            ご予約の際は<br>
+                            <span class="text-base">「ONE★STAR（川崎）を指名」</span>と<br>
+                            お伝えください。
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="space-y-3">
+                    <a href="tel:08000807788" class="flex items-center justify-center w-full py-4 bg-slate-900 text-[#EFFF00] font-black rounded-2xl shadow-md active:scale-95 transition-transform text-sm sm:text-base border border-slate-800">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                        株式会社ECSへ電話する
+                    </a>
+                    
+                    <a href="https://www.instagram.com/one.star.kawasaki?igsh=anZpYnpxcDdqOXRh&utm_source=qr" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center w-full py-4 bg-gradient-to-r from-pink-500 to-rose-500 text-white font-black rounded-2xl shadow-md active:scale-95 transition-transform text-sm sm:text-base">
+                        <svg class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                        </svg>
+                        Instagramで本人に相談する
+                    </a>
+                </div>
+                
+                <p class="text-[10px] text-slate-500 mt-4 font-bold leading-relaxed">
+                    直接のご質問・お問い合わせは<br>本人直通のInstagram DMからお気軽にどうぞ。
+                </p>
+                
+                <button id="phone-modal-cancel" class="mt-6 text-[11px] text-slate-400 font-bold underline underline-offset-4 hover:text-slate-600 transition-colors">
+                    キャンセルして戻る
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 🚧 トースト表示用（初期状態は透明・クリック不可） -->
+    <div id="toast" class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-[110] bg-slate-900/95 backdrop-blur-md text-white px-6 py-4 rounded-2xl shadow-[0_10px_40px_rgba(0,0,0,0.3)] flex items-center space-x-3 opacity-0 pointer-events-none transition-opacity duration-300">
+        <span class="text-2xl">🚧</span>
+        <span class="font-black text-[15px] tracking-widest whitespace-nowrap">ただいま準備中です。</span>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script>
+        // === トースト表示関数 ===
+        let toastTimeout;
+        function showToast(e) {
+            e.preventDefault(); // デフォルトのボタン動作を防ぐ
+            const toast = document.getElementById('toast');
+            
+            // すでにタイマーが動いていたらクリア
+            if (toastTimeout) {
+                clearTimeout(toastTimeout);
+            }
+            
+            // 表示
+            toast.classList.remove('opacity-0');
+            toast.classList.add('opacity-100');
+            
+            // 3秒後に非表示
+            toastTimeout = setTimeout(() => {
+                toast.classList.remove('opacity-100');
+                toast.classList.add('opacity-0');
+            }, 3000);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // === メニュー開閉用 ===
+            const drawerContainer = document.getElementById('drawer-container');
+            const drawerMenu = document.getElementById('drawer-menu');
+            const drawerBackdrop = document.getElementById('drawer-backdrop');
+            
+            const toggleMenu = (show) => {
+                if (show) {
+                    drawerContainer.classList.remove('hidden');
+                    setTimeout(() => {
+                        drawerBackdrop.classList.remove('opacity-0');
+                        drawerBackdrop.classList.add('opacity-100');
+                        drawerMenu.classList.remove('drawer-closed');
+                        drawerMenu.classList.add('drawer-open');
+                    }, 10);
+                } else {
+                    drawerBackdrop.classList.remove('opacity-100');
+                    drawerBackdrop.classList.add('opacity-0');
+                    drawerMenu.classList.remove('drawer-open');
+                    drawerMenu.classList.add('drawer-closed');
+                    setTimeout(() => drawerContainer.classList.add('hidden'), 300);
+                }
+            };
+
+            document.getElementById('menu-open-btn').addEventListener('click', () => toggleMenu(true));
+            document.getElementById('menu-close-btn').addEventListener('click', () => toggleMenu(false));
+            document.getElementById('drawer-backdrop').addEventListener('click', () => toggleMenu(false));
+            document.querySelectorAll('.menu-link').forEach(link => link.addEventListener('click', () => toggleMenu(false)));
+
+            // === 電話モーダル ===
+            const phoneModal = document.getElementById('phone-modal');
+            const phoneModalBackdrop = document.getElementById('phone-modal-backdrop');
+            const phoneModalContent = document.getElementById('phone-modal-content');
+            const phoneModalCloseBtn = document.getElementById('phone-modal-close');
+            const phoneModalCancelBtn = document.getElementById('phone-modal-cancel');
+            const phoneTriggerBtns = document.querySelectorAll('.js-phone-modal-trigger');
+
+            if (phoneModal && phoneTriggerBtns.length > 0) {
+                const openPhoneModal = (e) => {
+                    e.preventDefault(); 
+                    if (typeof toggleMenu === 'function') toggleMenu(false);
+
+                    phoneModal.classList.remove('hidden');
+                    requestAnimationFrame(() => {
+                        phoneModalBackdrop.classList.remove('opacity-0');
+                        phoneModalBackdrop.classList.add('opacity-100');
+                        phoneModalContent.classList.remove('opacity-0', 'scale-95');
+                        phoneModalContent.classList.add('opacity-100', 'scale-100');
+                    });
+                };
+
+                const closePhoneModal = () => {
+                    phoneModalBackdrop.classList.remove('opacity-100');
+                    phoneModalBackdrop.classList.add('opacity-0');
+                    phoneModalContent.classList.remove('opacity-100', 'scale-100');
+                    phoneModalContent.classList.add('opacity-0', 'scale-95');
+                    setTimeout(() => phoneModal.classList.add('hidden'), 300);
+                };
+
+                phoneTriggerBtns.forEach(btn => btn.addEventListener('click', openPhoneModal));
+                phoneModalCloseBtn.addEventListener('click', closePhoneModal);
+                phoneModalCancelBtn.addEventListener('click', closePhoneModal);
+                phoneModalBackdrop.addEventListener('click', closePhoneModal);
+            }
+        });
+    </script>
+</body>
+</html>
+
+
+```
