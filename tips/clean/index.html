@@ -1,0 +1,1448 @@
+```html
+<!DOCTYPE html>
+<html lang="ja" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>エアコンクリーニングって本当に必要なの？ | ONE★STAR</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        neon: '#EFFF00' // トレードカラー：蛍光イエロー
+                    },
+                    fontFamily: {
+                        sans: ['"Noto Sans JP"', 'sans-serif'],
+                        impact: ['"Black Ops One"', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        /* ドロワーメニュー用 */
+        #drawer-menu { transition: transform 0.3s ease-in-out; }
+        .drawer-closed { transform: translateX(-100%); }
+        .drawer-open { transform: translateX(0); }
+    </style>
+</head>
+<body class="font-sans text-slate-800 bg-slate-50 antialiased overflow-x-hidden pb-[60px]">
+
+    <!-- HEADER -->
+    <header class="fixed top-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md shadow-sm border-b border-slate-100 h-14 flex items-center justify-between px-4">
+        <button id="menu-open-btn" class="p-2 hover:bg-slate-100 rounded-lg" aria-label="メニュー">
+            <svg class="w-6 h-6 text-slate-800" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+
+        <div class="absolute left-1/2 -translate-x-1/2 flex items-center justify-center mt-1">
+            <a href="/" class="text-2xl md:text-3xl tracking-widest text-slate-900 leading-none flex items-center font-impact">
+                ONE
+                <img src="ONESTAR.PNG" alt="ロゴ" class="w-[45px] h-[45px] md:w-[55px] md:h-[55px] mx-[-4px] md:mx-[-6px] object-contain -translate-y-[4px]" onerror="this.style.display='none'">
+                STAR
+            </a>
+        </div>
+
+        <div class="hidden md:flex items-center space-x-3">
+            <a href="tel:08000807788" class="js-phone-modal-trigger bg-slate-900 hover:bg-slate-800 text-neon px-4 py-1.5 rounded-full text-xs font-black border border-slate-700 flex items-center space-x-1 transition-all">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                <span>電話相談</span>
+            </a>
+        </div>
+        <div class="w-10 md:hidden"></div>
+    </header>
+
+    <!-- DRAWER MENU -->
+    <div id="drawer-container" class="fixed inset-0 z-50 overflow-hidden hidden">
+        <div id="drawer-backdrop" class="absolute inset-0 bg-slate-900/60 opacity-0 transition-opacity duration-300"></div>
+        <div class="pointer-events-none fixed inset-y-0 left-0 flex max-w-full">
+            <div id="drawer-menu" class="pointer-events-auto w-64 drawer-closed bg-white shadow-2xl flex flex-col h-full">
+                
+                <div class="p-3 bg-white flex justify-end">
+                    <button id="menu-close-btn" class="p-2 hover:bg-slate-100 rounded-lg">
+                        <svg class="w-6 h-6 text-slate-500" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+                    </button>
+                </div>
+
+                <div class="bg-blue-600 py-3 px-6">
+                    <h2 class="text-white font-black tracking-wider text-sm">MENU</h2>
+                </div>
+
+                <nav class="flex-1 px-4 py-2 overflow-y-auto">
+                    <div class="space-y-1">
+                        <a href="/" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>トップページ
+                        </a>
+                        <a href="/price" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>料金プラン
+                        </a>
+                        <a href="/works" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>施工事例
+                        </a>
+                        <a href="/mind" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>ONE★STARの想い
+                        </a>
+                        <a href="/pride" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>プロとしての拘り
+                        </a>
+                        <a href="/trash" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>ここだけの話
+                        </a>
+                        <a href="/before" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>ご予約の前に
+                        </a>
+                        <a href="/faq" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>よくある質問
+                        </a>
+                        <a href="/tips" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-blue-600">
+                            <span class="mr-2 text-blue-600">＞</span>お役立ち情報
+                        </a>
+                        <a href="/products" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-[#06C755]">
+                            <span class="mr-2 text-slate-400">＞</span>オリジナルLINEスタンプ
+                        </a>
+                    </div>
+                    
+                    <hr class="border-slate-300 border-dashed my-4">
+                    <a href="https://www.edge-cleanservice.com" target="_blank" rel="noopener noreferrer" class="menu-link flex items-center py-2 text-sm font-black text-slate-900 hover:text-blue-600 transition-colors">
+                        株式会社ECS公式サイト
+                        <svg class="w-3.5 h-3.5 ml-1.5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                    </a>
+                </nav>
+
+                <div class="p-4 bg-slate-50 border-t border-slate-100 text-center mt-auto">
+                    <p class="text-[9px] text-slate-500 font-bold leading-relaxed mb-2">
+                        株式会社ECS EDGE CLEAN SERVICE<br>専属プロスタッフとして<br>愛知県全域で毎日奮闘中❣️
+                    </p>
+                    <a href="tel:08000807788" class="js-phone-modal-trigger block w-full py-3 bg-emerald-500 text-white font-bold rounded-lg text-sm shadow">直接電話する</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN (お役立ち情報：エアコンクリーニングの必要性) -->
+    <main class="pt-24 pb-12 px-4 max-w-3xl mx-auto">
+
+        <!-- 白いメインカード -->
+        <div class="bg-white rounded-[24px] border-2 border-slate-900 overflow-hidden shadow-sm mb-10">
+            <!-- 上部の黄色いライン -->
+            <div class="h-3 w-full bg-neon"></div>
+
+            <div class="p-6 md:p-8">
+                
+                <!-- バッジ -->
+                <div class="flex justify-center mb-8 text-center">
+                    <span class="inline-block bg-slate-900 text-neon text-xs md:text-sm font-black px-5 py-2 rounded shadow-sm tracking-wider">
+                        プロが教えるエアコンの真実
+                    </span>
+                </div>
+
+                <!-- タイトル -->
+                <h1 class="text-[22px] sm:text-[24px] md:text-[32px] font-black text-slate-900 mb-12 leading-relaxed tracking-wide text-center">
+                    エアコンクリーニングって<br>
+                    本当に必要なの？
+                </h1>
+
+                <!-- リード文 -->
+                <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose text-center mb-10">
+                    「エアコンクリーニングって、<br>
+                    本当に必要なの？」<br><br>
+
+                    そう思ったことは<br>
+                    ありませんか？<br><br>
+
+                    フィルターなら、<br>
+                    自分でも掃除できます。<br><br>
+
+                    冷房もちゃんと効いている。<br><br>
+
+                    嫌なニオイも<br>
+                    特に感じない。<br><br>
+
+                    それなら、<br><br>
+
+                    わざわざお金を払って<br>
+                    エアコンクリーニングをする<br>
+                    必要があるの？<br><br>
+
+                    そう思うのも<br>
+                    当然だと思います。<br><br>
+
+                    結論から言えば、<br><br>
+
+                    <span class="text-base font-black text-slate-900 bg-neon px-2">エアコンの状態によっては</span><br>
+                    <span class="text-base font-black text-slate-900 bg-neon px-2">クリーニングが必要です。</span><br><br>
+
+                    ただし、<br><br>
+
+                    ONE★STARでは、<br><br>
+
+                    <span class="font-black text-slate-900 text-lg underline decoration-neon decoration-4 underline-offset-4">すべてのエアコンを</span><br>
+                    <span class="font-black text-slate-900 text-lg underline decoration-neon decoration-4 underline-offset-4">毎年必ず洗う必要がある</span><br><br>
+
+                    とは考えていません。<br><br>
+
+                    大切なのは、<br><br>
+
+                    何年使ったかだけではなく、<br><br>
+
+                    <span class="font-black text-red-600 text-base">今、そのエアコンが</span><br>
+                    <span class="font-black text-red-600 text-base">どんな状態なのか。</span><br><br>
+
+                    まずは、<br><br>
+
+                    なぜエアコン内部が<br>
+                    汚れていくのか？<br><br>
+
+                    そこから<br>
+                    見ていきましょう。
+                </p>
+
+
+                <!-- フィルターを掃除していれば大丈夫？ -->
+                <div class="mb-16 mt-16">
+                    <div class="flex flex-col items-center justify-center mb-6 text-center">
+                        <span class="w-10 h-[3px] bg-neon mb-4 rounded-full"></span>
+                        <h2 class="text-xl md:text-2xl font-black text-slate-900 tracking-wider leading-relaxed">
+                            フィルターを<br>
+                            掃除していれば大丈夫？
+                        </h2>
+                    </div>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-800 leading-loose text-center">
+                        エアコンのお手入れとして<br>
+                        一番身近なのが、<br><br>
+
+                        フィルター掃除です。<br><br>
+
+                        フィルターには、<br><br>
+
+                        室内の空気に含まれる<br>
+                        ホコリなどが、<br><br>
+
+                        エアコン内部へ<br>
+                        入りにくくする役割があります。<br><br>
+
+                        だから、<br><br>
+
+                        <span class="text-base font-black text-slate-900 underline decoration-neon decoration-4 underline-offset-4">フィルターを</span><br>
+                        <span class="text-base font-black text-slate-900 underline decoration-neon decoration-4 underline-offset-4">こまめに掃除することは、</span><br><br>
+
+                        とても大切です。<br><br>
+
+                        ですが、<br><br>
+
+                        フィルターを<br>
+                        キレイにしているからといって、<br><br>
+
+                        エアコン内部まで<br>
+                        ずっとキレイな状態を<br>
+                        保てるわけではありません。
+                    </p>
+                </div>
+
+
+                <!-- フィルターより奥にも空気は流れています -->
+                <div class="bg-slate-50 border border-slate-200 rounded-[16px] px-4 md:px-6 py-8 mt-12 mb-16 text-center">
+                    <h3 class="text-lg md:text-xl font-black text-slate-900 mb-6 border-b-2 border-slate-200 pb-3 inline-block leading-relaxed">
+                        フィルターより奥にも<br>
+                        空気は流れています
+                    </h3>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
+                        エアコンは、<br><br>
+
+                        室内の空気を吸い込み、<br><br>
+
+                        フィルターを通して、<br><br>
+
+                        その奥にある<br>
+                        熱交換器へ空気を送ります。<br><br>
+
+                        さらに、<br><br>
+
+                        送風ファンによって<br>
+                        空気を動かし、<br><br>
+
+                        吹出口から<br>
+                        室内へ戻しています。<br><br>
+
+                        つまり、<br><br>
+
+                        エアコンの中には、<br><br>
+
+                        <span class="font-black text-slate-900">フィルター。</span><br><br>
+
+                        <span class="font-black text-slate-900">熱交換器。</span><br><br>
+
+                        <span class="font-black text-slate-900">ドレンパン。</span><br><br>
+
+                        <span class="font-black text-slate-900">送風ファン。</span><br><br>
+
+                        <span class="font-black text-slate-900">吹出口。</span><br><br>
+
+                        など、<br><br>
+
+                        空気や水分が通る場所が<br>
+                        たくさんあります。<br><br>
+
+                        家庭で簡単に<br>
+                        お手入れできるフィルターは、<br><br>
+
+                        その中でも、<br><br>
+
+                        <span class="text-base font-black text-blue-600">エアコンの入口にある</span><br>
+                        <span class="text-base font-black text-blue-600">ひとつの部品です。</span>
+                    </p>
+                </div>
+
+
+                <!-- フィルターだけでは止められない汚れもあります -->
+                <div class="mb-16 mt-20">
+                    <div class="flex flex-col items-center justify-center mb-6 text-center">
+                        <span class="w-10 h-[3px] bg-slate-800 mb-4 rounded-full"></span>
+                        <h2 class="text-xl md:text-2xl font-black text-slate-900 leading-relaxed">
+                            フィルターだけでは<br>
+                            止められない汚れもあります
+                        </h2>
+                    </div>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose text-center">
+                        フィルターは、<br><br>
+
+                        すべてのホコリや汚れを<br>
+                        完全に止めるためのものでは<br>
+                        ありません。<br><br>
+
+                        細かなホコリなどは、<br><br>
+
+                        少しずつ<br>
+                        エアコン内部へ入っていきます。<br><br>
+
+                        さらに、<br><br>
+
+                        冷房や除湿運転をすると、<br><br>
+
+                        熱交換器には<br>
+                        結露による水分が発生します。<br><br>
+
+                        そこへ、<br><br>
+
+                        ホコリなどの汚れが<br>
+                        少しずつ付着していく。<br><br>
+
+                        エアコン内部は、<br><br>
+
+                        <span class="font-black text-slate-900 underline decoration-neon decoration-4 underline-offset-4">ホコリと水分が</span><br>
+                        <span class="font-black text-slate-900 underline decoration-neon decoration-4 underline-offset-4">存在しやすい環境</span><br><br>
+
+                        でもあります。
+                    </p>
+                </div>
+
+
+                <!-- カビが発生しやすい場所があります -->
+                <div class="mb-16 relative mt-20 text-center">
+                    <!-- 上部の赤いバッジ -->
+                    <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-red-600 text-white font-black text-sm px-5 py-1.5 rounded-full shadow-md whitespace-nowrap">
+                        見落としがちなポイント
+                    </div>
+
+                    <h2 class="text-xl md:text-2xl font-black text-slate-900 mb-8 pt-8 leading-relaxed">
+                        カビが発生しやすい<br>
+                        場所があります
+                    </h2>
+                    
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
+                        特に汚れが<br>
+                        目立ちやすい場所のひとつが、<br><br>
+
+                        送風ファンです。<br><br>
+
+                        吹出口から<br>
+                        エアコン内部を覗いたとき、<br><br>
+
+                        奥にあるファンへ、<br><br>
+
+                        黒い点々や<br>
+                        黒い汚れが付着しているのを<br><br>
+
+                        見たことがある方も<br>
+                        いるかもしれません。<br><br>
+
+                        使用環境や<br>
+                        エアコンの状態によっては、<br><br>
+
+                        <span class="text-red-600 font-black underline decoration-red-200 decoration-4 underline-offset-4">ホコリやカビなどが</span><br>
+                        <span class="text-red-600 font-black underline decoration-red-200 decoration-4 underline-offset-4">送風ファンに大量に</span><br>
+                        <span class="text-red-600 font-black underline decoration-red-200 decoration-4 underline-offset-4">付着することがあります。</span><br><br>
+
+                        そして、<br><br>
+
+                        そのファンが回ることで、<br><br>
+
+                        空気が室内へ<br>
+                        送り出されています。
+                    </p>
+                </div>
+
+
+                <!-- 汚れていてもエアコンは動きます -->
+                <div class="mb-16 mt-20">
+                    <div class="flex flex-col items-center justify-center mb-6 text-center">
+                        <span class="w-10 h-[3px] bg-slate-800 mb-4 rounded-full"></span>
+                        <h2 class="text-xl md:text-2xl font-black text-slate-900 leading-relaxed">
+                            汚れていても<br>
+                            エアコンは動きます
+                        </h2>
+                    </div>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose text-center">
+                        ここは、<br><br>
+
+                        ぜひ知っておいてほしい<br>
+                        ポイントです。<br><br>
+
+                        エアコン内部が<br>
+                        汚れているからといって、<br><br>
+
+                        すぐに動かなくなるとは<br>
+                        限りません。<br><br>
+
+                        送風ファンに<br>
+                        汚れが付着していても、<br><br>
+
+                        冷房が効くことはあります。<br><br>
+
+                        熱交換器が<br>
+                        汚れていても、<br><br>
+
+                        普通に動いているように<br>
+                        感じることもあります。<br><br>
+
+                        つまり、<br><br>
+
+                        <span class="font-black text-slate-900 text-lg bg-slate-100 px-3 py-2 rounded-lg border border-slate-200 inline-block mb-4 mt-2">
+                            「冷える」<br>
+                            ＝<br>
+                            「内部がキレイ」
+                        </span><br><br>
+
+                        <span class="text-red-600 font-black text-lg">ではありません。</span><br><br>
+
+                        普段の生活では、<br><br>
+
+                        エアコン内部を見る機会が<br>
+                        ほとんどありません。<br><br>
+
+                        だからこそ、<br><br>
+
+                        <span class="font-black text-slate-900 underline decoration-neon decoration-4 underline-offset-4">見えないところで</span><br>
+                        <span class="font-black text-slate-900 underline decoration-neon decoration-4 underline-offset-4">少しずつ汚れが</span><br>
+                        <span class="font-black text-slate-900 underline decoration-neon decoration-4 underline-offset-4">蓄積していくことがあります。</span>
+                    </p>
+                </div>
+
+
+                <!-- 汚れたまま使い続けるとどうなる？ -->
+                <div class="mb-16 mt-20">
+                    <div class="flex flex-col items-center justify-center mb-6 text-center">
+                        <span class="w-10 h-[3px] bg-neon mb-4 rounded-full"></span>
+                        <h2 class="text-xl md:text-2xl font-black text-slate-900 tracking-wider leading-relaxed">
+                            汚れたまま<br>
+                            使い続けるとどうなる？
+                        </h2>
+                    </div>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose text-center">
+                        エアコン内部の汚れを<br>
+                        長期間そのままにすると、<br><br>
+
+                        さまざまな影響が<br>
+                        出る可能性があります。<br><br>
+
+                        まず分かりやすいのが、<br><br>
+
+                        ニオイです。<br><br>
+
+                        エアコンをつけた瞬間に、<br><br>
+
+                        <span class="font-black text-slate-900">カビっぽいニオイ。</span><br><br>
+
+                        <span class="font-black text-slate-900">酸っぱいようなニオイ。</span><br><br>
+
+                        <span class="font-black text-slate-900">なんとなく不快に感じるニオイ。</span><br><br>
+
+                        こうした症状が<br>
+                        出ることがあります。<br><br>
+
+                        もちろん、<br><br>
+
+                        エアコンから出るニオイには<br>
+                        さまざまな原因があるため、<br><br>
+
+                        すべてがカビとは限りません。<br><br>
+
+                        ですが、<br><br>
+
+                        <span class="text-base font-black text-slate-900 bg-neon px-2">内部に付着した汚れが</span><br>
+                        <span class="text-base font-black text-slate-900 bg-neon px-2">ニオイの原因になっているケースは</span><br>
+                        <span class="text-base font-black text-slate-900 bg-neon px-2">珍しくありません。</span>
+                    </p>
+                </div>
+
+
+                <!-- 風量が弱くなることも -->
+                <div class="bg-blue-50/50 rounded-[20px] border border-blue-100 p-6 md:p-8 mt-12 mb-16 text-center">
+                    <h3 class="text-xl font-black text-slate-900 text-blue-900 mb-8">
+                        風量が弱くなることも
+                    </h3>
+                    
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
+                        送風ファンに<br>
+                        大量のホコリや汚れが付着すると、<br><br>
+
+                        ファンが本来の状態で<br>
+                        空気を送り出しにくくなることが<br>
+                        あります。<br><br>
+
+                        熱交換器も同じです。<br><br>
+
+                        細かな隙間に<br>
+                        ホコリなどが詰まれば、<br><br>
+
+                        空気が通りにくくなります。<br><br>
+
+                        すると、<br><br>
+
+                        エアコンは動いているのに、<br><br>
+
+                        <span class="font-black text-slate-900 text-base">「以前より風が弱い」</span><br><br>
+
+                        <span class="font-black text-slate-900 text-base">「なかなか部屋が冷えない」</span><br><br>
+
+                        と感じる原因になることがあります。
+                    </p>
+                </div>
+
+
+                <!-- 冷暖房効率や電気代への影響は？ -->
+                <div class="mb-16 mt-20">
+                    <div class="flex flex-col items-center justify-center mb-6 text-center">
+                        <span class="w-10 h-[3px] bg-slate-800 mb-4 rounded-full"></span>
+                        <h2 class="text-xl md:text-2xl font-black text-slate-900 leading-relaxed">
+                            冷暖房効率や<br>
+                            電気代への影響は？
+                        </h2>
+                    </div>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose text-center">
+                        エアコンは、<br><br>
+
+                        室内の空気を<br>
+                        吸い込んで、<br><br>
+
+                        熱交換を行い、<br><br>
+
+                        再び室内へ<br>
+                        送り出しています。<br><br>
+
+                        ところが、<br><br>
+
+                        熱交換器や<br>
+                        送風ファンが汚れて、<br><br>
+
+                        空気の流れが<br>
+                        悪くなってしまえば、<br><br>
+
+                        本来の性能を<br>
+                        発揮しにくくなることがあります。<br><br>
+
+                        設定温度になるまで<br>
+                        時間がかかったり、<br><br>
+
+                        長時間運転することになれば、<br><br>
+
+                        結果として、<br><br>
+
+                        <span class="font-black text-slate-900 underline decoration-neon decoration-4 underline-offset-4">消費電力が増える原因に</span><br>
+                        <span class="font-black text-slate-900 underline decoration-neon decoration-4 underline-offset-4">なる可能性もあります。</span><br><br>
+
+                        もちろん、<br><br>
+
+                        エアコンクリーニングをすれば<br>
+                        必ず電気代が<br>
+                        ○円安くなる、<br><br>
+
+                        というものではありません。<br><br>
+
+                        ですが、<br><br>
+
+                        汚れによって<br>
+                        本来の性能を妨げているのであれば、<br><br>
+
+                        その汚れを取り除くことには<br>
+                        意味があります。
+                    </p>
+                </div>
+
+
+                <!-- 結露や水漏れにも関係することがあります -->
+                <div class="mb-16 relative mt-20 text-center">
+                    <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-red-600 text-white font-black text-sm px-5 py-1.5 rounded-full shadow-md whitespace-nowrap">
+                        意外なトラブルの原因
+                    </div>
+
+                    <h2 class="text-xl md:text-2xl font-black text-slate-900 mb-8 pt-8 leading-relaxed">
+                        結露や水漏れにも<br>
+                        関係することがあります
+                    </h2>
+                    
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
+                        冷房や除湿運転では、<br><br>
+
+                        熱交換器に<br>
+                        結露水が発生します。<br><br>
+
+                        その水は、<br><br>
+
+                        ドレンパンへ流れ、<br><br>
+
+                        ドレンホースを通って<br>
+                        屋外へ排水されます。<br><br>
+
+                        ですが、<br><br>
+
+                        内部に大量の汚れが<br>
+                        蓄積していたり、<br><br>
+
+                        排水経路に<br>
+                        汚れが溜まっていたりすると、<br><br>
+
+                        <span class="text-red-600 font-black underline decoration-red-200 decoration-4 underline-offset-4">正常な排水を</span><br>
+                        <span class="text-red-600 font-black underline decoration-red-200 decoration-4 underline-offset-4">妨げる原因になることがあります。</span><br><br>
+
+                        すべての水漏れが<br>
+                        汚れによるものではありませんが、<br><br>
+
+                        エアコン内部の汚れが、<br><br>
+
+                        水漏れの原因のひとつに<br>
+                        なるケースもあります。
+                    </p>
+                </div>
+
+
+                <!-- 健康への影響は？ -->
+                <div class="mb-16 mt-20">
+                    <div class="flex flex-col items-center justify-center mb-6 text-center">
+                        <span class="w-10 h-[3px] bg-slate-800 mb-4 rounded-full"></span>
+                        <h2 class="text-xl md:text-2xl font-black text-slate-900 leading-relaxed">
+                            健康への影響は？
+                        </h2>
+                    </div>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose text-center">
+                        「カビだらけのエアコンを使うと<br>
+                        病気になるの？」<br><br>
+
+                        と心配される方も<br>
+                        いると思います。<br><br>
+
+                        ここについては、<br><br>
+
+                        エアコンクリーニングをすれば<br>
+                        健康になる、<br><br>
+
+                        病気を防げる、<br><br>
+
+                        というような<br>
+                        単純な話ではありません。<br><br>
+
+                        ですが、<br><br>
+
+                        エアコン内部に<br>
+                        カビやホコリなどの汚れが<br>
+                        大量に付着している状態を、<br><br>
+
+                        積極的におすすめする理由も<br>
+                        ありません。<br><br>
+
+                        送風ファンは、<br><br>
+
+                        室内へ空気を<br>
+                        送り出している部品です。<br><br>
+
+                        そのため、<br><br>
+
+                        <span class="text-base font-black text-slate-900 bg-neon px-2">できるだけ清潔な状態で</span><br>
+                        <span class="text-base font-black text-slate-900 bg-neon px-2">使用したい。</span><br><br>
+
+                        そう考えるのは<br>
+                        自然なことだと思います。
+                    </p>
+                </div>
+
+
+                <!-- エアコンクリーニングで何が変わるの？ -->
+                <div class="bg-slate-50 border border-slate-200 rounded-[16px] px-4 md:px-6 py-8 mt-12 mb-16 text-center">
+                    <h3 class="text-lg md:text-xl font-black text-slate-900 mb-6 border-b-2 border-slate-200 pb-3 inline-block leading-relaxed">
+                        エアコンクリーニングで<br>
+                        何が変わるの？
+                    </h3>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
+                        プロによる<br>
+                        エアコンクリーニングでは、<br><br>
+
+                        普段のお手入れでは<br>
+                        届きにくい部分まで、<br><br>
+
+                        分解や養生を行い、<br><br>
+
+                        専用の洗浄機などを使って<br>
+                        洗浄します。<br><br>
+
+                        目的は、<br><br>
+
+                        エアコンを<br>
+                        新品にすることではありません。<br><br>
+
+                        長期間の使用によって<br>
+                        内部へ蓄積した、<br><br>
+
+                        ホコリ。<br><br>
+
+                        カビ。<br><br>
+
+                        その他の汚れ。<br><br>
+
+                        こうしたものを、<br><br>
+
+                        <span class="text-base font-black text-blue-600">一度リセットすること。</span><br><br>
+
+                        これが、<br><br>
+
+                        エアコンクリーニングの<br>
+                        大きな役割だと考えています。
+                    </p>
+                </div>
+
+
+                <!-- ニオイの改善が期待できることがあります -->
+                <div class="mb-16 mt-20">
+                    <div class="flex flex-col items-center justify-center mb-6 text-center">
+                        <span class="w-10 h-[3px] bg-slate-800 mb-4 rounded-full"></span>
+                        <h2 class="text-xl md:text-2xl font-black text-slate-900 leading-relaxed">
+                            ニオイの改善が<br>
+                            期待できることがあります
+                        </h2>
+                    </div>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose text-center">
+                        エアコン内部の汚れが<br>
+                        ニオイの原因になっている場合、<br><br>
+
+                        クリーニングによって<br>
+                        改善することがあります。<br><br>
+
+                        熱交換器。<br><br>
+
+                        送風ファン。<br><br>
+
+                        吹出口。<br><br>
+
+                        ドレンパンなど。<br><br>
+
+                        ニオイの原因となっている<br>
+                        汚れを洗浄することで、<br><br>
+
+                        <span class="font-black text-slate-900 underline decoration-neon decoration-4 underline-offset-4">嫌なニオイが</span><br>
+                        <span class="font-black text-slate-900 underline decoration-neon decoration-4 underline-offset-4">軽減することがあります。</span><br><br>
+
+                        ただし、<br><br>
+
+                        ニオイの原因は<br>
+                        エアコン内部だけとは限りません。<br><br>
+
+                        そのため、<br><br>
+
+                        クリーニングをすれば<br>
+                        すべてのニオイが<br>
+                        必ず消える<br><br>
+
+                        とは考えていません。
+                    </p>
+                </div>
+
+
+                <!-- 風量が改善することも -->
+                <div class="mb-16 mt-20">
+                    <div class="flex flex-col items-center justify-center mb-6 text-center">
+                        <span class="w-10 h-[3px] bg-slate-800 mb-4 rounded-full"></span>
+                        <h2 class="text-xl md:text-2xl font-black text-slate-900 leading-relaxed">
+                            風量が改善することも
+                        </h2>
+                    </div>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose text-center">
+                        送風ファンに<br>
+                        大量の汚れが付着している場合、<br><br>
+
+                        その汚れを取り除くことで、<br><br>
+
+                        風量が改善することがあります。<br><br>
+
+                        熱交換器も、<br><br>
+
+                        ホコリなどによって<br>
+                        目詰まりしていれば、<br><br>
+
+                        洗浄することで<br>
+                        空気が通りやすい状態へ<br>
+                        戻すことができます。<br><br>
+
+                        汚れによって<br>
+                        本来の性能が妨げられている場合、<br><br>
+
+                        その原因を取り除く。<br><br>
+
+                        これも、<br><br>
+
+                        エアコンクリーニングの<br>
+                        メリットのひとつです。
+                    </p>
+                </div>
+
+
+                <!-- 自分では届かない場所を洗えること -->
+                <div class="mb-16 mt-20">
+                    <div class="flex flex-col items-center justify-center mb-6 text-center">
+                        <span class="w-10 h-[3px] bg-neon mb-4 rounded-full"></span>
+                        <h2 class="text-xl md:text-2xl font-black text-slate-900 tracking-wider leading-relaxed">
+                            自分では届かない場所を<br>
+                            洗えること
+                        </h2>
+                    </div>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose text-center">
+                        そして、<br><br>
+
+                        プロへ依頼する<br>
+                        大きな意味のひとつが、<br><br>
+
+                        <span class="text-base font-black text-slate-900 bg-neon px-2">家庭のお手入れでは</span><br>
+                        <span class="text-base font-black text-slate-900 bg-neon px-2">届かない場所を洗えること。</span><br><br>
+
+                        だと思っています。<br><br>
+
+                        フィルターなら、<br><br>
+
+                        ご家庭でも<br>
+                        十分お手入れできます。<br><br>
+
+                        吹出口も、<br><br>
+
+                        見える範囲なら<br>
+                        拭くことができます。<br><br>
+
+                        ですが、<br><br>
+
+                        さらに奥にある<br>
+                        熱交換器や送風ファンなどを、<br><br>
+
+                        安全にしっかり洗浄しようとすると、<br><br>
+
+                        専門的な知識や<br>
+                        道具が必要になります。<br><br>
+
+                        電装部品もあります。<br><br>
+
+                        機種によって<br>
+                        構造も違います。<br><br>
+
+                        無理に分解すれば、<br><br>
+
+                        故障や破損の原因にも<br>
+                        なります。<br><br>
+
+                        だからこそ、<br><br>
+
+                        普段できるところは<br>
+                        ご自身でお手入れする。<br><br>
+
+                        それでも届かない部分は、<br><br>
+
+                        必要になったときに<br>
+                        プロへ任せる。<br><br>
+
+                        それくらいの<br>
+                        使い分けで良いと思います。
+                    </p>
+                </div>
+
+
+                <!-- 市販の洗浄スプレーなら自分でも洗える？ -->
+                <div class="bg-blue-50/50 rounded-[20px] border border-blue-100 p-6 md:p-8 mt-12 mb-16 text-center">
+                    <h3 class="text-xl font-black text-slate-900 text-blue-900 mb-8">
+                        市販の洗浄スプレーなら<br>
+                        自分でも洗える？
+                    </h3>
+                    
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
+                        ホームセンターや<br>
+                        ドラッグストアなどでは、<br><br>
+
+                        エアコン用の<br>
+                        洗浄スプレーも販売されています。<br><br>
+
+                        「これなら自分で<br>
+                        内部まで洗えるのでは？」<br><br>
+
+                        と思う方も<br>
+                        いるかもしれません。<br><br>
+
+                        ですが、<br><br>
+
+                        エアコン内部には<br>
+                        電装部品があり、<br><br>
+
+                        洗浄する場所や<br>
+                        方法を間違えると、<br><br>
+
+                        故障などの原因に<br>
+                        なる可能性があります。<br><br>
+
+                        また、<br><br>
+
+                        スプレーを使用したことで<br>
+                        内部の汚れを<br>
+                        すべて洗い流せるとは限りません。<br><br>
+
+                        この話は長くなるため、<br><br>
+
+                        別の記事で<br>
+                        詳しくご説明します。
+                    </p>
+
+                    <!-- ボタン（リンク風） -->
+                    <div class="mt-8 mb-4 text-center">
+                        <a href="#" onclick="showToast(event)" class="inline-block text-[14px] md:text-base font-black text-blue-600 hover:text-blue-800 transition-colors underline decoration-blue-400 decoration-2 underline-offset-4 leading-loose p-2">
+                            市販の洗浄スプレーについて<br>
+                            詳しく書いた記事はコチラ ↗️
+                        </a>
+                    </div>
+                </div>
+
+
+                <!-- どれくらいの頻度でクリーニングすればいい？ -->
+                <div class="mb-16 mt-20">
+                    <div class="flex flex-col items-center justify-center mb-6 text-center">
+                        <span class="w-10 h-[3px] bg-slate-800 mb-4 rounded-full"></span>
+                        <h2 class="text-xl md:text-2xl font-black text-slate-900 leading-relaxed">
+                            どれくらいの頻度で<br>
+                            クリーニングすればいい？
+                        </h2>
+                    </div>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose text-center">
+                        ここまで読むと、<br><br>
+
+                        「じゃあ、<br>
+                        何年に1回洗えばいいの？」<br><br>
+
+                        と思いますよね。<br><br>
+
+                        ですが、<br><br>
+
+                        これも一律には<br>
+                        決められません。<br><br>
+
+                        リビング。<br><br>
+
+                        寝室。<br><br>
+
+                        子ども部屋。<br><br>
+
+                        ペットがいる部屋。<br><br>
+
+                        キッチンに近い部屋。<br><br>
+
+                        ほとんど使わない部屋。<br><br>
+
+                        同じエアコンでも、<br><br>
+
+                        設置されている環境や<br>
+                        使用時間によって、<br><br>
+
+                        汚れ方は<br>
+                        大きく変わります。<br><br>
+
+                        だから、<br><br>
+
+                        ONE★STARでは、<br><br>
+
+                        <span class="font-black text-slate-900 underline decoration-neon decoration-4 underline-offset-4">すべてのエアコンを</span><br>
+                        <span class="font-black text-slate-900 underline decoration-neon decoration-4 underline-offset-4">毎年必ず洗う必要がある</span><br><br>
+
+                        とは考えていません。<br><br>
+
+                        エアコンクリーニングの<br>
+                        頻度については、<br><br>
+
+                        別の記事で<br>
+                        詳しくご説明します。
+                    </p>
+
+                    <!-- ボタン（リンク風） -->
+                    <div class="mt-8 mb-4 text-center">
+                        <a href="#" onclick="showToast(event)" class="inline-block text-[14px] md:text-base font-black text-blue-600 hover:text-blue-800 transition-colors underline decoration-blue-400 decoration-2 underline-offset-4 leading-loose p-2">
+                            エアコンクリーニングの頻度について<br>
+                            詳しく書いた記事はコチラ ↗️
+                        </a>
+                    </div>
+                </div>
+
+
+                <!-- 汚れていないエアコンまで洗う必要はありません -->
+                <div class="mb-16 relative mt-20 text-center">
+                    <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-slate-900 text-neon font-black text-sm px-5 py-1.5 rounded-full shadow-md whitespace-nowrap">
+                        プロとしての本音
+                    </div>
+
+                    <h2 class="text-xl md:text-2xl font-black text-slate-900 mb-8 pt-8 leading-relaxed">
+                        汚れていないエアコンまで<br>
+                        洗う必要はありません
+                    </h2>
+                    
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
+                        エアコンクリーニングは、<br><br>
+
+                        やればやるほど<br>
+                        良いものではありません。<br><br>
+
+                        分解する。<br><br>
+
+                        部品を外す。<br><br>
+
+                        水や洗剤を使って<br>
+                        洗浄する。<br><br>
+
+                        そして、<br><br>
+
+                        再び組み立てる。<br><br>
+
+                        どれだけ慎重に作業しても、<br><br>
+
+                        機械に触れる以上、<br><br>
+
+                        何もしない状態と比べれば<br>
+                        一定のリスクはあります。<br><br>
+
+                        だからこそ、<br><br>
+
+                        <span class="text-red-600 font-black text-base underline decoration-red-200 decoration-4 underline-offset-4">必要のないエアコンまで</span><br>
+                        <span class="text-red-600 font-black text-base underline decoration-red-200 decoration-4 underline-offset-4">無理に洗う必要はない。</span><br><br>
+
+                        ONE★STARでは、<br>
+                        そう考えています。<br><br>
+
+                        汚れている。<br><br>
+
+                        ニオイが気になる。<br><br>
+
+                        吹出口に<br>
+                        カビや汚れが見える。<br><br>
+
+                        風量が弱くなった。<br><br>
+
+                        内部の状態が<br>
+                        気になる。<br><br>
+
+                        そういったときに、<br><br>
+
+                        クリーニングを<br>
+                        検討すれば良いと思います。
+                    </p>
+                </div>
+
+
+                <!-- 「○年経ったから」だけで決めなくてもいい -->
+                <div class="mb-16 mt-20">
+                    <div class="flex flex-col items-center justify-center mb-8 text-center">
+                        <span class="w-10 h-[3px] bg-neon mb-4 rounded-full"></span>
+                        <h2 class="text-lg md:text-xl font-black text-slate-900 tracking-wider leading-relaxed">
+                            「○年経ったから」<br>
+                            だけで決めなくてもいい
+                        </h2>
+                    </div>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose text-center">
+                        エアコンの汚れ方は、<br><br>
+
+                        使用環境によって<br>
+                        本当に大きく違います。<br><br>
+
+                        1年でも<br>
+                        かなり汚れるエアコンもあれば、<br><br>
+
+                        数年使っていても、<br><br>
+
+                        比較的キレイな状態を<br>
+                        保っているエアコンもあります。<br><br>
+
+                        だから、<br><br>
+
+                        「1年経ったから洗う」<br><br>
+
+                        「2年経ったから洗う」<br><br>
+
+                        という年数だけで、<br><br>
+
+                        すべてを決めなくても<br>
+                        良いと思っています。<br><br>
+
+                        大切なのは、<br><br>
+
+                        <span class="text-base font-black text-slate-900 bg-neon px-2">今、そのエアコンが</span><br>
+                        <span class="text-base font-black text-slate-900 bg-neon px-2">どんな状態なのか。</span><br><br>
+
+                        まずはそこです。
+                    </p>
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- ネイビーのカード (ONE★STARが大切にしていること) -->
+        <div class="bg-slate-900 rounded-[24px] border-l-[12px] border-neon p-8 md:p-10 text-center shadow-md mb-10">
+            
+            <h2 class="text-white font-black text-xl md:text-2xl leading-relaxed mb-10 tracking-wider">
+                ONE★STARが<br>
+                大切にしていること
+            </h2>
+
+            <p class="text-slate-100 font-bold text-[15px] md:text-base leading-loose mb-10">
+                エアコンクリーニングは、<br><br>
+                
+                エアコンを新品に戻すための<br>
+                作業ではありません。<br><br>
+                
+                長期間使うことで、<br><br>
+                
+                普段のお手入れでは<br>
+                届かない場所へ<br><br>
+
+                少しずつ蓄積した汚れを、<br><br>
+
+                一度リセットするための<br>
+                お手入れです。<br><br>
+
+                フィルターなど、<br><br>
+
+                自分でできる部分は<br>
+                こまめにお手入れする。<br><br>
+
+                送風や内部クリーンなど、<br><br>
+
+                無理なくできる<br>
+                カビ対策も利用する。<br><br>
+
+                それでも、<br><br>
+
+                エアコン内部は<br>
+                少しずつ汚れていきます。
+            </p>
+
+            <!-- 区切り線 -->
+            <div class="w-16 h-[1px] bg-slate-600 mx-auto mb-10"></div>
+
+            <p class="text-slate-100 font-bold text-[15px] md:text-base leading-loose">
+                そして、<br><br>
+
+                自分では届かない場所まで<br>
+                汚れてきたら、<br><br>
+
+                そのときは<br>
+                <span class="text-white font-black text-base underline decoration-neon decoration-4 underline-offset-4">プロへ任せる。</span><br><br>
+
+                それで十分だと<br>
+                考えています。<br><br>
+
+                汚れているから洗う。<br><br>
+
+                必要だから洗う。<br><br>
+
+                それくらい<br>
+                シンプルで良いと思います。
+            </p>
+        </div>
+
+
+        <!-- ご相談誘導ブロック -->
+        <div class="bg-white rounded-2xl border border-slate-200 p-8 text-center shadow-sm mb-12">
+            <h2 class="text-xl md:text-2xl font-black text-slate-900 mb-8 leading-relaxed">
+                エアコン内部の汚れが<br>
+                気になる場合は
+            </h2>
+            
+            <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose mb-10">
+                <span class="text-slate-900 font-black">「自分のエアコンは<br>洗った方がいいのかな？」</span><br><br>
+                
+                <span class="text-slate-900 font-black">「吹出口に<br>黒い汚れが見える」</span><br><br>
+                
+                <span class="text-slate-900 font-black">「最近、<br>ニオイが気になる」</span><br><br>
+                
+                そんな場合は、<br>
+                一度ご相談ください。
+            </p>
+            
+            <a href="tel:08000807788" class="js-phone-modal-trigger inline-flex items-center justify-center bg-slate-900 hover:bg-slate-800 text-neon px-8 py-4 rounded-full text-base font-black shadow-md transition-all active:scale-95">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                <span>電話で相談する</span>
+            </a>
+        </div>
+
+        <!-- 関連する施工事例へのリンク -->
+        <div class="mt-16 text-center">
+            <div class="flex flex-col items-center justify-center mb-6">
+                <span class="w-10 h-[3px] bg-slate-800 mb-4 rounded-full"></span>
+                <h2 class="text-xl md:text-2xl font-black text-slate-900 tracking-wider leading-relaxed">
+                    実際の現場も見てみる
+                </h2>
+            </div>
+            
+            <!-- トーストを表示するボタン -->
+            <button type="button" onclick="showToast(event)" class="block w-full bg-white rounded-2xl border-2 border-slate-900 p-6 md:p-8 shadow-sm hover:shadow-md transition-all active:scale-95 group relative overflow-hidden text-center cursor-pointer">
+                <!-- 装飾 -->
+                <div class="absolute top-0 left-0 w-full h-2 bg-neon"></div>
+                
+                <p class="text-[11px] md:text-sm font-black text-slate-500 mb-3 tracking-widest">
+                    関連する施工事例
+                </p>
+                
+                <h3 class="text-[17px] md:text-xl font-black text-slate-900 mb-8 leading-relaxed">
+                    「エアコン内部に<br>カビや汚れが蓄積していた施工事例」
+                </h3>
+                
+                <div class="inline-flex items-center justify-center bg-slate-900 text-neon px-6 py-3.5 rounded-full text-[15px] font-black group-hover:bg-slate-800 transition-colors w-full md:w-auto shadow-md">
+                    ▶ この施工事例を見る
+                </div>
+            </button>
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-900 text-white pt-12 pb-24 md:pb-12 border-t-[6px] border-neon text-center mt-12">
+        <div class="mb-6 flex flex-col items-center justify-center">
+            <span class="text-4xl md:text-5xl tracking-widest text-white flex items-center justify-center font-impact mt-1">
+                ONE
+                <img src="ONESTAR.PNG" alt="ロゴ" class="w-[80px] h-[80px] md:w-[100px] md:h-[100px] mx-[-10px] md:mx-[-16px] object-contain -translate-y-2" onerror="this.style.display='none'">
+                STAR
+            </span>
+            <p class="text-xs text-neon font-black mt-2 tracking-widest">株式会社ECS専属プロスタッフ</p>
+        </div>
+        
+        <p class="text-[11px] text-slate-400 font-bold mb-3">
+            <a href="/products" class="hover:text-white transition-colors underline underline-offset-4">オリジナルLINEスタンプ販売中</a>
+        </p>
+        <p class="text-[10px] text-slate-500 font-bold mb-4">
+            <a href="/privacy" class="hover:text-white transition-colors">プライバシーポリシー</a>
+        </p>
+        <p class="text-[10px] text-slate-500 font-bold tracking-wider">© 2026 ONE★STAR. All Rights Reserved.</p>
+    </footer>
+
+    <!-- MOBILE BOTTOM NAVIGATION -->
+    <div class="fixed bottom-0 left-0 right-0 z-45 bg-slate-900 md:hidden h-[60px] flex items-stretch text-white shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.3)] border-t border-slate-800">
+        
+        <a href="/price" class="flex flex-col items-center justify-center w-[20%] border-r border-slate-700 active:bg-slate-800">
+            <svg class="w-5 h-5 mb-1 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <span class="text-[9px] font-black">料金</span>
+        </a>
+        
+        <a href="/mind" class="flex flex-col items-center justify-center w-[20%] border-r border-slate-700 active:bg-slate-800">
+            <svg class="w-5 h-5 mb-1 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+            <span class="text-[9px] font-black">想い</span>
+        </a>
+
+        <a href="/pride" class="flex flex-col items-center justify-center w-[20%] active:bg-slate-800">
+            <svg class="w-5 h-5 mb-1 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+            <span class="text-[9px] font-black">拘り</span>
+        </a>
+        
+        <a href="tel:08000807788" class="js-phone-modal-trigger flex items-center justify-center bg-neon text-slate-900 w-[40%] font-black text-base active:bg-yellow-400 transition-colors">
+            <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+            電話する
+        </a>
+        
+    </div>
+
+    <!-- 🌟 ご予約・お問い合わせ前のワンクッションモーダル 🌟 -->
+    <div id="phone-modal" class="fixed inset-0 z-[100] hidden flex items-center justify-center px-4">
+        <div id="phone-modal-backdrop" class="absolute inset-0 bg-slate-900/80 backdrop-blur-sm opacity-0 transition-opacity duration-300"></div>
+        
+        <div id="phone-modal-content" class="relative bg-white rounded-3xl shadow-2xl w-full max-w-sm overflow-hidden transform scale-95 opacity-0 transition-all duration-300 border border-slate-100">
+            
+            <button id="phone-modal-close" class="absolute top-4 right-4 p-2 text-slate-400 hover:text-slate-700 bg-slate-100 hover:bg-slate-200 rounded-full transition-colors z-10">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+            
+            <div class="p-6 md:p-8 text-center pt-10">
+                
+                <h3 class="text-xl font-black text-slate-900 mb-6 border-b-4 border-[#EFFF00] inline-block pb-1">
+                    ご予約・お問い合わせの前に
+                </h3>
+                
+                <div class="text-[13px] text-slate-700 font-bold leading-relaxed mb-8 space-y-4 text-left bg-slate-50 p-5 rounded-2xl border border-slate-100 shadow-inner">
+                    <p>
+                        <span class="text-slate-900 font-black text-sm">ONE★STAR</span>は<br>
+                        株式会社ECS（エッジクリーンサービス）の専属プロスタッフとして活動しています。
+                    </p>
+                    <p class="pt-2 border-t border-slate-200">
+                        お電話は<br>
+                        <span class="text-slate-900 font-black">株式会社ECSの予約受付</span>につながります。
+                    </p>
+                    
+                    <div class="bg-rose-50 border border-rose-200 p-3 rounded-xl text-center shadow-sm">
+                        <p class="text-rose-600 font-black text-[13px] leading-tight">
+                            ご予約の際は<br>
+                            <span class="text-base">「ONE★STAR（川崎）を指名」</span>と<br>
+                            お伝えください。
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="space-y-3">
+                    <a href="tel:08000807788" class="flex items-center justify-center w-full py-4 bg-slate-900 text-[#EFFF00] font-black rounded-2xl shadow-md active:scale-95 transition-transform text-sm sm:text-base border border-slate-800">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                        株式会社ECSへ電話する
+                    </a>
+                    
+                    <a href="https://www.instagram.com/one.star.kawasaki?igsh=anZpYnpxcDdqOXRh&utm_source=qr" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center w-full py-4 bg-gradient-to-r from-pink-500 to-rose-500 text-white font-black rounded-2xl shadow-md active:scale-95 transition-transform text-sm sm:text-base">
+                        <svg class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                        </svg>
+                        Instagramで本人に相談する
+                    </a>
+                </div>
+                
+                <p class="text-[10px] text-slate-500 mt-4 font-bold leading-relaxed">
+                    直接のご質問・お問い合わせは<br>本人直通のInstagram DMからお気軽にどうぞ。
+                </p>
+                
+                <button id="phone-modal-cancel" class="mt-6 text-[11px] text-slate-400 font-bold underline underline-offset-4 hover:text-slate-600 transition-colors">
+                    キャンセルして戻る
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 🚧 トースト表示用（初期状態は透明・クリック不可） -->
+    <div id="toast" class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-[110] bg-slate-900/95 backdrop-blur-md text-white px-6 py-4 rounded-2xl shadow-[0_10px_40px_rgba(0,0,0,0.3)] flex items-center space-x-3 opacity-0 pointer-events-none transition-opacity duration-300">
+        <span class="text-2xl">🚧</span>
+        <span class="font-black text-[15px] tracking-widest whitespace-nowrap">ただいま準備中です。</span>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script>
+        // === トースト表示関数 ===
+        let toastTimeout;
+        function showToast(e) {
+            e.preventDefault(); // デフォルトのリンクやボタン動作を防ぐ
+            const toast = document.getElementById('toast');
+            
+            // すでにタイマーが動いていたらクリア
+            if (toastTimeout) {
+                clearTimeout(toastTimeout);
+            }
+            
+            // 表示
+            toast.classList.remove('opacity-0');
+            toast.classList.add('opacity-100');
+            
+            // 3秒後に非表示
+            toastTimeout = setTimeout(() => {
+                toast.classList.remove('opacity-100');
+                toast.classList.add('opacity-0');
+            }, 3000);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // === メニュー開閉用 ===
+            const drawerContainer = document.getElementById('drawer-container');
+            const drawerMenu = document.getElementById('drawer-menu');
+            const drawerBackdrop = document.getElementById('drawer-backdrop');
+            
+            const toggleMenu = (show) => {
+                if (show) {
+                    drawerContainer.classList.remove('hidden');
+                    setTimeout(() => {
+                        drawerBackdrop.classList.remove('opacity-0');
+                        drawerBackdrop.classList.add('opacity-100');
+                        drawerMenu.classList.remove('drawer-closed');
+                        drawerMenu.classList.add('drawer-open');
+                    }, 10);
+                } else {
+                    drawerBackdrop.classList.remove('opacity-100');
+                    drawerBackdrop.classList.add('opacity-0');
+                    drawerMenu.classList.remove('drawer-open');
+                    drawerMenu.classList.add('drawer-closed');
+                    setTimeout(() => drawerContainer.classList.add('hidden'), 300);
+                }
+            };
+
+            document.getElementById('menu-open-btn').addEventListener('click', () => toggleMenu(true));
+            document.getElementById('menu-close-btn').addEventListener('click', () => toggleMenu(false));
+            document.getElementById('drawer-backdrop').addEventListener('click', () => toggleMenu(false));
+            document.querySelectorAll('.menu-link').forEach(link => link.addEventListener('click', () => toggleMenu(false)));
+
+            // === 電話モーダル ===
+            const phoneModal = document.getElementById('phone-modal');
+            const phoneModalBackdrop = document.getElementById('phone-modal-backdrop');
+            const phoneModalContent = document.getElementById('phone-modal-content');
+            const phoneModalCloseBtn = document.getElementById('phone-modal-close');
+            const phoneModalCancelBtn = document.getElementById('phone-modal-cancel');
+            const phoneTriggerBtns = document.querySelectorAll('.js-phone-modal-trigger');
+
+            if (phoneModal && phoneTriggerBtns.length > 0) {
+                const openPhoneModal = (e) => {
+                    e.preventDefault(); 
+                    if (typeof toggleMenu === 'function') toggleMenu(false);
+
+                    phoneModal.classList.remove('hidden');
+                    requestAnimationFrame(() => {
+                        phoneModalBackdrop.classList.remove('opacity-0');
+                        phoneModalBackdrop.classList.add('opacity-100');
+                        phoneModalContent.classList.remove('opacity-0', 'scale-95');
+                        phoneModalContent.classList.add('opacity-100', 'scale-100');
+                    });
+                };
+
+                const closePhoneModal = () => {
+                    phoneModalBackdrop.classList.remove('opacity-100');
+                    phoneModalBackdrop.classList.add('opacity-0');
+                    phoneModalContent.classList.remove('opacity-100', 'scale-100');
+                    phoneModalContent.classList.add('opacity-0', 'scale-95');
+                    setTimeout(() => phoneModal.classList.add('hidden'), 300);
+                };
+
+                phoneTriggerBtns.forEach(btn => btn.addEventListener('click', openPhoneModal));
+                phoneModalCloseBtn.addEventListener('click', closePhoneModal);
+                phoneModalCancelBtn.addEventListener('click', closePhoneModal);
+                phoneModalBackdrop.addEventListener('click', closePhoneModal);
+            }
+        });
+    </script>
+</body>
+</html>
+
+
+```
