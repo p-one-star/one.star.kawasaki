@@ -1,0 +1,1304 @@
+```html
+<!DOCTYPE html>
+<html lang="ja" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>冷房後の「送風」でカビを防ぐ！？ | ONE★STAR</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        neon: '#EFFF00' // トレードカラー：蛍光イエロー
+                    },
+                    fontFamily: {
+                        sans: ['"Noto Sans JP"', 'sans-serif'],
+                        impact: ['"Black Ops One"', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        /* ドロワーメニュー用 */
+        #drawer-menu { transition: transform 0.3s ease-in-out; }
+        .drawer-closed { transform: translateX(-100%); }
+        .drawer-open { transform: translateX(0); }
+    </style>
+</head>
+<body class="font-sans text-slate-800 bg-slate-50 antialiased overflow-x-hidden pb-[60px]">
+
+    <!-- HEADER -->
+    <header class="fixed top-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md shadow-sm border-b border-slate-100 h-14 flex items-center justify-between px-4">
+        <button id="menu-open-btn" class="p-2 hover:bg-slate-100 rounded-lg" aria-label="メニュー">
+            <svg class="w-6 h-6 text-slate-800" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+
+        <div class="absolute left-1/2 -translate-x-1/2 flex items-center justify-center mt-1">
+            <a href="/" class="text-2xl md:text-3xl tracking-widest text-slate-900 leading-none flex items-center font-impact">
+                ONE
+                <img src="ONESTAR.PNG" alt="ロゴ" class="w-[45px] h-[45px] md:w-[55px] md:h-[55px] mx-[-4px] md:mx-[-6px] object-contain -translate-y-[4px]" onerror="this.style.display='none'">
+                STAR
+            </a>
+        </div>
+
+        <div class="hidden md:flex items-center space-x-3">
+            <a href="tel:08000807788" class="js-phone-modal-trigger bg-slate-900 hover:bg-slate-800 text-neon px-4 py-1.5 rounded-full text-xs font-black border border-slate-700 flex items-center space-x-1 transition-all">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                <span>電話相談</span>
+            </a>
+        </div>
+        <div class="w-10 md:hidden"></div>
+    </header>
+
+    <!-- DRAWER MENU -->
+    <div id="drawer-container" class="fixed inset-0 z-50 overflow-hidden hidden">
+        <div id="drawer-backdrop" class="absolute inset-0 bg-slate-900/60 opacity-0 transition-opacity duration-300"></div>
+        <div class="pointer-events-none fixed inset-y-0 left-0 flex max-w-full">
+            <div id="drawer-menu" class="pointer-events-auto w-64 drawer-closed bg-white shadow-2xl flex flex-col h-full">
+                
+                <div class="p-3 bg-white flex justify-end">
+                    <button id="menu-close-btn" class="p-2 hover:bg-slate-100 rounded-lg">
+                        <svg class="w-6 h-6 text-slate-500" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+                    </button>
+                </div>
+
+                <div class="bg-blue-600 py-3 px-6">
+                    <h2 class="text-white font-black tracking-wider text-sm">MENU</h2>
+                </div>
+
+                <nav class="flex-1 px-4 py-2 overflow-y-auto">
+                    <div class="space-y-1">
+                        <a href="/" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>トップページ
+                        </a>
+                        <a href="/price" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>料金プラン
+                        </a>
+                        <a href="/works" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>施工事例
+                        </a>
+                        <a href="/mind" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>ONE★STARの想い
+                        </a>
+                        <a href="/pride" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>プロとしての拘り
+                        </a>
+                        <a href="/trash" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>ここだけの話
+                        </a>
+                        <a href="/before" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>ご予約の前に
+                        </a>
+                        <a href="/faq" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>よくある質問
+                        </a>
+                        <a href="/tips" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-blue-600">
+                            <span class="mr-2 text-blue-600">＞</span>お役立ち情報
+                        </a>
+                        <a href="/products" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-[#06C755]">
+                            <span class="mr-2 text-slate-400">＞</span>オリジナルLINEスタンプ
+                        </a>
+                    </div>
+                    
+                    <hr class="border-slate-300 border-dashed my-4">
+                    <a href="https://www.edge-cleanservice.com" target="_blank" rel="noopener noreferrer" class="menu-link flex items-center py-2 text-sm font-black text-slate-900 hover:text-blue-600 transition-colors">
+                        株式会社ECS公式サイト
+                        <svg class="w-3.5 h-3.5 ml-1.5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                    </a>
+                </nav>
+
+                <div class="p-4 bg-slate-50 border-t border-slate-100 text-center mt-auto">
+                    <p class="text-[9px] text-slate-500 font-bold leading-relaxed mb-2">
+                        株式会社ECS EDGE CLEAN SERVICE<br>専属プロスタッフとして<br>愛知県全域で毎日奮闘中❣️
+                    </p>
+                    <a href="tel:08000807788" class="js-phone-modal-trigger block w-full py-3 bg-emerald-500 text-white font-bold rounded-lg text-sm shadow">直接電話する</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN (お役立ち情報：送風運転) -->
+    <main class="pt-24 pb-12 px-4 max-w-3xl mx-auto">
+
+        <!-- 白いメインカード -->
+        <div class="bg-white rounded-[24px] border-2 border-slate-900 overflow-hidden shadow-sm mb-10">
+            <!-- 上部の黄色いライン -->
+            <div class="h-3 w-full bg-neon"></div>
+
+            <div class="p-6 md:p-8">
+                
+                <!-- バッジ -->
+                <div class="flex justify-center mb-8 text-center">
+                    <span class="inline-block bg-slate-900 text-neon text-xs md:text-sm font-black px-5 py-2 rounded shadow-sm tracking-wider">
+                        プロが教えるエアコンの真実
+                    </span>
+                </div>
+
+                <!-- タイトル -->
+                <h1 class="text-[22px] sm:text-[24px] md:text-[32px] font-black text-slate-900 mb-12 leading-relaxed tracking-wide text-center">
+                    冷房後の「送風」で<br>
+                    カビを防ぐ！？
+                </h1>
+
+                <!-- リード文 -->
+                <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose text-center mb-10">
+                    <span class="bg-slate-100 px-3 py-2 rounded-lg border border-slate-200 inline-block mb-4">
+                        「冷房を使ったあとは、<br>
+                        送風運転をした方がいい」
+                    </span><br><br>
+                    
+                    そんな話を<br>
+                    聞いたことはありませんか？<br><br>
+                    
+                    エアコンのカビ対策として、<br><br>
+                    
+                    冷房を止めたあとに<br>
+                    送風運転をする方法は、<br><br>
+                    
+                    <span class="text-base font-black text-slate-900 underline decoration-neon decoration-4 underline-offset-4">確かに意味があります。</span><br><br>
+
+                    冷房を使ったあとの<br>
+                    エアコン内部には、<br><br>
+
+                    たくさんの水分が<br>
+                    残っているからです。<br><br>
+                    
+                    その水分を<br>
+                    少しでも乾燥させる。<br><br>
+                    
+                    という意味では、<br><br>
+                    
+                    送風運転は<br>
+                    カビ対策のひとつになります。<br><br>
+
+                    ただしONE★STARでは、<br><br>
+
+                    <span class="text-red-600 font-black text-lg">人やペットが</span><br>
+                    <span class="text-red-600 font-black text-lg">不快な思いをしてまで、</span><br><br>
+                    <span class="text-red-600 font-black text-lg">毎回必ず送風運転を</span><br>
+                    <span class="text-red-600 font-black text-lg">する必要はない。</span><br><br>
+                    
+                    と考えています。<br><br>
+
+                    まずは、<br><br>
+
+                    なぜ冷房を使うと<br>
+                    エアコン内部が濡れるのか？<br><br>
+
+                    そこから<br>
+                    見ていきましょう。
+                </p>
+
+
+                <!-- なぜ冷房を使うとエアコン内部が濡れるの？ -->
+                <div class="mb-16 mt-16">
+                    <div class="flex flex-col items-center justify-center mb-6 text-center">
+                        <span class="w-10 h-[3px] bg-neon mb-4 rounded-full"></span>
+                        <h2 class="text-xl md:text-2xl font-black text-slate-900 tracking-wider leading-relaxed">
+                            なぜ冷房を使うと<br>
+                            エアコン内部が濡れるの？
+                        </h2>
+                    </div>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-800 leading-loose text-center">
+                        冷房運転をすると、<br><br>
+                        
+                        エアコン内部にある<br>
+                        「熱交換器」が<br>
+                        冷たくなります。<br><br>
+                        
+                        この冷たい熱交換器へ<br>
+                        室内の空気が触れることで、<br><br>
+                        
+                        空気が冷やされて<br>
+                        冷たい風が出てきます。<br><br>
+                        
+                        そしてこのとき、<br><br>
+                        
+                        空気中に含まれている<br>
+                        水分が冷やされ、<br><br>
+
+                        熱交換器の表面で<br>
+                        水滴になります。<br><br>
+                        
+                        これが、<br><br>
+                        
+                        <span class="text-base font-black text-blue-600 bg-blue-50 px-3 py-1 rounded">「結露」です。</span><br><br>
+                        
+                        夏に冷たい飲み物を入れた<br>
+                        コップの表面に、<br><br>
+                        
+                        水滴がたくさん付くのと<br>
+                        同じような現象です。<br><br>
+                        
+                        つまり、<br><br>
+                        
+                        冷房を使ったあとに<br>
+                        エアコン内部が濡れていること自体は、<br><br>
+                        
+                        <span class="text-base font-black text-slate-900 bg-neon px-2">故障でも異常でもありません。</span><br><br>
+                        
+                        冷房という仕組み上、<br><br>
+                        
+                        どうしても発生する<br>
+                        水分です。
+                    </p>
+                </div>
+
+
+                <!-- 結露した水はどこへ行くの？ -->
+                <div class="mb-16 mt-20">
+                    <div class="flex flex-col items-center justify-center mb-6 text-center">
+                        <span class="w-10 h-[3px] bg-slate-800 mb-4 rounded-full"></span>
+                        <h2 class="text-xl md:text-2xl font-black text-slate-900 leading-relaxed">
+                            結露した水は<br>
+                            どこへ行くの？
+                        </h2>
+                    </div>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose text-center">
+                        熱交換器で発生した<br>
+                        結露水は、<br><br>
+                        
+                        その下にある<br>
+                        「ドレンパン」という部分へ<br>
+                        流れ落ちます。<br><br>
+                        
+                        そして、<br><br>
+                        
+                        ドレンホースを通って<br>
+                        屋外へ排水されます。<br><br>
+                        
+                        冷房を使っているときに、<br><br>
+                        
+                        室外機の近くなどにある<br>
+                        ホースから水が出ているのは、<br><br>
+
+                        この結露水です。<br><br>
+                        
+                        ですが、<br><br>
+                        
+                        <span class="font-black text-slate-900 underline decoration-red-500 decoration-2 underline-offset-4">冷房を停止した瞬間に</span><br><br>
+                        
+                        エアコン内部の水分が<br>
+                        すべてなくなるわけではありません。<br><br>
+                        
+                        熱交換器や<br>
+                        ドレンパン、<br><br>
+                        
+                        その周辺には、<br><br>
+                        
+                        しばらく水分や湿気が<br>
+                        残っています。
+                    </p>
+                </div>
+
+
+                <!-- 冷房を切った直後のエアコン内部は？ -->
+                <div class="bg-slate-50 border border-slate-200 rounded-[16px] px-4 md:px-6 py-8 mt-12 mb-16 text-center">
+                    <h3 class="text-lg md:text-xl font-black text-slate-900 mb-6 border-b-2 border-slate-200 pb-3 inline-block leading-relaxed">
+                        冷房を切った直後の<br>
+                        エアコン内部は？
+                    </h3>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
+                        冷房を停止した直後は、<br><br>
+                        
+                        エアコン内部に<br>
+                        水分が残った状態です。<br><br>
+                        
+                        さらに、<br><br>
+                        
+                        エアコンは室内の空気を<br>
+                        吸い込みながら運転しているため、<br><br>
+                        
+                        内部には少しずつ<br>
+                        ホコリなどの汚れも<br>
+                        入ってきます。<br><br>
+                        
+                        つまり、<br><br>
+
+                        <span class="font-black text-slate-900 text-base bg-blue-100 px-2">水分・湿気・ホコリ。</span><br><br>
+                        
+                        こうしたものが<br>
+                        エアコン内部に存在します。<br><br>
+                        
+                        そして、<br><br>
+                        
+                        湿った状態が<br>
+                        長く続けば、<br><br>
+                        
+                        <span class="text-base font-black text-blue-600">カビが発生しやすい環境を</span><br>
+                        <span class="text-base font-black text-blue-600">作る原因にもなります。</span><br><br>
+                        
+                        そこで登場するのが、<br><br>
+                        
+                        <span class="font-black text-slate-900 text-lg">「送風運転」です。</span>
+                    </p>
+                </div>
+
+
+                <!-- 冷房後に送風すると何が変わる？ -->
+                <div class="mb-16 mt-20">
+                    <div class="flex flex-col items-center justify-center mb-6 text-center">
+                        <span class="w-10 h-[3px] bg-slate-800 mb-4 rounded-full"></span>
+                        <h2 class="text-xl md:text-2xl font-black text-slate-900 leading-relaxed">
+                            冷房後に送風すると<br>
+                            何が変わる？
+                        </h2>
+                    </div>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose text-center">
+                        冷房運転では、<br><br>
+                        
+                        熱交換器を冷やしながら<br>
+                        風を出しています。<br><br>
+                        
+                        一方、<br>
+                        一般的な送風運転では、<br><br>
+                        
+                        冷房のように<br>
+                        熱交換器を冷やし続けず、<br><br>
+                        
+                        室内機のファンを回して<br>
+                        空気を動かします。<br><br>
+                        
+                        その風を<br>
+                        エアコン内部へ通すことで、<br><br>
+
+                        <span class="font-black text-slate-900 underline decoration-neon decoration-4 underline-offset-4">冷房後に残った水分を</span><br>
+                        <span class="font-black text-slate-900 underline decoration-neon decoration-4 underline-offset-4">乾燥させる方向に働きます。</span><br><br>
+
+                        つまり、<br><br>
+                        
+                        冷房後の送風運転には、<br><br>
+                        
+                        エアコン内部を<br>
+                        乾燥させる意味があります。<br><br>
+
+                        内部が湿っている時間を<br>
+                        少しでも短くする。<br><br>
+
+                        という意味では、<br><br>
+
+                        カビ対策として<br>
+                        やっておいて損はありません。
+                    </p>
+                </div>
+
+
+                <!-- 送風運転は何分やればいいの？ -->
+                <div class="mb-16 mt-20">
+                    <div class="flex flex-col items-center justify-center mb-6 text-center">
+                        <span class="w-10 h-[3px] bg-slate-800 mb-4 rounded-full"></span>
+                        <h2 class="text-xl md:text-2xl font-black text-slate-900 leading-relaxed">
+                            送風運転は<br>
+                            何分やればいいの？
+                        </h2>
+                    </div>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose text-center">
+                        ここで気になるのが、<br><br>
+                        
+                        「何分くらい<br>
+                        送風すればいいの？」<br><br>
+                        
+                        ということ。<br><br>
+                        
+                        30分。<br><br>
+                        1時間。<br><br>
+                        2時間。<br><br>
+                        
+                        インターネットで調べると、<br>
+                        さまざまな時間を<br>
+                        見かけると思います。<br><br>
+                        
+                        ですが、<br><br>
+                        
+                        <span class="bg-red-50 px-3 py-2 rounded-lg font-black text-slate-800 border border-red-100 inline-block mb-2">
+                            「○分やれば<br>
+                            必ず完全に乾く」
+                        </span><br><br>
+
+                        と一律に決めることは<br>
+                        難しいです。<br><br>
+                        
+                        エアコン内部の濡れ方は、<br><br>
+                        
+                        冷房を使った時間や<br>
+                        室内の温度、<br><br>
+                        
+                        湿度や機種によっても<br>
+                        変わります。<br><br>
+                        
+                        同じ1時間でも、<br><br>
+                        
+                        乾きやすい日もあれば、<br>
+                        乾きにくい日もあります。<br><br>
+
+                        そのため、<br><br>
+
+                        <span class="text-base font-black text-slate-900 bg-neon px-2">「絶対に○時間！」</span><br><br>
+
+                        と神経質になる必要は<br>
+                        ないと考えています。
+                    </p>
+                </div>
+
+
+                <!-- 「送風」と「内部クリーン」は違うの？ -->
+                <div class="mb-16 mt-20">
+                    <div class="flex flex-col items-center justify-center mb-6 text-center">
+                        <span class="w-10 h-[3px] bg-neon mb-4 rounded-full"></span>
+                        <h2 class="text-xl md:text-2xl font-black text-slate-900 tracking-wider leading-relaxed">
+                            「送風」と<br>
+                            「内部クリーン」は違うの？
+                        </h2>
+                    </div>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose text-center">
+                        最近のエアコンには、<br><br>
+                        
+                        <span class="font-black text-slate-900">「内部クリーン」</span><br><br>
+                        <span class="font-black text-slate-900">「内部乾燥」</span><br><br>
+                        
+                        などの機能が<br>
+                        付いている機種もあります。<br><br>
+                        
+                        送風運転と<br>
+                        似ているように感じますが、<br><br>
+                        
+                        まったく同じとは<br>
+                        限りません。<br><br>
+                        
+                        送風運転は、<br>
+                        基本的に室内機のファンを回して<br><br>
+                        
+                        空気を動かす運転です。<br><br>
+                        
+                        一方、<br>
+                        内部クリーンは、<br><br>
+                        
+                        冷房や除湿運転のあとに、<br><br>
+                        
+                        エアコン内部を<br>
+                        乾燥させることなどを目的に<br>
+                        行われる機能です。<br><br>
+
+                        機種によっては、<br><br>
+
+                        送風だけではなく、<br>
+                        暖房や加熱などを利用して<br><br>
+
+                        内部を乾燥させるものもあります。<br><br>
+                        
+                        また、<br><br>
+                        
+                        運転時間や動作方法も<br>
+                        メーカーや機種によって違います。<br><br>
+
+                        そのため、<br><br>
+                        
+                        内部クリーン機能が<br>
+                        付いている場合は、<br><br>
+                        
+                        まずは取扱説明書に沿って<br>
+                        使用するのが確実です。
+                    </p>
+                </div>
+
+
+                <!-- 内部クリーンを使えばカビは生えない？ -->
+                <div class="mb-16 relative mt-20 text-center">
+                    <!-- 上部の赤いバッジ -->
+                    <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-red-600 text-white font-black text-sm px-5 py-1.5 rounded-full shadow-md whitespace-nowrap">
+                        勘違いしやすいポイント
+                    </div>
+
+                    <h2 class="text-xl md:text-2xl font-black text-slate-900 mb-8 pt-8 leading-relaxed">
+                        内部クリーンを使えば<br>
+                        カビは生えない？
+                    </h2>
+                    
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
+                        ここは、<br>
+                        勘違いしてほしくない<br>
+                        ポイントです。<br><br>
+                        
+                        内部クリーンや<br>
+                        送風運転をしているからといって、<br><br>
+                        
+                        <span class="text-red-600 font-black underline decoration-red-200 decoration-4 underline-offset-4">絶対にカビが</span><br>
+                        <span class="text-red-600 font-black underline decoration-red-200 decoration-4 underline-offset-4">生えなくなるわけではありません。</span><br><br>
+                        
+                        エアコンが設置されている環境、<br><br>
+                        
+                        使用時間、<br><br>
+                        
+                        室内の湿度、<br><br>
+                        
+                        内部に入り込んだホコリなど、<br><br>
+                        
+                        さまざまな条件が<br>
+                        関係しています。<br><br>
+                        
+                        送風や内部クリーンは、<br><br>
+                        
+                        あくまで内部を<br>
+                        乾燥させることで、<br><br>
+                        
+                        カビが発生しにくい環境を<br>
+                        作るためのお手入れです。<br><br>
+
+                        <span class="font-black text-slate-900 bg-slate-100 px-3 py-1 rounded inline-block">「送風しているから<br>絶対にカビない」</span><br><br>
+
+                        というものではありません。
+                    </p>
+                </div>
+
+
+                <!-- すでに生えたカビは送風では取れません -->
+                <div class="mb-16 relative mt-20 text-center">
+                    <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-red-600 text-white font-black text-sm px-5 py-1.5 rounded-full shadow-md whitespace-nowrap">
+                        要注意
+                    </div>
+
+                    <h2 class="text-xl md:text-2xl font-black text-slate-900 mb-8 pt-8 leading-relaxed">
+                        すでに生えたカビは<br>
+                        送風では<span class="text-red-600">取れません</span>
+                    </h2>
+                    
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
+                        これも大切です。<br><br>
+                        
+                        送風運転は、<br><br>
+                        
+                        <span class="text-base font-black text-slate-900 bg-red-100 px-2">すでに付着しているカビを</span><br>
+                        <span class="text-base font-black text-slate-900 bg-red-100 px-2">取り除くための機能ではありません。</span><br><br>
+                        
+                        内部クリーンも同じです。<br><br>
+                        
+                        送風ファンや<br>
+                        熱交換器などに<br><br>
+                        
+                        すでにカビや汚れが<br>
+                        付着している場合、<br><br>
+                        
+                        風を当てて乾燥させても、<br><br>
+                        
+                        その汚れ自体が<br>
+                        なくなるわけではありません。<br><br>
+
+                        つまり、<br><br>
+
+                        送風や内部クリーンは、<br><br>
+                        
+                        カビを洗い落とすためのものではなく、<br><br>
+                        
+                        <span class="font-black text-slate-900 underline decoration-neon decoration-4 underline-offset-4">カビが発生しにくい環境を作るための</span><br>
+                        <span class="font-black text-slate-900 underline decoration-neon decoration-4 underline-offset-4">予防的なお手入れ。</span><br><br>
+
+                        この違いは<br>
+                        覚えておいてください。
+                    </p>
+                </div>
+
+
+                <!-- 毎回必ず送風した方がいい？ -->
+                <div class="bg-blue-50/50 rounded-[20px] border border-blue-100 p-6 md:p-8 mt-12 mb-16 text-center">
+                    <h3 class="text-xl font-black text-slate-900 text-blue-900 mb-8">
+                        毎回必ず<br>
+                        送風した方がいい？
+                    </h3>
+                    
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
+                        内部を乾燥させるという意味では、<br><br>
+                        
+                        冷房後に送風運転を<br>
+                        した方が良いのは確かです。<br><br>
+                        
+                        でも、<br><br>
+                        
+                        ONE★STARでは、<br><br>
+                        
+                        <span class="text-base font-black text-slate-900 bg-neon px-2">毎回必ずやらなければならない</span><br><br>
+                        
+                        とまでは考えていません。<br><br>
+                        
+                        例えば、<br><br>
+                        
+                        これから仕事へ行く。<br><br>
+                        
+                        買い物へ出掛ける。<br><br>
+                        
+                        もう寝室から出て<br>
+                        しばらく使わない。<br><br>
+                        
+                        そんなタイミングなら、<br><br>
+                        
+                        冷房を止めたあとに<br>
+                        送風や内部クリーンを<br>
+                        使っておけばいいと思います。<br><br>
+
+                        その部屋に<br>
+                        誰もいないのであれば、<br><br>
+                        
+                        内部を乾燥させておいて<br>
+                        損はありません。
+                    </p>
+                </div>
+
+
+                <!-- まだその部屋で過ごすなら？ -->
+                <div class="mb-16 mt-20">
+                    <div class="flex flex-col items-center justify-center mb-6 text-center">
+                        <span class="w-10 h-[3px] bg-slate-800 mb-4 rounded-full"></span>
+                        <h2 class="text-xl md:text-2xl font-black text-slate-900 leading-relaxed">
+                            まだその部屋で<br>
+                            過ごすなら？
+                        </h2>
+                    </div>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose text-center">
+                        反対に、<br><br>
+                        
+                        まだその部屋で<br>
+                        過ごしている場合はどうでしょう。<br><br>
+                        
+                        暑いから<br>
+                        冷房を使っているのに、<br><br>
+                        
+                        「エアコンのカビ対策をしなきゃ！」<br><br>
+                        
+                        と冷房を止めて、<br><br>
+                        
+                        送風運転から出てくる<br>
+                        快適とは言えない風を<br><br>
+                        
+                        <span class="font-black text-slate-900 underline decoration-red-300 decoration-4 underline-offset-4">我慢しながら</span><br>
+                        <span class="font-black text-slate-900 underline decoration-red-300 decoration-4 underline-offset-4">過ごす。</span><br><br>
+
+                        そこまでして、<br><br>
+                        
+                        毎回送風運転を<br>
+                        する必要があるでしょうか。<br><br>
+                        
+                        ONE★STARでは、<br><br>
+                        
+                        <span class="font-black text-slate-900 text-lg">そこまで頑張らなくてもいい</span><br><br>
+                        
+                        と考えています。
+                    </p>
+                </div>
+
+
+                <!-- ペットがいる部屋も同じです -->
+                <div class="bg-slate-50 border border-slate-200 rounded-[16px] px-4 md:px-6 py-8 mt-12 mb-16 text-center">
+                    <h3 class="text-lg md:text-xl font-black text-slate-900 mb-6 border-b-2 border-slate-200 pb-3 inline-block leading-relaxed">
+                        ペットがいる部屋も<br>
+                        同じです
+                    </h3>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
+                        室内で犬や猫などの<br>
+                        ペットと暮らしている場合も、<br><br>
+                        
+                        考え方は同じです。<br><br>
+                        
+                        暑い季節に、<br><br>
+                        
+                        カビ対策を優先するために<br>
+                        冷房を止めて、<br><br>
+                        
+                        室温が上がってしまう。<br><br>
+                        
+                        これでは、<br><br>
+                        
+                        何のためのエアコンなのか<br>
+                        分からなくなってしまいます。<br><br>
+                        
+                        エアコンは、<br><br>
+                        
+                        エアコン自身を<br>
+                        快適にするための<br>
+                        機械ではありません。<br><br>
+                        
+                        その部屋で過ごす<br><br>
+                        
+                        <span class="text-base font-black text-blue-600">人やペットが</span><br>
+                        <span class="text-base font-black text-blue-600">快適に過ごすためのものです。</span><br><br>
+                        
+                        カビ対策も大切ですが、<br><br>
+                        
+                        人やペットの快適さを<br>
+                        犠牲にしてまで<br><br>
+                        
+                        優先する必要は<br>
+                        ないと考えています。
+                    </p>
+                </div>
+
+
+                <!-- 送風運転の電気代は高い？ -->
+                <div class="mb-16 mt-20">
+                    <div class="flex flex-col items-center justify-center mb-6 text-center">
+                        <span class="w-10 h-[3px] bg-slate-800 mb-4 rounded-full"></span>
+                        <h2 class="text-xl md:text-2xl font-black text-slate-900 leading-relaxed">
+                            送風運転の<br>
+                            電気代は高い？
+                        </h2>
+                    </div>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose text-center">
+                        「送風を長時間使ったら、<br>
+                        電気代が高くなるのでは？」<br><br>
+                        
+                        という心配も<br>
+                        あるかもしれません。<br><br>
+                        
+                        一般的な送風運転では、<br><br>
+                        
+                        冷房のように<br>
+                        室外機の圧縮機を動かして<br><br>
+                        
+                        室温を下げ続ける運転とは違い、<br><br>
+                        
+                        主に室内機のファンを<br>
+                        動かしています。<br><br>
+                        
+                        そのため、<br><br>
+                        
+                        <span class="font-black text-slate-900 underline decoration-neon decoration-4 underline-offset-4">一般的には冷房運転より</span><br>
+                        <span class="font-black text-slate-900 underline decoration-neon decoration-4 underline-offset-4">消費電力は小さくなります。</span><br><br>
+
+                        ただし、<br><br>
+                        
+                        内部クリーンについては<br>
+                        注意が必要です。<br><br>
+                        
+                        機種によっては、<br><br>
+                        
+                        送風だけではなく<br>
+                        暖房や加熱などを使って<br><br>
+                        
+                        内部を乾燥させるものもあります。<br><br>
+                        
+                        そのため、<br><br>
+                        
+                        「送風運転」と<br>
+                        「内部クリーン」では、<br><br>
+                        
+                        消費電力が同じとは限りません。<br><br>
+                        
+                        具体的な消費電力や<br>
+                        電気代が気になる場合は、<br><br>
+                        
+                        使用している機種の<br>
+                        取扱説明書などを<br>
+                        確認してみてください。
+                    </p>
+                </div>
+
+
+                <!-- 冷房シーズンの最後こそしっかり乾燥を -->
+                <div class="mb-16 mt-20">
+                    <div class="flex flex-col items-center justify-center mb-6 text-center">
+                        <span class="w-10 h-[3px] bg-neon mb-4 rounded-full"></span>
+                        <h2 class="text-xl md:text-2xl font-black text-slate-900 tracking-wider leading-relaxed">
+                            冷房シーズンの最後こそ<br>
+                            しっかり乾燥を
+                        </h2>
+                    </div>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose text-center">
+                        毎日の送風運転は<br>
+                        面倒に感じる。<br><br>
+                        
+                        そんな方でも、<br><br>
+                        
+                        ぜひ意識してほしい<br>
+                        タイミングがあります。<br><br>
+                        
+                        それが、<br><br>
+                        
+                        <span class="font-black text-slate-900 text-lg">冷房を使わなくなる</span><br>
+                        <span class="font-black text-slate-900 text-lg">シーズンの終わりです。</span><br><br>
+                        
+                        夏が終わり、<br><br>
+                        
+                        「今年はもう<br>
+                        冷房を使わないかな」<br><br>
+                        
+                        となったとき。<br><br>
+                        
+                        冷房を使ったまま<br>
+                        そのまま何か月も放置するより、<br><br>
+                        
+                        <span class="text-base font-black text-slate-900 bg-neon px-2">最後に送風や</span><br>
+                        <span class="text-base font-black text-slate-900 bg-neon px-2">内部クリーンを使って、</span><br><br>
+                        
+                        できるだけ内部を<br>
+                        乾燥させておく。<br><br>
+                        
+                        毎日完璧に<br>
+                        お手入れできなくても、<br><br>
+                        
+                        こうしたタイミングだけ<br>
+                        意識する方法もあります。
+                    </p>
+                </div>
+
+
+                <!-- 送風より先にフィルターも確認 -->
+                <div class="mb-16 mt-20">
+                    <div class="flex flex-col items-center justify-center mb-6 text-center">
+                        <span class="w-10 h-[3px] bg-slate-800 mb-4 rounded-full"></span>
+                        <h2 class="text-xl md:text-2xl font-black text-slate-900 leading-relaxed">
+                            送風より先に<br>
+                            フィルターも確認
+                        </h2>
+                    </div>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose text-center">
+                        そして、<br><br>
+                        
+                        エアコンのカビ対策を<br>
+                        考えるのであれば、<br><br>
+                        
+                        送風運転だけではなく<br>
+                        <span class="font-black text-slate-900 underline decoration-blue-300 decoration-4 underline-offset-4">フィルターの状態も</span><br>
+                        <span class="font-black text-slate-900 underline decoration-blue-300 decoration-4 underline-offset-4">確認してみてください。</span><br><br>
+                        
+                        フィルターが<br>
+                        ホコリで目詰まりしていると、<br><br>
+                        
+                        エアコン内部へ流れる<br>
+                        空気の状態にも影響します。<br><br>
+                        
+                        送風運転だけを<br>
+                        頑張るのではなく、<br><br>
+                        
+                        フィルターも<br>
+                        こまめにキレイにしておく。<br><br>
+                        
+                        こうした基本的な<br>
+                        お手入れを組み合わせることが<br>
+                        大切です。
+                    </p>
+                </div>
+
+
+                <!-- 毎日完璧なカビ対策をしなくてもいい -->
+                <div class="bg-blue-50/50 rounded-[20px] border border-blue-100 p-6 md:p-8 mt-12 mb-16 text-center">
+                    <h3 class="text-xl font-black text-slate-900 text-blue-900 mb-8">
+                        毎日完璧な<br>
+                        カビ対策をしなくてもいい
+                    </h3>
+                    
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
+                        エアコンを<br>
+                        少しでもキレイに使いたい。<br><br>
+                        
+                        そう思うことは、<br>
+                        とても良いことです。<br><br>
+                        
+                        でも、<br><br>
+                        
+                        冷房を使うたびに<br>
+                        必ず送風して、<br><br>
+                        
+                        フィルターも掃除して、<br><br>
+                        
+                        内部クリーンも使って、<br><br>
+                        
+                        毎日完璧な<br>
+                        カビ対策をしなければならない。<br><br>
+                        
+                        そんなふうに考えてしまうと、<br><br>
+                        
+                        <span class="text-red-600 font-black">エアコンを使うこと自体が</span><br>
+                        <span class="text-red-600 font-black">面倒になってしまいます。</span><br><br>
+                        
+                        できる日はやる。<br><br>
+                        
+                        できない日はやらない。<br><br>
+                        
+                        誰もいない部屋なら<br>
+                        送風しておく。<br><br>
+                        
+                        暑ければ、<br>
+                        無理せず冷房を使う。<br><br>
+                        
+                        それくらいでも<br>
+                        良いのではないでしょうか。
+                    </p>
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- ネイビーのカード (ONE★STARが大切にしていること) -->
+        <div class="bg-slate-900 rounded-[24px] border-l-[12px] border-neon p-8 md:p-10 text-center shadow-md mb-10">
+            
+            <h2 class="text-white font-black text-xl md:text-2xl leading-relaxed mb-10 tracking-wider">
+                ONE★STARが<br>
+                大切にしていること
+            </h2>
+
+            <p class="text-slate-100 font-bold text-[15px] md:text-base leading-loose mb-10">
+                冷房後の送風運転には、<br><br>
+                
+                エアコン内部を<br>
+                乾燥させるという意味で<br><br>
+                
+                カビ対策として<br>
+                効果があります。<br><br>
+                
+                だから、<br><br>
+                
+                <span class="text-neon font-black text-base">できるタイミングなら<br>やっておく。</span><br><br>
+                
+                これはおすすめします。<br><br>
+                
+                でも、<br><br>
+                
+                カビを絶対に<br>
+                発生させないために、<br><br>
+                
+                人やペットが<br>
+                不快な思いをしてまで<br><br>
+                
+                毎日続ける必要は<br>
+                ないと考えています。
+            </p>
+
+            <!-- 区切り線 -->
+            <div class="w-16 h-[1px] bg-slate-600 mx-auto mb-10"></div>
+
+            <p class="text-slate-100 font-bold text-[15px] md:text-base leading-loose">
+                送風していても、<br>
+                内部が汚れることはあります。<br><br>
+                
+                内部クリーンを使っていても、<br>
+                カビが発生することはあります。<br><br>
+                
+                そして、<br><br>
+                
+                <span class="text-white font-black text-base underline decoration-neon decoration-4 underline-offset-4">すでに付着したカビは</span><br>
+                <span class="text-white font-black text-base underline decoration-neon decoration-4 underline-offset-4">送風だけでは</span><br>
+                <span class="text-white font-black text-base underline decoration-neon decoration-4 underline-offset-4">取り除くことができません。</span><br><br>
+                
+                だからこそ、<br><br>
+                
+                無理のない範囲で<br>
+                普段のお手入れをする。<br><br>
+                
+                そして、<br><br>
+                
+                それでも内部が汚れてきたら、<br><br>
+                
+                そのときは<br>
+                エアコンクリーニングという<br>
+                方法があります。<br><br>
+                
+                エアコンをキレイに保つために、<br>
+                生活を合わせるのではなく、<br><br>
+                
+                <span class="text-neon font-black text-base">生活を快適にするために</span><br>
+                <span class="text-neon font-black text-base">エアコンを使う。</span><br><br>
+                
+                ONE★STARでは、<br><br>
+                
+                それくらいの付き合い方で<br>
+                良いと考えています。
+            </p>
+        </div>
+
+
+        <!-- ご相談誘導ブロック -->
+        <div class="bg-white rounded-2xl border border-slate-200 p-8 text-center shadow-sm mb-12">
+            <h2 class="text-xl md:text-2xl font-black text-slate-900 mb-8 leading-relaxed">
+                送風していても<br>
+                ニオイや汚れが気になる場合は
+            </h2>
+            
+            <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose mb-10">
+                冷房後に送風している。<br><br>
+
+                内部クリーンも<br>
+                使っている。<br><br>
+
+                それでも、<br><br>
+                
+                <span class="text-slate-900 font-black">「エアコンから<br>嫌なニオイがする」</span><br><br>
+                
+                <span class="text-slate-900 font-black">「吹き出し口に<br>黒い汚れが見える」</span><br><br>
+                
+                そんな場合は、<br><br>
+                
+                すでにエアコン内部へ<br>
+                カビや汚れが<br>
+                付着している可能性があります。<br><br>
+                
+                送風や内部クリーンで<br>
+                乾燥させることはできても、<br><br>
+                
+                付着した汚れそのものを<br>
+                洗い流すことはできません。<br><br>
+                
+                そんなときは、<br><br>
+                
+                無理にご自身で<br>
+                分解しようとせず、<br><br>
+                
+                一度ご相談ください。
+            </p>
+            
+            <a href="tel:08000807788" class="js-phone-modal-trigger inline-flex items-center justify-center bg-slate-900 hover:bg-slate-800 text-neon px-8 py-4 rounded-full text-base font-black shadow-md transition-all active:scale-95">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                <span>電話で相談する</span>
+            </a>
+        </div>
+
+        <!-- 関連する施工事例へのリンク -->
+        <div class="mt-16 text-center">
+            <div class="flex flex-col items-center justify-center mb-6">
+                <span class="w-10 h-[3px] bg-slate-800 mb-4 rounded-full"></span>
+                <h2 class="text-xl md:text-2xl font-black text-slate-900 tracking-wider leading-relaxed">
+                    実際の現場も見てみる
+                </h2>
+            </div>
+            
+            <button type="button" onclick="showToast(event)" class="block w-full bg-white rounded-2xl border-2 border-slate-900 p-6 md:p-8 shadow-sm hover:shadow-md transition-all active:scale-95 group relative overflow-hidden text-center cursor-pointer">
+                <!-- 装飾 -->
+                <div class="absolute top-0 left-0 w-full h-2 bg-neon"></div>
+                
+                <p class="text-[11px] md:text-sm font-black text-slate-500 mb-3 tracking-widest">
+                    関連する施工事例
+                </p>
+                
+                <h3 class="text-[17px] md:text-xl font-black text-slate-900 mb-8 leading-relaxed">
+                    「エアコン内部に<br>カビや汚れが溜まっていた施工事例」
+                </h3>
+                
+                <div class="inline-flex items-center justify-center bg-slate-900 text-neon px-6 py-3.5 rounded-full text-[15px] font-black group-hover:bg-slate-800 transition-colors w-full md:w-auto shadow-md">
+                    ▶ この施工事例を見る
+                </div>
+            </button>
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-900 text-white pt-12 pb-24 md:pb-12 border-t-[6px] border-neon text-center mt-12">
+        <div class="mb-6 flex flex-col items-center justify-center">
+            <span class="text-4xl md:text-5xl tracking-widest text-white flex items-center justify-center font-impact mt-1">
+                ONE
+                <img src="ONESTAR.PNG" alt="ロゴ" class="w-[80px] h-[80px] md:w-[100px] md:h-[100px] mx-[-10px] md:mx-[-16px] object-contain -translate-y-2" onerror="this.style.display='none'">
+                STAR
+            </span>
+            <p class="text-xs text-neon font-black mt-2 tracking-widest">株式会社ECS専属プロスタッフ</p>
+        </div>
+        
+        <p class="text-[11px] text-slate-400 font-bold mb-3">
+            <a href="/products" class="hover:text-white transition-colors underline underline-offset-4">オリジナルLINEスタンプ販売中</a>
+        </p>
+        <p class="text-[10px] text-slate-500 font-bold mb-4">
+            <a href="/privacy" class="hover:text-white transition-colors">プライバシーポリシー</a>
+        </p>
+        <p class="text-[10px] text-slate-500 font-bold tracking-wider">© 2026 ONE★STAR. All Rights Reserved.</p>
+    </footer>
+
+    <!-- MOBILE BOTTOM NAVIGATION -->
+    <div class="fixed bottom-0 left-0 right-0 z-45 bg-slate-900 md:hidden h-[60px] flex items-stretch text-white shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.3)] border-t border-slate-800">
+        
+        <a href="/price" class="flex flex-col items-center justify-center w-[20%] border-r border-slate-700 active:bg-slate-800">
+            <svg class="w-5 h-5 mb-1 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <span class="text-[9px] font-black">料金</span>
+        </a>
+        
+        <a href="/mind" class="flex flex-col items-center justify-center w-[20%] border-r border-slate-700 active:bg-slate-800">
+            <svg class="w-5 h-5 mb-1 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+            <span class="text-[9px] font-black">想い</span>
+        </a>
+
+        <a href="/pride" class="flex flex-col items-center justify-center w-[20%] active:bg-slate-800">
+            <svg class="w-5 h-5 mb-1 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+            <span class="text-[9px] font-black">拘り</span>
+        </a>
+        
+        <a href="tel:08000807788" class="js-phone-modal-trigger flex items-center justify-center bg-neon text-slate-900 w-[40%] font-black text-base active:bg-yellow-400 transition-colors">
+            <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+            電話する
+        </a>
+        
+    </div>
+
+    <!-- 🌟 ご予約・お問い合わせ前のワンクッションモーダル 🌟 -->
+    <div id="phone-modal" class="fixed inset-0 z-[100] hidden flex items-center justify-center px-4">
+        <div id="phone-modal-backdrop" class="absolute inset-0 bg-slate-900/80 backdrop-blur-sm opacity-0 transition-opacity duration-300"></div>
+        
+        <div id="phone-modal-content" class="relative bg-white rounded-3xl shadow-2xl w-full max-w-sm overflow-hidden transform scale-95 opacity-0 transition-all duration-300 border border-slate-100">
+            
+            <button id="phone-modal-close" class="absolute top-4 right-4 p-2 text-slate-400 hover:text-slate-700 bg-slate-100 hover:bg-slate-200 rounded-full transition-colors z-10">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+            
+            <div class="p-6 md:p-8 text-center pt-10">
+                
+                <h3 class="text-xl font-black text-slate-900 mb-6 border-b-4 border-[#EFFF00] inline-block pb-1">
+                    ご予約・お問い合わせの前に
+                </h3>
+                
+                <div class="text-[13px] text-slate-700 font-bold leading-relaxed mb-8 space-y-4 text-left bg-slate-50 p-5 rounded-2xl border border-slate-100 shadow-inner">
+                    <p>
+                        <span class="text-slate-900 font-black text-sm">ONE★STAR</span>は<br>
+                        株式会社ECS（エッジクリーンサービス）の専属プロスタッフとして活動しています。
+                    </p>
+                    <p class="pt-2 border-t border-slate-200">
+                        お電話は<br>
+                        <span class="text-slate-900 font-black">株式会社ECSの予約受付</span>につながります。
+                    </p>
+                    
+                    <div class="bg-rose-50 border border-rose-200 p-3 rounded-xl text-center shadow-sm">
+                        <p class="text-rose-600 font-black text-[13px] leading-tight">
+                            ご予約の際は<br>
+                            <span class="text-base">「ONE★STAR（川崎）を指名」</span>と<br>
+                            お伝えください。
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="space-y-3">
+                    <a href="tel:08000807788" class="flex items-center justify-center w-full py-4 bg-slate-900 text-[#EFFF00] font-black rounded-2xl shadow-md active:scale-95 transition-transform text-sm sm:text-base border border-slate-800">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                        株式会社ECSへ電話する
+                    </a>
+                    
+                    <a href="https://www.instagram.com/one.star.kawasaki?igsh=anZpYnpxcDdqOXRh&utm_source=qr" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center w-full py-4 bg-gradient-to-r from-pink-500 to-rose-500 text-white font-black rounded-2xl shadow-md active:scale-95 transition-transform text-sm sm:text-base">
+                        <svg class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                        </svg>
+                        Instagramで本人に相談する
+                    </a>
+                </div>
+                
+                <p class="text-[10px] text-slate-500 mt-4 font-bold leading-relaxed">
+                    直接のご質問・お問い合わせは<br>本人直通のInstagram DMからお気軽にどうぞ。
+                </p>
+                
+                <button id="phone-modal-cancel" class="mt-6 text-[11px] text-slate-400 font-bold underline underline-offset-4 hover:text-slate-600 transition-colors">
+                    キャンセルして戻る
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 🚧 トースト表示用（初期状態は透明・クリック不可） -->
+    <div id="toast" class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-[110] bg-slate-900/95 backdrop-blur-md text-white px-6 py-4 rounded-2xl shadow-[0_10px_40px_rgba(0,0,0,0.3)] flex items-center space-x-3 opacity-0 pointer-events-none transition-opacity duration-300">
+        <span class="text-2xl">🚧</span>
+        <span class="font-black text-[15px] tracking-widest whitespace-nowrap">ただいま準備中です。</span>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script>
+        // === トースト表示関数 ===
+        let toastTimeout;
+        function showToast(e) {
+            e.preventDefault();
+            const toast = document.getElementById('toast');
+            
+            if (toastTimeout) {
+                clearTimeout(toastTimeout);
+            }
+            
+            toast.classList.remove('opacity-0');
+            toast.classList.add('opacity-100');
+            
+            toastTimeout = setTimeout(() => {
+                toast.classList.remove('opacity-100');
+                toast.classList.add('opacity-0');
+            }, 3000);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // === メニュー開閉用 ===
+            const drawerContainer = document.getElementById('drawer-container');
+            const drawerMenu = document.getElementById('drawer-menu');
+            const drawerBackdrop = document.getElementById('drawer-backdrop');
+            
+            const toggleMenu = (show) => {
+                if (show) {
+                    drawerContainer.classList.remove('hidden');
+                    setTimeout(() => {
+                        drawerBackdrop.classList.remove('opacity-0');
+                        drawerBackdrop.classList.add('opacity-100');
+                        drawerMenu.classList.remove('drawer-closed');
+                        drawerMenu.classList.add('drawer-open');
+                    }, 10);
+                } else {
+                    drawerBackdrop.classList.remove('opacity-100');
+                    drawerBackdrop.classList.add('opacity-0');
+                    drawerMenu.classList.remove('drawer-open');
+                    drawerMenu.classList.add('drawer-closed');
+                    setTimeout(() => drawerContainer.classList.add('hidden'), 300);
+                }
+            };
+
+            document.getElementById('menu-open-btn').addEventListener('click', () => toggleMenu(true));
+            document.getElementById('menu-close-btn').addEventListener('click', () => toggleMenu(false));
+            document.getElementById('drawer-backdrop').addEventListener('click', () => toggleMenu(false));
+            document.querySelectorAll('.menu-link').forEach(link => link.addEventListener('click', () => toggleMenu(false)));
+
+            // === 電話モーダル ===
+            const phoneModal = document.getElementById('phone-modal');
+            const phoneModalBackdrop = document.getElementById('phone-modal-backdrop');
+            const phoneModalContent = document.getElementById('phone-modal-content');
+            const phoneModalCloseBtn = document.getElementById('phone-modal-close');
+            const phoneModalCancelBtn = document.getElementById('phone-modal-cancel');
+            const phoneTriggerBtns = document.querySelectorAll('.js-phone-modal-trigger');
+
+            if (phoneModal && phoneTriggerBtns.length > 0) {
+                const openPhoneModal = (e) => {
+                    e.preventDefault(); 
+                    if (typeof toggleMenu === 'function') toggleMenu(false);
+
+                    phoneModal.classList.remove('hidden');
+                    requestAnimationFrame(() => {
+                        phoneModalBackdrop.classList.remove('opacity-0');
+                        phoneModalBackdrop.classList.add('opacity-100');
+                        phoneModalContent.classList.remove('opacity-0', 'scale-95');
+                        phoneModalContent.classList.add('opacity-100', 'scale-100');
+                    });
+                };
+
+                const closePhoneModal = () => {
+                    phoneModalBackdrop.classList.remove('opacity-100');
+                    phoneModalBackdrop.classList.add('opacity-0');
+                    phoneModalContent.classList.remove('opacity-100', 'scale-100');
+                    phoneModalContent.classList.add('opacity-0', 'scale-95');
+                    setTimeout(() => phoneModal.classList.add('hidden'), 300);
+                };
+
+                phoneTriggerBtns.forEach(btn => btn.addEventListener('click', openPhoneModal));
+                phoneModalCloseBtn.addEventListener('click', closePhoneModal);
+                phoneModalCancelBtn.addEventListener('click', closePhoneModal);
+                phoneModalBackdrop.addEventListener('click', closePhoneModal);
+            }
+        });
+    </script>
+</body>
+</html>
+
+
+```
