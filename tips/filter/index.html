@@ -1,0 +1,1297 @@
+```html
+<!DOCTYPE html>
+<html lang="ja" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>フィルター掃除ってどれくらいの頻度でやるの？ | ONE★STAR</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        neon: '#EFFF00' // トレードカラー：蛍光イエロー
+                    },
+                    fontFamily: {
+                        sans: ['"Noto Sans JP"', 'sans-serif'],
+                        impact: ['"Black Ops One"', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        /* ドロワーメニュー用 */
+        #drawer-menu { transition: transform 0.3s ease-in-out; }
+        .drawer-closed { transform: translateX(-100%); }
+        .drawer-open { transform: translateX(0); }
+    </style>
+</head>
+<body class="font-sans text-slate-800 bg-slate-50 antialiased overflow-x-hidden pb-[60px]">
+
+    <!-- HEADER -->
+    <header class="fixed top-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md shadow-sm border-b border-slate-100 h-14 flex items-center justify-between px-4">
+        <button id="menu-open-btn" class="p-2 hover:bg-slate-100 rounded-lg" aria-label="メニュー">
+            <svg class="w-6 h-6 text-slate-800" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+
+        <div class="absolute left-1/2 -translate-x-1/2 flex items-center justify-center mt-1">
+            <a href="/" class="text-2xl md:text-3xl tracking-widest text-slate-900 leading-none flex items-center font-impact">
+                ONE
+                <img src="ONESTAR.PNG" alt="ロゴ" class="w-[45px] h-[45px] md:w-[55px] md:h-[55px] mx-[-4px] md:mx-[-6px] object-contain -translate-y-[4px]" onerror="this.style.display='none'">
+                STAR
+            </a>
+        </div>
+
+        <div class="hidden md:flex items-center space-x-3">
+            <a href="tel:08000807788" class="js-phone-modal-trigger bg-slate-900 hover:bg-slate-800 text-neon px-4 py-1.5 rounded-full text-xs font-black border border-slate-700 flex items-center space-x-1 transition-all">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                <span>電話相談</span>
+            </a>
+        </div>
+        <div class="w-10 md:hidden"></div>
+    </header>
+
+    <!-- DRAWER MENU -->
+    <div id="drawer-container" class="fixed inset-0 z-50 overflow-hidden hidden">
+        <div id="drawer-backdrop" class="absolute inset-0 bg-slate-900/60 opacity-0 transition-opacity duration-300"></div>
+        <div class="pointer-events-none fixed inset-y-0 left-0 flex max-w-full">
+            <div id="drawer-menu" class="pointer-events-auto w-64 drawer-closed bg-white shadow-2xl flex flex-col h-full">
+                
+                <div class="p-3 bg-white flex justify-end">
+                    <button id="menu-close-btn" class="p-2 hover:bg-slate-100 rounded-lg">
+                        <svg class="w-6 h-6 text-slate-500" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+                    </button>
+                </div>
+
+                <div class="bg-blue-600 py-3 px-6">
+                    <h2 class="text-white font-black tracking-wider text-sm">MENU</h2>
+                </div>
+
+                <nav class="flex-1 px-4 py-2 overflow-y-auto">
+                    <div class="space-y-1">
+                        <a href="/" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>トップページ
+                        </a>
+                        <a href="/price" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>料金プラン
+                        </a>
+                        <a href="/works" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>施工事例
+                        </a>
+                        <a href="/mind" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>ONE★STARの想い
+                        </a>
+                        <a href="/pride" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>プロとしての拘り
+                        </a>
+                        <a href="/trash" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>ここだけの話
+                        </a>
+                        <a href="/before" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>ご予約の前に
+                        </a>
+                        <a href="/faq" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>よくある質問
+                        </a>
+                        <a href="/tips" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-blue-600">
+                            <span class="mr-2 text-blue-600">＞</span>お役立ち情報
+                        </a>
+                        <a href="/products" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-[#06C755]">
+                            <span class="mr-2 text-slate-400">＞</span>オリジナルLINEスタンプ
+                        </a>
+                    </div>
+                    
+                    <hr class="border-slate-300 border-dashed my-4">
+                    <a href="https://www.edge-cleanservice.com" target="_blank" rel="noopener noreferrer" class="menu-link flex items-center py-2 text-sm font-black text-slate-900 hover:text-blue-600 transition-colors">
+                        株式会社ECS公式サイト
+                        <svg class="w-3.5 h-3.5 ml-1.5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                    </a>
+                </nav>
+
+                <div class="p-4 bg-slate-50 border-t border-slate-100 text-center mt-auto">
+                    <p class="text-[9px] text-slate-500 font-bold leading-relaxed mb-2">
+                        株式会社ECS EDGE CLEAN SERVICE<br>専属プロスタッフとして<br>愛知県全域で毎日奮闘中❣️
+                    </p>
+                    <a href="tel:08000807788" class="js-phone-modal-trigger block w-full py-3 bg-emerald-500 text-white font-bold rounded-lg text-sm shadow">直接電話する</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN (お役立ち情報：フィルター掃除) -->
+    <main class="pt-24 pb-12 px-4 max-w-3xl mx-auto">
+
+        <!-- 白いメインカード -->
+        <div class="bg-white rounded-[24px] border-2 border-slate-900 overflow-hidden shadow-sm mb-10">
+            <!-- 上部の黄色いライン -->
+            <div class="h-3 w-full bg-neon"></div>
+
+            <div class="p-6 md:p-8">
+                
+                <!-- バッジ -->
+                <div class="flex justify-center mb-8 text-center">
+                    <span class="inline-block bg-slate-900 text-neon text-xs md:text-sm font-black px-5 py-2 rounded shadow-sm tracking-wider">
+                        プロが教えるエアコンの真実
+                    </span>
+                </div>
+
+                <!-- タイトル（スマホで2行に収まるようにサイズを少し小さく調整 text-[22px]） -->
+                <h1 class="text-[22px] sm:text-[24px] md:text-[32px] font-black text-slate-900 mb-12 leading-relaxed tracking-wide text-center">
+                    フィルター掃除って<br>
+                    どれくらいの頻度でやるの？
+                </h1>
+
+                <!-- リード文 -->
+                <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose text-center mb-10">
+                    エアコンのお手入れと聞いて、<br>
+                    まず思い浮かぶのが<br>
+                    「フィルター掃除」では<br>
+                    ないでしょうか。<br><br>
+                    
+                    <span class="bg-slate-100 px-3 py-2 rounded-lg border border-slate-200 inline-block mb-2">
+                        「汚れてきたら掃除すればいい」<br>
+                        「シーズン前に一度洗えば十分」
+                    </span><br><br>
+                    
+                    そんなイメージを<br>
+                    持っている方も<br>
+                    多いかもしれません。<br><br>
+
+                    ですがONE★STARでは、<br>
+                    エアコンのフィルターは<br>
+                    <span class="text-base font-black text-slate-900 bg-neon px-2">2週間に1回程度を目安に</span><br>
+                    お手入れすることを<br>
+                    おすすめしています。<br><br>
+
+                    そして実は、<br>
+                    時間をかけて完璧に<br>
+                    キレイにすることよりも、<br><br>
+
+                    <span class="text-red-600 font-black text-lg underline decoration-red-600 decoration-2 underline-offset-4">簡単なお手入れを</span><br>
+                    <span class="text-red-600 font-black text-lg underline decoration-red-600 decoration-2 underline-offset-4">こまめに続けること。</span><br><br>
+
+                    こちらの方が<br>
+                    大切だと考えています。
+                </p>
+
+
+                <!-- そもそもフィルターの役割って何？ -->
+                <div class="mb-16 mt-16">
+                    <div class="flex flex-col items-center justify-center mb-6 text-center">
+                        <span class="w-10 h-[3px] bg-neon mb-4 rounded-full"></span>
+                        <h2 class="text-xl md:text-2xl font-black text-slate-900 tracking-wider leading-relaxed">
+                            そもそも<br>
+                            フィルターの役割って何？
+                        </h2>
+                    </div>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-800 leading-loose text-center">
+                        エアコンは、<br>
+                        室内の空気を吸い込み、<br>
+                        温度を調整して<br>
+                        再び室内へ送り出しています。<br><br>
+                        
+                        その空気を吸い込む入口に<br>
+                        付いているのが<br>
+                        フィルターです。<br><br>
+                        
+                        空気中に漂っている<br>
+                        ホコリなどを受け止め、<br><br>
+                        
+                        <span class="text-base font-black text-slate-900 underline decoration-neon decoration-4 underline-offset-4">エアコン内部へ入りにくくする</span><br>
+                        大切な役割があります。<br><br>
+                        
+                        そのため、<br>
+                        エアコンを使えば使うほど<br><br>
+
+                        フィルターの表側には<br>
+                        少しずつホコリが<br>
+                        溜まっていきます。
+                    </p>
+                </div>
+
+
+                <!-- フィルターが目詰まりするとどうなる？ -->
+                <div class="bg-slate-50 border border-slate-200 rounded-[16px] px-4 md:px-6 py-8 mt-12 mb-16 text-center">
+                    <h3 class="text-lg md:text-xl font-black text-slate-900 mb-6 border-b-2 border-slate-200 pb-3 inline-block leading-relaxed">
+                        フィルターが<br>
+                        目詰まりするとどうなる？
+                    </h3>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
+                        フィルターにホコリが溜まり、<br>
+                        目詰まりした状態になると、<br><br>
+                        
+                        エアコンが空気を<br>
+                        吸い込みにくくなります。<br><br>
+                        
+                        つまり、<br>
+                        本来必要な空気の量を<br>
+                        スムーズに取り込めない状態です。<br><br>
+                        
+                        そのまま冷房を使い続ければ、<br>
+                        熱交換器の状態によっては<br>
+                        結露が増えるなど、<br><br>
+
+                        <span class="font-black text-slate-900 text-base">内部が湿った状態に</span><br>
+                        <span class="font-black text-slate-900 text-base">なりやすくなることがあります。</span><br><br>
+                        
+                        エアコン内部には、<br>
+                        冷房や除湿運転によって<br>
+                        もともと結露水が発生します。<br><br>
+                        
+                        そこへホコリなどの<br>
+                        汚れが加われば、<br><br>
+                        
+                        <span class="text-base font-black text-blue-600">カビが発生しやすい環境を</span><br>
+                        <span class="text-base font-black text-blue-600">作る原因にもなります。</span><br><br>
+                        
+                        だからこそ、<br>
+                        フィルター掃除は<br><br>
+                        
+                        <span class="font-black text-slate-900 underline decoration-red-500 decoration-2 underline-offset-4">見た目をキレイにするだけの</span><br>
+                        <span class="font-black text-slate-900 underline decoration-red-500 decoration-2 underline-offset-4">お手入れではありません。</span>
+                    </p>
+                </div>
+
+
+                <!-- フィルター掃除はどうやるのが正解？ -->
+                <div class="mb-16 mt-20">
+                    <div class="flex flex-col items-center justify-center mb-6 text-center">
+                        <span class="w-10 h-[3px] bg-slate-800 mb-4 rounded-full"></span>
+                        <h2 class="text-xl md:text-2xl font-black text-slate-900 leading-relaxed">
+                            フィルター掃除は<br>
+                            どうやるのが正解？
+                        </h2>
+                    </div>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose text-center">
+                        フィルターに付着するホコリは、<br>
+                        基本的に空気を吸い込む側、<br><br>
+                        
+                        つまりフィルターの<br>
+                        表側に溜まります。<br><br>
+                        
+                        そのため、<br>
+                        フィルターを取り外したら、<br><br>
+                        
+                        <span class="font-black text-slate-900 underline decoration-neon decoration-4 underline-offset-4">裏側からシャワーを当てて</span><br>
+                        <span class="font-black text-slate-900 underline decoration-neon decoration-4 underline-offset-4">ホコリを押し戻すように流す。</span><br><br>
+
+                        この方法がおすすめです。<br><br>
+                        
+                        こまめに掃除していれば、<br>
+                        ほとんどの場合、<br><br>
+
+                        これだけでも<br>
+                        十分キレイになります。
+                    </p>
+                </div>
+
+
+                <!-- ゴシゴシ擦る必要はありません -->
+                <div class="mb-16 relative mt-20 text-center">
+                    <!-- 上部の赤いバッジ -->
+                    <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-red-600 text-white font-black text-sm px-5 py-1.5 rounded-full shadow-md whitespace-nowrap">
+                        やりがちなお手入れの落とし穴
+                    </div>
+
+                    <h2 class="text-xl md:text-2xl font-black text-slate-900 mb-8 pt-8 leading-relaxed">
+                        ゴシゴシ擦る必要は<br>
+                        ありません
+                    </h2>
+                    
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
+                        汚れを見ると、<br><br>
+
+                        <span class="bg-red-50 px-3 py-2 rounded-lg font-black text-slate-800 border border-red-100 inline-block mb-2">
+                            「ブラシで擦った方が<br>
+                            キレイになるのでは？」
+                        </span><br><br>
+                        
+                        と思うかもしれません。<br><br>
+                        
+                        ですが、<br>
+                        フィルターは意外と<br>
+                        デリケートです。<br><br>
+                        
+                        掃除機の先端に<br>
+                        ブラシが付いたノズルを使って<br>
+                        ゴシゴシ擦ったり、<br><br>
+
+                        スポンジやブラシで<br>
+                        力を入れて洗ったりすると、<br><br>
+
+                        <span class="text-red-600 font-black underline decoration-red-200 decoration-4 underline-offset-4">網目を傷めたり、</span><br>
+                        <span class="text-red-600 font-black underline decoration-red-200 decoration-4 underline-offset-4">破れてしまう原因になります。</span><br><br>
+
+                        キレイにするための掃除で<br>
+                        フィルターを傷めてしまっては<br>
+                        本末転倒です。<br><br>
+                        
+                        基本は、<br><br>
+                        
+                        <span class="text-base font-black text-slate-900 bg-neon px-2">擦るのではなく、水で流す。</span><br><br>
+
+                        これくらいで<br>
+                        十分だと考えています。
+                    </p>
+                </div>
+
+
+                <!-- 水だけで落ちない汚れがある場合は？ -->
+                <div class="mb-16 mt-20">
+                    <div class="flex flex-col items-center justify-center mb-6 text-center">
+                        <span class="w-10 h-[3px] bg-slate-800 mb-4 rounded-full"></span>
+                        <h2 class="text-xl md:text-2xl font-black text-slate-900 leading-relaxed">
+                            水だけで落ちない<br>
+                            汚れがある場合は？
+                        </h2>
+                    </div>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose text-center">
+                        長期間掃除していなかったり、<br>
+                        油分を含んだ汚れなどが<br>
+                        付着している場合、<br><br>
+                        
+                        水だけでは<br>
+                        落ちにくいこともあります。<br><br>
+
+                        そんなときは、<br>
+                        中性洗剤などを使って<br>
+                        数分間浸け置きします。<br><br>
+                        
+                        汚れを浮かせてから、<br>
+                        再びシャワーで<br>
+                        しっかり洗い流してください。<br><br>
+
+                        ここでも、<br>
+                        無理にスポンジなどで<br>
+                        擦る必要はありません。<br><br>
+                        
+                        <span class="font-black text-slate-900 underline decoration-blue-300 decoration-4 underline-offset-4">洗剤で汚れを浮かせて、</span><br>
+                        <span class="font-black text-slate-900 underline decoration-blue-300 decoration-4 underline-offset-4">水で流す。</span><br><br>
+
+                        できるだけフィルターへ<br>
+                        負担をかけない方法で<br>
+                        お手入れするのがおすすめです。
+                    </p>
+                </div>
+
+
+                <!-- お掃除機能付きならフィルター掃除は必要ない？ -->
+                <div class="mb-16 mt-20">
+                    <div class="flex flex-col items-center justify-center mb-6 text-center">
+                        <span class="w-10 h-[3px] bg-neon mb-4 rounded-full"></span>
+                        <h2 class="text-xl md:text-2xl font-black text-slate-900 tracking-wider leading-relaxed">
+                            お掃除機能付きなら<br>
+                            フィルター掃除は必要ない？
+                        </h2>
+                    </div>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose text-center">
+                        <span class="bg-slate-100 px-3 py-2 rounded-lg font-black text-slate-800 border border-slate-200 inline-block mb-2 text-left">
+                            「お掃除機能付きエアコンなら、<br>
+                            フィルター掃除はしなくてもいい」
+                        </span><br><br>
+
+                        そう思っている方も<br>
+                        多いかもしれません。<br><br>
+                        
+                        確かに、<br>
+                        お掃除機能付きエアコンには、<br><br>
+                        
+                        フィルターに付着したホコリを<br>
+                        自動で取り除くための<br>
+                        機能が付いています。<br><br>
+
+                        ただし、<br><br>
+
+                        <span class="text-red-600 font-black text-lg">「お掃除機能付き」</span><br>
+                        <span class="text-red-600 font-black text-lg">＝「お手入れ不要」</span><br><br>
+                        <span class="text-red-600 font-black text-lg">ではありません。</span><br><br>
+                        
+                        ここは、<br>
+                        ぜひ知っておいてほしい<br>
+                        ポイントです。
+                    </p>
+                </div>
+
+
+                <!-- お掃除機能はあくまで補助機能 -->
+                <div class="bg-blue-50/50 rounded-[20px] border border-blue-100 p-6 md:p-8 mt-12 mb-16 text-center">
+                    <h3 class="text-xl font-black text-slate-900 text-blue-900 mb-8">
+                        お掃除機能は<br>
+                        あくまで補助機能
+                    </h3>
+                    
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
+                        人がフィルターを掃除するときは、<br><br>
+                        
+                        「まだここが汚れている」<br>
+                        「ここはキレイになった」<br><br>
+                        
+                        と、実際に目で見ながら<br>
+                        確認することができます。<br><br>
+                        
+                        一方、<br>
+                        エアコンのお掃除機能は、<br><br>
+                        
+                        人間のように<br>
+                        フィルターを目で見て、<br><br>
+                        
+                        汚れが残っているかどうかを<br>
+                        確認しているわけではありません。<br><br>
+                        
+                        機種ごとに設定された<br>
+                        動作を行い、<br><br>
+
+                        フィルターに付着したホコリを<br>
+                        取り除いていきます。<br><br>
+                        
+                        そのため、<br><br>
+
+                        <span class="text-base font-black text-slate-900 bg-neon px-2">動作が終わったことと、</span><br>
+                        <span class="text-base font-black text-slate-900 bg-neon px-2">フィルターが完全に</span><br>
+                        <span class="text-base font-black text-slate-900 bg-neon px-2">キレイになったことは別です。</span><br><br>
+
+                        細かなホコリや、<br>
+                        フィルターに付着した汚れまで<br><br>
+                        
+                        毎回すべて取り除けるとは<br>
+                        限りません。<br><br>
+
+                        ONE★STARでは、<br><br>
+                        
+                        お掃除機能は<br>
+                        「掃除をしなくていい機能」<br>
+                        ではなく、<br><br>
+                        
+                        <span class="font-black text-slate-900 underline decoration-blue-300 decoration-4 underline-offset-4">普段のお手入れを</span><br>
+                        <span class="font-black text-slate-900 underline decoration-blue-300 decoration-4 underline-offset-4">補助してくれる機能</span><br><br>
+                        
+                        くらいに考えています。
+                    </p>
+                </div>
+
+
+                <!-- 人の目だから分かることがあります -->
+                <div class="mb-16 mt-20">
+                    <div class="flex flex-col items-center justify-center mb-6 text-center">
+                        <span class="w-10 h-[3px] bg-slate-800 mb-4 rounded-full"></span>
+                        <h2 class="text-xl md:text-2xl font-black text-slate-900 leading-relaxed">
+                            人の目だから<br>
+                            分かることがあります
+                        </h2>
+                    </div>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose text-center">
+                        フィルター掃除は、<br>
+                        専門的な作業ではありません。<br><br>
+                        
+                        実際にフィルターを見れば、<br><br>
+                        
+                        汚れているのか、<br>
+                        キレイになったのか、<br><br>
+                        
+                        一般の方でも<br>
+                        十分確認できます。<br><br>
+                        
+                        汚れが残っていれば、<br>
+                        もう一度流す。<br><br>
+
+                        キレイになっていれば、<br>
+                        そこで終わり。<br><br>
+
+                        とてもシンプルです。<br><br>
+
+                        お掃除機能に任せきりにせず、<br><br>
+                        
+                        <span class="font-black text-slate-900 underline decoration-neon decoration-4 underline-offset-4">たまにはフィルターを取り外して、</span><br>
+                        <span class="font-black text-slate-900 underline decoration-neon decoration-4 underline-offset-4">自分の目で確認してみる。</span><br><br>
+
+                        それだけでも<br>
+                        十分意味があります。
+                    </p>
+                </div>
+
+
+                <!-- お掃除機能付きのフィルターはとてもデリケート -->
+                <div class="mb-16 relative mt-20 text-center">
+                    <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-red-600 text-white font-black text-sm px-5 py-1.5 rounded-full shadow-md whitespace-nowrap">
+                        取扱注意のポイント
+                    </div>
+
+                    <h2 class="text-xl md:text-2xl font-black text-slate-900 mb-8 pt-8 leading-relaxed">
+                        お掃除機能付きの<br>
+                        フィルターはとても<br>
+                        <span class="text-red-600">デリケート</span>
+                    </h2>
+                    
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
+                        ここでひとつ、<br>
+                        注意してほしいことがあります。<br><br>
+
+                        お掃除機能付きエアコンの<br>
+                        フィルターには、<br><br>
+                        
+                        <span class="text-base font-black text-slate-900 bg-red-100 px-2">非常に薄く、</span><br>
+                        <span class="text-base font-black text-slate-900 bg-red-100 px-2">デリケートなものがあります。</span><br><br>
+                        
+                        機種によっては、<br><br>
+                        
+                        ストッキングのように<br>
+                        繊細だと感じるほど<br><br>
+
+                        薄いフィルターもあります。<br><br>
+                        
+                        こうしたフィルターは、<br>
+                        強く指で押したり、<br><br>
+                        
+                        何かに引っ掛けたりするだけでも、<br><br>
+                        
+                        <span class="text-red-600 font-black underline decoration-red-200 decoration-4 underline-offset-4">網目が伸びたり、</span><br>
+                        <span class="text-red-600 font-black underline decoration-red-200 decoration-4 underline-offset-4">穴が開いてしまうことがあります。</span><br><br>
+
+                        そのため、<br>
+                        特にお掃除機能付きでは、<br><br>
+
+                        掃除機のブラシで<br>
+                        ゴシゴシ擦ったり、<br><br>
+                        
+                        スポンジで力を入れて<br>
+                        洗ったりする方法は<br>
+                        おすすめしていません。<br><br>
+
+                        できるだけ優しく扱い、<br><br>
+                        
+                        水で流して汚れを落とす。<br><br>
+                        
+                        それでも落ちなければ、<br>
+                        洗剤で汚れを浮かせてから<br>
+                        再び水で流す。<br><br>
+                        
+                        <span class="font-black text-slate-900 underline decoration-neon decoration-2 underline-offset-4 text-base">フィルターそのものを</span><br>
+                        <span class="font-black text-slate-900 underline decoration-neon decoration-2 underline-offset-4 text-base">傷めないことも、</span><br><br>
+                        
+                        大切なお手入れの<br>
+                        ひとつです。
+                    </p>
+                </div>
+
+
+                <!-- リビングで使うお掃除機能付きは要注意 -->
+                <div class="mb-16 mt-20">
+                    <div class="flex flex-col items-center justify-center mb-6 text-center">
+                        <span class="w-10 h-[3px] bg-slate-800 mb-4 rounded-full"></span>
+                        <h2 class="text-xl md:text-2xl font-black text-slate-900 leading-relaxed">
+                            リビングで使う<br>
+                            お掃除機能付きは要注意
+                        </h2>
+                    </div>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose text-center">
+                        特に注意したいのが、<br><br>
+                        
+                        キッチンとつながった<br>
+                        リビングなどで使っている<br>
+                        お掃除機能付きエアコンです。<br><br>
+                        
+                        調理をすると、<br>
+                        目には見えにくくても<br><br>
+                        
+                        油分を含んだ空気が<br>
+                        室内に広がります。<br><br>
+
+                        その油分が<br>
+                        フィルターに付着すると、<br><br>
+                        
+                        乾いたホコリとは違い、<br>
+                        <span class="font-black text-slate-900">ベタついた汚れになります。</span><br><br>
+                        
+                        こうなると、<br><br>
+                        
+                        お掃除機能を動かしても<br>
+                        ブラシなどでキレイに<br>
+                        取り除くことが難しく、<br><br>
+                        
+                        場合によっては、<br><br>
+                        
+                        <span class="font-black text-red-600 underline decoration-red-200 decoration-4 underline-offset-4">油分を含んだ汚れを</span><br>
+                        <span class="font-black text-red-600 underline decoration-red-200 decoration-4 underline-offset-4">フィルターの上で</span><br>
+                        <span class="font-black text-red-600 underline decoration-red-200 decoration-4 underline-offset-4">広げてしまうこともあります。</span><br><br>
+
+                        お掃除機能は、<br>
+                        乾いたホコリのお手入れには<br>
+                        役立つことがありますが、<br><br>
+                        
+                        油を含んだ汚れまで<br>
+                        キレイに洗い流してくれる<br>
+                        機能ではありません。<br><br>
+                        
+                        キッチンに近いエアコンほど、<br><br>
+                        
+                        「お掃除機能があるから大丈夫」<br><br>
+                        
+                        と任せきりにせず、<br><br>
+                        
+                        <span class="font-black text-slate-900 text-base bg-neon px-2">ときどきフィルターを</span><br>
+                        <span class="font-black text-slate-900 text-base bg-neon px-2">自分の目で確認することを</span><br>
+                        おすすめします。
+                    </p>
+                </div>
+
+
+                <!-- 外し方が分からないときはまずエアコンを確認 -->
+                <div class="bg-slate-50 border border-slate-200 rounded-[16px] px-4 md:px-6 py-8 mt-12 mb-16 text-center">
+                    <h3 class="text-lg md:text-xl font-black text-slate-900 mb-6 border-b-2 border-slate-200 pb-3 inline-block leading-relaxed">
+                        外し方が分からないときは<br>
+                        まずエアコンを確認
+                    </h3>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
+                        お掃除機能付きエアコンは、<br><br>
+
+                        一般的なエアコンと比べて<br>
+                        フィルターの取り外し方が<br>
+                        少し複雑な機種もあります。<br><br>
+                        
+                        ロックが付いていたり、<br>
+                        ダストボックスが<br>
+                        手前に付いていたり、<br><br>
+                        
+                        「これ、<br>どうやって外すの？」<br><br>
+                        
+                        となることもあります。<br><br>
+                        
+                        そんなときは、<br>
+                        無理に引っ張らないでください。<br><br>
+                        
+                        機種によっては、<br>
+                        前面パネルを開けると、<br><br>
+                        
+                        フィルターや<br>
+                        ダストボックスの周辺に、<br><br>
+                        
+                        <span class="text-base font-black text-blue-600">取り外し方や取り付け方が</span><br>
+                        <span class="text-base font-black text-blue-600">表示されています。</span><br><br>
+                        
+                        焦らず、<br>
+                        その表示を確認しながら<br><br>
+                        
+                        順番通りに操作してみると、<br>
+                        案外簡単に<br>
+                        取り外せることもあります。<br><br>
+                        
+                        分からないまま<br>
+                        力任せに外すのではなく、<br><br>
+                        
+                        まず説明を確認する。<br><br>
+                        
+                        これだけでも、<br>
+                        フィルターや部品を<br>
+                        傷めるリスクを減らせます。<br><br>
+                        
+                        もちろん、<br>
+                        機種によって構造は違うため、<br><br>
+                        
+                        分からない場合は<br>
+                        取扱説明書を確認するのが<br>
+                        一番確実です。
+                    </p>
+                </div>
+
+
+                <!-- ダストボックスの掃除も忘れずに -->
+                <div class="mb-16 mt-20">
+                    <div class="flex flex-col items-center justify-center mb-6 text-center">
+                        <span class="w-10 h-[3px] bg-slate-800 mb-4 rounded-full"></span>
+                        <h2 class="text-xl md:text-2xl font-black text-slate-900 leading-relaxed">
+                            ダストボックスの掃除も<br>
+                            忘れずに
+                        </h2>
+                    </div>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose text-center">
+                        お掃除機能付きエアコンには、<br><br>
+                        
+                        集めたホコリを<br>
+                        屋外へ排出するタイプや、<br><br>
+                        
+                        本体内部のダストボックスへ<br>
+                        溜めるタイプなどがあります。<br><br>
+                        
+                        ダストボックス式の場合、<br><br>
+                        
+                        お掃除機能が<br>
+                        フィルターから取り除いたホコリは、<br><br>
+                        
+                        ダストボックスへ<br>
+                        少しずつ溜まっていきます。<br><br>
+                        
+                        つまり、<br><br>
+                        
+                        フィルター掃除の手間を<br>
+                        減らすことはできても、<br><br>
+                        
+                        <span class="font-black text-slate-900 underline decoration-neon decoration-4 underline-offset-4">ダストボックスのお手入れまで</span><br>
+                        <span class="font-black text-slate-900 underline decoration-neon decoration-4 underline-offset-4">なくなるわけではありません。</span><br><br>
+
+                        ダストボックスに<br>
+                        ホコリが溜まっていないか、<br><br>
+                        
+                        こちらも定期的に<br>
+                        確認してあげてください。
+                    </p>
+                </div>
+
+
+                <!-- 洗ったあとは天日干しした方がいい？ -->
+                <div class="mb-16 mt-20">
+                    <div class="flex flex-col items-center justify-center mb-6 text-center">
+                        <span class="w-10 h-[3px] bg-slate-800 mb-4 rounded-full"></span>
+                        <h2 class="text-xl md:text-2xl font-black text-slate-900 leading-relaxed">
+                            洗ったあとは<br>
+                            天日干しした方がいい？
+                        </h2>
+                    </div>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose text-center">
+                        洗い終わったフィルターは、<br>
+                        できれば直射日光を避けて<br>
+                        <span class="font-black text-slate-900 text-base">陰干ししてください。</span><br><br>
+                        
+                        強い紫外線に<br>
+                        長時間さらすことで、<br><br>
+                        
+                        樹脂部分などの<br>
+                        劣化を早めてしまう<br>
+                        可能性があります。<br><br>
+                        
+                        風通しの良い場所なら、<br>
+                        陰干しでも十分乾きます。<br><br>
+                        
+                        少しでも早く乾かしたい場合は、<br><br>
+                        
+                        フィルターを軽く振ったり、<br>
+                        優しく叩くようにして<br><br>
+                        
+                        水気を切ってから<br>
+                        立てかけておくと<br>
+                        乾きやすくなります。<br><br>
+                        
+                        どうしても天日干しする場合は、<br><br>
+                        
+                        乾いたらそのまま放置せず、<br>
+                        速やかに回収しましょう。
+                    </p>
+                </div>
+
+
+                <!-- 100点の掃除を目指さなくてもいい -->
+                <div class="mb-16 mt-20">
+                    <div class="flex flex-col items-center justify-center mb-6 text-center">
+                        <span class="w-10 h-[3px] bg-neon mb-4 rounded-full"></span>
+                        <h2 class="text-xl md:text-2xl font-black text-slate-900 tracking-wider leading-relaxed">
+                            100点の掃除を<br>
+                            目指さなくてもいい
+                        </h2>
+                    </div>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose text-center">
+                        「せっかく掃除するなら、<br>
+                        徹底的にキレイにしたい！」<br><br>
+                        
+                        もちろん、<br>
+                        それ自体は<br>
+                        とても良いことです。<br><br>
+                        
+                        ワンシーズンに一度、<br>
+                        時間をかけて<br>
+                        100点満点を目指す。<br><br>
+                        
+                        決して悪いことではありません。<br><br>
+                        
+                        ですが、<br>
+                        ONE★STARが<br>
+                        もっとおすすめしたいのは、<br><br>
+                        
+                        <span class="text-base font-black text-slate-900 bg-neon px-2">50点でも70点でもいいから</span><br>
+                        <span class="text-base font-black text-slate-900 bg-neon px-2">頻繁にお手入れすること。</span><br><br>
+                        
+                        毎回100点を目指してしまうと、<br><br>
+                        
+                        フィルターを外して、<br>
+                        掃除機を用意して、<br>
+                        洗剤を使って、<br>
+                        キレイに洗って、<br>
+                        しっかり乾燥させて……<br><br>
+                        
+                        だんだん、<br><br>
+                        
+                        「めんどくさい……」<br><br>
+                        
+                        という気持ちが<br>
+                        勝ってしまいます。<br><br>
+                        
+                        そして結局、<br>
+                        掃除する回数そのものが<br>
+                        減ってしまう。<br><br>
+                        
+                        それなら、<br><br>
+                        
+                        <span class="font-black text-slate-900 text-base">外して、<br>シャワーで流して、<br>立てかけておく。</span><br><br>
+                        
+                        これくらい簡単な方法を<br>
+                        頻繁に続ける方が、<br><br>
+                        
+                        フィルターを<br>
+                        キレイな状態に<br>
+                        保ちやすくなります。
+                    </p>
+                </div>
+
+
+                <!-- 実際に私が自宅でやっている方法 -->
+                <div class="bg-blue-50/50 rounded-[20px] border border-blue-100 p-6 md:p-8 mt-12 mb-16 text-center">
+                    <h3 class="text-xl font-black text-slate-900 text-blue-900 mb-8">
+                        実際に私が<br>
+                        自宅でやっている方法
+                    </h3>
+                    
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
+                        ちなみに私自身は、<br>
+                        自宅のエアコンの<br>
+                        フィルター掃除を<br><br>
+                        
+                        <span class="font-black text-slate-900 text-base">週に1回くらい</span><br>
+                        やっています。<br><br>
+                        
+                        と言っても、<br>
+                        特別なことは<br>
+                        何もしていません。<br><br>
+                        
+                        私がお風呂に入るタイミングで、<br><br>
+                        
+                        家のエアコンのフィルターを<br>
+                        パパッと取り外して、<br><br>
+                        
+                        <span class="font-black text-slate-900 underline decoration-blue-300 decoration-4 underline-offset-4">一緒にお風呂へ</span><br>
+                        <span class="font-black text-slate-900 underline decoration-blue-300 decoration-4 underline-offset-4">連れていきます（笑）</span><br><br>
+                        
+                        もちろん、<br>
+                        浴槽には入れません。<br><br>
+                        
+                        裏側からシャワーで<br>
+                        サッと水を流して、<br><br>
+                        
+                        そのまま立てかけておくだけ。<br><br>
+                        
+                        翌朝には乾いているので、<br>
+                        エアコンへ戻して終了です。<br><br>
+                        
+                        頻繁に洗っているため、<br><br>
+                        
+                        そもそも汚れが<br>
+                        ほとんど溜まっていません。<br><br>
+                        
+                        だから、<br>
+                        洗剤もブラシも必要なく、<br><br>
+                        
+                        <span class="text-base font-black text-slate-900 bg-neon px-2">水だけで</span><br>
+                        <span class="text-base font-black text-slate-900 bg-neon px-2">キレイになります。</span><br><br>
+                        
+                        実際に手を動かしている時間は、<br><br>
+                        
+                        エアコン1台あたり<br>
+                        1分もかからないくらいです。
+                    </p>
+                </div>
+
+
+                <!-- 「お掃除機能付き」という名前だけで判断しない -->
+                <div class="mb-16 mt-20">
+                    <div class="flex flex-col items-center justify-center mb-8 text-center">
+                        <span class="w-10 h-[3px] bg-neon mb-4 rounded-full"></span>
+                        <h2 class="text-lg md:text-xl font-black text-slate-900 tracking-wider leading-relaxed">
+                            「お掃除機能付き」という<br>
+                            名前だけで判断しない
+                        </h2>
+                    </div>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose text-center">
+                        「お掃除機能付き」という名前だけで、<br><br>
+                        
+                        お手入れ不要だと<br>
+                        思わないこと。<br><br>
+                        
+                        これが一番大切です。<br><br>
+                        
+                        フィルターも、<br>
+                        ダストボックスも、<br><br>
+                        
+                        <span class="text-red-600 font-black text-base">ときどき自分の目で確認する。</span><br><br>
+                        
+                        汚れていたら、<br>
+                        必要な分だけお手入れする。<br><br>
+                        
+                        お掃除機能が付いていても、<br><br>
+                        
+                        最後に状態を判断できるのは<br>
+                        やっぱり人の目です。
+                    </p>
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- ネイビーのカード (ONE★STARが大切にしていること) -->
+        <div class="bg-slate-900 rounded-[24px] border-l-[12px] border-neon p-8 md:p-10 text-center shadow-md mb-10">
+            
+            <h2 class="text-white font-black text-xl md:text-2xl leading-relaxed mb-10 tracking-wider">
+                ONE★STARが<br>
+                大切にしていること
+            </h2>
+
+            <p class="text-slate-100 font-bold text-[15px] md:text-base leading-loose mb-10">
+                フィルター掃除は、<br><br>
+                
+                「どれだけ完璧に<br>キレイにできるか」<br><br>
+                
+                を競うものではありません。<br><br>
+                
+                大切なのは、<br><br>
+                
+                <span class="text-neon font-black text-base">汚れを溜めないこと。</span><br><br>
+                
+                そのためには、<br><br>
+                
+                頑張らなければ<br>
+                続かない方法より、<br><br>
+                
+                「これくらいなら<br>
+                またやってもいいかな」<br><br>
+                
+                と思えるくらいの方法で<br>
+                十分です。
+            </p>
+
+            <!-- 区切り線 -->
+            <div class="w-16 h-[1px] bg-slate-600 mx-auto mb-10"></div>
+
+            <p class="text-slate-100 font-bold text-[15px] md:text-base leading-loose">
+                2週間に1回を目安に、<br><br>
+                
+                <span class="text-white font-black text-base underline decoration-neon decoration-4 underline-offset-4">外して、</span><br>
+                <span class="text-white font-black text-base underline decoration-neon decoration-4 underline-offset-4">裏から水で流して、</span><br>
+                <span class="text-white font-black text-base underline decoration-neon decoration-4 underline-offset-4">乾かして戻す。</span><br><br>
+                
+                汚れが少なければ、<br>
+                たったこれだけ。<br><br>
+                
+                100点満点の掃除を<br>
+                たまにするより、<br><br>
+                
+                50点、70点のお手入れを<br>
+                こまめに続ける。<br><br>
+                
+                これが、<br>
+                毎日たくさんのエアコンを<br>
+                見ている職人としておすすめしたい、<br><br>
+                
+                フィルター掃除との<br>
+                付き合い方です。
+            </p>
+        </div>
+
+
+        <!-- ご相談誘導ブロック -->
+        <div class="bg-white rounded-2xl border border-slate-200 p-8 text-center shadow-sm mb-12">
+            <h2 class="text-xl md:text-2xl font-black text-slate-900 mb-8 leading-relaxed">
+                フィルターを掃除しても<br>
+                ニオイや汚れが気になる場合は
+            </h2>
+            
+            <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose mb-10">
+                フィルターをキレイにしても、<br><br>
+                
+                <span class="text-slate-900 font-black">「エアコンから<br>嫌なニオイがする」</span><br><br>
+                
+                <span class="text-slate-900 font-black">「吹き出し口に<br>黒い汚れが見える」</span><br><br>
+                
+                <span class="text-slate-900 font-black">「掃除しているのに<br>カビっぽいニオイがする」</span><br><br>
+                
+                そんな場合は、<br><br>
+                
+                フィルターより奥に<br>
+                汚れが溜まっている<br>
+                可能性があります。<br><br>
+                
+                フィルター掃除で<br>
+                お手入れできるのは、<br><br>
+                
+                あくまでエアコンの<br>
+                入口部分です。<br><br>
+                
+                内部の送風ファンや<br>
+                熱交換器などに付着した汚れは、<br><br>
+                
+                フィルターを洗っても<br>
+                取り除くことはできません。<br><br>
+                
+                そんなときは、<br>
+                無理にご自身で分解せず<br>
+                ご相談ください。
+            </p>
+            
+            <a href="tel:08000807788" class="js-phone-modal-trigger inline-flex items-center justify-center bg-slate-900 hover:bg-slate-800 text-neon px-8 py-4 rounded-full text-base font-black shadow-md transition-all active:scale-95">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                <span>電話で相談する</span>
+            </a>
+        </div>
+
+        <!-- 関連する施工事例へのリンク -->
+        <div class="mt-16 text-center">
+            <div class="flex flex-col items-center justify-center mb-6">
+                <span class="w-10 h-[3px] bg-slate-800 mb-4 rounded-full"></span>
+                <h2 class="text-xl md:text-2xl font-black text-slate-900 tracking-wider leading-relaxed">
+                    実際の現場も見てみる
+                </h2>
+            </div>
+            
+            <!-- トーストを表示するボタンに変更 -->
+            <button type="button" onclick="showToast(event)" class="block w-full bg-white rounded-2xl border-2 border-slate-900 p-6 md:p-8 shadow-sm hover:shadow-md transition-all active:scale-95 group relative overflow-hidden text-center cursor-pointer">
+                <!-- 装飾 -->
+                <div class="absolute top-0 left-0 w-full h-2 bg-neon"></div>
+                
+                <p class="text-[11px] md:text-sm font-black text-slate-500 mb-3 tracking-widest">
+                    関連する施工事例
+                </p>
+                
+                <h3 class="text-[17px] md:text-xl font-black text-slate-900 mb-8 leading-relaxed">
+                    「フィルターや内部に<br>汚れが溜まっていた施工事例」
+                </h3>
+                
+                <div class="inline-flex items-center justify-center bg-slate-900 text-neon px-6 py-3.5 rounded-full text-[15px] font-black group-hover:bg-slate-800 transition-colors w-full md:w-auto shadow-md">
+                    ▶ この施工事例を見る
+                </div>
+            </button>
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-900 text-white pt-12 pb-24 md:pb-12 border-t-[6px] border-neon text-center mt-12">
+        <div class="mb-6 flex flex-col items-center justify-center">
+            <span class="text-4xl md:text-5xl tracking-widest text-white flex items-center justify-center font-impact mt-1">
+                ONE
+                <img src="ONESTAR.PNG" alt="ロゴ" class="w-[80px] h-[80px] md:w-[100px] md:h-[100px] mx-[-10px] md:mx-[-16px] object-contain -translate-y-2" onerror="this.style.display='none'">
+                STAR
+            </span>
+            <p class="text-xs text-neon font-black mt-2 tracking-widest">株式会社ECS専属プロスタッフ</p>
+        </div>
+        
+        <p class="text-[11px] text-slate-400 font-bold mb-3">
+            <a href="/products" class="hover:text-white transition-colors underline underline-offset-4">オリジナルLINEスタンプ販売中</a>
+        </p>
+        <p class="text-[10px] text-slate-500 font-bold mb-4">
+            <a href="/privacy" class="hover:text-white transition-colors">プライバシーポリシー</a>
+        </p>
+        <p class="text-[10px] text-slate-500 font-bold tracking-wider">© 2026 ONE★STAR. All Rights Reserved.</p>
+    </footer>
+
+    <!-- MOBILE BOTTOM NAVIGATION -->
+    <div class="fixed bottom-0 left-0 right-0 z-45 bg-slate-900 md:hidden h-[60px] flex items-stretch text-white shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.3)] border-t border-slate-800">
+        
+        <a href="/price" class="flex flex-col items-center justify-center w-[20%] border-r border-slate-700 active:bg-slate-800">
+            <svg class="w-5 h-5 mb-1 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <span class="text-[9px] font-black">料金</span>
+        </a>
+        
+        <a href="/mind" class="flex flex-col items-center justify-center w-[20%] border-r border-slate-700 active:bg-slate-800">
+            <svg class="w-5 h-5 mb-1 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+            <span class="text-[9px] font-black">想い</span>
+        </a>
+
+        <a href="/pride" class="flex flex-col items-center justify-center w-[20%] active:bg-slate-800">
+            <svg class="w-5 h-5 mb-1 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+            <span class="text-[9px] font-black">拘り</span>
+        </a>
+        
+        <a href="tel:08000807788" class="js-phone-modal-trigger flex items-center justify-center bg-neon text-slate-900 w-[40%] font-black text-base active:bg-yellow-400 transition-colors">
+            <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+            電話する
+        </a>
+        
+    </div>
+
+    <!-- 🌟 ご予約・お問い合わせ前のワンクッションモーダル 🌟 -->
+    <div id="phone-modal" class="fixed inset-0 z-[100] hidden flex items-center justify-center px-4">
+        <div id="phone-modal-backdrop" class="absolute inset-0 bg-slate-900/80 backdrop-blur-sm opacity-0 transition-opacity duration-300"></div>
+        
+        <div id="phone-modal-content" class="relative bg-white rounded-3xl shadow-2xl w-full max-w-sm overflow-hidden transform scale-95 opacity-0 transition-all duration-300 border border-slate-100">
+            
+            <button id="phone-modal-close" class="absolute top-4 right-4 p-2 text-slate-400 hover:text-slate-700 bg-slate-100 hover:bg-slate-200 rounded-full transition-colors z-10">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+            
+            <div class="p-6 md:p-8 text-center pt-10">
+                
+                <h3 class="text-xl font-black text-slate-900 mb-6 border-b-4 border-[#EFFF00] inline-block pb-1">
+                    ご予約・お問い合わせの前に
+                </h3>
+                
+                <div class="text-[13px] text-slate-700 font-bold leading-relaxed mb-8 space-y-4 text-left bg-slate-50 p-5 rounded-2xl border border-slate-100 shadow-inner">
+                    <p>
+                        <span class="text-slate-900 font-black text-sm">ONE★STAR</span>は<br>
+                        株式会社ECS（エッジクリーンサービス）の専属プロスタッフとして活動しています。
+                    </p>
+                    <p class="pt-2 border-t border-slate-200">
+                        お電話は<br>
+                        <span class="text-slate-900 font-black">株式会社ECSの予約受付</span>につながります。
+                    </p>
+                    
+                    <div class="bg-rose-50 border border-rose-200 p-3 rounded-xl text-center shadow-sm">
+                        <p class="text-rose-600 font-black text-[13px] leading-tight">
+                            ご予約の際は<br>
+                            <span class="text-base">「ONE★STAR（川崎）を指名」</span>と<br>
+                            お伝えください。
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="space-y-3">
+                    <a href="tel:08000807788" class="flex items-center justify-center w-full py-4 bg-slate-900 text-[#EFFF00] font-black rounded-2xl shadow-md active:scale-95 transition-transform text-sm sm:text-base border border-slate-800">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                        株式会社ECSへ電話する
+                    </a>
+                    
+                    <a href="https://www.instagram.com/one.star.kawasaki?igsh=anZpYnpxcDdqOXRh&utm_source=qr" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center w-full py-4 bg-gradient-to-r from-pink-500 to-rose-500 text-white font-black rounded-2xl shadow-md active:scale-95 transition-transform text-sm sm:text-base">
+                        <svg class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                        </svg>
+                        Instagramで本人に相談する
+                    </a>
+                </div>
+                
+                <p class="text-[10px] text-slate-500 mt-4 font-bold leading-relaxed">
+                    直接のご質問・お問い合わせは<br>本人直通のInstagram DMからお気軽にどうぞ。
+                </p>
+                
+                <button id="phone-modal-cancel" class="mt-6 text-[11px] text-slate-400 font-bold underline underline-offset-4 hover:text-slate-600 transition-colors">
+                    キャンセルして戻る
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 🚧 トースト表示用（初期状態は透明・クリック不可） -->
+    <div id="toast" class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-[110] bg-slate-900/95 backdrop-blur-md text-white px-6 py-4 rounded-2xl shadow-[0_10px_40px_rgba(0,0,0,0.3)] flex items-center space-x-3 opacity-0 pointer-events-none transition-opacity duration-300">
+        <span class="text-2xl">🚧</span>
+        <span class="font-black text-[15px] tracking-widest whitespace-nowrap">ただいま準備中です。</span>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script>
+        // === トースト表示関数 ===
+        let toastTimeout;
+        function showToast(e) {
+            e.preventDefault(); // デフォルトのボタン動作を防ぐ
+            const toast = document.getElementById('toast');
+            
+            // すでにタイマーが動いていたらクリア
+            if (toastTimeout) {
+                clearTimeout(toastTimeout);
+            }
+            
+            // 表示
+            toast.classList.remove('opacity-0');
+            toast.classList.add('opacity-100');
+            
+            // 3秒後に非表示
+            toastTimeout = setTimeout(() => {
+                toast.classList.remove('opacity-100');
+                toast.classList.add('opacity-0');
+            }, 3000);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // === メニュー開閉用 ===
+            const drawerContainer = document.getElementById('drawer-container');
+            const drawerMenu = document.getElementById('drawer-menu');
+            const drawerBackdrop = document.getElementById('drawer-backdrop');
+            
+            const toggleMenu = (show) => {
+                if (show) {
+                    drawerContainer.classList.remove('hidden');
+                    setTimeout(() => {
+                        drawerBackdrop.classList.remove('opacity-0');
+                        drawerBackdrop.classList.add('opacity-100');
+                        drawerMenu.classList.remove('drawer-closed');
+                        drawerMenu.classList.add('drawer-open');
+                    }, 10);
+                } else {
+                    drawerBackdrop.classList.remove('opacity-100');
+                    drawerBackdrop.classList.add('opacity-0');
+                    drawerMenu.classList.remove('drawer-open');
+                    drawerMenu.classList.add('drawer-closed');
+                    setTimeout(() => drawerContainer.classList.add('hidden'), 300);
+                }
+            };
+
+            document.getElementById('menu-open-btn').addEventListener('click', () => toggleMenu(true));
+            document.getElementById('menu-close-btn').addEventListener('click', () => toggleMenu(false));
+            document.getElementById('drawer-backdrop').addEventListener('click', () => toggleMenu(false));
+            document.querySelectorAll('.menu-link').forEach(link => link.addEventListener('click', () => toggleMenu(false)));
+
+            // === 電話モーダル ===
+            const phoneModal = document.getElementById('phone-modal');
+            const phoneModalBackdrop = document.getElementById('phone-modal-backdrop');
+            const phoneModalContent = document.getElementById('phone-modal-content');
+            const phoneModalCloseBtn = document.getElementById('phone-modal-close');
+            const phoneModalCancelBtn = document.getElementById('phone-modal-cancel');
+            const phoneTriggerBtns = document.querySelectorAll('.js-phone-modal-trigger');
+
+            if (phoneModal && phoneTriggerBtns.length > 0) {
+                const openPhoneModal = (e) => {
+                    e.preventDefault(); 
+                    if (typeof toggleMenu === 'function') toggleMenu(false);
+
+                    phoneModal.classList.remove('hidden');
+                    requestAnimationFrame(() => {
+                        phoneModalBackdrop.classList.remove('opacity-0');
+                        phoneModalBackdrop.classList.add('opacity-100');
+                        phoneModalContent.classList.remove('opacity-0', 'scale-95');
+                        phoneModalContent.classList.add('opacity-100', 'scale-100');
+                    });
+                };
+
+                const closePhoneModal = () => {
+                    phoneModalBackdrop.classList.remove('opacity-100');
+                    phoneModalBackdrop.classList.add('opacity-0');
+                    phoneModalContent.classList.remove('opacity-100', 'scale-100');
+                    phoneModalContent.classList.add('opacity-0', 'scale-95');
+                    setTimeout(() => phoneModal.classList.add('hidden'), 300);
+                };
+
+                phoneTriggerBtns.forEach(btn => btn.addEventListener('click', openPhoneModal));
+                phoneModalCloseBtn.addEventListener('click', closePhoneModal);
+                phoneModalCancelBtn.addEventListener('click', closePhoneModal);
+                phoneModalBackdrop.addEventListener('click', closePhoneModal);
+            }
+        });
+    </script>
+</body>
+</html>
+
+
+```
