@@ -317,7 +317,8 @@
                 <div class="mb-16 mt-20">
                     <div class="flex flex-col items-center justify-center mb-6 text-center">
                         <span class="w-10 h-[3px] bg-slate-800 mb-4 rounded-full"></span>
-                        <h2 class="text-xl md:text-2xl font-black text-slate-900 leading-relaxed">
+                        <!-- ★ 修正箇所：見出しが2行になるよう文字サイズを調整 (text-[17px]) ★ -->
+                        <h2 class="text-[17px] md:text-2xl font-black text-slate-900 leading-relaxed tracking-tighter md:tracking-normal">
                             年間消費電力量には<br>
                             「計算するための条件」があります
                         </h2>
@@ -456,7 +457,8 @@
 
                 <!-- セクション5 -->
                 <div class="bg-blue-50/50 rounded-[20px] border border-blue-100 p-6 md:p-8 mt-12 mb-16 text-center">
-                    <h3 class="text-xl font-black text-slate-900 text-blue-900 mb-8">
+                    <!-- ★ 修正箇所：見出しが2行になるよう調整・注意書きの改行位置調整 ★ -->
+                    <h3 class="text-[18px] md:text-xl font-black text-slate-900 text-blue-900 mb-8 tracking-tighter md:tracking-normal">
                         「10年使えば元が取れます」<br>
                         という考え方
                     </h3>
@@ -466,12 +468,18 @@
                         同じ18畳用・5.6kWクラスの<br>
                         エアコンがあったとします。<br><br>
                         
-                        <span class="text-xs text-slate-500">※ここからは分かりやすくするための仮定です。<br>実在する特定の商品を比較しているわけではありません。</span><br><br>
+                        <span class="text-[11px] md:text-xs text-slate-500 inline-block leading-loose">
+                            ※ここからは分かりやすく<br>
+                            するための仮定です。<br><br>
+                            実在する特定の商品を比較<br>
+                            しているわけではありません。
+                        </span><br><br>
 
                         仮に、<br><br>
                         
                         スタンダードモデル：<span class="font-black text-slate-900">15万円</span><br>
-                        省エネ性能の高い上位モデル：<span class="font-black text-slate-900">35万円</span><br><br>
+                        <!-- ★ 修正箇所：「省エネな上位モデル」に変更 ★ -->
+                        省エネな上位モデル：<span class="font-black text-slate-900">35万円</span><br><br>
                         
                         だったとします。<br>
                         購入価格の差は、<br>
@@ -570,8 +578,20 @@
                         </h2>
                     </div>
 
-                    <p class="text-[13px] md:text-sm font-bold text-slate-500 leading-loose text-center mb-10">
-                        ※ここからも、分かりやすくするための仮の計算です。実際の本体価格、電気料金、使用時間、使用環境、汚れ方、必要なクリーニング頻度などは、それぞれの家庭によって異なります。あくまで、「電気代以外の維持費まで含めると、見え方がどう変わるのか？」を考えるための一例です。
+                    <!-- ★ 修正箇所：注意書きの改行と文字サイズを調整 ★ -->
+                    <p class="text-[12px] md:text-sm font-bold text-slate-500 leading-loose text-center mb-10">
+                        ※ここからも、<br>
+                        分かりやすくするための仮の計算です。<br><br>
+                        
+                        実際の本体価格、電気料金、<br>
+                        使用時間、使用環境、汚れ方、<br>
+                        必要なクリーニング頻度などは、<br>
+                        それぞれの家庭によって異なります。<br><br>
+                        
+                        あくまで、<br>
+                        「電気代以外の維持費まで含めると、<br>
+                        見え方がどう変わるのか？」<br>
+                        を考えるための一例です。
                     </p>
 
                     <!-- スタンダードの場合 -->
@@ -611,8 +631,9 @@
 
                     <!-- 上位モデルの場合 -->
                     <div class="bg-blue-50 border-2 border-blue-200 rounded-[20px] p-6 relative">
+                        <!-- ★ 修正箇所：「省エネな上位モデル」に変更 ★ -->
                         <h3 class="text-lg font-black text-blue-900 text-center mb-6">
-                            省エネ性能の高い<br>上位モデルの場合
+                            省エネな上位モデルの場合
                         </h3>
                         
                         <ul class="text-[14px] md:text-[15px] font-bold text-slate-700 space-y-3 mb-6">
@@ -642,7 +663,9 @@
                             
                             ただし、省エネモデルは<br>
                             電気代が安くなります。<br>
-                            仮定どおり年間15,000円節約できたとして<br>
+                            <!-- ★ 修正箇所：改行位置を調整 ★ -->
+                            仮定どおり年間15,000円<br>
+                            節約できたとして<br>
                             10年間で<span class="font-black text-blue-600">150,000円マイナス。</span><br><br>
 
                             そこで差し引くと、<br>
@@ -667,7 +690,8 @@
                         <span class="text-lg font-black">197,500円</span><br>
                         ＋基準となる10年間の電気代<br><br>
                         
-                        <span class="font-black text-blue-900">省エネ上位モデル</span><br>
+                        <!-- ★ 修正箇所：「省エネな上位モデル」に変更 ★ -->
+                        <span class="font-black text-blue-900">省エネな上位モデル</span><br>
                         <span class="text-lg font-black">358,000円</span><br>
                         ＋基準となる10年間の電気代<br><br>
                         
@@ -834,8 +858,8 @@
                         詳しく紹介しています。
                     </p>
 
-                    <!-- 隠しボタン1 -->
-                    <a href="/tips/robot/" class="block w-full bg-white rounded-2xl border-2 border-slate-900 p-6 shadow-sm hover:shadow-md transition-all active:scale-95 group relative overflow-hidden text-center cursor-pointer mt-10">
+                    <!-- ★ 修正箇所：リンク先変更 ★ -->
+                    <a href="/tips/robot" class="block w-full bg-white rounded-2xl border-2 border-slate-900 p-6 shadow-sm hover:shadow-md transition-all active:scale-95 group relative overflow-hidden text-center cursor-pointer mt-10">
                         <div class="absolute top-0 left-0 w-full h-1.5 bg-neon"></div>
                         <p class="text-[11px] md:text-sm font-black text-slate-500 mb-3 tracking-widest">
                             関連記事
@@ -901,8 +925,8 @@
                         という視点です。
                     </p>
 
-                    <!-- 隠しボタン2 -->
-                    <a href="/tips/frequency/" class="block w-full bg-slate-50 rounded-2xl border border-slate-200 p-6 shadow-sm hover:shadow-md transition-all active:scale-95 group relative overflow-hidden text-center cursor-pointer mt-10">
+                    <!-- ★ 修正箇所：リンク先変更 ★ -->
+                    <a href="/tips/season" class="block w-full bg-slate-50 rounded-2xl border border-slate-200 p-6 shadow-sm hover:shadow-md transition-all active:scale-95 group relative overflow-hidden text-center cursor-pointer mt-10">
                         <p class="text-[11px] md:text-sm font-black text-slate-500 mb-3 tracking-widest">
                             関連記事
                         </p>
@@ -1469,8 +1493,8 @@
                 </h2>
             </div>
             
-            <!-- トーストを表示するボタン -->
-            <button type="button" onclick="showToast(event)" class="block w-full bg-white rounded-2xl border-2 border-slate-900 p-6 md:p-8 shadow-sm hover:shadow-md transition-all active:scale-95 group relative overflow-hidden text-center cursor-pointer">
+            <!-- ★ 修正箇所：トーストボタンをリンクに変更 ★ -->
+            <a href="/works" class="block w-full bg-white rounded-2xl border-2 border-slate-900 p-6 md:p-8 shadow-sm hover:shadow-md transition-all active:scale-95 group relative overflow-hidden text-center cursor-pointer">
                 <!-- 装飾 -->
                 <div class="absolute top-0 left-0 w-full h-2 bg-neon"></div>
                 
@@ -1485,7 +1509,7 @@
                 <div class="inline-flex items-center justify-center bg-slate-900 text-neon px-6 py-3.5 rounded-full text-[15px] font-black group-hover:bg-slate-800 transition-colors w-full md:w-auto shadow-md">
                     ▶ この施工事例を見る
                 </div>
-            </button>
+            </a>
         </div>
 
     </main>
@@ -1597,36 +1621,8 @@
         </div>
     </div>
 
-    <!-- 🚧 トースト表示用（初期状態は透明・クリック不可） -->
-    <div id="toast" class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-[110] bg-slate-900/95 backdrop-blur-md text-white px-6 py-4 rounded-2xl shadow-[0_10px_40px_rgba(0,0,0,0.3)] flex items-center space-x-3 opacity-0 pointer-events-none transition-opacity duration-300">
-        <span class="text-2xl">🚧</span>
-        <span class="font-black text-[15px] tracking-widest whitespace-nowrap">ただいま準備中です。</span>
-    </div>
-
     <!-- SCRIPTS -->
     <script>
-        // === トースト表示関数 ===
-        let toastTimeout;
-        function showToast(e) {
-            e.preventDefault(); // デフォルトのボタン動作を防ぐ
-            const toast = document.getElementById('toast');
-            
-            // すでにタイマーが動いていたらクリア
-            if (toastTimeout) {
-                clearTimeout(toastTimeout);
-            }
-            
-            // 表示
-            toast.classList.remove('opacity-0');
-            toast.classList.add('opacity-100');
-            
-            // 3秒後に非表示
-            toastTimeout = setTimeout(() => {
-                toast.classList.remove('opacity-100');
-                toast.classList.add('opacity-0');
-            }, 3000);
-        }
-
         document.addEventListener('DOMContentLoaded', () => {
             // === メニュー開閉用 ===
             const drawerContainer = document.getElementById('drawer-container');
