@@ -1,0 +1,1700 @@
+```html
+<!DOCTYPE html>
+<html lang="ja" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>エアコンの2027年問題 省エネモデルって本当にお得？ | ONE★STAR</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        neon: '#EFFF00' // トレードカラー：蛍光イエロー
+                    },
+                    fontFamily: {
+                        sans: ['"Noto Sans JP"', 'sans-serif'],
+                        impact: ['"Black Ops One"', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        /* ドロワーメニュー用 */
+        #drawer-menu { transition: transform 0.3s ease-in-out; }
+        .drawer-closed { transform: translateX(-100%); }
+        .drawer-open { transform: translateX(0); }
+    </style>
+</head>
+<body class="font-sans text-slate-800 bg-slate-50 antialiased overflow-x-hidden pb-[60px]">
+
+    <!-- HEADER -->
+    <header class="fixed top-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md shadow-sm border-b border-slate-100 h-14 flex items-center justify-between px-4">
+        <button id="menu-open-btn" class="p-2 hover:bg-slate-100 rounded-lg" aria-label="メニュー">
+            <svg class="w-6 h-6 text-slate-800" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+
+        <div class="absolute left-1/2 -translate-x-1/2 flex items-center justify-center mt-1">
+            <a href="/" class="text-2xl md:text-3xl tracking-widest text-slate-900 leading-none flex items-center font-impact">
+                ONE
+                <img src="ONESTAR.PNG" alt="ロゴ" class="w-[45px] h-[45px] md:w-[55px] md:h-[55px] mx-[-4px] md:mx-[-6px] object-contain -translate-y-[4px]" onerror="this.style.display='none'">
+                STAR
+            </a>
+        </div>
+
+        <div class="hidden md:flex items-center space-x-3">
+            <a href="tel:08000807788" class="js-phone-modal-trigger bg-slate-900 hover:bg-slate-800 text-neon px-4 py-1.5 rounded-full text-xs font-black border border-slate-700 flex items-center space-x-1 transition-all">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                <span>電話相談</span>
+            </a>
+        </div>
+        <div class="w-10 md:hidden"></div>
+    </header>
+
+    <!-- DRAWER MENU -->
+    <div id="drawer-container" class="fixed inset-0 z-50 overflow-hidden hidden">
+        <div id="drawer-backdrop" class="absolute inset-0 bg-slate-900/60 opacity-0 transition-opacity duration-300"></div>
+        <div class="pointer-events-none fixed inset-y-0 left-0 flex max-w-full">
+            <div id="drawer-menu" class="pointer-events-auto w-64 drawer-closed bg-white shadow-2xl flex flex-col h-full">
+                
+                <div class="p-3 bg-white flex justify-end">
+                    <button id="menu-close-btn" class="p-2 hover:bg-slate-100 rounded-lg">
+                        <svg class="w-6 h-6 text-slate-500" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+                    </button>
+                </div>
+
+                <div class="bg-blue-600 py-3 px-6">
+                    <h2 class="text-white font-black tracking-wider text-sm">MENU</h2>
+                </div>
+
+                <nav class="flex-1 px-4 py-2 overflow-y-auto">
+                    <div class="space-y-1">
+                        <a href="/" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>トップページ
+                        </a>
+                        <a href="/price" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>料金プラン
+                        </a>
+                        <a href="/works" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>施工事例
+                        </a>
+                        <a href="/mind" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>ONE★STARの想い
+                        </a>
+                        <a href="/pride" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>プロとしての拘り
+                        </a>
+                        <a href="/trash" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>ここだけの話
+                        </a>
+                        <a href="/before" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>ご予約の前に
+                        </a>
+                        <a href="/faq" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>よくある質問
+                        </a>
+                        <a href="/tips" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-blue-600">
+                            <span class="mr-2 text-blue-600">＞</span>お役立ち情報
+                        </a>
+                        <a href="/products" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-[#06C755]">
+                            <span class="mr-2 text-slate-400">＞</span>オリジナルLINEスタンプ
+                        </a>
+                    </div>
+                    
+                    <hr class="border-slate-300 border-dashed my-4">
+                    <a href="https://www.edge-cleanservice.com" target="_blank" rel="noopener noreferrer" class="menu-link flex items-center py-2 text-sm font-black text-slate-900 hover:text-blue-600 transition-colors">
+                        株式会社ECS公式サイト
+                        <svg class="w-3.5 h-3.5 ml-1.5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                    </a>
+                </nav>
+
+                <div class="p-4 bg-slate-50 border-t border-slate-100 text-center mt-auto">
+                    <p class="text-[9px] text-slate-500 font-bold leading-relaxed mb-2">
+                        株式会社ECS EDGE CLEAN SERVICE<br>専属プロスタッフとして<br>愛知県全域で毎日奮闘中❣️
+                    </p>
+                    <a href="tel:08000807788" class="js-phone-modal-trigger block w-full py-3 bg-emerald-500 text-white font-bold rounded-lg text-sm shadow">直接電話する</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN (お役立ち情報：2027年問題) -->
+    <main class="pt-24 pb-12 px-4 max-w-3xl mx-auto">
+
+        <!-- 白いメインカード -->
+        <div class="bg-white rounded-[24px] border-2 border-slate-900 overflow-hidden shadow-sm mb-10">
+            <!-- 上部の黄色いライン -->
+            <div class="h-3 w-full bg-neon"></div>
+
+            <div class="p-6 md:p-8">
+                
+                <!-- バッジ -->
+                <div class="flex justify-center mb-8 text-center">
+                    <span class="inline-block bg-slate-900 text-neon text-xs md:text-sm font-black px-5 py-2 rounded shadow-sm tracking-wider">
+                        プロが教えるエアコンの真実
+                    </span>
+                </div>
+
+                <!-- タイトル -->
+                <h1 class="text-[22px] sm:text-[24px] md:text-[32px] font-black text-slate-900 mb-12 leading-relaxed tracking-wide text-center">
+                    エアコンの2027年問題<br>
+                    省エネモデルって<br>
+                    本当にお得？
+                </h1>
+
+                <!-- リード文 -->
+                <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose text-center mb-10">
+                    <span class="bg-slate-100 px-3 py-2 rounded-lg border border-slate-200 inline-block mb-2">
+                        「2027年から<br>エアコンが変わる」
+                    </span><br><br>
+
+                    <span class="bg-slate-100 px-3 py-2 rounded-lg border border-slate-200 inline-block mb-2">
+                        「今までの安いエアコンが<br>買えなくなる？」
+                    </span><br><br>
+
+                    <span class="bg-slate-100 px-3 py-2 rounded-lg border border-slate-200 inline-block mb-8">
+                        「これから買うなら、<br>省エネモデルを選んだ方がお得？」
+                    </span><br>
+
+                    そんな話を<br>
+                    聞いたことはありませんか？<br><br>
+
+                    いわゆる、<br>
+                    <span class="text-lg font-black text-slate-900 underline decoration-neon decoration-4 underline-offset-4">「エアコンの2027年問題」</span><br>
+                    です。<br><br>
+
+                    2027年度から、<br>
+                    家庭用エアコンには<br>
+                    新しい省エネ基準が<br>
+                    適用されます。<br><br>
+
+                    省エネ性能の高い<br>
+                    エアコンが増えていくこと自体は、<br>
+                    決して悪いことでは<br>
+                    ありません。<br><br>
+
+                    消費する電力量を<br>
+                    抑えることができれば、<br>
+                    毎月の電気代を<br>
+                    減らすことにもつながります。<br><br>
+
+                    ただし。<br><br>
+
+                    エアコンを毎日のように<br>
+                    分解・洗浄している職人として、<br>
+                    ひとつ知っておいて<br>
+                    ほしいことがあります。<br><br>
+
+                    <span class="text-base font-black text-slate-900 bg-neon px-2">「省エネ性能が高いエアコン」と</span><br><br>
+                    <span class="text-base font-black text-slate-900 bg-neon px-2">「あなたが10年間で</span><br>
+                    <span class="text-base font-black text-slate-900 bg-neon px-2">支払う総額が安いエアコン」は、</span><br><br>
+                    
+                    必ずしも同じではありません。<br><br>
+
+                    今回は、<br>
+                    カタログに書かれている<br>
+                    「APF」や<br>
+                    年間消費電力量の<br>
+                    考え方から、<br><br>
+
+                    購入後の<br>
+                    エアコンクリーニングまで含めて、<br><br>
+
+                    <span class="text-red-600 font-black text-lg underline decoration-red-600 decoration-2 underline-offset-4">本当にお得なエアコンとは</span><br>
+                    <span class="text-red-600 font-black text-lg underline decoration-red-600 decoration-2 underline-offset-4">何なのか？</span><br><br>
+
+                    を考えてみます。
+                </p>
+
+
+                <!-- セクション1 -->
+                <div class="mb-16 mt-16">
+                    <div class="flex flex-col items-center justify-center mb-6 text-center">
+                        <span class="w-10 h-[3px] bg-neon mb-4 rounded-full"></span>
+                        <h2 class="text-xl md:text-2xl font-black text-slate-900 tracking-wider leading-relaxed">
+                            そもそも<br>
+                            「エアコンの2027年問題」って何？
+                        </h2>
+                    </div>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-800 leading-loose text-center">
+                        2027年度から、<br>
+                        家庭用エアコンの<br>
+                        新しい省エネ基準が始まります。<br><br>
+                        
+                        これは、<br><br>
+                        
+                        「2027年になったら、<br>
+                        今使っているエアコンが<br>
+                        使えなくなる」<br><br>
+                        
+                        という話ではありません。<br><br>
+                        
+                        また、<br><br>
+                        
+                        「新しい基準を<br>
+                        満たしていないエアコンが、<br>
+                        2027年になった瞬間から<br>
+                        一律で販売禁止になる」<br><br>
+                        
+                        という単純な話でも<br>
+                        ありません。<br><br>
+                        
+                        メーカーが出荷する製品について、<br>
+                        より高い省エネ性能を<br>
+                        目指していくための<br>
+                        新しい基準です。<br><br>
+                        
+                        そのため、<br>
+                        これからエアコンを<br>
+                        購入するときには、<br><br>
+                        
+                        <span class="text-base font-black text-slate-900 underline decoration-neon decoration-4 underline-offset-4">「省エネ性能」</span><br><br>
+                        
+                        が今まで以上に<br>
+                        注目されていくことに<br>
+                        なるでしょう。
+                    </p>
+                </div>
+
+
+                <!-- セクション2 -->
+                <div class="bg-slate-50 border border-slate-200 rounded-[16px] px-4 md:px-6 py-8 mt-12 mb-16 text-center">
+                    <h3 class="text-lg md:text-xl font-black text-slate-900 mb-6 border-b-2 border-slate-200 pb-3 inline-block leading-relaxed">
+                        よく見る<br>
+                        「APF」って何？
+                    </h3>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
+                        エアコンのカタログを見ると、<br><br>
+                        
+                        <span class="text-lg font-black text-slate-900 bg-neon px-2">APF</span><br><br>
+                        
+                        という数字が<br>
+                        書かれています。<br><br>
+                        
+                        APFとは、<br>
+                        「通年エネルギー消費効率」<br>
+                        のこと。<br><br>
+                        
+                        簡単に言えば、<br>
+                        1年間に必要とされる<br>
+                        冷暖房能力に対して、<br><br>
+                        
+                        どれくらい効率よく<br>
+                        電気を使えるエアコンなのか<br>
+                        を比較するための指標です。<br><br>
+                        
+                        基本的には、<br>
+                        APFの数字が大きいほど<br>
+                        省エネ性能が高い<br>
+                        エアコンということになります。<br><br>
+                        
+                        ここで最初に<br>
+                        ハッキリさせておきます。<br><br>
+                        
+                        <span class="font-black text-slate-900 text-base">APFは嘘ではありません。</span><br><br>
+                        
+                        省エネ性能の高い<br>
+                        エアコンが、<br>
+                        同じ条件で使用したときに<br>
+                        消費電力量を<br>
+                        抑えられることも事実です。<br><br>
+                        
+                        では、<br>
+                        何が問題なのでしょうか？
+                    </p>
+                </div>
+
+
+                <!-- セクション3 -->
+                <div class="mb-16 mt-20">
+                    <div class="flex flex-col items-center justify-center mb-6 text-center">
+                        <span class="w-10 h-[3px] bg-slate-800 mb-4 rounded-full"></span>
+                        <h2 class="text-xl md:text-2xl font-black text-slate-900 leading-relaxed">
+                            年間消費電力量には<br>
+                            「計算するための条件」があります
+                        </h2>
+                    </div>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose text-center">
+                        エアコンのカタログに<br>
+                        表示されている<br>
+                        期間消費電力量は、<br><br>
+                        
+                        それぞれの家庭で<br>
+                        実際に1年間使用した<br>
+                        結果ではありません。<br><br>
+                        
+                        製品同士を<br>
+                        同じ条件で比較できるように、<br>
+                        JISで定められた条件をもとに<br>
+                        算出されています。<br><br>
+                    </p>
+                        
+                    <div class="text-left bg-white border border-slate-200 rounded-xl p-5 mb-8 max-w-sm mx-auto shadow-sm">
+                        <p class="text-sm font-black text-slate-900 mb-3 text-center border-b border-slate-100 pb-2">代表的な条件</p>
+                        <ul class="text-[13px] md:text-sm font-bold text-slate-700 space-y-2 list-disc pl-5">
+                            <li>外気温は東京をモデル</li>
+                            <li>冷房設定温度27℃</li>
+                            <li>暖房設定温度20℃</li>
+                            <li>平均的な木造住宅・南向き</li>
+                            <li>冷房期間は5/23〜10/4</li>
+                            <li>暖房期間は11/8〜4/16</li>
+                            <li><span class="text-red-600 font-black">運転時間は6:00〜24:00</span></li>
+                        </ul>
+                    </div>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose text-center">
+                        つまり、<br>
+                        運転時間は、<br><br>
+                        
+                        <span class="font-black text-slate-900 text-lg bg-neon px-2">1日18時間。</span><br><br>
+
+                        かなり長時間<br>
+                        エアコンを使用する条件です。<br><br>
+                        
+                        もちろん、<br>
+                        これは製品同士の<br>
+                        省エネ性能を<br>
+                        同じ条件で<br>
+                        公平に比較するために<br>
+                        必要な基準です。<br><br>
+                        
+                        ここにも<br>
+                        嘘はありません。<br><br>
+                        
+                        ただし、<br>
+                        実際の家庭での使い方は、<br>
+                        人それぞれです。
+                    </p>
+                </div>
+
+
+                <!-- セクション4 -->
+                <div class="mb-16 mt-20">
+                    <div class="flex flex-col items-center justify-center mb-6 text-center">
+                        <span class="w-10 h-[3px] bg-slate-800 mb-4 rounded-full"></span>
+                        <h2 class="text-xl md:text-2xl font-black text-slate-900 leading-relaxed">
+                            あなたの家、<br>
+                            本当に1日18時間使いますか？
+                        </h2>
+                    </div>
+                    
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose text-center">
+                        朝出勤して、<br>
+                        夜帰宅するまで<br>
+                        誰もいない家庭。<br><br>
+                        
+                        昼間だけ<br>
+                        使用する家庭。<br><br>
+                        
+                        帰宅してから<br>
+                        寝るまでしか<br>
+                        使わない家庭。<br><br>
+                        
+                        寝るときは<br>
+                        エアコンを消す家庭。<br><br>
+                        
+                        反対に、<br>
+                        ペットのために<br>
+                        24時間近く<br>
+                        運転している家庭もあります。<br><br>
+                        
+                        生活スタイルによって、<br>
+                        エアコンの使用時間は<br>
+                        大きく変わります。<br><br>
+
+                        さらに冬場も、<br><br>
+                        
+                        「暖房もエアコンです」<br>
+                        という家庭もあれば、<br><br>
+                        
+                        「床暖房です」<br>
+                        「ガスファンヒーターです」<br>
+                        「石油ストーブです」<br>
+                        「薪ストーブです」<br>
+                        「こたつが中心です」<br><br>
+                        
+                        という家庭もあります。<br><br>
+                        
+                        APFは冷房だけではなく、<br>
+                        暖房も含めた<br>
+                        「通年」の省エネ性能を<br>
+                        評価する指標です。<br><br>
+                        
+                        つまり、<br>
+                        冬にほとんど<br>
+                        エアコン暖房を<br>
+                        使用しない家庭と、<br><br>
+                        
+                        冷暖房とも長時間<br>
+                        エアコンを使用する家庭では、<br><br>
+                        
+                        高い省エネ性能によって<br>
+                        得られる<br>
+                        実際のメリットも<br>
+                        同じではありません。<br><br>
+                        
+                        カタログに表示されている<br>
+                        数字だけを見て、<br><br>
+                        
+                        <span class="font-black text-slate-900 underline decoration-blue-300 decoration-4 underline-offset-4">「このエアコンなら、</span><br>
+                        <span class="font-black text-slate-900 underline decoration-blue-300 decoration-4 underline-offset-4">我が家でも年間これだけ得をする」</span><br><br>
+                        
+                        と単純に考えることは<br>
+                        できないのです。
+                    </p>
+                </div>
+
+
+                <!-- セクション5 -->
+                <div class="bg-blue-50/50 rounded-[20px] border border-blue-100 p-6 md:p-8 mt-12 mb-16 text-center">
+                    <h3 class="text-xl font-black text-slate-900 text-blue-900 mb-8">
+                        「10年使えば元が取れます」<br>
+                        という考え方
+                    </h3>
+                    
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
+                        例えば、<br>
+                        同じ18畳用・5.6kWクラスの<br>
+                        エアコンがあったとします。<br><br>
+                        
+                        <span class="text-xs text-slate-500">※ここからは分かりやすくするための仮定です。<br>実在する特定の商品を比較しているわけではありません。</span><br><br>
+
+                        仮に、<br><br>
+                        
+                        スタンダードモデル：<span class="font-black text-slate-900">15万円</span><br>
+                        省エネ性能の高い上位モデル：<span class="font-black text-slate-900">35万円</span><br><br>
+                        
+                        だったとします。<br>
+                        購入価格の差は、<br>
+                        <span class="font-black text-red-600 text-lg">20万円。</span><br><br>
+                        
+                        20万円の差は<br>
+                        大きく感じます。<br><br>
+                        
+                        でも、<br>
+                        省エネモデルなら<br>
+                        年間の電気代を<br>
+                        抑えることができます。<br><br>
+                        
+                        仮に、<br>
+                        年間15,000円<br>
+                        電気代を<br>
+                        節約できるとしましょう。<br><br>
+                        
+                        10年間なら、<br>
+                        15,000円 × 10年<br>
+                        ＝ <span class="font-black text-slate-900 bg-neon px-2">150,000円</span><br><br>
+                        
+                        15万円も<br>
+                        電気代を節約できます。<br><br>
+                        
+                        そう考えると、<br><br>
+                        
+                        「本体価格は<br>
+                        20万円高いけれど、<br>
+                        10年使えば<br>
+                        かなり差額を回収できます」<br><br>
+                        
+                        という考え方になります。<br><br>
+                        
+                        実際、<br>
+                        その条件で使用すれば、<br>
+                        それだけ電気代を<br>
+                        節約できる可能性があります。<br><br>
+                        
+                        ここにも嘘はありません。<br><br>
+                        
+                        しかし。<br>
+                        ここで私は、<br>
+                        ひとつ疑問があります。
+                    </p>
+                </div>
+
+
+                <!-- セクション6 -->
+                <div class="mb-16 relative mt-20 text-center">
+                    <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-red-600 text-white font-black text-sm px-5 py-1.5 rounded-full shadow-md whitespace-nowrap">
+                        見落としがちなポイント
+                    </div>
+
+                    <h2 class="text-xl md:text-2xl font-black text-slate-900 mb-8 pt-8 leading-relaxed">
+                        エアコンに10年間で<br>
+                        払うお金って、<br>
+                        本体代と電気代だけですか？
+                    </h2>
+                    
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
+                        エアコンは<br>
+                        購入したら<br>
+                        終わりではありません。<br><br>
+                        
+                        何年も使用すれば、<br>
+                        内部にはホコリや<br>
+                        カビが蓄積します。<br><br>
+                        
+                        そして、<br>
+                        内部を衛生的な状態に<br>
+                        保つためには、<br><br>
+                        
+                        定期的な<br>
+                        <span class="font-black text-slate-900 underline decoration-neon decoration-4 underline-offset-4">エアコンクリーニングも</span><br>
+                        <span class="font-black text-slate-900 underline decoration-neon decoration-4 underline-offset-4">必要になります。</span><br><br>
+                        
+                        そこで、<br><br>
+                        
+                        <span class="text-base font-black text-red-600">「10年間で実際に</span><br>
+                        <span class="text-base font-black text-red-600">財布から出ていくお金」</span><br><br>
+                        
+                        という視点で<br>
+                        考えてみましょう。
+                    </p>
+                </div>
+
+
+                <!-- セクション7: 比較計算 -->
+                <div class="mb-16 mt-20">
+                    <div class="flex flex-col items-center justify-center mb-6 text-center">
+                        <span class="w-10 h-[3px] bg-slate-800 mb-4 rounded-full"></span>
+                        <h2 class="text-xl md:text-2xl font-black text-slate-900 leading-relaxed">
+                            10年間の総額で<br>
+                            比べてみます
+                        </h2>
+                    </div>
+
+                    <p class="text-[13px] md:text-sm font-bold text-slate-500 leading-loose text-center mb-10">
+                        ※ここからも、分かりやすくするための仮の計算です。実際の本体価格、電気料金、使用時間、使用環境、汚れ方、必要なクリーニング頻度などは、それぞれの家庭によって異なります。あくまで、「電気代以外の維持費まで含めると、見え方がどう変わるのか？」を考えるための一例です。
+                    </p>
+
+                    <!-- スタンダードの場合 -->
+                    <div class="bg-white border-2 border-slate-200 rounded-[20px] p-6 mb-8 relative">
+                        <h3 class="text-lg font-black text-slate-900 text-center mb-6">
+                            スタンダードエアコンの場合
+                        </h3>
+                        
+                        <ul class="text-[14px] md:text-[15px] font-bold text-slate-700 space-y-3 mb-6">
+                            <li class="flex justify-between border-b border-slate-100 pb-2">
+                                <span>本体価格：</span>
+                                <span class="font-black text-slate-900">150,000円</span>
+                            </li>
+                            <li class="flex justify-between border-b border-slate-100 pb-2">
+                                <span>クリーニング料金(1回)：</span>
+                                <span>9,500円</span>
+                            </li>
+                            <li class="flex justify-between border-b border-slate-100 pb-2">
+                                <span>頻度(仮)：</span>
+                                <span>2年に1回</span>
+                            </li>
+                        </ul>
+                        
+                        <p class="text-[14px] md:text-[15px] font-bold text-slate-700 leading-loose text-center">
+                            10年間なら、<br>
+                            クリーニングは5回。<br>
+                            9,500円 × 5回<br>
+                            ＝ <span class="font-black text-slate-900">47,500円</span><br><br>
+                            
+                            本体価格と合わせると、<br>
+                            150,000円 ＋ 47,500円<br>
+                            ＝ <span class="text-lg font-black text-slate-900 bg-neon px-2">197,500円</span><br><br>
+                            
+                            <span class="text-sm">これに10年間の電気代が加わります。</span>
+                        </p>
+                    </div>
+
+                    <!-- 上位モデルの場合 -->
+                    <div class="bg-blue-50 border-2 border-blue-200 rounded-[20px] p-6 relative">
+                        <h3 class="text-lg font-black text-blue-900 text-center mb-6">
+                            省エネ性能の高い<br>上位モデルの場合
+                        </h3>
+                        
+                        <ul class="text-[14px] md:text-[15px] font-bold text-slate-700 space-y-3 mb-6">
+                            <li class="flex justify-between border-b border-blue-100 pb-2">
+                                <span>本体価格：</span>
+                                <span class="font-black text-slate-900">350,000円</span>
+                            </li>
+                            <li class="flex justify-between border-b border-blue-100 pb-2">
+                                <span>お掃除機能付き料金(1回)：</span>
+                                <span>15,800円</span>
+                            </li>
+                            <li class="flex justify-between border-b border-blue-100 pb-2">
+                                <span>頻度(仮)：</span>
+                                <span>1年に1回</span>
+                            </li>
+                        </ul>
+                        
+                        <p class="text-[14px] md:text-[15px] font-bold text-slate-700 leading-loose text-center">
+                            10年間なら、<br>
+                            クリーニングは10回。<br>
+                            15,800円 × 10回<br>
+                            ＝ <span class="font-black text-slate-900">158,000円</span><br><br>
+                            
+                            本体価格と合わせると、<br>
+                            350,000円 ＋ 158,000円<br>
+                            ＝ <span class="font-black text-slate-900">508,000円</span><br><br>
+                            
+                            ただし、省エネモデルは<br>
+                            電気代が安くなります。<br>
+                            仮定どおり年間15,000円節約できたとして<br>
+                            10年間で<span class="font-black text-blue-600">150,000円マイナス。</span><br><br>
+
+                            そこで差し引くと、<br>
+                            508,000円 − 150,000円<br>
+                            ＝ <span class="text-lg font-black text-slate-900 bg-neon px-2">358,000円</span>
+                        </p>
+                    </div>
+                </div>
+
+
+                <!-- セクション8 -->
+                <div class="mb-16 mt-20 text-center">
+                    <h2 class="text-xl md:text-2xl font-black text-slate-900 mb-8 leading-relaxed">
+                        10年間の結果は？
+                    </h2>
+                    
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
+                        同じ基準の電気代に<br>
+                        揃えて比較すると、<br><br>
+                        
+                        <span class="font-black text-slate-900">スタンダードエアコン</span><br>
+                        <span class="text-lg font-black">197,500円</span><br>
+                        ＋基準となる10年間の電気代<br><br>
+                        
+                        <span class="font-black text-blue-900">省エネ上位モデル</span><br>
+                        <span class="text-lg font-black">358,000円</span><br>
+                        ＋基準となる10年間の電気代<br><br>
+                        
+                        その差は、<br>
+                        <span class="text-xl font-black text-red-600 underline decoration-red-200 decoration-4 underline-offset-4">160,500円。</span><br><br>
+                        
+                        省エネモデルは<br>
+                        10年間で15万円もの<br>
+                        電気代を節約したにもかかわらず、<br><br>
+                        
+                        この仮定では、<br>
+                        10年間の総額で<br>
+                        <span class="font-black text-slate-900 bg-neon px-2">約16万円高い</span><br><br>
+                        
+                        という結果になります。
+                    </p>
+                </div>
+
+
+                <!-- セクション9 -->
+                <div class="mb-16 relative mt-20 text-center">
+                    <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-slate-900 text-neon font-black text-sm px-5 py-1.5 rounded-full shadow-md whitespace-nowrap tracking-wider">
+                        この記事で一番伝えたいこと
+                    </div>
+
+                    <h2 class="text-xl md:text-2xl font-black text-slate-900 mb-8 pt-8 leading-relaxed">
+                        電気代だけなら確かに安い。<br>
+                        でも「総額」は別の話
+                    </h2>
+                    
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
+                        ここが、<br>
+                        この記事で<br>
+                        一番伝えたいことです。<br><br>
+
+                        省エネモデルの<br>
+                        電気代が安くなることを<br>
+                        否定しているわけでは<br>
+                        ありません。<br><br>
+                        
+                        本当に省エネです。<br>
+                        APFも嘘ではありません。<br>
+                        年間15,000円<br>
+                        安くなるという仮定なら、<br>
+                        本当に10年間で<br>
+                        15万円節約できます。<br><br>
+                        
+                        それでも、<br><br>
+                        
+                        本体価格<br>
+                        そして、<br>
+                        エアコンクリーニングなどの<br>
+                        維持費<br><br>
+                        
+                        まで含めると、<br>
+                        結果が逆転する<br>
+                        可能性があります。<br><br>
+                        
+                        つまり、<br><br>
+                        
+                        <span class="text-base font-black text-slate-900 bg-neon px-2">「省エネ性能が高い」ことと</span><br>
+                        <span class="text-base font-black text-slate-900 bg-neon px-2">「10年間で一番</span><br>
+                        <span class="text-base font-black text-slate-900 bg-neon px-2">お金がかからない」ことは、</span><br><br>
+                        
+                        <span class="font-black text-red-600 text-lg">まったく別の話です。</span>
+                    </p>
+                </div>
+
+
+                <!-- セクション10 -->
+                <div class="mb-16 mt-20">
+                    <div class="flex flex-col items-center justify-center mb-6 text-center">
+                        <span class="w-10 h-[3px] bg-slate-800 mb-4 rounded-full"></span>
+                        <h2 class="text-xl md:text-2xl font-black text-slate-900 leading-relaxed">
+                            なぜ上位モデルの<br>
+                            クリーニング費用は高くなるの？
+                        </h2>
+                    </div>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose text-center">
+                        現在販売されている<br>
+                        上位モデルには、<br><br>
+                    </p>
+                        
+                    <div class="text-left bg-slate-50 border border-slate-200 rounded-xl p-5 mb-8 max-w-sm mx-auto shadow-sm">
+                        <ul class="text-[14px] font-bold text-slate-700 space-y-2 list-disc pl-5">
+                            <li>フィルター自動お掃除機能</li>
+                            <li>各種センサー</li>
+                            <li>換気機構</li>
+                            <li>加湿機構</li>
+                            <li>空気清浄に関する機構</li>
+                        </ul>
+                    </div>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose text-center">
+                        など、<br>
+                        さまざまな付加機能を<br>
+                        搭載した機種があります。<br><br>
+                        
+                        もちろん、<br>
+                        メーカーや機種によって<br>
+                        搭載されている機能は<br>
+                        異なります。<br><br>
+                        
+                        しかし、<br>
+                        機能が増えれば<br>
+                        内部の部品も増え、<br>
+                        構造は複雑になります。<br><br>
+                        
+                        エアコンクリーニングでは、<br>
+                        それらを必要に応じて<br>
+                        取り外し、<br>
+                        内部を洗浄し、<br>
+                        再び組み立てなければ<br>
+                        なりません。<br><br>
+                        
+                        そのため、<br>
+                        スタンダードエアコンより<br>
+                        作業時間が長くなり、<br><br>
+                        
+                        <span class="font-black text-slate-900 underline decoration-neon decoration-4 underline-offset-4">クリーニング料金も</span><br>
+                        <span class="font-black text-slate-900 underline decoration-neon decoration-4 underline-offset-4">高くなる傾向があります。</span>
+                    </p>
+                </div>
+
+
+                <!-- セクション11 -->
+                <div class="mb-16 mt-20 text-center">
+                    <h2 class="text-xl md:text-2xl font-black text-slate-900 mb-8 leading-relaxed">
+                        そして、複雑な構造は<br>
+                        「汚れ方」にも関係します
+                    </h2>
+                    
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
+                        私は日々、<br>
+                        実際にエアコンを分解して<br>
+                        内部を見ています。<br><br>
+                        
+                        その経験では、<br>
+                        さまざまな部品を搭載した<br>
+                        高機能エアコンほど、<br><br>
+                        
+                        内部にホコリや<br>
+                        汚れが溜まりやすく、<br><br>
+                        
+                        スタンダードエアコンよりも<br>
+                        汚れが酷くなっているケースを<br>
+                        数多く見てきました。<br><br>
+                        
+                        特に代表的なのが、<br>
+                        <span class="font-black text-slate-900 bg-red-100 px-2">フィルター自動お掃除機能付き</span><br>
+                        エアコンです。<br><br>
+                        
+                        お掃除機能が<br>
+                        付いているのに、<br>
+                        なぜスタンダードエアコンより<br>
+                        内部が酷く汚れてしまうことが<br>
+                        あるのか。<br><br>
+                        
+                        その理由については、<br>
+                        実際のエアコン内部の<br>
+                        写真とともに<br>
+                        別の記事で<br>
+                        詳しく紹介しています。
+                    </p>
+
+                    <!-- 隠しボタン1 -->
+                    <a href="/tips/robot/" class="block w-full bg-white rounded-2xl border-2 border-slate-900 p-6 shadow-sm hover:shadow-md transition-all active:scale-95 group relative overflow-hidden text-center cursor-pointer mt-10">
+                        <div class="absolute top-0 left-0 w-full h-1.5 bg-neon"></div>
+                        <p class="text-[11px] md:text-sm font-black text-slate-500 mb-3 tracking-widest">
+                            関連記事
+                        </p>
+                        <h3 class="text-[16px] md:text-lg font-black text-slate-900 mb-6 leading-relaxed">
+                            お掃除機能付きエアコンについて<br>詳しく知りたい方はコチラ
+                        </h3>
+                        <div class="inline-flex items-center justify-center bg-slate-900 text-neon px-6 py-3 rounded-full text-sm font-black group-hover:bg-slate-800 transition-colors shadow-sm w-full md:w-auto">
+                            ▶ この記事を読む
+                        </div>
+                    </a>
+                </div>
+
+
+                <!-- セクション12 -->
+                <div class="mb-16 mt-20">
+                    <div class="flex flex-col items-center justify-center mb-6 text-center">
+                        <span class="w-10 h-[3px] bg-slate-800 mb-4 rounded-full"></span>
+                        <h2 class="text-xl md:text-2xl font-black text-slate-900 leading-relaxed">
+                            同じ「キレイな状態」を<br>
+                            維持するなら？
+                        </h2>
+                    </div>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose text-center">
+                        先ほどの計算では、<br><br>
+                        
+                        スタンダードエアコンは<br>
+                        2年に1回。<br><br>
+                        
+                        省エネ上位モデルは<br>
+                        1年に1回。<br><br>
+                        
+                        という条件で<br>
+                        計算しました。<br><br>
+                        
+                        もちろん、<br>
+                        これはすべての家庭に<br>
+                        当てはまる<br>
+                        クリーニング頻度では<br>
+                        ありません。<br><br>
+                        
+                        使用時間、<br>
+                        設置場所、<br>
+                        家族構成、<br>
+                        ペットの有無、<br>
+                        キッチンとの距離などによって、<br><br>
+                        
+                        エアコンの汚れ方は<br>
+                        大きく変わります。<br><br>
+                        
+                        エアコンクリーニングは、<br>
+                        「必ず○年に1回」<br>
+                        と一律に決められるものでは<br>
+                        ありません。<br><br>
+                        
+                        大切なのは、<br><br>
+                        
+                        <span class="font-black text-slate-900 underline decoration-blue-300 decoration-4 underline-offset-4">「同じ条件で使用して、</span><br>
+                        <span class="font-black text-slate-900 underline decoration-blue-300 decoration-4 underline-offset-4">同じ程度の内部衛生状態を</span><br>
+                        <span class="font-black text-slate-900 underline decoration-blue-300 decoration-4 underline-offset-4">維持するならどうなるのか？」</span><br><br>
+                        
+                        という視点です。
+                    </p>
+
+                    <!-- 隠しボタン2 -->
+                    <a href="/tips/frequency/" class="block w-full bg-slate-50 rounded-2xl border border-slate-200 p-6 shadow-sm hover:shadow-md transition-all active:scale-95 group relative overflow-hidden text-center cursor-pointer mt-10">
+                        <p class="text-[11px] md:text-sm font-black text-slate-500 mb-3 tracking-widest">
+                            関連記事
+                        </p>
+                        <h3 class="text-[15px] md:text-base font-black text-slate-900 mb-6 leading-relaxed">
+                            エアコンクリーニングの頻度や<br>適切なタイミングについてはコチラ
+                        </h3>
+                        <div class="inline-flex items-center justify-center bg-white border border-slate-300 text-slate-800 px-6 py-3 rounded-full text-sm font-black group-hover:bg-slate-100 transition-colors shadow-sm w-full md:w-auto">
+                            ▶ 詳細ページを見る
+                        </div>
+                    </a>
+                </div>
+
+                <div class="mb-16 mt-16 text-center">
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
+                        例えば、<br>
+                        ペットのために<br>
+                        リビングのエアコンを<br>
+                        24時間近く使用する家庭。<br><br>
+                        
+                        省エネ性能が高ければ、<br>
+                        電気代だけを比較したときの<br>
+                        メリットは<br>
+                        大きくなるでしょう。<br><br>
+                        
+                        しかし、<br>
+                        それだけ長時間使用すれば、<br>
+                        エアコンが吸い込む<br>
+                        室内空気の量も<br>
+                        非常に多くなります。<br><br>
+                        
+                        そして、<br>
+                        長時間の冷房運転によって<br>
+                        内部が結露している時間も<br>
+                        長くなります。<br><br>
+                        
+                        汚れやすい構造のエアコンを<br>
+                        スタンダードエアコンと<br>
+                        同程度の清潔さに保とうとすれば、<br><br>
+                        
+                        クリーニング頻度まで<br>
+                        同じでいいとは限りません。<br><br>
+                        
+                        場合によっては、<br>
+                        先ほど仮定した<br>
+                        「年1回」でも<br>
+                        十分とは限りません。<br><br>
+                        
+                        つまり、<br>
+                        長時間使うから、<br>
+                        省エネモデルなら<br>
+                        電気代で得をする。<br><br>
+                        
+                        そこで計算を<br>
+                        終わらせることはできません。<br><br>
+                        
+                        <span class="text-base font-black text-slate-900 bg-neon px-2">その使い方を10年間続けたとき、</span><br>
+                        <span class="text-base font-black text-slate-900 bg-neon px-2">内部をキレイに維持するために、</span><br>
+                        <span class="text-base font-black text-slate-900 bg-neon px-2">いくら必要なのか？</span><br><br>
+                        
+                        そこまで含めて<br>
+                        考える必要があります。
+                    </p>
+                </div>
+
+
+                <!-- セクション13 -->
+                <div class="mb-16 mt-20">
+                    <div class="flex flex-col items-center justify-center mb-6 text-center">
+                        <span class="w-10 h-[3px] bg-neon mb-4 rounded-full"></span>
+                        <h2 class="text-xl md:text-2xl font-black text-slate-900 tracking-wider leading-relaxed">
+                            冬にエアコン暖房を<br>
+                            使わない家庭なら？
+                        </h2>
+                    </div>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose text-center">
+                        もうひとつ<br>
+                        考えてほしいのが、<br>
+                        暖房です。<br><br>
+                        
+                        APFは、<br>
+                        「通年エネルギー消費効率」<br>
+                        です。<br><br>
+                        
+                        つまり、<br>
+                        冷房だけではなく、<br>
+                        暖房も含めた<br>
+                        省エネ性能を評価しています。<br><br>
+                        
+                        ところが実際には、<br><br>
+                        
+                        「冬は床暖房です」<br>
+                        「ガスファンヒーターを<br>使っています」<br>
+                        「石油ストーブです」<br>
+                        「薪ストーブです」<br>
+                        「こたつが中心です」<br><br>
+                        
+                        という家庭もあります。<br><br>
+                        
+                        そのような家庭では、<br>
+                        冷暖房ともエアコンを<br>
+                        長時間使用する家庭とは、<br><br>
+                        
+                        省エネ性能によって<br>
+                        得られるメリットも<br>
+                        当然変わってきます。<br><br>
+                        
+                        だからこそ、<br><br>
+                        
+                        <span class="font-black text-slate-900 underline decoration-neon decoration-4 underline-offset-4">カタログの数字だけではなく、</span><br>
+                        <span class="font-black text-slate-900 underline decoration-neon decoration-4 underline-offset-4">自分の生活スタイルで考える。</span><br><br>
+                        
+                        これが大切だと<br>
+                        私は考えています。
+                    </p>
+                </div>
+
+
+                <!-- セクション14 -->
+                <div class="bg-blue-50/50 rounded-[20px] border border-blue-100 p-6 md:p-8 mt-12 mb-16 text-center">
+                    <h3 class="text-xl font-black text-slate-900 text-blue-900 mb-8">
+                        では、2027年以降の<br>
+                        エアコンはどうなる？
+                    </h3>
+                    
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
+                        ここまでのお話は、<br>
+                        2026年現在、<br>
+                        市場で販売されている<br>
+                        エアコンを見たうえでの話です。<br><br>
+                        
+                        2027年度から<br>
+                        新しい省エネ基準が<br>
+                        始まったあと、<br><br>
+                        
+                        各メーカーの商品構成が<br>
+                        どのように<br>
+                        変化していくのか。<br><br>
+                        
+                        現時点で、<br>
+                        そのすべてを<br>
+                        予想することはできません。<br><br>
+                        
+                        現在、<br>
+                        高い省エネ性能を持つ<br>
+                        エアコンは、<br>
+                        各メーカーの上位モデルに<br>
+                        多く見られます。<br><br>
+                        
+                        そして上位モデルには、<br>
+                        フィルター自動お掃除機能や<br>
+                        各種センサーなど、<br>
+                        多くの付加機能を<br>
+                        搭載した機種があります。<br><br>
+                        
+                        そのため、<br>
+                        現在の商品で比較すると、<br><br>
+                        
+                        高い省エネ性能を求める<br>
+                        ↓<br>
+                        上位モデルを選ぶ<br>
+                        ↓<br>
+                        付加機能が増え、<br>構造が複雑になる<br>
+                        ↓<br>
+                        クリーニング料金も<br>高くなる<br><br>
+                        
+                        という関係になりやすいのが<br>
+                        現状です。<br><br>
+                        
+                        しかし、<br>
+                        これは今後も絶対に<br>
+                        変わらないとは言えません。
+                    </p>
+                </div>
+
+
+                <!-- セクション15 -->
+                <div class="mb-16 mt-20 text-center">
+                    <h2 class="text-xl md:text-2xl font-black text-slate-900 mb-8 leading-relaxed">
+                        「省エネ性能の高い<br>スタンダード」が<br>
+                        登場するかもしれない
+                    </h2>
+                    
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
+                        2027年度からの<br>
+                        新しい省エネ基準に向けて、<br><br>
+                        
+                        今後各メーカーから、<br><br>
+                        
+                        シンプルな構造のまま、<br>
+                        省エネ性能をさらに高めた<br>
+                        スタンダードモデル<br><br>
+                        
+                        が登場する可能性も<br>
+                        ゼロではありません。<br><br>
+                        
+                        余計な付加機能を増やさず、<br><br>
+                        
+                        冷やす。<br>
+                        暖める。<br><br>
+                        
+                        という<br>
+                        エアコン本来の仕事をしながら、<br>
+                        高い省エネ性能も実現する。<br><br>
+                        
+                        もしそんなエアコンが<br>
+                        登場するのであれば、<br><br>
+                        
+                        エアコンクリーニングをする<br>
+                        私としても<br>
+                        非常に興味があります。<br><br>
+                        
+                        ただし。<br><br>
+                        
+                        仮にシンプルな<br>
+                        省エネスタンダードが<br>
+                        登場したとしても、<br><br>
+                        
+                        「省エネだから絶対に得」<br><br>
+                        
+                        と、<br>
+                        それだけで判断することは<br>
+                        できません。<br><br>
+                        
+                        高い省エネ性能を<br>
+                        実現するためには、<br>
+                        それに見合った<br>
+                        コンプレッサーや<br>
+                        制御技術なども<br>
+                        必要になります。<br><br>
+                        
+                        新しい製品を<br>
+                        開発するための<br>
+                        コストもあります。<br><br>
+                        
+                        そのため、<br>
+                        現在のスタンダードモデルと<br>
+                        比べて<br>
+                        本体価格が高くなる可能性も<br>
+                        考えられます。
+                    </p>
+                </div>
+
+
+                <!-- セクション16 -->
+                <div class="mb-16 mt-20">
+                    <div class="flex flex-col items-center justify-center mb-6 text-center">
+                        <span class="w-10 h-[3px] bg-slate-800 mb-4 rounded-full"></span>
+                        <h2 class="text-xl md:text-2xl font-black text-slate-900 leading-relaxed">
+                            仮に<br>
+                            「省エネスタンダード」が<br>
+                            25万円だったら？
+                        </h2>
+                    </div>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose text-center mb-8">
+                        ここでも、<br>
+                        分かりやすくするために<br>
+                        仮の計算をしてみましょう。
+                    </p>
+
+                    <div class="bg-slate-50 border border-slate-200 rounded-[20px] p-6 mb-8 text-center relative max-w-md mx-auto">
+                        <p class="text-[14px] md:text-[15px] font-bold text-slate-700 leading-loose">
+                            18畳用の<br>
+                            スタンダードモデルが、<br>
+                            <span class="font-black text-slate-900">150,000円</span><br>
+                            だったとします。<br><br>
+                            
+                            そこへ将来、<br>
+                            高い省エネ性能を持つ<br>
+                            シンプルな<br>
+                            スタンダードモデルが、<br>
+                            <span class="font-black text-slate-900">250,000円</span><br>
+                            で登場したと仮定します。<br><br>
+                            
+                            本体価格の差は、<br>
+                            <span class="font-black text-red-600">100,000円。</span>
+                        </p>
+                    </div>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose text-center">
+                        そして、<br>
+                        新しい省エネスタンダードなら、<br>
+                        年間10,000円<br>
+                        電気代を<br>
+                        節約できると仮定します。<br><br>
+                        
+                        10年間なら、<br>
+                        10,000円 × 10年<br>
+                        ＝ <span class="font-black text-slate-900">100,000円</span><br><br>
+                        
+                        本体価格の差額も、<br>
+                        250,000円 − 150,000円<br>
+                        ＝ <span class="font-black text-slate-900">100,000円</span><br>
+                        です。<br><br>
+                        
+                        この条件だけを見ると、<br>
+                        10年間使用すれば、<br>
+                        本体価格の差額を<br>
+                        電気代で<br><br>
+                        
+                        <span class="font-black text-slate-900 bg-neon px-2 text-lg">ちょうど回収できる</span><br><br>
+                        
+                        ことになります。<br><br>
+                        
+                        そして両方とも、<br>
+                        シンプルな<br>
+                        スタンダード構造で、<br>
+                        クリーニング料金も同じ。<br>
+                        汚れ方も同程度。<br>
+                        必要なクリーニング頻度も<br>
+                        同程度。<br><br>
+                        
+                        という条件なのであれば、<br>
+                        これは先ほど比較した<br>
+                        現在の高機能な<br>
+                        上位モデルとは、<br><br>
+                        
+                        まったく違う結果になる<br>
+                        可能性があります。<br><br>
+                        
+                        このような製品が<br>
+                        実際に登場すれば、<br><br>
+                        
+                        <span class="font-black text-slate-900 underline decoration-neon decoration-4 underline-offset-4">「省エネ性能の高さ」と</span><br>
+                        <span class="font-black text-slate-900 underline decoration-neon decoration-4 underline-offset-4">「10年間の総額の安さ」を</span><br>
+                        <span class="font-black text-slate-900 underline decoration-neon decoration-4 underline-offset-4">両立できる</span><br><br>
+                        
+                        可能性もあります。
+                    </p>
+                </div>
+
+
+                <!-- セクション17 -->
+                <div class="mb-16 mt-20 text-center">
+                    <h2 class="text-xl md:text-2xl font-black text-slate-900 mb-8 leading-relaxed">
+                        だから、今後のエアコンが<br>
+                        どうなるかは分かりません
+                    </h2>
+                    
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
+                        私は、<br>
+                        「高いエアコンは全部損」<br>
+                        と言いたいわけでは<br>
+                        ありません。<br><br>
+                        
+                        反対に、<br>
+                        「省エネモデルなら必ず得」<br>
+                        とも言えません。<br><br>
+                        
+                        本体価格はいくらなのか。<br>
+                        実際にどれだけ<br>
+                        電気代が変わるのか。<br>
+                        どんな構造なのか。<br>
+                        どれくらい<br>
+                        汚れやすいのか。<br>
+                        クリーニング料金は<br>
+                        いくらなのか。<br>
+                        どれくらいの頻度で<br>
+                        メンテナンスが<br>
+                        必要なのか。<br><br>
+                        
+                        そして、<br>
+                        その家庭では、実際に<br>
+                        どれくらい<br>
+                        エアコンを使うのか。<br><br>
+                        
+                        <span class="text-base font-black text-slate-900 bg-neon px-2">条件が変われば、</span><br>
+                        <span class="text-base font-black text-slate-900 bg-neon px-2">答えも変わります。</span><br><br>
+                        
+                        2027年以降、<br>
+                        本当にシンプルで、<br>
+                        省エネ性能が高く、<br>
+                        購入価格との<br>
+                        バランスにも優れた<br>
+                        エアコンが登場するのであれば、<br><br>
+                        
+                        私自身もぜひ<br>
+                        注目したいと思っています。
+                    </p>
+                </div>
+
+
+                <!-- セクション18 -->
+                <div class="mb-16 mt-20">
+                    <div class="flex flex-col items-center justify-center mb-6 text-center">
+                        <span class="w-10 h-[3px] bg-slate-800 mb-4 rounded-full"></span>
+                        <h2 class="text-xl md:text-2xl font-black text-slate-900 leading-relaxed">
+                            省エネモデルを<br>
+                            否定したいわけではありません
+                        </h2>
+                    </div>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose text-center">
+                        ここまで読むと、<br><br>
+                        
+                        「結局、省エネモデルは<br>
+                        買わない方がいいと<br>
+                        言いたいの？」<br><br>
+                        
+                        と思われるかもしれません。<br><br>
+                        
+                        そうではありません。<br><br>
+                        
+                        省エネ性能の高い<br>
+                        エアコンには、<br>
+                        消費電力量を抑えられるという<br>
+                        明確なメリットがあります。<br><br>
+                        
+                        省エネ性能は本物です。<br>
+                        APFという指標にも<br>
+                        意味があります。<br><br>
+                        
+                        ただし、<br><br>
+                        
+                        <span class="font-black text-slate-900 underline decoration-red-400 decoration-4 underline-offset-4">電気代が安い</span><br>
+                        <span class="font-black text-slate-900 underline decoration-red-400 decoration-4 underline-offset-4">＝ 10年間で一番お得</span><br><br>
+                        
+                        とは限りません。<br><br>
+                        
+                        エアコンを購入するときには、<br><br>
+                        
+                        本体価格<br>
+                        実際の使い方による電気代<br>
+                        構造や付加機能<br>
+                        エアコンクリーニングなどの<br>
+                        維持費<br><br>
+                        
+                        これらをまとめて<br>
+                        考えてほしいのです。
+                    </p>
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- ネイビーのカード (最後に伝えたいメッセージ) -->
+        <div class="bg-slate-900 rounded-[24px] border-l-[12px] border-neon p-8 md:p-10 text-center shadow-md mb-10">
+            
+            <h2 class="text-white font-black text-xl md:text-2xl leading-relaxed mb-10 tracking-wider">
+                「年間電気代」ではなく<br>
+                「10年間の総額」で<br>
+                考えてみませんか？
+            </h2>
+
+            <p class="text-slate-100 font-bold text-[15px] md:text-base leading-loose mb-10">
+                2027年度から、<br>
+                省エネ性能は<br>
+                これまで以上に<br>
+                注目されていくと思います。<br><br>
+                
+                省エネ性能が<br>
+                向上すること自体は、<br>
+                とても良いことです。<br><br>
+                
+                ただ、<br><br>
+                
+                「APFが高いから」<br>
+                「年間電気代が安いから」<br><br>
+                
+                という理由だけで<br>
+                高価なモデルを選ぶ前に、<br>
+                一度考えてみてください。<br><br>
+                
+                <span class="text-neon font-black text-base">そのエアコンを</span><br>
+                <span class="text-neon font-black text-base">10年間使ったとき、</span><br><br>
+                
+                本体を買うために<br>
+                いくら払うのか。<br>
+                電気代はいくら<br>
+                かかるのか。<br>
+                キレイな状態を<br>
+                維持するために<br>
+                いくらかかるのか。
+            </p>
+
+            <!-- 区切り線 -->
+            <div class="w-16 h-[1px] bg-slate-600 mx-auto mb-10"></div>
+
+            <p class="text-slate-100 font-bold text-[15px] md:text-base leading-loose">
+                大切なのは、<br>
+                ひとつの数字だけで<br>
+                判断しないこと。<br><br>
+                
+                省エネ性能と、<br>
+                あなたの財布から<br>
+                10年間で出ていく総額は<br>
+                別の話です。<br><br>
+                
+                私はエアコンを<br>
+                販売する立場では<br>
+                ありません。<br><br>
+                
+                実際にお客様の家で<br>
+                何年も使われた<br>
+                エアコンを分解し、<br>
+                その内部を<br>
+                洗浄している立場です。<br><br>
+                
+                だからこそ、<br>
+                購入するときには見えにくい<br>
+                <span class="text-white font-black text-base underline decoration-neon decoration-4 underline-offset-4">「その後にかかるお金」まで</span><br>
+                <span class="text-white font-black text-base underline decoration-neon decoration-4 underline-offset-4">含めて、</span><br>
+                エアコンを選んでほしい。<br><br>
+                
+                そう思っています。<br><br>
+                
+                安いエアコンが、<br>
+                必ず損とは限りません。<br>
+                高いエアコンが、<br>
+                必ず得とも限りません。<br><br>
+                
+                2027年以降、<br>
+                エアコンが<br>
+                どう変わっていくのか。<br><br>
+                
+                それも見ながら、<br>
+                自分の生活と使い方に合った<br>
+                エアコンを選ぶ。<br><br>
+                
+                それが一番大切なのでは<br>
+                ないでしょうか。
+            </p>
+        </div>
+
+
+        <!-- ご相談誘導ブロック -->
+        <div class="bg-white rounded-2xl border border-slate-200 p-8 text-center shadow-sm mb-12">
+            <h2 class="text-xl md:text-2xl font-black text-slate-900 mb-8 leading-relaxed">
+                今お使いのエアコンの<br>
+                汚れが気になる場合は
+            </h2>
+            
+            <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose mb-10">
+                買い替えをご検討中の方も、<br>
+                まだ今のエアコンを大切に使いたい方も、<br><br>
+                
+                <span class="text-slate-900 font-black">「エアコンから<br>嫌なニオイがする」</span><br><br>
+                
+                <span class="text-slate-900 font-black">「吹き出し口に<br>黒い汚れが見える」</span><br><br>
+                
+                そんな場合は、<br>
+                内部に汚れが溜まっている<br>
+                可能性があります。<br><br>
+                
+                無理にご自身で分解せず、<br>
+                プロのエアコンクリーニング職人に<br>
+                ご相談ください。
+            </p>
+            
+            <a href="tel:08000807788" class="js-phone-modal-trigger inline-flex items-center justify-center bg-slate-900 hover:bg-slate-800 text-neon px-8 py-4 rounded-full text-base font-black shadow-md transition-all active:scale-95">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                <span>電話で相談する</span>
+            </a>
+        </div>
+
+        <!-- 関連する施工事例へのリンク -->
+        <div class="mt-16 text-center">
+            <div class="flex flex-col items-center justify-center mb-6">
+                <span class="w-10 h-[3px] bg-slate-800 mb-4 rounded-full"></span>
+                <h2 class="text-xl md:text-2xl font-black text-slate-900 tracking-wider leading-relaxed">
+                    実際の現場も見てみる
+                </h2>
+            </div>
+            
+            <!-- トーストを表示するボタン -->
+            <button type="button" onclick="showToast(event)" class="block w-full bg-white rounded-2xl border-2 border-slate-900 p-6 md:p-8 shadow-sm hover:shadow-md transition-all active:scale-95 group relative overflow-hidden text-center cursor-pointer">
+                <!-- 装飾 -->
+                <div class="absolute top-0 left-0 w-full h-2 bg-neon"></div>
+                
+                <p class="text-[11px] md:text-sm font-black text-slate-500 mb-3 tracking-widest">
+                    関連する施工事例
+                </p>
+                
+                <h3 class="text-[17px] md:text-xl font-black text-slate-900 mb-8 leading-relaxed">
+                    「さまざまな機種の<br>分解洗浄ビフォーアフター」
+                </h3>
+                
+                <div class="inline-flex items-center justify-center bg-slate-900 text-neon px-6 py-3.5 rounded-full text-[15px] font-black group-hover:bg-slate-800 transition-colors w-full md:w-auto shadow-md">
+                    ▶ この施工事例を見る
+                </div>
+            </button>
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-900 text-white pt-12 pb-24 md:pb-12 border-t-[6px] border-neon text-center mt-12">
+        <div class="mb-6 flex flex-col items-center justify-center">
+            <span class="text-4xl md:text-5xl tracking-widest text-white flex items-center justify-center font-impact mt-1">
+                ONE
+                <img src="ONESTAR.PNG" alt="ロゴ" class="w-[80px] h-[80px] md:w-[100px] md:h-[100px] mx-[-10px] md:mx-[-16px] object-contain -translate-y-2" onerror="this.style.display='none'">
+                STAR
+            </span>
+            <p class="text-xs text-neon font-black mt-2 tracking-widest">株式会社ECS専属プロスタッフ</p>
+        </div>
+        
+        <p class="text-[11px] text-slate-400 font-bold mb-3">
+            <a href="/products" class="hover:text-white transition-colors underline underline-offset-4">オリジナルLINEスタンプ販売中</a>
+        </p>
+        <p class="text-[10px] text-slate-500 font-bold mb-4">
+            <a href="/privacy" class="hover:text-white transition-colors">プライバシーポリシー</a>
+        </p>
+        <p class="text-[10px] text-slate-500 font-bold tracking-wider">© 2026 ONE★STAR. All Rights Reserved.</p>
+    </footer>
+
+    <!-- MOBILE BOTTOM NAVIGATION -->
+    <div class="fixed bottom-0 left-0 right-0 z-45 bg-slate-900 md:hidden h-[60px] flex items-stretch text-white shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.3)] border-t border-slate-800">
+        
+        <a href="/price" class="flex flex-col items-center justify-center w-[20%] border-r border-slate-700 active:bg-slate-800">
+            <svg class="w-5 h-5 mb-1 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <span class="text-[9px] font-black">料金</span>
+        </a>
+        
+        <a href="/mind" class="flex flex-col items-center justify-center w-[20%] border-r border-slate-700 active:bg-slate-800">
+            <svg class="w-5 h-5 mb-1 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+            <span class="text-[9px] font-black">想い</span>
+        </a>
+
+        <a href="/pride" class="flex flex-col items-center justify-center w-[20%] active:bg-slate-800">
+            <svg class="w-5 h-5 mb-1 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+            <span class="text-[9px] font-black">拘り</span>
+        </a>
+        
+        <a href="tel:08000807788" class="js-phone-modal-trigger flex items-center justify-center bg-neon text-slate-900 w-[40%] font-black text-base active:bg-yellow-400 transition-colors">
+            <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+            電話する
+        </a>
+        
+    </div>
+
+    <!-- 🌟 ご予約・お問い合わせ前のワンクッションモーダル 🌟 -->
+    <div id="phone-modal" class="fixed inset-0 z-[100] hidden flex items-center justify-center px-4">
+        <div id="phone-modal-backdrop" class="absolute inset-0 bg-slate-900/80 backdrop-blur-sm opacity-0 transition-opacity duration-300"></div>
+        
+        <div id="phone-modal-content" class="relative bg-white rounded-3xl shadow-2xl w-full max-w-sm overflow-hidden transform scale-95 opacity-0 transition-all duration-300 border border-slate-100">
+            
+            <button id="phone-modal-close" class="absolute top-4 right-4 p-2 text-slate-400 hover:text-slate-700 bg-slate-100 hover:bg-slate-200 rounded-full transition-colors z-10">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+            
+            <div class="p-6 md:p-8 text-center pt-10">
+                
+                <h3 class="text-xl font-black text-slate-900 mb-6 border-b-4 border-[#EFFF00] inline-block pb-1">
+                    ご予約・お問い合わせの前に
+                </h3>
+                
+                <div class="text-[13px] text-slate-700 font-bold leading-relaxed mb-8 space-y-4 text-left bg-slate-50 p-5 rounded-2xl border border-slate-100 shadow-inner">
+                    <p>
+                        <span class="text-slate-900 font-black text-sm">ONE★STAR</span>は<br>
+                        株式会社ECS（エッジクリーンサービス）の専属プロスタッフとして活動しています。
+                    </p>
+                    <p class="pt-2 border-t border-slate-200">
+                        お電話は<br>
+                        <span class="text-slate-900 font-black">株式会社ECSの予約受付</span>につながります。
+                    </p>
+                    
+                    <div class="bg-rose-50 border border-rose-200 p-3 rounded-xl text-center shadow-sm">
+                        <p class="text-rose-600 font-black text-[13px] leading-tight">
+                            ご予約の際は<br>
+                            <span class="text-base">「ONE★STAR（川崎）を指名」</span>と<br>
+                            お伝えください。
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="space-y-3">
+                    <a href="tel:08000807788" class="flex items-center justify-center w-full py-4 bg-slate-900 text-[#EFFF00] font-black rounded-2xl shadow-md active:scale-95 transition-transform text-sm sm:text-base border border-slate-800">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                        株式会社ECSへ電話する
+                    </a>
+                    
+                    <a href="https://www.instagram.com/one.star.kawasaki?igsh=anZpYnpxcDdqOXRh&utm_source=qr" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center w-full py-4 bg-gradient-to-r from-pink-500 to-rose-500 text-white font-black rounded-2xl shadow-md active:scale-95 transition-transform text-sm sm:text-base">
+                        <svg class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                        </svg>
+                        Instagramで本人に相談する
+                    </a>
+                </div>
+                
+                <p class="text-[10px] text-slate-500 mt-4 font-bold leading-relaxed">
+                    直接のご質問・お問い合わせは<br>本人直通のInstagram DMからお気軽にどうぞ。
+                </p>
+                
+                <button id="phone-modal-cancel" class="mt-6 text-[11px] text-slate-400 font-bold underline underline-offset-4 hover:text-slate-600 transition-colors">
+                    キャンセルして戻る
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 🚧 トースト表示用（初期状態は透明・クリック不可） -->
+    <div id="toast" class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-[110] bg-slate-900/95 backdrop-blur-md text-white px-6 py-4 rounded-2xl shadow-[0_10px_40px_rgba(0,0,0,0.3)] flex items-center space-x-3 opacity-0 pointer-events-none transition-opacity duration-300">
+        <span class="text-2xl">🚧</span>
+        <span class="font-black text-[15px] tracking-widest whitespace-nowrap">ただいま準備中です。</span>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script>
+        // === トースト表示関数 ===
+        let toastTimeout;
+        function showToast(e) {
+            e.preventDefault(); // デフォルトのボタン動作を防ぐ
+            const toast = document.getElementById('toast');
+            
+            // すでにタイマーが動いていたらクリア
+            if (toastTimeout) {
+                clearTimeout(toastTimeout);
+            }
+            
+            // 表示
+            toast.classList.remove('opacity-0');
+            toast.classList.add('opacity-100');
+            
+            // 3秒後に非表示
+            toastTimeout = setTimeout(() => {
+                toast.classList.remove('opacity-100');
+                toast.classList.add('opacity-0');
+            }, 3000);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // === メニュー開閉用 ===
+            const drawerContainer = document.getElementById('drawer-container');
+            const drawerMenu = document.getElementById('drawer-menu');
+            const drawerBackdrop = document.getElementById('drawer-backdrop');
+            
+            const toggleMenu = (show) => {
+                if (show) {
+                    drawerContainer.classList.remove('hidden');
+                    setTimeout(() => {
+                        drawerBackdrop.classList.remove('opacity-0');
+                        drawerBackdrop.classList.add('opacity-100');
+                        drawerMenu.classList.remove('drawer-closed');
+                        drawerMenu.classList.add('drawer-open');
+                    }, 10);
+                } else {
+                    drawerBackdrop.classList.remove('opacity-100');
+                    drawerBackdrop.classList.add('opacity-0');
+                    drawerMenu.classList.remove('drawer-open');
+                    drawerMenu.classList.add('drawer-closed');
+                    setTimeout(() => drawerContainer.classList.add('hidden'), 300);
+                }
+            };
+
+            document.getElementById('menu-open-btn').addEventListener('click', () => toggleMenu(true));
+            document.getElementById('menu-close-btn').addEventListener('click', () => toggleMenu(false));
+            document.getElementById('drawer-backdrop').addEventListener('click', () => toggleMenu(false));
+            document.querySelectorAll('.menu-link').forEach(link => link.addEventListener('click', () => toggleMenu(false)));
+
+            // === 電話モーダル ===
+            const phoneModal = document.getElementById('phone-modal');
+            const phoneModalBackdrop = document.getElementById('phone-modal-backdrop');
+            const phoneModalContent = document.getElementById('phone-modal-content');
+            const phoneModalCloseBtn = document.getElementById('phone-modal-close');
+            const phoneModalCancelBtn = document.getElementById('phone-modal-cancel');
+            const phoneTriggerBtns = document.querySelectorAll('.js-phone-modal-trigger');
+
+            if (phoneModal && phoneTriggerBtns.length > 0) {
+                const openPhoneModal = (e) => {
+                    e.preventDefault(); 
+                    if (typeof toggleMenu === 'function') toggleMenu(false);
+
+                    phoneModal.classList.remove('hidden');
+                    requestAnimationFrame(() => {
+                        phoneModalBackdrop.classList.remove('opacity-0');
+                        phoneModalBackdrop.classList.add('opacity-100');
+                        phoneModalContent.classList.remove('opacity-0', 'scale-95');
+                        phoneModalContent.classList.add('opacity-100', 'scale-100');
+                    });
+                };
+
+                const closePhoneModal = () => {
+                    phoneModalBackdrop.classList.remove('opacity-100');
+                    phoneModalBackdrop.classList.add('opacity-0');
+                    phoneModalContent.classList.remove('opacity-100', 'scale-100');
+                    phoneModalContent.classList.add('opacity-0', 'scale-95');
+                    setTimeout(() => phoneModal.classList.add('hidden'), 300);
+                };
+
+                phoneTriggerBtns.forEach(btn => btn.addEventListener('click', openPhoneModal));
+                phoneModalCloseBtn.addEventListener('click', closePhoneModal);
+                phoneModalCancelBtn.addEventListener('click', closePhoneModal);
+                phoneModalBackdrop.addEventListener('click', closePhoneModal);
+            }
+        });
+    </script>
+</body>
+</html>
+
+
+```
