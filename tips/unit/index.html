@@ -1,0 +1,1336 @@
+```html
+<!DOCTYPE html>
+<html lang="ja" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>お掃除機能付きエアコンは壊れやすい？ | ONE★STAR</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        neon: '#EFFF00' // トレードカラー：蛍光イエロー
+                    },
+                    fontFamily: {
+                        sans: ['"Noto Sans JP"', 'sans-serif'],
+                        impact: ['"Black Ops One"', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        /* ドロワーメニュー用 */
+        #drawer-menu { transition: transform 0.3s ease-in-out; }
+        .drawer-closed { transform: translateX(-100%); }
+        .drawer-open { transform: translateX(0); }
+    </style>
+</head>
+<body class="font-sans text-slate-800 bg-slate-50 antialiased overflow-x-hidden pb-[60px]">
+
+    <!-- HEADER -->
+    <header class="fixed top-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md shadow-sm border-b border-slate-100 h-14 flex items-center justify-between px-4">
+        <button id="menu-open-btn" class="p-2 hover:bg-slate-100 rounded-lg" aria-label="メニュー">
+            <svg class="w-6 h-6 text-slate-800" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+
+        <div class="absolute left-1/2 -translate-x-1/2 flex items-center justify-center mt-1">
+            <a href="/" class="text-2xl md:text-3xl tracking-widest text-slate-900 leading-none flex items-center font-impact">
+                ONE
+                <span class="inline-block w-2"></span>
+                STAR
+            </a>
+        </div>
+
+        <div class="hidden md:flex items-center space-x-3">
+            <a href="#" class="js-phone-modal-trigger bg-slate-900 hover:bg-slate-800 text-neon px-4 py-1.5 rounded-full text-xs font-black border border-slate-700 flex items-center space-x-1 transition-all">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                <span>電話相談</span>
+            </a>
+        </div>
+        <div class="w-10 md:hidden"></div>
+    </header>
+
+    <!-- DRAWER MENU -->
+    <div id="drawer-container" class="fixed inset-0 z-50 overflow-hidden hidden">
+        <div id="drawer-backdrop" class="absolute inset-0 bg-slate-900/60 opacity-0 transition-opacity duration-300"></div>
+        <div class="pointer-events-none fixed inset-y-0 left-0 flex max-w-full">
+            <div id="drawer-menu" class="pointer-events-auto w-64 drawer-closed bg-white shadow-2xl flex flex-col h-full">
+                
+                <div class="p-3 bg-white flex justify-end">
+                    <button id="menu-close-btn" class="p-2 hover:bg-slate-100 rounded-lg">
+                        <svg class="w-6 h-6 text-slate-500" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+                    </button>
+                </div>
+
+                <div class="bg-blue-600 py-3 px-6">
+                    <h2 class="text-white font-black tracking-wider text-sm">MENU</h2>
+                </div>
+
+                <nav class="flex-1 px-4 py-2 overflow-y-auto">
+                    <div class="space-y-1">
+                        <a href="#" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>トップページ
+                        </a>
+                        <a href="#" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>料金プラン
+                        </a>
+                        <a href="#" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>施工事例
+                        </a>
+                        <a href="#" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>ONE★STARの想い
+                        </a>
+                        <a href="#" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>プロとしての拘り
+                        </a>
+                        <a href="#" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>ここだけの話
+                        </a>
+                        <a href="#" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>ご予約の前に
+                        </a>
+                        <a href="#" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>よくある質問
+                        </a>
+                        <a href="#" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-blue-600">
+                            <span class="mr-2 text-blue-600">＞</span>お役立ち情報
+                        </a>
+                        <a href="#" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-[#06C755]">
+                            <span class="mr-2 text-slate-400">＞</span>オリジナルLINEスタンプ
+                        </a>
+                    </div>
+                    
+                    <hr class="border-slate-300 border-dashed my-4">
+                    <a href="#" class="menu-link flex items-center py-2 text-sm font-black text-slate-900 hover:text-blue-600 transition-colors">
+                        株式会社ECS公式サイト
+                        <svg class="w-3.5 h-3.5 ml-1.5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                    </a>
+                </nav>
+
+                <div class="p-4 bg-slate-50 border-t border-slate-100 text-center mt-auto">
+                    <p class="text-[9px] text-slate-500 font-bold leading-relaxed mb-2">
+                        株式会社ECS EDGE CLEAN SERVICE<br>専属プロスタッフとして<br>愛知県全域で毎日奮闘中❣️
+                    </p>
+                    <a href="#" class="js-phone-modal-trigger block w-full py-3 bg-emerald-500 text-white font-bold rounded-lg text-sm shadow">直接電話する</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN (お役立ち情報：お掃除機能付きエアコンは壊れやすい？) -->
+    <main class="pt-24 pb-12 px-4 max-w-3xl mx-auto">
+
+        <!-- 白いメインカード -->
+        <div class="bg-white rounded-[24px] border-2 border-slate-900 overflow-hidden shadow-sm mb-10">
+            <!-- 上部の黄色いライン -->
+            <div class="h-3 w-full bg-neon"></div>
+
+            <div class="p-6 md:p-8">
+                
+                <!-- バッジ -->
+                <div class="flex justify-center mb-8 text-center">
+                    <span class="inline-block bg-slate-900 text-neon text-xs md:text-sm font-black px-5 py-2 rounded shadow-sm tracking-wider">
+                        プロが教えるエアコンの真実
+                    </span>
+                </div>
+
+                <!-- タイトル -->
+                <h1 class="text-[22px] sm:text-[24px] md:text-[32px] font-black text-slate-900 mb-12 leading-relaxed tracking-wide text-center">
+                    お掃除機能付きエアコンは<br>
+                    壊れやすい？
+                </h1>
+
+                <!-- リード文 -->
+                <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose text-center mb-10">
+                    <span class="bg-slate-100 px-3 py-2 rounded-lg border border-slate-200 inline-block mb-2">
+                        「お掃除機能付きなら、<br>高いエアコンだから安心。」
+                    </span><br><br>
+
+                    <span class="bg-slate-100 px-3 py-2 rounded-lg border border-slate-200 inline-block mb-2">
+                        「上位モデルだから、<br>長く使える。」
+                    </span><br><br>
+                    
+                    そんなイメージを<br>
+                    持っていませんか？<br><br>
+
+                    私は毎日のように、<br>
+                    さまざまなメーカーの<br>
+                    エアコンを分解し、<br><br>
+
+                    内部を洗浄しています。<br><br>
+
+                    その立場から見ると、<br>
+                    お掃除機能付きエアコンには、<br><br>
+
+                    <span class="text-red-600 font-black text-lg underline decoration-red-600 decoration-2 underline-offset-4">スタンダードエアコンでは</span><br>
+                    <span class="text-red-600 font-black text-lg underline decoration-red-600 decoration-2 underline-offset-4">起こりようのない</span><br><br>
+
+                    トラブルが存在します。<br><br>
+
+                    理由は、とても単純です。<br><br>
+
+                    <span class="text-base font-black text-slate-900 bg-neon px-2">機械が増えれば、壊れる場所も増える。</span><br><br>
+
+                    今回は、<br>
+                    お掃除機能付きエアコンで<br>
+                    実際によく見かける<br>
+                    トラブルについて、<br><br>
+
+                    現場での経験をもとに<br>
+                    お話しします。
+                </p>
+
+
+                <!-- そもそもお掃除機能って何？ -->
+                <div class="mb-16 mt-16">
+                    <div class="flex flex-col items-center justify-center mb-6 text-center">
+                        <span class="w-10 h-[3px] bg-neon mb-4 rounded-full"></span>
+                        <h2 class="text-xl md:text-2xl font-black text-slate-900 tracking-wider leading-relaxed">
+                            そもそも<br>
+                            お掃除機能って何？
+                        </h2>
+                    </div>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-800 leading-loose text-center">
+                        お掃除機能付きエアコンには、<br><br>
+                        
+                        フィルターのホコリを<br>
+                        自動で取り除くための<br><br>
+                        
+                        「お掃除ユニット」が<br>
+                        搭載されています。<br><br>
+                        
+                        メーカーや機種によって、<br>
+                        構造はさまざまです。<br><br>
+                        
+                        フィルターそのものを<br>
+                        動かすタイプ。<br><br>
+                        
+                        ブラシやロボットが<br>
+                        左右に移動するタイプ。<br><br>
+                        
+                        集めたホコリを<br>
+                        ダストボックスへ入れるタイプ。<br><br>
+
+                        屋外へ排出するタイプ。<br><br>
+
+                        いろいろあります。<br><br>
+
+                        しかし、<br>
+                        どの方式にも<br>
+                        共通していることがあります。<br><br>
+
+                        <span class="text-base font-black text-slate-900 underline decoration-neon decoration-4 underline-offset-4">フィルターを掃除するための</span><br>
+                        <span class="text-base font-black text-slate-900 underline decoration-neon decoration-4 underline-offset-4">機械が追加されている。</span><br><br>
+
+                        ということです。
+                    </p>
+                </div>
+
+
+                <!-- 便利な機能にはたくさんの部品が必要です -->
+                <div class="bg-slate-50 border border-slate-200 rounded-[16px] px-4 md:px-6 py-8 mt-12 mb-16 text-center">
+                    <h3 class="text-lg md:text-xl font-black text-slate-900 mb-6 border-b-2 border-slate-200 pb-3 inline-block leading-relaxed">
+                        便利な機能には<br>
+                        たくさんの部品が必要です
+                    </h3>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
+                        お掃除ユニットには、<br><br>
+                        
+                        モーター、<br>
+                        ギア、<br>
+                        センサー、<br>
+                        スイッチ、<br>
+                        配線、<br>
+                        可動部品など、<br><br>
+                        
+                        さまざまな部品が<br>
+                        使われています。<br><br>
+                        
+                        当然ですが、<br>
+                        それらがなければ<br>
+                        自動では動きません。<br><br>
+
+                        しかし、<br>
+                        ここで少し考えてみてください。<br><br>
+                        
+                        <span class="font-black text-slate-900 text-base">スタンダードエアコンには、</span><br>
+                        <span class="font-black text-slate-900 text-base">そもそも必要のない部品です。</span><br><br>
+                        
+                        お掃除機能を<br>
+                        追加する。<br>
+                        ↓<br>
+                        部品が増える。<br>
+                        ↓<br>
+                        機構が複雑になる。<br>
+                        ↓<br>
+                        <span class="text-red-600 font-black">故障する可能性のある<br>部品も増える。</span><br><br>
+                        
+                        とても単純な話です。
+                    </p>
+                </div>
+
+
+                <!-- 実際によく見るお掃除機能のトラブル -->
+                <div class="mb-16 mt-20">
+                    <div class="flex flex-col items-center justify-center mb-6 text-center">
+                        <span class="w-10 h-[3px] bg-slate-800 mb-4 rounded-full"></span>
+                        <h2 class="text-xl md:text-2xl font-black text-slate-900 leading-relaxed">
+                            実際によく見る<br>
+                            お掃除機能のトラブル
+                        </h2>
+                    </div>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose text-center">
+                        私が現場で見てきた中でも、<br>
+                        お掃除機能に関する<br>
+                        トラブルは珍しくありません。<br><br>
+                        
+                        例えば、<br><br>
+                        
+                        <span class="bg-red-50 px-3 py-1 rounded border border-red-100 inline-block mb-1">お掃除ユニットが動かない。</span><br>
+                        <span class="bg-red-50 px-3 py-1 rounded border border-red-100 inline-block mb-1">途中で止まる。</span><br>
+                        <span class="bg-red-50 px-3 py-1 rounded border border-red-100 inline-block mb-1">変な音がする。</span><br>
+                        <span class="bg-red-50 px-3 py-1 rounded border border-red-100 inline-block mb-1">フィルターがズレる。</span><br>
+                        <span class="bg-red-50 px-3 py-1 rounded border border-red-100 inline-block mb-1">フィルターを巻き込む。</span><br>
+                        <span class="bg-red-50 px-3 py-1 rounded border border-red-100 inline-block mb-1">ホコリを回収できない。</span><br>
+                        <span class="bg-red-50 px-3 py-1 rounded border border-red-100 inline-block mb-1">定位置まで戻らない。</span><br>
+                        <span class="bg-red-50 px-3 py-1 rounded border border-red-100 inline-block mb-1">エラー表示が出る。</span><br><br>
+
+                        など。<br><br>
+                        
+                        もちろん、<br>
+                        すべてのお掃除機能付き<br>
+                        エアコンが<br><br>
+
+                        必ず故障するわけでは<br>
+                        ありません。<br><br>
+
+                        長期間、<br>
+                        問題なく動いている機種も<br>
+                        たくさんあります。<br><br>
+
+                        しかし、<br>
+                        ここで大切なのは、<br><br>
+
+                        <span class="font-black text-slate-900 underline decoration-neon decoration-4 underline-offset-4">スタンダードエアコンなら、</span><br>
+                        <span class="font-black text-slate-900 underline decoration-neon decoration-4 underline-offset-4">これらのお掃除機能特有の</span><br>
+                        <span class="font-black text-slate-900 underline decoration-neon decoration-4 underline-offset-4">故障そのものが存在しない。</span><br><br>
+
+                        ということです。
+                    </p>
+                </div>
+
+
+                <!-- 小さなスイッチひとつでもエアコンは止まります -->
+                <div class="bg-blue-50/50 rounded-[20px] border border-blue-100 p-6 md:p-8 mt-12 mb-16 text-center">
+                    <h3 class="text-xl font-black text-slate-900 text-blue-900 mb-8">
+                        小さなスイッチひとつでも<br>
+                        エアコンは止まります
+                    </h3>
+                    
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
+                        お掃除ユニットには、<br>
+                        小さなスイッチが<br>
+                        使われています。<br><br>
+                        
+                        一般的には、<br>
+                        マイクロスイッチ、<br>
+                        リミットスイッチなどと<br>
+                        呼ばれる部品です。<br><br>
+                        
+                        例えば、<br>
+                        フィルターが動く機種なら、<br>
+                        お掃除が終わったあと、<br><br>
+
+                        フィルターが<br>
+                        正しい位置まで戻ったことを<br>
+                        確認する必要があります。<br><br>
+                        
+                        ロボットが左右に<br>
+                        動く機種でも同じです。<br><br>
+
+                        お掃除が終わり、<br>
+                        ロボットが<br>
+                        定位置まで戻ったことを<br><br>
+
+                        エアコン側が<br>
+                        確認しなければなりません。<br><br>
+                        
+                        その位置を確認するために、<br>
+                        小さなスイッチが<br>
+                        使われる機種があります。<br><br>
+
+                        正常な位置まで戻る。<br>
+                        ↓<br>
+                        スイッチが押される。<br>
+                        ↓<br>
+                        エアコンの基板へ<br>
+                        「戻りました」<br>
+                        という信号が送られる。<br><br>
+
+                        非常に小さな部品ですが、<br>
+                        重要な役割を<br>
+                        持っています。<br><br>
+
+                        そして、<br>
+                        この小さな部品が<br>
+                        正常に働かなければ、<br><br>
+
+                        実際にはユニットが<br>
+                        正しい位置に戻っていても、<br><br>
+
+                        エアコン側は<br>
+                        <span class="font-black text-red-600 text-base">「戻っていない」</span><br>
+                        と判断する場合があります。
+                    </p>
+                </div>
+
+
+                <!-- パナソニック製で私が何度も見てきた症状 -->
+                <div class="mb-16 mt-20">
+                    <div class="flex flex-col items-center justify-center mb-6 text-center">
+                        <span class="w-10 h-[3px] bg-slate-800 mb-4 rounded-full"></span>
+                        <h2 class="text-xl md:text-2xl font-black text-slate-900 leading-relaxed">
+                            パナソニック製で私が<br>
+                            何度も見てきた症状
+                        </h2>
+                    </div>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose text-center">
+                        ここからは、<br>
+                        特定メーカーの話になります。<br><br>
+                        
+                        私はこれまで、<br>
+                        パナソニック製の<br>
+                        お掃除機能付きエアコンで、<br><br>
+
+                        お掃除ユニットの<br>
+                        位置検知に関係する<br>
+                        スイッチ周辺のトラブルを<br><br>
+
+                        非常に多く経験しています。<br><br>
+                        
+                        代表的なのが、<br>
+                        タイマーランプが点滅し、<br>
+                        お掃除機能に関係する<br>
+                        エラーが出る症状です。<br><br>
+
+                        パナソニック製では、<br><br>
+                        
+                        <span class="text-base font-black text-slate-900 bg-slate-200 px-3 py-1 rounded">H51</span><br><br>
+                        <span class="text-base font-black text-slate-900 bg-slate-200 px-3 py-1 rounded">H52</span><br><br>
+
+                        などの表示を伴う<br>
+                        トラブルを見ることがあります。<br><br>
+
+                        ただし、<br>
+                        エラーコードだけを見て、<br>
+                        すべて同じ部品が原因だと<br>
+                        断定することはできません。<br><br>
+                        
+                        フィルターの状態や、<br>
+                        お掃除ユニットの動作、<br>
+                        その他の原因も含めて、<br>
+                        実際に確認する必要があります。
+                    </p>
+                </div>
+
+
+                <!-- 他メーカーではほとんど経験していない -->
+                <div class="mb-16 relative mt-20 text-center">
+                    <h2 class="text-xl md:text-2xl font-black text-slate-900 mb-8 pt-8 leading-relaxed border-b-2 border-slate-200 pb-4 inline-block">
+                        他メーカーでは<br>
+                        ほとんど経験していない
+                    </h2>
+                    
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
+                        ここは、<br>
+                        あくまで私自身の<br>
+                        現場経験です。<br><br>
+                        
+                        私がこれまで担当した中では、<br>
+                        他メーカーのお掃除ユニットで、<br><br>
+
+                        同じような<br>
+                        位置検知スイッチそのものが<br>
+                        原因となるトラブルを<br><br>
+
+                        ほとんど経験していません。<br><br>
+
+                        ところが、<br>
+                        パナソニック製では、<br>
+                        同様の症状を<br>
+                        何度も見てきました。<br><br>
+                        
+                        中には、<br>
+                        設置から数年程度の機種で<br>
+                        症状が出ていたケースも<br>
+                        あります。<br><br>
+
+                        もちろん、<br>
+                        使用環境や個体差もあります。<br>
+                        すべての製品に<br>
+                        同じ症状が起きると<br>
+                        言っているわけではありません。<br><br>
+                        
+                        しかし、<br>
+                        毎日のように<br>
+                        エアコンを分解している<br>
+                        私の経験としては、<br><br>
+                        
+                        <span class="text-base font-black text-slate-900 bg-neon px-2">「珍しいトラブル」</span><br>
+                        <span class="text-base font-black text-slate-900 bg-neon px-2">とは感じていません。</span>
+                    </p>
+                </div>
+
+
+                <!-- 小さな部品でも修理は小さく済むとは限らない -->
+                <div class="mb-16 mt-20">
+                    <div class="flex flex-col items-center justify-center mb-6 text-center">
+                        <span class="w-10 h-[3px] bg-neon mb-4 rounded-full"></span>
+                        <h2 class="text-xl md:text-2xl font-black text-slate-900 tracking-wider leading-relaxed">
+                            小さな部品でも<br>
+                            修理は小さく済むとは限らない
+                        </h2>
+                    </div>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose text-center">
+                        こうしたトラブルで<br>
+                        難しいのが、<br><br>
+
+                        原因となる部品が<br>
+                        小さかったとしても、<br>
+                        修理まで簡単とは<br>
+                        限らないことです。<br><br>
+                        
+                        お掃除ユニットは、<br>
+                        モーターやギア、<br>
+                        配線などが組み合わされた<br>
+                        複雑な構造になっています。<br><br>
+
+                        小さな部品ひとつへ<br>
+                        たどり着くためにも、<br>
+                        ユニットをかなり細かく<br>
+                        分解しなければならない<br>
+                        機種があります。<br><br>
+
+                        また、<br>
+                        部品単体ではなく、<br>
+                        お掃除ユニット一式での<br>
+                        交換になるケースもあります。<br><br>
+                        
+                        つまり、<br><br>
+
+                        <span class="font-black text-red-600 text-lg underline decoration-red-200 decoration-4 underline-offset-4">壊れた物は小さくても、</span><br>
+                        <span class="font-black text-red-600 text-lg underline decoration-red-200 decoration-4 underline-offset-4">修理は大きくなることがある。</span><br><br>
+
+                        これも、<br>
+                        複雑な機構を持つ<br>
+                        エアコンならではの問題です。
+                    </p>
+                </div>
+
+
+                <!-- エアコンクリーニング後に症状が出ることもあります -->
+                <div class="bg-slate-50 border border-slate-200 rounded-[16px] px-4 md:px-6 py-8 mt-12 mb-16 text-center">
+                    <h3 class="text-lg md:text-xl font-black text-slate-900 mb-6 border-b-2 border-slate-200 pb-3 inline-block leading-relaxed">
+                        エアコンクリーニング後に<br>
+                        症状が出ることもあります
+                    </h3>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
+                        これは、<br>
+                        私たちクリーニング業者にとっても<br>
+                        非常に難しい問題です。<br><br>
+
+                        何年も使われてきた<br>
+                        お掃除機能付きエアコン。<br><br>
+                        
+                        洗浄するために分解し、<br>
+                        作業後に組み立てる。<br><br>
+                        
+                        そして、<br>
+                        そのタイミングで<br>
+                        以前から劣化していた部品に<br>
+                        症状が出ることがあります。<br><br>
+                        
+                        当然、<br>
+                        お客様から見れば、<br><br>
+                        
+                        <span class="bg-red-50 px-3 py-2 rounded-lg font-black text-slate-800 border border-red-100 inline-block mb-2">
+                            「洗う前は動いていたのに、<br>洗ったら壊れた」
+                        </span><br><br>
+                        
+                        となります。<br>
+                        そう思われるのも<br>
+                        無理はありません。<br><br>
+                        
+                        だからこそ、<br>
+                        私たち施工する側も、<br>
+                        お掃除ユニットの動作確認には<br>
+                        非常に気を使います。<br><br>
+                        
+                        しかし、<br>
+                        長年使用されてきた<br>
+                        電装部品や可動部品は、<br>
+                        新品ではありません。<br><br>
+
+                        クリーニングによって<br>
+                        エアコン内部の汚れは<br>
+                        落とすことができます。<br><br>
+                        
+                        しかし、<br>
+                        <span class="font-black text-slate-900 underline decoration-blue-300 decoration-4 underline-offset-4">経年劣化した部品まで</span><br>
+                        <span class="font-black text-slate-900 underline decoration-blue-300 decoration-4 underline-offset-4">新品に戻すことはできません。</span><br><br>
+
+                        ここは、<br>
+                        ぜひ知っておいてほしい<br>
+                        部分です。
+                    </p>
+                </div>
+
+
+                <!-- 高機能になるほど問題は「故障」だけではない -->
+                <div class="mb-16 mt-20">
+                    <div class="flex flex-col items-center justify-center mb-6 text-center">
+                        <span class="w-10 h-[3px] bg-slate-800 mb-4 rounded-full"></span>
+                        <h2 class="text-xl md:text-2xl font-black text-slate-900 leading-relaxed">
+                            高機能になるほど<br>
+                            問題は「故障」だけではない
+                        </h2>
+                    </div>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose text-center mb-8">
+                        そして、<br>
+                        私がお掃除機能付きエアコンを<br>
+                        積極的におすすめしない理由は、<br>
+                        故障だけではありません。<br><br>
+
+                        機能を追加する。<br>
+                        ↓<br>
+                        部品が増える。<br>
+                        ↓<br>
+                        機構が複雑になる。<br>
+                        ↓<br>
+                        空気の流れを<br>邪魔する物も増える。<br>
+                        ↓<br>
+                        <span class="font-black text-red-600">汚れが溜まりやすくなる。</span><br>
+                        ↓<br>
+                        さらに、<br>
+                        故障につながる部品も増える。<br>
+                        ↓<br>
+                        <span class="font-black text-slate-900 bg-neon px-2">スタンダードには存在しない</span><br>
+                        <span class="font-black text-slate-900 bg-neon px-2">トラブルまで増える。</span><br><br>
+
+                        これが、<br>
+                        実際に内部を見続けてきた<br>
+                        私の考えです。
+                    </p>
+
+                    <!-- 隠しボタン風リンク -->
+                    <div class="flex justify-center mt-6">
+                        <a href="/tips/robot/" class="inline-block text-xs font-bold text-slate-300 hover:text-slate-500 transition-colors border border-slate-100 hover:border-slate-300 rounded-full px-4 py-2 opacity-50 hover:opacity-100">
+                            お掃除機能付きエアコンがどのように汚れやすいのか？詳しく書いた記事はコチラ ↗️
+                        </a>
+                    </div>
+                </div>
+
+
+                <!-- スタンダードは「機能が少ない」のではない -->
+                <div class="mb-16 mt-20">
+                    <div class="flex flex-col items-center justify-center mb-6 text-center">
+                        <span class="w-10 h-[3px] bg-neon mb-4 rounded-full"></span>
+                        <h2 class="text-xl md:text-2xl font-black text-slate-900 tracking-wider leading-relaxed">
+                            スタンダードは<br>
+                            「機能が少ない」のではない
+                        </h2>
+                    </div>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose text-center">
+                        スタンダードエアコンを見ると、<br><br>
+                        
+                        「安いモデル」<br>
+                        「下位モデル」<br>
+                        「機能が少ないエアコン」<br><br>
+                        
+                        というイメージを<br>
+                        持つ方もいると思います。<br><br>
+
+                        私は、<br>
+                        そんなふうには<br>
+                        考えていません。<br><br>
+                        
+                        スタンダードは、<br><br>
+                        
+                        <span class="text-base font-black text-slate-900 underline decoration-neon decoration-4 underline-offset-4">壊れる可能性のある物が少ない。</span><br>
+                        そして、<br>
+                        <span class="text-base font-black text-slate-900 underline decoration-neon decoration-4 underline-offset-4">汚れの原因となる物も少ない。</span><br><br>
+
+                        私は、<br>
+                        それを大きなメリットだと<br>
+                        考えています。
+                    </p>
+                </div>
+
+
+                <!-- 高機能＝上位？シンプル＝下位？ -->
+                <div class="bg-blue-50/50 rounded-[20px] border border-blue-100 p-6 md:p-8 mt-12 mb-16 text-center">
+                    <h3 class="text-xl font-black text-slate-900 text-blue-900 mb-8">
+                        高機能＝上位？<br>
+                        シンプル＝下位？
+                    </h3>
+                    
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
+                        高機能＝上位。<br>
+                        シンプル＝下位。<br><br>
+                        
+                        私は、<br>
+                        そんなふうには<br>
+                        考えていません。<br><br>
+                        
+                        毎日のように<br>
+                        エアコンを分解し、<br>
+                        汚れや故障を<br>
+                        見ている立場からすると、<br><br>
+                        
+                        使わない機能のために<br>
+                        価格が上がり、<br>
+                        汚れや故障の原因まで<br>
+                        増えるのであれば、<br><br>
+                        
+                        私には、<br>
+                        「価値がある」<br>
+                        とは思えません。<br><br>
+                        
+                        むしろ、<br>
+                        余計な物が付いていない。<br><br>
+                        
+                        <span class="font-black text-slate-900 text-base">だから、汚れにくい。</span><br>
+                        <span class="font-black text-slate-900 text-base">だから、壊れる場所も少ない。</span><br><br>
+                        
+                        そして、<br>
+                        価格も抑えられる。<br><br>
+                        
+                        私がスタンダードエアコンを<br>
+                        好むのは、<br>
+                        安いからではありません。<br><br>
+                        
+                        <span class="text-base font-black text-slate-900 bg-neon px-2">シンプルな構造が、</span><br>
+                        <span class="text-base font-black text-slate-900 bg-neon px-2">一番理にかなっていると</span><br>
+                        <span class="text-base font-black text-slate-900 bg-neon px-2">思っているからです。</span>
+                    </p>
+                </div>
+
+
+                <!-- ただし暖房を重視する家庭は別の話 -->
+                <div class="mb-16 mt-20">
+                    <div class="flex flex-col items-center justify-center mb-6 text-center">
+                        <span class="w-10 h-[3px] bg-slate-800 mb-4 rounded-full"></span>
+                        <h2 class="text-xl md:text-2xl font-black text-slate-900 leading-relaxed">
+                            ただし<br>
+                            暖房を重視する家庭は別の話
+                        </h2>
+                    </div>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose text-center">
+                        ここまで読むと、<br><br>
+                        
+                        「じゃあ全部スタンダードで<br>いいんじゃないの？」<br><br>
+                        
+                        と思うかもしれません。<br><br>
+
+                        しかし、<br>
+                        ひとつだけ、<br>
+                        私も簡単には<br>
+                        答えられない部分があります。<br><br>
+                        
+                        それが、<br>
+                        <span class="font-black text-red-600 text-lg">冬の暖房性能</span>です。<br><br>
+
+                        エアコンで暖房すると、<br>
+                        外気温や湿度などの条件によって、<br>
+                        室外機に霜が<br>
+                        付着することがあります。<br><br>
+                        
+                        その霜を溶かすために行うのが、<br>
+                        霜取り運転です。<br><br>
+                        
+                        霜取り運転に入れば、<br>
+                        一時的に暖房が弱くなったり、<br>
+                        温風が止まったりすることが<br>
+                        あります。<br><br>
+                        
+                        そして、<br>
+                        低温時の暖房能力や、<br>
+                        霜取りに対する制御などは、<br>
+                        機種によって違います。<br><br>
+                        
+                        暖房性能を重視した<br>
+                        高性能モデルには、<br>
+                        冬場の快適性を高めるための<br>
+                        さまざまな技術が<br>
+                        使われています。<br><br>
+                        
+                        ここは、<br>
+                        高性能モデルの<br>
+                        大きなメリットになり得ます。
+                    </p>
+                </div>
+
+
+                <!-- でも欲しい性能だけを選べないことがある -->
+                <div class="mb-16 mt-20">
+                    <div class="flex flex-col items-center justify-center mb-8 text-center">
+                        <span class="w-10 h-[3px] bg-neon mb-4 rounded-full"></span>
+                        <h2 class="text-lg md:text-xl font-black text-slate-900 tracking-wider leading-relaxed">
+                            でも欲しい性能だけを<br>
+                            選べないことがある
+                        </h2>
+                    </div>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose text-center">
+                        私が難しいと感じるのは、<br>
+                        ここです。<br><br>
+                        
+                        冬の暖房性能は欲しい。<br>
+                        でも、<br>
+                        その性能を求めて<br>
+                        上位モデルを選ぶと、<br><br>
+                        
+                        お掃除機能など、<br>
+                        自分には必要ない<br>
+                        付加機能まで<br>
+                        一緒に付いてくることがあります。<br><br>
+                        
+                        つまり、<br>
+                        天秤にかける必要があります。<br><br>
+                        
+                        <span class="font-black text-slate-900 underline decoration-red-300 decoration-4 underline-offset-4">暖房時の快適性を</span><br>
+                        <span class="font-black text-slate-900 underline decoration-red-300 decoration-4 underline-offset-4">優先するのか。</span><br><br>
+                        
+                        それとも、<br><br>
+                        
+                        <span class="font-black text-slate-900 underline decoration-blue-300 decoration-4 underline-offset-4">シンプルな構造による</span><br>
+                        <span class="font-black text-slate-900 underline decoration-blue-300 decoration-4 underline-offset-4">汚れにくさや、</span><br>
+                        <span class="font-black text-slate-900 underline decoration-blue-300 decoration-4 underline-offset-4">故障箇所の少なさを</span><br>
+                        <span class="font-black text-slate-900 underline decoration-blue-300 decoration-4 underline-offset-4">優先するのか。</span><br><br>
+                        
+                        どちらを重視するかは、<br>
+                        その家庭の使い方によって<br>
+                        変わります。
+                    </p>
+                </div>
+
+
+                <!-- 私ならそれでもスタンダードを選びます -->
+                <div class="bg-slate-50 border border-slate-200 rounded-[16px] px-4 md:px-6 py-8 mt-12 mb-16 text-center">
+                    <h3 class="text-lg md:text-xl font-black text-slate-900 mb-6 border-b-2 border-slate-200 pb-3 inline-block leading-relaxed">
+                        私なら<br>
+                        それでもスタンダードを選びます
+                    </h3>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
+                        ちなみに、<br>
+                        私自身も冬場は、<br>
+                        エアコン暖房を<br>
+                        メインで使います。<br><br>
+                        
+                        それでも、<br>
+                        私なら、<br>
+                        <span class="font-black text-slate-900 text-base">スタンダードエアコンを</span><br>
+                        <span class="font-black text-slate-900 text-base">選びます。</span><br><br>
+                        
+                        霜取り運転に入る可能性も、<br>
+                        最初から承知したうえで<br>
+                        選びます。<br><br>
+                        
+                        そして、<br>
+                        霜取り運転に入ったときや、<br>
+                        エアコンだけでは<br>
+                        寒いと感じるときだけ、<br><br>
+                        
+                        別の暖房器具で補います。<br><br>
+                        
+                        普段は、<br>
+                        シンプルなエアコンに任せる。<br><br>
+                        
+                        苦手な場面だけ、<br>
+                        別の暖房器具で補ってあげる。<br><br>
+                        
+                        <span class="text-base font-black text-slate-900 bg-neon px-2">ひとつの機械に、</span><br>
+                        <span class="text-base font-black text-slate-900 bg-neon px-2">何もかもやらせようとしない。</span><br><br>
+                        
+                        私は、<br>
+                        この使い方が好きです。
+                    </p>
+                </div>
+
+
+                <!-- 必要な「性能」と欲しい「機能」は別物です -->
+                <div class="mb-16 mt-20">
+                    <div class="flex flex-col items-center justify-center mb-6 text-center">
+                        <span class="w-10 h-[3px] bg-slate-800 mb-4 rounded-full"></span>
+                        <h2 class="text-xl md:text-2xl font-black text-slate-900 leading-relaxed">
+                            必要な「性能」と<br>
+                            欲しい「機能」は別物です
+                        </h2>
+                    </div>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose text-center">
+                        私がエアコンを選ぶとき、<br>
+                        大切だと思っているのは、<br>
+                        ここです。<br><br>
+                        
+                        必要な性能には、<br>
+                        お金を払う。<br><br>
+                        
+                        でも、<br>
+                        <span class="font-black text-red-600">使わない機能には、<br>お金を払わない。</span><br><br>
+                        
+                        冷房能力。<br>
+                        暖房能力。<br>
+                        低温時の性能。<br>
+                        省エネ性能。<br><br>
+                        
+                        こうしたものは、<br>
+                        家庭によって必要性が<br>
+                        変わります。<br><br>
+                        
+                        一方で、<br>
+                        便利そうに見える機能が、<br>
+                        本当に自分の生活に<br>
+                        必要なのか。<br><br>
+                        
+                        そこは、<br>
+                        一度考えてみても<br>
+                        いいと思います。
+                    </p>
+                </div>
+
+
+                <!-- 「付いている方が上」とは限りません -->
+                <div class="mb-16 mt-20">
+                    <div class="flex flex-col items-center justify-center mb-6 text-center">
+                        <span class="w-10 h-[3px] bg-neon mb-4 rounded-full"></span>
+                        <h2 class="text-xl md:text-2xl font-black text-slate-900 tracking-wider leading-relaxed">
+                            「付いている方が上」<br>
+                            とは限りません
+                        </h2>
+                    </div>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose text-center">
+                        エアコンは、<br>
+                        毎年のように<br>
+                        新しい機能が追加され、<br>
+                        高機能になっています。<br><br>
+                        
+                        便利な機能を<br>
+                        必要としている人にとっては、<br>
+                        もちろん、<br>
+                        それが価値になります。<br><br>
+                        
+                        でも、<br>
+                        必要としていない人にまで、<br>
+                        必ず価値があるとは<br>
+                        私は思いません。<br><br>
+                        
+                        機能が増えれば、<br>
+                        構造も複雑になります。<br>
+                        構造が複雑になれば、<br>
+                        汚れ方にも影響します。<br><br>
+                        
+                        そして、<br>
+                        故障する可能性のある<br>
+                        部品も増えます。<br><br>
+                        
+                        だから私は、<br>
+                        エアコンを選ぶとき、<br><br>
+                        
+                        「何が付いているか」<br>
+                        だけではなく、<br><br>
+                        
+                        <span class="text-base font-black text-slate-900 bg-neon px-2">「何が付いていないか」</span><br>
+                        <span class="text-base font-black text-slate-900 bg-neon px-2">も見てほしいと思っています。</span>
+                    </p>
+                </div>
+
+
+                <!-- シンプルなのには理由があります -->
+                <div class="mb-16 relative mt-20 text-center">
+                    <h2 class="text-xl md:text-2xl font-black text-slate-900 mb-8 pt-8 leading-relaxed border-b-2 border-slate-200 pb-4 inline-block">
+                        シンプルなのには<br>
+                        理由があります
+                    </h2>
+                    
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
+                        スタンダードエアコンは、<br>
+                        派手ではありません。<br><br>
+                        
+                        自動でフィルターを<br>
+                        掃除してくれない。<br>
+                        たくさんの便利機能も<br>
+                        付いていない。<br><br>
+                        
+                        でも、<br>
+                        だからこそ、<br>
+                        構造がシンプルです。<br><br>
+                        
+                        そして、<br>
+                        そのシンプルさには、<br>
+                        ちゃんとメリットがあります。<br><br>
+                        
+                        <span class="font-black text-slate-900 underline decoration-blue-300 decoration-4 underline-offset-4">汚れの原因となる物が少ない。</span><br>
+                        <span class="font-black text-slate-900 underline decoration-blue-300 decoration-4 underline-offset-4">故障する可能性のある物も少ない。</span><br>
+                        <span class="font-black text-slate-900 underline decoration-blue-300 decoration-4 underline-offset-4">クリーニングもしやすい。</span><br>
+                        <span class="font-black text-slate-900 underline decoration-blue-300 decoration-4 underline-offset-4">維持費も抑えやすい。</span><br><br>
+
+                        私が、<br>
+                        スタンダードエアコンを<br>
+                        好む理由は、<br>
+                        そこにあります。<br><br>
+                        
+                        安いから選ぶのではありません。<br>
+                        シンプルだから選ぶ。<br><br>
+                        
+                        毎日のように、<br>
+                        さまざまなエアコンを<br>
+                        分解しているからこそ、<br><br>
+                        
+                        私は、<br>
+                        <span class="text-base font-black text-slate-900 bg-neon px-2">シンプルな構造が</span><br>
+                        <span class="text-base font-black text-slate-900 bg-neon px-2">一番理にかなっている。</span><br><br>
+                        
+                        そう考えています。
+                    </p>
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- ネイビーのカード (ONE★STARが大切にしていること) -->
+        <div class="bg-slate-900 rounded-[24px] border-l-[12px] border-neon p-8 md:p-10 text-center shadow-md mb-10">
+            
+            <h2 class="text-white font-black text-xl md:text-2xl leading-relaxed mb-10 tracking-wider">
+                エアコン選びで<br>
+                迷ったら
+            </h2>
+
+            <p class="text-slate-100 font-bold text-[15px] md:text-base leading-loose mb-10">
+                新しいエアコンを買うとき、<br><br>
+                
+                「どれを選べばいいか分からない」<br><br>
+                
+                と迷う方はとても多いです。<br><br>
+                
+                家電量販店へ行けば、<br>
+                高機能な最新モデルが<br>
+                ずらりと並んでいます。<br><br>
+                
+                もちろん、<br>
+                最新機能に魅力を感じるなら、<br>
+                それを選ぶのも正解です。
+            </p>
+
+            <!-- 区切り線 -->
+            <div class="w-16 h-[1px] bg-slate-600 mx-auto mb-10"></div>
+
+            <p class="text-slate-100 font-bold text-[15px] md:text-base leading-loose">
+                でも、もしあなたが、<br><br>
+                
+                <span class="text-white font-black text-base underline decoration-neon decoration-4 underline-offset-4">汚れにくさ</span>や、<br>
+                <span class="text-white font-black text-base underline decoration-neon decoration-4 underline-offset-4">壊れにくさ</span>、<br>
+                <span class="text-white font-black text-base underline decoration-neon decoration-4 underline-offset-4">お手入れのしやすさ</span>を<br>
+                大切にしたいのなら。<br><br>
+                
+                一度、<br>
+                「スタンダードエアコン」という<br>
+                選択肢にも<br>
+                目を向けてみてください。<br><br>
+                
+                <span class="text-neon font-black text-base">シンプルな構造の強さ</span>を、<br>
+                きっと実感できるはずです。
+            </p>
+        </div>
+
+
+        <!-- ご相談誘導ブロック -->
+        <div class="bg-white rounded-2xl border border-slate-200 p-8 text-center shadow-sm mb-12">
+            <h2 class="text-xl md:text-2xl font-black text-slate-900 mb-8 leading-relaxed">
+                今のエアコンの調子が<br>
+                気になるときは
+            </h2>
+            
+            <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose mb-10">
+                お掃除機能付きエアコンを使っていて、<br><br>
+                
+                <span class="text-slate-900 font-black">「最近、変な音がする」</span><br><br>
+                
+                <span class="text-slate-900 font-black">「ホコリが取れていない気がする」</span><br><br>
+                
+                <span class="text-slate-900 font-black">「奥の方にカビが見える」</span><br><br>
+                
+                そんな場合は、<br>
+                お掃除ユニットの不具合や<br>
+                内部の汚れが原因かもしれません。<br><br>
+                
+                複雑な構造のため、<br>
+                ご自身での分解は<br>
+                故障のリスクが高く危険です。<br><br>
+                
+                気になるときは、<br>
+                無理をせずご相談ください。
+            </p>
+            
+            <a href="#" class="js-phone-modal-trigger inline-flex items-center justify-center bg-slate-900 hover:bg-slate-800 text-neon px-8 py-4 rounded-full text-base font-black shadow-md transition-all active:scale-95">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                <span>電話で相談する</span>
+            </a>
+        </div>
+
+        <!-- 関連する施工事例へのリンク -->
+        <div class="mt-16 text-center">
+            <div class="flex flex-col items-center justify-center mb-6">
+                <span class="w-10 h-[3px] bg-slate-800 mb-4 rounded-full"></span>
+                <h2 class="text-xl md:text-2xl font-black text-slate-900 tracking-wider leading-relaxed">
+                    実際の現場も見てみる
+                </h2>
+            </div>
+            
+            <button type="button" onclick="showToast(event)" class="block w-full bg-white rounded-2xl border-2 border-slate-900 p-6 md:p-8 shadow-sm hover:shadow-md transition-all active:scale-95 group relative overflow-hidden text-center cursor-pointer">
+                <!-- 装飾 -->
+                <div class="absolute top-0 left-0 w-full h-2 bg-neon"></div>
+                
+                <p class="text-[11px] md:text-sm font-black text-slate-500 mb-3 tracking-widest">
+                    関連する施工事例
+                </p>
+                
+                <h3 class="text-[17px] md:text-xl font-black text-slate-900 mb-8 leading-relaxed">
+                    「お掃除機能付きエアコンの<br>分解洗浄事例」
+                </h3>
+                
+                <div class="inline-flex items-center justify-center bg-slate-900 text-neon px-6 py-3.5 rounded-full text-[15px] font-black group-hover:bg-slate-800 transition-colors w-full md:w-auto shadow-md">
+                    ▶ この施工事例を見る
+                </div>
+            </button>
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-900 text-white pt-12 pb-24 md:pb-12 border-t-[6px] border-neon text-center mt-12">
+        <div class="mb-6 flex flex-col items-center justify-center">
+            <span class="text-4xl md:text-5xl tracking-widest text-white flex items-center justify-center font-impact mt-1">
+                ONE
+                <span class="inline-block w-3"></span>
+                STAR
+            </span>
+            <p class="text-xs text-neon font-black mt-2 tracking-widest">株式会社ECS専属プロスタッフ</p>
+        </div>
+        
+        <p class="text-[11px] text-slate-400 font-bold mb-3">
+            <a href="#" class="hover:text-white transition-colors underline underline-offset-4">オリジナルLINEスタンプ販売中</a>
+        </p>
+        <p class="text-[10px] text-slate-500 font-bold mb-4">
+            <a href="#" class="hover:text-white transition-colors">プライバシーポリシー</a>
+        </p>
+        <p class="text-[10px] text-slate-500 font-bold tracking-wider">© 2026 ONE★STAR. All Rights Reserved.</p>
+    </footer>
+
+    <!-- MOBILE BOTTOM NAVIGATION -->
+    <div class="fixed bottom-0 left-0 right-0 z-45 bg-slate-900 md:hidden h-[60px] flex items-stretch text-white shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.3)] border-t border-slate-800">
+        
+        <a href="#" class="flex flex-col items-center justify-center w-[20%] border-r border-slate-700 active:bg-slate-800">
+            <svg class="w-5 h-5 mb-1 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <span class="text-[9px] font-black">料金</span>
+        </a>
+        
+        <a href="#" class="flex flex-col items-center justify-center w-[20%] border-r border-slate-700 active:bg-slate-800">
+            <svg class="w-5 h-5 mb-1 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+            <span class="text-[9px] font-black">想い</span>
+        </a>
+
+        <a href="#" class="flex flex-col items-center justify-center w-[20%] active:bg-slate-800">
+            <svg class="w-5 h-5 mb-1 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+            <span class="text-[9px] font-black">拘り</span>
+        </a>
+        
+        <a href="#" class="js-phone-modal-trigger flex items-center justify-center bg-neon text-slate-900 w-[40%] font-black text-base active:bg-yellow-400 transition-colors">
+            <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+            電話する
+        </a>
+        
+    </div>
+
+    <!-- 🌟 ご予約・お問い合わせ前のワンクッションモーダル 🌟 -->
+    <div id="phone-modal" class="fixed inset-0 z-[100] hidden flex items-center justify-center px-4">
+        <div id="phone-modal-backdrop" class="absolute inset-0 bg-slate-900/80 backdrop-blur-sm opacity-0 transition-opacity duration-300"></div>
+        
+        <div id="phone-modal-content" class="relative bg-white rounded-3xl shadow-2xl w-full max-w-sm overflow-hidden transform scale-95 opacity-0 transition-all duration-300 border border-slate-100">
+            
+            <button id="phone-modal-close" class="absolute top-4 right-4 p-2 text-slate-400 hover:text-slate-700 bg-slate-100 hover:bg-slate-200 rounded-full transition-colors z-10">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+            
+            <div class="p-6 md:p-8 text-center pt-10">
+                
+                <h3 class="text-xl font-black text-slate-900 mb-6 border-b-4 border-[#EFFF00] inline-block pb-1">
+                    ご予約・お問い合わせの前に
+                </h3>
+                
+                <div class="text-[13px] text-slate-700 font-bold leading-relaxed mb-8 space-y-4 text-left bg-slate-50 p-5 rounded-2xl border border-slate-100 shadow-inner">
+                    <p>
+                        <span class="text-slate-900 font-black text-sm">ONE★STAR</span>は<br>
+                        株式会社ECS（エッジクリーンサービス）の専属プロスタッフとして活動しています。
+                    </p>
+                    <p class="pt-2 border-t border-slate-200">
+                        お電話は<br>
+                        <span class="text-slate-900 font-black">株式会社ECSの予約受付</span>につながります。
+                    </p>
+                    
+                    <div class="bg-rose-50 border border-rose-200 p-3 rounded-xl text-center shadow-sm">
+                        <p class="text-rose-600 font-black text-[13px] leading-tight">
+                            ご予約の際は<br>
+                            <span class="text-base">「ONE★STAR（川崎）を指名」</span>と<br>
+                            お伝えください。
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="space-y-3">
+                    <a href="#" class="flex items-center justify-center w-full py-4 bg-slate-900 text-[#EFFF00] font-black rounded-2xl shadow-md active:scale-95 transition-transform text-sm sm:text-base border border-slate-800">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                        株式会社ECSへ電話する
+                    </a>
+                    
+                    <a href="#" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center w-full py-4 bg-gradient-to-r from-pink-500 to-rose-500 text-white font-black rounded-2xl shadow-md active:scale-95 transition-transform text-sm sm:text-base">
+                        <svg class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                        </svg>
+                        Instagramで本人に相談する
+                    </a>
+                </div>
+                
+                <p class="text-[10px] text-slate-500 mt-4 font-bold leading-relaxed">
+                    直接のご質問・お問い合わせは<br>本人直通のInstagram DMからお気軽にどうぞ。
+                </p>
+                
+                <button id="phone-modal-cancel" class="mt-6 text-[11px] text-slate-400 font-bold underline underline-offset-4 hover:text-slate-600 transition-colors">
+                    キャンセルして戻る
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 🚧 トースト表示用（初期状態は透明・クリック不可） -->
+    <div id="toast" class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-[110] bg-slate-900/95 backdrop-blur-md text-white px-6 py-4 rounded-2xl shadow-[0_10px_40px_rgba(0,0,0,0.3)] flex items-center space-x-3 opacity-0 pointer-events-none transition-opacity duration-300">
+        <span class="text-2xl">🚧</span>
+        <span class="font-black text-[15px] tracking-widest whitespace-nowrap">ただいま準備中です。</span>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script>
+        // === トースト表示関数 ===
+        let toastTimeout;
+        function showToast(e) {
+            e.preventDefault(); // デフォルトのボタン動作を防ぐ
+            const toast = document.getElementById('toast');
+            
+            // すでにタイマーが動いていたらクリア
+            if (toastTimeout) {
+                clearTimeout(toastTimeout);
+            }
+            
+            // 表示
+            toast.classList.remove('opacity-0');
+            toast.classList.add('opacity-100');
+            
+            // 3秒後に非表示
+            toastTimeout = setTimeout(() => {
+                toast.classList.remove('opacity-100');
+                toast.classList.add('opacity-0');
+            }, 3000);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // === メニュー開閉用 ===
+            const drawerContainer = document.getElementById('drawer-container');
+            const drawerMenu = document.getElementById('drawer-menu');
+            const drawerBackdrop = document.getElementById('drawer-backdrop');
+            
+            const toggleMenu = (show) => {
+                if (show) {
+                    drawerContainer.classList.remove('hidden');
+                    setTimeout(() => {
+                        drawerBackdrop.classList.remove('opacity-0');
+                        drawerBackdrop.classList.add('opacity-100');
+                        drawerMenu.classList.remove('drawer-closed');
+                        drawerMenu.classList.add('drawer-open');
+                    }, 10);
+                } else {
+                    drawerBackdrop.classList.remove('opacity-100');
+                    drawerBackdrop.classList.add('opacity-0');
+                    drawerMenu.classList.remove('drawer-open');
+                    drawerMenu.classList.add('drawer-closed');
+                    setTimeout(() => drawerContainer.classList.add('hidden'), 300);
+                }
+            };
+
+            document.getElementById('menu-open-btn').addEventListener('click', () => toggleMenu(true));
+            document.getElementById('menu-close-btn').addEventListener('click', () => toggleMenu(false));
+            document.getElementById('drawer-backdrop').addEventListener('click', () => toggleMenu(false));
+            document.querySelectorAll('.menu-link').forEach(link => link.addEventListener('click', () => toggleMenu(false)));
+
+            // === 電話モーダル ===
+            const phoneModal = document.getElementById('phone-modal');
+            const phoneModalBackdrop = document.getElementById('phone-modal-backdrop');
+            const phoneModalContent = document.getElementById('phone-modal-content');
+            const phoneModalCloseBtn = document.getElementById('phone-modal-close');
+            const phoneModalCancelBtn = document.getElementById('phone-modal-cancel');
+            const phoneTriggerBtns = document.querySelectorAll('.js-phone-modal-trigger');
+
+            if (phoneModal && phoneTriggerBtns.length > 0) {
+                const openPhoneModal = (e) => {
+                    e.preventDefault(); 
+                    if (typeof toggleMenu === 'function') toggleMenu(false);
+
+                    phoneModal.classList.remove('hidden');
+                    requestAnimationFrame(() => {
+                        phoneModalBackdrop.classList.remove('opacity-0');
+                        phoneModalBackdrop.classList.add('opacity-100');
+                        phoneModalContent.classList.remove('opacity-0', 'scale-95');
+                        phoneModalContent.classList.add('opacity-100', 'scale-100');
+                    });
+                };
+
+                const closePhoneModal = () => {
+                    phoneModalBackdrop.classList.remove('opacity-100');
+                    phoneModalBackdrop.classList.add('opacity-0');
+                    phoneModalContent.classList.remove('opacity-100', 'scale-100');
+                    phoneModalContent.classList.add('opacity-0', 'scale-95');
+                    setTimeout(() => phoneModal.classList.add('hidden'), 300);
+                };
+
+                phoneTriggerBtns.forEach(btn => btn.addEventListener('click', openPhoneModal));
+                phoneModalCloseBtn.addEventListener('click', closePhoneModal);
+                phoneModalCancelBtn.addEventListener('click', closePhoneModal);
+                phoneModalBackdrop.addEventListener('click', closePhoneModal);
+            }
+        });
+    </script>
+</body>
+</html>
+
+
+```
