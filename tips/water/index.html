@@ -1,0 +1,1220 @@
+```html
+<!DOCTYPE html>
+<html lang="ja" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>エアコンから水漏れ！原因と応急処置 | ONE★STAR</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        neon: '#EFFF00' // トレードカラー：蛍光イエロー
+                    },
+                    fontFamily: {
+                        sans: ['"Noto Sans JP"', 'sans-serif'],
+                        impact: ['"Black Ops One"', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        /* ドロワーメニュー用 */
+        #drawer-menu { transition: transform 0.3s ease-in-out; }
+        .drawer-closed { transform: translateX(-100%); }
+        .drawer-open { transform: translateX(0); }
+    </style>
+</head>
+<body class="font-sans text-slate-800 bg-slate-50 antialiased overflow-x-hidden pb-[60px]">
+
+    <!-- HEADER -->
+    <header class="fixed top-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md shadow-sm border-b border-slate-100 h-14 flex items-center justify-between px-4">
+        <button id="menu-open-btn" class="p-2 hover:bg-slate-100 rounded-lg" aria-label="メニュー">
+            <svg class="w-6 h-6 text-slate-800" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+
+        <div class="absolute left-1/2 -translate-x-1/2 flex items-center justify-center mt-1">
+            <a href="/" class="text-2xl md:text-3xl tracking-widest text-slate-900 leading-none flex items-center font-impact">
+                ONE
+                <img src="ONESTAR.PNG" alt="ロゴ" class="w-[45px] h-[45px] md:w-[55px] md:h-[55px] mx-[-4px] md:mx-[-6px] object-contain -translate-y-[4px]" onerror="this.style.display='none'">
+                STAR
+            </a>
+        </div>
+
+        <div class="hidden md:flex items-center space-x-3">
+            <a href="tel:08000807788" class="js-phone-modal-trigger bg-slate-900 hover:bg-slate-800 text-neon px-4 py-1.5 rounded-full text-xs font-black border border-slate-700 flex items-center space-x-1 transition-all">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                <span>電話相談</span>
+            </a>
+        </div>
+        <div class="w-10 md:hidden"></div>
+    </header>
+
+    <!-- DRAWER MENU -->
+    <div id="drawer-container" class="fixed inset-0 z-50 overflow-hidden hidden">
+        <div id="drawer-backdrop" class="absolute inset-0 bg-slate-900/60 opacity-0 transition-opacity duration-300"></div>
+        <div class="pointer-events-none fixed inset-y-0 left-0 flex max-w-full">
+            <div id="drawer-menu" class="pointer-events-auto w-64 drawer-closed bg-white shadow-2xl flex flex-col h-full">
+                
+                <div class="p-3 bg-white flex justify-end">
+                    <button id="menu-close-btn" class="p-2 hover:bg-slate-100 rounded-lg">
+                        <svg class="w-6 h-6 text-slate-500" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+                    </button>
+                </div>
+
+                <div class="bg-blue-600 py-3 px-6">
+                    <h2 class="text-white font-black tracking-wider text-sm">MENU</h2>
+                </div>
+
+                <nav class="flex-1 px-4 py-2 overflow-y-auto">
+                    <div class="space-y-1">
+                        <a href="/" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>トップページ
+                        </a>
+                        <a href="/price" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>料金プラン
+                        </a>
+                        <a href="/works" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>施工事例
+                        </a>
+                        <a href="/mind" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>ONE★STARの想い
+                        </a>
+                        <a href="/pride" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>プロとしての拘り
+                        </a>
+                        <a href="/trash" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>ここだけの話
+                        </a>
+                        <a href="/before" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>ご予約の前に
+                        </a>
+                        <a href="/faq" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>よくある質問
+                        </a>
+                        <a href="/tips" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-blue-600">
+                            <span class="mr-2 text-blue-600">＞</span>お役立ち情報
+                        </a>
+                        <a href="/products" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-[#06C755]">
+                            <span class="mr-2 text-slate-400">＞</span>オリジナルLINEスタンプ
+                        </a>
+                    </div>
+                    
+                    <hr class="border-slate-300 border-dashed my-4">
+                    <a href="https://www.edge-cleanservice.com" target="_blank" rel="noopener noreferrer" class="menu-link flex items-center py-2 text-sm font-black text-slate-900 hover:text-blue-600 transition-colors">
+                        株式会社ECS公式サイト
+                        <svg class="w-3.5 h-3.5 ml-1.5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                    </a>
+                </nav>
+
+                <div class="p-4 bg-slate-50 border-t border-slate-100 text-center mt-auto">
+                    <p class="text-[9px] text-slate-500 font-bold leading-relaxed mb-2">
+                        株式会社ECS EDGE CLEAN SERVICE<br>専属プロスタッフとして<br>愛知県全域で毎日奮闘中❣️
+                    </p>
+                    <a href="tel:08000807788" class="js-phone-modal-trigger block w-full py-3 bg-emerald-500 text-white font-bold rounded-lg text-sm shadow">直接電話する</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN (お役立ち情報：エアコンの水漏れ) -->
+    <main class="pt-24 pb-12 px-4 max-w-3xl mx-auto">
+
+        <!-- ＝＝＝ 白いメインカード ＝＝＝ -->
+        <div class="bg-white rounded-[24px] border-2 border-slate-900 overflow-hidden shadow-sm mb-10">
+            <!-- 上部の黄色いライン -->
+            <div class="h-3 w-full bg-neon"></div>
+
+            <div class="p-6 md:p-8">
+                
+                <!-- バッジ -->
+                <div class="flex justify-center mb-8 text-center">
+                    <span class="inline-block bg-slate-900 text-neon text-xs md:text-sm font-black px-5 py-2 rounded shadow-sm tracking-wider">
+                        プロが教えるエアコンの真実
+                    </span>
+                </div>
+
+                <!-- タイトル -->
+                <h1 class="text-[26px] md:text-[32px] font-black text-slate-900 mb-12 leading-relaxed tracking-wide text-center">
+                    エアコンから水漏れ！<br>
+                    <span class="text-xl md:text-2xl mt-3 block text-slate-700">原因と応急処置</span>
+                </h1>
+
+                <!-- リード文 -->
+                <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose text-center mb-10">
+                    エアコンから突然、<br><br>
+                    
+                    ポタッ……<br>
+                    ポタッ……。<br><br>
+
+                    水が落ちてきた。<br><br>
+                    
+                    そんな時、<br><br>
+
+                    <span class="bg-slate-100 px-3 py-2 rounded-lg border border-slate-200 inline-block mb-2">
+                        「ドレンホースが<br>
+                        詰まっているのかな？」
+                    </span><br><br>
+                    
+                    と思われる方も<br>
+                    多いかもしれません。<br><br>
+                    
+                    もちろん、<br>
+                    ドレンホースの詰まりは<br>
+                    水漏れの代表的な<br>
+                    原因です。<br><br>
+                    
+                    でも、<br>
+                    エアコンの水漏れは<br>
+                    それだけではありません。<br><br>
+                    
+                    水漏れは、<br>
+                    原因ではなく<br>
+                    <span class="text-lg font-black text-slate-900 underline decoration-neon decoration-4 underline-offset-4">「症状」です。</span><br><br>
+
+                    大切なのは、<br>
+                    その水が<br>
+                    どこで発生して、<br>
+                    どこを通って、<br>
+                    なぜそこから<br>
+                    出てきたのか？<br>
+                    を確認することです。
+                </p>
+
+                <!-- その水、本当にドレン水ですか？ -->
+                <div class="mb-16 mt-20">
+                    <div class="flex flex-col items-center justify-center mb-6 text-center">
+                        <span class="w-10 h-[3px] bg-neon mb-4 rounded-full"></span>
+                        <h2 class="text-xl md:text-2xl font-black text-slate-900 tracking-wider leading-relaxed">
+                            その水、<br>
+                            本当にドレン水ですか？
+                        </h2>
+                    </div>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-800 leading-loose text-center">
+                        冷房や除湿運転では、<br>
+                        エアコン内部の<br>
+                        熱交換器に<br>
+                        結露水が発生します。<br><br>
+                        
+                        その水を<br>
+                        ドレンパンで受け、<br>
+                        ドレンホースを通して<br>
+                        屋外へ排水します。<br><br>
+                        
+                        そのため、<br>
+                        室内機から<br>
+                        水が漏れると、<br><br>
+
+                        「ドレンが詰まって<br>
+                        水があふれたんだ」<br><br>
+
+                        と思われがちです。<br><br>
+                        
+                        しかし実際には、<br>
+                        漏れている水が<br>
+                        <span class="text-red-600 font-black text-base underline decoration-red-200 decoration-4 underline-offset-4">必ずしもドレンパンから</span><br>
+                        <span class="text-red-600 font-black text-base underline decoration-red-200 decoration-4 underline-offset-4">あふれた水とは限りません。</span><br><br>
+                        
+                        たとえば、<br>
+                        冷媒配管の<br>
+                        断熱不足による結露水。<br><br>
+                        
+                        室内を通る<br>
+                        ドレンホース表面の結露水。<br><br>
+                        
+                        配管穴などから<br>
+                        侵入してきた雨水。<br><br>
+
+                        壁や天井など、<br>
+                        別の場所から伝ってきた水。<br><br>
+
+                        これらも、<br>
+                        お客様から見れば<br>
+                        すべて<br>
+                        <span class="text-slate-900 font-black bg-neon px-2">「エアコンから水が漏れた」</span><br>
+                        という同じ症状です。<br><br>
+
+                        だからこそ、<br>
+                        水が出ている場所だけを見て<br>
+                        原因を決めつけないことが<br>
+                        大切です。
+                    </p>
+                </div>
+
+                <!-- 水漏れの主な原因 -->
+                <div class="mb-16 mt-20">
+                    <div class="flex flex-col items-center justify-center mb-10 text-center">
+                        <span class="w-10 h-[3px] bg-slate-800 mb-4 rounded-full"></span>
+                        <h2 class="text-xl md:text-2xl font-black text-slate-900 tracking-wider leading-relaxed">
+                            水漏れの主な原因
+                        </h2>
+                        <p class="text-[14px] md:text-[15px] font-bold text-slate-600 mt-4">
+                            エアコンの水漏れには、<br>さまざまな原因があります。<br>ひとつずつ見ていきます。
+                        </p>
+                    </div>
+
+                    <!-- 原因①〜⑦ -->
+                    <div class="space-y-12">
+                        
+                        <!-- ① -->
+                        <div class="text-center">
+                            <h3 class="text-lg md:text-xl font-black text-slate-900 mb-4 border-b-2 border-slate-200 pb-2 inline-block">
+                                <span class="text-neon mr-1">①</span> ドレンホースの詰まり
+                            </h3>
+                            <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
+                                最もよく知られている<br>水漏れ原因のひとつです。<br><br>
+                                冷房時に発生した水は、<br>ドレンパンからドレンホースを通って<br>屋外へ排水されます。<br><br>
+                                しかし、ホコリや汚れなどで<br>排水経路が塞がれると、<br>水が正常に流れなくなります。<br><br>
+                                その結果、行き場を失った水が<br>室内機側へ戻り、<br>ドレンパンからあふれて<br>室内へ漏れることがあります。<br><br>
+                                ただし、<br>
+                                <span class="text-slate-900 font-black bg-red-100 px-2">水漏れ＝ドレン詰まり</span><br>
+                                <span class="text-slate-900 font-black bg-red-100 px-2">とは限りません。</span>
+                            </p>
+                            
+                            <!-- 防虫キャップの警告 -->
+                            <div class="bg-slate-50 border border-slate-200 rounded-[16px] p-6 mt-8 mx-auto max-w-sm">
+                                <h4 class="text-base font-black text-slate-900 mb-3 text-red-600">防虫キャップも要注意</h4>
+                                <p class="text-[14px] font-bold text-slate-700 leading-loose mb-5">
+                                    防虫キャップも、<br>汚れが詰まることで<br>排水を妨げる場合があります。<br>使う場合は、<br>定期的な確認と清掃が必要です。
+                                </p>
+                                <a href="/tips/bug/" class="inline-flex items-center justify-center bg-slate-900 text-neon px-5 py-3 rounded-full text-sm font-black hover:bg-slate-800 transition-colors shadow-md w-full">
+                                    ▶ 防虫キャップについて詳しく
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- ② -->
+                        <div class="text-center">
+                            <h3 class="text-lg md:text-xl font-black text-slate-900 mb-4 border-b-2 border-slate-200 pb-2 inline-block">
+                                <span class="text-neon mr-1">②</span> ドレンホースの折れ・潰れ
+                            </h3>
+                            <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
+                                ドレンホースが<br>途中で折れたり、<br>何かに押されて潰れていたりすると、<br>排水が妨げられることがあります。<br><br>
+                                屋外側だけでなく、<br>室内機の裏側など、<br>普段は見えない場所で<br>起きている場合もあります。
+                            </p>
+                        </div>
+
+                        <!-- ③ -->
+                        <div class="text-center">
+                            <h3 class="text-lg md:text-xl font-black text-slate-900 mb-4 border-b-2 border-slate-200 pb-2 inline-block">
+                                <span class="text-neon mr-1">③</span> ドレンホース先端の水没
+                            </h3>
+                            <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
+                                ドレンホースの先端が、<br>植木鉢やバケツ、<br>水たまりなどに<br>浸かってしまうことがあります。<br><br>
+                                排水口が水没すると、<br>正常な排水を妨げる原因になります。<br><br>
+                                ドレンホースの先端は、<br>水に浸からない状態を<br>保つことが大切です。
+                            </p>
+                        </div>
+
+                        <!-- ④ -->
+                        <div class="text-center">
+                            <h3 class="text-lg md:text-xl font-black text-slate-900 mb-4 border-b-2 border-slate-200 pb-2 inline-block">
+                                <span class="text-neon mr-1">④</span> ドレンの逆勾配
+                            </h3>
+                            <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
+                                水は、<br>高い場所から低い場所へ流れます。<br>ドレンホースも同じです。<br><br>
+                                ところが、<br>途中でホースが持ち上がっていたり、<br>排水方向とは逆の勾配に<br>なっていたりすると、<br>水が途中に溜まります。<br><br>
+                                これは現場では、<br>決して珍しいトラブルではありません。<br><br>
+                                施工直後には問題なくても、<br>使用条件や汚れなどが重なり、<br>後から症状が出ることもあります。
+                            </p>
+                        </div>
+
+                        <!-- ⑤ -->
+                        <div class="text-center">
+                            <h3 class="text-lg md:text-xl font-black text-slate-900 mb-4 border-b-2 border-slate-200 pb-2 inline-block">
+                                <span class="text-neon mr-1">⑤</span> ドレンパン・排水口周辺の汚れ
+                            </h3>
+                            <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
+                                詰まるのは、<br>屋外のドレンホースだけでは<br>ありません。<br><br>
+                                その手前にある、<br>ドレンパンや排水口周辺に<br>汚れが溜まり、<br>排水を妨げる場合もあります。<br><br>
+                                そのため、<br>屋外のホースだけを確認しても、<br>原因が見つからないことがあります。
+                            </p>
+                        </div>
+
+                        <!-- ⑥ -->
+                        <div class="text-center">
+                            <h3 class="text-lg md:text-xl font-black text-slate-900 mb-4 border-b-2 border-slate-200 pb-2 inline-block">
+                                <span class="text-neon mr-1">⑥</span> ドレンホースの接続不良・抜け
+                            </h3>
+                            <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
+                                ドレンパンと<br>ドレンホースの接続部分。<br>途中でホースを延長している接続部分。<br><br>
+                                こうした場所が<br>正しく接続されていなかったり、<br>抜けていたりすれば、<br>そこから水が漏れることがあります。
+                            </p>
+                        </div>
+
+                        <!-- ⑦ -->
+                        <div class="text-center">
+                            <h3 class="text-lg md:text-xl font-black text-slate-900 mb-4 border-b-2 border-slate-200 pb-2 inline-block">
+                                <span class="text-neon mr-1">⑦</span> 室内機の設置状態
+                            </h3>
+                            <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
+                                室内機そのものの<br>取り付け状態によって、<br>排水に影響が出ることもあります。<br><br>
+                                ドレン水は、<br>決められた排水口へ<br>正常に流れる必要があります。<br><br>
+                                その流れを妨げる設置状態では、<br>正常に排水できない<br>可能性があります。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 逆ドレン -->
+                <div class="mb-16 mt-24">
+                    <div class="flex flex-col items-center justify-center mb-8 text-center">
+                        <span class="w-10 h-[3px] bg-red-500 mb-4 rounded-full"></span>
+                        <h2 class="text-xl md:text-2xl font-black text-slate-900 tracking-wider leading-relaxed">
+                            「逆ドレン」と呼ばれる施工
+                        </h2>
+                    </div>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose text-center">
+                        多くの壁掛けエアコンでは、<br>
+                        施工条件に合わせて<br>
+                        ドレンホースを左右へ付け替えられる<br>
+                        構造になっています。<br><br>
+                        
+                        左側から配管を出す場合には、<br>
+                        設置状況に合わせて<br>
+                        ドレンホースも適切な側へ<br>
+                        付け替えます。<br><br>
+                        
+                        ところが、<br>
+                        右側のドレン接続をそのまま使用し、<br>
+                        室内機の裏側を<br>
+                        右から左へ横断させて<br>
+                        排水している施工を見ることがあります。<br><br>
+                        
+                        現場では、このような状態を<br>
+                        <span class="bg-slate-100 px-3 py-1.5 rounded-lg font-black text-slate-900 border border-slate-200 inline-block my-1">「逆ドレン」</span><br>
+                        と呼ぶことがあります。<br><br>
+
+                        排水経路が不必要に長くなり、<br>
+                        室内機裏側での勾配確保も<br>
+                        難しくなります。<br><br>
+                        
+                        外から見ただけでは、<br>
+                        室内機の裏側が<br>
+                        どうなっているのか分かりません。<br><br>
+                        
+                        だからこそ、<br>
+                        取り付け時の適切な処理が<br>
+                        重要です。
+                    </p>
+                </div>
+
+                <!-- 原因⑧〜⑨ (結露系) -->
+                <div class="space-y-16 mt-16">
+                    <!-- ⑧ -->
+                    <div class="text-center">
+                        <h3 class="text-lg md:text-xl font-black text-slate-900 mb-4 border-b-2 border-slate-200 pb-2 inline-block">
+                            <span class="text-neon mr-1">⑧</span> 室内を通るドレンホースの結露
+                        </h3>
+                        <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
+                            ここは、意外と知られていない<br>水漏れ原因です。<br><br>
+                            たとえばマンションなどでは、<br>大きなコンクリート梁があり、<br>エアコンのすぐ裏側に<br>配管穴を開けられないことがあります。<br><br>
+                            そのため、室内機から離れた外壁面まで、<br>冷媒配管やドレン配管を<br>室内側で横引きすることがあります。<br><br>
+                            この場合、ドレンホースの中には<br>冷たい水が流れています。<br>施工条件によっては、<br>ホース表面の温度が下がります。<br><br>
+                            すると、周囲の空気に含まれる水分が<br>表面で結露する可能性があります。<br><br>
+                            つまり、排水そのものは<br>正常にできているのに、<br>
+                            <span class="text-slate-900 font-black underline decoration-blue-300 decoration-4 underline-offset-4">ドレンホースの外側から</span><br>
+                            <span class="text-slate-900 font-black underline decoration-blue-300 decoration-4 underline-offset-4">水が発生する。</span><br><br>
+                            そんな水漏れもあります。<br><br>
+                            室内を通る部分では、<br>使用するホースや必要な断熱処理など、<br>施工条件まで考えることが重要です。
+                        </p>
+                    </div>
+
+                    <!-- ⑨ -->
+                    <div class="text-center">
+                        <h3 class="text-lg md:text-xl font-black text-slate-900 mb-4 border-b-2 border-slate-200 pb-2 inline-block">
+                            <span class="text-neon mr-1">⑨</span> 冷媒配管の断熱不足による結露
+                        </h3>
+                        <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
+                            ここも非常に重要です。<br><br>
+                            エアコンの冷房運転中、<br>冷媒配管は非常に冷たくなります。<br>そのため、冷媒配管には<br>断熱材が巻かれています。<br><br>
+                            しかし、断熱材に隙間があったり、<br>適切に復旧されていなかったり、<br>必要な断熱性能が確保されていない<br>部分があると、<br>冷たい配管によって周囲の空気が<br>冷やされます。<br><br>
+                            その結果、結露することがあります。<br><br>
+                            その水が配管を伝って、<br>室内機の下から出てくれば、<br>お客様から見れば<br>
+                            <span class="font-black text-slate-900">「エアコンから水漏れした」</span><br>
+                            という状態になります。
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 特に注意したい左配管の接続部分 -->
+                <div class="mb-16 mt-20">
+                    <div class="flex flex-col items-center justify-center mb-6 text-center">
+                        <span class="w-10 h-[3px] bg-slate-800 mb-4 rounded-full"></span>
+                        <h2 class="text-xl md:text-2xl font-black text-slate-900 tracking-wider leading-relaxed">
+                            特に注意したい<br>
+                            左配管の接続部分
+                        </h2>
+                    </div>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose text-center">
+                        壁掛けエアコンには、<br>
+                        メーカー出荷時から室内機側に<br>
+                        冷媒配管が取り付けられています。<br><br>
+                        
+                        一般的には、室内機の右側から<br>
+                        補助配管が伸びています。<br><br>
+                        
+                        左直・左横・左下など、<br>
+                        左方向へ配管を出す施工では、<br>
+                        冷媒配管を接続したあと、<br>
+                        室内機裏側を通して<br>
+                        左方向へ取り回します。<br><br>
+                        
+                        冷媒配管を接続するためには、<br>
+                        接続部分の断熱材を<br>
+                        一度開く必要があります。<br><br>
+                        
+                        接続後には、断熱材を戻したり、<br>
+                        別の断熱材を追加したりして、<br>
+                        接続部分をしっかり断熱します。<br><br>
+                        
+                        メーカーによっては、<br>
+                        その上から巻く補助的な断熱材が<br>
+                        エアコンに同梱されていることもあります。<br><br>
+                        
+                        現場では、このような部材を<br>
+                        <span class="bg-slate-100 px-2 py-1 rounded font-black text-slate-900 border border-slate-200 my-1 inline-block">「包帯」</span><br>
+                        と呼ぶこともあります。<br><br>
+                        
+                        ここまで正しく施工しても、<br>
+                        その後に注意したい工程があります。
+                    </p>
+                </div>
+
+                <!-- 断熱材を自分で潰してしまう？ -->
+                <div class="mb-16 mt-20 relative text-center">
+                    <!-- 上部の赤いバッジ -->
+                    <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-red-600 text-white font-black text-sm px-5 py-1.5 rounded-full shadow-md whitespace-nowrap">
+                        見落としがちなポイント
+                    </div>
+
+                    <h2 class="text-xl md:text-2xl font-black text-slate-900 mb-8 pt-8 leading-relaxed">
+                        断熱材を<br>
+                        <span class="text-red-600">自分で潰してしまう？</span>
+                    </h2>
+                    
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
+                        冷媒配管2本。<br>
+                        室内機と室外機をつなぐ連絡線。<br>
+                        場合によっては、アース線など。<br><br>
+                        
+                        これらをまとめて、<br>
+                        エアコン用のテープで<br>
+                        束ねることがあります。<br><br>
+                        
+                        現場では、こうしたテープを総称して<br>
+                        <span class="bg-slate-100 px-2 py-1 rounded font-black text-slate-900 border border-slate-200 my-1 inline-block">「コーテープ」</span><br>
+                        と呼ぶ職人も多くいます。<br><br>
+                        
+                        束ねること自体は、<br>
+                        ごく一般的な施工です。<br><br>
+                        
+                        問題になる可能性があるのは、<br>
+                        <span class="text-lg font-black text-slate-900">巻く強さ。</span><br><br>
+                        
+                        きれいにまとめようとして、<br>
+                        テープを強く引っ張りながら、<br>
+                        ギュンギュンに巻いてしまう。<br><br>
+                        
+                        すると、その内側にある断熱材まで<br>
+                        <span class="text-red-600 font-black">強く圧縮されます。</span><br><br>
+                        
+                        せっかく隙間なく<br>
+                        断熱材を施工しても、<br>
+                        最後のテープ巻きによって<br>
+                        断熱材の厚みを<br>
+                        自ら減らしてしまう。<br>
+                        そんなことがあります。<br><br>
+                        
+                        断熱材は、<br>
+                        「付いていればいい」<br>
+                        というものではありません。<br><br>
+                        
+                        必要な厚みを保つことで、<br>
+                        本来の断熱性能を発揮しています。<br><br>
+                        
+                        強く圧縮されて、<br>
+                        断熱性能が不足すれば、<br>
+                        内部の冷たい冷媒配管の影響で、<br>
+                        表面に結露が発生する可能性があります。<br><br>
+                        
+                        その水が、室内機の外装ケース下部などへ<br>
+                        溜まることがあります。
+                    </p>
+                </div>
+
+                <!-- 分解すると見える数年後の答え -->
+                <div class="bg-slate-50 border border-slate-200 rounded-[16px] px-4 md:px-8 py-8 mt-12 mb-16 text-center">
+                    <h3 class="text-lg md:text-xl font-black text-slate-900 mb-8 border-b-2 border-slate-200 pb-3 inline-block leading-relaxed">
+                        分解すると見える<br>
+                        数年後の答え
+                    </h3>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
+                        エアコンクリーニングでは、<br>
+                        普段は見えない部分まで<br>
+                        外装部品を取り外します。<br><br>
+                        
+                        すると、<br>
+                        外装ケースの下に水が溜まっていたり、<br>
+                        配管をまとめたテープ周辺だけが<br>
+                        真っ黒にカビていたりすることがあります。<br><br>
+                        
+                        本来、そこはエアコンの冷気が<br>
+                        直接通る場所ではありません。<br><br>
+                        
+                        それなのに、<br>
+                        その場所だけが濡れている。<br>
+                        カビが集中している。<br><br>
+                        
+                        そんな場合には、<br><br>
+                        <span class="text-base font-black text-slate-900 bg-neon px-3 py-1 leading-loose">
+                            「なぜここに水があるのか？」
+                        </span><br><br>
+                        という視点で<br>
+                        確認する必要があります。
+                    </p>
+                </div>
+
+                <!-- 原因⑩〜⑯ -->
+                <div class="space-y-12 mt-12">
+                    
+                    <!-- ⑩ -->
+                    <div class="text-center">
+                        <h3 class="text-lg md:text-xl font-black text-slate-900 mb-4 border-b-2 border-slate-200 pb-2 inline-block">
+                            <span class="text-neon mr-1">⑩</span> 熱交換器・送風経路の汚れ
+                        </h3>
+                        <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
+                            エアコン内部の汚れが<br>水漏れにつながることもあります。<br><br>
+                            フィルターや熱交換器などに<br>汚れが蓄積し、空気の流れが悪くなる。<br>熱交換器で発生した結露水が<br>正常に流れにくくなる。<br><br>
+                            こうした条件が重なることで、<br>本来とは違う場所へ<br>水が流れることがあります。
+                        </p>
+                    </div>
+
+                    <!-- ⑪ -->
+                    <div class="text-center">
+                        <h3 class="text-lg md:text-xl font-black text-slate-900 mb-4 border-b-2 border-slate-200 pb-2 inline-block">
+                            <span class="text-neon mr-1">⑪</span> 水滴が風で飛ばされてくる
+                        </h3>
+                        <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
+                            「ポタポタ漏れる」だけが<br>水漏れではありません。<br><br>
+                            吹き出し口から、<br>細かな水滴が飛んでくることもあります。<br><br>
+                            熱交換器や送風経路の状態。<br>風量。汚れ。結露状態。<br>さまざまな条件が関係します。
+                        </p>
+                    </div>
+
+                    <!-- ⑫ -->
+                    <div class="text-center">
+                        <h3 class="text-lg md:text-xl font-black text-slate-900 mb-4 border-b-2 border-slate-200 pb-2 inline-block">
+                            <span class="text-neon mr-1">⑫</span> ドレンパンの破損・亀裂
+                        </h3>
+                        <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
+                            ドレンパンそのものが破損していれば、<br>そこから水が漏れる可能性があります。<br><br>
+                            経年劣化だけでなく、<br>何らかの外力で破損している<br>ケースもあります。
+                        </p>
+                    </div>
+
+                    <!-- ⑬ -->
+                    <div class="text-center">
+                        <h3 class="text-lg md:text-xl font-black text-slate-900 mb-4 border-b-2 border-slate-200 pb-2 inline-block">
+                            <span class="text-neon mr-1">⑬</span> ネジがドレンパンを貫通
+                        </h3>
+                        <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
+                            実際に私が確認した事例です。<br><br>
+                            部品を固定するネジが、<br>その奥にあるドレンパンまで<br>貫通していました。<br><br>
+                            ドレンパンには、<br>冷房中に発生した水が溜まります。<br>そこへ穴が開けば、<br>当然、その穴から水が漏れます。<br><br>
+                            この場合、ドレンホースを掃除しても、<br>水漏れは直りません。<br>水漏れの原因には、<br>こうしたケースまであります。
+                        </p>
+                    </div>
+
+                    <!-- ⑭ -->
+                    <div class="text-center">
+                        <h3 class="text-lg md:text-xl font-black text-slate-900 mb-4 border-b-2 border-slate-200 pb-2 inline-block">
+                            <span class="text-neon mr-1">⑭</span> 部品の破損・変形
+                        </h3>
+                        <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
+                            エアコン内部には、<br>多くの樹脂部品があります。<br><br>
+                            長年使用すれば、<br>新品時と同じ状態ではありません。<br>経年によって、硬くなったり、<br>割れやすくなったりすることもあります。<br><br>
+                            部品の破損や変形によって、<br>本来の排水経路が変わり、<br>水漏れにつながる可能性もあります。
+                        </p>
+                    </div>
+
+                    <!-- ⑮ -->
+                    <div class="text-center">
+                        <h3 class="text-lg md:text-xl font-black text-slate-900 mb-4 border-b-2 border-slate-200 pb-2 inline-block">
+                            <span class="text-neon mr-1">⑮</span> 雨水の侵入
+                        </h3>
+                        <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
+                            水漏れが発生するのは、<br>冷房中だけとは限りません。<br><br>
+                            雨の日や、風の強い日にだけ水が出てくる。<br>そんな場合には、<br>屋外からの雨水も疑う必要があります。<br><br>
+                            配管穴周辺の処理や、配管経路などによって、<br>雨水が室内側へ伝ってくることがあります。<br><br>
+                            この場合、<br>エアコンが作った水ではありません。
+                        </p>
+                    </div>
+
+                    <!-- ⑯ -->
+                    <div class="text-center">
+                        <h3 class="text-lg md:text-xl font-black text-slate-900 mb-4 border-b-2 border-slate-200 pb-2 inline-block">
+                            <span class="text-neon mr-1">⑯</span> 壁や天井など別の場所からの水
+                        </h3>
+                        <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
+                            さらに、<br>エアコンそのものが<br>原因ではない場合もあります。<br><br>
+                            壁内や天井など、<br>別の場所から来た水がエアコン周辺へ伝い、<br>結果として<br>「エアコンから漏れている」<br>ように見えることもあります。<br><br>
+                            だからこそ、<br>水が出ている場所だけを見て<br>原因を決めつけないことが大切です。
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 通水確認OKでも水漏れすることがあります -->
+                <div class="mb-16 mt-24">
+                    <div class="flex flex-col items-center justify-center mb-6 text-center">
+                        <span class="w-10 h-[3px] bg-slate-800 mb-4 rounded-full"></span>
+                        <h2 class="text-xl md:text-2xl font-black text-slate-900 leading-relaxed">
+                            「通水確認OK」でも<br>
+                            水漏れすることがあります
+                        </h2>
+                    </div>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose text-center">
+                        エアコン取り付け時には、<br>
+                        ドレンへ水を流し、<br>
+                        正常に排水されるかを<br>
+                        確認することがあります。<br><br>
+                        
+                        これは、大切な確認です。<br><br>
+                        
+                        しかし、通水確認で分かるのは、<br>
+                        主に<br>
+                        その時点で排水経路に<br>
+                        水が流れるかどうか。<br><br>
+                        
+                        冷媒配管の断熱不足。<br>
+                        断熱材の圧縮。<br>
+                        ドレンホース表面の結露。<br>
+                        雨水の侵入。<br>
+                        部品の破損。<br><br>
+                        
+                        こうした原因まで、<br>
+                        通水確認だけですべて<br>
+                        判断できるわけではありません。<br><br>
+                        
+                        つまり、<br>
+                        <span class="text-base font-black text-slate-900 underline decoration-red-400 decoration-2 underline-offset-4">「水が流れた」＝「今後、水漏れしない」</span><br>
+                        <span class="text-base font-black text-slate-900 underline decoration-red-400 decoration-2 underline-offset-4">とは限りません。</span>
+                    </p>
+                </div>
+
+                <!-- ドレンホースを吸えば直るとも限りません -->
+                <div class="mb-16 mt-16">
+                    <div class="flex flex-col items-center justify-center mb-6 text-center">
+                        <span class="w-10 h-[3px] bg-slate-800 mb-4 rounded-full"></span>
+                        <h2 class="text-xl md:text-2xl font-black text-slate-900 leading-relaxed">
+                            「ドレンホースを吸えば直る」<br>
+                            とも限りません
+                        </h2>
+                    </div>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose text-center">
+                        水漏れすると、<br>
+                        ドレンホースを吸引する方法が<br>
+                        紹介されることがあります。<br><br>
+                        
+                        実際、ドレンホースの詰まりが原因なら、<br>
+                        改善する場合もあります。<br><br>
+                        
+                        しかし、<br><br>
+                        
+                        逆勾配。<br>
+                        逆ドレン。<br>
+                        接続不良。<br>
+                        冷媒配管の結露。<br>
+                        ドレンホース表面の結露。<br>
+                        ドレンパンの破損。<br>
+                        雨水。<br><br>
+                        
+                        これらが原因なら、<br>
+                        <span class="text-base font-black text-slate-900">ホースを吸引しても根本原因は直りません。</span><br><br>
+                        
+                        だから、まず必要なのは、<br>
+                        原因を決めつけることではなく、<br>
+                        <span class="text-base font-black text-slate-900 bg-neon px-2">水の発生源を探すこと。</span><br>
+                        です。
+                    </p>
+                </div>
+
+                <!-- 水漏れしたらまず確認してほしいこと -->
+                <div class="bg-blue-50/50 rounded-[20px] border border-blue-100 p-6 md:p-8 mt-12 mb-8 text-center">
+                    <h3 class="text-xl md:text-2xl font-black text-slate-900 text-blue-900 mb-8 leading-relaxed">
+                        水漏れしたら<br>
+                        まず確認してほしいこと
+                    </h3>
+                    
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose mb-8">
+                        水漏れを見つけたら、<br>
+                        まずは安全を優先してください。<br><br>
+                        
+                        可能であれば、<br>
+                        エアコンの運転を停止します。<br><br>
+                        
+                        床や家具が濡れないように、<br>
+                        タオルやシートなどで<br>
+                        保護してください。<br><br>
+                        
+                        そして、できれば<br>
+                        どこから水が出ているのかを<br>
+                        <span class="text-slate-900 font-black">写真や動画で残してください。</span><br>
+                        点検する時の大きな手がかりになります。<br><br>
+                        
+                        ご自身で安全に確認できる範囲で、<br>
+                        次のようなところも<br>
+                        見てみてください。
+                    </p>
+                    
+                    <!-- チェックリスト -->
+                    <div class="bg-white rounded-xl p-5 border border-blue-100 shadow-sm text-left max-w-sm mx-auto mb-8">
+                        <ul class="space-y-4 text-[14px] md:text-[15px] font-bold text-slate-800">
+                            <li class="flex items-start">
+                                <span class="mr-2 mt-0.5 text-lg">✅</span>
+                                <span>ドレンホースの先端が水に浸かっていないか</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="mr-2 mt-0.5 text-lg">✅</span>
+                                <span>ドレンホースが折れたり、潰れたりしていないか</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="mr-2 mt-0.5 text-lg">✅</span>
+                                <span>防虫キャップが詰まっていないか</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="mr-2 mt-0.5 text-lg">✅</span>
+                                <span>雨の日だけ症状が出ていないか</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="mr-2 mt-0.5 text-lg">✅</span>
+                                <span>吹き出し口から水滴が飛んでいないか</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="mr-2 mt-0.5 text-lg">✅</span>
+                                <span>どこから水が出ているのか</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
+                        無理に室内機を分解する必要はありません。<br>
+                        分からなければ、<br>
+                        そのままご相談ください。
+                    </p>
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- ご相談誘導ブロック -->
+        <div class="bg-white rounded-[24px] border border-slate-200 p-8 md:p-10 text-center shadow-sm mb-10">
+            <h2 class="text-xl md:text-2xl font-black text-slate-900 mb-8 leading-relaxed">
+                こんな症状があったら<br>
+                ご相談ください
+            </h2>
+            
+            <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose mb-10">
+                <span class="text-slate-900 font-black">「室内機から水がポタポタ落ちてくる」</span><br><br>
+                <span class="text-slate-900 font-black">「吹き出し口から水が飛んでくる」</span><br><br>
+                <span class="text-slate-900 font-black">「ドレンホースから水が出ていない」</span><br><br>
+                <span class="text-slate-900 font-black">「水は出ているのに室内機からも漏れる」</span><br><br>
+                <span class="text-slate-900 font-black">「雨の日だけ水漏れする」</span><br><br>
+                <span class="text-slate-900 font-black">「エアコンの下や壁が濡れている」</span><br><br>
+                <span class="text-slate-900 font-black">「ポコポコと変な音がする」</span><br><br>
+                <span class="text-slate-900 font-black">「原因が分からないけどいつもと様子が違う」</span><br><br>
+                
+                そんな場合は、<br>
+                無理にご自身で分解せず、<br>
+                ご相談ください。<br><br>
+                
+                <span class="inline-block text-left bg-slate-50 p-4 rounded-xl border border-slate-100">
+                    ✅ 汚れなのか<br>
+                    ✅ 詰まりなのか<br>
+                    ✅ 破損なのか<br>
+                    ✅ 設置状況なのか<br>
+                    ✅ 結露なのか<br>
+                    ✅ エアコン以外が原因なのか
+                </span><br><br>
+                
+                原因を確認したうえで、<br>
+                必要な対処をご案内します。<br>
+                分からなければ、電話してください。
+            </p>
+            
+            <a href="tel:08000807788" class="js-phone-modal-trigger inline-flex items-center justify-center bg-slate-900 hover:bg-slate-800 text-neon px-8 py-4 rounded-full text-base font-black shadow-md transition-all active:scale-95">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                <span>電話で相談する</span>
+            </a>
+        </div>
+
+
+        <!-- ネイビーのカード (ONE★STARの想い) -->
+        <div class="bg-slate-900 rounded-[24px] border-l-[12px] border-neon p-8 md:p-10 text-center shadow-md mb-10">
+            
+            <h2 class="text-white font-black text-xl md:text-2xl leading-relaxed mb-10 tracking-wider">
+                ONE★STARが<br>
+                大切にしていること
+            </h2>
+
+            <p class="text-slate-100 font-bold text-[15px] md:text-base leading-loose mb-12">
+                エアコンには、<br>
+                便利そうに見える市販品や、<br>
+                簡単そうに見える対処方法が<br>
+                たくさんあります。<br><br>
+                
+                でも、<br>
+                <span class="text-neon font-black text-base">「簡単にできる」＝「すべてのエアコンに正しい」</span><br>
+                とは限りません。<br><br>
+                
+                水漏れも同じです。<br><br>
+                
+                ドレンホースを吸えば直るケースもあります。<br>
+                掃除で改善するケースもあります。<br>
+                でも、それでは直らない水漏れもあります。<br><br>
+                
+                ONE★STARが大切にしているのは、<br>
+                <span class="text-white font-black text-base underline decoration-neon decoration-4 underline-offset-4">最初から原因を決めつけないこと。</span><br><br>
+                
+                水がどこで発生して、どこを通って、<br>
+                なぜそこから出てきたのか。<br>
+                そこを確認したうえで、必要な対処を考えます。
+            </p>
+
+            <!-- 区切り線 -->
+            <div class="w-16 h-[1px] bg-slate-600 mx-auto mb-12"></div>
+
+            <h2 class="text-white font-black text-xl md:text-2xl leading-relaxed mb-8 tracking-wider">
+                同じエアコンを触る<br>
+                職人として
+            </h2>
+
+            <p class="text-slate-100 font-bold text-[15px] md:text-base leading-loose mb-12">
+                エアコンには、<br>
+                取り付け。修理。クリーニング。<br>
+                さまざまな仕事があります。<br><br>
+                
+                それぞれに、専門的な知識と技術があります。<br><br>
+                
+                私は、同じエアコンに携わる職人として、<br>
+                それぞれの仕事を尊重しています。<br>
+                だからこそ、<br>
+                自分の専門だけを見て終わりに<br>
+                したくありません。<br><br>
+                
+                取り付けたその日は問題がなくても、<br>
+                数年後にどうなるのか。<br><br>
+                
+                修理した部分が、<br>
+                その後のメンテナンスにどう影響するのか。<br><br>
+                
+                クリーニングで分解した時に、<br>
+                取り付け時の施工が<br>
+                どのような状態になっているのか。<br><br>
+                
+                一見、自分の仕事とは関係のない知識が、<br>
+                自分の仕事をより良くしてくれることがあります。
+            </p>
+
+            <!-- 区切り線 -->
+            <div class="w-16 h-[1px] bg-slate-600 mx-auto mb-12"></div>
+
+            <h2 class="text-white font-black text-xl md:text-2xl leading-relaxed mb-8 tracking-wider">
+                施工した「その日」だけではなく<br>
+                数年後まで
+            </h2>
+
+            <p class="text-slate-100 font-bold text-[15px] md:text-base leading-loose mb-10">
+                取り付けた。冷えた。水も流れた。<br><br>
+                
+                それだけで終わりではなく、<br>
+                そのエアコンが数年後どうなっているのか。<br>
+                そこまで少しだけ考える。<br><br>
+                
+                テープを巻く力を少し弱くする。<br>
+                室内を通る配管の結露まで考える。<br>
+                次にそのエアコンを触る人が、困らない施工をする。<br><br>
+                
+                ほんの少しの知識や配慮で、<br>
+                防げるトラブルもあります。<br><br>
+                
+                これは、取り付けだけの話ではありません。<br>
+                修理でも、クリーニングでも同じです。<br><br>
+                
+                ONE★STARが仕事で大切にしていることを<br>
+                もっと詳しく書いています。
+            </p>
+
+            <a href="/pride/" class="inline-flex items-center justify-center bg-white text-slate-900 px-6 py-3.5 rounded-full text-[15px] font-black hover:bg-slate-100 transition-colors shadow-md">
+                ▶ プロとしての拘りはコチラ
+            </a>
+        </div>
+
+        <!-- まとめ：白いカード -->
+        <div class="bg-white rounded-[24px] border-2 border-slate-900 p-8 md:p-10 text-center shadow-sm mb-12">
+            <h2 class="text-xl md:text-2xl font-black text-slate-900 mb-8 leading-relaxed">
+                水漏れの原因は<br>
+                一つではありません
+            </h2>
+
+            <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
+                エアコンから水が漏れた。<br>
+                その事実だけで、原因を特定することはできません。<br><br>
+                
+                ドレンの詰まりかもしれない。<br>
+                勾配かもしれない。<br>
+                施工時の取り回しかもしれない。<br>
+                冷媒配管の結露かもしれない。<br>
+                ドレンホース自体の結露かもしれない。<br>
+                部品が壊れているかもしれない。<br>
+                雨水かもしれない。<br>
+                場合によっては、エアコン以外が原因かもしれません。<br><br>
+                
+                だからONE★STARでは、<br>
+                「水漏れ＝○○」と最初から決めつけず、<br>
+                水がどこで発生し、どこを通って、<br>
+                なぜそこから出てきたのか。<br>
+                ひとつずつ確認することを大切にしています。<br><br>
+                
+                この記事を読んで、<br>
+                「エアコンの水漏れって、<br>
+                ドレンホースの詰まりだけじゃないんだ。」<br>
+                そう知っていただけたら、それだけでも十分です。<br><br>
+                
+                <span class="text-base font-black text-slate-900">水漏れは、「症状」です。</span><br>
+                <span class="text-base font-black text-slate-900">原因は、その奥にあります。</span><br><br>
+                
+                ONE★STARは、見えている水だけでなく、<br>
+                <span class="text-base font-black text-slate-900 bg-neon px-2">「なぜ、そこに水があるのか？」</span><br>
+                そこから考えます。
+            </p>
+        </div>
+
+
+        <!-- 関連する施工事例へのリンク -->
+        <div class="mt-16 text-center">
+            <div class="flex flex-col items-center justify-center mb-6">
+                <span class="w-10 h-[3px] bg-slate-800 mb-4 rounded-full"></span>
+                <h2 class="text-xl md:text-2xl font-black text-slate-900 tracking-wider leading-relaxed">
+                    実際の現場も見てみる
+                </h2>
+            </div>
+            
+            <a href="/works/tenpakuku-01" class="block bg-white rounded-2xl border-2 border-slate-900 p-6 md:p-8 shadow-sm hover:shadow-md transition-all active:scale-95 group relative overflow-hidden text-center">
+                <!-- 装飾 -->
+                <div class="absolute top-0 left-0 w-full h-2 bg-neon"></div>
+                
+                <p class="text-[11px] md:text-sm font-black text-slate-500 mb-3 tracking-widest">
+                    関連する施工事例
+                </p>
+                
+                <h3 class="text-[17px] md:text-xl font-black text-slate-900 mb-6 leading-relaxed">
+                    「実際に水漏れしていた<br>エアコンの施工事例」
+                </h3>
+
+                <p class="text-[13px] font-bold text-slate-600 mb-8">
+                    水漏れの原因は、実際に分解してみないと<br>分からないこともあります。<br>水が出ている場所と、本当の原因が<br>同じ場所とは限りません。
+                </p>
+                
+                <div class="inline-flex items-center justify-center bg-slate-900 text-neon px-6 py-3.5 rounded-full text-[15px] font-black group-hover:bg-slate-800 transition-colors w-full md:w-auto shadow-md">
+                    ▶ この施工事例を見る
+                </div>
+            </a>
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-900 text-white pt-12 pb-24 md:pb-12 border-t-[6px] border-neon text-center mt-12">
+        <div class="mb-6 flex flex-col items-center justify-center">
+            <span class="text-4xl md:text-5xl tracking-widest text-white flex items-center justify-center font-impact mt-1">
+                ONE
+                <img src="ONESTAR.PNG" alt="ロゴ" class="w-[80px] h-[80px] md:w-[100px] md:h-[100px] mx-[-10px] md:mx-[-16px] object-contain -translate-y-2" onerror="this.style.display='none'">
+                STAR
+            </span>
+            <p class="text-xs text-neon font-black mt-2 tracking-widest">株式会社ECS専属プロスタッフ</p>
+        </div>
+        
+        <p class="text-[11px] text-slate-400 font-bold mb-3">
+            <a href="/products" class="hover:text-white transition-colors underline underline-offset-4">オリジナルLINEスタンプ販売中</a>
+        </p>
+        <p class="text-[10px] text-slate-500 font-bold mb-4">
+            <a href="/privacy" class="hover:text-white transition-colors">プライバシーポリシー</a>
+        </p>
+        <p class="text-[10px] text-slate-500 font-bold tracking-wider">© 2026 ONE★STAR. All Rights Reserved.</p>
+    </footer>
+
+    <!-- MOBILE BOTTOM NAVIGATION -->
+    <div class="fixed bottom-0 left-0 right-0 z-45 bg-slate-900 md:hidden h-[60px] flex items-stretch text-white shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.3)] border-t border-slate-800">
+        
+        <a href="/price" class="flex flex-col items-center justify-center w-[20%] border-r border-slate-700 active:bg-slate-800">
+            <svg class="w-5 h-5 mb-1 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <span class="text-[9px] font-black">料金</span>
+        </a>
+        
+        <a href="/mind" class="flex flex-col items-center justify-center w-[20%] border-r border-slate-700 active:bg-slate-800">
+            <svg class="w-5 h-5 mb-1 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+            <span class="text-[9px] font-black">想い</span>
+        </a>
+
+        <a href="/pride" class="flex flex-col items-center justify-center w-[20%] active:bg-slate-800">
+            <svg class="w-5 h-5 mb-1 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+            <span class="text-[9px] font-black">拘り</span>
+        </a>
+        
+        <a href="tel:08000807788" class="js-phone-modal-trigger flex items-center justify-center bg-neon text-slate-900 w-[40%] font-black text-base active:bg-yellow-400 transition-colors">
+            <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+            電話する
+        </a>
+        
+    </div>
+
+    <!-- 🌟 ご予約・お問い合わせ前のワンクッションモーダル 🌟 -->
+    <div id="phone-modal" class="fixed inset-0 z-[100] hidden flex items-center justify-center px-4">
+        <div id="phone-modal-backdrop" class="absolute inset-0 bg-slate-900/80 backdrop-blur-sm opacity-0 transition-opacity duration-300"></div>
+        
+        <div id="phone-modal-content" class="relative bg-white rounded-3xl shadow-2xl w-full max-w-sm overflow-hidden transform scale-95 opacity-0 transition-all duration-300 border border-slate-100">
+            
+            <button id="phone-modal-close" class="absolute top-4 right-4 p-2 text-slate-400 hover:text-slate-700 bg-slate-100 hover:bg-slate-200 rounded-full transition-colors z-10">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+            
+            <div class="p-6 md:p-8 text-center pt-10">
+                
+                <h3 class="text-xl font-black text-slate-900 mb-6 border-b-4 border-[#EFFF00] inline-block pb-1">
+                    ご予約・お問い合わせの前に
+                </h3>
+                
+                <div class="text-[13px] text-slate-700 font-bold leading-relaxed mb-8 space-y-4 text-left bg-slate-50 p-5 rounded-2xl border border-slate-100 shadow-inner">
+                    <p>
+                        <span class="text-slate-900 font-black text-sm">ONE★STAR</span>は<br>
+                        株式会社ECS（エッジクリーンサービス）の専属プロスタッフとして活動しています。
+                    </p>
+                    <p class="pt-2 border-t border-slate-200">
+                        お電話は<br>
+                        <span class="text-slate-900 font-black">株式会社ECSの予約受付</span>につながります。
+                    </p>
+                    
+                    <div class="bg-rose-50 border border-rose-200 p-3 rounded-xl text-center shadow-sm">
+                        <p class="text-rose-600 font-black text-[13px] leading-tight">
+                            ご予約の際は<br>
+                            <span class="text-base">「ONE★STAR（川崎）を指名」</span>と<br>
+                            お伝えください。
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="space-y-3">
+                    <a href="tel:08000807788" class="flex items-center justify-center w-full py-4 bg-slate-900 text-[#EFFF00] font-black rounded-2xl shadow-md active:scale-95 transition-transform text-sm sm:text-base border border-slate-800">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                        株式会社ECSへ電話する
+                    </a>
+                    
+                    <a href="https://www.instagram.com/one.star.kawasaki?igsh=anZpYnpxcDdqOXRh&utm_source=qr" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center w-full py-4 bg-gradient-to-r from-pink-500 to-rose-500 text-white font-black rounded-2xl shadow-md active:scale-95 transition-transform text-sm sm:text-base">
+                        <svg class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                        </svg>
+                        Instagramで本人に相談する
+                    </a>
+                </div>
+                
+                <p class="text-[10px] text-slate-500 mt-4 font-bold leading-relaxed">
+                    直接のご質問・お問い合わせは<br>本人直通のInstagram DMからお気軽にどうぞ。
+                </p>
+                
+                <button id="phone-modal-cancel" class="mt-6 text-[11px] text-slate-400 font-bold underline underline-offset-4 hover:text-slate-600 transition-colors">
+                    キャンセルして戻る
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // === メニュー開閉用 ===
+            const drawerContainer = document.getElementById('drawer-container');
+            const drawerMenu = document.getElementById('drawer-menu');
+            const drawerBackdrop = document.getElementById('drawer-backdrop');
+            
+            const toggleMenu = (show) => {
+                if (show) {
+                    drawerContainer.classList.remove('hidden');
+                    setTimeout(() => {
+                        drawerBackdrop.classList.remove('opacity-0');
+                        drawerBackdrop.classList.add('opacity-100');
+                        drawerMenu.classList.remove('drawer-closed');
+                        drawerMenu.classList.add('drawer-open');
+                    }, 10);
+                } else {
+                    drawerBackdrop.classList.remove('opacity-100');
+                    drawerBackdrop.classList.add('opacity-0');
+                    drawerMenu.classList.remove('drawer-open');
+                    drawerMenu.classList.add('drawer-closed');
+                    setTimeout(() => drawerContainer.classList.add('hidden'), 300);
+                }
+            };
+
+            document.getElementById('menu-open-btn').addEventListener('click', () => toggleMenu(true));
+            document.getElementById('menu-close-btn').addEventListener('click', () => toggleMenu(false));
+            document.getElementById('drawer-backdrop').addEventListener('click', () => toggleMenu(false));
+            document.querySelectorAll('.menu-link').forEach(link => link.addEventListener('click', () => toggleMenu(false)));
+
+            // === 電話モーダル ===
+            const phoneModal = document.getElementById('phone-modal');
+            const phoneModalBackdrop = document.getElementById('phone-modal-backdrop');
+            const phoneModalContent = document.getElementById('phone-modal-content');
+            const phoneModalCloseBtn = document.getElementById('phone-modal-close');
+            const phoneModalCancelBtn = document.getElementById('phone-modal-cancel');
+            const phoneTriggerBtns = document.querySelectorAll('.js-phone-modal-trigger');
+
+            if (phoneModal && phoneTriggerBtns.length > 0) {
+                const openPhoneModal = (e) => {
+                    e.preventDefault(); 
+                    if (typeof toggleMenu === 'function') toggleMenu(false);
+
+                    phoneModal.classList.remove('hidden');
+                    requestAnimationFrame(() => {
+                        phoneModalBackdrop.classList.remove('opacity-0');
+                        phoneModalBackdrop.classList.add('opacity-100');
+                        phoneModalContent.classList.remove('opacity-0', 'scale-95');
+                        phoneModalContent.classList.add('opacity-100', 'scale-100');
+                    });
+                };
+
+                const closePhoneModal = () => {
+                    phoneModalBackdrop.classList.remove('opacity-100');
+                    phoneModalBackdrop.classList.add('opacity-0');
+                    phoneModalContent.classList.remove('opacity-100', 'scale-100');
+                    phoneModalContent.classList.add('opacity-0', 'scale-95');
+                    setTimeout(() => phoneModal.classList.add('hidden'), 300);
+                };
+
+                phoneTriggerBtns.forEach(btn => btn.addEventListener('click', openPhoneModal));
+                phoneModalCloseBtn.addEventListener('click', closePhoneModal);
+                phoneModalCancelBtn.addEventListener('click', closePhoneModal);
+                phoneModalBackdrop.addEventListener('click', closePhoneModal);
+            }
+        });
+    </script>
+</body>
+</html>
+
+
+```
