@@ -636,10 +636,14 @@
                         私の考えです。
                     </p>
 
-                    <!-- 隠しボタン風リンク -->
+                    <!-- 関連記事へのリンク -->
                     <div class="flex justify-center mt-6">
-                        <a href="/tips/robot/" class="inline-block text-xs font-bold text-slate-300 hover:text-slate-500 transition-colors border border-slate-100 hover:border-slate-300 rounded-full px-4 py-2 opacity-50 hover:opacity-100">
-                            お掃除機能付きエアコンがどのように汚れやすいのか？詳しく書いた記事はコチラ ↗️
+                        <a href="/tips/robot/" class="block w-full max-w-[320px] bg-white border-2 border-slate-900 rounded-xl px-4 py-4 text-center shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all active:scale-95">
+                            <span class="text-[14px] md:text-[15px] font-bold text-slate-800 leading-loose">
+                                お掃除機能付きエアコンが<br>
+                                どのように汚れやすいのか？<br>
+                                詳しく書いた記事はコチラ ↗️
+                            </span>
                         </a>
                     </div>
                 </div>
@@ -1106,7 +1110,7 @@
                 </h2>
             </div>
             
-            <button type="button" onclick="showToast(event)" class="block w-full bg-white rounded-2xl border-2 border-slate-900 p-6 md:p-8 shadow-sm hover:shadow-md transition-all active:scale-95 group relative overflow-hidden text-center cursor-pointer">
+            <a href="/works/miyoshi-01" class="block w-full bg-white rounded-2xl border-2 border-slate-900 p-6 md:p-8 shadow-sm hover:shadow-md transition-all active:scale-95 group relative overflow-hidden text-center cursor-pointer">
                 <!-- 装飾 -->
                 <div class="absolute top-0 left-0 w-full h-2 bg-neon"></div>
                 
@@ -1121,7 +1125,7 @@
                 <div class="inline-flex items-center justify-center bg-slate-900 text-neon px-6 py-3.5 rounded-full text-[15px] font-black group-hover:bg-slate-800 transition-colors w-full md:w-auto shadow-md">
                     ▶ この施工事例を見る
                 </div>
-            </button>
+            </a>
         </div>
 
     </main>
@@ -1233,36 +1237,8 @@
         </div>
     </div>
 
-    <!-- 🚧 トースト表示用（初期状態は透明・クリック不可） -->
-    <div id="toast" class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-[110] bg-slate-900/95 backdrop-blur-md text-white px-6 py-4 rounded-2xl shadow-[0_10px_40px_rgba(0,0,0,0.3)] flex items-center space-x-3 opacity-0 pointer-events-none transition-opacity duration-300">
-        <span class="text-2xl">🚧</span>
-        <span class="font-black text-[15px] tracking-widest whitespace-nowrap">ただいま準備中です。</span>
-    </div>
-
     <!-- SCRIPTS -->
     <script>
-        // === トースト表示関数 ===
-        let toastTimeout;
-        function showToast(e) {
-            e.preventDefault(); // デフォルトのボタン動作を防ぐ
-            const toast = document.getElementById('toast');
-            
-            // すでにタイマーが動いていたらクリア
-            if (toastTimeout) {
-                clearTimeout(toastTimeout);
-            }
-            
-            // 表示
-            toast.classList.remove('opacity-0');
-            toast.classList.add('opacity-100');
-            
-            // 3秒後に非表示
-            toastTimeout = setTimeout(() => {
-                toast.classList.remove('opacity-100');
-                toast.classList.add('opacity-0');
-            }, 3000);
-        }
-
         document.addEventListener('DOMContentLoaded', () => {
             // === メニュー開閉用 ===
             const drawerContainer = document.getElementById('drawer-container');
