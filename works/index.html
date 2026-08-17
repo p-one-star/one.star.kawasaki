@@ -138,7 +138,7 @@
             <p class="text-slate-900 font-bold text-sm md:text-base mb-6 tracking-wider">
                 施工事例
                 <span class="relative inline-block font-impact text-xl md:text-2xl mx-1 z-10 translate-y-[1px]">
-                    14
+                    15
                     <span class="absolute bottom-[2px] left-[-2px] right-[-2px] h-[8px] bg-neon -z-10"></span>
                 </span>
                 件掲載中
@@ -169,7 +169,54 @@
 
         <!-- 施工事例カードリスト (グリッドレイアウト) -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            
+
+            <!-- 🌟NEW: カード 15 (名古屋市天白区) 🌟 -->
+            <article class="bg-white rounded-[24px] shadow-sm border border-slate-200 overflow-hidden flex flex-col hover:shadow-md transition-shadow">
+                <div class="relative bg-slate-50/50 border-b border-slate-100 p-3 md:p-4">
+                    <div class="absolute top-3 left-3 z-20 bg-slate-900/95 text-neon text-[10px] md:text-xs font-black px-3 py-1.5 rounded-full shadow-md backdrop-blur-sm">
+                        📍 名古屋市天白区
+                    </div>
+                    <!-- NEW バッジ (オプションとして表示) -->
+                    <div class="absolute top-3 right-3 z-20 bg-rose-500 text-white text-[10px] md:text-xs font-black px-3 py-1.5 rounded-full shadow-md animate-pulse">
+                        NEW!
+                    </div>
+                    <div class="grid grid-cols-2 gap-1.5 md:gap-2 mt-7">
+                        <div class="flex flex-col items-center">
+                            <div class="w-full aspect-square relative rounded-xl overflow-hidden shadow-sm group bg-slate-100 border border-slate-200/50">
+                                <img src="IMG_6956.png" alt="施工前" class="w-full h-full object-cover absolute inset-0 group-hover:scale-105 transition-transform duration-500" onerror="this.style.display='none'">
+                            </div>
+                            <span class="text-[10px] md:text-xs font-bold text-slate-400 mt-2 tracking-wider">BEFORE</span>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <div class="w-full aspect-square relative rounded-xl overflow-hidden shadow-sm group bg-slate-100 border border-slate-200/50">
+                                <img src="IMG_6957.png" alt="施工後" class="w-full h-full object-cover absolute inset-0 group-hover:scale-105 transition-transform duration-500" onerror="this.style.display='none'">
+                            </div>
+                            <span class="relative inline-block mt-2">
+                                <span class="text-[10px] md:text-xs font-black text-slate-900 tracking-wider relative z-10 px-0.5">AFTER</span>
+                                <span class="absolute bottom-[2px] left-0 w-full h-[6px] bg-neon z-0 rounded-sm"></span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-5 flex-1 flex flex-col">
+                    <div class="flex flex-wrap gap-2 mb-3">
+                        <span class="bg-blue-50 text-blue-600 text-[10px] md:text-xs font-bold px-2.5 py-1 rounded border border-blue-100">三菱電機</span>
+                        <span class="bg-slate-50 text-slate-600 text-[10px] md:text-xs font-bold px-2.5 py-1 rounded border border-slate-200">スタンダード</span>
+                    </div>
+                    <h2 class="font-bold text-slate-900 text-sm md:text-base mb-4 leading-relaxed">
+                        これが市販スプレーを使い続けた末路か…
+                    </h2>
+                    <div class="mt-auto pt-4 border-t border-slate-100">
+                        <a href="/works/tenpakuku-01" class="flex items-center justify-between group py-1">
+                            <span class="text-[13px] md:text-sm font-black text-slate-700 group-hover:text-blue-600 transition-colors">詳しく見る</span>
+                            <span class="bg-slate-900 text-neon w-8 h-8 rounded-full flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition-all transform group-hover:translate-x-1">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7"/></svg>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+            </article>
+
             <!-- カード 1 (岡崎市) -->
             <article class="bg-white rounded-[24px] shadow-sm border border-slate-200 overflow-hidden flex flex-col hover:shadow-md transition-shadow">
                 <div class="relative bg-slate-50/50 border-b border-slate-100 p-3 md:p-4">
