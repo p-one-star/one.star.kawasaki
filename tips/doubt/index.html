@@ -1,0 +1,1148 @@
+```html
+<!DOCTYPE html>
+<html lang="ja" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>プロに頼んだつもりが… | ONE★STAR</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        neon: '#EFFF00' // トレードカラー：蛍光イエロー
+                    },
+                    fontFamily: {
+                        sans: ['"Noto Sans JP"', 'sans-serif'],
+                        impact: ['"Black Ops One"', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        /* ドロワーメニュー用 */
+        #drawer-menu { transition: transform 0.3s ease-in-out; }
+        .drawer-closed { transform: translateX(-100%); }
+        .drawer-open { transform: translateX(0); }
+    </style>
+</head>
+<body class="font-sans text-slate-800 bg-slate-50 antialiased overflow-x-hidden pb-[60px]">
+
+    <!-- HEADER -->
+    <header class="fixed top-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md shadow-sm border-b border-slate-100 h-14 flex items-center justify-between px-4">
+        <button id="menu-open-btn" class="p-2 hover:bg-slate-100 rounded-lg" aria-label="メニュー">
+            <svg class="w-6 h-6 text-slate-800" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+
+        <div class="absolute left-1/2 -translate-x-1/2 flex items-center justify-center mt-1">
+            <a href="/" class="text-2xl md:text-3xl tracking-widest text-slate-900 leading-none flex items-center font-impact">
+                ONE
+                <img src="ONESTAR.PNG" alt="ロゴ" class="w-[45px] h-[45px] md:w-[55px] md:h-[55px] mx-[-4px] md:mx-[-6px] object-contain -translate-y-[4px]" onerror="this.style.display='none'">
+                STAR
+            </a>
+        </div>
+
+        <div class="hidden md:flex items-center space-x-3">
+            <a href="tel:08000807788" class="js-phone-modal-trigger bg-slate-900 hover:bg-slate-800 text-neon px-4 py-1.5 rounded-full text-xs font-black border border-slate-700 flex items-center space-x-1 transition-all">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                <span>電話相談</span>
+            </a>
+        </div>
+        <div class="w-10 md:hidden"></div>
+    </header>
+
+    <!-- DRAWER MENU -->
+    <div id="drawer-container" class="fixed inset-0 z-50 overflow-hidden hidden">
+        <div id="drawer-backdrop" class="absolute inset-0 bg-slate-900/60 opacity-0 transition-opacity duration-300"></div>
+        <div class="pointer-events-none fixed inset-y-0 left-0 flex max-w-full">
+            <div id="drawer-menu" class="pointer-events-auto w-64 drawer-closed bg-white shadow-2xl flex flex-col h-full">
+                
+                <div class="p-3 bg-white flex justify-end">
+                    <button id="menu-close-btn" class="p-2 hover:bg-slate-100 rounded-lg">
+                        <svg class="w-6 h-6 text-slate-500" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+                    </button>
+                </div>
+
+                <div class="bg-blue-600 py-3 px-6">
+                    <h2 class="text-white font-black tracking-wider text-sm">MENU</h2>
+                </div>
+
+                <nav class="flex-1 px-4 py-2 overflow-y-auto">
+                    <div class="space-y-1">
+                        <a href="/" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>トップページ
+                        </a>
+                        <a href="/price" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>料金プラン
+                        </a>
+                        <a href="/works" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>施工事例
+                        </a>
+                        <a href="/mind" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>ONE★STARの想い
+                        </a>
+                        <a href="/pride" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>プロとしての拘り
+                        </a>
+                        <a href="/trash" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>ここだけの話
+                        </a>
+                        <a href="/before" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>ご予約の前に
+                        </a>
+                        <a href="/faq" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>よくある質問
+                        </a>
+                        <a href="/tips" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-blue-600">
+                            <span class="mr-2 text-blue-600">＞</span>お役立ち情報
+                        </a>
+                        <a href="/products" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-[#06C755]">
+                            <span class="mr-2 text-slate-400">＞</span>オリジナルLINEスタンプ
+                        </a>
+                    </div>
+                    
+                    <hr class="border-slate-300 border-dashed my-4">
+                    <a href="https://www.edge-cleanservice.com" target="_blank" rel="noopener noreferrer" class="menu-link flex items-center py-2 text-sm font-black text-slate-900 hover:text-blue-600 transition-colors">
+                        株式会社ECS公式サイト
+                        <svg class="w-3.5 h-3.5 ml-1.5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                    </a>
+                </nav>
+
+                <div class="p-4 bg-slate-50 border-t border-slate-100 text-center mt-auto">
+                    <p class="text-[9px] text-slate-500 font-bold leading-relaxed mb-2">
+                        株式会社ECS EDGE CLEAN SERVICE<br>専属プロスタッフとして<br>愛知県全域で毎日奮闘中❣️
+                    </p>
+                    <a href="tel:08000807788" class="js-phone-modal-trigger block w-full py-3 bg-emerald-500 text-white font-bold rounded-lg text-sm shadow">直接電話する</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN (ここだけの話：プロに頼んだつもりが…) -->
+    <main class="pt-24 pb-12 px-4 max-w-3xl mx-auto">
+
+        <!-- ＝＝＝ 白いメインカード(前半) ＝＝＝ -->
+        <div class="bg-white rounded-[24px] border-2 border-slate-900 overflow-hidden shadow-sm mb-10">
+            <!-- 上部の黄色いライン -->
+            <div class="h-3 w-full bg-neon"></div>
+
+            <div class="p-5 md:p-8">
+                
+                <!-- バッジ -->
+                <div class="flex justify-center mb-8 text-center">
+                    <span class="inline-block bg-slate-900 text-neon text-xs md:text-sm font-black px-5 py-2 rounded shadow-sm tracking-wider">
+                        ここだけの話
+                    </span>
+                </div>
+
+                <!-- タイトル -->
+                <h1 class="text-[26px] md:text-[32px] font-black text-slate-900 mb-12 leading-relaxed tracking-wide text-center">
+                    プロに頼んだ<br class="md:hidden">つもりが…
+                </h1>
+
+                <!-- リード文 -->
+                <p class="text-[14px] md:text-[15px] font-bold text-slate-700 leading-loose text-center mb-10">
+                    エアコンクリーニングを<br>
+                    プロに頼んだ。<br><br>
+
+                    これで安心。<br><br>
+
+                    そう思いますよね。<br><br>
+
+                    でも、<br><br>
+
+                    同じ<br>
+                    「エアコンクリーニング」でも、<br><br>
+
+                    その中身まで<br>
+                    すべて同じとは限りません。<br><br>
+
+                    料金も違えば、<br><br>
+
+                    作業時間も違う。<br><br>
+
+                    使う道具も、<br><br>
+
+                    分解する範囲も、<br><br>
+
+                    洗い方も違います。<br><br>
+
+                    そして何より、<br><br>
+
+                    <span class="text-[15px] md:text-base font-black text-slate-900 bg-neon px-2">どこまで汚れを落とすのか。</span><br><br>
+
+                    ここにも、<br><br>
+
+                    施工する人によって<br>
+                    大きな違いがあります。
+                </p>
+
+                <!-- セクション: 「プロ」なら安心？ -->
+                <div class="mb-16 mt-20">
+                    <div class="flex flex-col items-center justify-center mb-6 text-center">
+                        <span class="w-10 h-[3px] bg-slate-800 mb-4 rounded-full"></span>
+                        <h2 class="text-xl md:text-2xl font-black text-slate-900 tracking-wider leading-relaxed">
+                            「プロ」なら安心？
+                        </h2>
+                    </div>
+
+                    <p class="text-[14px] md:text-[15px] font-bold text-slate-800 leading-loose text-center">
+                        もちろん、<br><br>
+                        多くの業者さんが<br>
+                        真面目に仕事をしています。<br><br>
+                        丁寧に分解して、<br><br>
+                        見えない部分まで確認し、<br><br>
+                        できる限り<br>
+                        汚れを落としている職人も<br><br>
+                        たくさんいます。<br><br>
+                        でも、<br><br>
+                        <span class="bg-slate-100 px-3 py-1.5 rounded-lg border border-slate-200 inline-block mb-1">
+                            「プロに頼んだ」
+                        </span><br><br>
+                        というだけで、<br><br>
+                        見えないところまで<br>
+                        すべてキレイになっている。<br><br>
+                        そう言い切ることは<br>
+                        できません。<br><br>
+                        なぜなら、<br><br>
+                        エアコンクリーニングは、<br><br>
+                        作業が終わってしまえば<br>
+                        内部のほとんどが<br><br>
+                        <span class="text-[15px] md:text-base font-black text-slate-900 underline decoration-red-200 decoration-4 underline-offset-4">お客様からは</span><br>
+                        <span class="text-[15px] md:text-base font-black text-slate-900 underline decoration-red-200 decoration-4 underline-offset-4">見えなくなる仕事だからです。</span>
+                    </p>
+                </div>
+
+                <!-- セクション: 「洗えない」と「洗わない」は違う -->
+                <div class="mb-16 mt-20">
+                    <div class="flex flex-col items-center justify-center mb-6 text-center">
+                        <span class="w-10 h-[3px] bg-slate-800 mb-4 rounded-full"></span>
+                        <h2 class="text-xl md:text-2xl font-black text-slate-900 tracking-wider leading-relaxed">
+                            「洗えない」と<br class="sm:hidden">「洗わない」は違う
+                        </h2>
+                    </div>
+
+                    <p class="text-[14px] md:text-[15px] font-bold text-slate-800 leading-loose text-center">
+                        経験が浅く、<br><br>
+                        汚れている場所を<br>
+                        知らなかった。<br><br>
+                        技術が足りず、<br><br>
+                        うまく洗うことが<br>
+                        できなかった。<br><br>
+                        もちろん、<br><br>
+                        そういうことも<br>
+                        あると思います。<br><br>
+                        でも、<br><br>
+                        それだけではありません。<br><br>
+                        私はこれまで、<br><br>
+                        どこが汚れているのか<br>
+                        知っている。<br><br>
+                        どうすれば落とせるのかも<br>
+                        知っている。<br><br>
+                        知識もある。<br><br>
+                        技術もある。<br><br>
+                        それでも、<br><br>
+                        <span class="text-[15px] md:text-base font-black text-red-600 bg-red-50 px-2 py-1 rounded">あえて洗わない。</span><br><br>
+                        そんな施工も<br>
+                        実際に見てきました。
+                    </p>
+                </div>
+
+                <!-- セクション: なぜ、分かっていて洗わない？ -->
+                <div class="mb-16 mt-20">
+                    <div class="flex flex-col items-center justify-center mb-6 text-center">
+                        <span class="w-10 h-[3px] bg-slate-800 mb-4 rounded-full"></span>
+                        <h2 class="text-xl md:text-2xl font-black text-slate-900 tracking-wider leading-relaxed">
+                            なぜ、分かっていて<br class="sm:hidden">洗わない？
+                        </h2>
+                    </div>
+
+                    <p class="text-[14px] md:text-[15px] font-bold text-slate-800 leading-loose text-center">
+                        理由のひとつは、<br><br>
+                        時間です。<br><br>
+                        一台に時間をかければ、<br><br>
+                        一日に施工できる<br>
+                        台数は減ります。<br><br>
+                        一台を早く終わらせて、<br><br>
+                        次の現場へ向かえば、<br><br>
+                        より多くの仕事を<br>
+                        こなすことができます。<br><br>
+                        件数を増やす。<br><br>
+                        作業時間を短くする。<br><br>
+                        売上を増やす。<br><br>
+                        仕事として考えれば、<br><br>
+                        効率も大切です。<br><br>
+                        ですが、<br><br>
+                        効率を優先するあまり、<br><br>
+                        本来なら洗える汚れまで<br>
+                        残してしまったら？<br><br>
+                        それを知らないのは、<br><br>
+                        お客様だけかもしれません。
+                    </p>
+                </div>
+
+                <!-- セクション: 見えないからこそ、差が出る -->
+                <div class="mb-16 mt-20">
+                    <div class="flex flex-col items-center justify-center mb-6 text-center">
+                        <span class="w-10 h-[3px] bg-slate-800 mb-4 rounded-full"></span>
+                        <h2 class="text-xl md:text-2xl font-black text-slate-900 tracking-wider leading-relaxed">
+                            見えないからこそ、<br class="sm:hidden">差が出る
+                        </h2>
+                    </div>
+
+                    <p class="text-[14px] md:text-[15px] font-bold text-slate-800 leading-loose text-center">
+                        エアコンの内部には、<br><br>
+                        外からでは<br>
+                        確認しにくい場所が<br><br>
+                        たくさんあります。<br><br>
+                        熱交換器の奥。<br><br>
+                        送風ファンの裏側。<br><br>
+                        ドレンパン周辺。<br><br>
+                        部品が重なって<br>
+                        隠れている場所。<br><br>
+                        見えるところだけを<br>
+                        キレイにしても、<br><br>
+                        こうした場所に<br>
+                        汚れが残っていることがあります。<br><br>
+                        そして、<br><br>
+                        作業が終わって<br>
+                        元通りに組み立てれば、<br><br>
+                        その汚れは<br>
+                        また見えなくなります。<br><br>
+                        だからこそ、<br><br>
+                        <span class="text-[15px] md:text-base font-black text-slate-900 bg-neon px-2">見えない部分ほど、<br class="md:hidden">施工する人の考え方が出る。</span><br><br>
+                        私はそう思っています。
+                    </p>
+                </div>
+
+                <!-- セクション: 黒い水が出たからキレイ？ -->
+                <div class="mb-16 mt-20">
+                    <div class="flex flex-col items-center justify-center mb-6 text-center">
+                        <span class="w-10 h-[3px] bg-slate-800 mb-4 rounded-full"></span>
+                        <h2 class="text-xl md:text-2xl font-black text-slate-900 tracking-wider leading-relaxed">
+                            黒い水が出たから<br class="sm:hidden">キレイ？
+                        </h2>
+                    </div>
+
+                    <p class="text-[14px] md:text-[15px] font-bold text-slate-800 leading-loose text-center">
+                        エアコンを洗うと、<br><br>
+                        真っ黒な水が<br>
+                        出てくることがあります。<br><br>
+                        「こんなに<br>
+                        汚れていたんですね！」<br><br>
+                        そう驚かれることも<br>
+                        珍しくありません。<br><br>
+                        確かに、<br><br>
+                        黒い水が出たということは、<br><br>
+                        汚れが落ちた<br>
+                        ひとつの証拠です。<br><br>
+                        でも、<br><br>
+                        <span class="text-[15px] md:text-base font-black text-slate-900 underline decoration-red-200 decoration-4 underline-offset-4">黒い水が出たことと、</span><br>
+                        <span class="text-[15px] md:text-base font-black text-slate-900 underline decoration-red-200 decoration-4 underline-offset-4">汚れを落とし切ったことは</span><br>
+                        <span class="text-[15px] md:text-base font-black text-slate-900 underline decoration-red-200 decoration-4 underline-offset-4">同じではありません。</span><br><br>
+                        たくさん汚れが<br>
+                        残っていたとしても、<br><br>
+                        一部の汚れを落とせば<br>
+                        洗浄水は汚れます。<br><br>
+                        黒い水だけを見て、<br><br>
+                        エアコン内部が<br>
+                        どこまでキレイになったのか。<br><br>
+                        そこまで判断することは<br>
+                        できません。
+                    </p>
+                </div>
+
+                <!-- セクション: 見えるところがキレイでも -->
+                <div class="mb-10 mt-20">
+                    <div class="flex flex-col items-center justify-center mb-6 text-center">
+                        <span class="w-10 h-[3px] bg-slate-800 mb-4 rounded-full"></span>
+                        <h2 class="text-xl md:text-2xl font-black text-slate-900 tracking-wider leading-relaxed">
+                            見えるところが<br class="sm:hidden">キレイでも
+                        </h2>
+                    </div>
+
+                    <p class="text-[14px] md:text-[15px] font-bold text-slate-800 leading-loose text-center">
+                        外装がピカピカ。<br><br>
+                        フィルターもキレイ。<br><br>
+                        吹出口から<br>
+                        見えるところもキレイ。<br><br>
+                        これだけ見れば、<br><br>
+                        「しっかり<br>
+                        洗ってもらえた。」<br><br>
+                        そう感じるのは<br>
+                        当然だと思います。<br><br>
+                        でも、<br><br>
+                        エアコンクリーニングで<br>
+                        本当に難しいのは、<br><br>
+                        その先です。<br><br>
+                        お客様からは<br>
+                        見えないところ。<br><br>
+                        簡単には<br>
+                        確認できないところ。<br><br>
+                        そこに残った汚れまで、<br><br>
+                        どれだけ意識して<br>
+                        洗っているのか。<br><br>
+                        外から見ただけでは<br>
+                        分かりません。
+                    </p>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ＝＝＝ リンクカード（通常分解と完全分解） ＝＝＝ -->
+        <div class="bg-slate-100 rounded-[24px] border border-slate-200 px-5 py-8 md:p-10 text-center shadow-sm mb-10">
+            <h2 class="text-xl md:text-2xl font-black text-slate-900 mb-8 leading-relaxed">
+                完全分解なら安心？
+            </h2>
+            <p class="text-[14px] md:text-[15px] font-bold text-slate-700 leading-loose mb-8">
+                では、<br><br>
+                エアコンを<br>
+                全部バラバラにするような<br><br>
+                完全分解なら、<br><br>
+                必ず良い施工なのか？<br><br>
+                私は、<br><br>
+                そうとも考えていません。<br><br>
+                分解できる技術と、<br><br>
+                汚れを落出す技術は<br>
+                別のものです。<br><br>
+                通常分解でも、<br><br>
+                構造を理解して、<br><br>
+                汚れている場所を狙い、<br><br>
+                できる限り<br>
+                しっかり洗うことはできます。<br><br>
+                反対に、<br><br>
+                たくさん分解しても、<br><br>
+                洗浄そのものが<br>
+                雑であれば意味がありません。<br><br>
+                通常分解だから手抜き。<br><br>
+                完全分解だから正解。<br><br>
+                そんな単純な話では<br>
+                ありません。<br><br>
+                通常分解と完全分解。<br><br>
+                それぞれの違いや<br>
+                私の考え方については、<br><br>
+                別の記事で<br>
+                詳しくお話ししています。
+            </p>
+            <a href="/tips/full/" class="inline-flex items-center justify-center bg-slate-900 text-neon px-6 py-3.5 rounded-full text-[15px] font-black hover:bg-slate-800 transition-colors shadow-md w-full md:w-auto">
+                ▶ 通常分解と完全分解について
+            </a>
+        </div>
+
+
+        <!-- ＝＝＝ 白いメインカード(中盤) ＝＝＝ -->
+        <div class="bg-white rounded-[24px] border-2 border-slate-900 overflow-hidden shadow-sm mb-10">
+            <div class="h-3 w-full bg-slate-900"></div>
+            <div class="p-5 md:p-8">
+
+                <!-- セクション: 作業時間が長ければ丁寧？ -->
+                <div class="mb-16 mt-8">
+                    <div class="flex flex-col items-center justify-center mb-6 text-center">
+                        <span class="w-10 h-[3px] bg-slate-800 mb-4 rounded-full"></span>
+                        <h2 class="text-xl md:text-2xl font-black text-slate-900 tracking-wider leading-relaxed">
+                            作業時間が長ければ<br class="sm:hidden">丁寧？
+                        </h2>
+                    </div>
+
+                    <p class="text-[14px] md:text-[15px] font-bold text-slate-800 leading-loose text-center">
+                        これも、<br><br>
+                        一概には言えません。<br><br>
+                        経験のある職人なら、<br><br>
+                        分解や組み立てを<br>
+                        早く行えることがあります。<br><br>
+                        同じ機種でも、<br><br>
+                        初めて触る人と、<br><br>
+                        何度も施工している人では、<br><br>
+                        作業時間が違って<br>
+                        当然です。<br><br>
+                        反対に、<br><br>
+                        長い時間をかけたからといって、<br><br>
+                        必ずしも<br>
+                        キレイになるとは限りません。<br><br>
+                        <span class="bg-slate-100 px-3 py-1.5 rounded-lg border border-slate-200 inline-block mb-1">
+                            早い＝手抜き。<br>
+                            遅い＝丁寧。
+                        </span><br><br>
+                        作業時間だけで、<br><br>
+                        施工品質を判断することも<br>
+                        難しいと思います。
+                    </p>
+                </div>
+
+                <!-- セクション: 道具がプロなら施工もプロ？ -->
+                <div class="mb-16 mt-20">
+                    <div class="flex flex-col items-center justify-center mb-6 text-center">
+                        <span class="w-10 h-[3px] bg-slate-800 mb-4 rounded-full"></span>
+                        <h2 class="text-xl md:text-2xl font-black text-slate-900 tracking-wider leading-relaxed">
+                            道具がプロなら<br class="sm:hidden">施工もプロ？
+                        </h2>
+                    </div>
+
+                    <p class="text-[14px] md:text-[15px] font-bold text-slate-800 leading-loose text-center">
+                        高圧洗浄機。<br><br>
+                        専用の洗剤。<br><br>
+                        たくさんの工具。<br><br>
+                        本格的な道具を<br>
+                        使っていると、<br><br>
+                        それだけで<br>
+                        プロらしく見えます。<br><br>
+                        でも、<br><br>
+                        大切なのは<br>
+                        道具そのものではありません。<br><br>
+                        どこに、<br><br>
+                        どの角度から、<br><br>
+                        どの程度の圧力で、<br><br>
+                        どれだけ洗浄水を<br>
+                        当てるのか。<br><br>
+                        洗剤を使うなら、<br><br>
+                        汚れに合わせて<br>
+                        どう使うのか。<br><br>
+                        そして、<br><br>
+                        浮かせた汚れや<br>
+                        洗剤成分を、<br><br>
+                        どれだけ丁寧に<br>
+                        すすぐのか。<br><br>
+                        <span class="text-[15px] md:text-base font-black text-slate-900 bg-neon px-2">同じ道具でも、<br class="md:hidden">使う人によって結果は変わります。</span>
+                    </p>
+                </div>
+
+                <!-- セクション: 愛想が良ければ安心？ -->
+                <div class="mb-16 mt-20">
+                    <div class="flex flex-col items-center justify-center mb-6 text-center">
+                        <span class="w-10 h-[3px] bg-slate-800 mb-4 rounded-full"></span>
+                        <h2 class="text-xl md:text-2xl font-black text-slate-900 tracking-wider leading-relaxed">
+                            愛想が良ければ安心？
+                        </h2>
+                    </div>
+
+                    <p class="text-[14px] md:text-[15px] font-bold text-slate-800 leading-loose text-center">
+                        接客が丁寧。<br><br>
+                        説明が上手。<br><br>
+                        話しやすい。<br><br>
+                        愛想が良い。<br><br>
+                        もちろん、<br><br>
+                        どれも大切なことです。<br><br>
+                        接客も良く、<br><br>
+                        施工も丁寧な職人は<br>
+                        たくさんいます。<br><br>
+                        でも、<br><br>
+                        接客の良さと<br>
+                        施工品質は別のものです。<br><br>
+                        説明が上手だから、<br><br>
+                        見えない部分まで<br>
+                        キレイになっている。<br><br>
+                        感じの良い人だから、<br><br>
+                        絶対に手を抜かない。<br><br>
+                        残念ながら、<br><br>
+                        それだけでは<br>
+                        判断できません。
+                    </p>
+                </div>
+
+                <!-- セクション: お客様には見えない仕事だから -->
+                <div class="mb-16 mt-20">
+                    <div class="flex flex-col items-center justify-center mb-6 text-center">
+                        <span class="w-10 h-[3px] bg-slate-800 mb-4 rounded-full"></span>
+                        <h2 class="text-xl md:text-2xl font-black text-slate-900 tracking-wider leading-relaxed">
+                            お客様には<br class="sm:hidden">見えない仕事だから
+                        </h2>
+                    </div>
+
+                    <p class="text-[14px] md:text-[15px] font-bold text-slate-800 leading-loose text-center">
+                        エアコンクリーニングが<br>
+                        終われば、<br><br>
+                        外装はキレイ。<br><br>
+                        吹出口もキレイ。<br><br>
+                        冷たい風も出る。<br><br>
+                        ニオイも<br>
+                        少なくなった。<br><br>
+                        黒い洗浄水も<br>
+                        見せてもらった。<br><br>
+                        作業してくれた人も<br>
+                        感じが良かった。<br><br>
+                        そうなれば、<br><br>
+                        「キレイにしてもらえた。」<br><br>
+                        と思うのは<br>
+                        当然だと思います。<br><br>
+                        でも、<br><br>
+                        見えない内部まで<br>
+                        どこまで洗われているのか。<br><br>
+                        それを施工直後に、<br><br>
+                        お客様自身が<br>
+                        確認するのは<br><br>
+                        とても難しいことです。
+                    </p>
+                </div>
+
+                <!-- セクション: 口コミ★★★★★なら安心？ -->
+                <div class="mb-16 mt-20">
+                    <div class="flex flex-col items-center justify-center mb-6 text-center">
+                        <span class="w-10 h-[3px] bg-slate-800 mb-4 rounded-full"></span>
+                        <h2 class="text-xl md:text-2xl font-black text-slate-900 tracking-wider leading-relaxed">
+                            口コミ★★★★★なら<br class="sm:hidden">安心？
+                        </h2>
+                    </div>
+
+                    <p class="text-[14px] md:text-[15px] font-bold text-slate-800 leading-loose text-center">
+                        業者を探すとき、<br><br>
+                        ネットの口コミを<br>
+                        参考にする方も<br><br>
+                        多いと思います。<br><br>
+                        実際に利用した人の<br>
+                        感想を知ることができるので、<br><br>
+                        口コミは便利な<br>
+                        判断材料のひとつです。<br><br>
+                        私も、<br><br>
+                        口コミを見ること自体が<br>
+                        悪いとは思いません。<br><br>
+                        ただ、<br><br>
+                        口コミだけで<br>
+                        業者を決めることには<br>
+                        少し注意が必要です。<br><br>
+                        インターネット上には、<br><br>
+                        口コミや評価を<br>
+                        増やすことを目的とした<br><br>
+                        サービスも存在します。<br><br>
+                        もちろん、<br><br>
+                        すべての業者が<br>
+                        利用しているわけではありません。<br><br>
+                        本当に利用したお客様が、<br><br>
+                        自分の言葉で書いた<br>
+                        口コミもたくさんあります。<br><br>
+                        でも、<br><br>
+                        見る側からすれば、<br><br>
+                        どれが実際のお客様による<br>
+                        口コミなのか。<br><br>
+                        どれがそうではないのか。<br><br>
+                        それを完全に<br>
+                        見分けることは困難です。
+                    </p>
+                </div>
+
+                <!-- セクション: 口コミは、あくまで参考程度に -->
+                <div class="mb-10 mt-20">
+                    <div class="flex flex-col items-center justify-center mb-6 text-center">
+                        <span class="w-10 h-[3px] bg-slate-800 mb-4 rounded-full"></span>
+                        <h2 class="text-xl md:text-2xl font-black text-slate-900 tracking-wider leading-relaxed">
+                            口コミは、<br class="sm:hidden">あくまで参考程度に
+                        </h2>
+                    </div>
+
+                    <p class="text-[14px] md:text-[15px] font-bold text-slate-800 leading-loose text-center">
+                        だからといって、<br><br>
+                        口コミを見るな。<br><br>
+                        という話ではありません。<br><br>
+                        口コミも見る。<br><br>
+                        料金も見る。<br><br>
+                        ホームページも見る。<br><br>
+                        施工事例も見る。<br><br>
+                        どこまで分解するのか。<br><br>
+                        どんな洗い方をするのか。<br><br>
+                        そして、<br><br>
+                        その人が普段から<br>
+                        何を考えて<br><br>
+                        仕事をしているのか。<br><br>
+                        いろいろな情報を見て、<br><br>
+                        自分に合う業者なのかを<br>
+                        判断する。<br><br>
+                        口コミは、<br><br>
+                        そのための<br><br>
+                        ひとつの参考材料。<br><br>
+                        それくらいで<br>
+                        良いのではないかと<br><br>
+                        私は思っています。
+                    </p>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ＝＝＝ ネイビーのカード (ONE★STARの考え方) ＝＝＝ -->
+        <div class="bg-slate-900 rounded-[24px] border-l-[8px] md:border-l-[12px] border-neon px-5 py-8 md:p-10 text-center shadow-md mb-10">
+            
+            <h2 class="text-white font-black text-xl md:text-2xl leading-relaxed mb-10 tracking-wider">
+                ONE★STARも<br class="sm:hidden">同じです
+            </h2>
+
+            <p class="text-slate-100 font-bold text-[14px] md:text-[15px] leading-loose mb-12">
+                私自身についても、<br><br>
+                
+                「プロだから<br>
+                信用してください。」<br><br>
+                
+                とは思っていません。<br><br>
+                
+                口コミだけを見て、<br><br>
+                
+                「信用してください。」<br><br>
+                
+                とも思っていません。<br><br>
+                
+                だから、<br><br>
+                
+                このサイトでは、<br><br>
+                
+                実際に施工した<br>
+                エアコンの事例や、<br><br>
+                
+                普段どんなことを考えて<br>
+                仕事をしているのか。<br><br>
+                
+                できるだけ<br>
+                公開しています。<br><br>
+                
+                良いところだけを<br>
+                見せたいのではありません。<br><br>
+                
+                どんな考え方で<br>
+                仕事をしている人間なのか。<br><br>
+                
+                そこまで見たうえで、<br><br>
+                
+                最後は、<br><br>
+                
+                お客様自身に<br>
+                判断していただきたい。<br><br>
+                
+                そう考えています。
+            </p>
+
+            <!-- 区切り線 -->
+            <div class="w-16 h-[1px] bg-slate-600 mx-auto mb-12"></div>
+
+            <h2 class="text-white font-black text-xl md:text-2xl leading-relaxed mb-8 tracking-wider">
+                なぜ、<br class="sm:hidden">そこまで洗うのか
+            </h2>
+
+            <p class="text-slate-100 font-bold text-[14px] md:text-[15px] leading-loose mb-10">
+                私は、<br><br>
+                通常分解を基本として<br>
+                施工しています。<br><br>
+                
+                完全分解でなければ<br>
+                洗えない。<br><br>
+                
+                そう考えているわけでは<br>
+                ありません。<br><br>
+                
+                通常分解でも、<br><br>
+                
+                構造を理解して、<br><br>
+                
+                見えない部分まで意識して、<br><br>
+                
+                できる限り<br>
+                汚れを落とす。<br><br>
+                
+                なぜ、<br><br>
+                
+                そこまで洗うことに<br>
+                拘っているのか。<br><br>
+                
+                エアコンクリーニングに対する<br>
+                私自身の考え方は、<br><br>
+                
+                「想い」のページで<br>
+                詳しくお話ししています。
+            </p>
+
+            <a href="/mind/" class="inline-flex items-center justify-center bg-white text-slate-900 px-6 py-3.5 rounded-full text-[15px] font-black hover:bg-slate-100 transition-colors shadow-md mb-12">
+                ▶ ONE★STARの想い
+            </a>
+
+            <!-- 区切り線 -->
+            <div class="w-16 h-[1px] bg-slate-600 mx-auto mb-12"></div>
+
+            <h2 class="text-white font-black text-xl md:text-2xl leading-relaxed mb-8 tracking-wider">
+                見えないところほど、<br class="sm:hidden">誠実に。
+            </h2>
+
+            <p class="text-slate-100 font-bold text-[14px] md:text-[15px] leading-loose mb-12">
+                エアコンの内部は、<br><br>
+                
+                作業が終われば<br>
+                ほとんど見えなくなります。<br><br>
+                
+                だからこそ、<br><br>
+                
+                見えないところを<br>
+                どう扱うのか。<br><br>
+                
+                そこに、<br><br>
+                
+                施工する人の考え方が<br>
+                一番出るのかもしれません。<br><br>
+                
+                知識があること。<br><br>
+                
+                技術があること。<br><br>
+                
+                良い道具を持っていること。<br><br>
+                
+                たくさん分解できること。<br><br>
+                
+                作業が早いこと。<br><br>
+                
+                接客が上手なこと。<br><br>
+                
+                口コミが多いこと。<br><br>
+                
+                もちろん、<br><br>
+                
+                どれも業者を選ぶうえでの<br>
+                判断材料にはなります。<br><br>
+                
+                でも、<br><br>
+                
+                最後に大切なのは、<br><br>
+                
+                <span class="text-neon font-black text-[15px] md:text-base">見えている汚れに、<br class="md:hidden">どこまで誠実に向き合うか。</span><br><br>
+                
+                私は、<br><br>
+                
+                そこだと思っています。
+            </p>
+
+            <!-- 区切り線 -->
+            <div class="w-16 h-[1px] bg-slate-600 mx-auto mb-12"></div>
+
+            <h2 class="text-white font-black text-xl md:text-2xl leading-relaxed mb-8 tracking-wider">
+                プロかどうかを決めるのは、<br class="sm:hidden">肩書きじゃない。
+            </h2>
+
+            <p class="text-slate-100 font-bold text-[14px] md:text-[15px] leading-loose mb-12">
+                「プロ」と名乗れば、<br><br>
+                
+                お客様から見れば<br>
+                プロに見えるかもしれません。<br><br>
+                
+                でも、<br><br>
+                
+                本当に大切なのは、<br><br>
+                
+                その肩書きではなく、<br><br>
+                
+                その人が実際に<br>
+                どんな仕事をしているのか。<br><br>
+                
+                エアコンクリーニングは、<br><br>
+                
+                終わったあとに<br>
+                見えなくなる仕事です。<br><br>
+                
+                だから私は、<br><br>
+                
+                見えないところだからといって<br>
+                手を抜かない。<br><br>
+                
+                その積み重ねが、<br><br>
+                
+                プロとして仕事をする<br>
+                ということだと考えています。
+            </p>
+
+            <!-- 区切り線 -->
+            <div class="w-16 h-[1px] bg-slate-600 mx-auto mb-12"></div>
+
+            <h2 class="text-white font-black text-xl md:text-2xl leading-relaxed mb-8 tracking-wider">
+                ONE★STARの施工への拘り
+            </h2>
+
+            <p class="text-slate-100 font-bold text-[14px] md:text-[15px] leading-loose mb-10">
+                どんな道具を使うのか。<br><br>
+                どんな洗剤を使うのか。<br><br>
+                どんなところを確認して、<br><br>
+                どんなことを意識して<br>
+                洗っているのか。<br><br>
+                ONE★STARが<br>
+                実際の現場で大切にしている<br><br>
+                施工への拘りについては、<br><br>
+                こちらで紹介しています。
+            </p>
+
+            <a href="/pride/" class="inline-flex items-center justify-center bg-white text-slate-900 px-6 py-3.5 rounded-full text-[15px] font-black hover:bg-slate-100 transition-colors shadow-md">
+                ▶ ONE★STARの拘り
+            </a>
+        </div>
+
+        <!-- ＝＝＝ ご相談誘導ブロック ＝＝＝ -->
+        <div class="bg-white rounded-[24px] border border-slate-200 px-5 py-8 md:p-10 text-center shadow-md mb-10">
+            <!-- 見出し部分を「スマホは2行、PC・タブレットは1行」になるように調整 -->
+            <h2 class="text-xl md:text-2xl font-black text-slate-900 mb-8 leading-relaxed text-center">
+                <span class="inline-flex items-center justify-center">
+                    <span class="text-2xl mr-2">⚠️</span>
+                    エアコンクリーニングを
+                </span><br class="sm:hidden">
+                頼もうか迷っている方へ
+            </h2>
+            
+            <p class="text-[14px] md:text-[15px] font-bold text-slate-700 leading-loose mb-10">
+                「前にプロへ頼んだけど、<br>
+                本当にキレイになったのかな？」<br><br>
+                
+                「エアコンの奥に<br>
+                まだ汚れが残っている気がする。」<br><br>
+                
+                「最近また、<br>
+                ニオイが気になってきた。」<br><br>
+                
+                「次はどんな業者に<br>
+                頼めばいいんだろう？」<br><br>
+                
+                そんな疑問がある場合は、<br><br>
+                
+                一度ご相談ください。<br><br>
+                
+                無理に、<br><br>
+                
+                <span class="text-slate-900 font-black">ONE★STAR</span>へ<br>
+                依頼する必要はありません。<br><br>
+                
+                今の状態や、<br><br>
+                
+                気になっていることを聞きながら、<br><br>
+                
+                分かる範囲で<br>
+                お話しします。<br><br>
+                
+                そして、<br><br>
+                
+                実際の施工が<br>
+                どんなものなのか<br><br>
+                
+                気になる方は、<br><br>
+                
+                このサイトに掲載している<br>
+                施工事例も<br><br>
+                
+                ぜひ見てみてください。
+            </p>
+            
+            <a href="tel:08000807788" class="js-phone-modal-trigger inline-flex items-center justify-center bg-slate-900 hover:bg-slate-800 text-neon px-10 py-4 rounded-full text-[15px] font-black shadow-md transition-all active:scale-95 w-full md:w-auto">
+                <span class="text-xl mr-2">📞</span>
+                <span>電話で相談する</span>
+            </a>
+        </div>
+
+
+        <!-- 関連する施工事例へのリンク -->
+        <div class="mt-16 text-center">
+            <div class="flex flex-col items-center justify-center mb-6">
+                <span class="w-10 h-[3px] bg-slate-800 mb-4 rounded-full"></span>
+                <h2 class="text-xl md:text-2xl font-black text-slate-900 tracking-wider leading-relaxed">
+                    実際の現場も見てみる
+                </h2>
+            </div>
+            
+            <a href="/works" class="block bg-white rounded-2xl border-2 border-slate-900 p-6 md:p-8 shadow-sm hover:shadow-md transition-all active:scale-95 group relative overflow-hidden text-center">
+                <!-- 装飾 -->
+                <div class="absolute top-0 left-0 w-full h-2 bg-neon"></div>
+                
+                <p class="text-[11px] md:text-sm font-black text-slate-500 mb-3 tracking-widest">
+                    関連する施工事例
+                </p>
+                
+                <h3 class="text-[17px] md:text-xl font-black text-slate-900 mb-6 leading-relaxed">
+                    「実際の洗浄前・洗浄後や<br>内部の汚れを確認した施工事例」
+                </h3>
+
+                <p class="text-[13px] font-bold text-slate-600 mb-8 leading-loose">
+                    言葉だけではなく、<br>
+                    実際の現場も業者選びの判断材料として<br>
+                    見ていただければと思います。
+                </p>
+                
+                <div class="inline-flex items-center justify-center bg-slate-900 text-neon px-6 py-3.5 rounded-full text-[15px] font-black group-hover:bg-slate-800 transition-colors w-full md:w-auto shadow-md">
+                    ▶ この施工事例を見る
+                </div>
+            </a>
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-900 text-white pt-12 pb-24 md:pb-12 border-t-[6px] border-neon text-center mt-12">
+        <div class="mb-6 flex flex-col items-center justify-center">
+            <span class="text-4xl md:text-5xl tracking-widest text-white flex items-center justify-center font-impact mt-1">
+                ONE
+                <img src="ONESTAR.PNG" alt="ロゴ" class="w-[80px] h-[80px] md:w-[100px] md:h-[100px] mx-[-10px] md:mx-[-16px] object-contain -translate-y-2" onerror="this.style.display='none'">
+                STAR
+            </span>
+            <p class="text-xs text-neon font-black mt-2 tracking-widest">株式会社ECS専属プロスタッフ</p>
+        </div>
+        
+        <p class="text-[11px] text-slate-400 font-bold mb-3">
+            <a href="/products" class="hover:text-white transition-colors underline underline-offset-4">オリジナルLINEスタンプ販売中</a>
+        </p>
+        <p class="text-[10px] text-slate-500 font-bold mb-4">
+            <a href="/privacy" class="hover:text-white transition-colors">プライバシーポリシー</a>
+        </p>
+        <p class="text-[10px] text-slate-500 font-bold tracking-wider">© 2026 ONE★STAR. All Rights Reserved.</p>
+    </footer>
+
+    <!-- MOBILE BOTTOM NAVIGATION -->
+    <div class="fixed bottom-0 left-0 right-0 z-45 bg-slate-900 md:hidden h-[60px] flex items-stretch text-white shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.3)] border-t border-slate-800">
+        
+        <a href="/price" class="flex flex-col items-center justify-center w-[20%] border-r border-slate-700 active:bg-slate-800">
+            <svg class="w-5 h-5 mb-1 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <span class="text-[9px] font-black">料金</span>
+        </a>
+        
+        <a href="/mind" class="flex flex-col items-center justify-center w-[20%] border-r border-slate-700 active:bg-slate-800">
+            <svg class="w-5 h-5 mb-1 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+            <span class="text-[9px] font-black">想い</span>
+        </a>
+
+        <a href="/pride" class="flex flex-col items-center justify-center w-[20%] active:bg-slate-800">
+            <svg class="w-5 h-5 mb-1 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+            <span class="text-[9px] font-black">拘り</span>
+        </a>
+        
+        <a href="tel:08000807788" class="js-phone-modal-trigger flex items-center justify-center bg-neon text-slate-900 w-[40%] font-black text-base active:bg-yellow-400 transition-colors">
+            <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+            電話する
+        </a>
+        
+    </div>
+
+    <!-- 🌟 ご予約・お問い合わせ前のワンクッションモーダル 🌟 -->
+    <div id="phone-modal" class="fixed inset-0 z-[100] hidden flex items-center justify-center px-4">
+        <div id="phone-modal-backdrop" class="absolute inset-0 bg-slate-900/80 backdrop-blur-sm opacity-0 transition-opacity duration-300"></div>
+        
+        <div id="phone-modal-content" class="relative bg-white rounded-3xl shadow-2xl w-full max-w-sm overflow-hidden transform scale-95 opacity-0 transition-all duration-300 border border-slate-100">
+            
+            <button id="phone-modal-close" class="absolute top-4 right-4 p-2 text-slate-400 hover:text-slate-700 bg-slate-100 hover:bg-slate-200 rounded-full transition-colors z-10">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+            
+            <div class="p-6 md:p-8 text-center pt-10">
+                
+                <h3 class="text-xl font-black text-slate-900 mb-6 border-b-4 border-[#EFFF00] inline-block pb-1">
+                    ご予約・お問い合わせの前に
+                </h3>
+                
+                <div class="text-[13px] text-slate-700 font-bold leading-relaxed mb-8 space-y-4 text-left bg-slate-50 p-5 rounded-2xl border border-slate-100 shadow-inner">
+                    <p>
+                        <span class="text-slate-900 font-black text-sm">ONE★STAR</span>は<br>
+                        株式会社ECS（エッジクリーンサービス）の専属プロスタッフとして活動しています。
+                    </p>
+                    <p class="pt-2 border-t border-slate-200">
+                        お電話は<br>
+                        <span class="text-slate-900 font-black">株式会社ECSの予約受付</span>につながります。
+                    </p>
+                    
+                    <div class="bg-rose-50 border border-rose-200 p-3 rounded-xl text-center shadow-sm">
+                        <p class="text-rose-600 font-black text-[13px] leading-tight">
+                            ご予約の際は<br>
+                            <span class="text-base">「ONE★STAR（川崎）を指名」</span>と<br>
+                            お伝えください。
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="space-y-3">
+                    <a href="tel:08000807788" class="flex items-center justify-center w-full py-4 bg-slate-900 text-[#EFFF00] font-black rounded-2xl shadow-md active:scale-95 transition-transform text-sm sm:text-base border border-slate-800">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                        株式会社ECSへ電話する
+                    </a>
+                    
+                    <a href="https://www.instagram.com/one.star.kawasaki?igsh=anZpYnpxcDdqOXRh&utm_source=qr" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center w-full py-4 bg-gradient-to-r from-pink-500 to-rose-500 text-white font-black rounded-2xl shadow-md active:scale-95 transition-transform text-sm sm:text-base">
+                        <svg class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                        </svg>
+                        Instagramで本人に相談する
+                    </a>
+                </div>
+                
+                <p class="text-[10px] text-slate-500 mt-4 font-bold leading-relaxed">
+                    直接のご質問・お問い合わせは<br>本人直通のInstagram DMからお気軽にどうぞ。
+                </p>
+                
+                <button id="phone-modal-cancel" class="mt-6 text-[11px] text-slate-400 font-bold underline underline-offset-4 hover:text-slate-600 transition-colors">
+                    キャンセルして戻る
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // === メニュー開閉用 ===
+            const drawerContainer = document.getElementById('drawer-container');
+            const drawerMenu = document.getElementById('drawer-menu');
+            const drawerBackdrop = document.getElementById('drawer-backdrop');
+            
+            const toggleMenu = (show) => {
+                if (show) {
+                    drawerContainer.classList.remove('hidden');
+                    setTimeout(() => {
+                        drawerBackdrop.classList.remove('opacity-0');
+                        drawerBackdrop.classList.add('opacity-100');
+                        drawerMenu.classList.remove('drawer-closed');
+                        drawerMenu.classList.add('drawer-open');
+                    }, 10);
+                } else {
+                    drawerBackdrop.classList.remove('opacity-100');
+                    drawerBackdrop.classList.add('opacity-0');
+                    drawerMenu.classList.remove('drawer-open');
+                    drawerMenu.classList.add('drawer-closed');
+                    setTimeout(() => drawerContainer.classList.add('hidden'), 300);
+                }
+            };
+
+            document.getElementById('menu-open-btn').addEventListener('click', () => toggleMenu(true));
+            document.getElementById('menu-close-btn').addEventListener('click', () => toggleMenu(false));
+            document.getElementById('drawer-backdrop').addEventListener('click', () => toggleMenu(false));
+            document.querySelectorAll('.menu-link').forEach(link => link.addEventListener('click', () => toggleMenu(false)));
+
+            // === 電話モーダル ===
+            const phoneModal = document.getElementById('phone-modal');
+            const phoneModalBackdrop = document.getElementById('phone-modal-backdrop');
+            const phoneModalContent = document.getElementById('phone-modal-content');
+            const phoneModalCloseBtn = document.getElementById('phone-modal-close');
+            const phoneModalCancelBtn = document.getElementById('phone-modal-cancel');
+            const phoneTriggerBtns = document.querySelectorAll('.js-phone-modal-trigger');
+
+            if (phoneModal && phoneTriggerBtns.length > 0) {
+                const openPhoneModal = (e) => {
+                    e.preventDefault(); 
+                    if (typeof toggleMenu === 'function') toggleMenu(false);
+
+                    phoneModal.classList.remove('hidden');
+                    requestAnimationFrame(() => {
+                        phoneModalBackdrop.classList.remove('opacity-0');
+                        phoneModalBackdrop.classList.add('opacity-100');
+                        phoneModalContent.classList.remove('opacity-0', 'scale-95');
+                        phoneModalContent.classList.add('opacity-100', 'scale-100');
+                    });
+                };
+
+                const closePhoneModal = () => {
+                    phoneModalBackdrop.classList.remove('opacity-100');
+                    phoneModalBackdrop.classList.add('opacity-0');
+                    phoneModalContent.classList.remove('opacity-100', 'scale-100');
+                    phoneModalContent.classList.add('opacity-0', 'scale-95');
+                    setTimeout(() => phoneModal.classList.add('hidden'), 300);
+                };
+
+                phoneTriggerBtns.forEach(btn => btn.addEventListener('click', openPhoneModal));
+                phoneModalCloseBtn.addEventListener('click', closePhoneModal);
+                phoneModalCancelBtn.addEventListener('click', closePhoneModal);
+                phoneModalBackdrop.addEventListener('click', closePhoneModal);
+            }
+        });
+    </script>
+</body>
+</html>
+
+```
