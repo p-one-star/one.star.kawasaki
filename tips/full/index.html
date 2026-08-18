@@ -1,0 +1,1087 @@
+```html
+<!DOCTYPE html>
+<html lang="ja" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>通常分解と完全分解 結局、どっちが正解？ | ONE★STAR</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        neon: '#EFFF00' // トレードカラー：蛍光イエロー
+                    },
+                    fontFamily: {
+                        sans: ['"Noto Sans JP"', 'sans-serif'],
+                        impact: ['"Black Ops One"', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        /* ドロワーメニュー用 */
+        #drawer-menu { transition: transform 0.3s ease-in-out; }
+        .drawer-closed { transform: translateX(-100%); }
+        .drawer-open { transform: translateX(0); }
+    </style>
+</head>
+<body class="font-sans text-slate-800 bg-slate-50 antialiased overflow-x-hidden pb-[60px]">
+
+    <!-- HEADER -->
+    <header class="fixed top-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md shadow-sm border-b border-slate-100 h-14 flex items-center justify-between px-4">
+        <button id="menu-open-btn" class="p-2 hover:bg-slate-100 rounded-lg" aria-label="メニュー">
+            <svg class="w-6 h-6 text-slate-800" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+
+        <div class="absolute left-1/2 -translate-x-1/2 flex items-center justify-center mt-1">
+            <a href="/" class="text-2xl md:text-3xl tracking-widest text-slate-900 leading-none flex items-center font-impact">
+                ONE
+                <img src="ONESTAR.PNG" alt="ロゴ" class="w-[45px] h-[45px] md:w-[55px] md:h-[55px] mx-[-4px] md:mx-[-6px] object-contain -translate-y-[4px]" onerror="this.style.display='none'">
+                STAR
+            </a>
+        </div>
+
+        <div class="hidden md:flex items-center space-x-3">
+            <a href="tel:08000807788" class="js-phone-modal-trigger bg-slate-900 hover:bg-slate-800 text-neon px-4 py-1.5 rounded-full text-xs font-black border border-slate-700 flex items-center space-x-1 transition-all">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                <span>電話相談</span>
+            </a>
+        </div>
+        <div class="w-10 md:hidden"></div>
+    </header>
+
+    <!-- DRAWER MENU -->
+    <div id="drawer-container" class="fixed inset-0 z-50 overflow-hidden hidden">
+        <div id="drawer-backdrop" class="absolute inset-0 bg-slate-900/60 opacity-0 transition-opacity duration-300"></div>
+        <div class="pointer-events-none fixed inset-y-0 left-0 flex max-w-full">
+            <div id="drawer-menu" class="pointer-events-auto w-64 drawer-closed bg-white shadow-2xl flex flex-col h-full">
+                
+                <div class="p-3 bg-white flex justify-end">
+                    <button id="menu-close-btn" class="p-2 hover:bg-slate-100 rounded-lg">
+                        <svg class="w-6 h-6 text-slate-500" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+                    </button>
+                </div>
+
+                <div class="bg-blue-600 py-3 px-6">
+                    <h2 class="text-white font-black tracking-wider text-sm">MENU</h2>
+                </div>
+
+                <nav class="flex-1 px-4 py-2 overflow-y-auto">
+                    <div class="space-y-1">
+                        <a href="/" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>トップページ
+                        </a>
+                        <a href="/price" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>料金プラン
+                        </a>
+                        <a href="/works" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>施工事例
+                        </a>
+                        <a href="/mind" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>ONE★STARの想い
+                        </a>
+                        <a href="/pride" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>プロとしての拘り
+                        </a>
+                        <a href="/trash" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>ここだけの話
+                        </a>
+                        <a href="/before" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>ご予約の前に
+                        </a>
+                        <a href="/faq" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>よくある質問
+                        </a>
+                        <a href="/tips" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-blue-600">
+                            <span class="mr-2 text-blue-600">＞</span>お役立ち情報
+                        </a>
+                        <a href="/products" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-[#06C755]">
+                            <span class="mr-2 text-slate-400">＞</span>オリジナルLINEスタンプ
+                        </a>
+                    </div>
+                    
+                    <hr class="border-slate-300 border-dashed my-4">
+                    <a href="https://www.edge-cleanservice.com" target="_blank" rel="noopener noreferrer" class="menu-link flex items-center py-2 text-sm font-black text-slate-900 hover:text-blue-600 transition-colors">
+                        株式会社ECS公式サイト
+                        <svg class="w-3.5 h-3.5 ml-1.5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                    </a>
+                </nav>
+
+                <div class="p-4 bg-slate-50 border-t border-slate-100 text-center mt-auto">
+                    <p class="text-[9px] text-slate-500 font-bold leading-relaxed mb-2">
+                        株式会社ECS EDGE CLEAN SERVICE<br>専属プロスタッフとして<br>愛知県全域で毎日奮闘中❣️
+                    </p>
+                    <a href="tel:08000807788" class="js-phone-modal-trigger block w-full py-3 bg-emerald-500 text-white font-bold rounded-lg text-sm shadow">直接電話する</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN -->
+    <main class="pt-24 pb-12 px-4 max-w-3xl mx-auto">
+
+        <!-- 白いメインカード -->
+        <div class="bg-white rounded-[24px] border-2 border-slate-900 overflow-hidden shadow-sm mb-10">
+            <!-- 上部の黄色いライン -->
+            <div class="h-3 w-full bg-neon"></div>
+
+            <div class="p-6 md:p-8">
+                
+                <!-- バッジ -->
+                <div class="flex justify-center mb-8 text-center">
+                    <span class="inline-block bg-slate-900 text-neon text-xs md:text-sm font-black px-5 py-2 rounded shadow-sm tracking-wider">
+                        プロが教えるエアコンの真実
+                    </span>
+                </div>
+
+                <!-- タイトル -->
+                <h1 class="text-[26px] md:text-[32px] font-black text-slate-900 mb-12 leading-relaxed tracking-wide text-center">
+                    通常分解と完全分解<br>
+                    <span class="text-[22px] md:text-[28px]">結局、どっちが正解？</span>
+                </h1>
+
+                <!-- リード文 -->
+                <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose text-center mb-10">
+                    エアコンの<br>
+                    クリーニングを<br>
+                    調べていると、<br><br>
+                    
+                    「通常分解」<br>
+                    「ファン抜き」<br>
+                    「背抜き」<br>
+                    「完全分解」<br><br>
+                    
+                    いろいろな言葉が<br>
+                    出てきます。<br><br>
+                    
+                    そして、<br>
+                    SNSなどでは、<br><br>
+                    
+                    <span class="bg-slate-100 px-3 py-2 rounded-lg border border-slate-200 inline-block mb-2 text-left">
+                        「通常分解では<br>
+                        キレイにならない。」<br><br>
+                        「完全分解じゃないと<br>
+                        意味がない。」
+                    </span><br><br>
+                    
+                    そんな言葉も<br>
+                    見かけます。<br><br>
+
+                    では、<br>
+                    本当に完全分解が<br>
+                    一番良いのか？<br><br>
+
+                    反対に、<br>
+                    通常分解で<br>
+                    十分なのか？<br><br>
+
+                    ONE★STARの答えは、<br>
+                    <span class="text-lg font-black text-slate-900 bg-neon px-2">どちらでもありません。</span><br><br>
+
+                    どの分解方法が<br>
+                    正解なのか。<br><br>
+
+                    それは、<br><br>
+
+                    エアコンの状態。<br>
+                    使用環境。<br>
+                    求めるキレイさ。<br>
+                    かけられる費用。<br><br>
+
+                    そして、<br>
+                    お客様が<br>
+                    何を大切にするのか。<br><br>
+
+                    それによって<br>
+                    変わると<br>
+                    考えています。
+                </p>
+
+                <!-- まずは言葉を整理します -->
+                <div class="mb-16 mt-16 text-center">
+                    <div class="flex flex-col items-center justify-center mb-6">
+                        <span class="w-10 h-[3px] bg-slate-800 mb-4 rounded-full"></span>
+                        <h2 class="text-xl md:text-2xl font-black text-slate-900 tracking-wider leading-relaxed">
+                            まずは<br>
+                            言葉を整理します
+                        </h2>
+                    </div>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-800 leading-loose text-center">
+                        実は、<br>
+                        「完全分解」<br>
+                        という言葉も、<br><br>
+                        
+                        業者によって<br>
+                        内容が違います。<br><br>
+                        
+                        ドレンパンを外す。<br>
+                        送風ファンを外す。<br>
+                        ケーシングを外す。<br>
+                        室内機そのものを<br>
+                        壁から外す。<br><br>
+                        
+                        どこまで行えば、<br>
+                        「完全分解」<br>
+                        と呼ぶのか。<br><br>
+                        
+                        統一された<br>
+                        呼び方では<br>
+                        ありません。<br><br>
+                        
+                        そのため、<br>
+                        この記事では、<br>
+                        分かりやすく<br>
+                        お伝えするため、<br><br>
+                        
+                        ONE★STARの<br>
+                        考え方として、<br>
+                        大きく3つに<br>
+                        分けます。
+                    </p>
+                </div>
+
+                <!-- 3つの分解方法 -->
+                <div class="space-y-8 mb-16">
+                    <!-- ① 通常分解 -->
+                    <div class="bg-slate-50 border border-slate-200 rounded-[16px] p-6 text-center">
+                        <h3 class="text-lg md:text-xl font-black text-slate-900 mb-6 border-b-2 border-slate-200 pb-3 inline-block leading-relaxed">
+                            ① 通常分解
+                        </h3>
+                        <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
+                            エアコンを<br>壁に付けたまま、<br><br>
+                            外装カバー。<br>フィルター。<br>ルーバー。<br>お掃除ユニット。<br><br>
+                            洗浄に必要な<br>部品を外して、<br>熱交換器や<br>送風ファンを<br>高圧洗浄する<br>方法です。<br><br>
+                            一般的な<br>エアコン洗浄は、<br>この方法が<br>中心です。<br><br>
+                            <span class="text-base font-black text-slate-900 bg-neon px-2">作業時間や費用を</span><br>
+                            <span class="text-base font-black text-slate-900 bg-neon px-2">抑えやすい。</span><br><br>
+                            定期的な<br>メンテナンスにも<br>取り入れやすい。<br><br>
+                            ここが、<br>大きな<br>メリットです。<br><br>
+                            ただし、<br>壁に付けたまま<br>洗う以上、<br><br>
+                            直接目で<br>見にくい場所。<br>洗いにくい場所。<br><br>
+                            そうした部分が<br>残ることも<br>あります。<br><br>
+                            ここは、<br>通常分解の<br>限界でもあります。
+                        </p>
+                    </div>
+
+                    <!-- ② 背抜き -->
+                    <div class="bg-slate-50 border border-slate-200 rounded-[16px] p-6 text-center">
+                        <h3 class="text-lg md:text-xl font-black text-slate-900 mb-6 border-b-2 border-slate-200 pb-3 inline-block leading-relaxed">
+                            ② 背抜き
+                        </h3>
+                        <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
+                            この記事では、<br>熱交換器を<br>壁に残したまま、<br><br>
+                            送風ファン。<br>ドレンパン。<br>ケーシング。<br><br>
+                            そうした部品まで<br>取り外し、<br>熱交換器だけを<br>壁に残す方法を<br><br>
+                            「背抜き」<br>と呼びます。<br><br>
+                            通常分解では<br>見えにくかった<br>熱交換器の裏側も、<br>直接目で<br>確認できます。<br><br>
+                            表側から。<br>裏側から。<br><br>
+                            <span class="text-base font-black text-slate-900 underline decoration-neon decoration-4 underline-offset-4">汚れを見ながら洗えることは、</span><br>
+                            大きな<br>メリットです。<br><br>
+                            完全分解より、<br>作業時間や<br>費用を<br>抑えやすい場合も<br>あります。<br><br>
+                            ただし、<br>熱交換器自体は<br>壁に残ります。<br><br>
+                            取り外した<br>熱交換器のように、<br>自由な角度で<br>洗うことは<br>できません。<br><br>
+                            大きな容器へ<br>入れて洗うことも<br>できません。<br><br>
+                            また、<br>壁に残した状態で<br>大きく分解します。<br><br>
+                            分解時も、<br>組み立て時も、<br>各部には<br>負担がかかります。<br><br>
+                            熟練した職人なら、<br>そのリスクを<br>抑えながら<br>施工できると<br>思います。<br><br>
+                            それでも、<br>破損や、<br>冷媒ガス漏れ。<br><br>
+                            そうしたリスクが<br>完全にゼロとは<br>言えません。
+                        </p>
+                    </div>
+
+                    <!-- ③ ONE★STARが考える完全分解 -->
+                    <div class="bg-slate-50 border border-slate-200 rounded-[16px] p-6 text-center">
+                        <h3 class="text-lg md:text-xl font-black text-slate-900 mb-6 border-b-2 border-slate-200 pb-3 inline-block leading-relaxed">
+                            ③ ONE★STARが<br>考える完全分解
+                        </h3>
+                        <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
+                            この記事でいう<br>完全分解は、<br>まず、<br>ポンプダウンを<br>行います。<br><br>
+                            室内機の冷媒を<br>室外機側へ戻し、<br>室内機そのものを<br>壁から外します。<br><br>
+                            そして、<br>床や作業台へ<br>室内機を置き、<br>さらに細かく<br>分解します。<br><br>
+                            熱交換器も、<br>単体に近い状態まで<br>分解できます。<br><br>
+                            そのため、<br>大きな容器へ<br>入れて洗うことも<br>できます。<br><br>
+                            壁に付いた状態では<br>難しい角度からも、<br>直接見ながら<br>洗えます。<br><br>
+                            純粋に、<br>どこまで<br>キレイにできるか。<br><br>
+                            そこだけ見れば、<br>
+                            <span class="text-base font-black text-slate-900 underline decoration-neon decoration-4 underline-offset-4">完全分解は</span><br>
+                            <span class="text-base font-black text-slate-900 underline decoration-neon decoration-4 underline-offset-4">とても優れた</span><br>
+                            方法だと<br>思っています。
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 完全分解は本当にキレイ -->
+                <div class="mb-16 mt-20 text-center">
+                    <div class="flex flex-col items-center justify-center mb-6">
+                        <span class="w-10 h-[3px] bg-neon mb-4 rounded-full"></span>
+                        <h2 class="text-xl md:text-2xl font-black text-slate-900 leading-relaxed">
+                            完全分解は<br>本当にキレイ
+                        </h2>
+                    </div>
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
+                        ここは、<br>はっきり言います。<br><br>
+                        きちんと行われた<br>完全分解は、<br>本当にキレイになります。<br><br>
+                        通常分解では<br>見えなかった場所も、<br>部品を外して、<br>直接見ながら洗えます。<br><br>
+                        熱交換器。<br>送風ファン。<br>ドレンパン。<br>ケーシング。<br><br>
+                        それぞれを、<br>直接確認しながら<br>洗えます。<br><br>
+                        新品に近い状態へ<br>リセットしたい。<br><br>
+                        そんな場合には、<br>とても優れた<br>方法だと思います。
+                    </p>
+                </div>
+
+                <!-- じゃあ、なぜ通常分解？ -->
+                <div class="mb-16 mt-16 text-center">
+                    <div class="flex flex-col items-center justify-center mb-6">
+                        <span class="w-10 h-[3px] bg-slate-800 mb-4 rounded-full"></span>
+                        <h2 class="text-xl md:text-2xl font-black text-slate-900 leading-relaxed">
+                            じゃあ、<br>なぜ通常分解？
+                        </h2>
+                    </div>
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
+                        そこまで<br>キレイになるなら、<br><br>
+                        「毎回、<br>完全分解でいいじゃん。」<br><br>
+                        そう思いますよね。<br><br>
+                        でも、<br>完全分解には、<br>デメリットもあります。<br><br>
+                        <span class="text-red-600 font-black">まず、時間がかかる。</span><br>
+                        <span class="text-red-600 font-black">そして、費用も高くなる。</span><br><br>
+                        室内機を<br>壁から外す。<br>クリーニングする。<br>再び取り付ける。<br><br>
+                        これは、<br>洗浄だけの作業では<br>ありません。<br><br>
+                        取り外し工事。<br>再取り付け工事。<br>そこまで含まれます。<br><br>
+                        当然、<br>それぞれに技術も、<br>時間も、<br>費用も必要です。<br><br>
+                        取り外しも、<br>再取り付けも、<br>無料ではありません。<br><br>
+                        だから私は、<br>普段の<br>メンテナンスなら、<br><br>
+                        <span class="text-base font-black text-slate-900 underline decoration-neon decoration-4 underline-offset-4">通常分解に軍配が上がる。</span><br><br>
+                        そう考えています。
+                    </p>
+                </div>
+
+                <!-- 私は完全分解専門ではない -->
+                <div class="mb-16 mt-16 text-center">
+                    <h2 class="text-xl md:text-2xl font-black text-slate-900 leading-relaxed mb-6">
+                        私は<br>完全分解専門ではない
+                    </h2>
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
+                        ここも、<br>きちんとお伝えします。<br><br>
+                        私は、<br>完全分解をメインに<br>商売している職人では<br>ありません。<br><br>
+                        普段から、<br>頻繁に完全分解を<br>しているわけでも<br>ありません。<br><br>
+                        だから、<br>「完全分解を完全に習得した。」<br>そんなことを言うつもりも<br>ありません。<br><br>
+                        でも、<br>知らないものを、<br>知らないまま否定したくない。<br><br>
+                        これは、<br>私が大切にする考え方です。<br><br>
+                        通常分解と完全分解を<br>語るなら、<br>自分でも分解してみる。<br>構造を見る。<br>実際に洗う。<br><br>
+                        通常分解で<br>どこまで洗えるか。<br>さらに分解すると、<br>どこに汚れが残っているのか。<br><br>
+                        自分の目で確かめる。<br><br>
+                        完全分解を商品として<br>売るためではなく、<br>自分の通常分解を<br>もっと良くする。<br><br>
+                        そのためにも、<br>完全分解の知識や練習は<br>今も続けています。
+                    </p>
+                </div>
+
+                <!-- 同じ通常分解でも中身は違う -->
+                <div class="mb-16 mt-16 text-center">
+                    <div class="flex flex-col items-center justify-center mb-6">
+                        <span class="w-10 h-[3px] bg-neon mb-4 rounded-full"></span>
+                        <h2 class="text-xl md:text-2xl font-black text-slate-900 leading-relaxed">
+                            同じ通常分解でも<br>中身は違う
+                        </h2>
+                    </div>
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
+                        通常分解なら、<br>どの業者でも同じ。<br><br>
+                        そう感じるかもしれません。<br><br>
+                        でも、<br>同じ通常分解でも、<br>洗い方は人によって<br>違います。<br><br>
+                        私は、<br>カビだらけの送風ファンを、<br>最初から勢いよく回して<br>洗うことはしません。<br><br>
+                        まず、<br>ファンを回転させず、<br>付着した汚れを可能な限り<br>洗い落とします。<br><br>
+                        そのあと、<br>状態を見ながら洗浄を進めます。
+                    </p>
+                </div>
+
+                <!-- なぜ最初から回さない？ -->
+                <div class="mb-16 mt-16 text-center">
+                    <h2 class="text-xl md:text-2xl font-black text-slate-900 leading-relaxed mb-6">
+                        なぜ最初から<br>回さない？
+                    </h2>
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
+                        カビや汚れが<br>付いた状態で、<br>送風ファンを勢いよく回して<br>洗ってしまうと、<br><br>
+                        剥がれた汚れが遠心力で<br>飛び散ることがあります。<br><br>
+                        そして、<br>その汚れが、<br>熱交換器の裏側へ<br>張り付くこともあります。<br><br>
+                        これが、<br>なかなか厄介です。<br><br>
+                        熱交換器の裏側へ入った汚れは、<br>表側から高圧洗浄しても、<br>簡単には取れないことが<br>あります。<br><br>
+                        過去の洗浄で、<br>こうした汚れが残ったエアコンも<br>実際にあります。
+                    </p>
+                </div>
+
+                <!-- 見えない汚れにどう向き合う？ -->
+                <div class="mb-16 mt-16 text-center">
+                    <h2 class="text-xl md:text-2xl font-black text-slate-900 leading-relaxed mb-6">
+                        見えない汚れに<br>どう向き合う？
+                    </h2>
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
+                        通常分解では、<br>送風ファンを外さない限り、<br>熱交換器の裏側すべてを<br>直接見ることはできません。<br><br>
+                        だから、<br>見えないから汚れていない。<br>とは、<br>言い切れません。<br><br>
+                        ONE★STARでは、<br>洗浄後に毎回、<br>風速約270km/hの<br>超強力な送風機を使います。<br><br>
+                        内部に残った水滴を、<br>強力な風で吹き飛ばします。<br><br>
+                        これは、<br>汚れがある時だけの<br>作業ではありません。<br><br>
+                        毎回、<br>必ず行います。<br><br>
+                        すると、<br>熱交換器の裏側から、<br>黒いカビや、<br>海苔のような汚れの塊が、<br>飛び出すことがあります。<br><br>
+                        大きいものでは、<br>5mmほどの塊が出ることもあります。<br><br>
+                        「裏側に、<br>まだおったか…。」<br><br>
+                        そんな瞬間です。
+                    </p>
+                </div>
+
+                <!-- 出てきたら繰り返す -->
+                <div class="mb-16 mt-16 text-center">
+                    <h2 class="text-xl md:text-2xl font-black text-slate-900 leading-relaxed mb-6">
+                        出てきたら<br>繰り返す
+                    </h2>
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
+                        黒い汚れが出てきたら、<br>そこで終わりにはしません。<br><br>
+                        もう一度、水で洗う。<br>そして、強力な風で吹き飛ばす。<br><br>
+                        また出たら、<br>また洗う。<br>また吹く。<br><br>
+                        水。送風。<br>水。送風。<br><br>
+                        何度も繰り返します。<br><br>
+                        そして、<br>汚れが出なくなるまで、<br>可能な限り繰り返します。<br><br>
+                        もちろん、<br>これで完全分解と同じになる。<br>そんなことは言いません。<br><br>
+                        通常分解には、<br>直接見えない場所があります。<br>そこは、通常分解の限界です。<br><br>
+                        でも、<br>見えないから、<br>キレイになったことにしてしまう。<br>それも、私は違うと思っています。<br><br>
+                        見えないからこそ、<br>できることを可能な限りやる。<br><br>
+                        それが、<br>ONE★STARの通常分解です。
+                    </p>
+                </div>
+
+                <!-- 毎年プロに頼んでいたのに… -->
+                <div class="mb-16 mt-20 relative text-center">
+                    <div class="flex flex-col items-center justify-center mb-6">
+                        <span class="w-10 h-[3px] bg-red-600 mb-4 rounded-full"></span>
+                        <h2 class="text-xl md:text-2xl font-black text-slate-900 leading-relaxed">
+                            毎年プロに<br>頼んでいたのに…
+                        </h2>
+                    </div>
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
+                        SNSでは、<br>さらに分解した<br>エアコンを見せて、<br><br>
+                        「毎年、プロに頼んでいたのに、<br>中はこんなに汚れていました。」<br><br>
+                        そんな投稿も見かけます。<br><br>
+                        熱交換器の裏側は、<br>黒い汚れがびっしり。<br><br>
+                        それを見れば、<br>「通常分解って意味ないじゃん。」<br>そう思うのも無理はありません。<br><br>
+                        でも、<br>ここで一度、<br>考えてほしいことがあります。
+                    </p>
+                </div>
+
+                <!-- その汚れはなぜそこにある？ -->
+                <div class="mb-16 mt-16 text-center">
+                    <h2 class="text-xl md:text-2xl font-black text-slate-900 leading-relaxed mb-6">
+                        その汚れは<br>なぜそこにある？
+                    </h2>
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
+                        確かに、<br>通常分解では見えない場所が<br>あります。<br><br>
+                        背抜きや完全分解なら、<br>直接見える場所は増えます。<br>これは、事実です。<br><br>
+                        でも、<br>そこにある汚れが、<br>すべて<br><br>
+                        「通常分解だから残った汚れ」<br><br>
+                        なのでしょうか？<br><br>
+                        過去の洗浄で、<br>送風ファンを回しながら洗い、<br>剥がれた汚れを裏側へ飛ばした。<br>そんな可能性もあります。<br><br>
+                        あるいは、<br>見えるところだけ洗って、<br>見えない部分は十分に<br>洗われていなかった。<br>そんな可能性もあります。<br><br>
+                        つまり、<br>問題だったのは、<br>通常分解という工法なのか。<br><br>
+                        それとも、<br>過去に行われた<br>通常分解の中身なのか。<br><br>
+                        ここは、<br>分けて考える必要があります。
+                    </p>
+                </div>
+
+                <!-- プロに頼んだだけでは分からない -->
+                <div class="mb-8 mt-16 text-center">
+                    <h2 class="text-xl md:text-2xl font-black text-slate-900 leading-relaxed mb-6">
+                        プロに頼んだ<br>だけでは分からない
+                    </h2>
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
+                        お客様からすれば、<br>毎年、お金を払って<br>依頼していれば、<br>当然、<br><br>
+                        「毎年、プロにキレイに<br>してもらっている。」<br><br>
+                        そう思います。<br><br>
+                        でも、<br>さらに分解したら、<br>大量の汚れが残っていた。<br><br>
+                        まさに、開けてびっくり。<br>だと思います。<br><br>
+                        でも、<br>同じ通常分解でも、<br>誰が洗うのか。<br>何を考えて洗うのか。<br>どこまで洗うのか。<br><br>
+                        その中身は同じではありません。<br><br>
+                        この話は、<br>別の記事で詳しく書いています。
+                    </p>
+                </div>
+
+                <!-- 関連記事ブロック1 -->
+                <div class="mb-16 text-center">
+                    <a href="/tips/doubt/" class="block bg-slate-50 rounded-2xl border border-slate-300 p-6 shadow-sm hover:shadow-md transition-all active:scale-95 group relative overflow-hidden max-w-sm mx-auto">
+                        <p class="text-[11px] md:text-sm font-black text-slate-500 mb-2 tracking-widest">
+                            ▼ あわせて読みたい関連記事
+                        </p>
+                        <h3 class="text-[16px] md:text-lg font-black text-slate-900 mb-4 leading-relaxed">
+                            「プロに頼んだつもりが…」
+                        </h3>
+                        <div class="inline-flex items-center justify-center bg-slate-800 text-white px-5 py-2.5 rounded-full text-sm font-black group-hover:bg-slate-700 transition-colors shadow-sm">
+                            記事を読む ＞
+                        </div>
+                    </a>
+                </div>
+
+                <!-- SNSの写真はとても強い -->
+                <div class="mb-16 mt-16 text-center">
+                    <h2 class="text-xl md:text-2xl font-black text-slate-900 leading-relaxed mb-6">
+                        SNSの写真は<br>とても強い
+                    </h2>
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
+                        真っ黒な熱交換器。<br>大量のカビ。<br>普段は見えないエアコンの裏側。<br><br>
+                        こうした写真や動画には、<br>大きなインパクトがあります。<br><br>
+                        そして、<br>「通常分解では、こんなに汚れが残ります。」<br>「ここまで分解しないと、キレイにはなりません。」<br><br>
+                        そう言われれば、<br>不安になるのも当然です。<br><br>
+                        でも、<br>その写真だけでは、<br><br>
+                        何年間使ったのか。<br>どんな部屋だったか。<br>キッチンに近かったのか。<br>どれくらい使っていたのか。<br>過去に何回洗ったのか。<br>その時、どんな方法で洗われたのか。<br><br>
+                        そこまでは分かりません。
+                    </p>
+                </div>
+
+                <!-- 自分の工法を伝えること -->
+                <div class="mb-16 mt-16 text-center">
+                    <h2 class="text-xl md:text-2xl font-black text-slate-900 leading-relaxed mb-6">
+                        自分の工法を<br>伝えること
+                    </h2>
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
+                        私は、背抜きを否定しません。<br>完全分解も否定しません。<br><br>
+                        背抜きが得意なら、<br>背抜きの良さを伝えればいい。<br><br>
+                        完全分解が得意なら、<br>完全分解の良さを伝えればいい。<br><br>
+                        通常分解が得意なら、<br>通常分解でできることを<br>伝えればいい。<br><br>
+                        私は、それで良いと思っています。<br><br>
+                        でも、<br>自分の工法を良く見せるために、<br>別の工法を必要以上に<br>悪く見せる。<br><br>
+                        お客様の不安を大きくして、<br>「この方法しかありません。」<br>そんな方向へ誘導する。<br><br>
+                        私は、<br>そんな伝え方には<br>少し違和感があります。<br><br>
+                        どの施工方法にも、メリットがあります。<br>そして、デメリットもあります。<br><br>
+                        それを伝えた上で、<br>最後に選ぶのは、お客様であってほしい。<br>私は、そう考えています。
+                    </p>
+                </div>
+
+                <!-- 完全分解を勧める時もある -->
+                <div class="mb-16 mt-16 text-center">
+                    <div class="flex flex-col items-center justify-center mb-6">
+                        <span class="w-10 h-[3px] bg-neon mb-4 rounded-full"></span>
+                        <h2 class="text-xl md:text-2xl font-black text-slate-900 leading-relaxed">
+                            完全分解を<br>勧める時もある
+                        </h2>
+                    </div>
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
+                        ここまで読むと、<br><br>
+                        「結局、ONE★STARは通常分解を<br>勧めたいんでしょ？」<br><br>
+                        そう思うかもしれません。<br><br>
+                        基本的には、その通りです。<br>定期的なクリーニングなら、<br>私は通常分解を勧めます。<br><br>
+                        でも、<br>いつでも、誰にでも、<br>通常分解が一番良い。<br>とは、考えていません。<br><br>
+                        条件によっては、<br>私自身、完全分解を<br>強く勧めたい時もあります。
+                    </p>
+                </div>
+
+                <!-- 例えば引っ越し -->
+                <div class="mb-16 mt-16 text-center">
+                    <h2 class="text-xl md:text-2xl font-black text-slate-900 leading-relaxed mb-6">
+                        例えば引っ越し
+                    </h2>
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
+                        アパートで、<br>数年間使ったエアコンがある。<br>そして、新築のお家を建てた。<br><br>
+                        そのエアコンを、<br>新しい家へ移設する。<br>こんな場合です。<br><br>
+                        移設するなら、<br>どちらにしても、<br>今の家から取り外します。<br>そして、新しい家で取り付けます。<br><br>
+                        つまり、<br>取り外しも、再取り付けも、<br>どちらにしても必要です。<br><br>
+                        だったら、<br>そのタイミングで、<br>完全分解して洗ってしまう。<br><br>
+                        これは、とても合理的な<br>選択だと思います。<br><br>
+                        今までの汚れを、<br>可能な限りリセットする。<br>そして、キレイな状態で、<br>新築のお家へ持っていく。<br><br>
+                        この条件なら、<br>完全分解を得意としている、<br>エアコン専門の職人へ、<br>移設と洗浄をまとめて<br>相談することをおすすめします。
+                    </p>
+                </div>
+
+                <!-- 移設を頼む人も大切です -->
+                <div class="mb-16 mt-16 text-center">
+                    <h2 class="text-xl md:text-2xl font-black text-slate-900 leading-relaxed mb-6">
+                        移設を頼む人も<br>大切です
+                    </h2>
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
+                        ここで、ひとつだけお伝えします。<br><br>
+                        エアコンの、<br>取り外し。再取り付け。<br>これは、誰がやっても<br>同じではありません。<br><br>
+                        私はこれまで、<br>引っ越し後のエアコンで、<br>取り付け状態が気になる施工を<br>何度も見てきました。<br><br>
+                        もちろん、<br>引っ越しに関わる業者さん全てが<br>悪いという話ではありません。<br><br>
+                        でも、<br>エアコンの取り外しや、再取り付けは、<br>専門性の高い作業です。<br><br>
+                        価格だけでなく、<br>実際に誰が取り外すのか。<br>誰が取り付けるのか。<br>ここまで確認する。<br><br>
+                        そして、<br>エアコン工事を専門にする職人へ頼む。<br>私は、それをおすすめします。
+                    </p>
+                </div>
+
+                <!-- 青系カードセクション -->
+                <div class="bg-blue-50/50 rounded-[20px] border border-blue-100 p-6 md:p-8 mt-16 mb-16 text-center">
+                    
+                    <h2 class="text-xl md:text-2xl font-black text-slate-900 text-blue-900 mb-8 leading-relaxed">
+                        見えない汚れを<br>どこまで気にする？
+                    </h2>
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
+                        少しだけ、<br>エアコンから離れてみます。<br><br>
+                        例えば、<br>洗濯機の裏。冷蔵庫の裏。<br><br>
+                        普段、<br>ほとんど動かさない大型家電です。<br>実際に動かすと、<br>ホコリや汚れがたくさんある。<br>そんなことは珍しくありません。<br><br>
+                        普段から、<br>どれだけ掃除していても、<br>本体を動かさないと掃除できない場所は<br>あります。<br><br>
+                        では、<br>その汚れを取るためだけに、<br>毎年、何万円も払って、<br>専門業者に大型家電を<br>動かしてもらいますか？<br><br>
+                        もちろん、<br>「そこまで全部、絶対にキレイにしたい。」<br>そう思うなら、それも正解です。<br><br>
+                        でも、<br>「普段の掃除で十分かな。」<br>そう思う人もいるでしょう。<br><br>
+                        どちらも、間違いではありません。
+                    </p>
+
+                    <h2 class="text-xl md:text-2xl font-black text-slate-900 text-blue-900 mt-12 mb-8 leading-relaxed border-t border-blue-200 pt-8">
+                        エアコンも同じです
+                    </h2>
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
+                        完全分解なら、<br>通常分解では見えなかった場所も<br>キレイにできます。<br>それは、大きなメリットです。<br><br>
+                        でも、<br>そのためには、時間も必要。<br>費用も必要。<br><br>
+                        どこまでキレイにしたいか。<br>そのために、<br>どこまで費用をかけるか。<br>どこまで時間をかけるか。<br><br>
+                        これは、<br>人によって違って当然です。
+                    </p>
+
+                    <h2 class="text-xl md:text-2xl font-black text-slate-900 text-blue-900 mt-12 mb-8 leading-relaxed border-t border-blue-200 pt-8">
+                        リビングと<br>寝室も違う
+                    </h2>
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
+                        家の中の全てのエアコンを、<br>同じ基準で考える必要も<br>ありません。<br><br>
+                        例えば、キッチンに近いリビング。<br>料理による油分。長い運転時間。<br>人が過ごす時間も長くなります。<br><br>
+                        こうしたエアコンは、<br>他の部屋より汚れやすいことも<br>あります。<br><br>
+                        一方、<br>使用時間が短い寝室。<br>子ども部屋。<br>ほとんど使わない部屋。<br><br>
+                        同じ日に取り付けても、<br>数年後の汚れ方は<br>同じとは限りません。<br><br>
+                        エアコンの汚れは、<br>年数だけでは決まらないからです。<br><br>
+                        新品でも汚れる理由。<br>使用環境による違い。<br>こちらで詳しく書いています。
+                    </p>
+
+                    <!-- 関連記事ブロック2 -->
+                    <div class="mt-8 mb-4 text-center">
+                        <a href="/tips/new/" class="block bg-white rounded-2xl border border-blue-200 p-6 shadow-sm hover:shadow-md transition-all active:scale-95 group relative overflow-hidden max-w-sm mx-auto">
+                            <p class="text-[11px] md:text-sm font-black text-slate-500 mb-2 tracking-widest">
+                                ▼ あわせて読みたい関連記事
+                            </p>
+                            <h3 class="text-[16px] md:text-lg font-black text-slate-900 mb-4 leading-relaxed">
+                                「新しいエアコンなら<br>汚れないって本当？」
+                            </h3>
+                            <div class="inline-flex items-center justify-center bg-blue-600 text-white px-5 py-2.5 rounded-full text-sm font-black group-hover:bg-blue-700 transition-colors shadow-sm">
+                                記事を読む ＞
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 3年に一度完全分解する？ -->
+                <div class="mb-16 mt-16 text-center">
+                    <h2 class="text-xl md:text-2xl font-black text-slate-900 leading-relaxed mb-6">
+                        3年に一度<br>完全分解する？
+                    </h2>
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
+                        例えば、<br>キッチンに近いリビング。<br>毎日、たくさん使うエアコン。<br><br>
+                        3年に一度、<br>完全分解して、<br>徹底的にリセットする。<br><br>
+                        そんな考え方も、<br>私はアリだと思います。<br><br>
+                        一度の施工で、<br>できる限り新品に近くしたい。<br>そこを優先するなら、<br>完全分解は、<br>とても良い選択肢です。<br><br>
+                        でも、<br>ONE★STARなら、<br>もうひとつの考え方も提案します。
+                    </p>
+                </div>
+
+                <!-- 3年に一度か毎年か -->
+                <div class="mb-16 mt-16 text-center">
+                    <h2 class="text-xl md:text-2xl font-black text-slate-900 leading-relaxed mb-6">
+                        3年に一度か<br>毎年か
+                    </h2>
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
+                        例えば、<br>3年に一度、完全分解する。<br><br>
+                        1年目。少しずつ汚れる。<br>2年目。さらに汚れる。<br>3年目。完全分解でリセットする。<br><br>
+                        では、<br>毎年、通常分解する。<br>こちらはどうでしょう？<br><br>
+                        1年目。洗う。<br>2年目。また洗う。<br>3年目。また洗う。<br><br>
+                        完全分解ほど、<br>奥までリセットできない<br>部分はあります。<br><br>
+                        でも、<br>ひどく汚れる前に、<br>毎年、定期的に汚れを落出す。<br><br>
+                        そんな維持の仕方もできます。
+                    </p>
+                </div>
+
+                <!-- 3年間で考えてみる -->
+                <div class="mb-16 mt-16 text-center">
+                    <h2 class="text-xl md:text-2xl font-black text-slate-900 leading-relaxed mb-6">
+                        3年間で<br>考えてみる
+                    </h2>
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
+                        ここで、<br>一度考えてみてください。<br><br>
+                        3年間のうち、<br>エアコンを、<br>キレイな状態に近く保てた時間。<br><br>
+                        どちらが長いでしょう？<br><br>
+                        そして、もうひとつ。<br>3年間で、<br>かかった費用の総額。<br><br>
+                        どちらが、自分に合うでしょう？<br><br>
+                        完全分解を一回。<br>通常分解を三回。<br><br>
+                        依頼する業者の<br>実際の料金で、<br>一度、計算してみるのも<br>良いと思います。
+                    </p>
+                </div>
+
+                <!-- 一回のキレイだけで考えない -->
+                <div class="mb-16 mt-16 text-center">
+                    <h2 class="text-xl md:text-2xl font-black text-slate-900 leading-relaxed mb-6">
+                        一回のキレイだけで<br>考えない
+                    </h2>
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
+                        完全分解した直後。<br>通常分解した直後。<br><br>
+                        その瞬間だけなら、<br>完全分解の方が、<br>より奥までキレイにできます。<br><br>
+                        でも、<br>エアコンは、洗ったあとも使います。<br><br>
+                        冷房を使えば、<br>内部には結露が発生します。<br>室内の空気を吸えば、<br>ホコリや汚れも入ってきます。<br><br>
+                        完全分解でリセットしても、<br>また使えば、また汚れます。<br><br>
+                        だから私は、<br>一回の施工で、<br>どこまでキレイになるか。<br>それだけではなく、<br><br>
+                        数年間を通して、<br>どうキレイな状態を維持するか。<br>そこまで含めて、<br>考えてほしいと思っています。
+                    </p>
+                </div>
+
+                <!-- 過去の施工で困った方なら -->
+                <div class="mb-16 mt-16 text-center">
+                    <h2 class="text-xl md:text-2xl font-black text-slate-900 leading-relaxed mb-6">
+                        過去の施工で<br>困った方なら
+                    </h2>
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
+                        もちろん、<br>考え方は人それぞれです。<br><br>
+                        以前、プロへ頼んだ。<br>でも、さらに分解したら、<br>大量の汚れが残っていた。<br><br>
+                        そんな経験があれば、<br>「もう通常分解は信用できない。」<br>そう思うのも無理はありません。<br><br>
+                        その場合、<br>直接確認できる、<br>背抜き。完全分解。<br>そちらを選びたくなるのも、<br>十分理解できます。<br><br>
+                        だから、<br>無理に通常分解を<br>勧めるつもりもありません。<br><br>
+                        大切なのは、<br>過去の経験も含め、<br>自分が安心できる方法を選ぶこと。<br>だと思います。
+                    </p>
+                </div>
+
+                <!-- ONE★STARが通常分解を選ぶ理由 -->
+                <div class="mb-16 mt-20 text-center">
+                    <div class="flex flex-col items-center justify-center mb-6">
+                        <span class="w-10 h-[3px] bg-slate-800 mb-4 rounded-full"></span>
+                        <h2 class="text-xl md:text-2xl font-black text-slate-900 leading-relaxed">
+                            ONE★STARが<br>通常分解を選ぶ理由
+                        </h2>
+                    </div>
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
+                        完全分解は、<br>本当にキレイになります。<br><br>
+                        背抜きにも、<br>見えない場所を直接見ながら<br>洗えるという、<br>大きなメリットがあります。<br><br>
+                        それでも、<br>ONE★STARが通常分解を<br>基本にする理由。<br><br>
+                        それは、<br>費用。時間。<br>エアコンへの負担。<br>定期的に続けやすいこと。<br><br>
+                        そして、<br>数年間を通して、<br>できるだけキレイな状態を<br>維持すること。<br><br>
+                        そこまで含めると、<br>多くのご家庭では、<br>丁寧な通常分解を定期的に行う。<br><br>
+                        それが、現実的で、<br>バランスの良い方法だと<br>私は考えています。<br><br>
+                        ただし、<br>これは、<br>通常分解でも、<br>見えない部分まで意識して、<br>可能な限りキレイにする。<br><br>
+                        その前提での話です。
+                    </p>
+                </div>
+
+                <!-- なぜそこまで拘るのか / 実際の施工への拘り -->
+                <div class="mb-12 mt-16 text-center">
+                    <h2 class="text-xl md:text-2xl font-black text-slate-900 leading-relaxed mb-6">
+                        なぜそこまで<br>拘るのか
+                    </h2>
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose mb-10">
+                        通常分解の限界を知る。<br>そのうえで、<br>どこまでキレイにできるか。<br><br>
+                        そのために、完全分解も学ぶ。<br>実際に分解する。洗い残しを見る。<br>道具も試す。洗い方も変える。<br><br>
+                        なぜ、そこまでやるのか。<br><br>
+                        ONE★STARが、<br>どんな想いで仕事をしているのか。<br>実際の現場で、<br>どんな道具を使い、何を意識して洗うのか。<br><br>
+                        こちらで詳しく紹介しています。
+                    </p>
+
+                    <!-- 関連記事ブロック (想い・拘り) -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <a href="/mind/" class="block bg-slate-50 rounded-2xl border border-slate-300 p-6 shadow-sm hover:shadow-md transition-all active:scale-95 group relative overflow-hidden text-center">
+                            <p class="text-[11px] font-black text-slate-500 mb-2 tracking-widest">
+                                ONE★STARの原点
+                            </p>
+                            <h3 class="text-[15px] md:text-[17px] font-black text-slate-900 mb-4 leading-relaxed">
+                                【ONE★STARの想い】
+                            </h3>
+                            <div class="inline-flex items-center justify-center bg-slate-800 text-white px-5 py-2.5 rounded-full text-xs font-black group-hover:bg-slate-700 transition-colors w-full shadow-sm">
+                                記事を読む ＞
+                            </div>
+                        </a>
+                        
+                        <a href="/pride/" class="block bg-slate-50 rounded-2xl border border-slate-300 p-6 shadow-sm hover:shadow-md transition-all active:scale-95 group relative overflow-hidden text-center">
+                            <p class="text-[11px] font-black text-slate-500 mb-2 tracking-widest">
+                                現場でのリアル
+                            </p>
+                            <h3 class="text-[15px] md:text-[17px] font-black text-slate-900 mb-4 leading-relaxed">
+                                【プロとしての拘り】
+                            </h3>
+                            <div class="inline-flex items-center justify-center bg-slate-800 text-white px-5 py-2.5 rounded-full text-xs font-black group-hover:bg-slate-700 transition-colors w-full shadow-sm">
+                                記事を読む ＞
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ネイビーのカード (結論：どれが正解？) -->
+        <div class="bg-slate-900 rounded-[24px] border-l-[12px] border-neon p-8 md:p-10 text-center shadow-md mb-10 mt-10">
+            
+            <h2 class="text-white font-black text-2xl md:text-3xl leading-relaxed mb-10 tracking-wider">
+                どれが正解？
+            </h2>
+
+            <p class="text-slate-100 font-bold text-[15px] md:text-base leading-loose mb-10">
+                通常分解。<br>背抜き。<br>完全分解。<br><br>
+                結局、どれが正解なのか。<br><br>
+                私は、ひとつに決めなくていいと<br>思っています。<br><br>
+
+                費用を抑えながら、<br>定期的にキレイを保ちたい。<br>それなら、<br>
+                <span class="text-neon font-black text-lg">通常分解。</span><br><br>
+
+                見えにくい場所まで、<br>直接確認して洗ってほしい。<br>それなら、<br>
+                <span class="text-neon font-black text-lg">背抜き。</span><br><br>
+
+                費用も、時間もかけて、<br>一度、可能な限り徹底的にリセットしたい。<br>それなら、<br>
+                <span class="text-neon font-black text-lg">完全分解。</span><br><br>
+
+                引っ越しで、どうせ取り外すなら、<br>完全分解のメリットはさらに大きくなります。<br><br>
+
+                大切なのは、<br>どの工法が、一番すごいか。<br>ではありません。<br><br>
+
+                <span class="text-white font-black text-lg underline decoration-neon decoration-4 underline-offset-4">あなたが、</span><br>
+                <span class="text-white font-black text-lg underline decoration-neon decoration-4 underline-offset-4">何を一番大切にしたいか。</span><br>
+                です。
+            </p>
+
+            <!-- 区切り線 -->
+            <div class="w-16 h-[1px] bg-slate-600 mx-auto mb-10"></div>
+
+            <h2 class="text-white font-black text-xl md:text-2xl leading-relaxed mb-8 tracking-wider">
+                メリットも<br>デメリットも伝える
+            </h2>
+            <p class="text-slate-100 font-bold text-[15px] md:text-base leading-loose mb-10">
+                自分の工法だけを、一番良く見せる。<br>そのために、他の工法を悪く言う。<br><br>
+                私は、そんな選び方を、<br>お客様にしてほしくありません。<br><br>
+                通常分解にも、メリットとデメリットがあります。<br>背抜きにも、メリットとデメリットがあります。<br>完全分解にも、メリットとデメリットがあります。<br><br>
+                全部を知ったうえで、<br>費用。時間。求めるキレイさ。<br>これから、何年間使うのか。<br><br>
+                それらを、天秤にかけて考える。<br><br>
+                そして、最後は、<br>自分が納得できる方法を選ぶ。<br>それで良いと思っています。
+            </p>
+
+            <!-- 区切り線 -->
+            <div class="w-16 h-[1px] bg-slate-600 mx-auto mb-10"></div>
+
+            <h2 class="text-neon font-black text-2xl md:text-3xl leading-relaxed mb-8 tracking-wider">
+                決めるのは<br>業者ではない
+            </h2>
+            <p class="text-slate-100 font-bold text-[15px] md:text-base leading-loose">
+                完全分解が正解。<br>通常分解が正解。<br>背抜きが正解。<br><br>
+                私は、<br>そう決めつけるつもりは<br>ありません。<br><br>
+                どの方法が正解なのか。<br>それを決めるのは、<br>私たち業者ではありません。<br><br>
+                <span class="text-white font-black text-xl bg-slate-800 px-4 py-2 rounded-lg inline-block my-4 border border-slate-700">選ぶのは、お客様です。</span><br><br>
+                私たち業者が、するべきこと。<br><br>
+                それは、<br>自分に都合の良いメリットだけを<br>伝えることではありません。<br><br>
+                良いところ。悪いところ。<br>できること。できないこと。<br><br>
+                それぞれを、きちんと伝える。<br><br>
+                そのうえで、<br>お客様自身が、<br><br>
+                「自分には、これが合っている。」<br><br>
+                そう納得して選べること。<br><br>
+                それが、一番大切だと、<br>ONE★STARでは考えています。
+            </p>
+        </div>
+
+
+        <!-- ご相談誘導ブロック -->
+        <div class="bg-white rounded-2xl border border-slate-200 p-8 text-center shadow-sm mb-12">
+            <h2 class="text-xl md:text-2xl font-black text-slate-900 mb-8 leading-relaxed">
+                どんなクリーニングが<br>
+                合うか迷ったら
+            </h2>
+            
+            <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose mb-10">
+                エアコンの汚れ具合や<br>
+                使用環境をお伺いした上で、<br>
+                最適なプランをご提案します。<br><br>
+                
+                「どれを選べばいいか分からない」<br>
+                「費用感を相談したい」<br><br>
+                
+                そんな時は、<br>
+                ぜひお気軽にご相談ください。<br><br>
+                
+                丁寧にお答えいたします。
+            </p>
+            
+            <a href="tel:08000807788" class="js-phone-modal-trigger inline-flex items-center justify-center bg-slate-900 hover:bg-slate-800 text-neon px-8 py-4 rounded-full text-base font-black shadow-md transition-all active:scale-95">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                <span>電話で相談する</span>
+            </a>
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-900 text-white pt-12 pb-24 md:pb-12 border-t-[6px] border-neon text-center mt-12">
+        <div class="mb-6 flex flex-col items-center justify-center">
+            <span class="text-4xl md:text-5xl tracking-widest text-white flex items-center justify-center font-impact mt-1">
+                ONE
+                <img src="ONESTAR.PNG" alt="ロゴ" class="w-[80px] h-[80px] md:w-[100px] md:h-[100px] mx-[-10px] md:mx-[-16px] object-contain -translate-y-2" onerror="this.style.display='none'">
+                STAR
+            </span>
+            <p class="text-xs text-neon font-black mt-2 tracking-widest">株式会社ECS専属プロスタッフ</p>
+        </div>
+        
+        <p class="text-[11px] text-slate-400 font-bold mb-3">
+            <a href="/products" class="hover:text-white transition-colors underline underline-offset-4">オリジナルLINEスタンプ販売中</a>
+        </p>
+        <p class="text-[10px] text-slate-500 font-bold mb-4">
+            <a href="/privacy" class="hover:text-white transition-colors">プライバシーポリシー</a>
+        </p>
+        <p class="text-[10px] text-slate-500 font-bold tracking-wider">© 2026 ONE★STAR. All Rights Reserved.</p>
+    </footer>
+
+    <!-- MOBILE BOTTOM NAVIGATION -->
+    <div class="fixed bottom-0 left-0 right-0 z-45 bg-slate-900 md:hidden h-[60px] flex items-stretch text-white shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.3)] border-t border-slate-800">
+        
+        <a href="/price" class="flex flex-col items-center justify-center w-[20%] border-r border-slate-700 active:bg-slate-800">
+            <svg class="w-5 h-5 mb-1 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <span class="text-[9px] font-black">料金</span>
+        </a>
+        
+        <a href="/mind" class="flex flex-col items-center justify-center w-[20%] border-r border-slate-700 active:bg-slate-800">
+            <svg class="w-5 h-5 mb-1 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+            <span class="text-[9px] font-black">想い</span>
+        </a>
+
+        <a href="/pride" class="flex flex-col items-center justify-center w-[20%] active:bg-slate-800">
+            <svg class="w-5 h-5 mb-1 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+            <span class="text-[9px] font-black">拘り</span>
+        </a>
+        
+        <a href="tel:08000807788" class="js-phone-modal-trigger flex items-center justify-center bg-neon text-slate-900 w-[40%] font-black text-base active:bg-yellow-400 transition-colors">
+            <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+            電話する
+        </a>
+        
+    </div>
+
+    <!-- 🌟 ご予約・お問い合わせ前のワンクッションモーダル 🌟 -->
+    <div id="phone-modal" class="fixed inset-0 z-[100] hidden flex items-center justify-center px-4">
+        <div id="phone-modal-backdrop" class="absolute inset-0 bg-slate-900/80 backdrop-blur-sm opacity-0 transition-opacity duration-300"></div>
+        
+        <div id="phone-modal-content" class="relative bg-white rounded-3xl shadow-2xl w-full max-w-sm overflow-hidden transform scale-95 opacity-0 transition-all duration-300 border border-slate-100">
+            
+            <button id="phone-modal-close" class="absolute top-4 right-4 p-2 text-slate-400 hover:text-slate-700 bg-slate-100 hover:bg-slate-200 rounded-full transition-colors z-10">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+            
+            <div class="p-6 md:p-8 text-center pt-10">
+                
+                <h3 class="text-xl font-black text-slate-900 mb-6 border-b-4 border-[#EFFF00] inline-block pb-1">
+                    ご予約・お問い合わせの前に
+                </h3>
+                
+                <div class="text-[13px] text-slate-700 font-bold leading-relaxed mb-8 space-y-4 text-left bg-slate-50 p-5 rounded-2xl border border-slate-100 shadow-inner">
+                    <p>
+                        <span class="text-slate-900 font-black text-sm">ONE★STAR</span>は<br>
+                        株式会社ECS（エッジクリーンサービス）の専属プロスタッフとして活動しています。
+                    </p>
+                    <p class="pt-2 border-t border-slate-200">
+                        お電話は<br>
+                        <span class="text-slate-900 font-black">株式会社ECSの予約受付</span>につながります。
+                    </p>
+                    
+                    <div class="bg-rose-50 border border-rose-200 p-3 rounded-xl text-center shadow-sm">
+                        <p class="text-rose-600 font-black text-[13px] leading-tight">
+                            ご予約の際は<br>
+                            <span class="text-base">「ONE★STAR（川崎）を指名」</span>と<br>
+                            お伝えください。
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="space-y-3">
+                    <a href="tel:08000807788" class="flex items-center justify-center w-full py-4 bg-slate-900 text-[#EFFF00] font-black rounded-2xl shadow-md active:scale-95 transition-transform text-sm sm:text-base border border-slate-800">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                        株式会社ECSへ電話する
+                    </a>
+                    
+                    <a href="https://www.instagram.com/one.star.kawasaki?igsh=anZpYnpxcDdqOXRh&utm_source=qr" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center w-full py-4 bg-gradient-to-r from-pink-500 to-rose-500 text-white font-black rounded-2xl shadow-md active:scale-95 transition-transform text-sm sm:text-base">
+                        <svg class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                        </svg>
+                        Instagramで本人に相談する
+                    </a>
+                </div>
+                
+                <p class="text-[10px] text-slate-500 mt-4 font-bold leading-relaxed">
+                    直接のご質問・お問い合わせは<br>本人直通のInstagram DMからお気軽にどうぞ。
+                </p>
+                
+                <button id="phone-modal-cancel" class="mt-6 text-[11px] text-slate-400 font-bold underline underline-offset-4 hover:text-slate-600 transition-colors">
+                    キャンセルして戻る
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // === メニュー開閉用 ===
+            const drawerContainer = document.getElementById('drawer-container');
+            const drawerMenu = document.getElementById('drawer-menu');
+            const drawerBackdrop = document.getElementById('drawer-backdrop');
+            
+            const toggleMenu = (show) => {
+                if (show) {
+                    drawerContainer.classList.remove('hidden');
+                    setTimeout(() => {
+                        drawerBackdrop.classList.remove('opacity-0');
+                        drawerBackdrop.classList.add('opacity-100');
+                        drawerMenu.classList.remove('drawer-closed');
+                        drawerMenu.classList.add('drawer-open');
+                    }, 10);
+                } else {
+                    drawerBackdrop.classList.remove('opacity-100');
+                    drawerBackdrop.classList.add('opacity-0');
+                    drawerMenu.classList.remove('drawer-open');
+                    drawerMenu.classList.add('drawer-closed');
+                    setTimeout(() => drawerContainer.classList.add('hidden'), 300);
+                }
+            };
+
+            document.getElementById('menu-open-btn').addEventListener('click', () => toggleMenu(true));
+            document.getElementById('menu-close-btn').addEventListener('click', () => toggleMenu(false));
+            document.getElementById('drawer-backdrop').addEventListener('click', () => toggleMenu(false));
+            document.querySelectorAll('.menu-link').forEach(link => link.addEventListener('click', () => toggleMenu(false)));
+
+            // === 電話モーダル ===
+            const phoneModal = document.getElementById('phone-modal');
+            const phoneModalBackdrop = document.getElementById('phone-modal-backdrop');
+            const phoneModalContent = document.getElementById('phone-modal-content');
+            const phoneModalCloseBtn = document.getElementById('phone-modal-close');
+            const phoneModalCancelBtn = document.getElementById('phone-modal-cancel');
+            const phoneTriggerBtns = document.querySelectorAll('.js-phone-modal-trigger');
+
+            if (phoneModal && phoneTriggerBtns.length > 0) {
+                const openPhoneModal = (e) => {
+                    e.preventDefault(); 
+                    if (typeof toggleMenu === 'function') toggleMenu(false);
+
+                    phoneModal.classList.remove('hidden');
+                    requestAnimationFrame(() => {
+                        phoneModalBackdrop.classList.remove('opacity-0');
+                        phoneModalBackdrop.classList.add('opacity-100');
+                        phoneModalContent.classList.remove('opacity-0', 'scale-95');
+                        phoneModalContent.classList.add('opacity-100', 'scale-100');
+                    });
+                };
+
+                const closePhoneModal = () => {
+                    phoneModalBackdrop.classList.remove('opacity-100');
+                    phoneModalBackdrop.classList.add('opacity-0');
+                    phoneModalContent.classList.remove('opacity-100', 'scale-100');
+                    phoneModalContent.classList.add('opacity-0', 'scale-95');
+                    setTimeout(() => phoneModal.classList.add('hidden'), 300);
+                };
+
+                phoneTriggerBtns.forEach(btn => btn.addEventListener('click', openPhoneModal));
+                phoneModalCloseBtn.addEventListener('click', closePhoneModal);
+                phoneModalCancelBtn.addEventListener('click', closePhoneModal);
+                phoneModalBackdrop.addEventListener('click', closePhoneModal);
+            }
+        });
+    </script>
+</body>
+</html>
+
+
+```
