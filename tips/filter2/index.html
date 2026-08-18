@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>貼り付けフィルターって実はNGなの？ | ONE★STAR</title>
+    <title>貼り付けフィルターって本当に必要？ | ONE★STAR</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -29,6 +29,8 @@
         #drawer-menu { transition: transform 0.3s ease-in-out; }
         .drawer-closed { transform: translateX(-100%); }
         .drawer-open { transform: translateX(0); }
+        /* ★追加: 文字の泣き別れ（変な位置での自動改行）を防ぐ */
+        .ib { display: inline-block; }
     </style>
 </head>
 <body class="font-sans text-slate-800 bg-slate-50 antialiased overflow-x-hidden pb-[60px]">
@@ -124,7 +126,7 @@
         </div>
     </div>
 
-    <!-- MAIN (お役立ち情報：貼り付けフィルター) -->
+    <!-- MAIN -->
     <main class="pt-24 pb-12 px-4 max-w-3xl mx-auto">
 
         <!-- 白いメインカード -->
@@ -132,7 +134,7 @@
             <!-- 上部の黄色いライン -->
             <div class="h-3 w-full bg-neon"></div>
 
-            <div class="p-6 md:p-8">
+            <div class="p-5 md:p-8">
                 
                 <!-- バッジ -->
                 <div class="flex justify-center mb-8 text-center">
@@ -142,331 +144,388 @@
                 </div>
 
                 <!-- タイトル -->
-                <h1 class="text-[26px] md:text-[32px] font-black text-slate-900 mb-12 leading-relaxed tracking-wide text-center">
-                    貼り付けフィルターって<br>実はNGなの？
+                <h1 class="text-[24px] md:text-[32px] font-black text-slate-900 mb-12 leading-relaxed tracking-wide text-center">
+                    <span class="ib">貼り付けフィルターって</span><br>
+                    <span class="ib">本当に必要？</span>
                 </h1>
 
                 <!-- リード文 -->
-                <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose text-center mb-10">
-                    エアコンの上や、<br>
-                    吸い込み口に貼る<br>
-                    使い捨ての貼り付けフィルター。<br><br>
+                <p class="text-[14px] md:text-base font-bold text-slate-700 leading-loose text-center mb-10">
+                    <span class="ib">エアコンの</span><br>
+                    <span class="ib">吸い込み口へ貼る、</span><br><br>
                     
-                    ホコリをエアコン内部へ<br>
-                    入れないために、<br>
-                    使っている方も多いと思います。<br><br>
+                    <span class="ib">使い捨ての</span><br>
+                    <span class="ib">貼り付けフィルター。</span><br><br>
                     
-                    確かに、貼り付けフィルターは<br>
-                    ホコリを捕まえてくれます。<br><br>
+                    <span class="ib">ホコリを</span><br>
+                    <span class="ib">エアコン内部へ</span><br>
+                    <span class="ib">入れないために、</span><br><br>
                     
-                    <span class="bg-slate-100 px-3 py-2 rounded-lg border border-slate-200 inline-block mb-2">
-                        「では、エアコン内部をキレイに保つために、<br>
-                        付けた方が良いのでしょうか？」
+                    <span class="ib">使っている方も</span><br>
+                    <span class="ib">多いと思います。</span><br><br>
+                    
+                    <span class="ib">確かに、</span><br>
+                    <span class="ib">貼り付けフィルターは</span><br><br>
+                    
+                    <span class="ib">ホコリを</span><br>
+                    <span class="ib">捕まえてくれます。</span><br><br>
+                    
+                    <span class="ib bg-slate-100 px-3 py-2 rounded-lg border border-slate-200 mb-2 mt-4 leading-relaxed">
+                        <span class="ib">「では、エアコン内部を</span><br>
+                        <span class="ib">キレイに保つために、</span><br>
+                        <span class="ib">付けた方が良いのでしょうか？」</span>
                     </span><br><br>
                     
-                    ONE★STARでは、<br>
-                    基本的に<span class="text-red-600 font-black text-lg underline decoration-red-600 decoration-2 underline-offset-4">おすすめしていません。</span>
+                    <span class="ib">ONE★STARでは、</span><br>
+                    <span class="ib">基本的に</span><br><br>
+                    <span class="text-red-600 font-black text-[16px] underline decoration-red-600 decoration-2 underline-offset-4 ib">おすすめしていません。</span>
                 </p>
 
                 <!-- 理由ブロック -->
-                <div class="bg-slate-50 rounded-[20px] p-6 mb-12 border border-slate-100 text-center">
-                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
-                        理由は、<br>
-                        ホコリを取ることそのものではなく、<br><br>
+                <div class="bg-slate-50 rounded-[20px] p-6 mb-12 border border-slate-100 text-center mx-2">
+                    <p class="text-[14px] md:text-base font-bold text-slate-700 leading-loose">
+                        <span class="ib">理由は、</span><br>
+                        <span class="ib">ホコリを取ること</span><br>
+                        <span class="ib">そのものではなく、</span><br><br>
                         
-                        そのために<br>
-                        <span class="text-base font-black text-slate-900 bg-neon px-2">空気の流れを邪魔してしまう</span><br>
-                        からです。
+                        <span class="ib">そのために</span><br>
+                        <span class="text-[15px] font-black text-slate-900 bg-neon px-2 ib leading-normal my-1">
+                            空気の流れを<br>邪魔してしまう
+                        </span><br>
+                        <span class="ib">可能性があるからです。</span>
                     </p>
                 </div>
 
-                <!-- エアコンは空気を吸う機械 -->
-                <div class="mb-16 mt-16">
+                <!-- ━━━━━━━━━━━━━━ -->
+                <!-- 新品でも空気抵抗は増える -->
+                <div class="mb-16 mt-20">
                     <div class="flex flex-col items-center justify-center mb-6 text-center">
                         <span class="w-10 h-[3px] bg-neon mb-4 rounded-full"></span>
-                        <h2 class="text-xl md:text-2xl font-black text-slate-900 tracking-wider leading-relaxed">
-                            エアコンは<br>
-                            空気を吸う機械
+                        <h2 class="text-[18px] md:text-2xl font-black text-slate-900 tracking-wider leading-relaxed">
+                            <span class="ib">新品でも</span><br>
+                            <span class="ib">空気抵抗は増える</span>
                         </h2>
                     </div>
 
-                    <p class="text-[15px] md:text-base font-bold text-slate-800 leading-loose text-center">
-                        エアコンは、<br>
-                        室内の空気を吸い込み、<br>
-                        熱交換器で冷やしたり、暖めたりして、<br>
-                        再び部屋へ送り出しています。<br><br>
+                    <p class="text-[14px] md:text-base font-bold text-slate-800 leading-loose text-center">
+                        <span class="ib">ここは、</span><br>
+                        <span class="ib">勘違いしてほしくない</span><br>
+                        <span class="ib">ポイントです。</span><br><br>
                         
-                        つまり、エアコンにとって<br>
-                        <span class="text-base font-black text-slate-900 underline decoration-neon decoration-4 underline-offset-4">空気がきちんと流れることは、</span><br>
-                        <span class="text-base font-black text-slate-900 underline decoration-neon decoration-4 underline-offset-4">とても大切です。</span><br><br>
+                        <span class="ib">貼り付けフィルターが</span><br>
+                        <span class="ib">汚れてから</span><br>
+                        <span class="ib">初めて問題になる。</span><br><br>
                         
-                        その吸い込み口へ、<br>
-                        貼り付けフィルターをもう一枚追加する。<br><br>
+                        <span class="ib">という話では</span><br>
+                        <span class="ib">ありません。</span><br><br>
                         
-                        当然、空気が通る時の<br>
-                        抵抗になります。
+                        <span class="text-[14px] font-black text-slate-900 bg-red-100 px-2 py-1 rounded ib leading-normal my-1">
+                            <span class="ib">新品の状態でも、</span><br>
+                            <span class="ib">フィルターを一枚追加すれば、</span><br>
+                            <span class="ib">空気抵抗は増えます。</span>
+                        </span><br><br>
+                        
+                        <span class="ib">もちろん、</span><br>
+                        <span class="ib">新品の貼り付けフィルターと、</span><br><br>
+                        <span class="ib">ホコリで</span><br>
+                        <span class="ib">目詰まりした</span><br>
+                        <span class="ib">純正フィルターが、</span><br><br>
+                        <span class="ib">まったく同じ状態</span><br>
+                        <span class="ib">という意味ではありません。</span><br><br>
+                        
+                        <span class="ib">ただ、</span><br>
+                        <span class="ib">エアコンから見れば、</span><br>
+                        <span class="ib">どちらも</span><br><br>
+                        <span class="font-black text-slate-900 underline decoration-neon decoration-4 underline-offset-4 ib">吸い込む空気を</span><br>
+                        <span class="font-black text-slate-900 underline decoration-neon decoration-4 underline-offset-4 ib">通りにくくする</span><br>
+                        <span class="ib">方向へ働きます。</span><br><br>
+                        
+                        <span class="ib">ONE★STARでは、</span><br>
+                        <span class="ib">そこを</span><br>
+                        <span class="ib">問題だと</span><br>
+                        <span class="ib">考えています。</span>
                     </p>
                 </div>
 
-                <!-- 新品でも空気抵抗です -->
-                <div class="mb-16 mt-16">
-                    <div class="flex flex-col items-center justify-center mb-6 text-center">
-                        <h2 class="text-xl md:text-2xl font-black text-slate-900 tracking-wider leading-relaxed border-b-2 border-slate-200 pb-2">
-                            新品でも<br>空気抵抗です
-                        </h2>
-                    </div>
-
-                    <p class="text-[15px] md:text-base font-bold text-slate-800 leading-loose text-center">
-                        ここは、少し勘違いされやすいところです。<br><br>
-                        
-                        貼り付けフィルターが<br>
-                        ホコリだらけになったから、<br>
-                        初めて問題になる。<br><br>
-                        
-                        という話ではありません。<br><br>
-                        
-                        <span class="text-base font-black text-slate-900 bg-red-100 px-2">新品の状態でも、フィルターを一枚追加すれば、</span><br>
-                        <span class="text-base font-black text-slate-900 bg-red-100 px-2">空気抵抗は増えます。</span><br><br>
-                        
-                        もちろん、新品の貼り付けフィルターと、<br>
-                        ホコリで目詰まりした純正フィルターが、<br>
-                        まったく同じ状態という意味ではありません。<br><br>
-                        
-                        ただ、エアコンから見れば、<br>
-                        どちらも<span class="font-black text-slate-900">吸い込む空気を通りにくくする方向</span>へ働くものです。<br><br>
-                        
-                        ONE★STARでは、そこを問題だと考えています。
-                    </p>
-                </div>
-
+                <!-- ━━━━━━━━━━━━━━ -->
                 <!-- 自分から目詰まり状態へ？ / エアコンが窒息する？ -->
-                <div class="bg-slate-50 border border-slate-200 rounded-[16px] px-4 md:px-8 py-8 mt-12 mb-16">
+                <div class="bg-slate-50 border border-slate-200 rounded-[16px] px-3 md:px-8 py-8 mt-12 mb-16 mx-1">
                     
                     <div class="text-center mb-10">
-                        <h3 class="text-lg md:text-xl font-black text-slate-900 mb-6 border-b-2 border-neon inline-block pb-2 leading-relaxed">
-                            自分から目詰まり状態へ？
+                        <h3 class="text-[17px] md:text-xl font-black text-slate-900 mb-6 border-b-2 border-neon inline-block pb-2 leading-relaxed">
+                            <span class="ib">自分から</span><span class="ib">目詰まり状態へ？</span>
                         </h3>
-                        <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
-                            エアコンには、最初から<br>
-                            純正フィルターが付いています。<br><br>
+                        <p class="text-[14px] md:text-base font-bold text-slate-700 leading-loose">
+                            <span class="ib">エアコンには、</span><br>
+                            <span class="ib">最初から</span><br>
+                            <span class="ib">純正フィルターが</span><br>
+                            <span class="ib">付いています。</span><br><br>
                             
-                            その手前へ、さらに一枚、<br>
-                            フィルターを追加する。<br><br>
+                            <span class="ib">その手前へ、</span><br>
+                            <span class="ib">さらに一枚、</span><br>
+                            <span class="ib">フィルターを</span><br>
+                            <span class="ib">追加する。</span><br><br>
                             
-                            これは、キレイな状態から<br>
-                            自分で空気抵抗を増やして、<br>
-                            目詰まりした状態へ近づけているようなものです。<br><br>
+                            <span class="ib">これは、</span><br>
+                            <span class="ib">キレイな状態から</span><br>
+                            <span class="ib">自分で空気抵抗を増やし、</span><br><br>
+                            <span class="ib">目詰まりした状態へ</span><br>
+                            <span class="ib">近づけているような</span><br>
+                            <span class="ib">ものです。</span><br><br>
                             
-                            ホコリが溜まって吸いにくくなる前から、<br>
-                            <span class="text-red-600 font-black">自分で吸いにくい状態を作ってしまう。</span><br><br>
+                            <span class="ib">ホコリが溜まって</span><br>
+                            <span class="ib">吸いにくくなる</span><br>
+                            <span class="ib">前から、</span><br><br>
+                            <span class="text-red-600 font-black ib">自分で</span><br>
+                            <span class="text-red-600 font-black ib">吸いにくい状態を</span><br>
+                            <span class="text-red-600 font-black ib">作ってしまう。</span><br><br>
                             
-                            だから、ONE★STARでは<br>
-                            おすすめしていません。
+                            <span class="ib">だから、</span><br>
+                            <span class="ib">ONE★STARでは</span><br>
+                            <span class="ib">おすすめして</span><br>
+                            <span class="ib">いません。</span>
                         </p>
                     </div>
 
                     <div class="text-center">
-                        <h3 class="text-lg md:text-xl font-black text-slate-900 mb-6 border-b-2 border-red-500 inline-block pb-2 leading-relaxed">
-                            エアコンが窒息する？
+                        <h3 class="text-[17px] md:text-xl font-black text-slate-900 mb-6 border-b-2 border-red-500 inline-block pb-2 leading-relaxed">
+                            <span class="ib">エアコンが</span><span class="ib">窒息する？</span>
                         </h3>
-                        <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
-                            少し大げさな表現ですが、<br>
-                            イメージとしては、これが分かりやすいです。<br><br>
+                        <p class="text-[14px] md:text-base font-bold text-slate-700 leading-loose">
+                            <span class="ib">少し大げさな</span><br>
+                            <span class="ib">表現ですが、</span><br><br>
+                            <span class="ib">イメージとしては</span><br>
+                            <span class="ib">これが</span><br>
+                            <span class="ib">分かりやすいです。</span><br><br>
                             
-                            エアコンは、大量の空気を吸い込むことで、<br>
-                            本来の仕事をしています。<br><br>
+                            <span class="ib">エアコンは、</span><br>
+                            <span class="ib">大量の空気を</span><br>
+                            <span class="ib">吸い込んで、</span><br><br>
+                            <span class="ib">その空気を</span><br>
+                            <span class="ib">熱交換器へ</span><br>
+                            <span class="ib">通しています。</span><br><br>
                             
-                            その吸い込み口をさらに塞げば、<br>
-                            必要な空気を吸い込みにくくなります。<br><br>
+                            <span class="ib">そして、</span><br>
+                            <span class="ib">温度を変えた空気を</span><br>
+                            <span class="ib">再び部屋へ</span><br>
+                            <span class="ib">送り出します。</span><br><br>
                             
-                            つまり、エアコンを<br>
-                            <span class="font-black text-slate-900 underline decoration-red-300 decoration-4 underline-offset-4">自分から窒息状態へ近づけてしまう。</span><br><br>
+                            <span class="ib">この</span><br>
+                            <span class="font-black text-slate-900 bg-neon px-1 ib leading-normal my-1">「空気が流れる」</span><br>
+                            <span class="ib">ということが、</span><br>
+                            <span class="ib">エアコンにとって</span><br>
+                            <span class="ib">とても重要です。</span><br><br>
                             
-                            ということです。
+                            <span class="ib">ところが、</span><br>
+                            <span class="ib">吸い込み口へ</span><br>
+                            <span class="ib">さらにフィルターを</span><br>
+                            <span class="ib">追加すると、</span><br><br>
+                            <span class="ib">必要な空気を</span><br>
+                            <span class="ib">吸い込みにくく</span><br>
+                            <span class="ib">なります。</span><br><br>
+                            
+                            <span class="ib">つまり、</span><br>
+                            <span class="ib">エアコンを</span><br>
+                            <span class="ib">自分から</span><br><br>
+                            <span class="font-black text-slate-900 underline decoration-red-300 decoration-4 underline-offset-4 ib">窒息状態へ</span><br>
+                            <span class="font-black text-slate-900 underline decoration-red-300 decoration-4 underline-offset-4 ib">近づけてしまう。</span><br><br>
+                            
+                            <span class="ib">ということです。</span>
                         </p>
                     </div>
                 </div>
 
-                <!-- ＝＝＝ 問題はその先です ＝＝＝ -->
+                <!-- ━━━━━━━━━━━━━━ -->
+                <!-- 問題はその先です -->
                 <div class="mb-16 mt-20 relative text-center">
                     <!-- 上部の赤いバッジ -->
-                    <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-red-600 text-white font-black text-sm px-5 py-1.5 rounded-full shadow-md whitespace-nowrap">
+                    <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-red-600 text-white font-black text-[12px] md:text-sm px-4 py-1.5 rounded-full shadow-md whitespace-nowrap">
                         本当に知ってほしい影響
                     </div>
 
-                    <h2 class="text-xl md:text-2xl font-black text-slate-900 mb-8 pt-8 leading-relaxed">
-                        問題は<br>その先です
+                    <h2 class="text-[18px] md:text-2xl font-black text-slate-900 mb-8 pt-8 leading-relaxed">
+                        <span class="ib">問題は</span><br>
+                        <span class="ib">その先です</span>
                     </h2>
                     
-                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
-                        「少しくらい空気が通りにくくても、<br>問題ないでしょ？」<br><br>
+                    <p class="text-[14px] md:text-base font-bold text-slate-700 leading-loose">
+                        <span class="ib">「少しくらい</span><br>
+                        <span class="ib">空気が</span><br>
+                        <span class="ib">通りにくくても、</span><br>
+                        <span class="ib">問題ないでしょ？」</span><br><br>
                         
-                        そう思うかもしれません。<br><br>
+                        <span class="ib">そう思うかも</span><br>
+                        <span class="ib">しれません。</span><br><br>
                         
-                        でも、エアコンにとって<span class="text-blue-600 font-black">風量はとても重要</span>です。<br><br>
+                        <span class="ib">でも、</span><br>
+                        <span class="ib">エアコンにとって</span><br>
+                        <span class="text-blue-600 font-black ib">風量は</span><br>
+                        <span class="text-blue-600 font-black ib">とても重要</span><span class="ib">です。</span><br><br>
                         
-                        吸い込める空気が少なくなれば、<br>
-                        熱交換器を通る空気の量も減ります。<br><br>
+                        <span class="ib">吸い込める</span><br>
+                        <span class="ib">空気が減れば、</span><br><br>
+                        <span class="ib">熱交換器を通る</span><br>
+                        <span class="ib">空気の量も</span><br>
+                        <span class="ib">減ります。</span><br><br>
                         
-                        すると、冷房運転では、<br>
-                        熱交換器が必要以上に<br>
-                        冷えやすい条件を作ることがあります。
+                        <span class="ib">すると、</span><br>
+                        <span class="ib">冷房運転では、</span><br><br>
+                        <span class="ib">熱交換器が</span><br>
+                        <span class="ib">必要以上に</span><br>
+                        <span class="ib">冷えやすい</span><br>
+                        <span class="ib">条件を作ることが</span><br>
+                        <span class="ib">あります。</span>
                     </p>
 
-                    <!-- 冷えすぎるとどうなる？ / そしてカビへ -->
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12">
-                        <div class="bg-blue-50 border border-blue-100 rounded-xl p-6 text-center">
-                            <h3 class="text-lg font-black text-blue-900 mb-4 border-b border-blue-200 pb-2">
-                                冷えすぎると<br>どうなる？
-                            </h3>
-                            <p class="text-[14px] md:text-[15px] font-bold text-slate-700 leading-loose">
-                                冷房中の熱交換器は、もともと<br>
-                                かなり冷たくなっています。<br><br>
-                                
-                                そこへ、室内の空気が通ることで、<br>
-                                空気を冷やしながら熱交換しています。<br><br>
-                                
-                                ところが、通過する空気が不足すると、<br>
-                                熱交換器側が過剰に冷える条件に<br>
-                                なることがあります。<br><br>
-                                
-                                その結果、<span class="text-blue-600 font-black border-b-2 border-blue-600">結露が増えたり、<br>
-                                内部へ水分が残りやすくなったり、<br>
-                                乾きにくい状態へ</span><br>
-                                つながる可能性があります。
-                            </p>
-                        </div>
-
-                        <div class="bg-green-50 border border-green-100 rounded-xl p-6 text-center">
-                            <h3 class="text-lg font-black text-green-900 mb-4 border-b border-green-200 pb-2">
-                                そして<br>カビへ
-                            </h3>
-                            <p class="text-[14px] md:text-[15px] font-bold text-slate-700 leading-loose">
-                                エアコン内部のカビにとって、<br>
-                                水分や湿気は大きな要因のひとつです。<br><br>
-                                
-                                冷房で濡れたエアコン内部が、長い時間、<br>
-                                湿った状態になってしまう。<br><br>
-                                
-                                これは、<span class="text-green-700 font-black">カビにとって好都合な環境</span>です。<br><br>
-                                
-                                つまり、キレイに保つために付けたはずの<br>
-                                フィルターが空気の流れを邪魔することで、<br>
-                                結果としてカビが増えやすい条件を作ってしまう。<br>
-                                そんな可能性もあるということです。
-                            </p>
-                        </div>
+                    <div class="bg-blue-50 border border-blue-100 rounded-xl p-5 md:p-8 mt-10 text-center max-w-lg mx-auto">
+                        <h3 class="text-[16px] font-black text-blue-900 mb-4 border-b border-blue-200 pb-2">
+                            <span class="ib">結露と</span><span class="ib">カビのリスク</span>
+                        </h3>
+                        <p class="text-[13px] md:text-[15px] font-bold text-slate-700 leading-loose">
+                            <span class="ib">冷えた</span><br>
+                            <span class="ib">熱交換器には、</span><br>
+                            <span class="ib">結露が</span><br>
+                            <span class="ib">発生します。</span><br><br>
+                            
+                            <span class="ib">つまり、</span><br>
+                            <span class="ib">空気の流れを</span><br>
+                            <span class="ib">邪魔することで、</span><br><br>
+                            <span class="ib">結露が</span><br>
+                            <span class="ib">増えやすい条件を</span><br>
+                            <span class="text-blue-700 font-black ib">自分から</span><br>
+                            <span class="text-blue-700 font-black ib">作ってしまう</span><br>
+                            <span class="ib">可能性が</span><br>
+                            <span class="ib">あるということ。</span><br><br>
+                            
+                            <span class="ib">そして、</span><br>
+                            <span class="ib">水分が</span><br>
+                            <span class="ib">残りやすくなれば、</span><br><br>
+                            <span class="ib">カビにとっても</span><br>
+                            <span class="ib">都合のいい環境へ</span><br>
+                            <span class="ib">近づいて</span><br>
+                            <span class="ib">しまいます。</span>
+                        </p>
                     </div>
                 </div>
 
-                <!-- キレイにするために付けたのに… -->
+                <!-- ━━━━━━━━━━━━━━ -->
+                <!-- キレイにするために付けたはずなのに -->
                 <div class="mb-16 mt-20">
                     <div class="flex flex-col items-center justify-center mb-6 text-center">
                         <span class="w-10 h-[3px] bg-slate-800 mb-4 rounded-full"></span>
-                        <h2 class="text-xl md:text-2xl font-black text-slate-900 leading-relaxed">
-                            キレイにするために<br>
-                            付けたのに…
+                        <h2 class="text-[17px] md:text-2xl font-black text-slate-900 leading-relaxed">
+                            <span class="ib">キレイにするために</span><br>
+                            <span class="ib">付けたはずなのに</span>
                         </h2>
                     </div>
 
-                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose text-center">
-                        ホコリを入れたくない。<br>
-                        エアコン内部を汚したくない。<br>
-                        できるだけキレイな状態を保ちたい。<br><br>
+                    <p class="text-[14px] md:text-base font-bold text-slate-700 leading-loose text-center">
+                        <span class="ib">ここが、</span><br>
+                        <span class="ib">ONE★STARが</span><br>
+                        <span class="ib">一番伝えたい</span><br>
+                        <span class="ib">ところです。</span><br><br>
                         
-                        そのために、貼り付けフィルターを追加する。<br><br>
+                        <span class="ib">貼り付けフィルターを</span><br>
+                        <span class="ib">使う目的は、</span><br><br>
+                        <span class="ib">エアコンを</span><br>
+                        <span class="ib">汚したくないから。</span><br>
+                        <span class="ib">だと思います。</span><br><br>
                         
-                        ところが、その一枚によって、<br>
-                        空気を吸いにくくなる。<br>
-                        風量が落ちる。<br>
-                        熱交換の状態にも影響する。<br>
-                        内部が濡れやすく、乾きにくい条件へ近づいてしまう。<br><br>
+                        <span class="ib">その考え方自体は、</span><br>
+                        <span class="ib">まったく</span><br>
+                        <span class="ib">おかしくありません。</span><br><br>
                         
-                        そして、カビが増えやすい環境につながる。<br><br>
+                        <span class="ib">でも、</span><br>
+                        <span class="ib">汚れを防ぐために</span><br>
+                        <span class="ib">追加したものが、</span><br>
+                        <span class="ib">空気の流れを</span><br>
+                        <span class="ib">邪魔する。</span><br><br>
                         
-                        キレイにするための対策だったのに、<br>
-                        <span class="text-red-600 font-black text-lg underline decoration-red-200 decoration-4 underline-offset-4">結果として逆方向へ進んでしまったら、<br>本末転倒です。</span>
+                        <span class="ib">その結果、</span><br>
+                        <span class="ib">内部が</span><br>
+                        <span class="ib">冷えやすくなったり、</span><br><br>
+                        <span class="ib">結露が</span><br>
+                        <span class="ib">増えやすくなったり、</span><br><br>
+                        <span class="ib">湿った状態が</span><br>
+                        <span class="ib">長く続きやすく</span><br>
+                        <span class="ib">なったりする。</span><br><br>
+                        
+                        <span class="ib">そうなれば、</span><br>
+                        <span class="ib">キレイに</span><br>
+                        <span class="ib">保つためのものが、</span><br>
+                        <span class="ib">逆に</span><br><br>
+                        <span class="font-black text-slate-900 bg-red-100 px-2 py-1 rounded ib leading-normal my-1">
+                            <span class="ib">カビが育ちやすい</span><br>
+                            <span class="ib">環境を作る</span><br>
+                            <span class="ib">原因のひとつ</span>
+                        </span><br>
+                        <span class="ib">になりかねません。</span><br><br>
+                        
+                        <span class="ib">それでは、</span><br>
+                        <span class="text-red-600 font-black text-[16px] underline decoration-red-200 decoration-4 underline-offset-4 ib">本末転倒です。</span>
                     </p>
                 </div>
 
-                <!-- 汚れてきたらさらに窒息 / 冷たい風が出れば大丈夫？ -->
-                <div class="space-y-12 mb-16 mt-16 text-center">
-                    <div>
-                        <h3 class="text-lg md:text-xl font-black text-slate-900 mb-6">汚れてきたらさらに窒息</h3>
-                        <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
-                            貼り付けフィルターは、ホコリを捕まえます。<br>
-                            これは、ちゃんと仕事をしている証拠でもあります。<br><br>
-                            
-                            でも、ホコリを捕まえるほど、<br>
-                            空気はさらに通りにくくなっていきます。<br><br>
-                            
-                            新品の状態でも空気抵抗がある。<br>
-                            そこへ、ホコリが溜まっていく。<br>
-                            交換を忘れれば、さらに目詰まりする。<br><br>
-                            
-                            つまり、使い続けるほど、<br>
-                            <span class="bg-neon px-2 font-black text-slate-900">吸い込みを邪魔する方向へ進んでいきます。</span>
-                        </p>
-                    </div>
-
-                    <div>
-                        <h3 class="text-lg md:text-xl font-black text-slate-900 mb-6">冷たい風が出れば大丈夫？</h3>
-                        <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
-                            ここも、少し注意が必要です。<br><br>
-                            
-                            吹き出し口から冷たい風が出ている。<br>
-                            だから、正常に動いている。<br>
-                            とは、必ずしも言い切れません。<br><br>
-                            
-                            エアコンは、冷たい空気を作るだけの機械ではありません。<br>
-                            必要な量の空気を吸い込み、熱交換して、部屋へ送り出す。<br>
-                            そこまで含めて、エアコンの仕事です。<br><br>
-                            
-                            風量が落ちれば、冷たい風が出ていても、<br>
-                            本来の能力を発揮しにくくなる可能性があります。<br><br>
-                            
-                            大切なのは、「冷たいか？」だけではなく、<br>
-                            <span class="font-black text-slate-900 underline decoration-neon decoration-4 underline-offset-4">「きちんと空気が流れているか？」</span><br>
-                            ここも、見てほしいポイントです。
-                        </p>
-                    </div>
-                </div>
-
-                <!-- ＝＝＝ そのために純正フィルターがある ＝＝＝ -->
+                <!-- ━━━━━━━━━━━━━━ -->
+                <!-- 貼り付けるより純正フィルターを掃除 -->
                 <div class="mb-16 mt-24">
                     <div class="flex flex-col items-center justify-center mb-8 text-center">
                         <span class="w-10 h-[3px] bg-neon mb-4 rounded-full"></span>
-                        <h2 class="text-xl md:text-2xl font-black text-slate-900 tracking-wider leading-relaxed">
-                            そのために<br>純正フィルターがある
+                        <h2 class="text-[17px] md:text-2xl font-black text-slate-900 tracking-wider leading-relaxed">
+                            <span class="ib">貼り付けるより</span><br>
+                            <span class="ib">純正フィルターを掃除</span>
                         </h2>
                     </div>
 
-                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose text-center mb-10">
-                        では、貼り付けフィルターを使わなかったら、<br>
-                        ホコリが全部エアコン内部へ入るのでしょうか？<br><br>
+                    <p class="text-[14px] md:text-base font-bold text-slate-700 leading-loose text-center mb-10">
+                        <span class="ib">ONE★STARでは、</span><br>
+                        <span class="ib">フィルターを</span><br>
+                        <span class="ib">さらに追加するより、</span><br><br>
                         
-                        そのために、エアコンには最初から<br>
-                        <span class="font-black text-slate-900">純正フィルター</span>が付いています。<br><br>
+                        <span class="ib">最初から付いている</span><br>
+                        <span class="font-black text-slate-900 ib">純正フィルター</span><span class="ib">を</span><br><br>
+                        <span class="ib">定期的に</span><br>
+                        <span class="ib">お手入れすることを</span><br>
+                        <span class="ib">おすすめしています。</span><br><br>
                         
-                        ホコリを捕まえる役割は、<br>
-                        すでに純正フィルターが担っています。<br><br>
+                        <span class="ib">純正フィルターも、</span><br>
+                        <span class="ib">ホコリが</span><br>
+                        <span class="ib">溜まってくれば、</span><br><br>
+                        <span class="ib">当然、</span><br>
+                        <span class="ib">空気抵抗は</span><br>
+                        <span class="ib">増えていきます。</span><br><br>
                         
-                        だから、さらに外側へもう一枚追加するより、<br>
-                        <span class="text-base font-black text-slate-900 bg-neon px-2">純正フィルターを定期的にお手入れする。</span><br><br>
+                        <span class="ib">だからこそ、</span><br>
+                        <span class="ib">定期的に</span><br>
+                        <span class="ib">ホコリを</span><br>
+                        <span class="ib">取り除く。</span><br><br>
                         
-                        ONE★STARでは、こちらをおすすめしています。
+                        <span class="ib">汚れたら</span><br>
+                        <span class="ib">新しいフィルターを</span><br>
+                        <span class="ib">追加するのではなく、</span><br><br>
+                        <span class="text-[15px] font-black text-slate-900 bg-neon px-2 ib leading-normal my-1">
+                            <span class="ib">本来ある</span><br>
+                            <span class="ib">フィルターを</span><br>
+                            <span class="ib">キレイに保つ。</span>
+                        </span><br><br>
+                        
+                        <span class="ib">まずは、</span><br>
+                        <span class="ib">そこからで</span><br>
+                        <span class="ib">十分だと考えています。</span>
                     </p>
 
-                    <!-- 記事リンクカード -->
-                    <a href="/tips/filter/" class="block bg-slate-50 rounded-2xl border border-slate-200 p-6 shadow-sm hover:shadow-md transition-all active:scale-95 text-center group">
+                    <!-- 記事リンクカード (調整済み) -->
+                    <a href="/tips/filter/" class="block bg-slate-50 rounded-2xl border border-slate-200 p-5 md:p-6 shadow-sm hover:shadow-md transition-all active:scale-95 text-center group max-w-sm mx-auto">
                         <p class="text-[11px] md:text-xs font-black text-slate-500 mb-2 tracking-widest">
                             関連記事
                         </p>
-                        <h3 class="text-[16px] md:text-lg font-black text-blue-600 group-hover:text-blue-800 transition-colors mb-2">
-                            【フィルター掃除はどれくらいの頻度？】
+                        <h3 class="text-[14px] md:text-lg font-black text-blue-600 group-hover:text-blue-800 transition-colors mb-2 leading-relaxed">
+                            <span class="ib">【フィルター掃除は</span><br class="md:hidden">
+                            <span class="ib">どのくらいの頻度？】</span>
                         </h3>
-                        <p class="text-[13px] text-slate-600 font-bold mb-4">
-                            純正フィルターの掃除方法やお手入れの頻度はこちら
+                        <p class="text-[12px] md:text-[13px] text-slate-600 font-bold mb-4 leading-relaxed">
+                            <span class="ib">純正フィルターの掃除方法や</span><br class="md:hidden">
+                            <span class="ib">お手入れ頻度</span>
                         </p>
                         <div class="inline-flex items-center text-sm font-black text-slate-900">
                             詳しく読む <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"></path></svg>
@@ -474,243 +533,299 @@
                     </a>
                 </div>
 
-                <!-- 純正フィルターも放置はNG -->
-                <div class="mb-16 mt-16 text-center">
-                    <h2 class="text-lg md:text-xl font-black text-slate-900 mb-6 border-b-2 border-slate-200 pb-2 inline-block">
-                        純正フィルターも<br>放置はNG
-                    </h2>
-                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
-                        もちろん、純正フィルターなら何もしなくていい。<br>
-                        という話ではありません。<br><br>
-                        
-                        純正フィルターにも、ホコリは溜まります。<br>
-                        ホコリが溜まれば、同じように空気の流れを邪魔します。<br><br>
-                        
-                        だから、大切なのは、<br>
-                        フィルターを増やすことではなく、<br>
-                        <span class="font-black text-slate-900">今ある純正フィルターを定期的にキレイにすること。</span><br><br>
-                        
-                        まずは、そこです。
-                    </p>
-                </div>
-
-                <!-- お掃除機能付きはさらに注意 (警告風デザイン) -->
-                <div class="bg-rose-50 border-2 border-rose-200 rounded-[20px] p-6 md:p-8 mt-12 mb-16 text-center">
-                    <h2 class="text-xl font-black text-rose-600 mb-6 flex items-center justify-center">
-                        <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
-                        お掃除機能付きはさらに注意
+                <!-- ━━━━━━━━━━━━━━ -->
+                <!-- お掃除機能付きはさらに注意 (警告風デザイン調整済み) -->
+                <div class="bg-rose-50 border-2 border-rose-200 rounded-[20px] p-5 md:p-8 mt-12 mb-16 text-center mx-1">
+                    <h2 class="text-[17px] md:text-xl font-black text-rose-600 mb-6 flex items-center justify-center leading-snug">
+                        <svg class="w-5 h-5 md:w-6 md:h-6 mr-1 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                        <span class="ib">お掃除機能付きは</span><span class="ib">さらに注意</span>
                     </h2>
                     
-                    <p class="text-[15px] md:text-base font-bold text-slate-800 leading-loose mb-8">
-                        お掃除機能付きのエアコンでは、別の問題もあります。<br><br>
+                    <p class="text-[14px] md:text-base font-bold text-slate-800 leading-loose mb-8">
+                        <span class="ib">お掃除機能付き</span><br>
+                        <span class="ib">エアコンでは、</span><br><br>
+                        <span class="ib">さらに</span><br>
+                        <span class="ib">気をつけてほしいことが</span><br>
+                        <span class="ib">あります。</span><br><br>
                         
-                        お掃除機能は、純正フィルターを自動で掃除するための仕組みです。<br>
-                        その周辺には、フィルターを動かしたり、<br>
-                        ホコリを回収したりする細かな部品が付いています。<br><br>
+                        <span class="ib">お掃除機能は、</span><br>
+                        <span class="ib">純正フィルターを</span><br>
+                        <span class="ib">自動で動かしながら、</span><br><br>
+                        <span class="ib">ホコリを</span><br>
+                        <span class="ib">取り除く仕組みです。</span><br><br>
                         
-                        そこへ、本来なかった貼り付けフィルターを追加する。<br><br>
+                        <span class="ib">その動く部分へ、</span><br>
+                        <span class="ib">本来存在しない</span><br>
+                        <span class="ib">貼り付けフィルターを</span><br>
+                        <span class="ib">追加すると、</span><br><br>
+                        <span class="ib">正常な動きを</span><br>
+                        <span class="ib">邪魔する可能性が</span><br>
+                        <span class="ib">あります。</span><br><br>
                         
-                        すると、正常な動作を邪魔したり、<br>
-                        フィルターが引っ掛かったり、絡まったりする可能性があります。<br>
-                        場合によっては、<span class="text-red-600 font-black">お掃除機構の故障につながる可能性</span>もあります。
+                        <span class="ib">貼り付けたものが</span><br>
+                        <span class="ib">ズレたり、</span><br>
+                        <span class="ib">剥がれたり、</span><br>
+                        <span class="ib">内部へ巻き込まれたり。</span><br><br>
+                        
+                        <span class="ib">お掃除ユニットへ</span><br>
+                        <span class="ib">絡んでしまえば、</span><br>
+                        <span class="text-red-600 font-black ib">故障につながる可能性も</span><br>
+                        <span class="text-red-600 font-black ib">あります。</span><br><br>
+                        
+                        <span class="ib">そもそも、</span><br>
+                        <span class="ib">お掃除機能付き</span><br>
+                        <span class="ib">エアコンは、</span><br>
+                        <span class="ib">内部構造が複雑です。</span><br><br>
+                        <span class="ib">そこへ、</span><br>
+                        <span class="ib">さらに</span><br>
+                        <span class="ib">本来ないものを</span><br>
+                        <span class="ib">追加する。</span><br><br>
+                        
+                        <span class="ib">ONE★STARでは、</span><br>
+                        <span class="ib">おすすめ</span><br>
+                        <span class="ib">していません。</span>
                     </p>
 
-                    <!-- 記事リンクカード -->
-                    <a href="/tips/robot/" class="block bg-white rounded-xl border border-rose-100 p-5 shadow-sm hover:shadow-md transition-all active:scale-95 text-center group">
+                    <!-- 記事リンクカード (調整済み) -->
+                    <a href="/tips/robot/" class="block bg-white rounded-xl border border-rose-100 p-5 shadow-sm hover:shadow-md transition-all active:scale-95 text-center group max-w-sm mx-auto">
                         <p class="text-[11px] font-black text-slate-500 mb-1 tracking-widest">関連記事</p>
-                        <h3 class="text-[15px] font-black text-blue-600 group-hover:text-blue-800 transition-colors mb-1">
-                            【お掃除機能付きって本当に必要？】
+                        <h3 class="text-[14px] font-black text-blue-600 group-hover:text-blue-800 transition-colors mb-2 leading-relaxed">
+                            <span class="ib">【お掃除機能付きって</span><br class="md:hidden">
+                            <span class="ib">本当に必要？】</span>
                         </h3>
-                        <p class="text-[12px] text-slate-600 font-bold mb-2">お掃除機能付きの仕組みについて</p>
-                        <div class="inline-flex items-center text-sm font-black text-slate-900">
+                        <div class="inline-flex items-center text-sm font-black text-slate-900 mt-1">
                             詳しく読む <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"></path></svg>
                         </div>
                     </a>
                 </div>
 
-                <!-- ホコリを防げばカビも防げる？ / 冷房後は乾燥も大切 -->
+                <!-- ━━━━━━━━━━━━━━ -->
+                <!-- ホコリを防いでもカビは防げない / エアコンは汚れるものです -->
                 <div class="space-y-16 mb-16 text-center">
                     <div>
-                        <h2 class="text-xl font-black text-slate-900 mb-6">ホコリを防げば<br>カビも防げる？</h2>
-                        <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
-                            ここも、分けて考えてほしいところです。<br><br>
+                        <h2 class="text-[17px] md:text-xl font-black text-slate-900 mb-6 leading-relaxed">
+                            <span class="ib">ホコリを防いでも</span><br>
+                            <span class="ib">カビは防げない</span>
+                        </h2>
+                        <p class="text-[14px] md:text-base font-bold text-slate-700 leading-loose mb-8">
+                            <span class="ib">もうひとつ、</span><br>
+                            <span class="ib">大切なことが</span><br>
+                            <span class="ib">あります。</span><br><br>
                             
-                            ホコリを減らすこと。<br>
-                            カビを抑えること。<br>
-                            これは、同じ話ではありません。<br><br>
+                            <span class="ib">貼り付けフィルターで</span><br>
+                            <span class="ib">ホコリを</span><br>
+                            <span class="ib">減らせたとしても、</span><br><br>
+                            <span class="ib">エアコン内部の</span><br>
+                            <span class="ib">カビまで</span><br>
+                            <span class="ib">防げるわけでは</span><br>
+                            <span class="ib">ありません。</span><br><br>
                             
-                            貼り付けフィルターでホコリを捕まえたとしても、<br>
-                            冷房を使えば、熱交換器には結露が発生します。<br><br>
+                            <span class="ib">冷房を使えば、</span><br>
+                            <span class="ib">熱交換器は</span><br>
+                            <span class="ib">冷たくなります。</span><br><br>
                             
-                            エアコン内部をキレイに保つには、<br>
-                            <span class="font-black text-slate-900 bg-neon px-2">ホコリだけでなく、水分や湿気も考える必要があります。</span>
-                        </p>
-                    </div>
-
-                    <div>
-                        <h2 class="text-xl font-black text-slate-900 mb-6">冷房後は<br>乾燥も大切</h2>
-                        <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose mb-8">
-                            冷房を止めた直後には、エアコン内部に水分が残っています。<br>
-                            その水分を、できるだけ乾かしてあげる。<br><br>
+                            <span class="ib">そして、</span><br>
+                            <span class="ib">空気中の水分が</span><br>
+                            <span class="ib">結露します。</span><br><br>
                             
-                            これは、カビを抑えるためのひとつの方法です。
+                            <span class="ib">つまり、</span><br>
+                            <span class="ib">エアコン内部には</span><br>
+                            <span class="ib">どうしても</span><br>
+                            <span class="font-black text-slate-900 ib">水分が発生します。</span><br><br>
+                            
+                            <span class="ib">ホコリだけを</span><br>
+                            <span class="ib">減らしても、</span><br><br>
+                            <span class="ib">水分まで</span><br>
+                            <span class="ib">なくなるわけでは</span><br>
+                            <span class="ib">ありません。</span><br><br>
+                            
+                            <span class="ib">むしろ、</span><br>
+                            <span class="ib">空気の流れを</span><br>
+                            <span class="ib">悪くすることで、</span><br><br>
+                            <span class="ib">湿気が残りやすい</span><br>
+                            <span class="ib">条件を作ってしまえば、</span><br><br>
+                            <span class="ib">本来の目的とは</span><br>
+                            <span class="ib">逆方向へ</span><br>
+                            <span class="ib">進んでしまいます。</span>
                         </p>
                         
-                        <a href="/tips/dry/" class="block bg-slate-50 rounded-2xl border border-slate-200 p-5 shadow-sm hover:shadow-md transition-all active:scale-95 group max-w-md mx-auto">
+                        <!-- 記事リンクカード (調整済み) -->
+                        <a href="/tips/dry/" class="block bg-slate-50 rounded-2xl border border-slate-200 p-5 shadow-sm hover:shadow-md transition-all active:scale-95 group max-w-sm mx-auto">
                             <p class="text-[11px] font-black text-slate-500 mb-1 tracking-widest">関連記事</p>
-                            <h3 class="text-[15px] font-black text-blue-600 group-hover:text-blue-800 transition-colors mb-1">
-                                【冷房後の送風って意味あるの？】
+                            <h3 class="text-[14px] font-black text-blue-600 group-hover:text-blue-800 transition-colors mb-2 leading-relaxed">
+                                <span class="ib">【冷房後の送風で</span><span class="ib">カビ対策】</span>
                             </h3>
-                            <div class="inline-flex items-center text-sm font-black text-slate-900 mt-2">
+                            <div class="inline-flex items-center text-sm font-black text-slate-900 mt-1">
+                                詳しく読む <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"></path></svg>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="pt-10 border-t border-slate-200">
+                        <h2 class="text-[17px] md:text-xl font-black text-slate-900 mb-6 leading-relaxed">
+                            <span class="ib">エアコンは</span><br>
+                            <span class="ib">汚れるものです</span>
+                        </h2>
+                        <p class="text-[14px] md:text-base font-bold text-slate-700 leading-loose mb-8">
+                            <span class="ib">どれだけ</span><br>
+                            <span class="ib">気をつけていても、</span><br><br>
+                            <span class="ib">エアコン内部を</span><br>
+                            <span class="ib">永久に</span><br>
+                            <span class="ib">新品のまま</span><br>
+                            <span class="ib">保つことは</span><br>
+                            <span class="ib">できません。</span><br><br>
+                            
+                            <span class="ib">新品のエアコンでも、</span><br>
+                            <span class="ib">使えば</span><br>
+                            <span class="ib">少しずつ</span><br>
+                            <span class="ib">汚れていきます。</span><br><br>
+                            
+                            <span class="ib">大切なのは、</span><br>
+                            <span class="ib">無理に</span><br>
+                            <span class="ib">汚れを完全に</span><br>
+                            <span class="ib">防ごうと</span><br>
+                            <span class="ib">することではなく、</span><br><br>
+                            <span class="ib">正しく</span><br>
+                            <span class="ib">お手入れしながら、</span><br><br>
+                            <span class="ib">必要なタイミングで</span><br>
+                            <span class="ib">内部を</span><br>
+                            <span class="ib">キレイにすること。</span>
+                        </p>
+
+                        <!-- 記事リンクカード (調整済み) -->
+                        <a href="/tips/season/" class="block bg-slate-50 rounded-2xl border border-slate-200 p-5 shadow-sm hover:shadow-md transition-all active:scale-95 group max-w-sm mx-auto">
+                            <p class="text-[11px] font-black text-slate-500 mb-1 tracking-widest">関連記事</p>
+                            <h3 class="text-[14px] font-black text-blue-600 group-hover:text-blue-800 transition-colors mb-2 leading-relaxed">
+                                <span class="ib">【エアコンは</span><br class="md:hidden">
+                                <span class="ib">いつ洗えばいい？】</span>
+                            </h3>
+                            <div class="inline-flex items-center text-sm font-black text-slate-900 mt-1">
                                 詳しく読む <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"></path></svg>
                             </div>
                         </a>
                     </div>
                 </div>
 
-                <!-- ＝＝＝ クリーニングに関するセクションまとめ ＝＝＝ -->
-                <div class="bg-slate-100/50 rounded-[24px] p-6 md:p-8 mt-12 mb-8 border border-slate-100">
-                    
-                    <!-- それでもエアコンは汚れます -->
-                    <div class="mb-12 text-center border-b border-slate-200 pb-12">
-                        <h2 class="text-xl font-black text-slate-900 mb-6">それでも<br>エアコンは汚れます</h2>
-                        <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose mb-8">
-                            純正フィルターを掃除する。<br>
-                            余計な空気抵抗を増やさない。<br>
-                            冷房後には、できる範囲で内部を乾かす。<br><br>
-                            
-                            ここまでやっても、エアコン内部を<br>
-                            永久にキレイな状態で保てるわけではありません。<br><br>
-                            
-                            エアコンは、部屋の空気を毎日吸い込んでいます。<br>
-                            そして、冷房を使えば、内部では結露も発生します。<br><br>
-                            
-                            <span class="font-black text-slate-900">新品のエアコンでも、使用環境によっては<br>
-                            短期間で汚れることがあります。</span>
-                        </p>
-                        <a href="/tips/new/" class="inline-block bg-white rounded-xl border border-slate-200 px-6 py-4 shadow-sm hover:shadow-md transition-all active:scale-95 group">
-                            <h3 class="text-[14px] font-black text-blue-600 group-hover:text-blue-800 transition-colors">
-                                ▶ 【新しいエアコンなら汚れないって本当？】
-                            </h3>
-                        </a>
-                    </div>
-
-                    <!-- ではいつ洗う？ -->
-                    <div class="mb-12 text-center border-b border-slate-200 pb-12">
-                        <h2 class="text-xl font-black text-slate-900 mb-6">では<br>いつ洗う？</h2>
-                        <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose mb-8">
-                            これも、一律には決められません。<br><br>
-                            
-                            使用時間。部屋の環境。キッチンとの距離。<br>
-                            間取り。機種。生活スタイル。<br><br>
-                            
-                            いろいろな条件で、汚れ方は変わります。
-                        </p>
-                        <a href="/tips/season/" class="inline-block bg-white rounded-xl border border-slate-200 px-6 py-4 shadow-sm hover:shadow-md transition-all active:scale-95 group">
-                            <h3 class="text-[14px] font-black text-blue-600 group-hover:text-blue-800 transition-colors">
-                                ▶ 【エアコンクリーニング頻度とおすすめの季節】
-                            </h3>
-                        </a>
-                    </div>
-
-                    <!-- そもそも洗う意味は？ -->
-                    <div class="text-center">
-                        <h2 class="text-xl font-black text-slate-900 mb-6">そもそも<br>洗う意味は？</h2>
-                        <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose mb-8">
-                            フィルター掃除と、エアコン内部のクリーニングは、別のお手入れです。<br><br>
-                            
-                            純正フィルターをキレイにしていても、その奥にある<br>
-                            熱交換器や送風ファンなどは、少しずつ汚れていきます。<br><br>
-                            
-                            では、エアコンをクリーニングすると、何が変わるのか？<br>
-                            洗わずに使い続けると、どんなことが起こるのか？
-                        </p>
-                        <a href="/tips/clean/" class="inline-block bg-white rounded-xl border border-slate-200 px-6 py-4 shadow-sm hover:shadow-md transition-all active:scale-95 group">
-                            <h3 class="text-[14px] font-black text-blue-600 group-hover:text-blue-800 transition-colors">
-                                ▶ 【エアコンクリーニングって本当に必要？】
-                            </h3>
-                        </a>
-                    </div>
-
-                </div>
-
             </div>
         </div>
 
 
+        <!-- ━━━━━━━━━━━━━━ -->
         <!-- ネイビーのカード (ONE★STARが大切にしていること) -->
-        <div class="bg-slate-900 rounded-[24px] border-l-[12px] border-neon p-8 md:p-10 text-center shadow-md mb-10">
+        <div class="bg-slate-900 rounded-[24px] border-l-[12px] border-neon p-6 md:p-10 text-center shadow-md mb-10">
             
-            <h2 class="text-white font-black text-xl md:text-2xl leading-relaxed mb-10 tracking-wider">
-                ONE★STARが<br>
-                大切にしていること
+            <h2 class="text-white font-black text-[18px] md:text-2xl leading-relaxed mb-10 tracking-wider">
+                <span class="ib">ONE★STARが</span><br>
+                <span class="ib">大切にしていること</span>
             </h2>
 
-            <p class="text-slate-100 font-bold text-[15px] md:text-base leading-loose mb-10">
-                エアコンをキレイに保つために、<br>
-                いろいろな商品を追加する方法もあります。<br><br>
+            <p class="text-slate-100 font-bold text-[14px] md:text-base leading-loose mb-10">
+                <span class="ib">エアコンには、</span><br>
+                <span class="ib">本来の設計があります。</span><br><br>
                 
-                でも、ONE★STARが大切にしているのは、<br>
-                何かを追加することより、<br>
-                <span class="text-neon font-black text-base">まず、エアコン本来の状態を</span><br>
-                <span class="text-neon font-black text-base">邪魔しないことです。</span>
+                <span class="ib">空気を吸い込み、</span><br>
+                <span class="ib">熱交換器を通して、</span><br>
+                <span class="ib">部屋へ送り出す。</span><br><br>
+                
+                <span class="ib">その流れを</span><br>
+                <span class="ib">できるだけ</span><br>
+                <span class="ib">邪魔しない。</span><br><br>
+                
+                <span class="ib">ONE★STARでは、</span><br>
+                <span class="ib">それを</span><br>
+                <span class="ib">大切にしています。</span><br><br>
+                
+                <span class="text-neon font-black text-[15px] ib">汚したくないから、</span><br>
+                <span class="text-neon font-black text-[15px] ib">何かを追加する。</span><br><br>
+                
+                <span class="text-neon font-black text-[15px] ib">ではなく、</span>
             </p>
 
             <!-- 区切り線 -->
             <div class="w-16 h-[1px] bg-slate-600 mx-auto mb-10"></div>
 
-            <p class="text-slate-100 font-bold text-[15px] md:text-base leading-loose">
-                純正フィルターをきちんとお手入れする。<br>
-                空気の流れをできるだけ邪魔しない。<br>
-                冷房後には、できる範囲で内部を乾かしてあげる。<br><br>
+            <p class="text-slate-100 font-bold text-[14px] md:text-base leading-loose mb-10">
+                <span class="ib">純正フィルターを</span><br>
+                <span class="ib">定期的に</span><br>
+                <span class="ib">お手入れする。</span><br><br>
                 
-                そして、内部に汚れが蓄積したら、<br>
-                エアコン内部をきちんと洗う。<br><br>
+                <span class="ib">内部が汚れたら、</span><br>
+                <span class="ib">きちんと洗う。</span><br><br>
                 
-                特別なことではありません。<br><br>
+                <span class="ib">そして、</span><br>
+                <span class="ib">本来の状態で</span><br>
+                <span class="ib">気持ちよく</span><br>
+                <span class="ib">使ってもらう。</span><br><br>
                 
-                でも、こうした基本をひとつずつ続けることが、<br>
-                エアコンをキレイに使うための<br>
-                一番シンプルな方法だと、<br>
-                ONE★STARは考えています。<br><br>
+                <span class="text-white font-black text-[15px] underline decoration-neon decoration-4 underline-offset-4 ib leading-normal">
+                    <span class="ib">塞いで守るより、</span><br>
+                    <span class="ib">本来の空気の流れを</span><br>
+                    <span class="ib">邪魔しない。</span>
+                </span><br><br>
                 
-                <span class="text-white font-black text-base underline decoration-neon decoration-4 underline-offset-4">貼り付けフィルターで塞いで守るより、</span><br>
-                <span class="text-white font-black text-base underline decoration-neon decoration-4 underline-offset-4">本来の空気の流れを邪魔しない。</span><br><br>
-                
-                そして、汚れたらきちんと洗う。<br>
-                それが、ONE★STARの考え方です。
+                <span class="ib">それが、</span><br>
+                <span class="ib">ONE★STARの</span><br>
+                <span class="ib">考え方です。</span>
             </p>
+
+            <div class="space-y-4 max-w-sm mx-auto">
+                <a href="/tips/full/" class="block bg-slate-800 border border-slate-700 rounded-xl p-4 hover:bg-slate-700 transition-colors text-center group">
+                    <p class="text-[10px] text-neon mb-1 font-bold tracking-widest">
+                        <span class="ib">エアコンをどこまで</span><span class="ib">分解して洗うか</span>
+                    </p>
+                    <h3 class="text-white font-black text-[14px]">▶ 【完全分解って本当に必要？】</h3>
+                </a>
+                <a href="/pride" class="block bg-slate-800 border border-slate-700 rounded-xl p-4 hover:bg-slate-700 transition-colors text-center group">
+                    <p class="text-[10px] text-neon mb-1 font-bold tracking-widest">
+                        <span class="ib">実際の作業で</span><span class="ib">何を大切にしているか</span>
+                    </p>
+                    <h3 class="text-white font-black text-[14px]">▶ 【ONE★STARの拘り】</h3>
+                </a>
+            </div>
         </div>
 
 
-        <!-- ご相談誘導ブロック -->
-        <div class="bg-white rounded-2xl border border-slate-200 p-8 text-center shadow-sm mb-12">
-            <h2 class="text-xl md:text-2xl font-black text-slate-900 mb-8 leading-relaxed">
-                エアコンの汚れが<br>
-                気になる場合は
+        <!-- ━━━━━━━━━━━━━━ -->
+        <!-- ご相談誘導ブロック (調整済み) -->
+        <div class="bg-white rounded-2xl border border-slate-200 p-6 md:p-8 text-center shadow-sm mb-12">
+            <h2 class="text-[18px] md:text-2xl font-black text-slate-900 mb-8 leading-relaxed">
+                <span class="ib">エアコンの汚れが</span><br>
+                <span class="ib">気になる方へ</span>
             </h2>
             
-            <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose mb-10">
-                <span class="text-slate-900 font-black">「吹き出し口に黒い汚れが見えてきた」</span><br><br>
+            <p class="text-[14px] md:text-base font-bold text-slate-700 leading-loose mb-10">
+                <span class="text-slate-900 font-black ib">「吹出口に</span><br>
+                <span class="text-slate-900 font-black ib">黒い汚れが</span><br>
+                <span class="text-slate-900 font-black ib">見えてきた」</span><br><br>
                 
-                <span class="text-slate-900 font-black">「最近、ニオイが気になる」</span><br><br>
+                <span class="text-slate-900 font-black ib">「最近、</span><br>
+                <span class="text-slate-900 font-black ib">ニオイが</span><br>
+                <span class="text-slate-900 font-black ib">気になる」</span><br><br>
                 
-                <span class="text-slate-900 font-black">「フィルターは掃除しているけど、<br>内部の汚れが気になる」</span><br><br>
+                <span class="text-slate-900 font-black ib">「フィルターを</span><br>
+                <span class="text-slate-900 font-black ib">掃除しても、</span><br>
+                <span class="text-slate-900 font-black ib">内部の汚れが</span><br>
+                <span class="text-slate-900 font-black ib">気になる」</span><br><br>
                 
-                そんな場合は、<br>
-                エアコン内部に汚れやカビが<br>
-                蓄積している可能性があります。<br><br>
+                <span class="ib">そんな時は、</span><br>
+                <span class="ib">エアコン内部を</span><br>
+                <span class="ib">一度確認してみる</span><br>
+                <span class="ib">タイミングかも</span><br>
+                <span class="ib">しれません。</span><br><br>
                 
-                貼り付けフィルターでさらに覆う前に、<br>
-                一度、エアコン内部を確認してみてください。<br><br>
+                <span class="ib">貼り付けフィルターで</span><br>
+                <span class="ib">汚れを隠すのではなく、</span><br><br>
+                <span class="ib">今ある汚れを</span><br>
+                <span class="ib">きちんと洗い落とす。</span><br><br>
                 
-                ご自身のエアコンを<br>
-                洗った方がいいのか判断に迷う場合や、<br>
-                エアコンクリーニングをご検討中の場合は、<br>
-                お気軽にご連絡ください。<br><br>
+                <span class="ib">エアコンの汚れが</span><br>
+                <span class="ib">気になっている方は、</span><br>
+                <span class="ib">お気軽にお電話ください。</span><br><br>
                 
-                エアコンの状態や、使用環境を確認したうえで、<br>
-                必要な作業をご案内いたします。
+                <span class="ib">状態を確認した上で、</span><br>
+                <span class="ib">必要な</span><br>
+                <span class="ib">エアコンクリーニングを</span><br>
+                <span class="ib">ご案内します。</span>
             </p>
             
             <a href="tel:08000807788" class="js-phone-modal-trigger inline-flex items-center justify-center bg-slate-900 hover:bg-slate-800 text-neon px-8 py-4 rounded-full text-base font-black shadow-md transition-all active:scale-95">
