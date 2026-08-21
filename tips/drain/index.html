@@ -1,0 +1,816 @@
+```html
+<!DOCTYPE html>
+<html lang="ja" class="scroll-smooth" style="word-break: auto-phrase;">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>あなたは何を優先しますか？ | ONE★STAR</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        neon: '#EFFF00' // トレードカラー：蛍光イエロー
+                    },
+                    fontFamily: {
+                        sans: ['"Noto Sans JP"', 'sans-serif'],
+                        impact: ['"Black Ops One"', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        /* ドロワーメニュー用 */
+        #drawer-menu { transition: transform 0.3s ease-in-out; }
+        .drawer-closed { transform: translateX(-100%); }
+        .drawer-open { transform: translateX(0); }
+        /* 自然な改行のためのフォールバック */
+        p, h1, h2, h3 { word-break: keep-all; overflow-wrap: anywhere; }
+    </style>
+</head>
+<body class="font-sans text-slate-800 bg-slate-50 antialiased overflow-x-hidden pb-[60px]">
+
+    <!-- HEADER -->
+    <header class="fixed top-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md shadow-sm border-b border-slate-100 h-14 flex items-center justify-between px-4">
+        <button id="menu-open-btn" class="p-2 hover:bg-slate-100 rounded-lg" aria-label="メニュー">
+            <svg class="w-6 h-6 text-slate-800" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+
+        <div class="absolute left-1/2 -translate-x-1/2 flex items-center justify-center mt-1">
+            <a href="/" class="text-2xl md:text-3xl tracking-widest text-slate-900 leading-none flex items-center font-impact">
+                ONE
+                <img src="ONESTAR.PNG" alt="ロゴ" class="w-[45px] h-[45px] md:w-[55px] md:h-[55px] mx-[-4px] md:mx-[-6px] object-contain -translate-y-[4px]" onerror="this.style.display='none'">
+                STAR
+            </a>
+        </div>
+
+        <div class="hidden md:flex items-center space-x-3">
+            <a href="tel:08000807788" class="js-phone-modal-trigger bg-slate-900 hover:bg-slate-800 text-neon px-4 py-1.5 rounded-full text-xs font-black border border-slate-700 flex items-center space-x-1 transition-all">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                <span>電話相談</span>
+            </a>
+        </div>
+        <div class="w-10 md:hidden"></div>
+    </header>
+
+    <!-- DRAWER MENU -->
+    <div id="drawer-container" class="fixed inset-0 z-50 overflow-hidden hidden">
+        <div id="drawer-backdrop" class="absolute inset-0 bg-slate-900/60 opacity-0 transition-opacity duration-300"></div>
+        <div class="pointer-events-none fixed inset-y-0 left-0 flex max-w-full">
+            <div id="drawer-menu" class="pointer-events-auto w-64 drawer-closed bg-white shadow-2xl flex flex-col h-full">
+                
+                <div class="p-3 bg-white flex justify-end">
+                    <button id="menu-close-btn" class="p-2 hover:bg-slate-100 rounded-lg">
+                        <svg class="w-6 h-6 text-slate-500" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+                    </button>
+                </div>
+
+                <div class="bg-blue-600 py-3 px-6">
+                    <h2 class="text-white font-black tracking-wider text-sm">MENU</h2>
+                </div>
+
+                <nav class="flex-1 px-4 py-2 overflow-y-auto">
+                    <div class="space-y-1">
+                        <a href="/" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>トップページ
+                        </a>
+                        <a href="/price" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>料金プラン
+                        </a>
+                        <a href="/works" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>施工事例
+                        </a>
+                        <a href="/mind" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>ONE★STARの想い
+                        </a>
+                        <a href="/pride" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>プロとしての拘り
+                        </a>
+                        <a href="/trash" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>ここだけの話
+                        </a>
+                        <a href="/before" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>ご予約の前に
+                        </a>
+                        <a href="/faq" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>よくある質問
+                        </a>
+                        <a href="/tips" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-blue-600">
+                            <span class="mr-2 text-blue-600">＞</span>お役立ち情報
+                        </a>
+                        <a href="/products" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-[#06C755]">
+                            <span class="mr-2 text-slate-400">＞</span>オリジナルLINEスタンプ
+                        </a>
+                    </div>
+                    
+                    <hr class="border-slate-300 border-dashed my-4">
+                    <a href="https://www.edge-cleanservice.com" target="_blank" rel="noopener noreferrer" class="menu-link flex items-center py-2 text-sm font-black text-slate-900 hover:text-blue-600 transition-colors">
+                        株式会社ECS公式サイト
+                        <svg class="w-3.5 h-3.5 ml-1.5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                    </a>
+                </nav>
+
+                <div class="p-4 bg-slate-50 border-t border-slate-100 text-center mt-auto">
+                    <p class="text-[9px] text-slate-500 font-bold leading-relaxed mb-2">
+                        株式会社ECS EDGE CLEAN SERVICE<br>専属プロスタッフとして<br>愛知県全域で毎日奮闘中❣️
+                    </p>
+                    <a href="tel:08000807788" class="js-phone-modal-trigger block w-full py-3 bg-emerald-500 text-white font-bold rounded-lg text-sm shadow">直接電話する</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN -->
+    <main class="pt-24 pb-12 px-4 max-w-3xl mx-auto">
+
+        <!-- 白いメインカード -->
+        <div class="bg-white rounded-[24px] border-2 border-slate-900 overflow-hidden shadow-sm mb-10">
+            <!-- 上部の黄色いライン -->
+            <div class="h-3 w-full bg-neon"></div>
+
+            <div class="p-6 md:p-8">
+                
+                <!-- バッジ -->
+                <div class="flex justify-center mb-8 text-center">
+                    <span class="inline-block bg-slate-900 text-neon text-xs md:text-sm font-black px-5 py-2 rounded shadow-sm tracking-wider">
+                        プロが教えるエアコンの真実
+                    </span>
+                </div>
+
+                <!-- タイトル -->
+                <h1 class="text-[26px] md:text-[32px] font-black text-slate-900 mb-12 leading-relaxed tracking-wide text-center">
+                    あなたは何を<br>優先しますか？
+                </h1>
+
+                <!-- リード文 -->
+                <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose text-center mb-16">
+                    エアコンのドレンホース。<br><br>
+                    冷房や除湿運転によって<br>
+                    エアコン内部に発生した結露水を、<br>
+                    屋外へ排出するためのものです。<br><br>
+                    ここまでは、ご存じの方も<br>
+                    多いと思います。<br><br>
+                    でも実は、<br><br>
+                    <span class="text-slate-900 font-black">ドレンホースから排出したいものは<br>
+                    水だけではありません。</span><br><br>
+                    エアコン内部にはホコリやカビ、<br>
+                    細かなゴミなどが入り込みます。<br><br>
+                    髪の毛やペットの毛などが<br>
+                    見つかることもあります。<br><br>
+                    さらに水分と汚れが混ざり、<br>
+                    <span class="bg-slate-100 px-2 py-1 rounded border border-slate-200 inline-block mt-1">ヌメリやスライム状の汚れに</span><br>
+                    なっていることもあります。<br><br>
+                    こうした汚れも結露水と一緒に<br>
+                    少しずつ外へ排出されます。<br><br>
+                    だからドレンホースは、<br><br>
+                    ただ水が出ればいい。<br><br>
+                    というものではありません。<br><br>
+                    <span class="text-base font-black text-slate-900 underline decoration-neon decoration-4 underline-offset-4">水だけでなく、汚れも一緒に</span><br>
+                    <span class="text-base font-black text-slate-900 underline decoration-neon decoration-4 underline-offset-4">できるだけスムーズに排出する。</span><br><br>
+                    ONE★STARでは、<br>
+                    これを大切に考えています。
+                </p>
+
+                <!-- よく見かける置き方 -->
+                <div class="mb-16 mt-20">
+                    <div class="flex flex-col items-center justify-center mb-8 text-center">
+                        <span class="w-10 h-[3px] bg-neon mb-4 rounded-full"></span>
+                        <h2 class="text-xl md:text-2xl font-black text-slate-900 tracking-wider leading-relaxed">
+                            よく見かける置き方
+                        </h2>
+                    </div>
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose text-center">
+                        実際のお宅を見ていると、<br>
+                        ドレンホースの出口は<br>
+                        さまざまな状態になっています。<br><br>
+                        ベランダの床を汚したくないから、<br>
+                        排水溝まで長く延長している。<br><br>
+                        ホースの先端が<br>
+                        地面についている。<br><br>
+                        植木鉢の中へ入れている。<br><br>
+                        バケツや洗面器の中へ<br>
+                        突っ込んでいる。<br><br>
+                        余ったホースが室外機の裏で<br>
+                        グルグルとたるんでいる。<br><br>
+                        虫の侵入が心配だから、<br>
+                        防虫キャップを付けている。<br><br>
+                        そうした状態になっているのにも、<br>
+                        それぞれ理由があると思います。<br><br>
+                        ベランダを汚したくない。<br><br>
+                        床を濡らしたくない。<br><br>
+                        見た目をスッキリさせたい。<br><br>
+                        虫が入ってくるのが怖い。<br><br>
+                        どれも、おかしな理由ではありません。<br><br>
+                        だから私は、<br><br>
+                        すべてを一律に<br>
+                        <span class="font-black text-slate-900 bg-slate-100 px-2 py-1 rounded border border-slate-200">「間違い」</span>と言いたいわけでは<br>
+                        ありません。<br><br>
+                        ただ、一度考えてみてください。
+                    </p>
+                </div>
+
+                <!-- あなたは何を優先しますか？ -->
+                <div class="bg-slate-50 border border-slate-200 rounded-[20px] p-8 md:p-10 mb-16 text-center shadow-sm">
+                    <h2 class="text-2xl md:text-3xl font-black text-slate-900 leading-relaxed mb-0">
+                        あなたは何を<br>
+                        <span class="inline-block text-neon bg-slate-900 px-4 py-1 mt-2 transform -skew-x-6">優先しますか？</span>
+                    </h2>
+                </div>
+
+                <!-- 長く伸ばすと何が変わる？ -->
+                <div class="mb-16">
+                    <h3 class="text-lg md:text-xl font-black text-slate-900 mb-8 border-b-2 border-neon pb-2 inline-block leading-relaxed text-center w-full">
+                        長く伸ばすと何が変わる？
+                    </h3>
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose text-center">
+                        ベランダなどでは、<br>
+                        排水溝までホースを延長すれば<br>
+                        床は汚れにくくなるかもしれません。<br><br>
+                        見た目もスッキリするでしょう。<br><br>
+                        しかし、一般的に使われている<br>
+                        ドレンホースは<span class="font-black text-slate-900">ジャバラ状</span>です。<br><br>
+                        見た目だけではなく、<br>
+                        <span class="text-red-600 font-black">ホースの内側にも凹凸があります。</span><br><br>
+                        ホースが短く、できるだけ垂直に<br>
+                        近い状態であれば、<br><br>
+                        水や汚れは重力によって<br>
+                        下へ流れやすくなります。<br><br>
+                        ところが、<br><br>
+                        排水溝まで長く延長して、<br>
+                        ほぼ水平に横引きすると<br>
+                        話は変わります。<br><br>
+                        内側の凹凸にヌメリや汚れが<br>
+                        引っ掛かりやすくなり、<br><br>
+                        少しずつ蓄積していく<br>
+                        可能性があります。<br><br>
+                        <span class="font-black text-slate-900 underline decoration-red-200 decoration-4 underline-offset-4">距離が長くなれば、</span><br>
+                        <span class="font-black text-slate-900 underline decoration-red-200 decoration-4 underline-offset-4">汚れが溜まる場所も増えていきます。</span>
+                    </p>
+                </div>
+
+                <!-- ポンプで押し出しているわけではありません -->
+                <div class="mb-16">
+                    <h3 class="text-lg md:text-xl font-black text-slate-900 mb-8 border-b-2 border-neon pb-2 inline-block leading-relaxed text-center w-full">
+                        ポンプで押し出している<br>わけではありません
+                    </h3>
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose text-center">
+                        一般的な家庭用エアコンの<br>
+                        ドレン排水には、<br><br>
+                        水や汚れを勢いよく外へ押し出す<br>
+                        <span class="text-red-600 font-black">ポンプが付いているわけではありません。</span><br><br>
+                        基本的には、<br><br>
+                        <span class="text-base font-black text-slate-900 bg-neon px-2 py-1">重力を利用して排水しています。</span><br><br>
+                        だからこそ、ホースの長さや<br>
+                        たるみ、横引き、出口の状態が<br>
+                        排水のしやすさに影響します。<br><br>
+                        地面に先端がついている。<br><br>
+                        土や泥に埋もれている。<br><br>
+                        植木鉢へ突っ込んでいる。<br><br>
+                        バケツや洗面器の水に<br>
+                        先端が浸かっている。<br><br>
+                        何かに挟まれて<br>
+                        ホースが潰れている。<br><br>
+                        こうした状態も、<br><br>
+                        水や汚れを外へ出すという<br>
+                        本来の役割から考えれば、<br><br>
+                        できるだけ避けたい状態です。
+                    </p>
+                </div>
+
+                <!-- 水が出ていれば大丈夫？ -->
+                <div class="mb-16">
+                    <h3 class="text-lg md:text-xl font-black text-slate-900 mb-8 border-b-2 border-neon pb-2 inline-block leading-relaxed text-center w-full">
+                        水が出ていれば大丈夫？
+                    </h3>
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose text-center">
+                        ドレンホースの詰まりというと、<br><br>
+                        完全に塞がって水が流れなくなり、<br>
+                        室内機から水漏れする。<br><br>
+                        そんな状態を想像する方が<br>
+                        多いかもしれません。<br><br>
+                        でも、<br><br>
+                        完全に詰まる直前は<br>
+                        どうなっているでしょうか？<br><br>
+                        水は出ている。<br><br>
+                        でも、<span class="font-black text-red-600 underline decoration-red-200 decoration-4 underline-offset-4">とてもゆっくりしか</span><br>
+                        <span class="font-black text-red-600 underline decoration-red-200 decoration-4 underline-offset-4">排水できていない。</span><br><br>
+                        そんな状態も考えられます。<br><br>
+                        エアコン内部では運転中、<br>
+                        結露水が次々と作られています。<br><br>
+                        そこで重要になるのが、<br><br>
+                        <span class="font-black text-blue-600 bg-blue-50 px-2 py-1 rounded">水が作られる速度</span> と、<br>
+                        <span class="font-black text-emerald-600 bg-emerald-50 px-2 py-1 rounded mt-2 inline-block">水を排出できる速度</span> です。<br><br>
+                        仮に、結露水が作られる速度より<br>
+                        排水する速度が遅くなれば、<br><br>
+                        水は出ていたとしても<br>
+                        ドレンパンの水位は上がっていきます。<br><br>
+                        さらに排水が悪くなれば、<br>
+                        やがて水漏れにつながる<br>
+                        可能性があります。<br><br>
+                        つまり、<br><br>
+                        <span class="font-black text-slate-900 bg-slate-100 px-3 py-1.5 rounded-md border border-slate-200">「水が出ている」＝</span><br>
+                        <span class="font-black text-slate-900 bg-slate-100 px-3 py-1.5 rounded-md border border-slate-200 mt-2 inline-block">「正常に排水できている」</span><br><br>
+                        とは限りません。<br><br>
+                        完全に詰まって<br>
+                        一滴も流れなくなる前にも、<br><br>
+                        排水が悪くなっている状態は<br>
+                        存在する可能性があります。<br><br>
+                        そしてエアコン内部に水分が<br>
+                        長く滞留しやすくなれば、<br><br>
+                        <span class="text-base font-black text-slate-900 underline decoration-slate-300 decoration-4 underline-offset-4">カビにとっても</span><br>
+                        <span class="text-base font-black text-slate-900 underline decoration-slate-300 decoration-4 underline-offset-4">好ましい環境になってしまいます。</span>
+                    </p>
+                </div>
+
+                <!-- 私なら、この形を選びます -->
+                <div class="mb-16 mt-20">
+                    <div class="flex flex-col items-center justify-center mb-10 text-center">
+                        <span class="w-10 h-[3px] bg-slate-800 mb-4 rounded-full"></span>
+                        <h2 class="text-xl md:text-2xl font-black text-slate-900 tracking-wider leading-relaxed">
+                            私なら、この形を選びます
+                        </h2>
+                    </div>
+
+                    <div class="mb-10 mx-auto w-full max-w-[280px] md:max-w-[320px]">
+                        <div class="aspect-square bg-slate-100 border-2 border-dashed border-slate-300 rounded-2xl flex flex-col items-center justify-center p-6 shadow-inner relative overflow-hidden">
+                            <svg class="w-12 h-12 text-slate-300 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                            <span class="text-slate-400 font-bold text-sm text-center leading-relaxed">
+                                【正方形のドレンホース<br>正解画像】<br>
+                                <span class="text-[10px] font-normal mt-2 block opacity-70">※ここに画像タグを配置</span>
+                            </span>
+                        </div>
+                    </div>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose text-center">
+                        とてもシンプルです。<br><br>
+                        <span class="font-black text-slate-900">ホースは短く。</span><br><br>
+                        <span class="font-black text-slate-900">できるだけ下方向へ。</span><br><br>
+                        <span class="font-black text-slate-900">出口は地面から離す。</span><br><br>
+                        そして先端には、<br><br>
+                        <span class="text-red-600 font-black">排水を妨げるものを<br>
+                        できるだけ付けない。</span><br><br>
+                        特別な装置を使うわけでも、<br>
+                        難しいことをするわけでもありません。<br><br>
+                        <span class="text-base font-black text-slate-900 bg-neon px-2 py-1">重力で排水するという</span><br>
+                        <span class="text-base font-black text-slate-900 bg-neon px-2 py-1 mt-2 inline-block">本来の仕組みを邪魔しない。</span><br><br>
+                        私は、それを優先します。
+                    </p>
+                </div>
+
+                <!-- 地面から離す理由 -->
+                <div class="mb-16">
+                    <h3 class="text-lg md:text-xl font-black text-slate-900 mb-8 border-b-2 border-neon pb-2 inline-block leading-relaxed text-center w-full">
+                        地面から離す理由
+                    </h3>
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose text-center">
+                        ドレンホースの出口を<br>
+                        地面から離しておけば、<br><br>
+                        土や泥、落ち葉などによって<br>
+                        出口が塞がれるリスクを減らせます。<br><br>
+                        そしてもうひとつ。<br><br>
+                        地面を這う虫が、そのまま<br>
+                        ホースの出口へ到達することも<br>
+                        難しくなります。<br><br>
+                        もちろん、<br><br>
+                        これだけで虫の侵入を<br>
+                        完全に防げるわけではありません。<br><br>
+                        壁を伝って登る虫もいれば、<br>
+                        飛ぶことのできる虫もいます。<br><br>
+                        可能性をゼロにはできません。<br><br>
+                        それでも、<br><br>
+                        地面から離れた出口まで<br>
+                        わざわざ到達して侵入する可能性は、<br><br>
+                        地面に置かれたホースより<br>
+                        低くできると私は考えています。<br><br>
+                        だから私は、<br><br>
+                        虫の侵入を防ぐことだけを<br>
+                        最優先にはしません。<br><br>
+                        <span class="text-base font-black text-slate-900 underline decoration-slate-300 decoration-4 underline-offset-4">まずは排水を邪魔しないこと。</span><br><br>
+                        こちらを優先します。
+                    </p>
+                </div>
+
+                <!-- リンクブロック群 -->
+                <div class="space-y-6 mt-16 mb-16">
+                    <!-- 防虫キャップは必要？ -->
+                    <div class="bg-blue-50/50 rounded-[20px] border border-blue-100 p-6 md:p-8 text-center">
+                        <h3 class="text-[17px] md:text-xl font-black text-slate-900 mb-6">
+                            防虫キャップは必要？
+                        </h3>
+                        <p class="text-[14px] md:text-[15px] font-bold text-slate-700 leading-loose mb-8">
+                            ドレンホース用の防虫キャップにも、<br>
+                            虫の侵入を抑えるという<br>
+                            ちゃんとした目的があります。<br><br>
+                            しかし、取り付けたまま<br>
+                            <span class="font-black text-red-600">長期間放置してしまえば、</span><br><br>
+                            ホコリやヌメリなどが蓄積し、<br>
+                            排水を妨げる原因になることもあります。<br><br>
+                            虫の侵入リスクを減らすために<br>
+                            取り付けたものが、<br><br>
+                            今度は排水不良のリスクを<br>
+                            増やしてしまう可能性もあります。<br><br>
+                            防虫キャップについては、<br>
+                            別の記事で詳しく紹介しています。<br><br>
+                            <span class="font-black text-slate-900 bg-white px-2 py-1 rounded border border-slate-200">防虫キャップ、本当に必要？</span>
+                        </p>
+                        <a href="/tips/bug/" class="inline-flex items-center justify-center bg-white border-2 border-slate-900 text-slate-900 px-6 py-3.5 rounded-full text-[14px] font-black hover:bg-slate-50 transition-colors w-full sm:w-auto shadow-sm active:scale-95">
+                            ▶ 防虫キャップについて見る
+                        </a>
+                    </div>
+
+                    <!-- 水漏れの原因はひとつではありません -->
+                    <div class="bg-rose-50/50 rounded-[20px] border border-rose-100 p-6 md:p-8 text-center">
+                        <h3 class="text-[17px] md:text-xl font-black text-slate-900 mb-6">
+                            水漏れの原因は<br>ひとつではありません
+                        </h3>
+                        <p class="text-[14px] md:text-[15px] font-bold text-slate-700 leading-loose mb-8">
+                            ドレンホースの詰まりや排水不良は、<br>
+                            エアコンから水が漏れる原因の<br>
+                            ひとつになることがあります。<br><br>
+                            ただし、<br><br>
+                            エアコンの水漏れには<br>
+                            <span class="font-black text-slate-900">ほかにもさまざまな原因があります。</span><br><br>
+                            ドレンホースの逆勾配や破損、<br>
+                            接続部分の問題や結露など、<br><br>
+                            実際の現場では<br>
+                            原因をひとつに決めつけられない<br>
+                            ケースもあります。<br><br>
+                            エアコンの水漏れについては、<br>
+                            こちらの記事で詳しく紹介しています。<br><br>
+                            <span class="font-black text-slate-900 bg-white px-2 py-1 rounded border border-slate-200 inline-block">エアコンから水漏れ？<br>原因はひとつじゃない。</span>
+                        </p>
+                        <a href="/tips/water/" class="inline-flex items-center justify-center bg-white border-2 border-slate-900 text-slate-900 px-6 py-3.5 rounded-full text-[14px] font-black hover:bg-slate-50 transition-colors w-full sm:w-auto shadow-sm active:scale-95">
+                            ▶ 水漏れについて見る
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 結局、何を優先しますか？ -->
+                <div class="mb-16 mt-24">
+                    <div class="bg-slate-50 border border-slate-200 rounded-[20px] p-8 md:p-10 mb-12 text-center shadow-sm">
+                        <h2 class="text-2xl md:text-3xl font-black text-slate-900 leading-relaxed mb-0">
+                            結局、<br>
+                            <span class="inline-block text-neon bg-slate-900 px-4 py-1 mt-2 transform -skew-x-6">何を優先しますか？</span>
+                        </h2>
+                    </div>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose text-center">
+                        排水溝まで長く伸ばせば、<br>
+                        ベランダは汚れにくくなる。<br><br>
+                        バケツや洗面器で受ければ、<br>
+                        床は濡れにくくなる。<br><br>
+                        防虫キャップを付ければ、<br>
+                        虫の侵入リスクを減らせる。<br><br>
+                        どれを優先するのかは、<br>
+                        <span class="text-base font-black text-slate-900">使う人によって違って当然です。</span><br><br>
+                        だから、<br><br>
+                        <span class="font-black text-slate-900 bg-slate-100 px-3 py-1 rounded border border-slate-200">「これが絶対に正解」</span><br>
+                        <span class="font-black text-slate-900 bg-slate-100 px-3 py-1 rounded border border-slate-200 mt-2 inline-block">「それ以外は全部ダメ」</span><br><br>
+                        そう言いたいわけではありません。<br><br>
+                        ただ、<br><br>
+                        エアコンを分解して、<br><br>
+                        内部に溜まった汚れや<br>
+                        排水経路の状態を見ている<br>
+                        <span class="font-black text-slate-900">エアコンクリーニングの職人として、</span><br><br>
+                        <span class="text-base font-black text-neon bg-slate-900 px-3 py-1 rounded-md mt-2 inline-block">どれを優先しますか？</span><br><br>
+                        そう聞かれたら、<br>
+                        私の答えは決まっています。
+                    </p>
+                </div>
+
+                <!-- 排水を最優先します。 -->
+                <div class="mt-20 mb-16 text-center">
+                    <h2 class="text-[32px] md:text-[40px] font-black text-slate-900 leading-tight mb-12">
+                        排水を、<br>
+                        <span class="inline-block text-white bg-red-600 px-5 py-2 mt-3 transform -rotate-2 shadow-lg">最優先します。</span>
+                    </h2>
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose text-center">
+                        <span class="font-black text-slate-900 bg-neon px-2 py-1">水だけではなく、</span><br>
+                        <span class="font-black text-slate-900 mt-2 inline-block">汚れも一緒に外へ出してあげる。</span><br><br>
+                        そのために、<br><br>
+                        <span class="text-base font-black text-slate-900 underline decoration-slate-300 decoration-4 underline-offset-4">できるだけ短く、</span><br>
+                        <span class="text-base font-black text-slate-900 underline decoration-slate-300 decoration-4 underline-offset-4">できるだけ下方向へ。</span><br><br>
+                        <span class="text-base font-black text-slate-900 underline decoration-slate-300 decoration-4 underline-offset-4">出口は地面から離して、</span><br>
+                        <span class="text-base font-black text-slate-900 underline decoration-slate-300 decoration-4 underline-offset-4">排水を妨げるものは付けない。</span><br><br>
+                        私は写真のような状態で<br>
+                        使っていただくことを<br><br>
+                        <span class="text-lg font-black text-slate-900 bg-slate-100 px-4 py-2 rounded-lg border border-slate-200">おすすめします。</span>
+                    </p>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ネイビーのカード (ONE★STARが大切にしていること) -->
+        <div class="bg-slate-900 rounded-[24px] border-l-[12px] border-neon p-8 md:p-10 text-center shadow-md mb-10">
+            
+            <h2 class="text-white font-black text-xl md:text-2xl leading-relaxed mb-10 tracking-wider">
+                ONE★STARが<br>
+                大切にしていること
+            </h2>
+
+            <p class="text-slate-100 font-bold text-[15px] md:text-base leading-loose mb-10">
+                エアコンクリーニングは、<br><br>
+                
+                <span class="font-black text-white">その日だけキレイになれば<br>
+                それで終わり。</span><br><br>
+                
+                私は、そうは考えていません。<br><br>
+                
+                エアコンを洗ったあとも、<br>
+                また毎日の使用が始まります。<br><br>
+                
+                フィルターのお手入れや、<br>
+                冷房後の乾燥。<br><br>
+                
+                そして今回のような、<br>
+                ドレンホースのちょっとした状態。<br><br>
+                
+                日頃の使い方や周辺環境によって、<br>
+                その後の汚れ方やトラブルのリスクも<br>
+                少しずつ変わっていきます。
+            </p>
+
+            <!-- 区切り線 -->
+            <div class="w-16 h-[1px] bg-slate-600 mx-auto mb-10"></div>
+
+            <p class="text-slate-100 font-bold text-[15px] md:text-base leading-loose">
+                だからONE★STARでは、<br><br>
+                
+                ただ洗浄して終わるのではなく、<br>
+                実際の現場で気づいたことも<br>
+                できる限りお伝えしています。<br><br>
+                
+                <span class="text-base font-black text-neon underline decoration-slate-500 decoration-4 underline-offset-4">洗ったあとのエアコンも、</span><br>
+                <span class="text-base font-black text-neon underline decoration-slate-500 decoration-4 underline-offset-4">少しでも良い状態で使ってほしい。</span><br><br>
+                
+                それが、<br><br>
+                
+                <span class="font-black text-white">ONE★STARが<br>
+                大切にしていることです。</span>
+            </p>
+        </div>
+
+        <!-- ご相談誘導ブロック -->
+        <div class="bg-white rounded-2xl border border-slate-200 p-8 text-center shadow-sm mb-12">
+            <h2 class="text-xl md:text-2xl font-black text-slate-900 mb-8 leading-relaxed">
+                ドレンホースが<br>
+                気になったら
+            </h2>
+            
+            <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose mb-10">
+                <span class="font-black text-slate-900 bg-slate-50 border border-slate-200 px-3 py-1.5 rounded-lg mb-3 inline-block w-full sm:w-auto">「うちのホース、<br>地面についてるけど大丈夫？」</span><br>
+                <span class="font-black text-slate-900 bg-slate-50 border border-slate-200 px-3 py-1.5 rounded-lg mb-3 inline-block w-full sm:w-auto">「排水溝まで長く伸ばしてある」</span><br>
+                <span class="font-black text-slate-900 bg-slate-50 border border-slate-200 px-3 py-1.5 rounded-lg mb-3 inline-block w-full sm:w-auto">「バケツの中に入れているけど、<br>このままでいいのかな？」</span><br>
+                <span class="font-black text-slate-900 bg-slate-50 border border-slate-200 px-3 py-1.5 rounded-lg mb-3 inline-block w-full sm:w-auto">「最近、水の出方が悪い気がする」</span><br>
+                <span class="font-black text-slate-900 bg-slate-50 border border-slate-200 px-3 py-1.5 rounded-lg mb-8 inline-block w-full sm:w-auto">「室内機から水が漏れてきた」</span><br><br>
+                
+                そんな状態が気になったら、<br>
+                お気軽にご相談ください。<br><br>
+                
+                エアコンの水漏れや排水不良は、<br>
+                原因がひとつとは限りません。<br><br>
+                
+                <span class="font-black text-slate-900">実際の状態を確認しながら、</span><br><br>
+                
+                エアコンクリーニングで対応できるのか、<br>
+                それとも別の原因を<br>
+                疑った方がいいのかも含めて、<br><br>
+                
+                <span class="font-black text-slate-900">できる限り分かりやすく<br>
+                お伝えします。</span>
+            </p>
+            
+            <a href="tel:08000807788" class="js-phone-modal-trigger inline-flex items-center justify-center bg-slate-900 hover:bg-slate-800 text-neon px-8 py-4 rounded-full text-base font-black shadow-md transition-all active:scale-95 w-full sm:w-auto">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                <span>電話で相談する</span>
+            </a>
+        </div>
+
+        <!-- 関連する施工事例へのリンク -->
+        <div class="mt-16 text-center">
+            <div class="flex flex-col items-center justify-center mb-6">
+                <span class="w-10 h-[3px] bg-slate-800 mb-4 rounded-full"></span>
+                <h2 class="text-xl md:text-2xl font-black text-slate-900 tracking-wider leading-relaxed">
+                    実際の現場も見てみる
+                </h2>
+            </div>
+            
+            <a href="/works/kitaku-01" class="block bg-white rounded-2xl border-2 border-slate-900 p-6 md:p-8 shadow-sm hover:shadow-md transition-all active:scale-95 group relative overflow-hidden text-center">
+                <!-- 装飾 -->
+                <div class="absolute top-0 left-0 w-full h-2 bg-neon"></div>
+                
+                <p class="text-[11px] md:text-sm font-black text-slate-500 mb-4 tracking-widest">
+                    関連する施工事例
+                </p>
+                
+                <h3 class="text-[17px] md:text-xl font-black text-slate-900 mb-6 leading-relaxed">
+                    放置された虫除けキャップ<br>
+                    <span class="text-red-600">目詰まり〜排水不良</span>
+                </h3>
+
+                <p class="text-[13px] md:text-[14px] font-bold text-slate-600 leading-loose mb-8 text-left max-w-sm mx-auto bg-slate-50 p-4 rounded-xl border border-slate-100">
+                    虫の侵入を防ぐために<br>
+                    取り付けられていた防虫キャップ。<br><br>
+                    しかし長期間放置されたことで、<br>
+                    汚れが蓄積し、<br><br>
+                    排水を妨げる状態に<br>
+                    なっていました。<br><br>
+                    <span class="font-black text-slate-900">実際の現場で何が起きていたのか、</span><br>
+                    施工事例でご紹介しています。
+                </p>
+                
+                <div class="inline-flex items-center justify-center bg-slate-900 text-neon px-6 py-3.5 rounded-full text-[15px] font-black group-hover:bg-slate-800 transition-colors w-full md:w-auto shadow-md">
+                    ▶ この施工事例を見る
+                </div>
+            </a>
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-900 text-white pt-12 pb-24 md:pb-12 border-t-[6px] border-neon text-center mt-12">
+        <div class="mb-6 flex flex-col items-center justify-center">
+            <span class="text-4xl md:text-5xl tracking-widest text-white flex items-center justify-center font-impact mt-1">
+                ONE
+                <img src="ONESTAR.PNG" alt="ロゴ" class="w-[80px] h-[80px] md:w-[100px] md:h-[100px] mx-[-10px] md:mx-[-16px] object-contain -translate-y-2" onerror="this.style.display='none'">
+                STAR
+            </span>
+            <p class="text-xs text-neon font-black mt-2 tracking-widest">株式会社ECS専属プロスタッフ</p>
+        </div>
+        
+        <p class="text-[11px] text-slate-400 font-bold mb-3">
+            <a href="/products" class="hover:text-white transition-colors underline underline-offset-4">オリジナルLINEスタンプ販売中</a>
+        </p>
+        <p class="text-[10px] text-slate-500 font-bold mb-4">
+            <a href="/privacy" class="hover:text-white transition-colors">プライバシーポリシー</a>
+        </p>
+        <p class="text-[10px] text-slate-500 font-bold tracking-wider">© 2026 ONE★STAR. All Rights Reserved.</p>
+    </footer>
+
+    <!-- MOBILE BOTTOM NAVIGATION -->
+    <div class="fixed bottom-0 left-0 right-0 z-45 bg-slate-900 md:hidden h-[60px] flex items-stretch text-white shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.3)] border-t border-slate-800">
+        
+        <a href="/price" class="flex flex-col items-center justify-center w-[20%] border-r border-slate-700 active:bg-slate-800">
+            <svg class="w-5 h-5 mb-1 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <span class="text-[9px] font-black">料金</span>
+        </a>
+        
+        <a href="/mind" class="flex flex-col items-center justify-center w-[20%] border-r border-slate-700 active:bg-slate-800">
+            <svg class="w-5 h-5 mb-1 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+            <span class="text-[9px] font-black">想い</span>
+        </a>
+
+        <a href="/pride" class="flex flex-col items-center justify-center w-[20%] active:bg-slate-800">
+            <svg class="w-5 h-5 mb-1 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+            <span class="text-[9px] font-black">拘り</span>
+        </a>
+        
+        <a href="tel:08000807788" class="js-phone-modal-trigger flex items-center justify-center bg-neon text-slate-900 w-[40%] font-black text-base active:bg-yellow-400 transition-colors">
+            <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+            電話する
+        </a>
+        
+    </div>
+
+    <!-- 🌟 ご予約・お問い合わせ前のワンクッションモーダル 🌟 -->
+    <div id="phone-modal" class="fixed inset-0 z-[100] hidden flex items-center justify-center px-4">
+        <div id="phone-modal-backdrop" class="absolute inset-0 bg-slate-900/80 backdrop-blur-sm opacity-0 transition-opacity duration-300"></div>
+        
+        <div id="phone-modal-content" class="relative bg-white rounded-3xl shadow-2xl w-full max-w-sm overflow-hidden transform scale-95 opacity-0 transition-all duration-300 border border-slate-100">
+            
+            <button id="phone-modal-close" class="absolute top-4 right-4 p-2 text-slate-400 hover:text-slate-700 bg-slate-100 hover:bg-slate-200 rounded-full transition-colors z-10">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+            
+            <div class="p-6 md:p-8 text-center pt-10">
+                
+                <h3 class="text-xl font-black text-slate-900 mb-6 border-b-4 border-[#EFFF00] inline-block pb-1">
+                    ご予約・お問い合わせの前に
+                </h3>
+                
+                <div class="text-[13px] text-slate-700 font-bold leading-relaxed mb-8 space-y-4 text-left bg-slate-50 p-5 rounded-2xl border border-slate-100 shadow-inner">
+                    <p>
+                        <span class="text-slate-900 font-black text-sm">ONE★STAR</span>は<br>
+                        株式会社ECS（エッジクリーンサービス）の専属プロスタッフとして活動しています。
+                    </p>
+                    <p class="pt-2 border-t border-slate-200">
+                        お電話は<br>
+                        <span class="text-slate-900 font-black">株式会社ECSの予約受付</span>につながります。
+                    </p>
+                    
+                    <div class="bg-rose-50 border border-rose-200 p-3 rounded-xl text-center shadow-sm">
+                        <p class="text-rose-600 font-black text-[13px] leading-tight">
+                            ご予約の際は<br>
+                            <span class="text-base">「ONE★STAR（川崎）を指名」</span>と<br>
+                            お伝えください。
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="space-y-3">
+                    <a href="tel:08000807788" class="flex items-center justify-center w-full py-4 bg-slate-900 text-[#EFFF00] font-black rounded-2xl shadow-md active:scale-95 transition-transform text-sm sm:text-base border border-slate-800">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                        株式会社ECSへ電話する
+                    </a>
+                    
+                    <a href="https://www.instagram.com/one.star.kawasaki?igsh=anZpYnpxcDdqOXRh&utm_source=qr" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center w-full py-4 bg-gradient-to-r from-pink-500 to-rose-500 text-white font-black rounded-2xl shadow-md active:scale-95 transition-transform text-sm sm:text-base">
+                        <svg class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                        </svg>
+                        Instagramで本人に相談する
+                    </a>
+                </div>
+                
+                <p class="text-[10px] text-slate-500 mt-4 font-bold leading-relaxed">
+                    直接のご質問・お問い合わせは<br>本人直通のInstagram DMからお気軽にどうぞ。
+                </p>
+                
+                <button id="phone-modal-cancel" class="mt-6 text-[11px] text-slate-400 font-bold underline underline-offset-4 hover:text-slate-600 transition-colors">
+                    キャンセルして戻る
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // === メニュー開閉用 ===
+            const drawerContainer = document.getElementById('drawer-container');
+            const drawerMenu = document.getElementById('drawer-menu');
+            const drawerBackdrop = document.getElementById('drawer-backdrop');
+            
+            const toggleMenu = (show) => {
+                if (show) {
+                    drawerContainer.classList.remove('hidden');
+                    setTimeout(() => {
+                        drawerBackdrop.classList.remove('opacity-0');
+                        drawerBackdrop.classList.add('opacity-100');
+                        drawerMenu.classList.remove('drawer-closed');
+                        drawerMenu.classList.add('drawer-open');
+                    }, 10);
+                } else {
+                    drawerBackdrop.classList.remove('opacity-100');
+                    drawerBackdrop.classList.add('opacity-0');
+                    drawerMenu.classList.remove('drawer-open');
+                    drawerMenu.classList.add('drawer-closed');
+                    setTimeout(() => drawerContainer.classList.add('hidden'), 300);
+                }
+            };
+
+            document.getElementById('menu-open-btn').addEventListener('click', () => toggleMenu(true));
+            document.getElementById('menu-close-btn').addEventListener('click', () => toggleMenu(false));
+            document.getElementById('drawer-backdrop').addEventListener('click', () => toggleMenu(false));
+            document.querySelectorAll('.menu-link').forEach(link => link.addEventListener('click', () => toggleMenu(false)));
+
+            // === 電話モーダル ===
+            const phoneModal = document.getElementById('phone-modal');
+            const phoneModalBackdrop = document.getElementById('phone-modal-backdrop');
+            const phoneModalContent = document.getElementById('phone-modal-content');
+            const phoneModalCloseBtn = document.getElementById('phone-modal-close');
+            const phoneModalCancelBtn = document.getElementById('phone-modal-cancel');
+            const phoneTriggerBtns = document.querySelectorAll('.js-phone-modal-trigger');
+
+            if (phoneModal && phoneTriggerBtns.length > 0) {
+                const openPhoneModal = (e) => {
+                    e.preventDefault(); 
+                    if (typeof toggleMenu === 'function') toggleMenu(false);
+
+                    phoneModal.classList.remove('hidden');
+                    requestAnimationFrame(() => {
+                        phoneModalBackdrop.classList.remove('opacity-0');
+                        phoneModalBackdrop.classList.add('opacity-100');
+                        phoneModalContent.classList.remove('opacity-0', 'scale-95');
+                        phoneModalContent.classList.add('opacity-100', 'scale-100');
+                    });
+                };
+
+                const closePhoneModal = () => {
+                    phoneModalBackdrop.classList.remove('opacity-100');
+                    phoneModalBackdrop.classList.add('opacity-0');
+                    phoneModalContent.classList.remove('opacity-100', 'scale-100');
+                    phoneModalContent.classList.add('opacity-0', 'scale-95');
+                    setTimeout(() => phoneModal.classList.add('hidden'), 300);
+                };
+
+                phoneTriggerBtns.forEach(btn => btn.addEventListener('click', openPhoneModal));
+                phoneModalCloseBtn.addEventListener('click', closePhoneModal);
+                phoneModalCancelBtn.addEventListener('click', closePhoneModal);
+                phoneModalBackdrop.addEventListener('click', closePhoneModal);
+            }
+        });
+    </script>
+</body>
+</html>
+
+
+```
