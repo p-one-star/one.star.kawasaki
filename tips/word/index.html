@@ -1,0 +1,1111 @@
+```html
+<!DOCTYPE html>
+<html lang="ja" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>エアコン用語集 | ONE★STAR</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        neon: '#EFFF00' // トレードカラー：蛍光イエロー
+                    },
+                    fontFamily: {
+                        sans: ['"Noto Sans JP"', 'sans-serif'],
+                        // ステンシルフォント(Black Ops One)の設定
+                        impact: ['"Black Ops One"', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts (Noto Sans JP と Black Ops One) -->
+    <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        /* ドロワーメニュー用 */
+        #drawer-menu { transition: transform 0.3s ease-in-out; }
+        .drawer-closed { transform: translateX(-100%); }
+        .drawer-open { transform: translateX(0); }
+    </style>
+</head>
+<body class="font-sans text-slate-800 bg-slate-50 antialiased overflow-x-hidden">
+
+    <!-- HEADER -->
+    <header class="fixed top-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md shadow-sm border-b border-slate-100 h-14 flex items-center justify-between px-4">
+        <button id="menu-open-btn" class="p-2 hover:bg-slate-100 rounded-lg" aria-label="メニュー">
+            <svg class="w-6 h-6 text-slate-800" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+
+        <div class="absolute left-1/2 -translate-x-1/2 flex items-center justify-center mt-1">
+            <a href="/" class="text-2xl md:text-3xl tracking-widest text-slate-900 leading-none flex items-center font-impact">
+                ONE
+                <img src="ONESTAR.PNG" alt="ロゴ画像" class="w-[45px] h-[45px] md:w-[55px] md:h-[55px] mx-[-4px] md:mx-[-6px] object-contain -translate-y-[4px]" onerror="this.style.display='none'">
+                STAR
+            </a>
+        </div>
+
+        <div class="hidden md:flex items-center space-x-3">
+            <a href="tel:08000807788" class="js-phone-modal-trigger bg-slate-900 hover:bg-slate-800 text-neon px-4 py-1.5 rounded-full text-xs font-black border border-slate-700 flex items-center space-x-1 transition-all">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                <span>電話相談</span>
+            </a>
+        </div>
+        <div class="w-10 md:hidden"></div>
+    </header>
+
+    <!-- DRAWER MENU -->
+    <div id="drawer-container" class="fixed inset-0 z-50 overflow-hidden hidden">
+        <div id="drawer-backdrop" class="absolute inset-0 bg-slate-900/60 opacity-0 transition-opacity duration-300"></div>
+        <div class="pointer-events-none fixed inset-y-0 left-0 flex max-w-full">
+            <div id="drawer-menu" class="pointer-events-auto w-64 drawer-closed bg-white shadow-2xl flex flex-col h-full">
+                
+                <div class="p-3 bg-white flex justify-end">
+                    <button id="menu-close-btn" class="p-2 hover:bg-slate-100 rounded-lg">
+                        <svg class="w-6 h-6 text-slate-500" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+                    </button>
+                </div>
+
+                <div class="bg-blue-600 py-3 px-6">
+                    <h2 class="text-white font-black tracking-wider text-sm">MENU</h2>
+                </div>
+
+                <nav class="flex-1 px-4 py-2 overflow-y-auto">
+                    <div class="space-y-1">
+                        <a href="/" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>トップページ
+                        </a>
+                        <a href="/price" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>料金プラン
+                        </a>
+                        <a href="/works" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>施工事例
+                        </a>
+                        <a href="/mind" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>ONE★STARの想い
+                        </a>
+                        <a href="/pride" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>プロとしての拘り
+                        </a>
+                        <a href="/trash" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>ここだけの話
+                        </a>
+                        <a href="/before" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>ご予約の前に
+                        </a>
+                        <a href="/faq" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>よくある質問
+                        </a>
+                        <!-- 用語集をアクティブ表示にする -->
+                        <a href="/tips" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-blue-600">
+                            <span class="mr-2 text-blue-600">＞</span>お役立ち情報・用語集
+                        </a>
+                        
+                        <a href="/products" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-[#06C755]">
+                            <span class="mr-2 text-slate-400">＞</span>オリジナルLINEスタンプ
+                        </a>
+                    </div>
+                    
+                    <hr class="border-slate-300 border-dashed my-4">
+                    <a href="https://www.edge-cleanservice.com" target="_blank" rel="noopener noreferrer" class="menu-link flex items-center py-2 text-sm font-black text-slate-900 hover:text-blue-600 transition-colors">
+                        株式会社ECS公式サイト
+                        <svg class="w-3.5 h-3.5 ml-1.5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                    </a>
+                </nav>
+
+                <div class="p-4 bg-slate-50 border-t border-slate-100 text-center mt-auto">
+                    <p class="text-[9px] text-slate-500 font-bold leading-relaxed mb-2">
+                        株式会社ECS EDGE CLEAN SERVICE<br>専属プロスタッフとして<br>愛知県全域で毎日奮闘中❣️
+                    </p>
+                    <a href="tel:08000807788" class="js-phone-modal-trigger block w-full py-3 bg-emerald-500 text-white font-bold rounded-lg text-sm shadow">直接電話する</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN (用語集 CONTENTS) -->
+    <main class="pt-20 pb-28 md:pb-20 px-4">
+        
+        <!-- ページタイトル -->
+        <div class="text-center mb-10">
+            <h1 class="text-4xl md:text-5xl font-impact tracking-widest text-slate-900 mb-2">GLOSSARY</h1>
+            <p class="text-sm md:text-base font-black text-slate-600">エアコン用語集</p>
+        </div>
+
+        <!-- ページ内リンクナビゲーション -->
+        <div class="max-w-3xl mx-auto mb-12">
+            <div class="bg-white p-4 md:p-6 rounded-2xl shadow-sm border border-slate-200">
+                <p class="text-center text-sm font-bold text-slate-600 mb-4">気になる項目をタップして移動できます💨</p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
+                    <a href="#one" class="flex items-center justify-center py-3 px-4 bg-slate-900 hover:bg-slate-800 text-neon font-black rounded-xl transition-colors shadow-sm">
+                        其ノ壱｜基本編
+                    </a>
+                    <a href="#two" class="flex items-center justify-center py-3 px-4 bg-slate-900 hover:bg-slate-800 text-neon font-black rounded-xl transition-colors shadow-sm">
+                        其ノ弐｜洗浄編
+                    </a>
+                    <a href="#three" class="flex items-center justify-center py-3 px-4 bg-slate-900 hover:bg-slate-800 text-neon font-black rounded-xl transition-colors shadow-sm">
+                        其ノ参｜取付編
+                    </a>
+                    <a href="#four" class="flex items-center justify-center py-3 px-4 bg-slate-900 hover:bg-slate-800 text-neon font-black rounded-xl transition-colors shadow-sm sm:col-span-2 md:col-span-1">
+                        其ノ肆｜修理編
+                    </a>
+                    <a href="#five" class="flex items-center justify-center py-3 px-4 bg-slate-900 hover:bg-slate-800 text-neon font-black rounded-xl transition-colors shadow-sm sm:col-span-2 md:col-span-1 md:col-start-2">
+                        其ノ伍｜番外編
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="max-w-3xl mx-auto space-y-16">
+
+            <!-- ==========================
+                 其ノ壱｜基本編 
+            =========================== -->
+            <section id="one" class="scroll-mt-24">
+                <div class="mb-6">
+                    <h2 class="text-2xl font-black text-slate-900 border-b-4 border-neon inline-block mb-3 pr-4">其ノ壱｜基本編</h2>
+                    <p class="text-sm font-bold text-slate-600 leading-relaxed">エアコン売り場やカタログなどで、<br class="sm:hidden">よく見たり聞いたりする言葉たち。</p>
+                </div>
+
+                <!-- インデックス（タグリスト：数字→50音順→アルファベット順） -->
+                <div class="flex flex-wrap gap-2 mb-6 p-4 bg-white rounded-xl border border-slate-100 shadow-sm">
+                    <a href="#issue-2027" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">2027年問題</a>
+                    <a href="#inverter" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">インバーター</a>
+                    <a href="#auto-cleaning" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">お掃除機能</a>
+                    <a href="#annual-power-consumption" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">期間消費電力量</a>
+                    <a href="#compressor" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">コンプレッサー</a>
+                    <a href="#reheat-dehumidification" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">再熱除湿</a>
+                    <a href="#outdoor-unit" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">室外機</a>
+                    <a href="#indoor-unit" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">室内機</a>
+                    <a href="#indoor-heat-exchanger" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">室内熱交換器</a>
+                    <a href="#auto-operation" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">自動運転</a>
+                    <a href="#power-consumption" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">消費電力</a>
+                    <a href="#energy-saving-achievement-rate" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">省エネ基準達成率</a>
+                    <a href="#energy-saving" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">省エネ性能</a>
+                    <a href="#dehumidification" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">除湿</a>
+                    <a href="#tatami-size" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">畳数</a>
+                    <a href="#set-temperature" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">設定温度</a>
+                    <a href="#ventilation" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">送風</a>
+                    <a href="#heating-capacity" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">暖房能力</a>
+                    <a href="#rated-capacity" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">定格能力</a>
+                    <a href="#electricity-bill" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">電気代</a>
+                    <a href="#internal-clean" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">内部クリーン</a>
+                    <a href="#heat-exchanger" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">熱交換器</a>
+                    <a href="#filter" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">フィルター</a>
+                    <a href="#wind-direction" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">風向</a>
+                    <a href="#air-volume" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">風量</a>
+                    <a href="#remote-controller" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">リモコン</a>
+                    <a href="#refrigeration-cycle" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">冷凍サイクル</a>
+                    <a href="#refrigerant" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">冷媒</a>
+                    <a href="#refrigerant-gas" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">冷媒ガス</a>
+                    <a href="#cooling-capacity" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">冷房能力</a>
+                    <a href="#apf" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">APF</a>
+                    <a href="#cop" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">COP</a>
+                    <a href="#r32" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">R32</a>
+                    <a href="#r410a" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">R410A</a>
+                </div>
+
+                <!-- 用語詳細リスト（ソート済） -->
+                <div class="space-y-4">
+                    <div id="issue-2027" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-rose-500 pl-3 mb-2">2027年問題</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここに2027年問題の解説文を入れます。</p>
+                    </div>
+                    <div id="inverter" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-slate-400 pl-3 mb-2">インバーター</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここにインバーターの解説文を入れます。</p>
+                    </div>
+                    <div id="auto-cleaning" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-slate-400 pl-3 mb-2">お掃除機能</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここにお掃除機能の解説文を入れます。（フィルター自動お掃除など）</p>
+                    </div>
+                    <div id="annual-power-consumption" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-slate-400 pl-3 mb-2">期間消費電力量</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここに期間消費電力量の解説文を入れます。</p>
+                    </div>
+                    <div id="compressor" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-slate-400 pl-3 mb-2">コンプレッサー</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここにコンプレッサーの解説文を入れます。</p>
+                    </div>
+                    <div id="reheat-dehumidification" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-slate-400 pl-3 mb-2">再熱除湿</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここに再熱除湿の解説文を入れます。</p>
+                    </div>
+                    <div id="outdoor-unit" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-slate-400 pl-3 mb-2">室外機</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここに室外機の解説文を入れます。</p>
+                    </div>
+                    <div id="indoor-unit" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-slate-400 pl-3 mb-2">室内機</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここに室内機の解説文を入れます。</p>
+                    </div>
+                    <div id="indoor-heat-exchanger" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-slate-400 pl-3 mb-2">室内熱交換器</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここに室内熱交換器の解説文を入れます。</p>
+                    </div>
+                    <div id="auto-operation" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-slate-400 pl-3 mb-2">自動運転</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここに自動運転の解説文を入れます。</p>
+                    </div>
+                    <div id="power-consumption" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-slate-400 pl-3 mb-2">消費電力</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここに消費電力の解説文を入れます。</p>
+                    </div>
+                    <div id="energy-saving-achievement-rate" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-emerald-500 pl-3 mb-2">省エネ基準達成率</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここに省エネ基準達成率の解説文を入れます。</p>
+                    </div>
+                    <div id="energy-saving" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-emerald-500 pl-3 mb-2">省エネ性能</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここに省エネ性能の解説文を入れます。</p>
+                    </div>
+                    <div id="dehumidification" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-slate-400 pl-3 mb-2">除湿</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここに除湿の解説文を入れます。</p>
+                    </div>
+                    <div id="tatami-size" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-slate-400 pl-3 mb-2">畳数</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここに畳数の解説文を入れます。（例：木造・鉄筋での違いなど）</p>
+                    </div>
+                    <div id="set-temperature" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-slate-400 pl-3 mb-2">設定温度</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここに設定温度の解説文を入れます。</p>
+                    </div>
+                    <div id="ventilation" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-slate-400 pl-3 mb-2">送風</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここに送風の解説文を入れます。</p>
+                    </div>
+                    <div id="heating-capacity" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-orange-500 pl-3 mb-2">暖房能力</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここに暖房能力の解説文を入れます。</p>
+                    </div>
+                    <div id="rated-capacity" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-slate-400 pl-3 mb-2">定格能力</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここに定格能力の解説文を入れます。</p>
+                    </div>
+                    <div id="electricity-bill" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-slate-400 pl-3 mb-2">電気代</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここに電気代の解説文を入れます。</p>
+                    </div>
+                    <div id="internal-clean" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-slate-400 pl-3 mb-2">内部クリーン</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここに内部クリーンの解説文を入れます。</p>
+                    </div>
+                    <div id="heat-exchanger" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-slate-400 pl-3 mb-2">熱交換器</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここに熱交換器の解説文を入れます。</p>
+                    </div>
+                    <div id="filter" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-slate-400 pl-3 mb-2">フィルター</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここにフィルターの解説文を入れます。</p>
+                    </div>
+                    <div id="wind-direction" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-slate-400 pl-3 mb-2">風向</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここに風向の解説文を入れます。</p>
+                    </div>
+                    <div id="air-volume" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-slate-400 pl-3 mb-2">風量</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここに風量の解説文を入れます。</p>
+                    </div>
+                    <div id="remote-controller" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-slate-400 pl-3 mb-2">リモコン</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここにリモコンの解説文を入れます。</p>
+                    </div>
+                    <div id="refrigeration-cycle" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-slate-400 pl-3 mb-2">冷凍サイクル</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここに冷凍サイクルの解説文を入れます。</p>
+                    </div>
+                    <div id="refrigerant" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-slate-400 pl-3 mb-2">冷媒</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここに冷媒の解説文を入れます。（フロンガス、R32など）</p>
+                    </div>
+                    <div id="refrigerant-gas" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-slate-400 pl-3 mb-2">冷媒ガス</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここに冷媒ガスの解説文を入れます。</p>
+                    </div>
+                    <div id="cooling-capacity" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-blue-500 pl-3 mb-2">冷房能力</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここに冷房能力の解説文を入れます。kW（キロワット）で表され、数値が大きいほどパワーがあります。</p>
+                    </div>
+                    <div id="apf" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-slate-400 pl-3 mb-2">APF</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここにAPFの解説文を入れます。通年エネルギー消費効率のことです。</p>
+                    </div>
+                    <div id="cop" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-slate-400 pl-3 mb-2">COP</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここにCOPの解説文を入れます。</p>
+                    </div>
+                    <div id="r32" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-slate-400 pl-3 mb-2">R32</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここにR32の解説文を入れます。</p>
+                    </div>
+                    <div id="r410a" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-slate-400 pl-3 mb-2">R410A</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここにR410Aの解説文を入れます。</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ==========================
+                 其ノ弐｜洗浄編 
+            =========================== -->
+            <section id="two" class="scroll-mt-24">
+                <div class="mb-6">
+                    <h2 class="text-2xl font-black text-slate-900 border-b-4 border-neon inline-block mb-3 pr-4">其ノ弐｜洗浄編</h2>
+                    <p class="text-sm font-bold text-slate-600 leading-relaxed">エアコンクリーニングで使われる、<br class="sm:hidden">道具名や作業名、部品名など。</p>
+                </div>
+
+                <!-- インデックス（数字→50音順→アルファベット順） -->
+                <div class="flex flex-wrap gap-2 mb-6 p-4 bg-white rounded-xl border border-slate-100 shadow-sm">
+                    <a href="#aluminum-fin" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">アルミフィン</a>
+                    <a href="#ac-cleaning-cover" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">エアコン洗浄カバー</a>
+                    <a href="#air-duster" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">エアダスター</a>
+                    <a href="#foul-water" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">汚水</a>
+                    <a href="#cover-cleaning" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">カバー洗い</a>
+                    <a href="#gas-leak" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">ガス漏れ</a>
+                    <a href="#complete-disassembly" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">完全分解</a>
+                    <a href="#high-pressure-washer" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">高圧洗浄機</a>
+                    <a href="#high-pressure-hose" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">高圧ホース</a>
+                    <a href="#suction-pump" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">サクションポンプ</a>
+                    <a href="#test-run" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">試運転</a>
+                    <a href="#rinsing" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">すすぎ</a>
+                    <a href="#cleaning-gun" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">洗浄ガン</a>
+                    <a href="#back-removal" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">背抜き</a>
+                    <a href="#blower-fan" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">送風ファン</a>
+                    <a href="#normal-disassembly" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">通常分解</a>
+                    <a href="#operation-check" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">動作確認</a>
+                    <a href="#drain-clogging" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">ドレン詰まり</a>
+                    <a href="#drain-pan" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">ドレンパン</a>
+                    <a href="#drain-pump-clean" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">ドレンポンプ</a>
+                    <a href="#drain-hose" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">ドレンホース</a>
+                    <a href="#waste-liquid" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">廃液</a>
+                    <a href="#vacuum" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">バキューム</a>
+                    <a href="#float-switch" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">フロートスイッチ</a>
+                    <a href="#blower" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">ブロワー</a>
+                    <a href="#hopper" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">ホッパー</a>
+                    <a href="#masker" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">マスカー</a>
+                    <a href="#water-leak" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">水漏れ</a>
+                    <a href="#unit" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">ユニット</a>
+                    <a href="#curing" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">養生</a>
+                    <a href="#curing-tape" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">養生テープ</a>
+                </div>
+
+                <!-- 用語詳細リスト（ソート済） -->
+                <div class="space-y-4">
+                    <div id="aluminum-fin" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-slate-400 pl-3 mb-2">アルミフィン</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここにアルミフィンの解説文を入れます。</p>
+                    </div>
+                    <div id="ac-cleaning-cover" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-slate-400 pl-3 mb-2">エアコン洗浄カバー</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここにエアコン洗浄カバーの解説文を入れます。</p>
+                    </div>
+                    <div id="air-duster" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-slate-400 pl-3 mb-2">エアダスター</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここにエアダスターの解説文を入れます。</p>
+                    </div>
+                    <div id="foul-water" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-slate-400 pl-3 mb-2">汚水</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここに汚水の解説文を入れます。</p>
+                    </div>
+                    <div id="cover-cleaning" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-slate-400 pl-3 mb-2">カバー洗い</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここにカバー洗いの解説文を入れます。</p>
+                    </div>
+                    <div id="gas-leak" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-slate-400 pl-3 mb-2">ガス漏れ</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここにガス漏れの解説文を入れます。</p>
+                    </div>
+                    <div id="complete-disassembly" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-slate-400 pl-3 mb-2">完全分解</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここに完全分解の解説文を入れます。</p>
+                    </div>
+                    <div id="high-pressure-washer" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-slate-400 pl-3 mb-2">高圧洗浄機</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここに高圧洗浄機の解説文を入れます。</p>
+                    </div>
+                    <div id="high-pressure-hose" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-slate-400 pl-3 mb-2">高圧ホース</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここに高圧ホースの解説文を入れます。</p>
+                    </div>
+                    <div id="suction-pump" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-slate-400 pl-3 mb-2">サクションポンプ</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここにサクションポンプの解説文を入れます。</p>
+                    </div>
+                    <div id="test-run" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-slate-400 pl-3 mb-2">試運転</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここに試運転の解説文を入れます。</p>
+                    </div>
+                    <div id="rinsing" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-slate-400 pl-3 mb-2">すすぎ</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここにすすぎの解説文を入れます。</p>
+                    </div>
+                    <div id="cleaning-gun" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-slate-400 pl-3 mb-2">洗浄ガン</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここに洗浄ガンの解説文を入れます。</p>
+                    </div>
+                    <div id="back-removal" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-slate-400 pl-3 mb-2">背抜き</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここに背抜きの解説文を入れます。</p>
+                    </div>
+                    <div id="blower-fan" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-slate-400 pl-3 mb-2">送風ファン</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここに送風ファンの解説文を入れます。</p>
+                    </div>
+                    <div id="normal-disassembly" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-slate-400 pl-3 mb-2">通常分解</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここに通常分解の解説文を入れます。</p>
+                    </div>
+                    <div id="operation-check" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-slate-400 pl-3 mb-2">動作確認</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここに動作確認の解説文を入れます。</p>
+                    </div>
+                    <div id="drain-clogging" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-slate-400 pl-3 mb-2">ドレン詰まり</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここにドレン詰まりの解説文を入れます。</p>
+                    </div>
+                    <div id="drain-pan" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-cyan-500 pl-3 mb-2">ドレンパン</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">結露水を一時的に受ける受け皿のこと。カビが繁殖しやすい箇所です。</p>
+                    </div>
+                    <div id="drain-pump-clean" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-slate-400 pl-3 mb-2">ドレンポンプ</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここにドレンポンプの解説文を入れます。</p>
+                    </div>
+                    <div id="drain-hose" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-slate-400 pl-3 mb-2">ドレンホース</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここにドレンホースの解説文を入れます。</p>
+                    </div>
+                    <div id="waste-liquid" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-slate-400 pl-3 mb-2">廃液</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここに廃液の解説文を入れます。</p>
+                    </div>
+                    <div id="vacuum" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-slate-400 pl-3 mb-2">バキューム</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここにバキュームの解説文を入れます。</p>
+                    </div>
+                    <div id="float-switch" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-slate-400 pl-3 mb-2">フロートスイッチ</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここにフロートスイッチの解説文を入れます。</p>
+                    </div>
+                    <div id="blower" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-slate-400 pl-3 mb-2">ブロワー</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここにブロワーの解説文を入れます。</p>
+                    </div>
+                    <div id="hopper" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-slate-400 pl-3 mb-2">ホッパー</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここにホッパーの解説文を入れます。</p>
+                    </div>
+                    <div id="masker" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-slate-400 pl-3 mb-2">マスカー</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここにマスカーの解説文を入れます。</p>
+                    </div>
+                    <div id="water-leak" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-slate-400 pl-3 mb-2">水漏れ</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここに水漏れの解説文を入れます。</p>
+                    </div>
+                    <div id="unit" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-slate-400 pl-3 mb-2">ユニット</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここにユニットの解説文を入れます。</p>
+                    </div>
+                    <div id="curing" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-amber-500 pl-3 mb-2">養生</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">周囲が汚れたり濡れたりしないように、ビニール等で覆い保護すること。</p>
+                    </div>
+                    <div id="curing-tape" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-slate-400 pl-3 mb-2">養生テープ</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここに養生テープの解説文を入れます。</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ==========================
+                 其ノ参｜取付編 
+            =========================== -->
+            <section id="three" class="scroll-mt-24">
+                <div class="mb-6">
+                    <h2 class="text-2xl font-black text-slate-900 border-b-4 border-neon inline-block mb-3 pr-4">其ノ参｜取付編</h2>
+                    <p class="text-sm font-bold text-slate-600 leading-relaxed">エアコンの取り付けや工事で使われる、<br class="sm:hidden">道具名や部材名、作業名など。</p>
+                </div>
+
+                <!-- インデックス（数字→50音順→アルファベット順） -->
+                <div class="flex flex-wrap gap-2 mb-6 p-4 bg-white rounded-xl border border-slate-100 shadow-sm">
+                    <a href="#anchor" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">アンカー</a>
+                    <a href="#concealed-piping" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">隠蔽配管</a>
+                    <a href="#back-plate" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">裏板/背板</a>
+                    <a href="#liquid-pipe" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">液側配管</a>
+                    <a href="#gas-pipe" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">ガス側配管</a>
+                    <a href="#decorative-cover" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">化粧カバー</a>
+                    <a href="#core-drilling" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">コア抜き</a>
+                    <a href="#core-drill" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">コアドリル</a>
+                    <a href="#gradient" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">勾配</a>
+                    <a href="#saddle" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">サドル</a>
+                    <a href="#service-valve" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">サービスバルブ</a>
+                    <a href="#vacuuming" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">真空引き</a>
+                    <a href="#vacuum-pump" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">真空ポンプ</a>
+                    <a href="#sleeve" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">スリーブ</a>
+                    <a href="#pre-piping" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">先行配管</a>
+                    <a href="#tube-cutter" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">チューブカッター</a>
+                    <a href="#water-flow-check" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">通水確認</a>
+                    <a href="#tape-wrapping" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">テープ巻き</a>
+                    <a href="#torque-wrench" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">トルクレンチ</a>
+                    <a href="#drain-up-kit" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">ドレンアップキット</a>
+                    <a href="#drain-gradient" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">ドレン勾配</a>
+                    <a href="#drain-hose-install" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">ドレンホース</a>
+                    <a href="#piping-hole" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">配管穴</a>
+                    <a href="#piping-cover" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">配管カバー</a>
+                    <a href="#piping-tape" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">配管テープ</a>
+                    <a href="#deburring" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">バリ取り</a>
+                    <a href="#non-adhesive-tape" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">非粘着テープ</a>
+                    <a href="#flare" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">フレア</a>
+                    <a href="#flare-tool" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">フレアツール</a>
+                    <a href="#flare-nut" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">フレアナット</a>
+                    <a href="#pair-coil" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">ペアコイル</a>
+                    <a href="#bandage" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">包帯</a>
+                    <a href="#hole-saw" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">ホールソー</a>
+                    <a href="#board-anchor" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">ボードアンカー</a>
+                    <a href="#sub-drain" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">補助ドレン</a>
+                    <a href="#sub-piping" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">補助配管</a>
+                    <a href="#manifold" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">マニホールド</a>
+                    <a href="#reamer" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">リーマー</a>
+                    <a href="#wire-stripper" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">ワイヤーストリッパー</a>
+                    <a href="#crossover-wiring" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">渡り配線</a>
+                    <a href="#f-cable" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">Fケーブル</a>
+                    <a href="#iv-wire" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">IV</a>
+                    <a href="#sds-chuck" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">SDSチャック</a>
+                    <a href="#va-wire" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">VA線</a>
+                    <a href="#vvf" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">VVF</a>
+                </div>
+
+                <!-- 用語詳細リスト（ソート済） -->
+                <div class="space-y-4">
+                    <div id="anchor" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-slate-400 pl-3 mb-2">アンカー</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここにアンカーの解説文を入れます。</p>
+                    </div>
+                    <div id="concealed-piping" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-slate-400 pl-3 mb-2">隠蔽配管</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここに隠蔽配管の解説文を入れます。</p>
+                    </div>
+                    <div id="back-plate" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-slate-400 pl-3 mb-2">裏板/背板</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここに裏板/背板の解説文を入れます。</p>
+                    </div>
+                    <div id="liquid-pipe" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-slate-400 pl-3 mb-2">液側配管</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここに液側配管の解説文を入れます。</p>
+                    </div>
+                    <div id="gas-pipe" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-slate-400 pl-3 mb-2">ガス側配管</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここにガス側配管の解説文を入れます。</p>
+                    </div>
+                    <div id="decorative-cover" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-slate-400 pl-3 mb-2">化粧カバー</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここに化粧カバーの解説文を入れます。</p>
+                    </div>
+                    <div id="core-drilling" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-slate-400 pl-3 mb-2">コア抜き</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここにコア抜きの解説文を入れます。</p>
+                    </div>
+                    <div id="core-drill" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-slate-400 pl-3 mb-2">コアドリル</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここにコアドリルの解説文を入れます。</p>
+                    </div>
+                    <div id="gradient" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-slate-400 pl-3 mb-2">勾配</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここに勾配の解説文を入れます。（水が流れるための傾き）</p>
+                    </div>
+                    <div id="saddle" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-slate-400 pl-3 mb-2">サドル</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここにサドルの解説文を入れます。</p>
+                    </div>
+                    <div id="service-valve" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-slate-400 pl-3 mb-2">サービスバルブ</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここにサービスバルブの解説文を入れます。</p>
+                    </div>
+                    <div id="vacuuming" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-slate-400 pl-3 mb-2">真空引き</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここに真空引きの解説文を入れます。</p>
+                    </div>
+                    <div id="vacuum-pump" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-slate-400 pl-3 mb-2">真空ポンプ</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここに真空ポンプの解説文を入れます。</p>
+                    </div>
+                    <div id="sleeve" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-slate-400 pl-3 mb-2">スリーブ</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここにスリーブの解説文を入れます。</p>
+                    </div>
+                    <div id="pre-piping" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-slate-400 pl-3 mb-2">先行配管</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここに先行配管の解説文を入れます。</p>
+                    </div>
+                    <div id="tube-cutter" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-slate-400 pl-3 mb-2">チューブカッター</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここにチューブカッターの解説文を入れます。</p>
+                    </div>
+                    <div id="water-flow-check" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-slate-400 pl-3 mb-2">通水確認</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここに通水確認の解説文を入れます。</p>
+                    </div>
+                    <div id="tape-wrapping" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-slate-400 pl-3 mb-2">テープ巻き</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここにテープ巻きの解説文を入れます。</p>
+                    </div>
+                    <div id="torque-wrench" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-[#EFFF00] pl-3 mb-2">トルクレンチ</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">規定の力（トルク）でナットを締め付けるための専用工具。冷媒漏れを防ぐために必須です。</p>
+                    </div>
+                    <div id="drain-up-kit" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-slate-400 pl-3 mb-2">ドレンアップキット</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここにドレンアップキットの解説文を入れます。</p>
+                    </div>
+                    <div id="drain-gradient" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-slate-400 pl-3 mb-2">ドレン勾配</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここにドレン勾配の解説文を入れます。</p>
+                    </div>
+                    <div id="drain-hose-install" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-slate-400 pl-3 mb-2">ドレンホース</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここにドレンホースの解説文を入れます。</p>
+                    </div>
+                    <div id="piping-hole" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-slate-400 pl-3 mb-2">配管穴</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここに配管穴の解説文を入れます。</p>
+                    </div>
+                    <div id="piping-cover" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-slate-400 pl-3 mb-2">配管カバー</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここに配管カバーの解説文を入れます。</p>
+                    </div>
+                    <div id="piping-tape" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-slate-400 pl-3 mb-2">配管テープ</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここに配管テープの解説文を入れます。</p>
+                    </div>
+                    <div id="deburring" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-slate-400 pl-3 mb-2">バリ取り</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここにバリ取りの解説文を入れます。</p>
+                    </div>
+                    <div id="non-adhesive-tape" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-slate-400 pl-3 mb-2">非粘着テープ</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここに非粘着テープの解説文を入れます。</p>
+                    </div>
+                    <div id="flare" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-[#EFFF00] pl-3 mb-2">フレア</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">銅管の先端をラッパ状に広げる加工のこと、または広げた部分そのもの。</p>
+                    </div>
+                    <div id="flare-tool" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-slate-400 pl-3 mb-2">フレアツール</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここにフレアツールの解説文を入れます。</p>
+                    </div>
+                    <div id="flare-nut" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-slate-400 pl-3 mb-2">フレアナット</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここにフレアナットの解説文を入れます。</p>
+                    </div>
+                    <div id="pair-coil" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-slate-400 pl-3 mb-2">ペアコイル</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここにペアコイルの解説文を入れます。</p>
+                    </div>
+                    <div id="bandage" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-slate-400 pl-3 mb-2">包帯</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここに包帯の解説文を入れます。</p>
+                    </div>
+                    <div id="hole-saw" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-slate-400 pl-3 mb-2">ホールソー</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここにホールソーの解説文を入れます。</p>
+                    </div>
+                    <div id="board-anchor" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-slate-400 pl-3 mb-2">ボードアンカー</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここにボードアンカーの解説文を入れます。</p>
+                    </div>
+                    <div id="sub-drain" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-slate-400 pl-3 mb-2">補助ドレン</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここに補助ドレンの解説文を入れます。</p>
+                    </div>
+                    <div id="sub-piping" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-slate-400 pl-3 mb-2">補助配管</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここに補助配管の解説文を入れます。</p>
+                    </div>
+                    <div id="manifold" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-slate-400 pl-3 mb-2">マニホールド</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここにマニホールドの解説文を入れます。</p>
+                    </div>
+                    <div id="reamer" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-slate-400 pl-3 mb-2">リーマー</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここにリーマーの解説文を入れます。</p>
+                    </div>
+                    <div id="wire-stripper" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-slate-400 pl-3 mb-2">ワイヤーストリッパー</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここにワイヤーストリッパーの解説文を入れます。</p>
+                    </div>
+                    <div id="crossover-wiring" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-slate-400 pl-3 mb-2">渡り配線</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここに渡り配線の解説文を入れます。</p>
+                    </div>
+                    <div id="f-cable" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-slate-400 pl-3 mb-2">Fケーブル</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここにFケーブルの解説文を入れます。</p>
+                    </div>
+                    <div id="iv-wire" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-slate-400 pl-3 mb-2">IV</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここにIVの解説文を入れます。</p>
+                    </div>
+                    <div id="sds-chuck" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-slate-400 pl-3 mb-2">SDSチャック</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここにSDSチャックの解説文を入れます。</p>
+                    </div>
+                    <div id="va-wire" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-slate-400 pl-3 mb-2">VA線</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここにVA線の解説文を入れます。</p>
+                    </div>
+                    <div id="vvf" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-slate-400 pl-3 mb-2">VVF</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここにVVFの解説文を入れます。</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ==========================
+                 其ノ肆｜修理編 
+            =========================== -->
+            <section id="four" class="scroll-mt-24">
+                <div class="mb-6">
+                    <h2 class="text-2xl font-black text-slate-900 border-b-4 border-neon inline-block mb-3 pr-4">其ノ肆｜修理編</h2>
+                    <p class="text-sm font-bold text-slate-600 leading-relaxed">エアコンの点検や修理で使われる、<br class="sm:hidden">道具名や部品名、作業名など。</p>
+                </div>
+
+                <!-- インデックス（数字→50音順→アルファベット順） -->
+                <div class="flex flex-wrap gap-2 mb-6 p-4 bg-white rounded-xl border border-slate-100 shadow-sm">
+                    <a href="#compressor-repair" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">圧縮機</a>
+                    <a href="#error-code" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">エラーコード</a>
+                    <a href="#gas-charge" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">ガスチャージ</a>
+                    <a href="#pcb-board" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">基板</a>
+                    <a href="#thermistor" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">サーミスタ</a>
+                    <a href="#four-way-valve" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">四方弁</a>
+                    <a href="#insulation-resistance" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">絶縁抵抗</a>
+                    <a href="#fan-motor" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">ファンモーター</a>
+                    <a href="#expansion-valve" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">膨張弁</a>
+                    <a href="#pump-down" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">ポンプダウン</a>
+                    <a href="#megger" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">メガー</a>
+                    <a href="#refrigerant-leak" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">冷媒漏れ</a>
+                </div>
+
+                <!-- 用語詳細リスト（ソート済） -->
+                <div class="space-y-4">
+                    <div id="compressor-repair" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-slate-400 pl-3 mb-2">圧縮機</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここに圧縮機の解説文を入れます。（コンプレッサーと同義）</p>
+                    </div>
+                    <div id="error-code" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-slate-400 pl-3 mb-2">エラーコード</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここにエラーコードの解説文を入れます。</p>
+                    </div>
+                    <div id="gas-charge" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-slate-400 pl-3 mb-2">ガスチャージ</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここにガスチャージの解説文を入れます。</p>
+                    </div>
+                    <div id="pcb-board" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-slate-400 pl-3 mb-2">基板</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここに基板の解説文を入れます。</p>
+                    </div>
+                    <div id="thermistor" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-slate-400 pl-3 mb-2">サーミスタ</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここにサーミスタの解説文を入れます。（温度センサーのことなど）</p>
+                    </div>
+                    <div id="four-way-valve" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-slate-400 pl-3 mb-2">四方弁</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここに四方弁の解説文を入れます。</p>
+                    </div>
+                    <div id="insulation-resistance" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-slate-400 pl-3 mb-2">絶縁抵抗</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここに絶縁抵抗の解説文を入れます。</p>
+                    </div>
+                    <div id="fan-motor" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-slate-400 pl-3 mb-2">ファンモーター</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここにファンモーターの解説文を入れます。</p>
+                    </div>
+                    <div id="expansion-valve" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-slate-400 pl-3 mb-2">膨張弁</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここに膨張弁の解説文を入れます。</p>
+                    </div>
+                    <div id="pump-down" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-slate-400 pl-3 mb-2">ポンプダウン</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここにポンプダウンの解説文を入れます。（取り外し時のガス回収）</p>
+                    </div>
+                    <div id="megger" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-slate-400 pl-3 mb-2">メガー</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここにメガーの解説文を入れます。（絶縁抵抗計のこと）</p>
+                    </div>
+                    <div id="refrigerant-leak" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-rose-500 pl-3 mb-2">冷媒漏れ</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここに冷媒漏れの解説文を入れます。（ガス抜けのこと）</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ==========================
+                 其ノ伍｜番外編 
+            =========================== -->
+            <section id="five" class="scroll-mt-24">
+                <div class="mb-6">
+                    <h2 class="text-2xl font-black text-slate-900 border-b-4 border-neon inline-block mb-3 pr-4">其ノ伍｜番外編</h2>
+                    <p class="text-sm font-bold text-slate-600 leading-relaxed">分類しにくいものや、<br class="sm:hidden">業務用エアコンなどで使われる言葉たち。</p>
+                </div>
+
+                <!-- インデックス（数字→50音順→アルファベット順） -->
+                <div class="flex flex-wrap gap-2 mb-6 p-4 bg-white rounded-xl border border-slate-100 shadow-sm">
+                    <a href="#wall-embedded" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">壁埋込</a>
+                    <a href="#short-circuit" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">ショートサーキット</a>
+                    <a href="#ceiling-cassette" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">天カセ</a>
+                    <a href="#ceiling-suspended" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">天吊</a>
+                    <a href="#horsepower" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">馬力</a>
+                    <a href="#package-ac" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">パッケージエアコン</a>
+                    <a href="#built-in" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">ビルトイン</a>
+                    <a href="#multi-ac" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">マルチエアコン</a>
+                    <a href="#floor-standing" class="px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200">床置</a>
+                </div>
+
+                <!-- 用語詳細リスト（ソート済） -->
+                <div class="space-y-4">
+                    <div id="wall-embedded" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-slate-400 pl-3 mb-2">壁埋込</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここに壁埋込の解説文を入れます。</p>
+                    </div>
+                    <div id="short-circuit" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-slate-400 pl-3 mb-2">ショートサーキット</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここにショートサーキットの解説文を入れます。（吹き出した空気をすぐ吸い込んでしまう現象）</p>
+                    </div>
+                    <div id="ceiling-cassette" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-slate-400 pl-3 mb-2">天カセ</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここに天カセの解説文を入れます。（天井カセット型の略）</p>
+                    </div>
+                    <div id="ceiling-suspended" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-slate-400 pl-3 mb-2">天吊</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここに天吊の解説文を入れます。（天井吊り下げ型）</p>
+                    </div>
+                    <div id="horsepower" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-slate-400 pl-3 mb-2">馬力</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここに馬力の解説文を入れます。（業務用エアコンの能力表記）</p>
+                    </div>
+                    <div id="package-ac" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-slate-400 pl-3 mb-2">パッケージエアコン</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここにパッケージエアコンの解説文を入れます。（主に業務用のこと）</p>
+                    </div>
+                    <div id="built-in" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-slate-400 pl-3 mb-2">ビルトイン</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここにビルトインの解説文を入れます。（ダクト型など）</p>
+                    </div>
+                    <div id="multi-ac" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-slate-400 pl-3 mb-2">マルチエアコン</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここにマルチエアコンの解説文を入れます。（1台の室外機で複数の室内機を動かすタイプ）</p>
+                    </div>
+                    <div id="floor-standing" class="scroll-mt-24 bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                        <h3 class="text-[17px] font-black text-slate-900 border-l-[6px] border-slate-400 pl-3 mb-2">床置</h3>
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">ここに床置の解説文を入れます。</p>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- ⑧ FOOTER -->
+    <footer class="bg-slate-900 text-white pt-12 pb-24 md:pb-12 border-t-[6px] border-neon text-center">
+        <div class="mb-6 flex flex-col items-center justify-center">
+            <!-- フッターロゴ -->
+            <span class="text-4xl md:text-5xl tracking-widest text-white flex items-center justify-center font-impact mt-1">
+                ONE
+                <img src="ONESTAR.PNG" alt="ロゴ画像" class="w-[80px] h-[80px] md:w-[100px] md:h-[100px] mx-[-10px] md:mx-[-16px] object-contain -translate-y-2" onerror="this.style.display='none'">
+                STAR
+            </span>
+            <p class="text-xs text-neon font-black mt-2 tracking-widest">株式会社ECS専属プロスタッフ</p>
+        </div>
+        
+        <p class="text-[11px] text-slate-400 font-bold mb-3">
+            <a href="/products" class="hover:text-white transition-colors underline underline-offset-4">オリジナルLINEスタンプ販売中</a>
+        </p>
+        <p class="text-[10px] text-slate-500 font-bold mb-4">
+            <a href="/privacy" class="hover:text-white transition-colors">プライバシーポリシー</a>
+        </p>
+        <p class="text-[10px] text-slate-500 font-bold tracking-wider">© 2026 ONE★STAR. All Rights Reserved.</p>
+    </footer>
+
+    <!-- MOBILE BOTTOM NAVIGATION -->
+    <div class="fixed bottom-0 left-0 right-0 z-45 bg-slate-900 md:hidden h-[60px] flex items-stretch text-white shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.3)] border-t border-slate-800">
+        
+        <!-- 料金 (黒) -->
+        <a href="/price" class="flex flex-col items-center justify-center w-[20%] border-r border-slate-700 active:bg-slate-800">
+            <svg class="w-5 h-5 mb-1 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <span class="text-[9px] font-black">料金</span>
+        </a>
+        
+        <!-- 想い (黒) -->
+        <a href="/mind" class="flex flex-col items-center justify-center w-[20%] border-r border-slate-700 active:bg-slate-800">
+            <svg class="w-5 h-5 mb-1 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+            <span class="text-[9px] font-black">想い</span>
+        </a>
+
+        <!-- 拘り (黒) -->
+        <a href="/pride" class="flex flex-col items-center justify-center w-[20%] active:bg-slate-800">
+            <svg class="w-5 h-5 mb-1 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+            <span class="text-[9px] font-black">拘り</span>
+        </a>
+        
+        <!-- 電話する (蛍光イエロー) -->
+        <a href="tel:08000807788" class="js-phone-modal-trigger flex items-center justify-center bg-neon text-slate-900 w-[40%] font-black text-base active:bg-yellow-400 transition-colors">
+            <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+            電話する
+        </a>
+        
+    </div>
+
+    <!-- 🌟 ご予約・お問い合わせ前のワンクッションモーダル 🌟 -->
+    <div id="phone-modal" class="fixed inset-0 z-[100] hidden flex items-center justify-center px-4">
+        <!-- 背景のオーバーレイ (クリックで閉じる) -->
+        <div id="phone-modal-backdrop" class="absolute inset-0 bg-slate-900/80 backdrop-blur-sm opacity-0 transition-opacity duration-300"></div>
+        
+        <!-- モーダル本体 -->
+        <div id="phone-modal-content" class="relative bg-white rounded-3xl shadow-2xl w-full max-w-sm overflow-hidden transform scale-95 opacity-0 transition-all duration-300 border border-slate-100">
+            
+            <!-- 閉じるボタン -->
+            <button id="phone-modal-close" class="absolute top-4 right-4 p-2 text-slate-400 hover:text-slate-700 bg-slate-100 hover:bg-slate-200 rounded-full transition-colors z-10">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+            
+            <div class="p-6 md:p-8 text-center pt-10">
+                
+                <h3 class="text-xl font-black text-slate-900 mb-6 border-b-4 border-[#EFFF00] inline-block pb-1">
+                    ご予約・お問い合わせの前に
+                </h3>
+                
+                <!-- 説明テキストエリア -->
+                <div class="text-[13px] text-slate-700 font-bold leading-relaxed mb-8 space-y-4 text-left bg-slate-50 p-5 rounded-2xl border border-slate-100 shadow-inner">
+                    <p>
+                        <span class="text-slate-900 font-black text-sm">ONE★STAR</span>は<br>
+                        株式会社ECS（エッジクリーンサービス）の専属プロスタッフとして活動しています。
+                    </p>
+                    <p class="pt-2 border-t border-slate-200">
+                        お電話は<br>
+                        <span class="text-slate-900 font-black">株式会社ECSの予約受付</span>につながります。
+                    </p>
+                    
+                    <div class="bg-rose-50 border border-rose-200 p-3 rounded-xl text-center shadow-sm">
+                        <p class="text-rose-600 font-black text-[13px] leading-tight">
+                            ご予約の際は<br>
+                            <span class="text-base">「ONE★STAR（川崎）を指名」</span>と<br>
+                            お伝えください。
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- アクションボタン -->
+                <div class="space-y-3">
+                    <a href="tel:08000807788" class="flex items-center justify-center w-full py-4 bg-slate-900 text-[#EFFF00] font-black rounded-2xl shadow-md active:scale-95 transition-transform text-sm sm:text-base border border-slate-800">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                        株式会社ECSへ電話する
+                    </a>
+                    
+                    <a href="https://www.instagram.com/one.star.kawasaki?igsh=anZpYnpxcDdqOXRh&utm_source=qr" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center w-full py-4 bg-gradient-to-r from-pink-500 to-rose-500 text-white font-black rounded-2xl shadow-md active:scale-95 transition-transform text-sm sm:text-base">
+                        <svg class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                        </svg>
+                        Instagramで本人に相談する
+                    </a>
+                </div>
+                
+                <p class="text-[10px] text-slate-500 mt-4 font-bold leading-relaxed">
+                    直接のご質問・お問い合わせは<br>本人直通のInstagram DMからお気軽にどうぞ。
+                </p>
+                
+                <!-- キャンセルテキスト -->
+                <button id="phone-modal-cancel" class="mt-6 text-[11px] text-slate-400 font-bold underline underline-offset-4 hover:text-slate-600 transition-colors">
+                    キャンセルして戻る
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // メニュー開閉
+            const drawerContainer = document.getElementById('drawer-container');
+            const drawerMenu = document.getElementById('drawer-menu');
+            const drawerBackdrop = document.getElementById('drawer-backdrop');
+            
+            const toggleMenu = (show) => {
+                if (show) {
+                    drawerContainer.classList.remove('hidden');
+                    setTimeout(() => {
+                        drawerBackdrop.classList.remove('opacity-0');
+                        drawerBackdrop.classList.add('opacity-100');
+                        drawerMenu.classList.remove('drawer-closed');
+                        drawerMenu.classList.add('drawer-open');
+                    }, 10);
+                } else {
+                    drawerBackdrop.classList.remove('opacity-100');
+                    drawerBackdrop.classList.add('opacity-0');
+                    drawerMenu.classList.remove('drawer-open');
+                    drawerMenu.classList.add('drawer-closed');
+                    setTimeout(() => drawerContainer.classList.add('hidden'), 300);
+                }
+            };
+
+            document.getElementById('menu-open-btn').addEventListener('click', () => toggleMenu(true));
+            document.getElementById('menu-close-btn').addEventListener('click', () => toggleMenu(false));
+            document.getElementById('drawer-backdrop').addEventListener('click', () => toggleMenu(false));
+            
+            // 下層ページへのリンククリック時にもメニューを閉じる
+            document.querySelectorAll('.menu-link').forEach(link => link.addEventListener('click', () => toggleMenu(false)));
+
+            // ==========================================
+            // 電話ワンクッションモーダル制御
+            // ==========================================
+            const phoneModal = document.getElementById('phone-modal');
+            const phoneModalBackdrop = document.getElementById('phone-modal-backdrop');
+            const phoneModalContent = document.getElementById('phone-modal-content');
+            const phoneModalCloseBtn = document.getElementById('phone-modal-close');
+            const phoneModalCancelBtn = document.getElementById('phone-modal-cancel');
+
+            // ページ内の電話トリガーボタンをすべて取得
+            const phoneTriggerBtns = document.querySelectorAll('.js-phone-modal-trigger');
+
+            if (phoneModal && phoneTriggerBtns.length > 0) {
+                // モーダルを開く関数
+                const openPhoneModal = (e) => {
+                    e.preventDefault(); 
+                    if (typeof toggleMenu === 'function') { toggleMenu(false); }
+                    phoneModal.classList.remove('hidden');
+                    requestAnimationFrame(() => {
+                        phoneModalBackdrop.classList.remove('opacity-0');
+                        phoneModalBackdrop.classList.add('opacity-100');
+                        phoneModalContent.classList.remove('opacity-0', 'scale-95');
+                        phoneModalContent.classList.add('opacity-100', 'scale-100');
+                    });
+                };
+
+                // モーダルを閉じる関数
+                const closePhoneModal = () => {
+                    phoneModalBackdrop.classList.remove('opacity-100');
+                    phoneModalBackdrop.classList.add('opacity-0');
+                    phoneModalContent.classList.remove('opacity-100', 'scale-100');
+                    phoneModalContent.classList.add('opacity-0', 'scale-95');
+                    setTimeout(() => { phoneModal.classList.add('hidden'); }, 300);
+                };
+
+                phoneTriggerBtns.forEach(btn => btn.addEventListener('click', openPhoneModal));
+                phoneModalCloseBtn.addEventListener('click', closePhoneModal);
+                phoneModalCancelBtn.addEventListener('click', closePhoneModal);
+                phoneModalBackdrop.addEventListener('click', closePhoneModal);
+            }
+        });
+    </script>
+</body>
+</html>
+
+
+```
