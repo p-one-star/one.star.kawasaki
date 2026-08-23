@@ -4,15 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>エアコン用語集 | ONE★STAR</title>
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    colors: {
-                        neon: '#EFFF00' // トレードカラー：蛍光イエロー
-                    },
+                    colors: { neon: '#EFFF00' },
                     fontFamily: {
                         sans: ['"Noto Sans JP"', 'sans-serif'],
                         impact: ['"Black Ops One"', 'system-ui', 'sans-serif'],
@@ -23,12 +20,9 @@
     </script>
     <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
     <style type="text/tailwindcss">
-        /* ドロワーメニュー用 */
         #drawer-menu { transition: transform 0.3s ease-in-out; }
         .drawer-closed { transform: translateX(-100%); }
         .drawer-open { transform: translateX(0); }
-        
-        /* 共通クラス化でコード量を大幅削減 */
         .t-tag { @apply px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200 inline-block; }
         .b-wrap { @apply scroll-mt-24 bg-white p-4 rounded-xl shadow-sm border border-slate-200; }
         .b-tit { @apply text-base font-black text-slate-900 border-l-[6px] pl-3 mb-1; }
@@ -47,23 +41,12 @@
 
     <!-- HEADER -->
     <header class="fixed top-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md shadow-sm border-b border-slate-100 h-14 flex items-center justify-between px-4">
-        <button id="menu-open-btn" class="p-2 hover:bg-slate-100 rounded-lg" aria-label="メニュー">
-            <svg class="w-6 h-6 text-slate-800" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
-        </button>
-
+        <button id="menu-open-btn" class="p-2 hover:bg-slate-100 rounded-lg"><svg class="w-6 h-6 text-slate-800" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg></button>
         <div class="absolute left-1/2 -translate-x-1/2 flex items-center justify-center mt-1">
-            <a href="/" class="text-2xl md:text-3xl tracking-widest text-slate-900 leading-none flex items-center font-impact">
-                ONE
-                <img src="ONESTAR.PNG" alt="ロゴ画像" class="w-[45px] h-[45px] md:w-[55px] md:h-[55px] mx-[-4px] md:mx-[-6px] object-contain -translate-y-[4px]" onerror="this.style.display='none'">
-                STAR
-            </a>
+            <a href="/" class="text-2xl md:text-3xl tracking-widest text-slate-900 leading-none flex items-center font-impact">ONE<img src="ONESTAR.PNG" alt="ロゴ画像" class="w-[45px] h-[45px] md:w-[55px] md:h-[55px] mx-[-4px] md:mx-[-6px] object-contain -translate-y-[4px]" onerror="this.style.display='none'">STAR</a>
         </div>
-
         <div class="hidden md:flex items-center space-x-3">
-            <a href="tel:08000807788" class="js-phone-modal-trigger bg-slate-900 hover:bg-slate-800 text-neon px-4 py-1.5 rounded-full text-xs font-black border border-slate-700 flex items-center space-x-1 transition-all">
-                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
-                <span>電話相談</span>
-            </a>
+            <a href="tel:08000807788" class="js-phone-modal-trigger bg-slate-900 hover:bg-slate-800 text-neon px-4 py-1.5 rounded-full text-xs font-black border border-slate-700 flex items-center space-x-1 transition-all"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg><span>電話相談</span></a>
         </div>
         <div class="w-10 md:hidden"></div>
     </header>
@@ -73,11 +56,7 @@
         <div id="drawer-backdrop" class="absolute inset-0 bg-slate-900/60 opacity-0 transition-opacity duration-300"></div>
         <div class="pointer-events-none fixed inset-y-0 left-0 flex max-w-full">
             <div id="drawer-menu" class="pointer-events-auto w-64 drawer-closed bg-white shadow-2xl flex flex-col h-full">
-                <div class="p-3 bg-white flex justify-end">
-                    <button id="menu-close-btn" class="p-2 hover:bg-slate-100 rounded-lg">
-                        <svg class="w-6 h-6 text-slate-500" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
-                    </button>
-                </div>
+                <div class="p-3 bg-white flex justify-end"><button id="menu-close-btn" class="p-2 hover:bg-slate-100 rounded-lg"><svg class="w-6 h-6 text-slate-500" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg></button></div>
                 <div class="bg-blue-600 py-3 px-6"><h2 class="text-white font-black tracking-wider text-sm">MENU</h2></div>
                 <nav class="flex-1 px-4 py-2 overflow-y-auto">
                     <div class="space-y-1">
@@ -130,7 +109,7 @@
             <section id="one" class="scroll-mt-24">
                 <div class="mb-6">
                     <h2 class="text-2xl font-black text-slate-900 border-b-4 border-neon inline-block mb-3 pr-4">其ノ壱｜基本編</h2>
-                    <p class="text-sm font-bold text-slate-600 leading-relaxed">エアコン売り場やカタログなどで、よく見たり聞いたりする言葉たち。</p>
+                    <p class="text-sm font-bold text-slate-600 leading-relaxed">エアコン売り場やカタログなどで、<br>よく見たり聞いたりする言葉たち。</p>
                 </div>
                 <div class="flex flex-wrap gap-2 mb-6 p-4 bg-white rounded-xl border border-slate-100 shadow-sm">
                     <a href="#issue2027" class="t-tag">2027年問題</a>
@@ -274,7 +253,7 @@
             <section id="two" class="scroll-mt-24">
                 <div class="mb-6">
                     <h2 class="text-2xl font-black text-slate-900 border-b-4 border-neon inline-block mb-3 pr-4">其ノ弐｜洗浄編</h2>
-                    <p class="text-sm font-bold text-slate-600 leading-relaxed">エアコンクリーニングで使われる、道具名や作業名、部品名など。</p>
+                    <p class="text-sm font-bold text-slate-600 leading-relaxed">エアコンクリーニングで使われる、<br>道具名や作業名、部品名など。</p>
                 </div>
                 <div class="flex flex-wrap gap-2 mb-6 p-4 bg-white rounded-xl border border-slate-100 shadow-sm">
                     <a href="#alkaline-det" class="t-tag">アルカリ洗剤</a>
@@ -309,6 +288,7 @@
                     <a href="#elec-curing" class="t-tag">電装養生</a>
                     <a href="#drain-up-w" class="t-tag">ドレンアップ</a>
                     <a href="#drain-clog" class="t-tag">ドレン詰まり</a>
+                    <a href="#drain-water-w" class="t-tag">ドレン排水</a>
                     <a href="#drain-pan1" class="t-tag">ドレンパン</a>
                     <a href="#drain-pump-w" class="t-tag">ドレンポンプ</a>
                     <a href="#drain-hose-w" class="t-tag">ドレンホース</a>
@@ -359,6 +339,7 @@
                     <div id="elec-curing" class="b-wrap"><h3 class="b-tit bc-gray">電装養生</h3><p class="b-desc">説明</p></div>
                     <div id="drain-up-w" class="b-wrap"><h3 class="b-tit bc-gray">ドレンアップ</h3><p class="b-desc">説明</p></div>
                     <div id="drain-clog" class="b-wrap"><h3 class="b-tit bc-gray">ドレン詰まり</h3><p class="b-desc">説明</p></div>
+                    <div id="drain-water-w" class="b-wrap"><h3 class="b-tit bc-gray">ドレン排水</h3><p class="b-desc">説明</p></div>
                     <div id="drain-pan1" class="b-wrap"><h3 class="b-tit bc-cyan">ドレンパン</h3><p class="b-desc">説明</p></div>
                     <div id="drain-pump-w" class="b-wrap"><h3 class="b-tit bc-gray">ドレンポンプ</h3><p class="b-desc">説明</p></div>
                     <div id="drain-hose-w" class="b-wrap"><h3 class="b-tit bc-gray">ドレンホース</h3><p class="b-desc">説明</p></div>
@@ -382,7 +363,7 @@
             <section id="three" class="scroll-mt-24">
                 <div class="mb-6">
                     <h2 class="text-2xl font-black text-slate-900 border-b-4 border-neon inline-block mb-3 pr-4">其ノ参｜取付編</h2>
-                    <p class="text-sm font-bold text-slate-600 leading-relaxed">エアコンの取り付けや工事で使われる、道具名や部材名、作業名など。</p>
+                    <p class="text-sm font-bold text-slate-600 leading-relaxed">エアコンの取り付けや工事で使われる、<br>道具名や部材名、作業名など。</p>
                 </div>
                 <div class="flex flex-wrap gap-2 mb-6 p-4 bg-white rounded-xl border border-slate-100 shadow-sm">
                     <a href="#pipe-2-3" class="t-tag">2分3分</a>
@@ -446,7 +427,6 @@
                     <a href="#hojo-pipe" class="t-tag">補助配管</a>
                     <a href="#manifold" class="t-tag">マニホールド</a>
                     <a href="#reamer" class="t-tag">リーマー</a>
-                    <a href="#reibai-tsuika" class="t-tag">冷媒追加充填</a>
                     <a href="#roshutsu-pipe" class="t-tag">露出配管</a>
                     <a href="#wire-stripper" class="t-tag">ワイヤーストリッパー</a>
                     <a href="#watari-h" class="t-tag">渡り配線</a>
@@ -515,7 +495,6 @@
                     <div id="hojo-pipe" class="b-wrap"><h3 class="b-tit bc-gray">補助配管</h3><p class="b-desc">説明</p></div>
                     <div id="manifold" class="b-wrap"><h3 class="b-tit bc-gray">マニホールド</h3><p class="b-desc">説明</p></div>
                     <div id="reamer" class="b-wrap"><h3 class="b-tit bc-gray">リーマー</h3><p class="b-desc">説明</p></div>
-                    <div id="reibai-tsuika" class="b-wrap"><h3 class="b-tit bc-gray">冷媒追加充填</h3><p class="b-desc">説明</p></div>
                     <div id="roshutsu-pipe" class="b-wrap"><h3 class="b-tit bc-gray">露出配管</h3><p class="b-desc">説明</p></div>
                     <div id="wire-stripper" class="b-wrap"><h3 class="b-tit bc-gray">ワイヤーストリッパー</h3><p class="b-desc">説明</p></div>
                     <div id="watari-h" class="b-wrap"><h3 class="b-tit bc-gray">渡り配線</h3><p class="b-desc">説明</p></div>
@@ -528,7 +507,7 @@
             <section id="four" class="scroll-mt-24">
                 <div class="mb-6">
                     <h2 class="text-2xl font-black text-slate-900 border-b-4 border-neon inline-block mb-3 pr-4">其ノ肆｜修理編</h2>
-                    <p class="text-sm font-bold text-slate-600 leading-relaxed">エアコンの点検や修理で使われる、道具名や部品名、作業名など。</p>
+                    <p class="text-sm font-bold text-slate-600 leading-relaxed">エアコンの点検や修理で使われる、<br>道具名や部品名、作業名など。</p>
                 </div>
                 <div class="flex flex-wrap gap-2 mb-6 p-4 bg-white rounded-xl border border-slate-100 shadow-sm">
                     <a href="#accumulator" class="t-tag">アキュームレータ</a>
@@ -690,7 +669,7 @@
             <section id="five" class="scroll-mt-24">
                 <div class="mb-6">
                     <h2 class="text-2xl font-black text-slate-900 border-b-4 border-neon inline-block mb-3 pr-4">其ノ伍｜番外編</h2>
-                    <p class="text-sm font-bold text-slate-600 leading-relaxed">分類しにくいものや、業務用エアコンなどで使われる言葉たち。</p>
+                    <p class="text-sm font-bold text-slate-600 leading-relaxed">分類しにくいものや、<br>業務用エアコンなどで使われる言葉たち。</p>
                 </div>
                 <div class="flex flex-wrap gap-2 mb-6 p-4 bg-white rounded-xl border border-slate-100 shadow-sm">
                     <a href="#anemo" class="t-tag">アネモ</a>
