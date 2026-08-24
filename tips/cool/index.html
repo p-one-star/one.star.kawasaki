@@ -1,0 +1,1322 @@
+```html
+<!DOCTYPE html>
+<html lang="ja" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>エアコンが冷えない？ | ONE★STAR</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        neon: '#EFFF00' // トレードカラー：蛍光イエロー
+                    },
+                    fontFamily: {
+                        sans: ['"Noto Sans JP"', 'sans-serif'],
+                        impact: ['"Black Ops One"', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        /* ドロワーメニュー用 */
+        #drawer-menu { transition: transform 0.3s ease-in-out; }
+        .drawer-closed { transform: translateX(-100%); }
+        .drawer-open { transform: translateX(0); }
+    </style>
+</head>
+<body class="font-sans text-slate-800 bg-slate-50 antialiased overflow-x-hidden pb-[60px]">
+
+    <!-- HEADER -->
+    <header class="fixed top-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md shadow-sm border-b border-slate-100 h-14 flex items-center justify-between px-4">
+        <button id="menu-open-btn" class="p-2 hover:bg-slate-100 rounded-lg" aria-label="メニュー">
+            <svg class="w-6 h-6 text-slate-800" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+
+        <div class="absolute left-1/2 -translate-x-1/2 flex items-center justify-center mt-1">
+            <a href="/" class="text-2xl md:text-3xl tracking-widest text-slate-900 leading-none flex items-center font-impact">
+                ONE
+                <img src="ONESTAR.PNG" alt="ロゴ" class="w-[45px] h-[45px] md:w-[55px] md:h-[55px] mx-[-4px] md:mx-[-6px] object-contain -translate-y-[4px]" onerror="this.style.display='none'">
+                STAR
+            </a>
+        </div>
+
+        <div class="hidden md:flex items-center space-x-3">
+            <a href="tel:08000807788" class="js-phone-modal-trigger bg-slate-900 hover:bg-slate-800 text-neon px-4 py-1.5 rounded-full text-xs font-black border border-slate-700 flex items-center space-x-1 transition-all">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                <span>電話相談</span>
+            </a>
+        </div>
+        <div class="w-10 md:hidden"></div>
+    </header>
+
+    <!-- DRAWER MENU -->
+    <div id="drawer-container" class="fixed inset-0 z-50 overflow-hidden hidden">
+        <div id="drawer-backdrop" class="absolute inset-0 bg-slate-900/60 opacity-0 transition-opacity duration-300"></div>
+        <div class="pointer-events-none fixed inset-y-0 left-0 flex max-w-full">
+            <div id="drawer-menu" class="pointer-events-auto w-64 drawer-closed bg-white shadow-2xl flex flex-col h-full">
+                
+                <div class="p-3 bg-white flex justify-end">
+                    <button id="menu-close-btn" class="p-2 hover:bg-slate-100 rounded-lg">
+                        <svg class="w-6 h-6 text-slate-500" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+                    </button>
+                </div>
+
+                <div class="bg-blue-600 py-3 px-6">
+                    <h2 class="text-white font-black tracking-wider text-sm">MENU</h2>
+                </div>
+
+                <nav class="flex-1 px-4 py-2 overflow-y-auto">
+                    <div class="space-y-1">
+                        <a href="/" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>トップページ
+                        </a>
+                        <a href="/price" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>料金プラン
+                        </a>
+                        <a href="/works" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>施工事例
+                        </a>
+                        <a href="/mind" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>ONE★STARの想い
+                        </a>
+                        <a href="/pride" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>プロとしての拘り
+                        </a>
+                        <a href="/trash" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>ここだけの話
+                        </a>
+                        <a href="/before" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>ご予約の前に
+                        </a>
+                        <a href="/faq" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>よくある質問
+                        </a>
+                        <a href="/tips" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-blue-600">
+                            <span class="mr-2 text-blue-600">＞</span>お役立ち情報
+                        </a>
+                        <a href="/products" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-[#06C755]">
+                            <span class="mr-2 text-slate-400">＞</span>オリジナルLINEスタンプ
+                        </a>
+                    </div>
+                    
+                    <hr class="border-slate-300 border-dashed my-4">
+                    <a href="https://www.edge-cleanservice.com" target="_blank" rel="noopener noreferrer" class="menu-link flex items-center py-2 text-sm font-black text-slate-900 hover:text-blue-600 transition-colors">
+                        株式会社ECS公式サイト
+                        <svg class="w-3.5 h-3.5 ml-1.5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                    </a>
+                </nav>
+
+                <div class="p-4 bg-slate-50 border-t border-slate-100 text-center mt-auto">
+                    <p class="text-[9px] text-slate-500 font-bold leading-relaxed mb-2">
+                        株式会社ECS EDGE CLEAN SERVICE<br>専属プロスタッフとして<br>愛知県全域で毎日奮闘中❣️
+                    </p>
+                    <a href="tel:08000807788" class="js-phone-modal-trigger block w-full py-3 bg-slate-900 text-neon font-black rounded-lg text-sm shadow">直接電話する</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN -->
+    <main class="pt-24 pb-12 px-4 max-w-3xl mx-auto">
+
+        <!-- =========================================
+             カード１：導入〜10分動かしたら確認
+        ========================================== -->
+        <div class="bg-white rounded-[24px] border-2 border-slate-900 overflow-hidden shadow-sm mb-10">
+            <div class="h-3 w-full bg-neon"></div>
+
+            <div class="p-6 md:p-8">
+                
+                <!-- タイトル・リード文 -->
+                <div class="flex justify-center mb-8 text-center mt-4">
+                    <span class="inline-block bg-slate-900 text-neon text-xs md:text-sm font-black px-5 py-2 rounded shadow-sm tracking-wider">
+                        プロが教えるエアコンの真実
+                    </span>
+                </div>
+
+                <h1 class="text-[26px] md:text-[32px] font-black text-slate-900 mb-12 leading-relaxed tracking-wide text-center">
+                    エアコンが冷えない？
+                </h1>
+
+                <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose text-center mb-10">
+                    暑い日にエアコンをつけたのに、<br><br>
+                    
+                    <span class="bg-slate-100 px-3 py-2 rounded-lg border border-slate-200 inline-block mb-2 font-black text-slate-800">
+                        「なんだか冷えない…」
+                    </span><br><br>
+                    
+                    そんな時、<br><br>
+                    
+                    すぐに故障だと<br>
+                    決めつける必要はありません。<br><br>
+                    
+                    ちょっとした設定や、<br>
+                    室外機の周辺環境などが原因で<br>
+                    正常に運転できていないこともあります。<br><br>
+                    
+                    また、<br><br>
+                    
+                    エアコンクリーニングで<br>
+                    改善できる症状もあれば、<br><br>
+                    
+                    洗浄では改善できない<br>
+                    故障や冷媒系統の<br>
+                    不具合もあります。<br><br>
+                    
+                    まずは簡単にできることから、<br>
+                    順番に確認してみましょう。
+                </p>
+
+                <!-- まずは設定を確認 -->
+                <div class="mb-16 mt-20">
+                    <div class="flex flex-col items-center justify-center mb-6 text-center">
+                        <span class="w-10 h-[3px] bg-neon mb-4 rounded-full"></span>
+                        <h2 class="text-xl md:text-2xl font-black text-slate-900 tracking-wider leading-relaxed">
+                            まずは設定を確認
+                        </h2>
+                    </div>
+                    <p class="text-[15px] md:text-base font-bold text-slate-800 leading-loose text-center">
+                        最初にリモコンを<br>
+                        確認してみてください。<br><br>
+                        
+                        運転モードは<br>
+                        <span class="font-black text-slate-900 underline decoration-neon decoration-4 underline-offset-4 text-lg">「冷房」</span>になっていますか？<br><br>
+                        
+                        「送風」や「除湿」など、<br>
+                        違う運転モードに<br>
+                        なっていませんか？<br><br>
+                        
+                        設定温度は、<br>
+                        現在の室温より<br>
+                        十分に低くなっていますか？<br><br>
+                        
+                        まずは基本的な設定に<br>
+                        間違いがないことを確認します。
+                    </p>
+                </div>
+
+                <!-- フィルターも確認 -->
+                <div class="mb-16 mt-20">
+                    <div class="flex flex-col items-center justify-center mb-6 text-center">
+                        <span class="w-10 h-[3px] bg-neon mb-4 rounded-full"></span>
+                        <h2 class="text-xl md:text-2xl font-black text-slate-900 tracking-wider leading-relaxed">
+                            フィルターも確認
+                        </h2>
+                    </div>
+                    <p class="text-[15px] md:text-base font-bold text-slate-800 leading-loose text-center">
+                        次に、<br><br>
+                        
+                        エアコンのフィルターを<br>
+                        確認してみましょう。<br><br>
+                        
+                        ホコリが大量に付着して、<br>
+                        フィルターが<br>
+                        目詰まりしていませんか？<br><br>
+                        
+                        エアコンは室内の空気を吸い込み、<br>
+                        熱交換器を通して<br>
+                        再び室内へ送り出しています。<br><br>
+                        
+                        フィルターが<br>
+                        ホコリで塞がれてしまえば、<br><br>
+                        
+                        吸い込める空気の量が減り、<br>
+                        吹き出す風量にも<br>
+                        影響することがあります。<br><br>
+                        
+                        目立ったホコリがある場合は、<br>
+                        まずフィルターを掃除してから<br>
+                        もう一度確認してみましょう。
+                    </p>
+                    
+                    <!-- 関連記事ブロック -->
+                    <div class="bg-slate-50 border border-slate-200 rounded-[16px] p-5 mt-10 max-w-sm mx-auto text-left">
+                        <div class="text-[11px] font-black text-slate-500 mb-4 tracking-widest text-center">▼ 関連記事 ▼</div>
+                        <a href="/tips/filter" class="block bg-white p-4 rounded-xl border border-slate-200 shadow-sm hover:border-slate-400 transition-colors">
+                            <p class="text-sm font-black text-slate-800 leading-snug">フィルター掃除の<br>正しい方法</p>
+                            <p class="text-xs text-blue-600 mt-2 font-bold text-right">→ 記事を読む</p>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 一度リセットしてみましょう -->
+                <div class="mb-16 relative mt-20 text-center">
+                    <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-slate-800 text-neon font-black text-sm px-5 py-1.5 rounded-full shadow-md whitespace-nowrap">
+                        設定やフィルターがOKなら
+                    </div>
+                    <h2 class="text-xl md:text-2xl font-black text-slate-900 mb-8 pt-8 leading-relaxed">
+                        一度リセット<br>してみましょう
+                    </h2>
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
+                        設定にも問題がない。<br><br>
+                        
+                        フィルターも<br>
+                        極端に汚れていない。<br><br>
+                        
+                        それでも正常に動かない場合は、<br><br>
+                        
+                        <span class="text-base font-black text-slate-900 bg-neon px-2">一度エアコンを</span><br>
+                        <span class="text-base font-black text-slate-900 bg-neon px-2">リセットしてみましょう。</span><br><br>
+                        
+                        まず運転を停止します。<br><br>
+                        
+                        ルーバーが完全に閉じ、<br>
+                        エアコンの動作が<br>
+                        終了したことを確認してください。<br><br>
+                        
+                        その後、<br><br>
+                        
+                        コンセントを抜く、<br><br>
+                        
+                        または、<br><br>
+                        
+                        エアコン専用の<br>
+                        ブレーカーを落とします。<br><br>
+                        
+                        通電を遮断した状態で<br>
+                        1〜2分程度待ってから、<br><br>
+                        
+                        コンセント、<br>
+                        またはブレーカーを戻します。<br><br>
+                        
+                        一時的な制御や<br>
+                        通信の不具合などであれば、<br><br>
+                        
+                        これだけで正常な状態に<br>
+                        復帰する場合もあります。
+                    </p>
+                </div>
+
+                <!-- 冷房MAXで動作確認 -->
+                <div class="mb-16 mt-20">
+                    <div class="flex flex-col items-center justify-center mb-6 text-center">
+                        <span class="w-10 h-[3px] bg-slate-800 mb-4 rounded-full"></span>
+                        <h2 class="text-xl md:text-2xl font-black text-slate-900 leading-relaxed">
+                            冷房MAXで<br>動作確認
+                        </h2>
+                    </div>
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose text-center">
+                        電源を戻したら、<br>
+                        実際に動作確認をしてみましょう。<br><br>
+                        
+                        運転モードを<br>
+                        <span class="font-black text-slate-900 text-lg">「冷房」</span><br><br>
+                        
+                        風量を<br>
+                        <span class="font-black text-slate-900 text-lg">「最大」</span><br><br>
+                        
+                        設定温度を<br>
+                        <span class="font-black text-slate-900 text-lg">「最低」</span><br><br>
+                        
+                        に設定します。<br><br>
+                        
+                        その状態で、<br><br>
+                        
+                        <span class="text-base font-black text-blue-600 underline decoration-blue-200 decoration-4 underline-offset-4">5〜10分程度</span><br>
+                        <span class="text-base font-black text-blue-600 underline decoration-blue-200 decoration-4 underline-offset-4">運転してみてください。</span><br><br>
+                        
+                        機種や運転状況などによっては、<br><br>
+                        
+                        運転を開始しても<br>
+                        すぐに室外機が<br>
+                        動き出さない場合があります。<br><br>
+                        
+                        室外機が立ち上がるまで、<br>
+                        少し時間を要することもあるため、<br><br>
+                        
+                        数分動かなかっただけで<br>
+                        故障と判断せず、<br><br>
+                        
+                        まずは10分程度<br>
+                        様子を見てみましょう。<br><br>
+                        
+                        ただし、<br><br>
+                        
+                        毎回のように<br>
+                        室外機が動き出すまで<br>
+                        長い時間がかかる場合などは、<br><br>
+                        
+                        <span class="text-red-600 font-black">何らかの不具合の前兆である</span><br>
+                        <span class="text-red-600 font-black">可能性も考えられます。</span>
+                    </p>
+                </div>
+
+                <!-- 10分動かしたら確認 -->
+                <div class="bg-blue-50/50 rounded-[20px] border border-blue-100 p-6 md:p-8 mt-16 mb-4 text-center">
+                    <h2 class="text-xl md:text-2xl font-black text-slate-900 mb-6">
+                        10分動かしたら<br>確認
+                    </h2>
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose mb-8">
+                        ここから、<br><br>
+                        症状を大きく<br>
+                        2つに分けてみましょう。
+                    </p>
+                    
+                    <div class="space-y-4 max-w-xs mx-auto">
+                        <div class="bg-white border-2 border-slate-900 rounded-xl p-4 shadow-sm">
+                            <span class="text-neon bg-slate-900 px-3 py-1 text-xs font-black rounded-full inline-block mb-2">症状 ①</span>
+                            <h3 class="text-lg font-black text-slate-900 leading-snug">
+                                冷たい風が出てこない
+                            </h3>
+                        </div>
+                        <div class="bg-white border-2 border-slate-900 rounded-xl p-4 shadow-sm">
+                            <span class="text-neon bg-slate-900 px-3 py-1 text-xs font-black rounded-full inline-block mb-2">症状 ②</span>
+                            <h3 class="text-lg font-black text-slate-900 leading-snug">
+                                冷たい風は出るけど<br>風量が弱い
+                            </h3>
+                        </div>
+                    </div>
+                    
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose mt-8">
+                        どちらでしょうか？<br><br>
+                        症状によって、<br><br>
+                        相談した方がよい業者も<br>
+                        変わってきます。
+                    </p>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- =========================================
+             カード２：症状①について
+        ========================================== -->
+        <div class="bg-white rounded-[24px] border-2 border-slate-900 overflow-hidden shadow-sm mb-10">
+            <div class="h-3 w-full bg-slate-800"></div>
+            
+            <div class="p-6 md:p-8 text-center">
+                
+                <h2 class="text-[22px] md:text-[28px] font-black text-slate-900 mb-8 mt-4 leading-relaxed tracking-wide">
+                    ① 冷たい風が<br>出てこない場合
+                </h2>
+
+                <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose mb-16">
+                    冷房・風量最大・最低温度で<br>
+                    10分程度運転しても、<br><br>
+                    
+                    室内機から<br>
+                    冷たい風が出てこない。<br><br>
+                    
+                    この場合は、<br><br>
+                    
+                    エアコンを運転したまま<br>
+                    室外機を確認してみましょう。
+                </p>
+
+                <!-- 室外機は動いていますか？ -->
+                <h3 class="text-lg md:text-xl font-black text-slate-900 mb-6 border-b-2 border-slate-200 pb-3 inline-block leading-relaxed">
+                    室外機は動いていますか？
+                </h3>
+                <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose mb-8">
+                    室外機の正面にある<br>
+                    プロペラを確認します。<br><br>
+                    
+                    正常に回っていますか？<br><br>
+                    
+                    <span class="text-[13px] md:text-sm text-red-600">※回転中のプロペラや<br>室外機内部には<br>絶対に手を入れないでください。</span>
+                </p>
+
+                <!-- 室外機が動いている場合 -->
+                <div class="bg-slate-50 border border-slate-200 rounded-[16px] px-4 md:px-6 py-8 mt-12 mb-12">
+                    <h3 class="text-lg md:text-xl font-black text-slate-900 mb-6 leading-relaxed">
+                        室外機が<br><span class="text-blue-600">動いている</span>場合
+                    </h3>
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
+                        室外機のプロペラは<br>
+                        回っている。<br><br>
+                        
+                        それなのに、<br><br>
+                        
+                        室内機から出る風が<br>
+                        常温に近い。<br><br>
+                        
+                        さらに、<br><br>
+                        
+                        室外機から排出される風も<br>
+                        常温に近い。<br><br>
+                        
+                        このような場合は、<br><br>
+                        
+                        <span class="text-base font-black text-red-600">冷媒ガスの不足や漏れなど、</span><br>
+                        <span class="text-base font-black text-red-600">冷媒系統の不具合を含めた</span><br>
+                        <span class="text-base font-black text-red-600">機械的な原因が疑われます。</span><br><br>
+                        
+                        そして、<br><br>
+                        
+                        ここで知っておいて<br>
+                        いただきたいことがあります。<br><br>
+                        
+                        <span class="inline-block bg-slate-900 text-neon px-3 py-2 rounded-lg font-black text-[15px] mb-2 mt-2">
+                            エアコンクリーニングでは<br>
+                            温度を変えることはできません。
+                        </span><br><br>
+                        
+                        汚れを除去することで<br>
+                        本来の風量を取り戻すことは<br>
+                        期待できます。<br><br>
+                        
+                        しかし、<br><br>
+                        
+                        冷媒が不足しているエアコンを<br>
+                        洗浄したからといって、<br><br>
+                        
+                        冷媒が元に戻ることはありません。<br><br>
+                        
+                        このような症状の場合は、<br><br>
+                        
+                        <span class="font-black text-slate-900 underline decoration-red-200 decoration-4 underline-offset-4">エアコンクリーニングより先に</span><br>
+                        <span class="font-black text-slate-900 underline decoration-red-200 decoration-4 underline-offset-4">修理業者や販売店などへ</span><br>
+                        <span class="font-black text-slate-900 underline decoration-red-200 decoration-4 underline-offset-4">相談してみましょう。</span><br><br>
+                        
+                        点検や修理、<br>
+                        必要に応じた冷媒系統への<br>
+                        適切な処置を行い、<br><br>
+                        
+                        正常に冷える状態へ<br>
+                        戻ったあとで、<br><br>
+                        
+                        内部の汚れが気になる場合は<br>
+                        エアコンクリーニングを<br>
+                        検討しましょう。
+                    </p>
+                </div>
+
+                <!-- 室外機が動いていない場合 -->
+                <div class="bg-rose-50/50 border border-rose-200 rounded-[16px] px-4 md:px-6 py-8 mt-12 mb-16">
+                    <h3 class="text-lg md:text-xl font-black text-slate-900 mb-6 leading-relaxed">
+                        室外機が<br><span class="text-rose-600">動いていない</span>場合
+                    </h3>
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
+                        冷房を最大能力で<br>
+                        運転しているのに、<br><br>
+                        
+                        10分程度経過しても<br>
+                        室外機のプロペラが<br>
+                        まったく動かない。<br><br>
+                        
+                        この場合、<br><br>
+                        
+                        <span class="text-base font-black text-slate-900 bg-rose-200 px-2">室外機の故障や</span><br>
+                        <span class="text-base font-black text-slate-900 bg-rose-200 px-2">室内機との通信不具合など、</span><br><br>
+                        
+                        機械側に原因がある<br>
+                        可能性があります。<br><br>
+                        
+                        室外機が正常に動かなければ、<br><br>
+                        
+                        室内機側も<br>
+                        ファンがわずかに<br>
+                        回っているだけなど、<br><br>
+                        
+                        正常な冷房運転が<br>
+                        できない場合があります。<br><br>
+                        
+                        ただし、<br><br>
+                        
+                        修理を依頼する前に<br>
+                        もう一つ確認してみましょう。
+                    </p>
+                </div>
+
+                <!-- 室外機の周りを確認 -->
+                <div class="flex flex-col items-center justify-center mb-6 text-center mt-20">
+                    <span class="w-10 h-[3px] bg-slate-800 mb-4 rounded-full"></span>
+                    <h2 class="text-xl md:text-2xl font-black text-slate-900 tracking-wider leading-relaxed">
+                        室外機の周りを確認
+                    </h2>
+                </div>
+
+                <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose mb-10">
+                    室外機の前や後ろに、<br><br>
+                    
+                    荷物や植木鉢、<br>
+                    収納ボックスなどを<br>
+                    置いていませんか？<br><br>
+                    
+                    室外機カバーなどで<br>
+                    周囲を囲っていませんか？<br><br>
+                    
+                    室外機は、<br><br>
+                    
+                    室内から運んできた熱を<br>
+                    屋外へ捨てる役割をしています。<br><br>
+                    
+                    吸込みや吹出しを<br>
+                    物で塞いでしまうと、<br><br>
+                    
+                    排出した熱い空気を<br>
+                    再び吸い込んでしまう<br><br>
+                    
+                    <span class="font-black text-slate-900 text-lg border-b-2 border-red-500 pb-1">ショートサーキット</span><br><br>
+                    
+                    と呼ばれる状態に<br>
+                    なることがあります。<br><br>
+                    
+                    正常に放熱できない状態では、<br>
+                    エアコン本来の能力を<br>
+                    発揮できません。<br><br>
+                    
+                    室外機の周辺に<br>
+                    排熱を妨げている物があれば、<br><br>
+                    
+                    <span class="text-base font-black text-slate-900 bg-neon px-2">まずは安全な範囲で</span><br>
+                    <span class="text-base font-black text-slate-900 bg-neon px-2">退かしてみましょう。</span><br><br>
+                    
+                    周囲の環境を改善するだけで<br>
+                    正常な運転に戻ることもあります。<br><br>
+                    
+                    それでも、<br><br>
+                    
+                    吸込みや吹出しを<br>
+                    妨げる物がないのに、<br><br>
+                    
+                    室外機が<br>
+                    正常に動かない場合は、<br><br>
+                    
+                    修理業者や販売店へ<br>
+                    相談することをおすすめします。
+                </p>
+                
+                <!-- 関連記事ブロック -->
+                <div class="bg-slate-50 border border-slate-200 rounded-[16px] p-5 mt-10 max-w-sm mx-auto text-left">
+                    <div class="text-[11px] font-black text-slate-500 mb-4 tracking-widest text-center">▼ 関連記事 ▼</div>
+                    <a href="/tips/cover2" class="block bg-white p-4 rounded-xl border border-slate-200 shadow-sm mb-3 hover:border-slate-400 transition-colors">
+                        <p class="text-sm font-black text-slate-800 leading-snug">室外機の周り、<br>囲っていませんか？</p>
+                        <p class="text-xs text-blue-600 mt-2 font-bold text-right">→ 記事を読む</p>
+                    </a>
+                    <a href="/tips/cover" class="block bg-white p-4 rounded-xl border border-slate-200 shadow-sm hover:border-slate-400 transition-colors">
+                        <p class="text-sm font-black text-slate-800 leading-snug">室外機カバーって<br>本当に必要？</p>
+                        <p class="text-xs text-blue-600 mt-2 font-bold text-right">→ 記事を読む</p>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- =========================================
+             カード３：症状②について・相談先
+        ========================================== -->
+        <div class="bg-white rounded-[24px] border-2 border-slate-900 overflow-hidden shadow-sm mb-10">
+            <div class="h-3 w-full bg-blue-500"></div>
+            
+            <div class="p-6 md:p-8 text-center">
+                
+                <h2 class="text-[22px] md:text-[28px] font-black text-slate-900 mb-8 mt-4 leading-relaxed tracking-wide">
+                    ② 冷気は出るけど<br>風が弱い場合
+                </h2>
+
+                <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose mb-16">
+                    室外機は動いている。<br><br>
+                    
+                    室内機からも<br>
+                    ちゃんと冷たい風が出ている。<br><br>
+                    
+                    でも、<br><br>
+                    
+                    <span class="font-black text-slate-900 underline decoration-blue-200 decoration-4 underline-offset-4">明らかに風量が弱い。</span><br><br>
+                    
+                    この場合は、<br><br>
+                    
+                    エアコン内部の汚れによる<br>
+                    目詰まりの可能性が<br>
+                    高くなってきます。<br><br>
+                    
+                    エアコンは、<br><br>
+                    
+                    空気を吸い込まなければ<br>
+                    空気を吐き出すこともできません。<br><br>
+                    
+                    フィルターだけでなく、<br><br>
+                    
+                    その奥にある熱交換器や<br>
+                    送風ファンなどに<br>
+                    汚れが蓄積していれば、<br><br>
+                    
+                    空気の通り道を<br>
+                    狭くしてしまうことがあります。<br><br>
+                    
+                    吸い込める空気が減れば、<br><br>
+                    
+                    吹き出す空気の量も<br>
+                    当然少なくなります。<br><br>
+                    
+                    もちろん、<br><br>
+                    
+                    風量が弱い原因のすべてが<br>
+                    汚れとは限りません。<br><br>
+                    
+                    機械的な不具合によって<br>
+                    風量が低下している<br>
+                    可能性もあります。<br><br>
+                    
+                    しかし、<br><br>
+                    
+                    <span class="text-base font-black text-slate-900 bg-blue-100 px-2">冷気は出ているのに</span><br>
+                    <span class="text-base font-black text-slate-900 bg-blue-100 px-2">風量だけが弱い。</span><br><br>
+                    
+                    そんな場合は、<br><br>
+                    
+                    修理業者へ相談する前に<br>
+                    エアコンクリーニング業者へ<br>
+                    相談してみてもよいでしょう。<br><br>
+                    
+                    修理業者へ相談しても、<br><br>
+                    
+                    「内部の汚れが原因ですね」<br><br>
+                    
+                    「一度洗浄してみてください」<br><br>
+                    
+                    と案内されるケースもあります。
+                </p>
+
+                <!-- 洗浄を頼む時に伝えてほしいこと -->
+                <div class="flex flex-col items-center justify-center mb-6 text-center mt-20">
+                    <span class="w-10 h-[3px] bg-blue-500 mb-4 rounded-full"></span>
+                    <h2 class="text-xl md:text-2xl font-black text-slate-900 tracking-wider leading-relaxed">
+                        洗浄を頼む時に<br>伝えてほしいこと
+                    </h2>
+                </div>
+
+                <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose mb-10">
+                    エアコンクリーニングを<br>
+                    依頼する場合は、<br><br>
+                    
+                    ただ、<br><br>
+                    
+                    「エアコンを洗ってください」<br><br>
+                    
+                    と伝えるだけではなく、<br><br>
+                    
+                    <span class="inline-block bg-slate-900 text-neon px-4 py-3 rounded-lg font-black text-[15px] mb-2 mt-2 leading-relaxed">
+                        「冷気は出るけど<br>
+                        風量が弱くて困っています」
+                    </span><br><br>
+                    
+                    と、<br><br>
+                    
+                    現在の症状も<br>
+                    洗浄業者へ伝えてください。<br><br>
+                    
+                    汚れが原因なのか？<br><br>
+                    
+                    それとも、<br><br>
+                    
+                    別の原因が<br>
+                    考えられるのか？<br><br>
+                    
+                    洗浄前の動作確認も含めて<br>
+                    プロの目で確認してもらい、<br><br>
+                    
+                    症状に合った<br>
+                    対処方法を聞いてみましょう。<br><br>
+                    
+                    正しく洗浄を行い、<br><br>
+                    
+                    風量低下の原因が<br>
+                    内部の汚れであれば、<br><br>
+                    
+                    洗浄によって<br>
+                    風量が改善することも<br>
+                    多くあります。
+                </p>
+
+                <!-- 関連記事ブロック -->
+                <div class="bg-slate-50 border border-slate-200 rounded-[16px] p-5 mt-10 max-w-sm mx-auto mb-16 text-left">
+                    <div class="text-[11px] font-black text-slate-500 mb-4 tracking-widest text-center">▼ 関連記事 ▼</div>
+                    
+                    <a href="/tips/clean" class="block bg-white p-4 rounded-xl border border-slate-200 shadow-sm hover:border-slate-400 transition-colors">
+                        <p class="text-sm font-black text-slate-800 leading-snug">エアコンクリーニングって<br>本当に必要？</p>
+                        <p class="text-xs text-blue-600 mt-2 font-bold text-right">→ 記事を読む</p>
+                    </a>
+                </div>
+
+                <!-- 症状によって相談先は違います -->
+                <div class="flex flex-col items-center justify-center mb-8 text-center mt-20">
+                    <span class="w-10 h-[3px] bg-slate-800 mb-4 rounded-full"></span>
+                    <h2 class="text-xl md:text-2xl font-black text-slate-900 tracking-wider leading-relaxed">
+                        症状によって<br>
+                        相談先は違います
+                    </h2>
+                </div>
+
+                <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose mb-10">
+                    「エアコンが冷えない」<br><br>
+                    
+                    という症状だけで、<br><br>
+                    
+                    すべての原因を<br>
+                    判断することはできません。
+                </p>
+
+                <div class="space-y-6 max-w-sm mx-auto mb-12 text-left">
+                    <div class="bg-slate-50 border border-slate-200 p-5 rounded-xl">
+                        <h3 class="font-black text-slate-900 text-lg border-b border-slate-200 pb-2 mb-3 text-center">冷たい風が出ない</h3>
+                        <p class="text-sm font-bold text-slate-700 leading-relaxed text-center">冷媒系統や<br>機械的な不具合などを疑い、<br><span class="text-rose-600 font-black text-base inline-block mt-1">修理業者・販売店へ。</span></p>
+                    </div>
+                    
+                    <div class="bg-slate-50 border border-slate-200 p-5 rounded-xl">
+                        <h3 class="font-black text-slate-900 text-lg border-b border-slate-200 pb-2 mb-3 text-center">室外機が動かない</h3>
+                        <p class="text-sm font-bold text-slate-700 leading-relaxed text-center">周辺環境を確認しても<br>改善しなければ、<br><span class="text-rose-600 font-black text-base inline-block mt-1">修理業者・販売店へ。</span></p>
+                    </div>
+                    
+                    <div class="bg-slate-50 border border-slate-200 p-5 rounded-xl">
+                        <h3 class="font-black text-slate-900 text-lg border-b border-slate-200 pb-2 mb-3 text-center">冷気は出るけど<br>風量が弱い</h3>
+                        <p class="text-sm font-bold text-slate-700 leading-relaxed text-center">内部の汚れによる<br>目詰まりを疑い、<br><span class="text-blue-600 font-black text-base inline-block mt-1">エアコンクリーニング業者へ。</span></p>
+                    </div>
+                </div>
+
+                <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
+                    そして、<br><br>
+                    
+                    使用年数が長く、<br><br>
+                    
+                    修理部品がない。<br><br>
+                    
+                    修理費用が高額になる。<br><br>
+                    
+                    今後も別の箇所が<br>
+                    故障する可能性がある。<br><br>
+                    
+                    そんな場合には、<br><br>
+                    
+                    修理を続けるのか、<br>
+                    新しいエアコンへ買い替えるのか、<br><br>
+                    
+                    <span class="text-base font-black text-slate-900 underline decoration-slate-300 decoration-4 underline-offset-4">販売店へ相談する</span><br><br>
+                    
+                    という選択肢もあります。<br><br>
+                    
+                    大切なのは、<br><br>
+                    
+                    原因に合っていない業者へ<br>
+                    とりあえず依頼するのではなく、<br><br>
+                    
+                    現在の症状を確認して、<br><br>
+                    
+                    <span class="text-base font-black text-slate-900 bg-neon px-2">適切な相談先を</span><br>
+                    <span class="text-base font-black text-slate-900 bg-neon px-2">選ぶことだと思います。</span>
+                </p>
+
+            </div>
+        </div>
+
+        <!-- =========================================
+             カード４：暖房を使わない方へ〜早期発見
+             （グレー＆ネイビー基調に変更済み）
+        ========================================== -->
+        <div class="bg-white rounded-[24px] border-2 border-slate-900 p-6 md:p-8 mb-10 text-center shadow-sm relative overflow-hidden">
+            <!-- 上部のアクセントライン -->
+            <div class="absolute top-0 left-0 w-full h-3 bg-slate-800"></div>
+            
+            <h2 class="text-[22px] md:text-[28px] font-black text-slate-900 mb-10 mt-8 leading-relaxed tracking-wide">
+                暖房を使わない方へ
+            </h2>
+            <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose mb-16">
+                ここからは、<br><br>
+                
+                エアコンを冷房でしか<br>
+                使用しない方に、<br><br>
+                
+                ぜひ知っておいて<br>
+                いただきたいことです。<br><br>
+                
+                夏が終わって<br>
+                冷房を使わなくなり、<br><br>
+                
+                冬は別の暖房器具を使う。<br><br>
+                
+                そして、<br><br>
+                
+                次にエアコンを動かすのは<br>
+                翌年の夏。<br><br>
+                
+                この使い方では、<br><br>
+                
+                半年以上エアコンを<br>
+                動かさないこともあります。<br><br>
+                
+                長期間使用しない場合に、<br><br>
+                
+                落雷などによる<br>
+                電気的なトラブルから<br>
+                機械を守る目的で、<br><br>
+                
+                コンセントを抜いておくこと自体が<br>
+                悪いわけではありません。<br><br>
+                
+                ただ、<br><br>
+                
+                <span class="font-black text-slate-900 underline decoration-slate-300 decoration-4 underline-offset-4">何ヶ月もまったく</span><br>
+                <span class="font-black text-slate-900 underline decoration-slate-300 decoration-4 underline-offset-4">動作確認をしないまま、</span><br><br>
+                
+                <span class="font-black text-slate-900 underline decoration-slate-300 decoration-4 underline-offset-4">次に電源を入れるのが</span><br>
+                <span class="font-black text-slate-900 underline decoration-slate-300 decoration-4 underline-offset-4">真夏の暑い日。</span><br><br>
+                
+                これはできれば<br>
+                避けたいところです。
+            </p>
+
+            <div class="flex flex-col items-center justify-center mb-6 text-center mt-20">
+                <span class="w-10 h-[3px] bg-slate-800 mb-4 rounded-full"></span>
+                <h2 class="text-xl md:text-2xl font-black text-slate-900 tracking-wider leading-relaxed">
+                    月に一度、<br>
+                    動かしてみませんか？
+                </h2>
+            </div>
+            
+            <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose mb-16">
+                エアコンに限らず、<br><br>
+                
+                機械は長期間放置せず、<br>
+                定期的に状態を<br>
+                確認しておくことも大切です。<br><br>
+                
+                そこでONE★STARでは、<br><br>
+                
+                エアコンを普段使わない時期にも、<br><br>
+                
+                <span class="inline-block bg-slate-900 text-neon px-4 py-2 rounded-lg font-black text-lg mb-2 mt-2">
+                    月に一度程度の<br>
+                    動作確認
+                </span><br><br>
+                
+                をおすすめします。<br><br>
+                
+                難しく考える必要はありません。<br><br>
+                
+                暑い季節なら、<br><br>
+                
+                <span class="font-black text-slate-900 text-lg">冷房・最低温度・風量最大。</span><br><br>
+                
+                寒い季節なら、<br><br>
+                
+                <span class="font-black text-slate-900 text-lg">暖房・最高温度・風量最大。</span><br><br>
+                
+                10分程度でも構いません。<br><br>
+                
+                実際に運転して、<br><br>
+                
+                正常に風が出ているか？<br><br>
+                
+                冷房なら<br>
+                冷たい風が出ているか？<br><br>
+                
+                暖房なら<br>
+                暖かい風が出ているか？<br><br>
+                
+                室外機は<br>
+                正常に動いているか？<br><br>
+                
+                以前より<br>
+                風量が弱くなっていないか？<br><br>
+                
+                変な音はしないか？<br><br>
+                
+                嫌なニオイはしないか？<br><br>
+                
+                エラー表示は出ていないか？<br><br>
+                
+                そんな簡単な確認を<br>
+                してみてください。
+            </p>
+
+            <div class="flex flex-col items-center justify-center mb-6 text-center mt-20">
+                <span class="w-10 h-[3px] bg-slate-800 mb-4 rounded-full"></span>
+                <h2 class="text-xl md:text-2xl font-black text-slate-900 tracking-wider leading-relaxed">
+                    「試運転の日」を<br>決める
+                </h2>
+            </div>
+            
+            <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose mb-16">
+                毎月忘れずに<br>
+                動作確認をするために、<br><br>
+                
+                ご自身で、<br><br>
+                
+                <span class="font-black text-slate-900 underline decoration-slate-300 decoration-4 underline-offset-4">「エアコン試運転の日」</span><br><br>
+                
+                を決めてしまうのも<br>
+                おすすめです。<br><br>
+                
+                毎月1日でも。<br><br>
+                
+                毎月20日でも。<br><br>
+                
+                毎月末でも。<br><br>
+                
+                日にちそのものに<br>
+                正解があるわけではありません。<br><br>
+                
+                大切なのは、<br><br>
+                
+                <span class="text-base font-black text-slate-900 bg-slate-100 px-2 border border-slate-200 rounded-md">「毎月この日に確認する」</span><br><br>
+                
+                という自分なりのルールを<br>
+                作ってしまうことです。<br><br>
+                
+                月に一度確認していれば、<br><br>
+                
+                「先月より風が弱い？」<br><br>
+                
+                「少しニオイがする？」<br><br>
+                
+                「変な音がする？」<br><br>
+                
+                「冷えるまで時間がかかる？」<br><br>
+                
+                そんな小さな変化にも<br>
+                気付きやすくなります。
+            </p>
+
+            <!-- 早期発見からの早期対策 -->
+            <div class="bg-slate-50 border-2 border-slate-200 rounded-[16px] px-4 md:px-6 py-10 mt-12 mb-4 text-center">
+                <h2 class="text-[20px] md:text-[24px] font-black text-slate-900 mb-8 leading-relaxed">
+                    早期発見からの<br>
+                    早期対策
+                </h2>
+                
+                <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
+                    真夏の暑い日に<br>
+                    初めてエアコンを動かして、<br><br>
+                    
+                    そこで、<br><br>
+                    
+                    「冷えない！」<br><br>
+                    
+                    と気付いてしまうと、<br><br>
+                    
+                    修理業者や販売店も<br>
+                    すでに混み合っている<br>
+                    可能性があります。<br><br>
+                    
+                    しかし、<br><br>
+                    
+                    まだエアコンを<br>
+                    必要としない時期に<br>
+                    不具合を発見できれば、<br><br>
+                    
+                    修理するのか？<br><br>
+                    
+                    買い替えるのか？<br><br>
+                    
+                    時間に余裕を持って<br>
+                    検討することができます。<br><br>
+                    
+                    汚れによる<br>
+                    風量低下であれば、<br><br>
+                    
+                    本格的な暑さが来る前に<br>
+                    エアコンクリーニングを<br>
+                    済ませることもできます。<br><br>
+                    
+                    故障してからではなく、<br><br>
+                    
+                    違和感の段階で気付く。<br><br>
+                    
+                    そのためにも、<br><br>
+                    
+                    月に一度の動作確認を<br>
+                    習慣にしてみてください。<br><br>
+                    
+                    <span class="inline-block bg-slate-900 text-neon px-5 py-3 rounded-xl font-black text-[17px] mb-6 mt-4 leading-relaxed shadow-sm">
+                        早期発見からの<br>
+                        早期対策。
+                    </span><br><br>
+                    
+                    暑くなってから<br>
+                    慌てるのではなく、<br><br>
+                    
+                    エアコンが必要になる前から<br>
+                    状態を知っておくことが大切です。
+                </p>
+            </div>
+        </div>
+
+        <!-- =========================================
+             ネイビーのカード (ONE★STARが大切にしていること)
+        ========================================== -->
+        <div class="bg-slate-900 rounded-[24px] border-l-[12px] border-neon p-8 md:p-10 text-center shadow-md mb-10">
+            
+            <h2 class="text-white font-black text-xl md:text-2xl leading-relaxed mb-10 tracking-wider">
+                ONE★STARが<br>
+                大切にしていること
+            </h2>
+
+            <p class="text-slate-100 font-bold text-[15px] md:text-base leading-loose mb-10">
+                エアコンの不調があるからといって、<br><br>
+                
+                すべてを<br>
+                エアコンクリーニングで<br>
+                解決できるわけではありません。<br><br>
+                
+                汚れが原因なら、<br><br>
+                
+                正しく洗浄することで<br>
+                改善できる可能性があります。<br><br>
+                
+                しかし、<br><br>
+                
+                冷媒系統の不具合や<br>
+                機械そのものの故障は、<br><br>
+                
+                <span class="text-neon font-black text-base">エアコンクリーニングでは</span><br>
+                <span class="text-neon font-black text-base">直すことができません。</span>
+            </p>
+
+            <!-- 区切り線 -->
+            <div class="w-16 h-[1px] bg-slate-600 mx-auto mb-10"></div>
+
+            <p class="text-slate-100 font-bold text-[15px] md:text-base leading-loose">
+                洗って直るもの。<br><br>
+                
+                修理が必要なもの。<br><br>
+                
+                買い替えを<br>
+                検討した方がよいもの。<br><br>
+                
+                症状を確認しながら、<br><br>
+                
+                <span class="text-white font-black text-base underline decoration-neon decoration-4 underline-offset-4">そのエアコンに必要な方法を</span><br>
+                <span class="text-white font-black text-base underline decoration-neon decoration-4 underline-offset-4">考えることを大切にしています。</span><br><br>
+                
+                「せっかく頼んだから<br>
+                とりあえず洗う」<br><br>
+                
+                ではなく、<br><br>
+                
+                洗浄する意味があるのか？<br><br>
+                
+                別の業者へ<br>
+                相談した方がよいのか？<br><br>
+                
+                現場で確認できる範囲で<br>
+                正直にお伝えします。
+            </p>
+        </div>
+
+        <!-- =========================================
+             ご相談誘導ブロック（最適化済み）
+        ========================================== -->
+        <div class="bg-white rounded-2xl border border-slate-200 p-8 text-center shadow-sm mb-12">
+            <h2 class="text-xl md:text-2xl font-black text-slate-900 mb-8 leading-relaxed">
+                エアコンクリーニングの<br>
+                ご依頼について
+            </h2>
+            
+            <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose mb-10">
+                <span class="text-slate-900 font-black">「冷たい風は出るけど<br>風量が弱い」</span><br><br>
+                
+                <span class="text-slate-900 font-black">「内部の汚れが<br>原因かもしれない」</span><br><br>
+                
+                <span class="text-slate-900 font-black">「試運転をしたら<br>ニオイが気になった」</span><br><br>
+                
+                ご自身で症状を確認したうえで、<br><br>
+                
+                エアコンクリーニングを<br>
+                依頼したいという方は、<br><br>
+                
+                ぜひ、現在の症状も一緒に<br>
+                お伝えください。<br><br>
+                
+                私たちは、<br>
+                ただ洗浄するだけではありません。<br><br>
+                
+                作業前の状態もしっかり確認しながら<br>
+                目の前のエアコンと向き合います。<br><br>
+                
+                まずはお気軽にご相談ください。
+            </p>
+            
+            <a href="tel:08000807788" class="js-phone-modal-trigger inline-flex items-center justify-center bg-slate-900 hover:bg-slate-800 text-neon px-8 py-4 rounded-full text-base font-black shadow-md transition-all active:scale-95">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                <span>電話で相談する</span>
+            </a>
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-900 text-white pt-12 pb-24 md:pb-12 border-t-[6px] border-neon text-center mt-12">
+        <div class="mb-6 flex flex-col items-center justify-center">
+            <span class="text-4xl md:text-5xl tracking-widest text-white flex items-center justify-center font-impact mt-1">
+                ONE
+                <img src="ONESTAR.PNG" alt="ロゴ" class="w-[80px] h-[80px] md:w-[100px] md:h-[100px] mx-[-10px] md:mx-[-16px] object-contain -translate-y-2" onerror="this.style.display='none'">
+                STAR
+            </span>
+            <p class="text-xs text-neon font-black mt-2 tracking-widest">株式会社ECS専属プロスタッフ</p>
+        </div>
+        
+        <p class="text-[11px] text-slate-400 font-bold mb-3">
+            <a href="/products" class="hover:text-white transition-colors underline underline-offset-4">オリジナルLINEスタンプ販売中</a>
+        </p>
+        <p class="text-[10px] text-slate-500 font-bold mb-4">
+            <a href="/privacy" class="hover:text-white transition-colors">プライバシーポリシー</a>
+        </p>
+        <p class="text-[10px] text-slate-500 font-bold tracking-wider">© 2026 ONE★STAR. All Rights Reserved.</p>
+    </footer>
+
+    <!-- MOBILE BOTTOM NAVIGATION -->
+    <div class="fixed bottom-0 left-0 right-0 z-45 bg-slate-900 md:hidden h-[60px] flex items-stretch text-white shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.3)] border-t border-slate-800">
+        
+        <a href="/price" class="flex flex-col items-center justify-center w-[20%] border-r border-slate-700 active:bg-slate-800">
+            <svg class="w-5 h-5 mb-1 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <span class="text-[9px] font-black">料金</span>
+        </a>
+        
+        <a href="/mind" class="flex flex-col items-center justify-center w-[20%] border-r border-slate-700 active:bg-slate-800">
+            <svg class="w-5 h-5 mb-1 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+            <span class="text-[9px] font-black">想い</span>
+        </a>
+
+        <a href="/pride" class="flex flex-col items-center justify-center w-[20%] active:bg-slate-800">
+            <svg class="w-5 h-5 mb-1 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+            <span class="text-[9px] font-black">拘り</span>
+        </a>
+        
+        <a href="tel:08000807788" class="js-phone-modal-trigger flex items-center justify-center bg-neon text-slate-900 w-[40%] font-black text-base active:bg-yellow-400 transition-colors">
+            <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+            電話する
+        </a>
+        
+    </div>
+
+    <!-- 🌟 ご予約・お問い合わせ前のワンクッションモーダル 🌟 -->
+    <div id="phone-modal" class="fixed inset-0 z-[100] hidden flex items-center justify-center px-4">
+        <div id="phone-modal-backdrop" class="absolute inset-0 bg-slate-900/80 backdrop-blur-sm opacity-0 transition-opacity duration-300"></div>
+        
+        <div id="phone-modal-content" class="relative bg-white rounded-3xl shadow-2xl w-full max-w-sm overflow-hidden transform scale-95 opacity-0 transition-all duration-300 border border-slate-100">
+            
+            <button id="phone-modal-close" class="absolute top-4 right-4 p-2 text-slate-400 hover:text-slate-700 bg-slate-100 hover:bg-slate-200 rounded-full transition-colors z-10">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+            
+            <div class="p-6 md:p-8 text-center pt-10">
+                
+                <h3 class="text-xl font-black text-slate-900 mb-6 border-b-4 border-[#EFFF00] inline-block pb-1">
+                    ご予約・お問い合わせの前に
+                </h3>
+                
+                <div class="text-[13px] text-slate-700 font-bold leading-relaxed mb-8 space-y-4 text-left bg-slate-50 p-5 rounded-2xl border border-slate-100 shadow-inner">
+                    <p>
+                        <span class="text-slate-900 font-black text-sm">ONE★STAR</span>は<br>
+                        株式会社ECS（エッジクリーンサービス）の専属プロスタッフとして活動しています。
+                    </p>
+                    <p class="pt-2 border-t border-slate-200">
+                        お電話は<br>
+                        <span class="text-slate-900 font-black">株式会社ECSの予約受付</span>につながります。
+                    </p>
+                    
+                    <div class="bg-rose-50 border border-rose-200 p-3 rounded-xl text-center shadow-sm">
+                        <p class="text-rose-600 font-black text-[13px] leading-tight">
+                            ご予約の際は<br>
+                            <span class="text-base">「ONE★STAR（川崎）を指名」</span>と<br>
+                            お伝えください。
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="space-y-3">
+                    <a href="tel:08000807788" class="flex items-center justify-center w-full py-4 bg-slate-900 text-[#EFFF00] font-black rounded-2xl shadow-md active:scale-95 transition-transform text-sm sm:text-base border border-slate-800">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                        株式会社ECSへ電話する
+                    </a>
+                    
+                    <a href="https://www.instagram.com/one.star.kawasaki?igsh=anZpYnpxcDdqOXRh&utm_source=qr" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center w-full py-4 bg-gradient-to-r from-pink-500 to-rose-500 text-white font-black rounded-2xl shadow-md active:scale-95 transition-transform text-sm sm:text-base">
+                        <svg class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                        </svg>
+                        Instagramで本人に相談する
+                    </a>
+                </div>
+                
+                <p class="text-[10px] text-slate-500 mt-4 font-bold leading-relaxed">
+                    直接のご質問・お問い合わせは<br>本人直通のInstagram DMからお気軽にどうぞ。
+                </p>
+                
+                <button id="phone-modal-cancel" class="mt-6 text-[11px] text-slate-400 font-bold underline underline-offset-4 hover:text-slate-600 transition-colors">
+                    キャンセルして戻る
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // === メニュー開閉用 ===
+            const drawerContainer = document.getElementById('drawer-container');
+            const drawerMenu = document.getElementById('drawer-menu');
+            const drawerBackdrop = document.getElementById('drawer-backdrop');
+            
+            const toggleMenu = (show) => {
+                if (show) {
+                    drawerContainer.classList.remove('hidden');
+                    setTimeout(() => {
+                        drawerBackdrop.classList.remove('opacity-0');
+                        drawerBackdrop.classList.add('opacity-100');
+                        drawerMenu.classList.remove('drawer-closed');
+                        drawerMenu.classList.add('drawer-open');
+                    }, 10);
+                } else {
+                    drawerBackdrop.classList.remove('opacity-100');
+                    drawerBackdrop.classList.add('opacity-0');
+                    drawerMenu.classList.remove('drawer-open');
+                    drawerMenu.classList.add('drawer-closed');
+                    setTimeout(() => drawerContainer.classList.add('hidden'), 300);
+                }
+            };
+
+            document.getElementById('menu-open-btn').addEventListener('click', () => toggleMenu(true));
+            document.getElementById('menu-close-btn').addEventListener('click', () => toggleMenu(false));
+            document.getElementById('drawer-backdrop').addEventListener('click', () => toggleMenu(false));
+            document.querySelectorAll('.menu-link').forEach(link => link.addEventListener('click', () => toggleMenu(false)));
+
+            // === 電話モーダル ===
+            const phoneModal = document.getElementById('phone-modal');
+            const phoneModalBackdrop = document.getElementById('phone-modal-backdrop');
+            const phoneModalContent = document.getElementById('phone-modal-content');
+            const phoneModalCloseBtn = document.getElementById('phone-modal-close');
+            const phoneModalCancelBtn = document.getElementById('phone-modal-cancel');
+            const phoneTriggerBtns = document.querySelectorAll('.js-phone-modal-trigger');
+
+            if (phoneModal && phoneTriggerBtns.length > 0) {
+                const openPhoneModal = (e) => {
+                    e.preventDefault(); 
+                    if (typeof toggleMenu === 'function') toggleMenu(false);
+
+                    phoneModal.classList.remove('hidden');
+                    requestAnimationFrame(() => {
+                        phoneModalBackdrop.classList.remove('opacity-0');
+                        phoneModalBackdrop.classList.add('opacity-100');
+                        phoneModalContent.classList.remove('opacity-0', 'scale-95');
+                        phoneModalContent.classList.add('opacity-100', 'scale-100');
+                    });
+                };
+
+                const closePhoneModal = () => {
+                    phoneModalBackdrop.classList.remove('opacity-100');
+                    phoneModalBackdrop.classList.add('opacity-0');
+                    phoneModalContent.classList.remove('opacity-100', 'scale-100');
+                    phoneModalContent.classList.add('opacity-0', 'scale-95');
+                    setTimeout(() => phoneModal.classList.add('hidden'), 300);
+                };
+
+                phoneTriggerBtns.forEach(btn => btn.addEventListener('click', openPhoneModal));
+                phoneModalCloseBtn.addEventListener('click', closePhoneModal);
+                phoneModalCancelBtn.addEventListener('click', closePhoneModal);
+                phoneModalBackdrop.addEventListener('click', closePhoneModal);
+            }
+        });
+    </script>
+</body>
+</html>
