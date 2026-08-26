@@ -1,0 +1,965 @@
+```html
+<!DOCTYPE html>
+<html lang="ja" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>エアコンから黒い粒が！これって何？ | ONE★STAR</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        neon: '#EFFF00' // トレードカラー：蛍光イエロー
+                    },
+                    fontFamily: {
+                        sans: ['"Noto Sans JP"', 'sans-serif'],
+                        impact: ['"Black Ops One"', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        /* ドロワーメニュー用 */
+        #drawer-menu { transition: transform 0.3s ease-in-out; }
+        .drawer-closed { transform: translateX(-100%); }
+        .drawer-open { transform: translateX(0); }
+    </style>
+</head>
+<body class="font-sans text-slate-800 bg-slate-50 antialiased overflow-x-hidden pb-[60px]">
+
+    <!-- HEADER -->
+    <header class="fixed top-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md shadow-sm border-b border-slate-100 h-14 flex items-center justify-between px-4">
+        <button id="menu-open-btn" class="p-2 hover:bg-slate-100 rounded-lg" aria-label="メニュー">
+            <svg class="w-6 h-6 text-slate-800" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+
+        <div class="absolute left-1/2 -translate-x-1/2 flex items-center justify-center mt-1">
+            <a href="/" class="text-2xl md:text-3xl tracking-widest text-slate-900 leading-none flex items-center font-impact">
+                ONE
+                <img src="ONESTAR.PNG" alt="ロゴ" class="w-[45px] h-[45px] md:w-[55px] md:h-[55px] mx-[-4px] md:mx-[-6px] object-contain -translate-y-[4px]" onerror="this.style.display='none'">
+                STAR
+            </a>
+        </div>
+
+        <div class="hidden md:flex items-center space-x-3">
+            <a href="tel:08000807788" class="js-phone-modal-trigger bg-slate-900 hover:bg-slate-800 text-neon px-4 py-1.5 rounded-full text-xs font-black border border-slate-700 flex items-center space-x-1 transition-all">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                <span>電話相談</span>
+            </a>
+        </div>
+        <div class="w-10 md:hidden"></div>
+    </header>
+
+    <!-- DRAWER MENU -->
+    <div id="drawer-container" class="fixed inset-0 z-50 overflow-hidden hidden">
+        <div id="drawer-backdrop" class="absolute inset-0 bg-slate-900/60 opacity-0 transition-opacity duration-300"></div>
+        <div class="pointer-events-none fixed inset-y-0 left-0 flex max-w-full">
+            <div id="drawer-menu" class="pointer-events-auto w-64 drawer-closed bg-white shadow-2xl flex flex-col h-full">
+                
+                <div class="p-3 bg-white flex justify-end">
+                    <button id="menu-close-btn" class="p-2 hover:bg-slate-100 rounded-lg">
+                        <svg class="w-6 h-6 text-slate-500" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+                    </button>
+                </div>
+
+                <div class="bg-blue-600 py-3 px-6">
+                    <h2 class="text-white font-black tracking-wider text-sm">MENU</h2>
+                </div>
+
+                <nav class="flex-1 px-4 py-2 overflow-y-auto">
+                    <div class="space-y-1">
+                        <a href="/" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>トップページ
+                        </a>
+                        <a href="/price" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>料金プラン
+                        </a>
+                        <a href="/works" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>施工事例
+                        </a>
+                        <a href="/mind" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>ONE★STARの想い
+                        </a>
+                        <a href="/pride" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>プロとしての拘り
+                        </a>
+                        <a href="/trash" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>ここだけの話
+                        </a>
+                        <a href="/before" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>ご予約の前に
+                        </a>
+                        <a href="/faq" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>よくある質問
+                        </a>
+                        <a href="/tips" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-blue-600">
+                            <span class="mr-2 text-blue-600">＞</span>お役立ち情報
+                        </a>
+                        <a href="/products" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-[#06C755]">
+                            <span class="mr-2 text-slate-400">＞</span>オリジナルLINEスタンプ
+                        </a>
+                    </div>
+                    
+                    <hr class="border-slate-300 border-dashed my-4">
+                    <a href="https://www.edge-cleanservice.com" target="_blank" rel="noopener noreferrer" class="menu-link flex items-center py-2 text-sm font-black text-slate-900 hover:text-blue-600 transition-colors">
+                        株式会社ECS公式サイト
+                        <svg class="w-3.5 h-3.5 ml-1.5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                    </a>
+                </nav>
+
+                <div class="p-4 bg-slate-50 border-t border-slate-100 text-center mt-auto">
+                    <p class="text-[9px] text-slate-500 font-bold leading-relaxed mb-2">
+                        株式会社ECS EDGE CLEAN SERVICE<br>専属プロスタッフとして<br>愛知県全域で毎日奮闘中❣️
+                    </p>
+                    <a href="tel:08000807788" class="js-phone-modal-trigger block w-full py-3 bg-emerald-500 text-white font-bold rounded-lg text-sm shadow">直接電話する</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN (お役立ち情報：エアコンから黒い粒が！) -->
+    <main class="pt-24 pb-12 px-4 max-w-3xl mx-auto">
+
+        <!-- 白いメインカード -->
+        <div class="bg-white rounded-[24px] border-2 border-slate-900 overflow-hidden shadow-sm mb-10">
+            <!-- 上部の黄色いライン -->
+            <div class="h-3 w-full bg-neon"></div>
+
+            <div class="p-6 md:p-8">
+                
+                <!-- バッジ -->
+                <div class="flex justify-center mb-8 text-center">
+                    <span class="inline-block bg-slate-900 text-neon text-xs md:text-sm font-black px-5 py-2 rounded shadow-sm tracking-wider">
+                        エアコンの異変に気づいたら
+                    </span>
+                </div>
+
+                <!-- タイトル -->
+                <h1 class="text-[26px] md:text-[32px] font-black text-slate-900 mb-12 leading-relaxed tracking-wide text-center">
+                    エアコンから<br>黒い粒が！<br>
+                    <span class="text-xl md:text-2xl mt-4 block">これって何？</span>
+                </h1>
+
+                <!-- リード文 -->
+                <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose text-center mb-10">
+                    エアコンを運転したら、<br><br>
+
+                    吹き出す風と一緒に<br>
+                    黒い粒が飛んできた。<br><br>
+
+                    床や家具の上に、<br><br>
+
+                    黒い小さなものが<br>
+                    落ちている。<br><br>
+
+                    「これってカビ？」<br><br>
+
+                    「エアコンが<br>
+                    壊れてる？」<br><br>
+
+                    気になりますよね。
+                </p>
+
+                <!-- 理由ブロック（結論を先に） -->
+                <div class="bg-slate-50 rounded-[20px] p-6 mb-12 border border-slate-100 text-center">
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
+                        まず、<br><br>
+                        
+                        <span class="text-base font-black text-slate-900 bg-neon px-2">黒い粒のすべてが</span><br>
+                        <span class="text-base font-black text-slate-900 bg-neon px-2">カビとは限りません。</span><br><br>
+                        
+                        エアコンから飛んでくる<br>
+                        黒いものには、<br><br>
+                        
+                        いくつかの原因が<br>
+                        考えられます。<br><br>
+                        
+                        まずは、<br><br>
+                        
+                        何が飛んできているのかを<br>
+                        確認してみましょう。
+                    </p>
+                </div>
+
+                <!-- ＝＝＝ 多いのは内部に溜まった汚れ ＝＝＝ -->
+                <div class="mb-16 mt-16 text-center">
+                    <div class="flex flex-col items-center justify-center mb-6">
+                        <span class="w-10 h-[3px] bg-slate-800 mb-4 rounded-full"></span>
+                        <h2 class="text-xl md:text-2xl font-black text-slate-900 tracking-wider leading-relaxed">
+                            多いのは<br>
+                            内部に溜まった汚れ
+                        </h2>
+                    </div>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-800 leading-loose">
+                        エアコンの内部には、<br><br>
+
+                        ホコリやカビなどの<br>
+                        汚れが蓄積します。<br><br>
+
+                        特に、<br><br>
+
+                        吹出口の奥にある<br>
+                        送風ファンには、<br><br>
+
+                        長期間使用することで<br>
+                        汚れが固着していきます。<br><br>
+
+                        その汚れが、<br><br>
+
+                        何かのきっかけで<br>
+                        ファンから剥がれると、<br><br>
+
+                        回転するファンの風に乗って、<br><br>
+                        
+                        <span class="text-base font-black text-slate-900 underline decoration-neon decoration-4 underline-offset-4">黒い粒となって</span><br>
+                        <span class="text-base font-black text-slate-900 underline decoration-neon decoration-4 underline-offset-4">室内へ飛び出すことがあります。</span><br><br>
+
+                        黒い粒が出ている場合は、<br><br>
+
+                        吹出口から<br>
+                        内部を覗いてみてください。<br><br>
+
+                        送風ファンに、<br><br>
+
+                        黒い汚れが<br>
+                        びっしり付着していませんか？<br><br>
+
+                        黒い粒だけを拾っても、<br><br>
+
+                        内部に原因が残っていれば<br>
+                        根本的な解決にはなりません。
+                    </p>
+                </div>
+
+                <!-- ＝＝＝ 最近、自分でファンを掃除しませんでしたか？ ＝＝＝ -->
+                <div class="mb-16 mt-20 text-center">
+                    <div class="flex flex-col items-center justify-center mb-6">
+                        <span class="w-10 h-[3px] bg-slate-800 mb-4 rounded-full"></span>
+                        <h2 class="text-xl md:text-2xl font-black text-slate-900 tracking-wider leading-relaxed">
+                            最近、自分でファンを<br>
+                            掃除しませんでしたか？
+                        </h2>
+                    </div>
+                    
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
+                        「汚れていたから、<br>
+                        自分で掃除した。」<br><br>
+
+                        その直後から、<br><br>
+
+                        黒い粒が飛ぶようになった。<br><br>
+
+                        そんな場合もあります。<br><br>
+
+                        例えば、<br><br>
+
+                        吹出口の奥にある<br>
+                        送風ファンの隙間へ、<br><br>
+
+                        割り箸に<br>
+                        ウェットティッシュを巻いて、<br><br>
+
+                        ファンの羽根を<br>
+                        一本ずつ擦る。<br><br>
+
+                        確かに、<br><br>
+
+                        目の前の汚れは<br>
+                        取れるかもしれません。<br><br>
+
+                        しかし、<br><br>
+
+                        ファンには複雑な形状があり、<br><br>
+
+                        見えている部分だけを<br>
+                        完全に均一に掃除するのは<br>
+                        簡単ではありません。<br><br>
+
+                        それまで、<br><br>
+
+                        ファンに頑固に<br>
+                        固着していた汚れを、<br><br>
+
+                        部分的に擦ったことで、<br><br>
+
+                        汚れが割れたり、<br><br>
+
+                        浮いたり、<br><br>
+
+                        剥がれかけた状態に<br>
+                        なることがあります。<br><br>
+
+                        その状態で<br>
+                        エアコンを運転すれば、<br><br>
+
+                        <span class="text-red-600 font-black text-base underline decoration-red-200 decoration-4 underline-offset-4">弱くなった汚れが剥がれ、</span><br>
+                        <span class="text-red-600 font-black text-base underline decoration-red-200 decoration-4 underline-offset-4">風に乗って飛んでくる。</span><br><br>
+
+                        そんなこともあります。<br><br>
+
+                        もちろん、<br><br>
+
+                        自分で掃除したから<br>
+                        必ず黒い粒が出る、<br><br>
+
+                        という話ではありません。<br><br>
+
+                        何も触っていなくても、<br><br>
+
+                        蓄積した汚れが<br>
+                        自然に剥がれることもあります。<br><br>
+
+                        ただ、<br><br>
+
+                        自分でファンを掃除した直後から<br>
+                        黒い粒が出始めた。<br><br>
+
+                        という場合は、<br><br>
+
+                        掃除によって<br>
+                        固着していた汚れが、<br><br>
+
+                        剥がれやすくなった可能性も<br>
+                        考えてみてください。
+                    </p>
+
+                    <!-- 関連記事リンク (DIY) -->
+                    <a href="/tips/diy/" class="block bg-slate-50 border border-slate-200 rounded-[20px] p-6 mt-12 mx-auto max-w-sm hover:shadow-md transition-all active:scale-95 group relative overflow-hidden">
+                        <div class="absolute top-0 left-0 w-full h-1 bg-blue-400"></div>
+                        <span class="text-[11px] font-black text-blue-500 mb-3 block tracking-widest">＼ 関連記事 ／</span>
+                        <h3 class="text-[15px] md:text-base font-black text-slate-900 mb-4 leading-relaxed">
+                            自分で掃除できる範囲は？<br>
+                            <span class="text-sm font-bold text-slate-600 mt-2 block">「エアコン掃除は<br>自分でどこまでできる？」</span>
+                        </h3>
+                        <div class="inline-flex items-center justify-center bg-slate-900 text-neon px-6 py-2.5 rounded-full text-sm font-black group-hover:bg-slate-800 transition-colors shadow-sm">
+                            詳しくはコチラ ＞
+                        </div>
+                    </a>
+                </div>
+
+                <!-- ＝＝＝ お掃除機能付きなのに黒い粒が出る？ ＝＝＝ -->
+                <div class="mb-16 mt-20 text-center">
+                    <div class="flex flex-col items-center justify-center mb-6">
+                        <span class="w-10 h-[3px] bg-slate-800 mb-4 rounded-full"></span>
+                        <h2 class="text-xl md:text-2xl font-black text-slate-900 tracking-wider leading-relaxed">
+                            お掃除機能付きなのに<br>
+                            黒い粒が出る？
+                        </h2>
+                    </div>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
+                        「うちのエアコンは<br>
+                        お掃除機能付きなのに…」<br><br>
+
+                        そう思われる方も<br>
+                        いるかもしれません。<br><br>
+
+                        しかし、<br><br>
+
+                        お掃除機能付きエアコンが<br>
+                        主に掃除しているのは、<br><br>
+
+                        フィルターです。<br><br>
+
+                        吹出口の奥にある<br>
+                        送風ファンまで、<br><br>
+
+                        自動でキレイに<br>
+                        洗ってくれるわけではありません。<br><br>
+
+                        そのため、<br><br>
+
+                        お掃除機能付きでも<br>
+                        送風ファンは汚れます。<br><br>
+
+                        さらに、<br><br>
+
+                        機種の構造などによっては、<br><br>
+
+                        スタンダードエアコンより<br>
+                        内部が汚れやすいと感じるケースも、<br><br>
+
+                        実際の現場ではあります。<br><br>
+                        
+                        <span class="text-base font-black text-slate-900 bg-slate-100 px-2 py-1 rounded">お掃除機能付きだから</span><br>
+                        <span class="text-base font-black text-slate-900 bg-slate-100 px-2 py-1 rounded mt-1 inline-block">内部までキレイ。</span><br><br>
+
+                        とは限りません。
+                    </p>
+
+                    <!-- 関連記事リンク (お掃除機能) -->
+                    <a href="/tips/robot/" class="block bg-slate-50 border border-slate-200 rounded-[20px] p-6 mt-12 mx-auto max-w-sm hover:shadow-md transition-all active:scale-95 group relative overflow-hidden">
+                        <div class="absolute top-0 left-0 w-full h-1 bg-blue-400"></div>
+                        <span class="text-[11px] font-black text-blue-500 mb-3 block tracking-widest">＼ 関連記事 ／</span>
+                        <h3 class="text-[15px] md:text-base font-black text-slate-900 mb-4 leading-relaxed">
+                            お掃除機能付きについて<br>
+                            <span class="text-sm font-bold text-slate-600 mt-2 block">「お掃除機能付きって必要？」</span>
+                        </h3>
+                        <div class="inline-flex items-center justify-center bg-slate-900 text-neon px-6 py-2.5 rounded-full text-sm font-black group-hover:bg-slate-800 transition-colors shadow-sm">
+                            詳しくはコチラ ＞
+                        </div>
+                    </a>
+                </div>
+
+                <!-- ＝＝＝ まだ新しいエアコンなのに？ ＝＝＝ -->
+                <div class="mb-16 mt-20 text-center">
+                    <div class="flex flex-col items-center justify-center mb-6">
+                        <span class="w-10 h-[3px] bg-slate-800 mb-4 rounded-full"></span>
+                        <h2 class="text-xl md:text-2xl font-black text-slate-900 tracking-wider leading-relaxed">
+                            まだ新しいエアコンなのに？
+                        </h2>
+                    </div>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
+                        「買ってから<br>
+                        まだ1年しか経ってない。」<br><br>
+
+                        「新築と同時に<br>
+                        取り付けたばかり。」<br><br>
+
+                        それでも、<br><br>
+
+                        黒い汚れが発生することは<br>
+                        あります。<br><br>
+
+                        エアコンの汚れ方は、<br><br>
+
+                        単純に、<br><br>
+
+                        何年使ったかだけでは<br>
+                        決まりません。<br><br>
+
+                        使用する時間。<br><br>
+
+                        設定温度。<br><br>
+
+                        冷房や除湿の使い方。<br><br>
+
+                        お部屋の環境。<br><br>
+
+                        生活スタイル。<br><br>
+
+                        さまざまな条件によって<br>
+                        汚れ方は変わります。<br><br>
+
+                        使用環境によっては、<br><br>
+
+                        新しいエアコンでも<br>
+                        短期間で汚れることがあります。
+                    </p>
+
+                    <!-- 関連記事リンク (新しいエアコン) -->
+                    <a href="/tips/new/" class="block bg-slate-50 border border-slate-200 rounded-[20px] p-6 mt-12 mx-auto max-w-sm hover:shadow-md transition-all active:scale-95 group relative overflow-hidden">
+                        <div class="absolute top-0 left-0 w-full h-1 bg-blue-400"></div>
+                        <span class="text-[11px] font-black text-blue-500 mb-3 block tracking-widest">＼ 関連記事 ／</span>
+                        <h3 class="text-[15px] md:text-base font-black text-slate-900 mb-4 leading-relaxed">
+                            新しいエアコンなら汚れない？<br>
+                            <span class="text-sm font-bold text-slate-600 mt-2 block">「新しいエアコンなら<br>汚れないって本当？」</span>
+                        </h3>
+                        <div class="inline-flex items-center justify-center bg-slate-900 text-neon px-6 py-2.5 rounded-full text-sm font-black group-hover:bg-slate-800 transition-colors shadow-sm">
+                            詳しくはコチラ ＞
+                        </div>
+                    </a>
+                </div>
+
+                <!-- ＝＝＝ ごく稀なケースですが… ＝＝＝ -->
+                <div class="mb-16 mt-20 text-center">
+                    <div class="flex flex-col items-center justify-center mb-6">
+                        <span class="w-10 h-[3px] bg-slate-800 mb-4 rounded-full"></span>
+                        <h2 class="text-xl md:text-2xl font-black text-slate-900 tracking-wider leading-relaxed">
+                            ごく稀なケースですが…
+                        </h2>
+                    </div>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
+                        黒い粒が飛んでくる場合、<br><br>
+                        
+                        ほぼ間違いなく、<br>
+                        「内部の汚れ」が原因です。<br><br>
+                        
+                        ですが、<br>
+                        ごく稀なケースとして、<br><br>
+                        
+                        飛んできたものが<br>
+                        汚れではなく、<br><br>
+                        
+                        黒いスポンジや<br>
+                        ゴムのような部材だった。<br><br>
+                        
+                        という可能性も<br>
+                        無くはありません。<br><br>
+                        
+                        エアコン内部の<br>
+                        断熱材や緩衝材が、<br><br>
+                        
+                        経年劣化で剥がれて<br>
+                        飛んでくるケースです。<br><br>
+
+                        この場合、<br><br>
+                        
+                        <span class="text-red-600 font-black text-base underline decoration-red-200 decoration-4 underline-offset-4">エアコンクリーニングだけでは</span><br>
+                        <span class="text-red-600 font-black text-base underline decoration-red-200 decoration-4 underline-offset-4">元通りにできません。</span><br><br>
+
+                        汚れなのか。<br><br>
+                        
+                        部材なのか。<br><br>
+
+                        判断に迷ったら無理に触らず、<br>
+                        専門業者へ相談しましょう。
+                    </p>
+                </div>
+
+                <!-- ＝＝＝ 黒い粒が出たら吹出口だけ拭けばいい？ ＝＝＝ -->
+                <div class="mb-16 mt-20 text-center">
+                    <div class="flex flex-col items-center justify-center mb-6">
+                        <span class="w-10 h-[3px] bg-slate-800 mb-4 rounded-full"></span>
+                        <h2 class="text-xl md:text-2xl font-black text-slate-900 tracking-wider leading-relaxed">
+                            黒い粒が出たら<br>
+                            吹出口だけ拭けばいい？
+                        </h2>
+                    </div>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
+                        見えるところに<br>
+                        黒い汚れがあると、<br><br>
+
+                        そこだけでも<br>
+                        取りたくなりますよね。<br><br>
+
+                        しかし、<br><br>
+
+                        黒い粒の発生源が<br>
+                        送風ファンなど、<br><br>
+
+                        さらに内部にある場合、<br><br>
+
+                        吹出口周辺だけを<br>
+                        キレイにしても、<br><br>
+
+                        原因そのものは<br>
+                        残ったままです。<br><br>
+
+                        また、<br><br>
+
+                        奥まで道具を差し込んで<br>
+                        無理に掃除すると、<br><br>
+
+                        部品を傷つけたり、<br><br>
+
+                        汚れを中途半端に<br>
+                        剥がしたりすることもあります。<br><br>
+
+                        まずは、<br><br>
+
+                        どこが汚れているのか。<br><br>
+
+                        そこを確認することが<br>
+                        大切です。
+                    </p>
+                </div>
+
+                <!-- ＝＝＝ 黒い粒が出るほど汚れていたら？ ＝＝＝ -->
+                <div class="mb-16 mt-20 text-center">
+                    <div class="flex flex-col items-center justify-center mb-6">
+                        <span class="w-10 h-[3px] bg-slate-800 mb-4 rounded-full"></span>
+                        <h2 class="text-xl md:text-2xl font-black text-slate-900 tracking-wider leading-relaxed">
+                            黒い粒が出るほど<br>
+                            汚れていたら？
+                        </h2>
+                    </div>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
+                        送風ファンに付着した<br>
+                        汚れが、<br><br>
+
+                        風に乗って<br>
+                        室内まで飛んでくる。<br><br>
+
+                        そこまで進行しているなら、<br><br>
+
+                        エアコン内部には、<br><br>
+
+                        目に見えている以上の<br>
+                        汚れが蓄積している可能性があります。<br><br>
+
+                        フィルターだけではなく、<br><br>
+
+                        熱交換器や送風ファン、<br><br>
+
+                        ドレンパンなど、<br><br>
+
+                        内部には汚れが<br>
+                        蓄積する場所があります。<br><br>
+
+                        黒い粒だけを<br>
+                        取り除くのではなく、<br><br>
+
+                        エアコン内部全体の状態を<br>
+                        確認してみましょう。
+                    </p>
+
+                    <!-- 関連記事リンク (クリーニング) -->
+                    <a href="/tips/clean/" class="block bg-slate-50 border border-slate-200 rounded-[20px] p-6 mt-12 mx-auto max-w-sm hover:shadow-md transition-all active:scale-95 group relative overflow-hidden">
+                        <div class="absolute top-0 left-0 w-full h-1 bg-blue-400"></div>
+                        <span class="text-[11px] font-black text-blue-500 mb-3 block tracking-widest">＼ 関連記事 ／</span>
+                        <h3 class="text-[15px] md:text-base font-black text-slate-900 mb-4 leading-relaxed">
+                            そもそも、なぜエアコンを洗うの？<br>
+                            <span class="text-sm font-bold text-slate-600 mt-2 block">「エアコンクリーニングって<br>本当に必要なの？」</span>
+                        </h3>
+                        <div class="inline-flex items-center justify-center bg-slate-900 text-neon px-6 py-2.5 rounded-full text-sm font-black group-hover:bg-slate-800 transition-colors shadow-sm">
+                            詳しくはコチラ ＞
+                        </div>
+                    </a>
+                </div>
+
+                <!-- ＝＝＝ 黒い粒＝故障ではありません ＝＝＝ -->
+                <div class="mb-16 mt-20 text-center">
+                    <div class="flex flex-col items-center justify-center mb-6">
+                        <span class="w-10 h-[3px] bg-slate-800 mb-4 rounded-full"></span>
+                        <h2 class="text-xl md:text-2xl font-black text-slate-900 tracking-wider leading-relaxed">
+                            黒い粒＝故障ではありません
+                        </h2>
+                    </div>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
+                        エアコンから<br>
+                        黒い粒が飛んできたからといって、<br><br>
+
+                        それだけで、<br><br>
+
+                        エアコン本体が<br>
+                        故障しているとは限りません。<br><br>
+
+                        内部に蓄積した汚れが<br>
+                        剥がれているだけなら、<br><br>
+
+                        正しく洗浄することで<br>
+                        改善できる可能性があります。<br><br>
+
+                        一方で、<br><br>
+
+                        内部部材そのものが<br>
+                        劣化している場合など、<br><br>
+
+                        クリーニングでは<br>
+                        解決できないこともあります。<br><br>
+
+                        だからこそ、<br><br>
+                        
+                        <span class="text-base font-black text-slate-900 bg-neon px-2 py-1 rounded inline-block mb-2">とりあえず洗えば直る。</span><br><br>
+
+                        とも、<br><br>
+
+                        <span class="text-base font-black text-slate-900 bg-red-100 px-2 py-1 rounded inline-block mb-2">壊れたから買い替え。</span><br><br>
+
+                        とも、<br><br>
+
+                        最初から決めつける必要は<br>
+                        ありません。<br><br>
+
+                        まず、<br><br>
+
+                        飛んできた黒いものが<br>
+                        何なのか。<br><br>
+
+                        そして、<br><br>
+
+                        エアコン内部が<br>
+                        どんな状態なのか。<br><br>
+
+                        そこから確認していきましょう。
+                    </p>
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- ネイビーのカード (ONE★STARが大切にしていること) -->
+        <div class="bg-slate-900 rounded-[24px] border-l-[12px] border-neon p-8 md:p-10 text-center shadow-md mb-10">
+            
+            <h2 class="text-white font-black text-xl md:text-2xl leading-relaxed mb-10 tracking-wider">
+                ONE★STARが<br>
+                大切にしていること
+            </h2>
+
+            <p class="text-slate-100 font-bold text-[15px] md:text-base leading-loose mb-10">
+                黒い粒が出ている。<br><br>
+                
+                だから、<br><br>
+                
+                「カビですね。<br>
+                洗いましょう。」<br><br>
+                
+                それだけではなく、<br><br>
+                
+                まず実際の状態を<br>
+                確認します。<br><br>
+                
+                汚れが原因なのか。<br><br>
+                
+                部材の劣化なのか。<br><br>
+                
+                自分で掃除したことで、<br><br>
+                
+                固着していた汚れが<br>
+                剥がれ始めたのか。<br><br>
+                
+                原因によって、<br><br>
+                
+                必要な対応も<br>
+                変わります。
+            </p>
+
+            <!-- 区切り線 -->
+            <div class="w-16 h-[1px] bg-slate-600 mx-auto mb-10"></div>
+
+            <p class="text-slate-100 font-bold text-[15px] md:text-base leading-loose">
+                <span class="text-white font-black text-base underline decoration-neon decoration-4 underline-offset-4">洗浄で改善できるものと、</span><br>
+                <span class="text-white font-black text-base underline decoration-neon decoration-4 underline-offset-4">洗浄では直せないもの。</span><br><br>
+                
+                それを確認した上で、<br><br>
+                
+                そのエアコンに合った<br>
+                対応を考える。<br><br>
+                
+                ただ洗うだけではなく、<br><br>
+                
+                目の前のエアコンと<br>
+                きちんと向き合う。<br><br>
+                
+                それが、<br><br>
+                
+                ONE★STARが<br>
+                大切にしていることです。
+            </p>
+        </div>
+
+
+        <!-- ご相談誘導ブロック (エアコンクリーニングをご依頼の方へ) -->
+        <div class="bg-white rounded-2xl border border-slate-200 p-8 text-center shadow-sm mb-12">
+            <h2 class="text-xl md:text-2xl font-black text-slate-900 mb-8 leading-relaxed">
+                エアコンクリーニングを<br>
+                ご依頼の方へ
+            </h2>
+            
+            <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose mb-10">
+                エアコンから<br>
+                黒い粒が飛んでくる。<br><br>
+                
+                内部を覗いたら<br>
+                ファンが真っ黒だった。<br><br>
+                
+                ニオイや風量も<br>
+                気になっている。<br><br>
+                
+                そのような症状があり、<br><br>
+                
+                エアコンクリーニングを<br>
+                ご依頼される方は、<br><br>
+                
+                ご予約の際に、<br><br>
+                
+                <span class="text-slate-900 font-black bg-slate-100 px-3 py-1 rounded inline-block mb-1">黒い粒が出ていること</span><br><br>
+                
+                も一緒にお伝えください。<br><br>
+                
+                作業前に状態を確認しながら<br>
+                施工いたします。
+            </p>
+            
+            <a href="tel:08000807788" class="js-phone-modal-trigger inline-flex items-center justify-center bg-slate-900 hover:bg-slate-800 text-neon px-8 py-4 rounded-full text-[15px] font-black shadow-md transition-all active:scale-95 whitespace-nowrap">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                <span>ご予約・お問い合わせはこちら</span>
+            </a>
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-900 text-white pt-12 pb-24 md:pb-12 border-t-[6px] border-neon text-center mt-12">
+        <div class="mb-6 flex flex-col items-center justify-center">
+            <span class="text-4xl md:text-5xl tracking-widest text-white flex items-center justify-center font-impact mt-1">
+                ONE
+                <img src="ONESTAR.PNG" alt="ロゴ" class="w-[80px] h-[80px] md:w-[100px] md:h-[100px] mx-[-10px] md:mx-[-16px] object-contain -translate-y-2" onerror="this.style.display='none'">
+                STAR
+            </span>
+            <p class="text-xs text-neon font-black mt-2 tracking-widest">株式会社ECS専属プロスタッフ</p>
+        </div>
+        
+        <p class="text-[11px] text-slate-400 font-bold mb-3">
+            <a href="/products" class="hover:text-white transition-colors underline underline-offset-4">オリジナルLINEスタンプ販売中</a>
+        </p>
+        <p class="text-[10px] text-slate-500 font-bold mb-4">
+            <a href="/privacy" class="hover:text-white transition-colors">プライバシーポリシー</a>
+        </p>
+        <p class="text-[10px] text-slate-500 font-bold tracking-wider">© 2026 ONE★STAR. All Rights Reserved.</p>
+    </footer>
+
+    <!-- MOBILE BOTTOM NAVIGATION -->
+    <div class="fixed bottom-0 left-0 right-0 z-45 bg-slate-900 md:hidden h-[60px] flex items-stretch text-white shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.3)] border-t border-slate-800">
+        
+        <a href="/price" class="flex flex-col items-center justify-center w-[20%] border-r border-slate-700 active:bg-slate-800">
+            <svg class="w-5 h-5 mb-1 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <span class="text-[9px] font-black">料金</span>
+        </a>
+        
+        <a href="/mind" class="flex flex-col items-center justify-center w-[20%] border-r border-slate-700 active:bg-slate-800">
+            <svg class="w-5 h-5 mb-1 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+            <span class="text-[9px] font-black">想い</span>
+        </a>
+
+        <a href="/pride" class="flex flex-col items-center justify-center w-[20%] active:bg-slate-800">
+            <svg class="w-5 h-5 mb-1 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+            <span class="text-[9px] font-black">拘り</span>
+        </a>
+        
+        <a href="tel:08000807788" class="js-phone-modal-trigger flex items-center justify-center bg-neon text-slate-900 w-[40%] font-black text-base active:bg-yellow-400 transition-colors">
+            <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+            電話する
+        </a>
+        
+    </div>
+
+    <!-- 🌟 ご予約・お問い合わせ前のワンクッションモーダル 🌟 -->
+    <div id="phone-modal" class="fixed inset-0 z-[100] hidden flex items-center justify-center px-4">
+        <div id="phone-modal-backdrop" class="absolute inset-0 bg-slate-900/80 backdrop-blur-sm opacity-0 transition-opacity duration-300"></div>
+        
+        <div id="phone-modal-content" class="relative bg-white rounded-3xl shadow-2xl w-full max-w-sm overflow-hidden transform scale-95 opacity-0 transition-all duration-300 border border-slate-100">
+            
+            <button id="phone-modal-close" class="absolute top-4 right-4 p-2 text-slate-400 hover:text-slate-700 bg-slate-100 hover:bg-slate-200 rounded-full transition-colors z-10">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+            
+            <div class="p-6 md:p-8 text-center pt-10">
+                
+                <h3 class="text-xl font-black text-slate-900 mb-6 border-b-4 border-[#EFFF00] inline-block pb-1">
+                    ご予約・お問い合わせの前に
+                </h3>
+                
+                <div class="text-[13px] text-slate-700 font-bold leading-relaxed mb-8 space-y-4 text-left bg-slate-50 p-5 rounded-2xl border border-slate-100 shadow-inner">
+                    <p>
+                        <span class="text-slate-900 font-black text-sm">ONE★STAR</span>は<br>
+                        株式会社ECS（エッジクリーンサービス）の専属プロスタッフとして活動しています。
+                    </p>
+                    <p class="pt-2 border-t border-slate-200">
+                        お電話は<br>
+                        <span class="text-slate-900 font-black">株式会社ECSの予約受付</span>につながります。
+                    </p>
+                    
+                    <div class="bg-rose-50 border border-rose-200 p-3 rounded-xl text-center shadow-sm">
+                        <p class="text-rose-600 font-black text-[13px] leading-tight">
+                            ご予約の際は<br>
+                            <span class="text-base">「ONE★STAR（川崎）を指名」</span>と<br>
+                            お伝えください。
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="space-y-3">
+                    <a href="tel:08000807788" class="flex items-center justify-center w-full py-4 bg-slate-900 text-[#EFFF00] font-black rounded-2xl shadow-md active:scale-95 transition-transform text-sm sm:text-base border border-slate-800">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                        株式会社ECSへ電話する
+                    </a>
+                    
+                    <a href="https://www.instagram.com/one.star.kawasaki?igsh=anZpYnpxcDdqOXRh&utm_source=qr" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center w-full py-4 bg-gradient-to-r from-pink-500 to-rose-500 text-white font-black rounded-2xl shadow-md active:scale-95 transition-transform text-sm sm:text-base">
+                        <svg class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                        </svg>
+                        Instagramで本人に相談する
+                    </a>
+                </div>
+                
+                <p class="text-[10px] text-slate-500 mt-4 font-bold leading-relaxed">
+                    直接のご質問・お問い合わせは<br>本人直通のInstagram DMからお気軽にどうぞ。
+                </p>
+                
+                <button id="phone-modal-cancel" class="mt-6 text-[11px] text-slate-400 font-bold underline underline-offset-4 hover:text-slate-600 transition-colors">
+                    キャンセルして戻る
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // === メニュー開閉用 ===
+            const drawerContainer = document.getElementById('drawer-container');
+            const drawerMenu = document.getElementById('drawer-menu');
+            const drawerBackdrop = document.getElementById('drawer-backdrop');
+            
+            const toggleMenu = (show) => {
+                if (show) {
+                    drawerContainer.classList.remove('hidden');
+                    setTimeout(() => {
+                        drawerBackdrop.classList.remove('opacity-0');
+                        drawerBackdrop.classList.add('opacity-100');
+                        drawerMenu.classList.remove('drawer-closed');
+                        drawerMenu.classList.add('drawer-open');
+                    }, 10);
+                } else {
+                    drawerBackdrop.classList.remove('opacity-100');
+                    drawerBackdrop.classList.add('opacity-0');
+                    drawerMenu.classList.remove('drawer-open');
+                    drawerMenu.classList.add('drawer-closed');
+                    setTimeout(() => drawerContainer.classList.add('hidden'), 300);
+                }
+            };
+
+            document.getElementById('menu-open-btn').addEventListener('click', () => toggleMenu(true));
+            document.getElementById('menu-close-btn').addEventListener('click', () => toggleMenu(false));
+            document.getElementById('drawer-backdrop').addEventListener('click', () => toggleMenu(false));
+            document.querySelectorAll('.menu-link').forEach(link => link.addEventListener('click', () => toggleMenu(false)));
+
+            // === 電話モーダル ===
+            const phoneModal = document.getElementById('phone-modal');
+            const phoneModalBackdrop = document.getElementById('phone-modal-backdrop');
+            const phoneModalContent = document.getElementById('phone-modal-content');
+            const phoneModalCloseBtn = document.getElementById('phone-modal-close');
+            const phoneModalCancelBtn = document.getElementById('phone-modal-cancel');
+            const phoneTriggerBtns = document.querySelectorAll('.js-phone-modal-trigger');
+
+            if (phoneModal && phoneTriggerBtns.length > 0) {
+                const openPhoneModal = (e) => {
+                    e.preventDefault(); 
+                    if (typeof toggleMenu === 'function') toggleMenu(false);
+
+                    phoneModal.classList.remove('hidden');
+                    requestAnimationFrame(() => {
+                        phoneModalBackdrop.classList.remove('opacity-0');
+                        phoneModalBackdrop.classList.add('opacity-100');
+                        phoneModalContent.classList.remove('opacity-0', 'scale-95');
+                        phoneModalContent.classList.add('opacity-100', 'scale-100');
+                    });
+                };
+
+                const closePhoneModal = () => {
+                    phoneModalBackdrop.classList.remove('opacity-100');
+                    phoneModalBackdrop.classList.add('opacity-0');
+                    phoneModalContent.classList.remove('opacity-100', 'scale-100');
+                    phoneModalContent.classList.add('opacity-0', 'scale-95');
+                    setTimeout(() => phoneModal.classList.add('hidden'), 300);
+                };
+
+                phoneTriggerBtns.forEach(btn => btn.addEventListener('click', openPhoneModal));
+                phoneModalCloseBtn.addEventListener('click', closePhoneModal);
+                phoneModalCancelBtn.addEventListener('click', closePhoneModal);
+                phoneModalBackdrop.addEventListener('click', closePhoneModal);
+            }
+        });
+    </script>
+</body>
+</html>
+
+```
