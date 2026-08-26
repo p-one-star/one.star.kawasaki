@@ -1,0 +1,1275 @@
+```html
+<!DOCTYPE html>
+<html lang="ja" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>エアコンから変な音がする…これって故障？ | ONE★STAR</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        neon: '#EFFF00' // トレードカラー：蛍光イエロー
+                    },
+                    fontFamily: {
+                        sans: ['"Noto Sans JP"', 'sans-serif'],
+                        impact: ['"Black Ops One"', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        /* ドロワーメニュー用 */
+        #drawer-menu { transition: transform 0.3s ease-in-out; }
+        .drawer-closed { transform: translateX(-100%); }
+        .drawer-open { transform: translateX(0); }
+    </style>
+</head>
+<body class="font-sans text-slate-800 bg-slate-50 antialiased overflow-x-hidden pb-[60px]">
+
+    <!-- HEADER -->
+    <header class="fixed top-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md shadow-sm border-b border-slate-100 h-14 flex items-center justify-between px-4">
+        <button id="menu-open-btn" class="p-2 hover:bg-slate-100 rounded-lg" aria-label="メニュー">
+            <svg class="w-6 h-6 text-slate-800" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+
+        <div class="absolute left-1/2 -translate-x-1/2 flex items-center justify-center mt-1">
+            <a href="/" class="text-2xl md:text-3xl tracking-widest text-slate-900 leading-none flex items-center font-impact">
+                ONE
+                <img src="ONESTAR.PNG" alt="ロゴ" class="w-[45px] h-[45px] md:w-[55px] md:h-[55px] mx-[-4px] md:mx-[-6px] object-contain -translate-y-[4px]" onerror="this.style.display='none'">
+                STAR
+            </a>
+        </div>
+
+        <div class="hidden md:flex items-center space-x-3">
+            <a href="tel:08000807788" class="js-phone-modal-trigger bg-slate-900 hover:bg-slate-800 text-neon px-4 py-1.5 rounded-full text-xs font-black border border-slate-700 flex items-center space-x-1 transition-all">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                <span>電話相談</span>
+            </a>
+        </div>
+        <div class="w-10 md:hidden"></div>
+    </header>
+
+    <!-- DRAWER MENU -->
+    <div id="drawer-container" class="fixed inset-0 z-50 overflow-hidden hidden">
+        <div id="drawer-backdrop" class="absolute inset-0 bg-slate-900/60 opacity-0 transition-opacity duration-300"></div>
+        <div class="pointer-events-none fixed inset-y-0 left-0 flex max-w-full">
+            <div id="drawer-menu" class="pointer-events-auto w-64 drawer-closed bg-white shadow-2xl flex flex-col h-full">
+                
+                <div class="p-3 bg-white flex justify-end">
+                    <button id="menu-close-btn" class="p-2 hover:bg-slate-100 rounded-lg">
+                        <svg class="w-6 h-6 text-slate-500" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+                    </button>
+                </div>
+
+                <div class="bg-blue-600 py-3 px-6">
+                    <h2 class="text-white font-black tracking-wider text-sm">MENU</h2>
+                </div>
+
+                <nav class="flex-1 px-4 py-2 overflow-y-auto">
+                    <div class="space-y-1">
+                        <a href="/" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>トップページ
+                        </a>
+                        <a href="/price" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>料金プラン
+                        </a>
+                        <a href="/works" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>施工事例
+                        </a>
+                        <a href="/mind" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>ONE★STARの想い
+                        </a>
+                        <a href="/pride" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>プロとしての拘り
+                        </a>
+                        <a href="/trash" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>ここだけの話
+                        </a>
+                        <a href="/before" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>ご予約の前に
+                        </a>
+                        <a href="/faq" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>よくある質問
+                        </a>
+                        <a href="/tips" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-blue-600">
+                            <span class="mr-2 text-blue-600">＞</span>お役立ち情報
+                        </a>
+                        <a href="/products" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-[#06C755]">
+                            <span class="mr-2 text-slate-400">＞</span>オリジナルLINEスタンプ
+                        </a>
+                    </div>
+                    
+                    <hr class="border-slate-300 border-dashed my-4">
+                    <a href="https://www.edge-cleanservice.com" target="_blank" rel="noopener noreferrer" class="menu-link flex items-center py-2 text-sm font-black text-slate-900 hover:text-blue-600 transition-colors">
+                        株式会社ECS公式サイト
+                        <svg class="w-3.5 h-3.5 ml-1.5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                    </a>
+                </nav>
+
+                <div class="p-4 bg-slate-50 border-t border-slate-100 text-center mt-auto">
+                    <p class="text-[9px] text-slate-500 font-bold leading-relaxed mb-2">
+                        株式会社ECS EDGE CLEAN SERVICE<br>専属プロスタッフとして<br>愛知県全域で毎日奮闘中❣️
+                    </p>
+                    <a href="tel:08000807788" class="js-phone-modal-trigger block w-full py-3 bg-emerald-500 text-white font-bold rounded-lg text-sm shadow">直接電話する</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN (お役立ち情報：エアコンから変な音がする) -->
+    <main class="pt-24 pb-12 px-4 max-w-3xl mx-auto">
+
+        <!-- 白いメインカード -->
+        <div class="bg-white rounded-[24px] border-2 border-slate-900 overflow-hidden shadow-sm mb-10">
+            <!-- 上部の黄色いライン -->
+            <div class="h-3 w-full bg-neon"></div>
+
+            <div class="p-6 md:p-8">
+                
+                <!-- バッジ -->
+                <div class="flex justify-center mb-8 text-center">
+                    <span class="inline-block bg-slate-900 text-neon text-xs md:text-sm font-black px-5 py-2 rounded shadow-sm tracking-wider">
+                        プロが教えるエアコンの真実
+                    </span>
+                </div>
+
+                <!-- タイトル (修正箇所：文字サイズを微調整し、inline-blockで勝手な改行を防ぐ) -->
+                <h1 class="text-[22px] sm:text-[26px] md:text-[32px] font-black text-slate-900 mb-12 leading-relaxed tracking-wide text-center">
+                    <span class="inline-block">エアコンから変な音がする…</span><br>
+                    <span class="inline-block">これって故障？</span>
+                </h1>
+
+                <!-- リード文 -->
+                <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose text-center mb-12">
+                    エアコンを使っていたら、<br><br>
+                    
+                    今まで聞いたことのない<br>
+                    変な音がする。<br><br>
+                    
+                    「カタカタ…」<br><br>
+                    
+                    「キーン…」<br><br>
+                    
+                    「ブーン…」<br><br>
+                    
+                    「ポコポコ…」<br><br>
+                    
+                    これって故障？<br><br>
+                    
+                    このまま使っても大丈夫？<br><br>
+                    
+                    不安になりますよね。<br><br>
+                    
+                    でも、
+                </p>
+
+                <!-- 中見出し -->
+                <h2 class="text-[19px] md:text-2xl font-black text-slate-900 mb-10 leading-relaxed text-center underline decoration-neon decoration-4 underline-offset-4">
+                    変な音がするからといって<br>
+                    すべて故障とは限りません。
+                </h2>
+
+                <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose text-center mb-10">
+                    エアコンは、<br><br>
+                    
+                    室内機だけでも<br>
+                    ファンやモーター、<br><br>
+                    
+                    ルーバーや<br>
+                    お掃除機構など、<br><br>
+                    
+                    さまざまな部品が<br>
+                    動いています。<br><br>
+                    
+                    さらに、<br><br>
+                    
+                    冷媒が流れる音や<br>
+                    ドレン水の音、<br><br>
+                    
+                    温度変化による<br>
+                    部品の伸縮、<br><br>
+                    
+                    室内外の気圧差によって<br>
+                    発生する音など、<br><br>
+                    
+                    正常な状態でも<br>
+                    音が発生することがあります。<br><br>
+                    
+                    反対に、<br><br>
+                    
+                    汚れや部品の劣化、<br><br>
+                    
+                    何かしらの故障によって<br>
+                    発生する異音もあります。<br><br>
+                    
+                    大切なのは、<br><br>
+                    
+                    音だけで故障と<br>
+                    決めつけないこと。<br><br>
+                    
+                    まずは順番に<br>
+                    確認してみましょう。
+                </p>
+
+                <!-- ＝＝＝ まず確認してほしいこと ＝＝＝ -->
+                <div class="mb-16 mt-20">
+                    <div class="flex flex-col items-center justify-center mb-8 text-center">
+                        <span class="w-10 h-[3px] bg-slate-800 mb-4 rounded-full"></span>
+                        <h2 class="text-xl md:text-2xl font-black text-slate-900 tracking-wider leading-relaxed">
+                            まず確認してほしいこと
+                        </h2>
+                    </div>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose text-center">
+                        変な音がしたら、<br><br>
+                        
+                        「どんな音なのか？」<br><br>
+                        
+                        だけではなく、
+                    </p>
+
+                    <div class="bg-slate-50 rounded-[20px] p-8 my-8 border border-slate-200 text-center shadow-inner">
+                        <p class="text-lg md:text-xl font-black text-slate-900 leading-loose">
+                            どこから？<br><br>
+                            いつから？<br><br>
+                            どんな時に？
+                        </p>
+                    </div>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose text-center">
+                        この3つも<br>
+                        確認してみてください。<br><br>
+                        
+                        室内機からなのか。<br><br>
+                        
+                        室外機からなのか。<br><br>
+                        
+                        運転を開始した時なのか。<br><br>
+                        
+                        運転中ずっとなのか。<br><br>
+                        
+                        停止した後なのか。<br><br>
+                        
+                        風量を変えると<br>
+                        音も変化するのか。<br><br>
+                        
+                        そして、<br><br>
+                        
+                        エアコンクリーニングや<br>
+                        修理をした直後なのか。<br><br>
+                        
+                        これらによって、<br><br>
+                        
+                        考えられる原因は<br>
+                        大きく変わります。
+                    </p>
+                </div>
+
+                <!-- ＝＝＝ 「ポコポコ」と音がする ＝＝＝ -->
+                <div class="mb-16 mt-24">
+                    <div class="flex flex-col items-center justify-center mb-8 text-center">
+                        <span class="w-10 h-[3px] bg-neon mb-4 rounded-full"></span>
+                        <h2 class="text-[22px] md:text-2xl font-black text-slate-900 leading-relaxed">
+                            <span class="inline-block">「ポコポコ」と</span><br class="md:hidden">音がする
+                        </h2>
+                    </div>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose text-center">
+                        エアコンから、<br><br>
+                        
+                        「ポコポコ…」<br><br>
+                        
+                        「ポコッ、ポコッ…」<br><br>
+                        
+                        そんな音がする場合、<br><br>
+                        
+                        エアコンの故障ではなく、<br><br>
+                        
+                        室内外の気圧差が<br>
+                        原因かもしれません。<br><br>
+                        
+                        気密性の高い住宅で<br>
+                        換気扇などを使用すると、<br><br>
+                        
+                        室内が負圧になり、<br><br>
+                        
+                        ドレンホースから<br>
+                        外気を吸い込もうとして、<br><br>
+                        
+                        ポコポコ音が<br>
+                        発生することがあります。<br><br>
+                        
+                        まずは、<br><br>
+                        
+                        窓を少しだけ<br>
+                        開けてみてください。<br><br>
+                        
+                        それだけで音が止まれば、<br><br>
+                        
+                        負圧による影響の<br>
+                        可能性が高くなります。<br><br>
+                        
+                        この症状については、<br><br>
+                        
+                        別の記事で詳しく<br>
+                        ご紹介しています。
+                    </p>
+
+                    <!-- リンクカード -->
+                    <a href="/tips/poko/" class="block bg-slate-50 border-2 border-slate-200 rounded-2xl p-6 md:p-8 mt-10 shadow-sm hover:shadow-md transition-all active:scale-95 text-center group">
+                        <p class="text-[11px] md:text-sm font-black text-slate-500 mb-3 tracking-widest">
+                            ポコポコ音について<br class="md:hidden">詳しくはコチラ↗️
+                        </p>
+                        <h3 class="text-[17px] md:text-xl font-black text-slate-900 mb-6 leading-relaxed group-hover:text-blue-600 transition-colors">
+                            「ポコポコ音がする…<br>原因と簡単な直し方」
+                        </h3>
+                        <div class="inline-flex items-center justify-center bg-white border-2 border-slate-900 text-slate-900 px-6 py-3 rounded-full text-sm font-black group-hover:bg-slate-900 group-hover:text-neon transition-colors w-full md:w-auto">
+                            ▶ 記事を読む
+                        </div>
+                    </a>
+                </div>
+
+                <!-- ＝＝＝ 「キーン」という高い音がする ＝＝＝ -->
+                <div class="mb-16 mt-24">
+                    <div class="flex flex-col items-center justify-center mb-8 text-center">
+                        <span class="w-10 h-[3px] bg-neon mb-4 rounded-full"></span>
+                        <h2 class="text-[22px] md:text-2xl font-black text-slate-900 leading-relaxed">
+                            <span class="inline-block">「キーン」という</span><br>
+                            <span class="inline-block">高い音がする</span>
+                        </h2>
+                    </div>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose text-center">
+                        運転中に、<br><br>
+                        
+                        「キーン…」<br><br>
+                        
+                        「ウィーン…」<br><br>
+                        
+                        というような、<br><br>
+                        
+                        以前にはなかった<br>
+                        高い音がする場合。<br><br>
+                        
+                        ファンモーターなどの<br>
+                        部品が劣化している可能性も<br>
+                        考えられます。<br><br>
+                        
+                        モーターや軸受けなどの<br>
+                        機械的な劣化であれば、<br><br>
+                        
+                        エアコン内部を<br>
+                        クリーニングしても、<br><br>
+                        
+                        基本的に改善することは<br>
+                        できません。<br><br>
+                        
+                        このような場合は、<br><br>
+                        
+                        修理業者やメーカーへの<br>
+                        相談が必要になることがあります。<br><br>
+                        
+                        ただし、<br><br>
+                        
+                        音の表現は<br>
+                        人によって違います。<br><br>
+                        
+                        「キーン」という音だけで、<br><br>
+                        
+                        ファンモーターの故障だと<br>
+                        断定することはできません。
+                    </p>
+                </div>
+
+                <!-- ＝＝＝ 「カタカタ」「ガタガタ」と音がする ＝＝＝ -->
+                <div class="mb-16 mt-24">
+                    <div class="flex flex-col items-center justify-center mb-8 text-center">
+                        <span class="w-10 h-[3px] bg-neon mb-4 rounded-full"></span>
+                        <h2 class="text-[22px] md:text-2xl font-black text-slate-900 leading-relaxed">
+                            <span class="inline-block">「カタカタ」</span><br>
+                            <span class="inline-block">「ガタガタ」と音がする</span>
+                        </h2>
+                    </div>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose text-center">
+                        このような音の場合は、<br><br>
+                        
+                        原因の候補が<br>
+                        たくさんあります。<br><br>
+                        
+                        例えば、<br><br>
+                        
+                        送風ファンへの<br>
+                        汚れの付着。<br><br>
+                        
+                        異物の混入。<br><br>
+                        
+                        部品の振動。<br><br>
+                        
+                        ルーバーの不具合。<br><br>
+                        
+                        部品同士の干渉。<br><br>
+                        
+                        送風ファンや<br>
+                        その他部品の破損。<br><br>
+                        
+                        単純に、<br><br>
+                        
+                        外装パネルなどが<br>
+                        正しく取り付けられていないだけ、<br><br>
+                        
+                        という場合もあります。<br><br>
+                        
+                        また、<br><br>
+                        
+                        送風ファンに汚れが<br>
+                        偏って付着すると、<br><br>
+                        
+                        回転時のバランスが崩れ、<br><br>
+                        
+                        振動や異音につながることも<br>
+                        考えられます。<br><br>
+                        
+                        汚れが原因であれば、<br><br>
+                        
+                        正しく洗浄することで<br>
+                        改善する可能性があります。<br><br>
+                        
+                        しかし、<br><br>
+                        
+                        部品そのものが<br>
+                        破損している場合は、<br><br>
+                        
+                        洗浄では直りません。
+                    </p>
+                </div>
+
+                <!-- ＝＝＝ 「ゴーッ」と音がする ＝＝＝ -->
+                <div class="mb-16 mt-24">
+                    <div class="flex flex-col items-center justify-center mb-8 text-center">
+                        <span class="w-10 h-[3px] bg-neon mb-4 rounded-full"></span>
+                        <h2 class="text-[22px] md:text-2xl font-black text-slate-900 leading-relaxed">
+                            <span class="inline-block">「ゴーッ」と</span><br class="md:hidden">音がする
+                        </h2>
+                    </div>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose text-center">
+                        以前より、<br><br>
+                        
+                        風の音が大きくなった。<br><br>
+                        
+                        「ゴーッ」という音が<br>
+                        気になる。<br><br>
+                        
+                        そんな場合は、<br><br>
+                        
+                        まずフィルターを<br>
+                        確認してみましょう。<br><br>
+                        
+                        フィルターや<br>
+                        エアコン内部が汚れて、<br><br>
+                        
+                        空気の通り道が<br>
+                        狭くなっている可能性も<br>
+                        あります。<br><br>
+                        
+                        まずはご自身で、<br><br>
+                        
+                        フィルターを<br>
+                        掃除してみてください。<br><br>
+                        
+                        それでも、<br><br>
+                        
+                        風量が弱い。<br><br>
+                        
+                        異音がする。<br><br>
+                        
+                        そんな場合は、<br><br>
+                        
+                        エアコン内部の汚れも<br>
+                        確認する必要があります。
+                    </p>
+
+                    <!-- リンクカード -->
+                    <a href="/tips/weak/" class="block bg-slate-50 border-2 border-slate-200 rounded-2xl p-6 md:p-8 mt-10 shadow-sm hover:shadow-md transition-all active:scale-95 text-center group">
+                        <p class="text-[11px] md:text-sm font-black text-slate-500 mb-3 tracking-widest">
+                            風量が弱い原因について<br class="md:hidden">詳しくはコチラ↗️
+                        </p>
+                        <h3 class="text-[17px] md:text-xl font-black text-slate-900 mb-6 leading-relaxed group-hover:text-blue-600 transition-colors">
+                            「エアコンの風が弱い？」
+                        </h3>
+                        <div class="inline-flex items-center justify-center bg-white border-2 border-slate-900 text-slate-900 px-6 py-3 rounded-full text-sm font-black group-hover:bg-slate-900 group-hover:text-neon transition-colors w-full md:w-auto">
+                            ▶ 記事を読む
+                        </div>
+                    </a>
+                </div>
+
+                <!-- ＝＝＝ 「パキッ」「ミシッ」と音がする ＝＝＝ -->
+                <div class="mb-16 mt-24">
+                    <div class="flex flex-col items-center justify-center mb-8 text-center">
+                        <span class="w-10 h-[3px] bg-neon mb-4 rounded-full"></span>
+                        <h2 class="text-[22px] md:text-2xl font-black text-slate-900 leading-relaxed">
+                            <span class="inline-block">「パキッ」</span><br>
+                            <span class="inline-block">「ミシッ」と音がする</span>
+                        </h2>
+                    </div>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose text-center">
+                        運転開始後や<br>
+                        停止した後などに、<br><br>
+                        
+                        「パキッ」<br><br>
+                        
+                        「ミシッ」<br><br>
+                        
+                        と音がすることがあります。<br><br>
+                        
+                        これは、<br><br>
+                        
+                        温度変化によって<br>
+                        樹脂部品などが、<br><br>
+                        
+                        わずかに膨張したり<br>
+                        収縮したりすることで、<br><br>
+                        
+                        発生する場合があります。<br><br>
+                        
+                        このような音は、<br><br>
+                        
+                        必ずしも故障とは<br>
+                        限りません。<br><br>
+                        
+                        毎回同じタイミングで<br>
+                        一時的に発生するだけで、<br><br>
+                        
+                        エアコン自体は<br>
+                        正常に動いているのであれば、<br><br>
+                        
+                        すぐに故障と<br>
+                        決めつける必要はありません。
+                    </p>
+                </div>
+
+                <!-- ＝＝＝ 水が流れるような音がする ＝＝＝ -->
+                <div class="mb-16 mt-24">
+                    <div class="flex flex-col items-center justify-center mb-8 text-center">
+                        <span class="w-10 h-[3px] bg-neon mb-4 rounded-full"></span>
+                        <h2 class="text-[22px] md:text-2xl font-black text-slate-900 leading-relaxed">
+                            <span class="inline-block">水が流れるような</span><br class="md:hidden">音がする
+                        </h2>
+                    </div>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose text-center">
+                        「シュルシュル…」<br><br>
+                        
+                        「サーッ…」<br><br>
+                        
+                        「水が流れているような音」<br><br>
+                        
+                        このような音も、<br><br>
+                        
+                        必ずしも異常とは<br>
+                        限りません。<br><br>
+                        
+                        エアコンは、<br><br>
+                        
+                        冷媒を循環させながら<br>
+                        冷暖房を行っています。<br><br>
+                        
+                        また、<br><br>
+                        
+                        冷房や除湿では<br>
+                        結露水も発生します。<br><br>
+                        
+                        そのため、<br><br>
+                        
+                        冷媒が流れる音や<br>
+                        水が排出される音が、<br><br>
+                        
+                        聞こえる場合があります。<br><br>
+                        
+                        ただし、<br><br>
+                        
+                        実際に室内機から<br>
+                        水が漏れている場合は、<br><br>
+                        
+                        話が変わります。
+                    </p>
+
+                    <!-- リンクカード -->
+                    <a href="/tips/water/" class="block bg-slate-50 border-2 border-slate-200 rounded-2xl p-6 md:p-8 mt-10 shadow-sm hover:shadow-md transition-all active:scale-95 text-center group">
+                        <p class="text-[11px] md:text-sm font-black text-slate-500 mb-3 tracking-widest">
+                            水漏れについて<br class="md:hidden">詳しくはコチラ↗️
+                        </p>
+                        <h3 class="text-[17px] md:text-xl font-black text-slate-900 mb-6 leading-relaxed group-hover:text-blue-600 transition-colors">
+                            「エアコンから水漏れ？」
+                        </h3>
+                        <div class="inline-flex items-center justify-center bg-white border-2 border-slate-900 text-slate-900 px-6 py-3 rounded-full text-sm font-black group-hover:bg-slate-900 group-hover:text-neon transition-colors w-full md:w-auto">
+                            ▶ 記事を読む
+                        </div>
+                    </a>
+                </div>
+
+                <!-- ＝＝＝ お掃除ロボットから変な音がする ＝＝＝ -->
+                <div class="mb-16 mt-24">
+                    <div class="flex flex-col items-center justify-center mb-8 text-center">
+                        <span class="w-10 h-[3px] bg-slate-800 mb-4 rounded-full"></span>
+                        <h2 class="text-[22px] md:text-2xl font-black text-slate-900 leading-relaxed">
+                            <span class="inline-block">お掃除ロボットから</span><br>
+                            <span class="inline-block">変な音がする</span>
+                        </h2>
+                    </div>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose text-center">
+                        お掃除機能付きエアコンでは、<br><br>
+                        
+                        フィルターを掃除するための<br>
+                        機構そのものが、<br><br>
+                        
+                        異音の原因になることも<br>
+                        あります。<br><br>
+                        
+                        お掃除ユニットには、<br><br>
+                        
+                        モーターやギア、<br><br>
+                        
+                        ブラシやダストボックスなど、<br><br>
+                        
+                        さまざまな部品が<br>
+                        使われています。<br><br>
+                        
+                        何かが引っ掛かったり、<br><br>
+                        
+                        フィルターが<br>
+                        正しく装着されていなかったり、<br><br>
+                        
+                        部品同士が<br>
+                        干渉していたりすると、<br><br>
+                        
+                        「ガガガ…」<br><br>
+                        
+                        「ギギギ…」<br><br>
+                        
+                        「カタカタ…」<br><br>
+                        
+                        などの音が<br>
+                        発生することがあります。<br><br>
+                        
+                        そして、<br><br>
+                        
+                        ここでもうひとつ<br>
+                        確認してほしいことがあります。
+                    </p>
+
+                    <h3 class="text-[19px] md:text-2xl font-black text-red-600 mt-12 mb-8 leading-relaxed text-center underline decoration-red-200 decoration-4 underline-offset-4">
+                        <span class="inline-block">その音、</span><br><br>
+                        
+                        <span class="inline-block">エアコンクリーニングの</span><br>
+                        <span class="inline-block">直後から鳴っていませんか？</span>
+                    </h3>
+                </div>
+
+                <!-- ＝＝＝ クリーニング直後から異音がする場合 ＝＝＝ -->
+                <div class="mb-16 mt-20">
+                    <div class="flex flex-col items-center justify-center mb-8 text-center">
+                        <span class="w-10 h-[3px] bg-neon mb-4 rounded-full"></span>
+                        <h2 class="text-[20px] md:text-2xl font-black text-slate-900 leading-relaxed">
+                            <span class="inline-block">クリーニング直後から</span><br>
+                            <span class="inline-block">異音がする場合</span>
+                        </h2>
+                    </div>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose text-center">
+                        お掃除機能付きエアコンは、<br><br>
+                        
+                        内部を洗浄するために、<br><br>
+                        
+                        お掃除ユニットや<br>
+                        さまざまな部品、<br><br>
+                        
+                        配線やコネクターなどを<br>
+                        脱着する場合があります。<br><br>
+                        
+                        そのため、<br><br>
+                        
+                        クリーニング前には<br>
+                        鳴っていなかった音が、<br><br>
+                        
+                        クリーニング直後から<br>
+                        突然鳴るようになった。<br><br>
+                        
+                        そんな場合は、<br><br>
+                        
+                        経年劣化だけでなく、<br><br>
+                        
+                        部品の組み付けや<br>
+                        配線の取り回し、<br><br>
+                        
+                        フィルターや<br>
+                        お掃除ユニットの装着状態など、<br><br>
+                        
+                        作業との関連も含めて<br>
+                        確認する必要があります。<br><br>
+                        
+                        まずは、<br><br>
+                        
+                        クリーニングを施工した業者へ<br>
+                        相談してみましょう。<br><br>
+                        
+                        施工による不具合であれば、<br><br>
+                        
+                        本来は施工した業者が<br>
+                        確認するべき内容です。
+                    </p>
+
+                    <!-- リンクカード -->
+                    <a href="/tips/robot/" class="block bg-slate-50 border-2 border-slate-200 rounded-2xl p-6 md:p-8 mt-10 shadow-sm hover:shadow-md transition-all active:scale-95 text-center group">
+                        <p class="text-[11px] md:text-sm font-black text-slate-500 mb-3 tracking-widest">
+                            お掃除機能付きエアコンについて<br class="md:hidden">詳しくはコチラ↗️
+                        </p>
+                        <h3 class="text-[17px] md:text-xl font-black text-slate-900 mb-6 leading-relaxed group-hover:text-blue-600 transition-colors">
+                            「お掃除機能付きって必要？」
+                        </h3>
+                        <div class="inline-flex items-center justify-center bg-white border-2 border-slate-900 text-slate-900 px-6 py-3 rounded-full text-sm font-black group-hover:bg-slate-900 group-hover:text-neon transition-colors w-full md:w-auto">
+                            ▶ 記事を読む
+                        </div>
+                    </a>
+                </div>
+
+                <!-- ＝＝＝ 洗えば直る音？修理が必要な音？ ＝＝＝ -->
+                <div class="mb-16 mt-24">
+                    <div class="flex flex-col items-center justify-center mb-8 text-center">
+                        <span class="w-10 h-[3px] bg-slate-800 mb-4 rounded-full"></span>
+                        <h2 class="text-[22px] md:text-2xl font-black text-slate-900 leading-relaxed">
+                            <span class="inline-block">洗えば直る音？</span><br>
+                            <span class="inline-block">修理が必要な音？</span>
+                        </h2>
+                    </div>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose text-center mb-10">
+                        ここが、<br><br>
+                        
+                        一番難しいところです。<br><br>
+                        
+                        異音の原因が、<br><br>
+                        
+                        ホコリやカビ、<br><br>
+                        
+                        送風ファンへの<br>
+                        汚れの付着などであれば、<br><br>
+                        
+                        エアコンクリーニングで<br>
+                        改善する可能性があります。<br><br>
+                        
+                        一方で、<br><br>
+                        
+                        ファンモーターの劣化や、<br><br>
+                        
+                        部品の破損、<br><br>
+                        
+                        電気系統や<br>
+                        機械的な故障などは、<br><br>
+                        
+                        エアコンクリーニングでは<br>
+                        直すことができません。<br><br>
+                        
+                        だからこそ、
+                    </p>
+
+                    <h3 class="text-[19px] md:text-2xl font-black text-slate-900 mt-10 mb-10 leading-relaxed text-center underline decoration-neon decoration-4 underline-offset-4">
+                        <span class="inline-block">何でも洗えば直るとは</span><br>
+                        <span class="inline-block">考えないでください。</span>
+                    </h3>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose text-center">
+                        反対に、<br><br>
+                        
+                        汚れが原因なのに、<br><br>
+                        
+                        いきなり部品交換や<br>
+                        買い替えが必要とも限りません。<br><br>
+                        
+                        洗浄なのか。<br><br>
+                        
+                        修理なのか。<br><br>
+                        
+                        そもそも正常な音なのか。<br><br>
+                        
+                        まず原因を確認することが<br>
+                        大切です。
+                    </p>
+                </div>
+
+                <!-- ＝＝＝ ONE★STARで作業した後に異音がしたら ＝＝＝ -->
+                <div class="mb-16 mt-24">
+                    <div class="flex flex-col items-center justify-center mb-8 text-center">
+                        <span class="w-10 h-[3px] bg-neon mb-4 rounded-full"></span>
+                        <h2 class="text-[20px] md:text-2xl font-black text-slate-900 leading-relaxed">
+                            <span class="inline-block">ONE★STARで</span><br>
+                            <span class="inline-block">作業した後に異音がしたら</span>
+                        </h2>
+                    </div>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose text-center mb-10">
+                        ONE★STARでは、<br><br>
+                        
+                        エアコンクリーニング後に、<br><br>
+                        
+                        今まで鳴っていなかった<br>
+                        異音が発生したり、<br><br>
+                        
+                        何かしらの不具合が<br>
+                        確認された場合、
+                    </p>
+
+                    <h3 class="text-[19px] md:text-2xl font-black text-slate-900 mt-8 mb-10 leading-relaxed text-center bg-neon px-2 py-4 rounded-lg inline-block w-full">
+                        <span class="inline-block">早急に現地へ伺い、</span><br>
+                        <span class="inline-block">状態を確認いたします。</span>
+                    </h3>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose text-center">
+                        実際に確認した結果、<br><br>
+                        
+                        ONE★STARの作業に<br>
+                        原因がある場合は、<br><br>
+                        
+                        責任を持って<br>
+                        適切に対応いたします。<br><br>
+                        
+                        作業した以上、<br><br>
+                        
+                        「知りません」<br><br>
+                        
+                        で終わらせるつもりは<br>
+                        ありません。<br><br>
+                        
+                        まず現物を確認して、<br><br>
+                        
+                        何が起きているのかを<br>
+                        確認します。
+                    </p>
+                </div>
+
+                <!-- ＝＝＝ 製造から10年以上のエアコンについて (注意ボックス) ＝＝＝ -->
+                <div class="bg-red-50 rounded-[20px] border-2 border-red-200 p-6 md:p-8 mt-16 mb-16 text-center shadow-sm">
+                    <h2 class="text-xl md:text-2xl font-black text-red-600 mb-10 leading-relaxed">
+                        <span class="inline-block">製造から10年以上の</span><br>
+                        <span class="inline-block">エアコンについて</span>
+                    </h2>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose mb-10">
+                        ただし、<br><br>
+                        
+                        製造から10年以上が<br>
+                        経過しているエアコンは、<br><br>
+                        
+                        メーカーによる<br>
+                        補修用部品の供給が、<br><br>
+                        
+                        終了している可能性が<br>
+                        高くなります。<br><br>
+                        
+                        万が一、<br><br>
+                        
+                        作業中や作業後に<br>
+                        部品が破損した場合でも、<br><br>
+                        
+                        交換するための部品を<br>
+                        入手できず、<br><br>
+                        
+                        修理そのものが<br>
+                        できない場合があります。<br><br>
+                        
+                        そのため、
+                    </p>
+
+                    <h3 class="text-[19px] md:text-xl font-black text-slate-900 mb-8 leading-relaxed underline decoration-red-400 decoration-4 underline-offset-4">
+                        <span class="inline-block">製造から10年以上</span><br>
+                        <span class="inline-block">経過したエアコンは、</span><br><br>
+                        
+                        <span class="inline-block">保証対象外と</span><br>
+                        <span class="inline-block">させていただいております。</span>
+                    </h3>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
+                        あらかじめ<br>
+                        ご了承ください。
+                    </p>
+                </div>
+
+                <!-- ＝＝＝ 保証対象外だから何もしない？ ＝＝＝ -->
+                <div class="mb-10 mt-16">
+                    <div class="flex flex-col items-center justify-center mb-8 text-center">
+                        <span class="w-10 h-[3px] bg-slate-800 mb-4 rounded-full"></span>
+                        <h2 class="text-[20px] md:text-2xl font-black text-slate-900 leading-relaxed">
+                            <span class="inline-block">保証対象外だから</span><br>
+                            <span class="inline-block">何もしない？</span>
+                        </h2>
+                    </div>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose text-center mb-10">
+                        いいえ。<br><br>
+                        
+                        保証対象外だからといって、<br>
+                        何も対応しないという<br>
+                        意味ではありません。<br><br>
+                        
+                        例えば、<br><br>
+                        
+                        部品の供給が<br>
+                        終了していたとしても、<br><br>
+                        
+                        ステーによる固定や、<br><br>
+                        
+                        接着剤などを使用した<br>
+                        応急的な補修によって、<br><br>
+                        
+                        異音などの症状を<br>
+                        改善できる場合があります。<br><br>
+                        
+                        ONE★STARの作業が<br>
+                        原因であることを確認し、<br><br>
+                        
+                        そのような方法で<br>
+                        対応可能な内容であれば、
+                    </p>
+
+                    <h3 class="text-[19px] md:text-2xl font-black text-slate-900 mt-8 mb-10 leading-relaxed text-center underline decoration-neon decoration-4 underline-offset-4">
+                        無償で対応いたします。
+                    </h3>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose text-center">
+                        もちろん、<br><br>
+                        
+                        メーカー本来の修理方法とは<br>
+                        異なる応急処置になる場合は、<br><br>
+                        
+                        その内容をご説明した上で<br>
+                        対応します。<br><br>
+                        
+                        古いエアコンだから、<br><br>
+                        
+                        何が起きても知らない。<br><br>
+                        
+                        という考えではありません。<br><br>
+                        
+                        ただ、<br><br>
+                        
+                        部品が存在しなければ、<br>
+                        元通りに修理できないこともある。<br><br>
+                        
+                        そこだけは、<br><br>
+                        
+                        作業前にご理解いただきたいと<br>
+                        考えています。
+                    </p>
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- ネイビーのカード (ONE★STARが大切にしていること) -->
+        <div class="bg-slate-900 rounded-[24px] border-l-[12px] border-neon p-8 md:p-10 text-center shadow-md mb-10">
+            
+            <h2 class="text-white font-black text-xl md:text-2xl leading-relaxed mb-10 tracking-wider">
+                <span class="inline-block">ONE★STARが</span><br>
+                <span class="inline-block">大切にしていること</span>
+            </h2>
+
+            <p class="text-slate-100 font-bold text-[15px] md:text-base leading-loose mb-10">
+                エアコンから<br>
+                変な音がする。<br><br>
+                
+                その原因は、<br><br>
+                
+                汚れかもしれません。<br><br>
+                
+                故障かもしれません。<br><br>
+                
+                住宅環境によるものかも<br>
+                しれません。<br><br>
+                
+                あるいは、<br><br>
+                
+                まったく異常のない<br>
+                正常な動作音かもしれません。<br><br>
+                
+                だから、<br><br>
+                
+                音だけを聞いて、<br><br>
+                
+                <span class="text-neon font-black text-base">「洗えば直ります」</span><br><br>
+                
+                とは言いません。
+            </p>
+
+            <!-- 区切り線 -->
+            <div class="w-16 h-[1px] bg-slate-600 mx-auto mb-10"></div>
+
+            <p class="text-slate-100 font-bold text-[15px] md:text-base leading-loose mb-12">
+                作業前の状態を確認し、<br><br>
+                
+                洗浄後にも<br>
+                正常に動いているか確認する。<br><br>
+                
+                そして、<br><br>
+                
+                万が一、<br><br>
+                
+                自分たちの作業によって<br>
+                不具合を発生させてしまったなら、<br><br>
+                
+                きちんと向き合う。
+            </p>
+
+            <h3 class="text-white font-black text-[17px] md:text-xl leading-relaxed mb-10 underline decoration-neon decoration-4 underline-offset-4">
+                <span class="inline-block">洗って終わりではなく、</span><br><br>
+                
+                <span class="inline-block">目の前のエアコンと</span><br>
+                <span class="inline-block">最後まで向き合う。</span>
+            </h3>
+
+            <p class="text-slate-100 font-bold text-[15px] md:text-base leading-loose">
+                それが、<br><br>
+                
+                ONE★STARが<br>
+                大切にしていることです。
+            </p>
+        </div>
+
+
+        <!-- ご相談誘導ブロック (CTA) -->
+        <div class="bg-white rounded-2xl border border-slate-200 p-8 text-center shadow-sm mb-12 mt-12">
+            <h2 class="text-xl md:text-2xl font-black text-slate-900 mb-10 leading-relaxed">
+                <span class="inline-block">エアコンクリーニングを</span><br>
+                <span class="inline-block">ご依頼の方へ</span>
+            </h2>
+            
+            <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose mb-10">
+                現在、<br><br>
+                
+                「風量が弱い」<br><br>
+                
+                「ニオイが気になる」<br><br>
+                
+                「内部の汚れが気になる」<br><br>
+                
+                <span class="text-slate-900 font-black">「変な音もする」</span><br><br>
+                
+                などの症状があり、<br><br>
+                
+                エアコンクリーニングを<br>
+                ご依頼される方は、<br><br>
+                
+                ご予約の際に、<br><br>
+                
+                <span class="text-slate-900 font-black underline decoration-neon decoration-4 underline-offset-4">気になっている症状も</span><br>
+                <span class="text-slate-900 font-black underline decoration-neon decoration-4 underline-offset-4">一緒にお伝えください。</span><br><br>
+                
+                ただ洗浄するだけではなく、<br><br>
+                
+                作業前の状態も<br>
+                確認しながら施工します。
+            </p>
+            
+            <p class="text-sm font-black text-slate-500 mb-6 tracking-widest">
+                エアコンクリーニングの<br>
+                ご予約・お問い合わせはこちら。
+            </p>
+            
+            <a href="tel:08000807788" class="js-phone-modal-trigger inline-flex items-center justify-center bg-slate-900 hover:bg-slate-800 text-neon px-8 py-4 rounded-full text-base font-black shadow-md transition-all active:scale-95">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                <span>電話で相談する</span>
+            </a>
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-900 text-white pt-12 pb-24 md:pb-12 border-t-[6px] border-neon text-center mt-12">
+        <div class="mb-6 flex flex-col items-center justify-center">
+            <span class="text-4xl md:text-5xl tracking-widest text-white flex items-center justify-center font-impact mt-1">
+                ONE
+                <img src="ONESTAR.PNG" alt="ロゴ" class="w-[80px] h-[80px] md:w-[100px] md:h-[100px] mx-[-10px] md:mx-[-16px] object-contain -translate-y-2" onerror="this.style.display='none'">
+                STAR
+            </span>
+            <p class="text-xs text-neon font-black mt-2 tracking-widest">株式会社ECS専属プロスタッフ</p>
+        </div>
+        
+        <p class="text-[11px] text-slate-400 font-bold mb-3">
+            <a href="/products" class="hover:text-white transition-colors underline underline-offset-4">オリジナルLINEスタンプ販売中</a>
+        </p>
+        <p class="text-[10px] text-slate-500 font-bold mb-4">
+            <a href="/privacy" class="hover:text-white transition-colors">プライバシーポリシー</a>
+        </p>
+        <p class="text-[10px] text-slate-500 font-bold tracking-wider">© 2026 ONE★STAR. All Rights Reserved.</p>
+    </footer>
+
+    <!-- MOBILE BOTTOM NAVIGATION -->
+    <div class="fixed bottom-0 left-0 right-0 z-45 bg-slate-900 md:hidden h-[60px] flex items-stretch text-white shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.3)] border-t border-slate-800">
+        
+        <a href="/price" class="flex flex-col items-center justify-center w-[20%] border-r border-slate-700 active:bg-slate-800">
+            <svg class="w-5 h-5 mb-1 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <span class="text-[9px] font-black">料金</span>
+        </a>
+        
+        <a href="/mind" class="flex flex-col items-center justify-center w-[20%] border-r border-slate-700 active:bg-slate-800">
+            <svg class="w-5 h-5 mb-1 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+            <span class="text-[9px] font-black">想い</span>
+        </a>
+
+        <a href="/pride" class="flex flex-col items-center justify-center w-[20%] active:bg-slate-800">
+            <svg class="w-5 h-5 mb-1 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+            <span class="text-[9px] font-black">拘り</span>
+        </a>
+        
+        <a href="tel:08000807788" class="js-phone-modal-trigger flex items-center justify-center bg-neon text-slate-900 w-[40%] font-black text-base active:bg-yellow-400 transition-colors">
+            <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+            電話する
+        </a>
+        
+    </div>
+
+    <!-- 🌟 ご予約・お問い合わせ前のワンクッションモーダル 🌟 -->
+    <div id="phone-modal" class="fixed inset-0 z-[100] hidden flex items-center justify-center px-4">
+        <div id="phone-modal-backdrop" class="absolute inset-0 bg-slate-900/80 backdrop-blur-sm opacity-0 transition-opacity duration-300"></div>
+        
+        <div id="phone-modal-content" class="relative bg-white rounded-3xl shadow-2xl w-full max-w-sm overflow-hidden transform scale-95 opacity-0 transition-all duration-300 border border-slate-100">
+            
+            <button id="phone-modal-close" class="absolute top-4 right-4 p-2 text-slate-400 hover:text-slate-700 bg-slate-100 hover:bg-slate-200 rounded-full transition-colors z-10">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+            
+            <div class="p-6 md:p-8 text-center pt-10">
+                
+                <h3 class="text-xl font-black text-slate-900 mb-6 border-b-4 border-[#EFFF00] inline-block pb-1">
+                    ご予約・お問い合わせの前に
+                </h3>
+                
+                <div class="text-[13px] text-slate-700 font-bold leading-relaxed mb-8 space-y-4 text-left bg-slate-50 p-5 rounded-2xl border border-slate-100 shadow-inner">
+                    <p>
+                        <span class="text-slate-900 font-black text-sm">ONE★STAR</span>は<br>
+                        株式会社ECS（エッジクリーンサービス）の専属プロスタッフとして活動しています。
+                    </p>
+                    <p class="pt-2 border-t border-slate-200">
+                        お電話は<br>
+                        <span class="text-slate-900 font-black">株式会社ECSの予約受付</span>につながります。
+                    </p>
+                    
+                    <div class="bg-rose-50 border border-rose-200 p-3 rounded-xl text-center shadow-sm">
+                        <p class="text-rose-600 font-black text-[13px] leading-tight">
+                            ご予約の際は<br>
+                            <span class="text-base">「ONE★STAR（川崎）を指名」</span>と<br>
+                            お伝えください。
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="space-y-3">
+                    <a href="tel:08000807788" class="flex items-center justify-center w-full py-4 bg-slate-900 text-[#EFFF00] font-black rounded-2xl shadow-md active:scale-95 transition-transform text-sm sm:text-base border border-slate-800">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                        株式会社ECSへ電話する
+                    </a>
+                    
+                    <a href="https://www.instagram.com/one.star.kawasaki?igsh=anZpYnpxcDdqOXRh&utm_source=qr" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center w-full py-4 bg-gradient-to-r from-pink-500 to-rose-500 text-white font-black rounded-2xl shadow-md active:scale-95 transition-transform text-sm sm:text-base">
+                        <svg class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                        </svg>
+                        Instagramで本人に相談する
+                    </a>
+                </div>
+                
+                <p class="text-[10px] text-slate-500 mt-4 font-bold leading-relaxed">
+                    直接のご質問・お問い合わせは<br>本人直通のInstagram DMからお気軽にどうぞ。
+                </p>
+                
+                <button id="phone-modal-cancel" class="mt-6 text-[11px] text-slate-400 font-bold underline underline-offset-4 hover:text-slate-600 transition-colors">
+                    キャンセルして戻る
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // === メニュー開閉用 ===
+            const drawerContainer = document.getElementById('drawer-container');
+            const drawerMenu = document.getElementById('drawer-menu');
+            const drawerBackdrop = document.getElementById('drawer-backdrop');
+            
+            const toggleMenu = (show) => {
+                if (show) {
+                    drawerContainer.classList.remove('hidden');
+                    setTimeout(() => {
+                        drawerBackdrop.classList.remove('opacity-0');
+                        drawerBackdrop.classList.add('opacity-100');
+                        drawerMenu.classList.remove('drawer-closed');
+                        drawerMenu.classList.add('drawer-open');
+                    }, 10);
+                } else {
+                    drawerBackdrop.classList.remove('opacity-100');
+                    drawerBackdrop.classList.add('opacity-0');
+                    drawerMenu.classList.remove('drawer-open');
+                    drawerMenu.classList.add('drawer-closed');
+                    setTimeout(() => drawerContainer.classList.add('hidden'), 300);
+                }
+            };
+
+            document.getElementById('menu-open-btn').addEventListener('click', () => toggleMenu(true));
+            document.getElementById('menu-close-btn').addEventListener('click', () => toggleMenu(false));
+            document.getElementById('drawer-backdrop').addEventListener('click', () => toggleMenu(false));
+            document.querySelectorAll('.menu-link').forEach(link => link.addEventListener('click', () => toggleMenu(false)));
+
+            // === 電話モーダル ===
+            const phoneModal = document.getElementById('phone-modal');
+            const phoneModalBackdrop = document.getElementById('phone-modal-backdrop');
+            const phoneModalContent = document.getElementById('phone-modal-content');
+            const phoneModalCloseBtn = document.getElementById('phone-modal-close');
+            const phoneModalCancelBtn = document.getElementById('phone-modal-cancel');
+            const phoneTriggerBtns = document.querySelectorAll('.js-phone-modal-trigger');
+
+            if (phoneModal && phoneTriggerBtns.length > 0) {
+                const openPhoneModal = (e) => {
+                    e.preventDefault(); 
+                    if (typeof toggleMenu === 'function') toggleMenu(false);
+
+                    phoneModal.classList.remove('hidden');
+                    requestAnimationFrame(() => {
+                        phoneModalBackdrop.classList.remove('opacity-0');
+                        phoneModalBackdrop.classList.add('opacity-100');
+                        phoneModalContent.classList.remove('opacity-0', 'scale-95');
+                        phoneModalContent.classList.add('opacity-100', 'scale-100');
+                    });
+                };
+
+                const closePhoneModal = () => {
+                    phoneModalBackdrop.classList.remove('opacity-100');
+                    phoneModalBackdrop.classList.add('opacity-0');
+                    phoneModalContent.classList.remove('opacity-100', 'scale-100');
+                    phoneModalContent.classList.add('opacity-0', 'scale-95');
+                    setTimeout(() => phoneModal.classList.add('hidden'), 300);
+                };
+
+                phoneTriggerBtns.forEach(btn => btn.addEventListener('click', openPhoneModal));
+                phoneModalCloseBtn.addEventListener('click', closePhoneModal);
+                phoneModalCancelBtn.addEventListener('click', closePhoneModal);
+                phoneModalBackdrop.addEventListener('click', closePhoneModal);
+            }
+        });
+    </script>
+</body>
+</html>
+
+```
