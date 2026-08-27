@@ -23,9 +23,23 @@
         #drawer-menu { transition: transform 0.3s ease-in-out; }
         .drawer-closed { transform: translateX(-100%); }
         .drawer-open { transform: translateX(0); }
+        
         .t-tag { @apply px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200 inline-block; }
-        .b-wrap { @apply scroll-mt-24 bg-white p-4 rounded-xl shadow-sm border border-slate-200; }
+        /* スクロール時のヘッダー＋検索バー被り防止＆アニメーション追加 */
+        .b-wrap { @apply scroll-mt-36 bg-white p-4 rounded-xl shadow-sm border border-slate-200; transition: all 0.3s ease; }
         .b-tit { @apply text-base font-black text-slate-900 border-l-[6px] pl-3 mb-1; }
+        .b-desc { @apply text-[13px] font-bold text-slate-700 leading-relaxed; }
+        
+        /* 検索ヒット時のハイライト演出 */
+        .highlight-term {
+            background-color: #fefce8 !important; /* 薄い黄色 */
+            border-color: #EFFF00 !important;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05) !important;
+            transform: scale(1.02);
+            z-index: 10;
+            position: relative;
+        }
+
         .bc-gray { @apply border-slate-400; }
         .bc-blue { @apply border-blue-500; }
         .bc-orange { @apply border-orange-500; }
@@ -34,7 +48,6 @@
         .bc-cyan { @apply border-cyan-500; }
         .bc-amber { @apply border-amber-500; }
         .bc-neon { @apply border-[#EFFF00]; }
-        .b-desc { @apply text-[13px] font-bold text-slate-700 leading-relaxed; }
     </style>
 </head>
 <body class="font-sans text-slate-800 bg-slate-50 antialiased overflow-x-hidden">
@@ -50,6 +63,16 @@
         </div>
         <div class="w-10 md:hidden"></div>
     </header>
+
+    <!-- 固定検索バー -->
+    <div class="fixed top-14 left-0 right-0 z-30 bg-slate-50/95 backdrop-blur-md shadow-sm border-b border-slate-200 p-2.5 flex justify-center">
+        <div class="relative w-full max-w-3xl flex items-center">
+            <input type="text" id="search-input" class="w-full bg-white border border-slate-300 text-sm font-bold rounded-full pl-4 pr-12 py-2.5 focus:outline-none focus:border-slate-900 focus:ring-2 focus:ring-slate-900/20 transition-all placeholder-slate-400 text-slate-800 shadow-inner" placeholder="用語を検索 (例: フィルター)">
+            <button id="search-btn" class="absolute right-1 top-1 bottom-1 px-4 bg-slate-900 text-neon rounded-full flex items-center justify-center hover:bg-slate-800 transition-transform active:scale-95 shadow">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+            </button>
+        </div>
+    </div>
 
     <!-- DRAWER MENU -->
     <div id="drawer-container" class="fixed inset-0 z-50 overflow-hidden hidden">
@@ -83,7 +106,8 @@
     </div>
 
     <!-- MAIN (用語集 CONTENTS) -->
-    <main class="pt-20 pb-28 md:pb-20 px-4">
+    <!-- pt-36に変更してヘッダー＋検索バーの被りを防ぐ -->
+    <main class="pt-36 pb-28 md:pb-20 px-4">
         
         <div class="text-center mb-10">
             <h1 class="text-4xl md:text-5xl font-impact tracking-widest text-slate-900 mb-2">GLOSSARY</h1>
@@ -106,7 +130,7 @@
         <div class="max-w-3xl mx-auto space-y-16">
 
             <!-- ========================== 其ノ壱｜基本編 =========================== -->
-            <section id="one" class="scroll-mt-24">
+            <section id="one" class="scroll-mt-36">
                 <div class="mb-6">
                     <h2 class="text-2xl font-black text-slate-900 border-b-4 border-neon inline-block mb-3 pr-4">其ノ壱｜基本編</h2>
                     <p class="text-sm font-bold text-slate-600 leading-relaxed">エアコン売り場やカタログなどで、<br>よく見たり聞いたりする言葉たち。</p>
@@ -252,7 +276,7 @@
             </section>
 
             <!-- ========================== 其ノ弐｜洗浄編 =========================== -->
-            <section id="two" class="scroll-mt-24">
+            <section id="two" class="scroll-mt-36">
                 <div class="mb-6">
                     <h2 class="text-2xl font-black text-slate-900 border-b-4 border-neon inline-block mb-3 pr-4">其ノ弐｜洗浄編</h2>
                     <p class="text-sm font-bold text-slate-600 leading-relaxed">エアコンクリーニングで使われる、<br>道具名や作業名、部品名など。</p>
@@ -293,7 +317,6 @@
                     <a href="#drain-pan1" class="t-tag">ドレンパン</a>
                     <a href="#drain-pump-w" class="t-tag">ドレンポンプ</a>
                     <a href="#drain-hose-w" class="t-tag">ドレンホース</a>
-                    <a href="#heat-ex-w" class="t-tag">熱交換器</a>
                     <a href="#vacuum" class="t-tag">バキューム</a>
                     <a href="#brushing" class="t-tag">ブラッシング</a>
                     <a href="#blower" class="t-tag">ブロワー</a>
@@ -301,7 +324,6 @@
                     <a href="#bell-mouth" class="t-tag">ベルマウス</a>
                     <a href="#hopper" class="t-tag">ホッパー</a>
                     <a href="#masker" class="t-tag">マスカー</a>
-                    <a href="#water-leak-w" class="t-tag">水漏れ</a>
                     <a href="#yani-dirt" class="t-tag">ヤニ汚れ</a>
                     <a href="#oil-dirt" class="t-tag">油汚れ</a>
                     <a href="#curing1" class="t-tag">養生</a>
@@ -344,7 +366,6 @@
                     <div id="drain-pan1" class="b-wrap"><h3 class="b-tit bc-cyan">ドレンパン</h3><p class="b-desc">説明</p></div>
                     <div id="drain-pump-w" class="b-wrap"><h3 class="b-tit bc-gray">ドレンポンプ</h3><p class="b-desc">説明</p></div>
                     <div id="drain-hose-w" class="b-wrap"><h3 class="b-tit bc-gray">ドレンホース</h3><p class="b-desc">説明</p></div>
-                    <div id="heat-ex-w" class="b-wrap"><h3 class="b-tit bc-gray">熱交換器</h3><p class="b-desc">説明</p></div>
                     <div id="vacuum" class="b-wrap"><h3 class="b-tit bc-gray">バキューム</h3><p class="b-desc">説明</p></div>
                     <div id="brushing" class="b-wrap"><h3 class="b-tit bc-gray">ブラッシング</h3><p class="b-desc">説明</p></div>
                     <div id="blower" class="b-wrap"><h3 class="b-tit bc-gray">ブロワー</h3><p class="b-desc">説明</p></div>
@@ -352,7 +373,6 @@
                     <div id="bell-mouth" class="b-wrap"><h3 class="b-tit bc-gray">ベルマウス</h3><p class="b-desc">説明</p></div>
                     <div id="hopper" class="b-wrap"><h3 class="b-tit bc-gray">ホッパー</h3><p class="b-desc">説明</p></div>
                     <div id="masker" class="b-wrap"><h3 class="b-tit bc-gray">マスカー</h3><p class="b-desc">説明</p></div>
-                    <div id="water-leak-w" class="b-wrap"><h3 class="b-tit bc-gray">水漏れ</h3><p class="b-desc">説明</p></div>
                     <div id="yani-dirt" class="b-wrap"><h3 class="b-tit bc-gray">ヤニ汚れ</h3><p class="b-desc">説明</p></div>
                     <div id="oil-dirt" class="b-wrap"><h3 class="b-tit bc-gray">油汚れ</h3><p class="b-desc">説明</p></div>
                     <div id="curing1" class="b-wrap"><h3 class="b-tit bc-amber">養生</h3><p class="b-desc">説明</p></div>
@@ -362,7 +382,7 @@
             </section>
 
             <!-- ========================== 其ノ参｜取付編 =========================== -->
-            <section id="three" class="scroll-mt-24">
+            <section id="three" class="scroll-mt-36">
                 <div class="mb-6">
                     <h2 class="text-2xl font-black text-slate-900 border-b-4 border-neon inline-block mb-3 pr-4">其ノ参｜取付編</h2>
                     <p class="text-sm font-bold text-slate-600 leading-relaxed">エアコンの取り付けや工事で使われる、<br>道具名や部材名、作業名など。</p>
@@ -373,13 +393,12 @@
                     <a href="#pipe-3-5" class="t-tag">3分5分</a>
                     <a href="#pipe-3-6" class="t-tag">3分6分</a>
                     <a href="#earth-i" class="t-tag">アース</a>
-                    <a href="#anchor" class="t-tag">アンカー</a>
-                    <a href="#impact-driver" class="t-tag">インパクトドライバー</a>
+                    <a href="#air-cut-v" class="t-tag">エアカットバルブ</a>
+                    <a href="#eki-pipe" class="t-tag">液側配管</a>
+                    <a href="#elbow" class="t-tag">エルボ</a>
                     <a href="#wall-corner" class="t-tag">ウォールコーナー</a>
                     <a href="#inpei-pipe" class="t-tag">隠蔽配管</a>
                     <a href="#uraita" class="t-tag">裏板/背板</a>
-                    <a href="#eki-pipe" class="t-tag">液側配管</a>
-                    <a href="#elbow" class="t-tag">エルボ</a>
                     <a href="#gas-pipe-i" class="t-tag">ガス側配管</a>
                     <a href="#kimitsu-test" class="t-tag">気密試験</a>
                     <a href="#kimitsu" class="t-tag">気密処理</a>
@@ -434,6 +453,7 @@
                     <a href="#hojo-pipe" class="t-tag">補助配管</a>
                     <a href="#manifold" class="t-tag">マニホールド</a>
                     <a href="#reamer" class="t-tag">リーマー</a>
+                    <a href="#reibai-tsuika" class="t-tag">冷媒追加充填</a>
                     <a href="#roshutsu-pipe" class="t-tag">露出配管</a>
                     <a href="#wire-stripper" class="t-tag">ワイヤーストリッパー</a>
                     <a href="#watari-h" class="t-tag">渡り配線</a>
@@ -446,13 +466,12 @@
                     <div id="pipe-3-5" class="b-wrap"><h3 class="b-tit bc-gray">3分5分</h3><p class="b-desc">説明</p></div>
                     <div id="pipe-3-6" class="b-wrap"><h3 class="b-tit bc-gray">3分6分</h3><p class="b-desc">説明</p></div>
                     <div id="earth-i" class="b-wrap"><h3 class="b-tit bc-gray">アース</h3><p class="b-desc">説明</p></div>
-                    <div id="anchor" class="b-wrap"><h3 class="b-tit bc-gray">アンカー</h3><p class="b-desc">説明</p></div>
-                    <div id="impact-driver" class="b-wrap"><h3 class="b-tit bc-gray">インパクトドライバー</h3><p class="b-desc">説明</p></div>
+                    <div id="air-cut-v" class="b-wrap"><h3 class="b-tit bc-gray">エアカットバルブ</h3><p class="b-desc">説明</p></div>
+                    <div id="eki-pipe" class="b-wrap"><h3 class="b-tit bc-gray">液側配管</h3><p class="b-desc">説明</p></div>
+                    <div id="elbow" class="b-wrap"><h3 class="b-tit bc-gray">エルボ</h3><p class="b-desc">説明</p></div>
                     <div id="wall-corner" class="b-wrap"><h3 class="b-tit bc-gray">ウォールコーナー</h3><p class="b-desc">説明</p></div>
                     <div id="inpei-pipe" class="b-wrap"><h3 class="b-tit bc-gray">隠蔽配管</h3><p class="b-desc">説明</p></div>
                     <div id="uraita" class="b-wrap"><h3 class="b-tit bc-gray">裏板/背板</h3><p class="b-desc">説明</p></div>
-                    <div id="eki-pipe" class="b-wrap"><h3 class="b-tit bc-gray">液側配管</h3><p class="b-desc">説明</p></div>
-                    <div id="elbow" class="b-wrap"><h3 class="b-tit bc-gray">エルボ</h3><p class="b-desc">説明</p></div>
                     <div id="gas-pipe-i" class="b-wrap"><h3 class="b-tit bc-gray">ガス側配管</h3><p class="b-desc">説明</p></div>
                     <div id="kimitsu-test" class="b-wrap"><h3 class="b-tit bc-gray">気密試験</h3><p class="b-desc">説明</p></div>
                     <div id="kimitsu" class="b-wrap"><h3 class="b-tit bc-gray">気密処理</h3><p class="b-desc">説明</p></div>
@@ -507,6 +526,7 @@
                     <div id="hojo-pipe" class="b-wrap"><h3 class="b-tit bc-gray">補助配管</h3><p class="b-desc">説明</p></div>
                     <div id="manifold" class="b-wrap"><h3 class="b-tit bc-gray">マニホールド</h3><p class="b-desc">説明</p></div>
                     <div id="reamer" class="b-wrap"><h3 class="b-tit bc-gray">リーマー</h3><p class="b-desc">説明</p></div>
+                    <div id="reibai-tsuika" class="b-wrap"><h3 class="b-tit bc-gray">冷媒追加充填</h3><p class="b-desc">説明</p></div>
                     <div id="roshutsu-pipe" class="b-wrap"><h3 class="b-tit bc-gray">露出配管</h3><p class="b-desc">説明</p></div>
                     <div id="wire-stripper" class="b-wrap"><h3 class="b-tit bc-gray">ワイヤーストリッパー</h3><p class="b-desc">説明</p></div>
                     <div id="watari-h" class="b-wrap"><h3 class="b-tit bc-gray">渡り配線</h3><p class="b-desc">説明</p></div>
@@ -516,7 +536,7 @@
             </section>
 
             <!-- ========================== 其ノ肆｜修理編 =========================== -->
-            <section id="four" class="scroll-mt-24">
+            <section id="four" class="scroll-mt-36">
                 <div class="mb-6">
                     <h2 class="text-2xl font-black text-slate-900 border-b-4 border-neon inline-block mb-3 pr-4">其ノ肆｜修理編</h2>
                     <p class="text-sm font-bold text-slate-600 leading-relaxed">エアコンの点検や修理で使われる、<br>道具名や部品名、作業名など。</p>
@@ -593,7 +613,6 @@
                     <a href="#reibai-press" class="t-tag">冷媒圧力</a>
                     <a href="#reibai-recov" class="t-tag">冷媒回収</a>
                     <a href="#reibai-recov-m" class="t-tag">冷媒回収機</a>
-                    <a href="#reibai-over" class="t-tag">冷媒過充填</a>
                     <a href="#reibai-short" class="t-tag">冷媒不足</a>
                     <a href="#rouden" class="t-tag">漏電</a>
                     <a href="#rouden-brk" class="t-tag">漏電遮断器</a>
@@ -670,7 +689,6 @@
                     <div id="reibai-press" class="b-wrap"><h3 class="b-tit bc-gray">冷媒圧力</h3><p class="b-desc">説明</p></div>
                     <div id="reibai-recov" class="b-wrap"><h3 class="b-tit bc-gray">冷媒回収</h3><p class="b-desc">説明</p></div>
                     <div id="reibai-recov-m" class="b-wrap"><h3 class="b-tit bc-gray">冷媒回収機</h3><p class="b-desc">説明</p></div>
-                    <div id="reibai-over" class="b-wrap"><h3 class="b-tit bc-gray">冷媒過充填</h3><p class="b-desc">説明</p></div>
                     <div id="reibai-short" class="b-wrap"><h3 class="b-tit bc-gray">冷媒不足</h3><p class="b-desc">説明</p></div>
                     <div id="rouden" class="b-wrap"><h3 class="b-tit bc-gray">漏電</h3><p class="b-desc">説明</p></div>
                     <div id="rouden-brk" class="b-wrap"><h3 class="b-tit bc-gray">漏電遮断器</h3><p class="b-desc">説明</p></div>
@@ -678,7 +696,7 @@
             </section>
 
             <!-- ========================== 其ノ伍｜番外編 =========================== -->
-            <section id="five" class="scroll-mt-24">
+            <section id="five" class="scroll-mt-36">
                 <div class="mb-6">
                     <h2 class="text-2xl font-black text-slate-900 border-b-4 border-neon inline-block mb-3 pr-4">其ノ伍｜番外編</h2>
                     <p class="text-sm font-bold text-slate-600 leading-relaxed">分類しにくいものや、<br>業務用エアコンなどで使われる言葉たち。</p>
@@ -890,6 +908,7 @@
     <!-- SCRIPTS -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            // メニュー開閉
             const drawerContainer = document.getElementById('drawer-container');
             const drawerMenu = document.getElementById('drawer-menu');
             const drawerBackdrop = document.getElementById('drawer-backdrop');
@@ -917,6 +936,7 @@
             document.getElementById('drawer-backdrop').addEventListener('click', () => toggleMenu(false));
             document.querySelectorAll('.menu-link').forEach(link => link.addEventListener('click', () => toggleMenu(false)));
 
+            // モーダル
             const phoneModal = document.getElementById('phone-modal');
             const phoneModalBackdrop = document.getElementById('phone-modal-backdrop');
             const phoneModalContent = document.getElementById('phone-modal-content');
@@ -948,6 +968,66 @@
                 phoneModalCancelBtn.addEventListener('click', closePhoneModal);
                 phoneModalBackdrop.addEventListener('click', closePhoneModal);
             }
+
+            // --- 検索機能 ---
+            const searchInput = document.getElementById('search-input');
+            const searchBtn = document.getElementById('search-btn');
+
+            // トースト表示関数
+            const showToast = (msg) => {
+                let old = document.getElementById('toast-msg');
+                if (old) old.remove();
+                const toast = document.createElement('div');
+                toast.id = 'toast-msg';
+                toast.className = 'fixed top-32 left-1/2 -translate-x-1/2 bg-slate-900 text-neon font-black text-sm px-6 py-3 rounded-full shadow-xl z-50 transition-opacity duration-300 opacity-0 pointer-events-none';
+                toast.textContent = msg;
+                document.body.appendChild(toast);
+                
+                requestAnimationFrame(() => toast.classList.remove('opacity-0'));
+                
+                setTimeout(() => {
+                    toast.classList.add('opacity-0');
+                    setTimeout(() => toast.remove(), 300);
+                }, 2500);
+            };
+
+            const performSearch = () => {
+                const query = searchInput.value.trim().toLowerCase();
+                if (!query) return;
+                
+                // スマホキーボードを閉じる
+                searchInput.blur();
+
+                const terms = document.querySelectorAll('.b-wrap');
+                let found = false;
+
+                for (let term of terms) {
+                    // 日本語とアルファベット両対応のために小文字化して比較
+                    const title = term.querySelector('.b-tit').textContent.toLowerCase();
+                    if (title.includes(query)) {
+                        // ハッシュジャンプ（ネイティブなスムーズスクロールが発動）
+                        window.location.hash = '#' + term.id;
+                        
+                        // ハイライト演出
+                        term.classList.add('highlight-term');
+                        setTimeout(() => {
+                            term.classList.remove('highlight-term');
+                        }, 2000);
+
+                        found = true;
+                        break;
+                    }
+                }
+
+                if (!found) {
+                    showToast('見つかりませんでした 💦');
+                }
+            };
+
+            searchBtn.addEventListener('click', performSearch);
+            searchInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') performSearch();
+            });
         });
     </script>
 </body>
