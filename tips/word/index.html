@@ -66,7 +66,8 @@
     <!-- 固定検索バー -->
     <div class="fixed top-14 left-0 right-0 z-30 bg-slate-50/95 backdrop-blur-md shadow-sm border-b border-slate-200 p-2.5 flex justify-center">
         <div class="relative w-full max-w-3xl flex items-center">
-            <input type="text" id="search-input" class="w-full bg-white border border-slate-300 text-sm font-bold rounded-full pl-4 pr-12 py-2.5 focus:outline-none focus:border-slate-900 focus:ring-2 focus:ring-slate-900/20 transition-all placeholder-slate-400 text-slate-800 shadow-inner" placeholder="用語を検索 (例: ふれあ, フィルター)">
+            <!-- 勝手なズームを防ぐため text-sm から text-base (16px) に変更 -->
+            <input type="text" id="search-input" class="w-full bg-white border border-slate-300 text-base font-bold rounded-full pl-4 pr-12 py-2.5 focus:outline-none focus:border-slate-900 focus:ring-2 focus:ring-slate-900/20 transition-all placeholder-slate-400 text-slate-800 shadow-inner" placeholder="用語を検索 (例: ふれあ, フィルター)">
             <button id="search-btn" class="absolute right-1 top-1 bottom-1 px-4 bg-slate-900 text-neon rounded-full flex items-center justify-center hover:bg-slate-800 transition-transform active:scale-95 shadow">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
             </button>
@@ -105,6 +106,7 @@
     </div>
 
     <!-- MAIN (用語集 CONTENTS) -->
+    <!-- pt-36に変更してヘッダー＋検索バーの被りを防ぐ -->
     <main class="pt-36 pb-28 md:pb-20 px-4">
         
         <div class="text-center mb-10">
@@ -287,6 +289,7 @@
                     <a href="#osoji-unit" class="t-tag">お掃除ユニット</a>
                     <a href="#foul-water" class="t-tag">汚水</a>
                     <a href="#cover-wash" class="t-tag">カバー洗い</a>
+                    <a href="#gas-leak-wash" class="t-tag">ガス漏れ</a>
                     <a href="#full-disasm" class="t-tag">完全分解</a>
                     <a href="#kishaku" class="t-tag">希釈</a>
                     <a href="#cross-flow" class="t-tag">クロスフローファン</a>
@@ -336,6 +339,7 @@
                     <div id="osoji-unit" class="b-wrap"><h3 class="b-tit bc-gray">お掃除ユニット</h3><p class="b-desc">説明</p></div>
                     <div id="foul-water" class="b-wrap"><h3 class="b-tit bc-gray">汚水</h3><p class="b-desc">説明</p></div>
                     <div id="cover-wash" class="b-wrap"><h3 class="b-tit bc-gray">カバー洗い</h3><p class="b-desc">説明</p></div>
+                    <div id="gas-leak-wash" class="b-wrap"><h3 class="b-tit bc-gray">ガス漏れ</h3><p class="b-desc">説明</p></div>
                     <div id="full-disasm" class="b-wrap"><h3 class="b-tit bc-gray">完全分解</h3><p class="b-desc">説明</p></div>
                     <div id="kishaku" class="b-wrap"><h3 class="b-tit bc-gray">希釈</h3><p class="b-desc">説明</p></div>
                     <div id="cross-flow" class="b-wrap"><h3 class="b-tit bc-gray">クロスフローファン</h3><p class="b-desc">説明</p></div>
@@ -419,10 +423,7 @@
                     <a href="#senko-pipe" class="t-tag">先行配管</a>
                     <a href="#senyo-kairo" class="t-tag">専用回路</a>
                     <a href="#set-pipe" class="t-tag">セット配管</a>
-                    <a href="#takenoko" class="t-tag">タケノコ</a>
-                    <a href="#terminal-block-install" class="t-tag">端子台</a>
                     <a href="#tube-cutter" class="t-tag">チューブカッター</a>
-                    <a href="#tsusui-check" class="t-tag">通水確認</a>
                     <a href="#tape-maki" class="t-tag">テープ巻き</a>
                     <a href="#denatsu-kiri" class="t-tag">電圧切替</a>
                     <a href="#torque-w" class="t-tag">トルクレンチ</a>
@@ -430,7 +431,6 @@
                     <a href="#drain-kan" class="t-tag">ドレン管</a>
                     <a href="#drain-kobai" class="t-tag">ドレン勾配</a>
                     <a href="#drain-hose-i" class="t-tag">ドレンホース</a>
-                    <a href="#nylog" class="t-tag">ナイログ</a>
                     <a href="#pipe-ana" class="t-tag">配管穴</a>
                     <a href="#pipe-encho" class="t-tag">配管延長</a>
                     <a href="#pipe-kei" class="t-tag">配管径</a>
@@ -442,7 +442,6 @@
                     <a href="#flare-tool" class="t-tag">フレアツール</a>
                     <a href="#flare-nut" class="t-tag">フレアナット</a>
                     <a href="#pair-coil" class="t-tag">ペアコイル</a>
-                    <a href="#pen-driver" class="t-tag">ペンドラ</a>
                     <a href="#bender" class="t-tag">ベンダー</a>
                     <a href="#boushin-rubber" class="t-tag">防振ゴム</a>
                     <a href="#hotai" class="t-tag">包帯</a>
@@ -453,7 +452,7 @@
                     <a href="#manifold" class="t-tag">マニホールド</a>
                     <a href="#reamer" class="t-tag">リーマー</a>
                     <a href="#roshutsu-pipe" class="t-tag">露出配管</a>
-                    <a href="#sds-chuck" class="t-tag">SDSチャック</a>
+                    <a href="#watari-h" class="t-tag">渡り配線</a>
                     <a href="#vvf" class="t-tag">VVF</a>
                 </div>
                 <div class="space-y-4">
@@ -490,10 +489,7 @@
                     <div id="senko-pipe" class="b-wrap"><h3 class="b-tit bc-gray">先行配管</h3><p class="b-desc">説明</p></div>
                     <div id="senyo-kairo" class="b-wrap"><h3 class="b-tit bc-gray">専用回路</h3><p class="b-desc">説明</p></div>
                     <div id="set-pipe" class="b-wrap"><h3 class="b-tit bc-gray">セット配管</h3><p class="b-desc">説明</p></div>
-                    <div id="takenoko" class="b-wrap"><h3 class="b-tit bc-gray">タケノコ</h3><p class="b-desc">説明</p></div>
-                    <div id="terminal-block-install" class="b-wrap"><h3 class="b-tit bc-gray">端子台</h3><p class="b-desc">説明</p></div>
                     <div id="tube-cutter" class="b-wrap"><h3 class="b-tit bc-gray">チューブカッター</h3><p class="b-desc">説明</p></div>
-                    <div id="tsusui-check" class="b-wrap"><h3 class="b-tit bc-gray">通水確認</h3><p class="b-desc">説明</p></div>
                     <div id="tape-maki" class="b-wrap"><h3 class="b-tit bc-gray">テープ巻き</h3><p class="b-desc">説明</p></div>
                     <div id="denatsu-kiri" class="b-wrap"><h3 class="b-tit bc-gray">電圧切替</h3><p class="b-desc">説明</p></div>
                     <div id="torque-w" class="b-wrap"><h3 class="b-tit bc-neon">トルクレンチ</h3><p class="b-desc">説明</p></div>
@@ -513,7 +509,6 @@
                     <div id="flare-tool" class="b-wrap"><h3 class="b-tit bc-gray">フレアツール</h3><p class="b-desc">説明</p></div>
                     <div id="flare-nut" class="b-wrap"><h3 class="b-tit bc-gray">フレアナット</h3><p class="b-desc">説明</p></div>
                     <div id="pair-coil" class="b-wrap"><h3 class="b-tit bc-gray">ペアコイル</h3><p class="b-desc">説明</p></div>
-                    <div id="pen-driver" class="b-wrap"><h3 class="b-tit bc-gray">ペンドラ</h3><p class="b-desc">説明</p></div>
                     <div id="bender" class="b-wrap"><h3 class="b-tit bc-gray">ベンダー</h3><p class="b-desc">説明</p></div>
                     <div id="boushin-rubber" class="b-wrap"><h3 class="b-tit bc-gray">防振ゴム</h3><p class="b-desc">説明</p></div>
                     <div id="hotai" class="b-wrap"><h3 class="b-tit bc-gray">包帯</h3><p class="b-desc">説明</p></div>
@@ -524,7 +519,7 @@
                     <div id="manifold" class="b-wrap"><h3 class="b-tit bc-gray">マニホールド</h3><p class="b-desc">説明</p></div>
                     <div id="reamer" class="b-wrap"><h3 class="b-tit bc-gray">リーマー</h3><p class="b-desc">説明</p></div>
                     <div id="roshutsu-pipe" class="b-wrap"><h3 class="b-tit bc-gray">露出配管</h3><p class="b-desc">説明</p></div>
-                    <div id="sds-chuck" class="b-wrap"><h3 class="b-tit bc-gray">SDSチャック</h3><p class="b-desc">説明</p></div>
+                    <div id="watari-h" class="b-wrap"><h3 class="b-tit bc-gray">渡り配線</h3><p class="b-desc">説明</p></div>
                     <div id="vvf" class="b-wrap"><h3 class="b-tit bc-gray">VVF</h3><p class="b-desc">説明</p></div>
                 </div>
             </section>
@@ -548,8 +543,6 @@
                     <a href="#overheat" class="t-tag">過熱</a>
                     <a href="#overheat-pro" class="t-tag">過熱保護</a>
                     <a href="#overload" class="t-tag">過負荷</a>
-                    <a href="#gas-charge" class="t-tag">ガスチャージ</a>
-                    <a href="#gas-leak-r" class="t-tag">ガス漏れ</a>
                     <a href="#pcb" class="t-tag">基板</a>
                     <a href="#sui-temp" class="t-tag">吸込温度</a>
                     <a href="#clamp-meter" class="t-tag">クランプメーター</a>
@@ -596,6 +589,7 @@
                     <a href="#fan-motor" class="t-tag">ファンモーター</a>
                     <a href="#fan-lock" class="t-tag">ファンロック</a>
                     <a href="#float-stuck" class="t-tag">フロート固着</a>
+                    <a href="#float-sw-r" class="t-tag">フロートスイッチ</a>
                     <a href="#exp-v" class="t-tag">膨張弁</a>
                     <a href="#protect-dev" class="t-tag">保護装置</a>
                     <a href="#pump-down" class="t-tag">ポンプダウン</a>
@@ -623,8 +617,6 @@
                     <div id="overheat" class="b-wrap"><h3 class="b-tit bc-gray">過熱</h3><p class="b-desc">説明</p></div>
                     <div id="overheat-pro" class="b-wrap"><h3 class="b-tit bc-gray">過熱保護</h3><p class="b-desc">説明</p></div>
                     <div id="overload" class="b-wrap"><h3 class="b-tit bc-gray">過負荷</h3><p class="b-desc">説明</p></div>
-                    <div id="gas-charge" class="b-wrap"><h3 class="b-tit bc-gray">ガスチャージ</h3><p class="b-desc">説明</p></div>
-                    <div id="gas-leak-r" class="b-wrap"><h3 class="b-tit bc-rose">ガス漏れ</h3><p class="b-desc">説明</p></div>
                     <div id="pcb" class="b-wrap"><h3 class="b-tit bc-gray">基板</h3><p class="b-desc">説明</p></div>
                     <div id="sui-temp" class="b-wrap"><h3 class="b-tit bc-gray">吸込温度</h3><p class="b-desc">説明</p></div>
                     <div id="clamp-meter" class="b-wrap"><h3 class="b-tit bc-gray">クランプメーター</h3><p class="b-desc">説明</p></div>
@@ -671,6 +663,7 @@
                     <div id="fan-motor" class="b-wrap"><h3 class="b-tit bc-gray">ファンモーター</h3><p class="b-desc">説明</p></div>
                     <div id="fan-lock" class="b-wrap"><h3 class="b-tit bc-gray">ファンロック</h3><p class="b-desc">説明</p></div>
                     <div id="float-stuck" class="b-wrap"><h3 class="b-tit bc-gray">フロート固着</h3><p class="b-desc">説明</p></div>
+                    <div id="float-sw-r" class="b-wrap"><h3 class="b-tit bc-gray">フロートスイッチ</h3><p class="b-desc">説明</p></div>
                     <div id="exp-v" class="b-wrap"><h3 class="b-tit bc-gray">膨張弁</h3><p class="b-desc">説明</p></div>
                     <div id="protect-dev" class="b-wrap"><h3 class="b-tit bc-gray">保護装置</h3><p class="b-desc">説明</p></div>
                     <div id="pump-down" class="b-wrap"><h3 class="b-tit bc-gray">ポンプダウン</h3><p class="b-desc">説明</p></div>
@@ -706,14 +699,10 @@
                     <a href="#kanrei-spec" class="t-tag">寒冷地仕様</a>
                     <a href="#gyomu-ac" class="t-tag">業務用エアコン</a>
                     <a href="#group-ctrl" class="t-tag">グループ制御</a>
-                    <a href="#kucho-shitsu-extra" class="t-tag">空調室</a>
                     <a href="#ketsuro" class="t-tag">結露</a>
                     <a href="#kennetsu" class="t-tag">顕熱</a>
                     <a href="#kennetsu-hi" class="t-tag">顕熱比</a>
-                    <a href="#shizen-drain" class="t-tag">自然排水</a>
-                    <a href="#auto-lift" class="t-tag">自動昇降</a>
                     <a href="#shuchu-rem" class="t-tag">集中リモコン</a>
-                    <a href="#shimo-tori" class="t-tag">霜取り運転</a>
                     <a href="#ju-taiengai" class="t-tag">重耐塩害仕様</a>
                     <a href="#short-cyc" class="t-tag">ショートサイクル</a>
                     <a href="#short-cir" class="t-tag">ショートサーキット</a>
@@ -722,7 +711,6 @@
                     <a href="#spot-ac" class="t-tag">スポットエアコン</a>
                     <a href="#setsubi-ac" class="t-tag">設備用エアコン</a>
                     <a href="#sennetsu" class="t-tag">潜熱</a>
-                    <a href="#zenkan-kucho-extra" class="t-tag">全館空調</a>
                     <a href="#zen-netsu" class="t-tag">全熱交換器</a>
                     <a href="#sep-ac" class="t-tag">セパレートエアコン</a>
                     <a href="#taiengai" class="t-tag">耐塩害仕様</a>
@@ -748,16 +736,12 @@
                     <a href="#boushin" class="t-tag">防振架台</a>
                     <a href="#multi-ac" class="t-tag">マルチエアコン</a>
                     <a href="#yuka-oki" class="t-tag">床置</a>
-                    <a href="#round-flow" class="t-tag">ラウンドフロー</a>
                     <a href="#room-ac" class="t-tag">ルームエアコン</a>
                     <a href="#reidan-kiri" class="t-tag">冷暖切替</a>
                     <a href="#reidan-doji" class="t-tag">冷暖同時</a>
                     <a href="#cool-only" class="t-tag">冷房専用</a>
                     <a href="#cool-load" class="t-tag">冷房負荷</a>
-                    <a href="#reciprocating-saw" class="t-tag">レシプロソー</a>
                     <a href="#roten" class="t-tag">露点温度</a>
-                    <a href="#wired-rem" class="t-tag">ワイヤードリモコン</a>
-                    <a href="#wireless-rem" class="t-tag">ワイヤレスリモコン</a>
                 </div>
                 <div class="space-y-4">
                     <div id="anemo" class="b-wrap"><h3 class="b-tit bc-gray">アネモ</h3><p class="b-desc">説明</p></div>
@@ -772,14 +756,10 @@
                     <div id="kanrei-spec" class="b-wrap"><h3 class="b-tit bc-gray">寒冷地仕様</h3><p class="b-desc">説明</p></div>
                     <div id="gyomu-ac" class="b-wrap"><h3 class="b-tit bc-gray">業務用エアコン</h3><p class="b-desc">説明</p></div>
                     <div id="group-ctrl" class="b-wrap"><h3 class="b-tit bc-gray">グループ制御</h3><p class="b-desc">説明</p></div>
-                    <div id="kucho-shitsu-extra" class="b-wrap"><h3 class="b-tit bc-gray">空調室</h3><p class="b-desc">説明</p></div>
                     <div id="ketsuro" class="b-wrap"><h3 class="b-tit bc-gray">結露</h3><p class="b-desc">説明</p></div>
                     <div id="kennetsu" class="b-wrap"><h3 class="b-tit bc-gray">顕熱</h3><p class="b-desc">説明</p></div>
                     <div id="kennetsu-hi" class="b-wrap"><h3 class="b-tit bc-gray">顕熱比</h3><p class="b-desc">説明</p></div>
-                    <div id="shizen-drain" class="b-wrap"><h3 class="b-tit bc-gray">自然排水</h3><p class="b-desc">説明</p></div>
-                    <div id="auto-lift" class="b-wrap"><h3 class="b-tit bc-gray">自動昇降</h3><p class="b-desc">説明</p></div>
                     <div id="shuchu-rem" class="b-wrap"><h3 class="b-tit bc-gray">集中リモコン</h3><p class="b-desc">説明</p></div>
-                    <div id="shimo-tori" class="b-wrap"><h3 class="b-tit bc-gray">霜取り運転</h3><p class="b-desc">説明</p></div>
                     <div id="ju-taiengai" class="b-wrap"><h3 class="b-tit bc-gray">重耐塩害仕様</h3><p class="b-desc">説明</p></div>
                     <div id="short-cyc" class="b-wrap"><h3 class="b-tit bc-gray">ショートサイクル</h3><p class="b-desc">説明</p></div>
                     <div id="short-cir" class="b-wrap"><h3 class="b-tit bc-gray">ショートサーキット</h3><p class="b-desc">説明</p></div>
@@ -788,7 +768,6 @@
                     <div id="spot-ac" class="b-wrap"><h3 class="b-tit bc-gray">スポットエアコン</h3><p class="b-desc">説明</p></div>
                     <div id="setsubi-ac" class="b-wrap"><h3 class="b-tit bc-gray">設備用エアコン</h3><p class="b-desc">説明</p></div>
                     <div id="sennetsu" class="b-wrap"><h3 class="b-tit bc-gray">潜熱</h3><p class="b-desc">説明</p></div>
-                    <div id="zenkan-kucho-extra" class="b-wrap"><h3 class="b-tit bc-gray">全館空調</h3><p class="b-desc">説明</p></div>
                     <div id="zen-netsu" class="b-wrap"><h3 class="b-tit bc-gray">全熱交換器</h3><p class="b-desc">説明</p></div>
                     <div id="sep-ac" class="b-wrap"><h3 class="b-tit bc-gray">セパレートエアコン</h3><p class="b-desc">説明</p></div>
                     <div id="taiengai" class="b-wrap"><h3 class="b-tit bc-gray">耐塩害仕様</h3><p class="b-desc">説明</p></div>
@@ -814,16 +793,12 @@
                     <div id="boushin" class="b-wrap"><h3 class="b-tit bc-gray">防振架台</h3><p class="b-desc">説明</p></div>
                     <div id="multi-ac" class="b-wrap"><h3 class="b-tit bc-gray">マルチエアコン</h3><p class="b-desc">説明</p></div>
                     <div id="yuka-oki" class="b-wrap"><h3 class="b-tit bc-gray">床置</h3><p class="b-desc">説明</p></div>
-                    <div id="round-flow" class="b-wrap"><h3 class="b-tit bc-gray">ラウンドフロー</h3><p class="b-desc">説明</p></div>
                     <div id="room-ac" class="b-wrap"><h3 class="b-tit bc-gray">ルームエアコン</h3><p class="b-desc">説明</p></div>
                     <div id="reidan-kiri" class="b-wrap"><h3 class="b-tit bc-gray">冷暖切替</h3><p class="b-desc">説明</p></div>
                     <div id="reidan-doji" class="b-wrap"><h3 class="b-tit bc-gray">冷暖同時</h3><p class="b-desc">説明</p></div>
                     <div id="cool-only" class="b-wrap"><h3 class="b-tit bc-gray">冷房専用</h3><p class="b-desc">説明</p></div>
                     <div id="cool-load" class="b-wrap"><h3 class="b-tit bc-gray">冷房負荷</h3><p class="b-desc">説明</p></div>
-                    <div id="reciprocating-saw" class="b-wrap"><h3 class="b-tit bc-gray">レシプロソー</h3><p class="b-desc">説明</p></div>
                     <div id="roten" class="b-wrap"><h3 class="b-tit bc-gray">露点温度</h3><p class="b-desc">説明</p></div>
-                    <div id="wired-rem" class="b-wrap"><h3 class="b-tit bc-gray">ワイヤードリモコン</h3><p class="b-desc">説明</p></div>
-                    <div id="wireless-rem" class="b-wrap"><h3 class="b-tit bc-gray">ワイヤレスリモコン</h3><p class="b-desc">説明</p></div>
                 </div>
             </section>
 
