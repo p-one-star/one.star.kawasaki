@@ -1101,6 +1101,14 @@
                 });
             };
 
+            // 検索不要な記号やスペースを削除する関数
+            const normalizeText = (str) => {
+                return toHalfWidth(str)
+                    .toLowerCase()
+                    // 空白文字全般、ハイフン、マイナス、長音符、アンダースコアを削除
+                    .replace(/[\s\-\_ー－‐]/g, '');
+            };
+
             const searchInput = document.getElementById('search-input');
             const errorItems = document.querySelectorAll('.error-item');
             const noResult = document.getElementById('no-result');
@@ -1110,14 +1118,14 @@
                 // 入力があるたびに発火
                 searchInput.addEventListener('input', (e) => {
                     
-                    // 検索キーワードの正規化 (半角化・小文字化・スペース除去)
-                    const term = toHalfWidth(e.target.value).toLowerCase().replace(/\s+/g, '');
+                    // 検索キーワードの正規化
+                    const term = normalizeText(e.target.value);
                     let visibleCount = 0;
 
                     errorItems.forEach(item => {
                         // 各アイテムのコードと説明文を取得して正規化
-                        const code = toHalfWidth(item.getAttribute('data-code')).toLowerCase();
-                        const desc = toHalfWidth(item.getAttribute('data-desc')).toLowerCase();
+                        const code = normalizeText(item.getAttribute('data-code'));
+                        const desc = normalizeText(item.getAttribute('data-desc'));
                         
                         // コードまたは説明文に検索キーワードが含まれていれば表示
                         if (code.includes(term) || desc.includes(term)) {
