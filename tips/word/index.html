@@ -23,16 +23,15 @@
         #drawer-menu { transition: transform 0.3s ease-in-out; }
         .drawer-closed { transform: translateX(-100%); }
         .drawer-open { transform: translateX(0); }
-        
         .t-tag { @apply px-3 py-1.5 bg-slate-100 hover:bg-neon hover:text-slate-900 text-slate-700 text-xs font-black rounded-lg transition-colors border border-slate-200 inline-block; }
-        /* スクロール時のヘッダー＋検索バー被り防止＆アニメーション追加 */
+        
         .b-wrap { @apply scroll-mt-36 bg-white p-4 rounded-xl shadow-sm border border-slate-200; transition: all 0.3s ease; }
         .b-tit { @apply text-base font-black text-slate-900 border-l-[6px] pl-3 mb-1; }
         .b-desc { @apply text-[13px] font-bold text-slate-700 leading-relaxed; }
         
         /* 検索ヒット時のハイライト演出 */
         .highlight-term {
-            background-color: #fefce8 !important; /* 薄い黄色 */
+            background-color: #fefce8 !important;
             border-color: #EFFF00 !important;
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05) !important;
             transform: scale(1.02);
@@ -67,7 +66,7 @@
     <!-- 固定検索バー -->
     <div class="fixed top-14 left-0 right-0 z-30 bg-slate-50/95 backdrop-blur-md shadow-sm border-b border-slate-200 p-2.5 flex justify-center">
         <div class="relative w-full max-w-3xl flex items-center">
-            <input type="text" id="search-input" class="w-full bg-white border border-slate-300 text-sm font-bold rounded-full pl-4 pr-12 py-2.5 focus:outline-none focus:border-slate-900 focus:ring-2 focus:ring-slate-900/20 transition-all placeholder-slate-400 text-slate-800 shadow-inner" placeholder="用語を検索 (例: フィルター)">
+            <input type="text" id="search-input" class="w-full bg-white border border-slate-300 text-sm font-bold rounded-full pl-4 pr-12 py-2.5 focus:outline-none focus:border-slate-900 focus:ring-2 focus:ring-slate-900/20 transition-all placeholder-slate-400 text-slate-800 shadow-inner" placeholder="用語を検索 (例: ふれあ, フィルター)">
             <button id="search-btn" class="absolute right-1 top-1 bottom-1 px-4 bg-slate-900 text-neon rounded-full flex items-center justify-center hover:bg-slate-800 transition-transform active:scale-95 shadow">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
             </button>
@@ -106,7 +105,6 @@
     </div>
 
     <!-- MAIN (用語集 CONTENTS) -->
-    <!-- pt-36に変更してヘッダー＋検索バーの被りを防ぐ -->
     <main class="pt-36 pb-28 md:pb-20 px-4">
         
         <div class="text-center mb-10">
@@ -393,6 +391,7 @@
                     <a href="#pipe-3-5" class="t-tag">3分5分</a>
                     <a href="#pipe-3-6" class="t-tag">3分6分</a>
                     <a href="#earth-i" class="t-tag">アース</a>
+                    <a href="#anchor" class="t-tag">アンカー</a>
                     <a href="#air-cut-v" class="t-tag">エアカットバルブ</a>
                     <a href="#eki-pipe" class="t-tag">液側配管</a>
                     <a href="#elbow" class="t-tag">エルボ</a>
@@ -453,10 +452,7 @@
                     <a href="#hojo-pipe" class="t-tag">補助配管</a>
                     <a href="#manifold" class="t-tag">マニホールド</a>
                     <a href="#reamer" class="t-tag">リーマー</a>
-                    <a href="#reibai-tsuika" class="t-tag">冷媒追加充填</a>
                     <a href="#roshutsu-pipe" class="t-tag">露出配管</a>
-                    <a href="#wire-stripper" class="t-tag">ワイヤーストリッパー</a>
-                    <a href="#watari-h" class="t-tag">渡り配線</a>
                     <a href="#sds-chuck" class="t-tag">SDSチャック</a>
                     <a href="#vvf" class="t-tag">VVF</a>
                 </div>
@@ -466,6 +462,7 @@
                     <div id="pipe-3-5" class="b-wrap"><h3 class="b-tit bc-gray">3分5分</h3><p class="b-desc">説明</p></div>
                     <div id="pipe-3-6" class="b-wrap"><h3 class="b-tit bc-gray">3分6分</h3><p class="b-desc">説明</p></div>
                     <div id="earth-i" class="b-wrap"><h3 class="b-tit bc-gray">アース</h3><p class="b-desc">説明</p></div>
+                    <div id="anchor" class="b-wrap"><h3 class="b-tit bc-gray">アンカー</h3><p class="b-desc">説明</p></div>
                     <div id="air-cut-v" class="b-wrap"><h3 class="b-tit bc-gray">エアカットバルブ</h3><p class="b-desc">説明</p></div>
                     <div id="eki-pipe" class="b-wrap"><h3 class="b-tit bc-gray">液側配管</h3><p class="b-desc">説明</p></div>
                     <div id="elbow" class="b-wrap"><h3 class="b-tit bc-gray">エルボ</h3><p class="b-desc">説明</p></div>
@@ -526,10 +523,7 @@
                     <div id="hojo-pipe" class="b-wrap"><h3 class="b-tit bc-gray">補助配管</h3><p class="b-desc">説明</p></div>
                     <div id="manifold" class="b-wrap"><h3 class="b-tit bc-gray">マニホールド</h3><p class="b-desc">説明</p></div>
                     <div id="reamer" class="b-wrap"><h3 class="b-tit bc-gray">リーマー</h3><p class="b-desc">説明</p></div>
-                    <div id="reibai-tsuika" class="b-wrap"><h3 class="b-tit bc-gray">冷媒追加充填</h3><p class="b-desc">説明</p></div>
                     <div id="roshutsu-pipe" class="b-wrap"><h3 class="b-tit bc-gray">露出配管</h3><p class="b-desc">説明</p></div>
-                    <div id="wire-stripper" class="b-wrap"><h3 class="b-tit bc-gray">ワイヤーストリッパー</h3><p class="b-desc">説明</p></div>
-                    <div id="watari-h" class="b-wrap"><h3 class="b-tit bc-gray">渡り配線</h3><p class="b-desc">説明</p></div>
                     <div id="sds-chuck" class="b-wrap"><h3 class="b-tit bc-gray">SDSチャック</h3><p class="b-desc">説明</p></div>
                     <div id="vvf" class="b-wrap"><h3 class="b-tit bc-gray">VVF</h3><p class="b-desc">説明</p></div>
                 </div>
@@ -555,6 +549,7 @@
                     <a href="#overheat-pro" class="t-tag">過熱保護</a>
                     <a href="#overload" class="t-tag">過負荷</a>
                     <a href="#gas-charge" class="t-tag">ガスチャージ</a>
+                    <a href="#gas-leak-r" class="t-tag">ガス漏れ</a>
                     <a href="#pcb" class="t-tag">基板</a>
                     <a href="#sui-temp" class="t-tag">吸込温度</a>
                     <a href="#clamp-meter" class="t-tag">クランプメーター</a>
@@ -596,13 +591,11 @@
                     <a href="#toshutsu-temp" class="t-tag">吐出温度</a>
                     <a href="#toshutsu-err" class="t-tag">吐出温度異常</a>
                     <a href="#drain-err" class="t-tag">ドレンエラー</a>
-                    <a href="#drain-pump-r" class="t-tag">ドレンポンプ</a>
                     <a href="#heat-therm" class="t-tag">熱交サーミスタ</a>
                     <a href="#fuse" class="t-tag">ヒューズ</a>
                     <a href="#fan-motor" class="t-tag">ファンモーター</a>
                     <a href="#fan-lock" class="t-tag">ファンロック</a>
                     <a href="#float-stuck" class="t-tag">フロート固着</a>
-                    <a href="#float-sw-r" class="t-tag">フロートスイッチ</a>
                     <a href="#exp-v" class="t-tag">膨張弁</a>
                     <a href="#protect-dev" class="t-tag">保護装置</a>
                     <a href="#pump-down" class="t-tag">ポンプダウン</a>
@@ -631,6 +624,7 @@
                     <div id="overheat-pro" class="b-wrap"><h3 class="b-tit bc-gray">過熱保護</h3><p class="b-desc">説明</p></div>
                     <div id="overload" class="b-wrap"><h3 class="b-tit bc-gray">過負荷</h3><p class="b-desc">説明</p></div>
                     <div id="gas-charge" class="b-wrap"><h3 class="b-tit bc-gray">ガスチャージ</h3><p class="b-desc">説明</p></div>
+                    <div id="gas-leak-r" class="b-wrap"><h3 class="b-tit bc-rose">ガス漏れ</h3><p class="b-desc">説明</p></div>
                     <div id="pcb" class="b-wrap"><h3 class="b-tit bc-gray">基板</h3><p class="b-desc">説明</p></div>
                     <div id="sui-temp" class="b-wrap"><h3 class="b-tit bc-gray">吸込温度</h3><p class="b-desc">説明</p></div>
                     <div id="clamp-meter" class="b-wrap"><h3 class="b-tit bc-gray">クランプメーター</h3><p class="b-desc">説明</p></div>
@@ -672,13 +666,11 @@
                     <div id="toshutsu-temp" class="b-wrap"><h3 class="b-tit bc-gray">吐出温度</h3><p class="b-desc">説明</p></div>
                     <div id="toshutsu-err" class="b-wrap"><h3 class="b-tit bc-gray">吐出温度異常</h3><p class="b-desc">説明</p></div>
                     <div id="drain-err" class="b-wrap"><h3 class="b-tit bc-gray">ドレンエラー</h3><p class="b-desc">説明</p></div>
-                    <div id="drain-pump-r" class="b-wrap"><h3 class="b-tit bc-gray">ドレンポンプ</h3><p class="b-desc">説明</p></div>
                     <div id="heat-therm" class="b-wrap"><h3 class="b-tit bc-gray">熱交サーミスタ</h3><p class="b-desc">説明</p></div>
                     <div id="fuse" class="b-wrap"><h3 class="b-tit bc-gray">ヒューズ</h3><p class="b-desc">説明</p></div>
                     <div id="fan-motor" class="b-wrap"><h3 class="b-tit bc-gray">ファンモーター</h3><p class="b-desc">説明</p></div>
                     <div id="fan-lock" class="b-wrap"><h3 class="b-tit bc-gray">ファンロック</h3><p class="b-desc">説明</p></div>
                     <div id="float-stuck" class="b-wrap"><h3 class="b-tit bc-gray">フロート固着</h3><p class="b-desc">説明</p></div>
-                    <div id="float-sw-r" class="b-wrap"><h3 class="b-tit bc-gray">フロートスイッチ</h3><p class="b-desc">説明</p></div>
                     <div id="exp-v" class="b-wrap"><h3 class="b-tit bc-gray">膨張弁</h3><p class="b-desc">説明</p></div>
                     <div id="protect-dev" class="b-wrap"><h3 class="b-tit bc-gray">保護装置</h3><p class="b-desc">説明</p></div>
                     <div id="pump-down" class="b-wrap"><h3 class="b-tit bc-gray">ポンプダウン</h3><p class="b-desc">説明</p></div>
@@ -969,17 +961,16 @@
                 phoneModalBackdrop.addEventListener('click', closePhoneModal);
             }
 
-            // --- 検索機能 ---
+            // 検索機能
             const searchInput = document.getElementById('search-input');
             const searchBtn = document.getElementById('search-btn');
 
-            // トースト表示関数
             const showToast = (msg) => {
                 let old = document.getElementById('toast-msg');
                 if (old) old.remove();
                 const toast = document.createElement('div');
                 toast.id = 'toast-msg';
-                toast.className = 'fixed top-32 left-1/2 -translate-x-1/2 bg-slate-900 text-neon font-black text-sm px-6 py-3 rounded-full shadow-xl z-50 transition-opacity duration-300 opacity-0 pointer-events-none';
+                toast.className = 'fixed top-32 left-1/2 -translate-x-1/2 bg-slate-900 text-neon font-black text-xs whitespace-nowrap px-5 py-2.5 rounded-full shadow-xl z-50 transition-opacity duration-300 opacity-0 pointer-events-none tracking-wider';
                 toast.textContent = msg;
                 document.body.appendChild(toast);
                 
@@ -992,23 +983,26 @@
             };
 
             const performSearch = () => {
-                const query = searchInput.value.trim().toLowerCase();
-                if (!query) return;
+                const rawQuery = searchInput.value.trim();
+                if (!rawQuery) return;
                 
-                // スマホキーボードを閉じる
                 searchInput.blur();
 
+                const normalize = (str) => {
+                    return str.replace(/[\u30A1-\u30F6]/g, match => 
+                        String.fromCharCode(match.charCodeAt(0) - 0x60)
+                    ).toLowerCase();
+                };
+
+                const query = normalize(rawQuery);
                 const terms = document.querySelectorAll('.b-wrap');
                 let found = false;
 
                 for (let term of terms) {
-                    // 日本語とアルファベット両対応のために小文字化して比較
-                    const title = term.querySelector('.b-tit').textContent.toLowerCase();
+                    const title = normalize(term.querySelector('.b-tit').textContent);
                     if (title.includes(query)) {
-                        // ハッシュジャンプ（ネイティブなスムーズスクロールが発動）
                         window.location.hash = '#' + term.id;
                         
-                        // ハイライト演出
                         term.classList.add('highlight-term');
                         setTimeout(() => {
                             term.classList.remove('highlight-term');
