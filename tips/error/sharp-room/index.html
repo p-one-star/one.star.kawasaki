@@ -63,7 +63,7 @@
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
             </div>
             <!-- 検索入力欄 -->
-            <input type="text" id="search-input" placeholder="エラーコードを入力... (例: 23)" class="w-full h-full py-2 px-3 text-[15px] font-bold text-slate-800 focus:outline-none placeholder-slate-400">
+            <input type="text" id="search-input" placeholder="エラーコードを入力..." class="w-full h-full py-2 px-3 text-[15px] font-bold text-slate-800 focus:outline-none placeholder-slate-400">
             <!-- 検索ボタン -->
             <button class="bg-slate-900 text-neon w-10 h-9 mr-1.5 rounded flex items-center justify-center flex-shrink-0 active:bg-slate-800 transition-colors">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
@@ -158,196 +158,76 @@
                     <span class="text-[13px] md:text-sm text-slate-500 font-bold ml-2 mb-0.5">[家庭用]</span>
                 </h2>
             </div>
-            <!-- 対象モデルの記載を削除しました -->
         </div>
 
-        <!-- ⚠️ 注意書き（免責事項） -->
-        <div class="max-w-3xl mx-auto px-4 mb-8">
-            <div class="bg-slate-100/80 border border-slate-200 rounded-xl p-3.5 text-[11px] md:text-xs text-slate-600 font-bold flex items-start shadow-sm">
+        <!-- ⚠️ 注意書き（免責事項 ＆ 固有の注意事項） -->
+        <div class="max-w-3xl mx-auto px-4 mb-6">
+            <!-- 共通の免責事項 -->
+            <div class="bg-slate-100/80 border border-slate-200 rounded-xl p-3.5 text-[11px] md:text-xs text-slate-600 font-bold flex items-start shadow-sm mb-3">
                 <svg class="w-4 h-4 text-slate-400 mr-2 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                 <div class="leading-[1.7]">
-                    2026年現在、明確に確認できている<br class="md:hidden">
-                    エラーのみ掲載しています。<br>
-                    エラー内容や表示方法は、機種・シリーズにより<br class="md:hidden">
+                    エラー内容は機種・シリーズにより<br class="md:hidden">
                     異なる場合があります。<br>
-                    ここに記載のない表示は、<br class="md:hidden">
+                    正確な内容は型式をご確認のうえ、<br class="md:hidden">
                     メーカー公式情報をご確認ください。
                 </div>
             </div>
-        </div>
-
-        <!-- ━━━━━━━━━━━━
-        ランプ点滅｜エラー番号の確認方法 
-        ━━━━━━━━━━━━ -->
-        <div class="max-w-3xl mx-auto px-4 mb-6">
-            <h3 class="text-sm md:text-base font-black text-slate-800 mb-3 border-l-4 border-blue-500 pl-2">ランプ点滅｜エラー番号の確認</h3>
-            <div class="bg-white border border-slate-200 rounded-xl p-4 md:p-5 shadow-sm text-xs md:text-sm text-slate-700 font-bold leading-relaxed">
-                <!-- 改行位置を調整しました -->
-                <p class="mb-4">機種によっては、<br class="md:hidden">本体ランプの<span class="text-slate-900 border-b border-slate-300">点滅回数</span>から<br class="md:hidden">エラー番号を確認できます。</p>
-                
-                <div class="flex flex-col space-y-3 mb-5 bg-slate-50 p-4 rounded-xl border border-slate-100">
-                    <div class="flex items-center">
-                        <span class="w-3.5 h-3.5 rounded-full bg-green-500 mr-2.5 shadow-sm border border-green-600/20"></span>
-                        <span class="text-slate-800">緑 ＝ 運転ランプ <span class="text-slate-500 text-[11px] ml-1">(10の位)</span></span>
-                    </div>
-                    <div class="flex items-center">
-                        <span class="w-3.5 h-3.5 rounded-full bg-orange-500 mr-2.5 shadow-sm border border-orange-600/20"></span>
-                        <span class="text-slate-800">橙 ＝ タイマーランプ <span class="text-slate-500 text-[11px] ml-1">(1の位)</span></span>
-                    </div>
-                    <div class="flex items-center">
-                        <span class="w-3.5 h-3.5 rounded-full bg-blue-500 mr-2.5 shadow-sm border border-blue-600/20"></span>
-                        <span class="text-slate-800">青 ＝ プラズマクラスターランプ <span class="text-slate-500 text-[11px] ml-1">(小分類)</span></span>
-                    </div>
-                </div>
-
-                <div class="mb-5 flex flex-col md:flex-row md:items-center bg-slate-100/50 p-3 rounded-lg">
-                    <p class="text-slate-500 mb-1 md:mb-0 md:mr-3">【例】緑 <span class="text-slate-800">2回</span> / 橙 <span class="text-slate-800">3回</span> / 青 <span class="text-slate-800">4回</span> の場合</p>
-                    <p class="text-xl font-impact text-slate-900 tracking-wider">
-                        → <span class="bg-white border border-slate-200 px-3 py-1 rounded shadow-sm">23-4</span>
-                    </p>
-                </div>
-
-                <div class="text-[11px] text-slate-600 bg-blue-50 border border-blue-100 p-3.5 rounded-lg flex items-start">
-                    <svg class="w-4 h-4 text-blue-400 mr-2 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                    <!-- 改行位置を調整しました -->
-                    <div class="leading-relaxed">
-                        ランプの点滅が消えた場合、<br class="md:hidden">
-                        リモコンの<span class="text-slate-900 font-black">停止ボタンを5回続けて押す</span>ことで<br class="md:hidden">
-                        再表示できる機種があります。<br>
-                        ※確認方法は機種によって異なるため、<br class="md:hidden">
-                        操作方法の詳細は取扱説明書をご確認ください。
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- 小分類についての注意事項 -->
-        <div class="max-w-3xl mx-auto px-4 mb-10">
-            <div class="bg-amber-50 border border-amber-200 rounded-xl p-3.5 text-[11px] md:text-xs text-amber-800 font-bold flex items-start shadow-sm">
-                <svg class="w-5 h-5 text-amber-500 mr-2 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
-                <!-- 改行位置を調整しました -->
+            
+            <!-- シャープ用の特別な注意事項（赤系で強調） -->
+            <div class="bg-rose-50 border border-rose-200 rounded-xl p-3.5 text-[11px] md:text-xs text-rose-700 font-bold flex items-start shadow-sm">
+                <svg class="w-4 h-4 text-rose-500 mr-2 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
                 <div class="leading-[1.7]">
-                    小分類（例：「23-0」「28-0」などの枝番）の<br class="md:hidden">
-                    内容は、機種・シリーズによって<br class="md:hidden">
-                    細かく異なります。<br>
-                    このページでは<span class="text-amber-900 font-black border-b border-amber-300">大分類（2桁の数字）のみ</span>を<br class="md:hidden">
-                    掲載していますので、詳細な内容は<br class="md:hidden">
-                    メーカー公式情報をご確認ください。
+                    機種によっては「23-4」など、<br class="md:hidden">
+                    小分類を含むコードが表示されます。<br>
+                    詳細はメーカー公式情報をご確認ください。
                 </div>
             </div>
         </div>
 
-        <!-- ━━━━━━━━━━━━
-        ランプ点滅｜故障ではない表示
-        ━━━━━━━━━━━━ -->
-        <div class="max-w-3xl mx-auto px-4 mb-10">
-            <h3 class="text-sm md:text-base font-black text-slate-800 mb-3 border-l-4 border-emerald-500 pl-2">ランプ点滅｜故障ではない表示</h3>
-            <div class="grid grid-cols-1 gap-3">
-                
-                <!-- 霜取り -->
-                <div class="bg-white border border-slate-200 rounded-xl p-3.5 shadow-sm">
-                    <div class="flex items-center mb-2">
-                        <span class="w-3.5 h-3.5 rounded-full bg-green-500 mr-2.5 shadow-sm border border-green-600/20 animate-pulse"></span>
-                        <span class="font-bold text-[13px] md:text-sm text-slate-800">運転ランプ（緑）ゆっくり点滅</span>
-                    </div>
-                    <div class="pl-[24px]">
-                        <p class="text-[13px] font-black text-emerald-600">暖房時の霜取り運転</p>
-                    </div>
-                </div>
-                
-                <!-- プラズマクラスターユニット交換 -->
-                <div class="bg-white border border-slate-200 rounded-xl p-3.5 shadow-sm">
-                    <div class="flex items-center mb-2">
-                        <span class="w-3.5 h-3.5 rounded-full bg-blue-500 mr-2.5 shadow-sm border border-blue-600/20 animate-pulse"></span>
-                        <span class="font-bold text-[13px] md:text-sm text-slate-800">プラズマクラスターランプ（青）運転開始時に点滅</span>
-                    </div>
-                    <!-- 改行位置を調整しました -->
-                    <div class="pl-[24px]">
-                        <p class="text-[13px] font-bold text-slate-600 leading-relaxed">
-                            プラズマクラスターイオン発生ユニットの<br class="md:hidden">
-                            <span class="text-slate-800 border-b border-slate-300">交換時期</span>を知らせる機種があります。
-                        </p>
-                    </div>
-                </div>
-
-                <!-- 取付状態のお知らせ -->
-                <div class="bg-white border border-slate-200 rounded-xl p-3.5 shadow-sm">
-                    <div class="flex items-center mb-2">
-                        <div class="flex space-x-1 mr-2.5">
-                            <span class="w-3.5 h-3.5 rounded-full bg-green-500 shadow-sm border border-green-600/20 animate-pulse"></span>
-                            <span class="w-3.5 h-3.5 rounded-full bg-orange-500 shadow-sm border border-orange-600/20 animate-pulse"></span>
-                        </div>
-                        <span class="font-bold text-[13px] md:text-sm text-slate-800">運転・タイマーなど複数ランプが点滅</span>
-                    </div>
-                    <!-- 改行位置を調整しました -->
-                    <div class="pl-[32px]">
-                        <p class="text-[13px] font-bold text-slate-600 leading-relaxed">
-                            ダストボックス、エアーフィルター、<br class="md:hidden">
-                            左右風向ルーバーなどの<span class="text-slate-800 border-b border-slate-300">取付状態</span>を<br class="md:hidden">
-                            知らせる機種があります。
-                        </p>
-                    </div>
-                </div>
-
-            </div>
-            <!-- 改行位置を調整しました -->
-            <p class="text-[11px] text-slate-500 font-bold mt-3 pl-1 leading-relaxed">
-                ※機種によって表示方法が異なります。<br class="md:hidden">
-                改善しない場合は取扱説明書をご確認ください。
-            </p>
-        </div>
-
-
-        <!-- ━━━━━━━━━━━━
-        エラーコード｜主な異常（大分類）
-        ━━━━━━━━━━━━ -->
-        <div class="max-w-3xl mx-auto px-4 mb-4">
-            <h3 class="text-sm md:text-base font-black text-slate-800 border-l-4 border-neon pl-2">エラーコード（大分類）</h3>
-        </div>
-
+        <!-- エラーコードリスト -->
         <div class="max-w-3xl mx-auto px-4" id="error-list">
             
-            <div class="error-item bg-white rounded-2xl shadow-sm border border-slate-200 mb-3 overflow-hidden flex items-stretch transition-all" data-code="01" data-desc="室外温度検知関連">
+            <div class="error-item bg-white rounded-2xl shadow-sm border border-slate-200 mb-4 overflow-hidden flex items-stretch transition-all" data-code="01" data-desc="室外温度センサー異常">
                 <div class="w-20 bg-slate-100 flex flex-col items-center justify-center border-r border-slate-200 py-3 flex-shrink-0">
                     <span class="text-[10px] font-black text-slate-400 mb-0.5">CODE</span>
                     <span class="font-impact text-2xl text-slate-900 leading-none">01</span>
                 </div>
                 <div class="p-4 flex-1 flex flex-col justify-center">
-                    <p class="font-bold text-slate-800 text-sm md:text-[15px] leading-relaxed">室外温度検知関連</p>
+                    <p class="font-bold text-slate-800 text-sm md:text-[15px] leading-relaxed">室外温度センサー異常</p>
                 </div>
             </div>
 
-            <div class="error-item bg-white rounded-2xl shadow-sm border border-slate-200 mb-3 overflow-hidden flex items-stretch transition-all" data-code="02" data-desc="圧縮機・冷媒系保護">
+            <div class="error-item bg-white rounded-2xl shadow-sm border border-slate-200 mb-4 overflow-hidden flex items-stretch transition-all" data-code="02" data-desc="圧縮機・冷媒系異常">
                 <div class="w-20 bg-slate-100 flex flex-col items-center justify-center border-r border-slate-200 py-3 flex-shrink-0">
                     <span class="text-[10px] font-black text-slate-400 mb-0.5">CODE</span>
                     <span class="font-impact text-2xl text-slate-900 leading-none">02</span>
                 </div>
                 <div class="p-4 flex-1 flex flex-col justify-center">
-                    <p class="font-bold text-slate-800 text-sm md:text-[15px] leading-relaxed">圧縮機・冷媒系保護</p>
+                    <p class="font-bold text-slate-800 text-sm md:text-[15px] leading-relaxed">圧縮機・冷媒系異常</p>
                 </div>
             </div>
 
-            <div class="error-item bg-white rounded-2xl shadow-sm border border-slate-200 mb-3 overflow-hidden flex items-stretch transition-all" data-code="05" data-desc="室外温度検知関連">
+            <div class="error-item bg-white rounded-2xl shadow-sm border border-slate-200 mb-4 overflow-hidden flex items-stretch transition-all" data-code="05" data-desc="室外温度センサー異常">
                 <div class="w-20 bg-slate-100 flex flex-col items-center justify-center border-r border-slate-200 py-3 flex-shrink-0">
                     <span class="text-[10px] font-black text-slate-400 mb-0.5">CODE</span>
                     <span class="font-impact text-2xl text-slate-900 leading-none">05</span>
                 </div>
                 <div class="p-4 flex-1 flex flex-col justify-center">
-                    <p class="font-bold text-slate-800 text-sm md:text-[15px] leading-relaxed">室外温度検知関連</p>
+                    <p class="font-bold text-slate-800 text-sm md:text-[15px] leading-relaxed">室外温度センサー異常</p>
                 </div>
             </div>
 
-            <div class="error-item bg-white rounded-2xl shadow-sm border border-slate-200 mb-3 overflow-hidden flex items-stretch transition-all" data-code="06" data-desc="DC過電流関連">
+            <div class="error-item bg-white rounded-2xl shadow-sm border border-slate-200 mb-4 overflow-hidden flex items-stretch transition-all" data-code="06" data-desc="DC過電流異常">
                 <div class="w-20 bg-slate-100 flex flex-col items-center justify-center border-r border-slate-200 py-3 flex-shrink-0">
                     <span class="text-[10px] font-black text-slate-400 mb-0.5">CODE</span>
                     <span class="font-impact text-2xl text-slate-900 leading-none">06</span>
                 </div>
                 <div class="p-4 flex-1 flex flex-col justify-center">
-                    <p class="font-bold text-slate-800 text-sm md:text-[15px] leading-relaxed">DC過電流関連</p>
+                    <p class="font-bold text-slate-800 text-sm md:text-[15px] leading-relaxed">DC過電流異常</p>
                 </div>
             </div>
 
-            <div class="error-item bg-white rounded-2xl shadow-sm border border-slate-200 mb-3 overflow-hidden flex items-stretch transition-all" data-code="07" data-desc="電流異常">
+            <div class="error-item bg-white rounded-2xl shadow-sm border border-slate-200 mb-4 overflow-hidden flex items-stretch transition-all" data-code="07" data-desc="電流異常">
                 <div class="w-20 bg-slate-100 flex flex-col items-center justify-center border-r border-slate-200 py-3 flex-shrink-0">
                     <span class="text-[10px] font-black text-slate-400 mb-0.5">CODE</span>
                     <span class="font-impact text-2xl text-slate-900 leading-none">07</span>
@@ -357,143 +237,143 @@
                 </div>
             </div>
 
-            <div class="error-item bg-white rounded-2xl shadow-sm border border-slate-200 mb-3 overflow-hidden flex items-stretch transition-all" data-code="09" data-desc="冷媒・四方弁関連">
+            <div class="error-item bg-white rounded-2xl shadow-sm border border-slate-200 mb-4 overflow-hidden flex items-stretch transition-all" data-code="09" data-desc="冷媒・四方弁異常">
                 <div class="w-20 bg-slate-100 flex flex-col items-center justify-center border-r border-slate-200 py-3 flex-shrink-0">
                     <span class="text-[10px] font-black text-slate-400 mb-0.5">CODE</span>
                     <span class="font-impact text-2xl text-slate-900 leading-none">09</span>
                 </div>
                 <div class="p-4 flex-1 flex flex-col justify-center">
-                    <p class="font-bold text-slate-800 text-sm md:text-[15px] leading-relaxed">冷媒・四方弁関連</p>
+                    <p class="font-bold text-slate-800 text-sm md:text-[15px] leading-relaxed">冷媒・四方弁異常</p>
                 </div>
             </div>
 
-            <div class="error-item bg-white rounded-2xl shadow-sm border border-slate-200 mb-3 overflow-hidden flex items-stretch transition-all" data-code="10" data-desc="室外制御関連">
+            <div class="error-item bg-white rounded-2xl shadow-sm border border-slate-200 mb-4 overflow-hidden flex items-stretch transition-all" data-code="10" data-desc="室外基板異常">
                 <div class="w-20 bg-slate-100 flex flex-col items-center justify-center border-r border-slate-200 py-3 flex-shrink-0">
                     <span class="text-[10px] font-black text-slate-400 mb-0.5">CODE</span>
                     <span class="font-impact text-2xl text-slate-900 leading-none">10</span>
                 </div>
                 <div class="p-4 flex-1 flex flex-col justify-center">
-                    <p class="font-bold text-slate-800 text-sm md:text-[15px] leading-relaxed">室外制御関連</p>
+                    <p class="font-bold text-slate-800 text-sm md:text-[15px] leading-relaxed">室外基板異常</p>
                 </div>
             </div>
 
-            <div class="error-item bg-white rounded-2xl shadow-sm border border-slate-200 mb-3 overflow-hidden flex items-stretch transition-all" data-code="11" data-desc="室外ファン関連">
+            <div class="error-item bg-white rounded-2xl shadow-sm border border-slate-200 mb-4 overflow-hidden flex items-stretch transition-all" data-code="11" data-desc="室外ファンモーター異常">
                 <div class="w-20 bg-slate-100 flex flex-col items-center justify-center border-r border-slate-200 py-3 flex-shrink-0">
                     <span class="text-[10px] font-black text-slate-400 mb-0.5">CODE</span>
                     <span class="font-impact text-2xl text-slate-900 leading-none">11</span>
                 </div>
                 <div class="p-4 flex-1 flex flex-col justify-center">
-                    <p class="font-bold text-slate-800 text-sm md:text-[15px] leading-relaxed">室外ファン関連</p>
+                    <p class="font-bold text-slate-800 text-sm md:text-[15px] leading-relaxed">室外ファンモーター異常</p>
                 </div>
             </div>
 
-            <div class="error-item bg-white rounded-2xl shadow-sm border border-slate-200 mb-3 overflow-hidden flex items-stretch transition-all" data-code="13" data-desc="圧縮機回転関連">
+            <div class="error-item bg-white rounded-2xl shadow-sm border border-slate-200 mb-4 overflow-hidden flex items-stretch transition-all" data-code="13" data-desc="圧縮機回転異常">
                 <div class="w-20 bg-slate-100 flex flex-col items-center justify-center border-r border-slate-200 py-3 flex-shrink-0">
                     <span class="text-[10px] font-black text-slate-400 mb-0.5">CODE</span>
                     <span class="font-impact text-2xl text-slate-900 leading-none">13</span>
                 </div>
                 <div class="p-4 flex-1 flex flex-col justify-center">
-                    <p class="font-bold text-slate-800 text-sm md:text-[15px] leading-relaxed">圧縮機回転関連</p>
+                    <p class="font-bold text-slate-800 text-sm md:text-[15px] leading-relaxed">圧縮機回転異常</p>
                 </div>
             </div>
 
-            <div class="error-item bg-white rounded-2xl shadow-sm border border-slate-200 mb-3 overflow-hidden flex items-stretch transition-all" data-code="14" data-desc="電源・DC電圧関連">
+            <div class="error-item bg-white rounded-2xl shadow-sm border border-slate-200 mb-4 overflow-hidden flex items-stretch transition-all" data-code="14" data-desc="電源・DC電圧異常">
                 <div class="w-20 bg-slate-100 flex flex-col items-center justify-center border-r border-slate-200 py-3 flex-shrink-0">
                     <span class="text-[10px] font-black text-slate-400 mb-0.5">CODE</span>
                     <span class="font-impact text-2xl text-slate-900 leading-none">14</span>
                 </div>
                 <div class="p-4 flex-1 flex flex-col justify-center">
-                    <p class="font-bold text-slate-800 text-sm md:text-[15px] leading-relaxed">電源・DC電圧関連</p>
+                    <p class="font-bold text-slate-800 text-sm md:text-[15px] leading-relaxed">電源・DC電圧異常</p>
                 </div>
             </div>
 
-            <div class="error-item bg-white rounded-2xl shadow-sm border border-slate-200 mb-3 overflow-hidden flex items-stretch transition-all" data-code="17" data-desc="室内外通信関連">
+            <div class="error-item bg-white rounded-2xl shadow-sm border border-slate-200 mb-4 overflow-hidden flex items-stretch transition-all" data-code="17" data-desc="室内外通信異常">
                 <div class="w-20 bg-slate-100 flex flex-col items-center justify-center border-r border-slate-200 py-3 flex-shrink-0">
                     <span class="text-[10px] font-black text-slate-400 mb-0.5">CODE</span>
                     <span class="font-impact text-2xl text-slate-900 leading-none">17</span>
                 </div>
                 <div class="p-4 flex-1 flex flex-col justify-center">
-                    <p class="font-bold text-slate-800 text-sm md:text-[15px] leading-relaxed">室内外通信関連</p>
+                    <p class="font-bold text-slate-800 text-sm md:text-[15px] leading-relaxed">室内外通信異常</p>
                 </div>
             </div>
 
-            <div class="error-item bg-white rounded-2xl shadow-sm border border-slate-200 mb-3 overflow-hidden flex items-stretch transition-all" data-code="18" data-desc="室内外通信関連">
+            <div class="error-item bg-white rounded-2xl shadow-sm border border-slate-200 mb-4 overflow-hidden flex items-stretch transition-all" data-code="18" data-desc="室内外通信異常">
                 <div class="w-20 bg-slate-100 flex flex-col items-center justify-center border-r border-slate-200 py-3 flex-shrink-0">
                     <span class="text-[10px] font-black text-slate-400 mb-0.5">CODE</span>
                     <span class="font-impact text-2xl text-slate-900 leading-none">18</span>
                 </div>
                 <div class="p-4 flex-1 flex flex-col justify-center">
-                    <p class="font-bold text-slate-800 text-sm md:text-[15px] leading-relaxed">室内外通信関連</p>
+                    <p class="font-bold text-slate-800 text-sm md:text-[15px] leading-relaxed">室内外通信異常</p>
                 </div>
             </div>
 
-            <div class="error-item bg-white rounded-2xl shadow-sm border border-slate-200 mb-3 overflow-hidden flex items-stretch transition-all" data-code="19" data-desc="室内ファン関連">
+            <div class="error-item bg-white rounded-2xl shadow-sm border border-slate-200 mb-4 overflow-hidden flex items-stretch transition-all" data-code="19" data-desc="室内ファンモーター異常">
                 <div class="w-20 bg-slate-100 flex flex-col items-center justify-center border-r border-slate-200 py-3 flex-shrink-0">
                     <span class="text-[10px] font-black text-slate-400 mb-0.5">CODE</span>
                     <span class="font-impact text-2xl text-slate-900 leading-none">19</span>
                 </div>
                 <div class="p-4 flex-1 flex flex-col justify-center">
-                    <p class="font-bold text-slate-800 text-sm md:text-[15px] leading-relaxed">室内ファン関連</p>
+                    <p class="font-bold text-slate-800 text-sm md:text-[15px] leading-relaxed">室内ファンモーター異常</p>
                 </div>
             </div>
 
-            <div class="error-item bg-white rounded-2xl shadow-sm border border-slate-200 mb-3 overflow-hidden flex items-stretch transition-all" data-code="20" data-desc="室内制御関連">
+            <div class="error-item bg-white rounded-2xl shadow-sm border border-slate-200 mb-4 overflow-hidden flex items-stretch transition-all" data-code="20" data-desc="室内基板異常">
                 <div class="w-20 bg-slate-100 flex flex-col items-center justify-center border-r border-slate-200 py-3 flex-shrink-0">
                     <span class="text-[10px] font-black text-slate-400 mb-0.5">CODE</span>
                     <span class="font-impact text-2xl text-slate-900 leading-none">20</span>
                 </div>
                 <div class="p-4 flex-1 flex flex-col justify-center">
-                    <p class="font-bold text-slate-800 text-sm md:text-[15px] leading-relaxed">室内制御関連</p>
+                    <p class="font-bold text-slate-800 text-sm md:text-[15px] leading-relaxed">室内基板異常</p>
                 </div>
             </div>
 
-            <div class="error-item bg-white rounded-2xl shadow-sm border border-slate-200 mb-3 overflow-hidden flex items-stretch transition-all" data-code="21" data-desc="ルーバー関連">
+            <div class="error-item bg-white rounded-2xl shadow-sm border border-slate-200 mb-4 overflow-hidden flex items-stretch transition-all" data-code="21" data-desc="ルーバー異常">
                 <div class="w-20 bg-slate-100 flex flex-col items-center justify-center border-r border-slate-200 py-3 flex-shrink-0">
                     <span class="text-[10px] font-black text-slate-400 mb-0.5">CODE</span>
                     <span class="font-impact text-2xl text-slate-900 leading-none">21</span>
                 </div>
                 <div class="p-4 flex-1 flex flex-col justify-center">
-                    <p class="font-bold text-slate-800 text-sm md:text-[15px] leading-relaxed">ルーバー関連</p>
+                    <p class="font-bold text-slate-800 text-sm md:text-[15px] leading-relaxed">ルーバー異常</p>
                 </div>
             </div>
 
-            <div class="error-item bg-white rounded-2xl shadow-sm border border-slate-200 mb-3 overflow-hidden flex items-stretch transition-all" data-code="23" data-desc="電源電圧関連">
+            <div class="error-item bg-white rounded-2xl shadow-sm border border-slate-200 mb-4 overflow-hidden flex items-stretch transition-all" data-code="23" data-desc="電源電圧異常">
                 <div class="w-20 bg-slate-100 flex flex-col items-center justify-center border-r border-slate-200 py-3 flex-shrink-0">
                     <span class="text-[10px] font-black text-slate-400 mb-0.5">CODE</span>
                     <span class="font-impact text-2xl text-slate-900 leading-none">23</span>
                 </div>
                 <div class="p-4 flex-1 flex flex-col justify-center">
-                    <p class="font-bold text-slate-800 text-sm md:text-[15px] leading-relaxed">電源電圧関連</p>
+                    <p class="font-bold text-slate-800 text-sm md:text-[15px] leading-relaxed">電源電圧異常</p>
                 </div>
             </div>
 
-            <div class="error-item bg-white rounded-2xl shadow-sm border border-slate-200 mb-3 overflow-hidden flex items-stretch transition-all" data-code="24" data-desc="無線LAN関連">
+            <div class="error-item bg-white rounded-2xl shadow-sm border border-slate-200 mb-4 overflow-hidden flex items-stretch transition-all" data-code="24" data-desc="無線LAN異常">
                 <div class="w-20 bg-slate-100 flex flex-col items-center justify-center border-r border-slate-200 py-3 flex-shrink-0">
                     <span class="text-[10px] font-black text-slate-400 mb-0.5">CODE</span>
                     <span class="font-impact text-2xl text-slate-900 leading-none">24</span>
                 </div>
                 <div class="p-4 flex-1 flex flex-col justify-center">
-                    <p class="font-bold text-slate-800 text-sm md:text-[15px] leading-relaxed">無線LAN関連</p>
+                    <p class="font-bold text-slate-800 text-sm md:text-[15px] leading-relaxed">無線LAN異常</p>
                 </div>
             </div>
 
-            <div class="error-item bg-white rounded-2xl shadow-sm border border-slate-200 mb-3 overflow-hidden flex items-stretch transition-all" data-code="26" data-desc="室内温度検知関連">
+            <div class="error-item bg-white rounded-2xl shadow-sm border border-slate-200 mb-4 overflow-hidden flex items-stretch transition-all" data-code="26" data-desc="室内温度センサー異常">
                 <div class="w-20 bg-slate-100 flex flex-col items-center justify-center border-r border-slate-200 py-3 flex-shrink-0">
                     <span class="text-[10px] font-black text-slate-400 mb-0.5">CODE</span>
                     <span class="font-impact text-2xl text-slate-900 leading-none">26</span>
                 </div>
                 <div class="p-4 flex-1 flex flex-col justify-center">
-                    <p class="font-bold text-slate-800 text-sm md:text-[15px] leading-relaxed">室内温度検知関連</p>
+                    <p class="font-bold text-slate-800 text-sm md:text-[15px] leading-relaxed">室内温度センサー異常</p>
                 </div>
             </div>
 
-            <div class="error-item bg-white rounded-2xl shadow-sm border border-slate-200 mb-3 overflow-hidden flex items-stretch transition-all" data-code="28" data-desc="フィルター・自動掃除関連">
+            <div class="error-item bg-white rounded-2xl shadow-sm border border-slate-200 mb-4 overflow-hidden flex items-stretch transition-all" data-code="28" data-desc="フィルター・自動掃除異常">
                 <div class="w-20 bg-slate-100 flex flex-col items-center justify-center border-r border-slate-200 py-3 flex-shrink-0">
                     <span class="text-[10px] font-black text-slate-400 mb-0.5">CODE</span>
                     <span class="font-impact text-2xl text-slate-900 leading-none">28</span>
                 </div>
                 <div class="p-4 flex-1 flex flex-col justify-center">
-                    <p class="font-bold text-slate-800 text-sm md:text-[15px] leading-relaxed">フィルター・自動掃除関連</p>
+                    <p class="font-bold text-slate-800 text-sm md:text-[15px] leading-relaxed">フィルター・自動掃除異常</p>
                 </div>
             </div>
 
@@ -705,15 +585,18 @@
             // エラーコード リアルタイム検索機能
             // ==========================================
             
+            // 全角英数字を半角に変換するユーティリティ関数
             const toHalfWidth = (str) => {
                 return str.replace(/[Ａ-Ｚａ-ｚ０-９]/g, (s) => {
                     return String.fromCharCode(s.charCodeAt(0) - 0xFEE0);
                 });
             };
 
+            // 検索不要な記号やスペースを削除する関数
             const normalizeText = (str) => {
                 return toHalfWidth(str)
                     .toLowerCase()
+                    // 空白文字全般、ハイフン、マイナス、長音符、アンダースコアを削除
                     .replace(/[\s\-\_ー－‐]/g, '');
             };
 
@@ -723,14 +606,19 @@
 
             if (searchInput && errorItems.length > 0) {
                 
+                // 入力があるたびに発火
                 searchInput.addEventListener('input', (e) => {
+                    
+                    // 検索キーワードの正規化
                     const term = normalizeText(e.target.value);
                     let visibleCount = 0;
 
                     errorItems.forEach(item => {
+                        // 各アイテムのコードと説明文を取得して正規化
                         const code = normalizeText(item.getAttribute('data-code'));
                         const desc = normalizeText(item.getAttribute('data-desc'));
                         
+                        // コードまたは説明文に検索キーワードが含まれていれば表示
                         if (code.includes(term) || desc.includes(term)) {
                             item.style.display = '';
                             visibleCount++;
@@ -739,6 +627,7 @@
                         }
                     });
 
+                    // 1件もヒットしなかった場合は「見つかりません」メッセージを表示
                     if (visibleCount === 0) {
                         noResult.classList.remove('hidden');
                     } else {
