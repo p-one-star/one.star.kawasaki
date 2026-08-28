@@ -176,6 +176,36 @@
         <!-- エラーコードリスト -->
         <div class="max-w-3xl mx-auto px-4" id="error-list">
             
+            <div class="error-item bg-white rounded-2xl shadow-sm border border-slate-200 mb-4 overflow-hidden flex items-stretch transition-all" data-code="01" data-desc="室内外信号伝送異常">
+                <div class="w-20 bg-slate-100 flex flex-col items-center justify-center border-r border-slate-200 py-3 flex-shrink-0">
+                    <span class="text-[10px] font-black text-slate-400 mb-0.5">CODE</span>
+                    <span class="font-impact text-2xl text-slate-900 leading-none">01</span>
+                </div>
+                <div class="p-4 flex-1 flex flex-col justify-center">
+                    <p class="font-bold text-slate-800 text-sm md:text-[15px] leading-relaxed">室内外信号伝送異常</p>
+                </div>
+            </div>
+
+            <div class="error-item bg-white rounded-2xl shadow-sm border border-slate-200 mb-4 overflow-hidden flex items-stretch transition-all" data-code="02" data-desc="室外機異常">
+                <div class="w-20 bg-slate-100 flex flex-col items-center justify-center border-r border-slate-200 py-3 flex-shrink-0">
+                    <span class="text-[10px] font-black text-slate-400 mb-0.5">CODE</span>
+                    <span class="font-impact text-2xl text-slate-900 leading-none">02</span>
+                </div>
+                <div class="p-4 flex-1 flex flex-col justify-center">
+                    <p class="font-bold text-slate-800 text-sm md:text-[15px] leading-relaxed">室外機異常</p>
+                </div>
+            </div>
+
+            <div class="error-item bg-white rounded-2xl shadow-sm border border-slate-200 mb-4 overflow-hidden flex items-stretch transition-all" data-code="03" data-desc="その他異常">
+                <div class="w-20 bg-slate-100 flex flex-col items-center justify-center border-r border-slate-200 py-3 flex-shrink-0">
+                    <span class="text-[10px] font-black text-slate-400 mb-0.5">CODE</span>
+                    <span class="font-impact text-2xl text-slate-900 leading-none">03</span>
+                </div>
+                <div class="p-4 flex-1 flex flex-col justify-center">
+                    <p class="font-bold text-slate-800 text-sm md:text-[15px] leading-relaxed">その他異常</p>
+                </div>
+            </div>
+
             <div class="error-item bg-white rounded-2xl shadow-sm border border-slate-200 mb-4 overflow-hidden flex items-stretch transition-all" data-code="04" data-desc="室内外通信異常">
                 <div class="w-20 bg-slate-100 flex flex-col items-center justify-center border-r border-slate-200 py-3 flex-shrink-0">
                     <span class="text-[10px] font-black text-slate-400 mb-0.5">CODE</span>
@@ -186,43 +216,53 @@
                 </div>
             </div>
 
-            <div class="error-item bg-white rounded-2xl shadow-sm border border-slate-200 mb-4 overflow-hidden flex items-stretch transition-all" data-code="07" data-desc="室内外通信回路異常">
+            <div class="error-item bg-white rounded-2xl shadow-sm border border-slate-200 mb-4 overflow-hidden flex items-stretch transition-all" data-code="05" data-desc="室内→室外通信異常">
+                <div class="w-20 bg-slate-100 flex flex-col items-center justify-center border-r border-slate-200 py-3 flex-shrink-0">
+                    <span class="text-[10px] font-black text-slate-400 mb-0.5">CODE</span>
+                    <span class="font-impact text-2xl text-slate-900 leading-none">05</span>
+                </div>
+                <div class="p-4 flex-1 flex flex-col justify-center">
+                    <p class="font-bold text-slate-800 text-sm md:text-[15px] leading-relaxed">室内→室外通信異常</p>
+                </div>
+            </div>
+
+            <div class="error-item bg-white rounded-2xl shadow-sm border border-slate-200 mb-4 overflow-hidden flex items-stretch transition-all" data-code="07" data-desc="ケースサーモ・温度ヒューズ動作">
                 <div class="w-20 bg-slate-100 flex flex-col items-center justify-center border-r border-slate-200 py-3 flex-shrink-0">
                     <span class="text-[10px] font-black text-slate-400 mb-0.5">CODE</span>
                     <span class="font-impact text-2xl text-slate-900 leading-none">07</span>
                 </div>
                 <div class="p-4 flex-1 flex flex-col justify-center">
-                    <p class="font-bold text-slate-800 text-sm md:text-[15px] leading-relaxed">室内外通信回路異常</p>
+                    <p class="font-bold text-slate-800 text-sm md:text-[15px] leading-relaxed">ケースサーモ・温度ヒューズ動作</p>
                 </div>
             </div>
 
-            <div class="error-item bg-white rounded-2xl shadow-sm border border-slate-200 mb-4 overflow-hidden flex items-stretch transition-all" data-code="08" data-desc="冷暖房切替異常">
+            <div class="error-item bg-white rounded-2xl shadow-sm border border-slate-200 mb-4 overflow-hidden flex items-stretch transition-all" data-code="08" data-desc="四方弁異常">
                 <div class="w-20 bg-slate-100 flex flex-col items-center justify-center border-r border-slate-200 py-3 flex-shrink-0">
                     <span class="text-[10px] font-black text-slate-400 mb-0.5">CODE</span>
                     <span class="font-impact text-2xl text-slate-900 leading-none">08</span>
                 </div>
                 <div class="p-4 flex-1 flex flex-col justify-center">
-                    <p class="font-bold text-slate-800 text-sm md:text-[15px] leading-relaxed">冷暖房切替異常</p>
+                    <p class="font-bold text-slate-800 text-sm md:text-[15px] leading-relaxed">四方弁異常</p>
                 </div>
             </div>
 
-            <div class="error-item bg-white rounded-2xl shadow-sm border border-slate-200 mb-4 overflow-hidden flex items-stretch transition-all" data-code="09" data-desc="冷暖房温度変化異常">
+            <div class="error-item bg-white rounded-2xl shadow-sm border border-slate-200 mb-4 overflow-hidden flex items-stretch transition-all" data-code="09" data-desc="冷媒サイクル異常">
                 <div class="w-20 bg-slate-100 flex flex-col items-center justify-center border-r border-slate-200 py-3 flex-shrink-0">
                     <span class="text-[10px] font-black text-slate-400 mb-0.5">CODE</span>
                     <span class="font-impact text-2xl text-slate-900 leading-none">09</span>
                 </div>
                 <div class="p-4 flex-1 flex flex-col justify-center">
-                    <p class="font-bold text-slate-800 text-sm md:text-[15px] leading-relaxed">冷暖房温度変化異常</p>
+                    <p class="font-bold text-slate-800 text-sm md:text-[15px] leading-relaxed">冷媒サイクル異常</p>
                 </div>
             </div>
 
-            <div class="error-item bg-white rounded-2xl shadow-sm border border-slate-200 mb-4 overflow-hidden flex items-stretch transition-all" data-code="0B" data-desc="ドレン異常">
+            <div class="error-item bg-white rounded-2xl shadow-sm border border-slate-200 mb-4 overflow-hidden flex items-stretch transition-all" data-code="0B" data-desc="室内溢水検出">
                 <div class="w-20 bg-slate-100 flex flex-col items-center justify-center border-r border-slate-200 py-3 flex-shrink-0">
                     <span class="text-[10px] font-black text-slate-400 mb-0.5">CODE</span>
                     <span class="font-impact text-2xl text-slate-900 leading-none">0B</span>
                 </div>
                 <div class="p-4 flex-1 flex flex-col justify-center">
-                    <p class="font-bold text-slate-800 text-sm md:text-[15px] leading-relaxed">ドレン異常</p>
+                    <p class="font-bold text-slate-800 text-sm md:text-[15px] leading-relaxed">室内溢水検出</p>
                 </div>
             </div>
 
@@ -246,33 +286,33 @@
                 </div>
             </div>
 
-            <div class="error-item bg-white rounded-2xl shadow-sm border border-slate-200 mb-4 overflow-hidden flex items-stretch transition-all" data-code="0E" data-desc="明るさ・空質センサー異常">
+            <div class="error-item bg-white rounded-2xl shadow-sm border border-slate-200 mb-4 overflow-hidden flex items-stretch transition-all" data-code="0E" data-desc="室内ガスセンサー異常">
                 <div class="w-20 bg-slate-100 flex flex-col items-center justify-center border-r border-slate-200 py-3 flex-shrink-0">
                     <span class="text-[10px] font-black text-slate-400 mb-0.5">CODE</span>
                     <span class="font-impact text-2xl text-slate-900 leading-none">0E</span>
                 </div>
                 <div class="p-4 flex-1 flex flex-col justify-center">
-                    <p class="font-bold text-slate-800 text-sm md:text-[15px] leading-relaxed">明るさ・空質センサー異常</p>
+                    <p class="font-bold text-slate-800 text-sm md:text-[15px] leading-relaxed">室内ガスセンサー異常</p>
                 </div>
             </div>
 
-            <div class="error-item bg-white rounded-2xl shadow-sm border border-slate-200 mb-4 overflow-hidden flex items-stretch transition-all" data-code="0F" data-desc="熱交換器センサー異常">
+            <div class="error-item bg-white rounded-2xl shadow-sm border border-slate-200 mb-4 overflow-hidden flex items-stretch transition-all" data-code="0F" data-desc="室内熱交換器センサー異常">
                 <div class="w-20 bg-slate-100 flex flex-col items-center justify-center border-r border-slate-200 py-3 flex-shrink-0">
                     <span class="text-[10px] font-black text-slate-400 mb-0.5">CODE</span>
                     <span class="font-impact text-2xl text-slate-900 leading-none">0F</span>
                 </div>
                 <div class="p-4 flex-1 flex flex-col justify-center">
-                    <p class="font-bold text-slate-800 text-sm md:text-[15px] leading-relaxed">熱交換器センサー異常</p>
+                    <p class="font-bold text-slate-800 text-sm md:text-[15px] leading-relaxed">室内熱交換器センサー異常</p>
                 </div>
             </div>
 
-            <div class="error-item bg-white rounded-2xl shadow-sm border border-slate-200 mb-4 overflow-hidden flex items-stretch transition-all" data-code="10" data-desc="電源電圧異常">
+            <div class="error-item bg-white rounded-2xl shadow-sm border border-slate-200 mb-4 overflow-hidden flex items-stretch transition-all" data-code="10" data-desc="200V誤印加">
                 <div class="w-20 bg-slate-100 flex flex-col items-center justify-center border-r border-slate-200 py-3 flex-shrink-0">
                     <span class="text-[10px] font-black text-slate-400 mb-0.5">CODE</span>
                     <span class="font-impact text-2xl text-slate-900 leading-none">10</span>
                 </div>
                 <div class="p-4 flex-1 flex flex-col justify-center">
-                    <p class="font-bold text-slate-800 text-sm md:text-[15px] leading-relaxed">電源電圧異常</p>
+                    <p class="font-bold text-slate-800 text-sm md:text-[15px] leading-relaxed">200V誤印加</p>
                 </div>
             </div>
 
@@ -296,23 +336,23 @@
                 </div>
             </div>
 
-            <div class="error-item bg-white rounded-2xl shadow-sm border border-slate-200 mb-4 overflow-hidden flex items-stretch transition-all" data-code="14" data-desc="インバーター過電流異常">
+            <div class="error-item bg-white rounded-2xl shadow-sm border border-slate-200 mb-4 overflow-hidden flex items-stretch transition-all" data-code="13" data-desc="室外インバーター異常">
+                <div class="w-20 bg-slate-100 flex flex-col items-center justify-center border-r border-slate-200 py-3 flex-shrink-0">
+                    <span class="text-[10px] font-black text-slate-400 mb-0.5">CODE</span>
+                    <span class="font-impact text-2xl text-slate-900 leading-none">13</span>
+                </div>
+                <div class="p-4 flex-1 flex flex-col justify-center">
+                    <p class="font-bold text-slate-800 text-sm md:text-[15px] leading-relaxed">室外インバーター異常</p>
+                </div>
+            </div>
+
+            <div class="error-item bg-white rounded-2xl shadow-sm border border-slate-200 mb-4 overflow-hidden flex items-stretch transition-all" data-code="14" data-desc="インバーター過電流保護">
                 <div class="w-20 bg-slate-100 flex flex-col items-center justify-center border-r border-slate-200 py-3 flex-shrink-0">
                     <span class="text-[10px] font-black text-slate-400 mb-0.5">CODE</span>
                     <span class="font-impact text-2xl text-slate-900 leading-none">14</span>
                 </div>
                 <div class="p-4 flex-1 flex flex-col justify-center">
-                    <p class="font-bold text-slate-800 text-sm md:text-[15px] leading-relaxed">インバーター過電流異常</p>
-                </div>
-            </div>
-
-            <div class="error-item bg-white rounded-2xl shadow-sm border border-slate-200 mb-4 overflow-hidden flex items-stretch transition-all" data-code="15" data-desc="マルチセンサー異常">
-                <div class="w-20 bg-slate-100 flex flex-col items-center justify-center border-r border-slate-200 py-3 flex-shrink-0">
-                    <span class="text-[10px] font-black text-slate-400 mb-0.5">CODE</span>
-                    <span class="font-impact text-2xl text-slate-900 leading-none">15</span>
-                </div>
-                <div class="p-4 flex-1 flex flex-col justify-center">
-                    <p class="font-bold text-slate-800 text-sm md:text-[15px] leading-relaxed">マルチセンサー異常</p>
+                    <p class="font-bold text-slate-800 text-sm md:text-[15px] leading-relaxed">インバーター過電流保護</p>
                 </div>
             </div>
 
@@ -366,23 +406,23 @@
                 </div>
             </div>
 
-            <div class="error-item bg-white rounded-2xl shadow-sm border border-slate-200 mb-4 overflow-hidden flex items-stretch transition-all" data-code="1B" data-desc="外気温度センサー異常">
+            <div class="error-item bg-white rounded-2xl shadow-sm border border-slate-200 mb-4 overflow-hidden flex items-stretch transition-all" data-code="1B" data-desc="外気温センサー異常">
                 <div class="w-20 bg-slate-100 flex flex-col items-center justify-center border-r border-slate-200 py-3 flex-shrink-0">
                     <span class="text-[10px] font-black text-slate-400 mb-0.5">CODE</span>
                     <span class="font-impact text-2xl text-slate-900 leading-none">1B</span>
                 </div>
                 <div class="p-4 flex-1 flex flex-col justify-center">
-                    <p class="font-bold text-slate-800 text-sm md:text-[15px] leading-relaxed">外気温度センサー異常</p>
+                    <p class="font-bold text-slate-800 text-sm md:text-[15px] leading-relaxed">外気温センサー異常</p>
                 </div>
             </div>
 
-            <div class="error-item bg-white rounded-2xl shadow-sm border border-slate-200 mb-4 overflow-hidden flex items-stretch transition-all" data-code="1C" data-desc="圧縮機・冷凍サイクル異常">
+            <div class="error-item bg-white rounded-2xl shadow-sm border border-slate-200 mb-4 overflow-hidden flex items-stretch transition-all" data-code="1C" data-desc="その他の室外機異常">
                 <div class="w-20 bg-slate-100 flex flex-col items-center justify-center border-r border-slate-200 py-3 flex-shrink-0">
                     <span class="text-[10px] font-black text-slate-400 mb-0.5">CODE</span>
                     <span class="font-impact text-2xl text-slate-900 leading-none">1C</span>
                 </div>
                 <div class="p-4 flex-1 flex flex-col justify-center">
-                    <p class="font-bold text-slate-800 text-sm md:text-[15px] leading-relaxed">圧縮機・冷凍サイクル異常</p>
+                    <p class="font-bold text-slate-800 text-sm md:text-[15px] leading-relaxed">その他の室外機異常</p>
                 </div>
             </div>
 
@@ -406,13 +446,43 @@
                 </div>
             </div>
 
-            <div class="error-item bg-white rounded-2xl shadow-sm border border-slate-200 mb-4 overflow-hidden flex items-stretch transition-all" data-code="1F" data-desc="圧縮機運転異常">
+            <div class="error-item bg-white rounded-2xl shadow-sm border border-slate-200 mb-4 overflow-hidden flex items-stretch transition-all" data-code="1F" data-desc="圧縮機ブレークダウン異常">
                 <div class="w-20 bg-slate-100 flex flex-col items-center justify-center border-r border-slate-200 py-3 flex-shrink-0">
                     <span class="text-[10px] font-black text-slate-400 mb-0.5">CODE</span>
                     <span class="font-impact text-2xl text-slate-900 leading-none">1F</span>
                 </div>
                 <div class="p-4 flex-1 flex flex-col justify-center">
-                    <p class="font-bold text-slate-800 text-sm md:text-[15px] leading-relaxed">圧縮機運転異常</p>
+                    <p class="font-bold text-slate-800 text-sm md:text-[15px] leading-relaxed">圧縮機ブレークダウン異常</p>
+                </div>
+            </div>
+
+            <div class="error-item bg-white rounded-2xl shadow-sm border border-slate-200 mb-4 overflow-hidden flex items-stretch transition-all" data-code="20" data-desc="除霜・低圧異常">
+                <div class="w-20 bg-slate-100 flex flex-col items-center justify-center border-r border-slate-200 py-3 flex-shrink-0">
+                    <span class="text-[10px] font-black text-slate-400 mb-0.5">CODE</span>
+                    <span class="font-impact text-2xl text-slate-900 leading-none">20</span>
+                </div>
+                <div class="p-4 flex-1 flex flex-col justify-center">
+                    <p class="font-bold text-slate-800 text-sm md:text-[15px] leading-relaxed">除霜・低圧異常</p>
+                </div>
+            </div>
+
+            <div class="error-item bg-white rounded-2xl shadow-sm border border-slate-200 mb-4 overflow-hidden flex items-stretch transition-all" data-code="21" data-desc="高圧保護異常">
+                <div class="w-20 bg-slate-100 flex flex-col items-center justify-center border-r border-slate-200 py-3 flex-shrink-0">
+                    <span class="text-[10px] font-black text-slate-400 mb-0.5">CODE</span>
+                    <span class="font-impact text-2xl text-slate-900 leading-none">21</span>
+                </div>
+                <div class="p-4 flex-1 flex flex-col justify-center">
+                    <p class="font-bold text-slate-800 text-sm md:text-[15px] leading-relaxed">高圧保護異常</p>
+                </div>
+            </div>
+
+            <div class="error-item bg-white rounded-2xl shadow-sm border border-slate-200 mb-4 overflow-hidden flex items-stretch transition-all" data-code="24" data-desc="MCU間通信異常">
+                <div class="w-20 bg-slate-100 flex flex-col items-center justify-center border-r border-slate-200 py-3 flex-shrink-0">
+                    <span class="text-[10px] font-black text-slate-400 mb-0.5">CODE</span>
+                    <span class="font-impact text-2xl text-slate-900 leading-none">24</span>
+                </div>
+                <div class="p-4 flex-1 flex flex-col justify-center">
+                    <p class="font-bold text-slate-800 text-sm md:text-[15px] leading-relaxed">MCU間通信異常</p>
                 </div>
             </div>
 
@@ -426,33 +496,13 @@
                 </div>
             </div>
 
-            <div class="error-item bg-white rounded-2xl shadow-sm border border-slate-200 mb-4 overflow-hidden flex items-stretch transition-all" data-code="26" data-desc="人サーチセンサー異常">
+            <div class="error-item bg-white rounded-2xl shadow-sm border border-slate-200 mb-4 overflow-hidden flex items-stretch transition-all" data-code="3E" data-desc="空気清浄機異常">
                 <div class="w-20 bg-slate-100 flex flex-col items-center justify-center border-r border-slate-200 py-3 flex-shrink-0">
                     <span class="text-[10px] font-black text-slate-400 mb-0.5">CODE</span>
-                    <span class="font-impact text-2xl text-slate-900 leading-none">26</span>
+                    <span class="font-impact text-2xl text-slate-900 leading-none">3E</span>
                 </div>
                 <div class="p-4 flex-1 flex flex-col justify-center">
-                    <p class="font-bold text-slate-800 text-sm md:text-[15px] leading-relaxed">人サーチセンサー異常</p>
-                </div>
-            </div>
-
-            <div class="error-item bg-white rounded-2xl shadow-sm border border-slate-200 mb-4 overflow-hidden flex items-stretch transition-all" data-code="27" data-desc="室内機センサー関連異常">
-                <div class="w-20 bg-slate-100 flex flex-col items-center justify-center border-r border-slate-200 py-3 flex-shrink-0">
-                    <span class="text-[10px] font-black text-slate-400 mb-0.5">CODE</span>
-                    <span class="font-impact text-2xl text-slate-900 leading-none">27</span>
-                </div>
-                <div class="p-4 flex-1 flex flex-col justify-center">
-                    <p class="font-bold text-slate-800 text-sm md:text-[15px] leading-relaxed">室内機センサー関連異常</p>
-                </div>
-            </div>
-
-            <div class="error-item bg-white rounded-2xl shadow-sm border border-slate-200 mb-4 overflow-hidden flex items-stretch transition-all" data-code="29" data-desc="圧縮機保護運転">
-                <div class="w-20 bg-slate-100 flex flex-col items-center justify-center border-r border-slate-200 py-3 flex-shrink-0">
-                    <span class="text-[10px] font-black text-slate-400 mb-0.5">CODE</span>
-                    <span class="font-impact text-2xl text-slate-900 leading-none">29</span>
-                </div>
-                <div class="p-4 flex-1 flex flex-col justify-center">
-                    <p class="font-bold text-slate-800 text-sm md:text-[15px] leading-relaxed">圧縮機保護運転</p>
+                    <p class="font-bold text-slate-800 text-sm md:text-[15px] leading-relaxed">空気清浄機異常</p>
                 </div>
             </div>
 
