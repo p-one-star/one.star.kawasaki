@@ -1,0 +1,745 @@
+```html
+<!DOCTYPE html>
+<html lang="ja" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>エラーコード（BEAVER・三菱重工・家庭用） | ONE★STAR</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        neon: '#EFFF00' // トレードカラー：蛍光イエロー
+                    },
+                    fontFamily: {
+                        sans: ['"Noto Sans JP"', 'sans-serif'],
+                        // ステンシルフォント(Black Ops One)の設定
+                        impact: ['"Black Ops One"', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts (Noto Sans JP と Black Ops One) -->
+    <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        /* ドロワーメニュー用 */
+        #drawer-menu { transition: transform 0.3s ease-in-out; }
+        .drawer-closed { transform: translateX(-100%); }
+        .drawer-open { transform: translateX(0); }
+    </style>
+</head>
+<body class="font-sans text-slate-800 bg-slate-50 antialiased overflow-x-hidden">
+
+    <!-- HEADER (上部固定) -->
+    <header class="fixed top-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md shadow-sm border-b border-slate-100 h-14 flex items-center justify-between px-4">
+        <button id="menu-open-btn" class="p-2 hover:bg-slate-100 rounded-lg" aria-label="メニュー">
+            <svg class="w-6 h-6 text-slate-800" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+
+        <div class="absolute left-1/2 -translate-x-1/2 flex items-center justify-center mt-1">
+            <a href="/" class="text-2xl md:text-3xl tracking-widest text-slate-900 leading-none flex items-center font-impact">
+                ONE
+                <img src="ONESTAR.PNG" alt="ロゴ画像" class="w-[45px] h-[45px] md:w-[55px] md:h-[55px] mx-[-4px] md:mx-[-6px] object-contain -translate-y-[4px]" onerror="this.style.display='none'">
+                STAR
+            </a>
+        </div>
+
+        <div class="hidden md:flex items-center space-x-3">
+            <a href="tel:08000807788" class="js-phone-modal-trigger bg-slate-900 hover:bg-slate-800 text-neon px-4 py-1.5 rounded-full text-xs font-black border border-slate-700 flex items-center space-x-1 transition-all">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                <span>電話相談</span>
+            </a>
+        </div>
+        <div class="w-10 md:hidden"></div>
+    </header>
+
+    <!-- SEARCH BAR (ヘッダー下・上部固定) -->
+    <div class="fixed top-14 left-0 right-0 z-30 bg-[#F4F5F7] border-b border-slate-200 py-3 px-4 flex justify-center shadow-sm">
+        <div class="relative w-full max-w-3xl flex items-center bg-white rounded-lg border border-slate-200 overflow-hidden h-[46px] shadow-sm">
+            <div class="pl-3 text-slate-400 flex-shrink-0">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+            </div>
+            <!-- 検索入力欄 -->
+            <input type="text" id="search-input" placeholder="エラーコードを入力..." class="w-full h-full py-2 px-3 text-[15px] font-bold text-slate-800 focus:outline-none placeholder-slate-400">
+            <!-- 検索ボタン -->
+            <button class="bg-slate-900 text-neon w-10 h-9 mr-1.5 rounded flex items-center justify-center flex-shrink-0 active:bg-slate-800 transition-colors">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- DRAWER MENU (共通) -->
+    <div id="drawer-container" class="fixed inset-0 z-50 overflow-hidden hidden">
+        <div id="drawer-backdrop" class="absolute inset-0 bg-slate-900/60 opacity-0 transition-opacity duration-300"></div>
+        <div class="pointer-events-none fixed inset-y-0 left-0 flex max-w-full">
+            <div id="drawer-menu" class="pointer-events-auto w-64 drawer-closed bg-white shadow-2xl flex flex-col h-full">
+                
+                <div class="p-3 bg-white flex justify-end">
+                    <button id="menu-close-btn" class="p-2 hover:bg-slate-100 rounded-lg">
+                        <svg class="w-6 h-6 text-slate-500" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+                    </button>
+                </div>
+
+                <div class="bg-blue-600 py-3 px-6">
+                    <h2 class="text-white font-black tracking-wider text-sm">MENU</h2>
+                </div>
+
+                <nav class="flex-1 px-4 py-2 overflow-y-auto">
+                    <div class="space-y-1">
+                        <a href="/" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>トップページ
+                        </a>
+                        <a href="/price" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>料金プラン
+                        </a>
+                        <a href="/works" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>施工事例
+                        </a>
+                        <a href="/mind" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>ONE★STARの想い
+                        </a>
+                        <a href="/pride" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>プロとしての拘り
+                        </a>
+                        <a href="/trash" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>ここだけの話
+                        </a>
+                        <a href="/before" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>ご予約の前に
+                        </a>
+                        <a href="/faq" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>よくある質問
+                        </a>
+                        <a href="/error-codes" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-blue-600">
+                            <span class="mr-2 text-blue-600">＞</span>エラーコード早見表
+                        </a>
+                        <a href="/tips" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>お役立ち情報
+                        </a>
+                    </div>
+                    
+                    <hr class="border-slate-300 border-dashed my-4">
+                    <a href="https://www.edge-cleanservice.com" target="_blank" rel="noopener noreferrer" class="menu-link flex items-center py-2 text-sm font-black text-slate-900 hover:text-blue-600 transition-colors">
+                        株式会社ECS公式サイト
+                        <svg class="w-3.5 h-3.5 ml-1.5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                    </a>
+                </nav>
+
+                <div class="p-4 bg-slate-50 border-t border-slate-100 text-center mt-auto">
+                    <p class="text-[9px] text-slate-500 font-bold leading-relaxed mb-2">
+                        株式会社ECS EDGE CLEAN SERVICE<br>専属プロスタッフとして<br>愛知県全域で毎日奮闘中❣️
+                    </p>
+                    <a href="tel:08000807788" class="js-phone-modal-trigger block w-full py-3 bg-emerald-500 text-white font-bold rounded-lg text-sm shadow">直接電話する</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN (ERROR CODE CONTENTS) -->
+    <!-- ヘッダー(56px) ＋ 検索窓(約70px) の高さを考慮して pt-[140px] に設定 -->
+    <main class="pt-[140px] pb-28 md:pb-20">
+        
+        <!-- ページタイトル -->
+        <div class="text-center mb-6 px-4">
+            <h1 class="text-4xl md:text-5xl font-impact tracking-widest text-slate-900 mb-2">ERROR</h1>
+            <p class="text-sm md:text-base font-black text-slate-600">エラーコード早見表</p>
+        </div>
+
+        <!-- 🔻メーカー・区分表記 🔻 -->
+        <div class="max-w-3xl mx-auto px-4 mb-4">
+            <div class="flex items-center border-b-[3px] border-neon pb-2">
+                <span class="bg-slate-900 text-neon font-black text-[11px] px-2 py-0.5 rounded mr-3 tracking-wider">BEAVER</span>
+                <h2 class="text-lg md:text-2xl font-black text-slate-900 leading-none flex items-end tracking-tight">
+                    三菱重工
+                    <span class="text-[13px] md:text-sm text-slate-500 font-bold ml-2 mb-0.5 whitespace-nowrap">[家庭用]</span>
+                </h2>
+            </div>
+        </div>
+
+        <!-- ⚠️ 注意書き（免責事項） -->
+        <div class="max-w-3xl mx-auto px-4 mb-8">
+            <div class="bg-slate-100/80 border border-slate-200 rounded-xl p-3.5 text-[12px] md:text-xs text-slate-600 font-bold flex items-start shadow-sm">
+                <svg class="w-4 h-4 text-slate-400 mr-2 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                <div class="leading-[1.7]">
+                    エラー内容は機種・シリーズにより<br class="md:hidden">
+                    異なる場合があります。<br>
+                    正確な内容は型式をご確認のうえ、<br class="md:hidden">
+                    メーカー公式情報をご確認ください。
+                </div>
+            </div>
+        </div>
+
+        <!-- 💡 補足情報ブロック群 -->
+        <div class="max-w-3xl mx-auto px-4 mb-8 space-y-6">
+
+            <!-- エラーコード確認方法 -->
+            <div>
+                <h3 class="text-sm font-black text-slate-800 mb-2 border-l-4 border-blue-500 pl-2">エラーコード｜確認方法</h3>
+                <div class="bg-white border border-slate-200 rounded-xl p-4 md:p-5 text-[12.5px] text-slate-600 font-medium leading-[1.8] shadow-sm">
+                    <p class="mb-4 text-slate-800 font-bold">
+                        三菱重工の家庭用エアコンでは、<br class="md:hidden">
+                        機種によってエラーコードの<br class="md:hidden">
+                        確認方法が異なります。
+                    </p>
+                    
+                    <ul class="list-disc pl-5 mb-4 space-y-3 md:space-y-2">
+                        <li>
+                            <span class="text-slate-900 font-black">温度表示部がある機種</span><br>
+                            異常停止時に表示される数字から<br class="md:hidden">
+                            エラーコードを確認できます。
+                        </li>
+                        <li>
+                            <span class="text-slate-900 font-black">表示部がない機種</span><br>
+                            運転ランプやタイマーランプの<br class="md:hidden">
+                            点滅回数から確認する機種があります。
+                        </li>
+                    </ul>
+                    
+                    <p class="text-[11.5px] text-rose-600 font-bold leading-relaxed bg-rose-50/50 p-2.5 rounded-lg border border-rose-100">
+                        ※正確な確認方法は、<br class="md:hidden">
+                        型式ごとの取扱説明書をご確認ください。
+                    </p>
+                </div>
+            </div>
+
+            <!-- ランプ点滅｜故障ではない表示 -->
+            <div>
+                <h3 class="text-sm font-black text-slate-800 mb-2 border-l-4 border-emerald-500 pl-2">ランプ点滅｜故障ではない表示</h3>
+                <div class="bg-emerald-50/40 border border-emerald-100 rounded-xl p-4 md:p-5 shadow-sm">
+                    
+                    <div class="space-y-4 mb-4">
+                        <!-- 項目1 -->
+                        <div class="flex flex-col sm:flex-row sm:items-center pb-3 sm:pb-0 border-b border-emerald-100/60 sm:border-0">
+                            <div class="bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded text-[10px] font-black w-max mb-1.5 sm:mb-0 sm:mr-3">運転ランプ</div>
+                            <div class="text-[12.5px] text-slate-600 font-medium">
+                                ゆっくり点滅 ｜ <span class="text-slate-900 font-bold">霜取り運転など</span>
+                            </div>
+                        </div>
+                        
+                        <!-- 項目2 -->
+                        <div class="flex flex-col sm:flex-row sm:items-center">
+                            <div class="bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded text-[10px] font-black w-max mb-1.5 sm:mb-0 sm:mr-3">フィルター清掃</div>
+                            <div class="text-[12.5px] text-slate-600 font-medium">
+                                ランプ点滅 ｜ <span class="text-slate-900 font-bold">フィルター・ダストボックス確認</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <p class="text-[11.5px] text-slate-500 border-t border-emerald-200/50 pt-3 leading-[1.7] font-medium">
+                        ランプの意味は、機種・シリーズによって<br class="md:hidden">
+                        異なります。<br>
+                        ランプが点滅していても、<br class="md:hidden">
+                        必ずしも故障とは限りません。
+                    </p>
+                </div>
+            </div>
+
+            <!-- お掃除メカ｜リミットスイッチ異常 -->
+            <div>
+                <h3 class="text-sm font-black text-slate-800 mb-2 border-l-4 border-purple-500 pl-2">お掃除メカ｜リミットスイッチ異常</h3>
+                <div class="bg-white border border-purple-200 rounded-xl overflow-hidden shadow-sm flex flex-col md:flex-row">
+                    
+                    <!-- ランプ状態 -->
+                    <div class="bg-purple-50 p-4 border-b md:border-b-0 md:border-r border-purple-100 flex-shrink-0 md:w-[220px]">
+                        <div class="font-black text-purple-900 text-[13px] mb-3 text-center md:text-left">エラー表示パターン</div>
+                        
+                        <div class="text-[12px] text-slate-600 space-y-2.5 bg-white p-3 rounded-xl border border-purple-100 shadow-[inset_0_1px_2px_rgba(0,0,0,0.02)]">
+                            <div class="flex justify-between items-center border-b border-slate-50 pb-1.5">
+                                <span class="font-bold">運転ランプ</span>
+                                <span class="font-black text-slate-800 bg-slate-100 px-2 py-0.5 rounded">消灯</span>
+                            </div>
+                            <div class="flex justify-between items-center border-b border-slate-50 pb-1.5">
+                                <span class="font-bold">タイマー</span>
+                                <span class="font-black text-rose-600 bg-rose-50 border border-rose-100 px-2 py-0.5 rounded">連続点滅</span>
+                            </div>
+                            <div class="flex justify-between items-center text-slate-400">
+                                <span class="font-medium">診断記号</span>
+                                <span class="font-bold text-[11px]">なし</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 解説 -->
+                    <div class="p-4 md:p-5 text-[12.5px] text-slate-600 font-medium leading-[1.8] flex-1">
+                        <p class="mb-3 text-slate-800 font-bold">
+                            三菱重工では、<br class="md:hidden">
+                            「お掃除メカのリミットスイッチ異常」と<br class="md:hidden">
+                            明確に案内されています。
+                        </p>
+                        <p class="mb-3">
+                            他メーカーでは、ここまで具体的に<br class="md:hidden">
+                            案内されていない場合もありますが、
+                        </p>
+                        <p>
+                            お掃除機能付きエアコンでは、<br class="md:hidden">
+                            可動部の位置を検知するスイッチ類の<br class="md:hidden">
+                            異常が発生することは珍しくありません。
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- 🔻 エラーコードリスト（主な異常）🔻 -->
+        <div class="max-w-3xl mx-auto px-4 mb-4 mt-10">
+            <h3 class="text-[15px] font-black text-slate-900 border-b-2 border-slate-200 pb-1 mb-4 flex items-center">
+                <svg class="w-4 h-4 mr-1.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"></path></svg>
+                エラーコード｜主な異常
+            </h3>
+        </div>
+
+        <div class="max-w-3xl mx-auto px-4" id="error-list">
+            
+            <div class="error-item bg-white rounded-2xl shadow-sm border border-slate-200 mb-4 overflow-hidden flex items-stretch transition-all" data-code="05" data-desc="室内外通信異常">
+                <div class="w-20 bg-slate-100 flex flex-col items-center justify-center border-r border-slate-200 py-3 flex-shrink-0">
+                    <span class="text-[10px] font-black text-slate-400 mb-0.5">CODE</span>
+                    <span class="font-impact text-2xl text-slate-900 leading-none">05</span>
+                </div>
+                <div class="p-4 flex-1 flex flex-col justify-center">
+                    <p class="font-bold text-slate-800 text-sm md:text-[15px] leading-relaxed">室内外通信異常</p>
+                </div>
+            </div>
+
+            <div class="error-item bg-white rounded-2xl shadow-sm border border-slate-200 mb-4 overflow-hidden flex items-stretch transition-all" data-code="06" data-desc="室内熱交換器センサー異常">
+                <div class="w-20 bg-slate-100 flex flex-col items-center justify-center border-r border-slate-200 py-3 flex-shrink-0">
+                    <span class="text-[10px] font-black text-slate-400 mb-0.5">CODE</span>
+                    <span class="font-impact text-2xl text-slate-900 leading-none">06</span>
+                </div>
+                <div class="p-4 flex-1 flex flex-col justify-center">
+                    <p class="font-bold text-slate-800 text-sm md:text-[15px] leading-relaxed">室内熱交換器センサー異常</p>
+                </div>
+            </div>
+
+            <div class="error-item bg-white rounded-2xl shadow-sm border border-slate-200 mb-4 overflow-hidden flex items-stretch transition-all" data-code="07" data-desc="室温センサー異常">
+                <div class="w-20 bg-slate-100 flex flex-col items-center justify-center border-r border-slate-200 py-3 flex-shrink-0">
+                    <span class="text-[10px] font-black text-slate-400 mb-0.5">CODE</span>
+                    <span class="font-impact text-2xl text-slate-900 leading-none">07</span>
+                </div>
+                <div class="p-4 flex-1 flex flex-col justify-center">
+                    <p class="font-bold text-slate-800 text-sm md:text-[15px] leading-relaxed">室温センサー異常</p>
+                </div>
+            </div>
+
+            <div class="error-item bg-white rounded-2xl shadow-sm border border-slate-200 mb-4 overflow-hidden flex items-stretch transition-all" data-code="16" data-desc="室内ファンモーター異常">
+                <div class="w-20 bg-slate-100 flex flex-col items-center justify-center border-r border-slate-200 py-3 flex-shrink-0">
+                    <span class="text-[10px] font-black text-slate-400 mb-0.5">CODE</span>
+                    <span class="font-impact text-2xl text-slate-900 leading-none">16</span>
+                </div>
+                <div class="p-4 flex-1 flex flex-col justify-center">
+                    <p class="font-bold text-slate-800 text-sm md:text-[15px] leading-relaxed">室内ファンモーター異常</p>
+                </div>
+            </div>
+
+            <div class="error-item bg-white rounded-2xl shadow-sm border border-slate-200 mb-4 overflow-hidden flex items-stretch transition-all" data-code="35" data-desc="冷房高圧異常">
+                <div class="w-20 bg-slate-100 flex flex-col items-center justify-center border-r border-slate-200 py-3 flex-shrink-0">
+                    <span class="text-[10px] font-black text-slate-400 mb-0.5">CODE</span>
+                    <span class="font-impact text-2xl text-slate-900 leading-none">35</span>
+                </div>
+                <div class="p-4 flex-1 flex flex-col justify-center">
+                    <p class="font-bold text-slate-800 text-sm md:text-[15px] leading-relaxed">冷房高圧異常</p>
+                </div>
+            </div>
+
+            <div class="error-item bg-white rounded-2xl shadow-sm border border-slate-200 mb-4 overflow-hidden flex items-stretch transition-all" data-code="36" data-desc="圧縮機過熱異常">
+                <div class="w-20 bg-slate-100 flex flex-col items-center justify-center border-r border-slate-200 py-3 flex-shrink-0">
+                    <span class="text-[10px] font-black text-slate-400 mb-0.5">CODE</span>
+                    <span class="font-impact text-2xl text-slate-900 leading-none">36</span>
+                </div>
+                <div class="p-4 flex-1 flex flex-col justify-center">
+                    <p class="font-bold text-slate-800 text-sm md:text-[15px] leading-relaxed">圧縮機過熱異常</p>
+                </div>
+            </div>
+
+            <div class="error-item bg-white rounded-2xl shadow-sm border border-slate-200 mb-4 overflow-hidden flex items-stretch transition-all" data-code="37" data-desc="室外熱交換器液管センサー異常">
+                <div class="w-20 bg-slate-100 flex flex-col items-center justify-center border-r border-slate-200 py-3 flex-shrink-0">
+                    <span class="text-[10px] font-black text-slate-400 mb-0.5">CODE</span>
+                    <span class="font-impact text-2xl text-slate-900 leading-none">37</span>
+                </div>
+                <div class="p-4 flex-1 flex flex-col justify-center">
+                    <p class="font-bold text-slate-800 text-sm md:text-[15px] leading-relaxed">室外熱交換器液管センサー異常</p>
+                </div>
+            </div>
+
+            <div class="error-item bg-white rounded-2xl shadow-sm border border-slate-200 mb-4 overflow-hidden flex items-stretch transition-all" data-code="38" data-desc="外気温センサー異常">
+                <div class="w-20 bg-slate-100 flex flex-col items-center justify-center border-r border-slate-200 py-3 flex-shrink-0">
+                    <span class="text-[10px] font-black text-slate-400 mb-0.5">CODE</span>
+                    <span class="font-impact text-2xl text-slate-900 leading-none">38</span>
+                </div>
+                <div class="p-4 flex-1 flex flex-col justify-center">
+                    <p class="font-bold text-slate-800 text-sm md:text-[15px] leading-relaxed">外気温センサー異常</p>
+                </div>
+            </div>
+
+            <div class="error-item bg-white rounded-2xl shadow-sm border border-slate-200 mb-4 overflow-hidden flex items-stretch transition-all" data-code="39" data-desc="吐出管センサー異常">
+                <div class="w-20 bg-slate-100 flex flex-col items-center justify-center border-r border-slate-200 py-3 flex-shrink-0">
+                    <span class="text-[10px] font-black text-slate-400 mb-0.5">CODE</span>
+                    <span class="font-impact text-2xl text-slate-900 leading-none">39</span>
+                </div>
+                <div class="p-4 flex-1 flex flex-col justify-center">
+                    <p class="font-bold text-slate-800 text-sm md:text-[15px] leading-relaxed">吐出管センサー異常</p>
+                </div>
+            </div>
+
+            <div class="error-item bg-white rounded-2xl shadow-sm border border-slate-200 mb-4 overflow-hidden flex items-stretch transition-all" data-code="42" data-desc="圧縮機過電流異常">
+                <div class="w-20 bg-slate-100 flex flex-col items-center justify-center border-r border-slate-200 py-3 flex-shrink-0">
+                    <span class="text-[10px] font-black text-slate-400 mb-0.5">CODE</span>
+                    <span class="font-impact text-2xl text-slate-900 leading-none">42</span>
+                </div>
+                <div class="p-4 flex-1 flex flex-col justify-center">
+                    <p class="font-bold text-slate-800 text-sm md:text-[15px] leading-relaxed">圧縮機過電流異常</p>
+                </div>
+            </div>
+
+            <div class="error-item bg-white rounded-2xl shadow-sm border border-slate-200 mb-4 overflow-hidden flex items-stretch transition-all" data-code="47" data-desc="異電圧異常 ※200V機">
+                <div class="w-20 bg-slate-100 flex flex-col items-center justify-center border-r border-slate-200 py-3 flex-shrink-0">
+                    <span class="text-[10px] font-black text-slate-400 mb-0.5">CODE</span>
+                    <span class="font-impact text-2xl text-slate-900 leading-none">47</span>
+                </div>
+                <div class="p-4 flex-1 flex flex-col justify-center">
+                    <p class="font-bold text-slate-800 text-sm md:text-[15px] leading-relaxed">異電圧異常 <span class="text-[11px] text-slate-500 block mt-0.5">※200V機</span></p>
+                </div>
+            </div>
+
+            <div class="error-item bg-white rounded-2xl shadow-sm border border-slate-200 mb-4 overflow-hidden flex items-stretch transition-all" data-code="48" data-desc="室外ファンモーター異常">
+                <div class="w-20 bg-slate-100 flex flex-col items-center justify-center border-r border-slate-200 py-3 flex-shrink-0">
+                    <span class="text-[10px] font-black text-slate-400 mb-0.5">CODE</span>
+                    <span class="font-impact text-2xl text-slate-900 leading-none">48</span>
+                </div>
+                <div class="p-4 flex-1 flex flex-col justify-center">
+                    <p class="font-bold text-slate-800 text-sm md:text-[15px] leading-relaxed">室外ファンモーター異常</p>
+                </div>
+            </div>
+
+            <div class="error-item bg-white rounded-2xl shadow-sm border border-slate-200 mb-4 overflow-hidden flex items-stretch transition-all" data-code="51" data-desc="パワートランジスター異常">
+                <div class="w-20 bg-slate-100 flex flex-col items-center justify-center border-r border-slate-200 py-3 flex-shrink-0">
+                    <span class="text-[10px] font-black text-slate-400 mb-0.5">CODE</span>
+                    <span class="font-impact text-2xl text-slate-900 leading-none">51</span>
+                </div>
+                <div class="p-4 flex-1 flex flex-col justify-center">
+                    <p class="font-bold text-slate-800 text-sm md:text-[15px] leading-relaxed">パワートランジスター異常</p>
+                </div>
+            </div>
+
+            <div class="error-item bg-white rounded-2xl shadow-sm border border-slate-200 mb-4 overflow-hidden flex items-stretch transition-all" data-code="57" data-desc="冷凍サイクル保護">
+                <div class="w-20 bg-slate-100 flex flex-col items-center justify-center border-r border-slate-200 py-3 flex-shrink-0">
+                    <span class="text-[10px] font-black text-slate-400 mb-0.5">CODE</span>
+                    <span class="font-impact text-2xl text-slate-900 leading-none">57</span>
+                </div>
+                <div class="p-4 flex-1 flex flex-col justify-center">
+                    <p class="font-bold text-slate-800 text-sm md:text-[15px] leading-relaxed">冷凍サイクル保護</p>
+                </div>
+            </div>
+
+            <div class="error-item bg-white rounded-2xl shadow-sm border border-slate-200 mb-4 overflow-hidden flex items-stretch transition-all" data-code="58" data-desc="圧縮機過電流制御">
+                <div class="w-20 bg-slate-100 flex flex-col items-center justify-center border-r border-slate-200 py-3 flex-shrink-0">
+                    <span class="text-[10px] font-black text-slate-400 mb-0.5">CODE</span>
+                    <span class="font-impact text-2xl text-slate-900 leading-none">58</span>
+                </div>
+                <div class="p-4 flex-1 flex flex-col justify-center">
+                    <p class="font-bold text-slate-800 text-sm md:text-[15px] leading-relaxed">圧縮機過電流制御</p>
+                </div>
+            </div>
+
+            <!-- 赤文字を削除し、他のカードとスタイルを統一した「59」 -->
+            <div class="error-item bg-white rounded-2xl shadow-sm border border-slate-200 mb-4 overflow-hidden flex items-stretch transition-all" data-code="59" data-desc="室外機・冷凍サイクル異常">
+                <div class="w-20 bg-slate-100 flex flex-col items-center justify-center border-r border-slate-200 py-3 flex-shrink-0">
+                    <span class="text-[10px] font-black text-slate-400 mb-0.5">CODE</span>
+                    <span class="font-impact text-2xl text-slate-900 leading-none">59</span>
+                </div>
+                <div class="p-4 flex-1 flex flex-col justify-center">
+                    <p class="font-bold text-slate-800 text-sm md:text-[15px] leading-relaxed">室外機・冷凍サイクル異常</p>
+                </div>
+            </div>
+
+            <div class="error-item bg-white rounded-2xl shadow-sm border border-slate-200 mb-4 overflow-hidden flex items-stretch transition-all" data-code="60" data-desc="圧縮機位置検出異常">
+                <div class="w-20 bg-slate-100 flex flex-col items-center justify-center border-r border-slate-200 py-3 flex-shrink-0">
+                    <span class="text-[10px] font-black text-slate-400 mb-0.5">CODE</span>
+                    <span class="font-impact text-2xl text-slate-900 leading-none">60</span>
+                </div>
+                <div class="p-4 flex-1 flex flex-col justify-center">
+                    <p class="font-bold text-slate-800 text-sm md:text-[15px] leading-relaxed">圧縮機位置検出異常</p>
+                </div>
+            </div>
+
+        </div> <!-- /#error-list -->
+
+        <!-- ⚠️ リスト直下：エラーコード59に関する注意事項 -->
+        <div class="max-w-3xl mx-auto px-4 mt-2">
+            <div class="bg-rose-50 border border-rose-200 rounded-xl p-3.5 text-[11.5px] md:text-xs text-rose-700 font-bold flex items-start shadow-sm">
+                <svg class="w-4 h-4 text-rose-500 mr-2 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+                <div class="leading-[1.7]">
+                    コード「59」は機種・シリーズや異常状態によって、<br class="md:hidden">
+                    内容が異なる場合があります。
+                </div>
+            </div>
+        </div>
+
+        <!-- 検索結果が0件だった場合のメッセージ -->
+        <div id="no-result" class="hidden text-center py-12 px-4">
+            <div class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-slate-200 text-slate-500 mb-3">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            </div>
+            <p class="text-slate-600 font-bold text-sm md:text-base">該当するエラーコードが見つかりません。</p>
+            <p class="text-slate-400 text-xs mt-2">別のキーワードやコードでお試しください。</p>
+        </div>
+
+    </main>
+
+    <!-- FOOTER (共通) -->
+    <footer class="bg-slate-900 text-white pt-12 pb-24 md:pb-12 border-t-[6px] border-neon text-center">
+        <div class="mb-6 flex flex-col items-center justify-center">
+            <!-- フッターロゴ -->
+            <span class="text-4xl md:text-5xl tracking-widest text-white flex items-center justify-center font-impact mt-1">
+                ONE
+                <img src="ONESTAR.PNG" alt="ロゴ画像" class="w-[80px] h-[80px] md:w-[100px] md:h-[100px] mx-[-10px] md:mx-[-16px] object-contain -translate-y-2" onerror="this.style.display='none'">
+                STAR
+            </span>
+            <p class="text-xs text-neon font-black mt-2 tracking-widest">株式会社ECS専属プロスタッフ</p>
+        </div>
+        
+        <p class="text-[11px] text-slate-400 font-bold mb-3">
+            <a href="/products" class="hover:text-white transition-colors underline underline-offset-4">オリジナルLINEスタンプ販売中</a>
+        </p>
+        <p class="text-[10px] text-slate-500 font-bold mb-4">
+            <a href="/privacy" class="hover:text-white transition-colors">プライバシーポリシー</a>
+        </p>
+        <p class="text-[10px] text-slate-500 font-bold tracking-wider">© 2026 ONE★STAR. All Rights Reserved.</p>
+    </footer>
+
+    <!-- MOBILE BOTTOM NAVIGATION (共通) -->
+    <div class="fixed bottom-0 left-0 right-0 z-45 bg-slate-900 md:hidden h-[60px] flex items-stretch text-white shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.3)] border-t border-slate-800">
+        
+        <!-- 料金 (黒) -->
+        <a href="/price" class="flex flex-col items-center justify-center w-[20%] border-r border-slate-700 active:bg-slate-800">
+            <svg class="w-5 h-5 mb-1 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <span class="text-[9px] font-black">料金</span>
+        </a>
+        
+        <!-- 想い (黒) -->
+        <a href="/mind" class="flex flex-col items-center justify-center w-[20%] border-r border-slate-700 active:bg-slate-800">
+            <svg class="w-5 h-5 mb-1 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+            <span class="text-[9px] font-black">想い</span>
+        </a>
+
+        <!-- 拘り (黒) -->
+        <a href="/pride" class="flex flex-col items-center justify-center w-[20%] active:bg-slate-800">
+            <svg class="w-5 h-5 mb-1 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+            <span class="text-[9px] font-black">拘り</span>
+        </a>
+        
+        <!-- 電話する (蛍光イエロー) -->
+        <a href="tel:08000807788" class="js-phone-modal-trigger flex items-center justify-center bg-neon text-slate-900 w-[40%] font-black text-base active:bg-yellow-400 transition-colors">
+            <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+            電話する
+        </a>
+        
+    </div>
+
+    <!-- 🌟 ご予約・お問い合わせ前のワンクッションモーダル (共通) 🌟 -->
+    <div id="phone-modal" class="fixed inset-0 z-[100] hidden flex items-center justify-center px-4">
+        <!-- 背景のオーバーレイ (クリックで閉じる) -->
+        <div id="phone-modal-backdrop" class="absolute inset-0 bg-slate-900/80 backdrop-blur-sm opacity-0 transition-opacity duration-300"></div>
+        
+        <!-- モーダル本体 -->
+        <div id="phone-modal-content" class="relative bg-white rounded-3xl shadow-2xl w-full max-w-sm overflow-hidden transform scale-95 opacity-0 transition-all duration-300 border border-slate-100">
+            
+            <!-- 閉じるボタン -->
+            <button id="phone-modal-close" class="absolute top-4 right-4 p-2 text-slate-400 hover:text-slate-700 bg-slate-100 hover:bg-slate-200 rounded-full transition-colors z-10">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+            
+            <div class="p-6 md:p-8 text-center pt-10">
+                
+                <h3 class="text-xl font-black text-slate-900 mb-6 border-b-4 border-[#EFFF00] inline-block pb-1">
+                    ご予約・お問い合わせの前に
+                </h3>
+                
+                <!-- 説明テキストエリア -->
+                <div class="text-[13px] text-slate-700 font-bold leading-relaxed mb-8 space-y-4 text-left bg-slate-50 p-5 rounded-2xl border border-slate-100 shadow-inner">
+                    <p>
+                        <span class="text-slate-900 font-black text-sm">ONE★STAR</span>は<br>
+                        株式会社ECS（エッジクリーンサービス）の専属プロスタッフとして活動しています。
+                    </p>
+                    <p class="pt-2 border-t border-slate-200">
+                        お電話は<br>
+                        <span class="text-slate-900 font-black">株式会社ECSの予約受付</span>につながります。
+                    </p>
+                    
+                    <div class="bg-rose-50 border border-rose-200 p-3 rounded-xl text-center shadow-sm">
+                        <p class="text-rose-600 font-black text-[13px] leading-tight">
+                            ご予約の際は<br>
+                            <span class="text-base">「ONE★STAR（川崎）を指名」</span>と<br>
+                            お伝えください。
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- アクションボタン -->
+                <div class="space-y-3">
+                    <a href="tel:08000807788" class="flex items-center justify-center w-full py-4 bg-slate-900 text-[#EFFF00] font-black rounded-2xl shadow-md active:scale-95 transition-transform text-sm sm:text-base border border-slate-800">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                        株式会社ECSへ電話する
+                    </a>
+                    
+                    <a href="https://www.instagram.com/one.star.kawasaki?igsh=anZpYnpxcDdqOXRh&utm_source=qr" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center w-full py-4 bg-gradient-to-r from-pink-500 to-rose-500 text-white font-black rounded-2xl shadow-md active:scale-95 transition-transform text-sm sm:text-base">
+                        <svg class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                        </svg>
+                        Instagramで本人に相談する
+                    </a>
+                </div>
+                
+                <p class="text-[10px] text-slate-500 mt-4 font-bold leading-relaxed">
+                    直接のご質問・お問い合わせは<br>本人直通のInstagram DMからお気軽にどうぞ。
+                </p>
+                
+                <!-- キャンセルテキスト -->
+                <button id="phone-modal-cancel" class="mt-6 text-[11px] text-slate-400 font-bold underline underline-offset-4 hover:text-slate-600 transition-colors">
+                    キャンセルして戻る
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // ==========================================
+            // メニュー開閉 (共通)
+            // ==========================================
+            const drawerContainer = document.getElementById('drawer-container');
+            const drawerMenu = document.getElementById('drawer-menu');
+            const drawerBackdrop = document.getElementById('drawer-backdrop');
+            
+            const toggleMenu = (show) => {
+                if (show) {
+                    drawerContainer.classList.remove('hidden');
+                    setTimeout(() => {
+                        drawerBackdrop.classList.remove('opacity-0');
+                        drawerBackdrop.classList.add('opacity-100');
+                        drawerMenu.classList.remove('drawer-closed');
+                        drawerMenu.classList.add('drawer-open');
+                    }, 10);
+                } else {
+                    drawerBackdrop.classList.remove('opacity-100');
+                    drawerBackdrop.classList.add('opacity-0');
+                    drawerMenu.classList.remove('drawer-open');
+                    drawerMenu.classList.add('drawer-closed');
+                    setTimeout(() => drawerContainer.classList.add('hidden'), 300);
+                }
+            };
+
+            document.getElementById('menu-open-btn').addEventListener('click', () => toggleMenu(true));
+            document.getElementById('menu-close-btn').addEventListener('click', () => toggleMenu(false));
+            document.getElementById('drawer-backdrop').addEventListener('click', () => toggleMenu(false));
+            document.querySelectorAll('.menu-link').forEach(link => link.addEventListener('click', () => toggleMenu(false)));
+
+
+            // ==========================================
+            // 電話ワンクッションモーダル制御 (共通)
+            // ==========================================
+            const phoneModal = document.getElementById('phone-modal');
+            const phoneModalBackdrop = document.getElementById('phone-modal-backdrop');
+            const phoneModalContent = document.getElementById('phone-modal-content');
+            const phoneModalCloseBtn = document.getElementById('phone-modal-close');
+            const phoneModalCancelBtn = document.getElementById('phone-modal-cancel');
+            const phoneTriggerBtns = document.querySelectorAll('.js-phone-modal-trigger');
+
+            if (phoneModal && phoneTriggerBtns.length > 0) {
+                const openPhoneModal = (e) => {
+                    e.preventDefault(); 
+                    if (typeof toggleMenu === 'function') toggleMenu(false);
+                    phoneModal.classList.remove('hidden');
+                    requestAnimationFrame(() => {
+                        phoneModalBackdrop.classList.remove('opacity-0');
+                        phoneModalBackdrop.classList.add('opacity-100');
+                        phoneModalContent.classList.remove('opacity-0', 'scale-95');
+                        phoneModalContent.classList.add('opacity-100', 'scale-100');
+                    });
+                };
+
+                const closePhoneModal = () => {
+                    phoneModalBackdrop.classList.remove('opacity-100');
+                    phoneModalBackdrop.classList.add('opacity-0');
+                    phoneModalContent.classList.remove('opacity-100', 'scale-100');
+                    phoneModalContent.classList.add('opacity-0', 'scale-95');
+                    setTimeout(() => phoneModal.classList.add('hidden'), 300);
+                };
+
+                phoneTriggerBtns.forEach(btn => btn.addEventListener('click', openPhoneModal));
+                phoneModalCloseBtn.addEventListener('click', closePhoneModal);
+                phoneModalCancelBtn.addEventListener('click', closePhoneModal);
+                phoneModalBackdrop.addEventListener('click', closePhoneModal);
+            }
+
+
+            // ==========================================
+            // エラーコード リアルタイム検索機能
+            // ==========================================
+            
+            // 全角英数字を半角に変換するユーティリティ関数
+            const toHalfWidth = (str) => {
+                return str.replace(/[Ａ-Ｚａ-ｚ０-９]/g, (s) => {
+                    return String.fromCharCode(s.charCodeAt(0) - 0xFEE0);
+                });
+            };
+
+            // 検索不要な記号やスペースを削除する関数
+            const normalizeText = (str) => {
+                return toHalfWidth(str)
+                    .toLowerCase()
+                    // 空白文字全般、ハイフン、マイナス、長音符、アンダースコアを削除
+                    .replace(/[\s\-\_ー－‐]/g, '');
+            };
+
+            const searchInput = document.getElementById('search-input');
+            const errorItems = document.querySelectorAll('.error-item');
+            const noResult = document.getElementById('no-result');
+
+            if (searchInput && errorItems.length > 0) {
+                
+                // 入力があるたびに発火
+                searchInput.addEventListener('input', (e) => {
+                    
+                    // 検索キーワードの正規化
+                    const term = normalizeText(e.target.value);
+                    let visibleCount = 0;
+
+                    errorItems.forEach(item => {
+                        // 各アイテムのコードと説明文を取得して正規化
+                        const code = normalizeText(item.getAttribute('data-code'));
+                        const desc = normalizeText(item.getAttribute('data-desc'));
+                        
+                        // コードまたは説明文に検索キーワードが含まれていれば表示
+                        if (code.includes(term) || desc.includes(term)) {
+                            item.style.display = '';
+                            visibleCount++;
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+
+                    // 1件もヒットしなかった場合は「見つかりません」メッセージを表示
+                    if (visibleCount === 0) {
+                        noResult.classList.remove('hidden');
+                    } else {
+                        noResult.classList.add('hidden');
+                    }
+                });
+            }
+
+        });
+    </script>
+</body>
+</html>
+
+```
