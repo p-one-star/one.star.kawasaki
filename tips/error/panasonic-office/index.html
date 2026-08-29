@@ -1215,6 +1215,70 @@
             <p class="text-slate-400 text-xs mt-2">別のキーワードやコードでお試しください。</p>
         </div>
 
+
+        <!-- 👇 追加コンテンツ（基板診断など） 👇 -->
+        <div class="max-w-3xl mx-auto px-4 mt-12 mb-8" id="additional-info">
+            
+            <div class="border-b-[3px] border-neon pb-2 mb-6">
+                <h3 class="text-[17px] md:text-[19px] font-black text-slate-900 tracking-wide">
+                    【その他の診断・確認方法】
+                </h3>
+            </div>
+
+            <!-- カード1: 室外機｜基板診断 -->
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-5 md:p-6 mb-5 border-l-4 border-l-slate-800 transition-all">
+                <h4 class="text-base md:text-lg font-black text-slate-900 mb-3">
+                    〖室外機｜基板診断〗
+                </h4>
+                <p class="text-[13px] md:text-sm text-slate-700 font-bold leading-[1.7]">
+                    一部の機種では、<br>
+                    室外基板から<br>
+                    運転状態や異常状態を<br>
+                    確認できます。
+                </p>
+                <p class="text-[12px] md:text-[13px] text-slate-500 font-bold mt-3 pt-3 border-t border-slate-100 leading-[1.6]">
+                    ※確認方法は機種・シリーズにより<br>
+                    異なります。
+                </p>
+            </div>
+
+            <!-- カード2: 旧型SANYO｜LED診断 -->
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-5 md:p-6 mb-5 border-l-4 border-l-slate-800 transition-all">
+                <h4 class="text-base md:text-lg font-black text-slate-900 mb-3">
+                    〖旧型SANYO｜LED診断〗
+                </h4>
+                <p class="text-[13px] md:text-sm text-slate-700 font-bold leading-[1.7]">
+                    旧型のSANYO製には、<br>
+                    室外基板のLEDから<br>
+                    異常や通信状態などを<br>
+                    確認できる機種があります。
+                </p>
+                <p class="text-[12px] md:text-[13px] text-slate-500 font-bold mt-3 pt-3 border-t border-slate-100 leading-[1.6]">
+                    ※LEDの点灯・点滅方法は<br>
+                    機種により異なります。
+                </p>
+            </div>
+
+            <!-- カード3: GHP｜サービスモニター -->
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-5 md:p-6 mb-5 border-l-4 border-l-slate-800 transition-all">
+                <h4 class="text-base md:text-lg font-black text-slate-900 mb-3">
+                    〖GHP｜サービスモニター〗
+                </h4>
+                <p class="text-[13px] md:text-sm text-slate-700 font-bold leading-[1.7]">
+                    一部のGHPでは、<br>
+                    室外コントロール基板の<br>
+                    7セグメントLEDから<br>
+                    運転状態を確認できます。
+                </p>
+                <p class="text-[12px] md:text-[13px] text-slate-500 font-bold mt-3 pt-3 border-t border-slate-100 leading-[1.6]">
+                    ※温度・圧力などの<br>
+                    詳細な運転データを<br>
+                    確認できる機種もあります。
+                </p>
+            </div>
+
+        </div>
+
     </main>
 
     <!-- FOOTER (共通) -->
@@ -1431,6 +1495,7 @@
             const errorItems = document.querySelectorAll('.error-item');
             const categoryHeaders = document.querySelectorAll('.category-header');
             const noResult = document.getElementById('no-result');
+            const additionalInfo = document.getElementById('additional-info'); // 追加情報エリアを取得
 
             if (searchInput && errorItems.length > 0) {
                 
@@ -1441,10 +1506,14 @@
                     const term = normalizeText(e.target.value);
                     let visibleCount = 0;
 
-                    // 検索中はカテゴリ見出しを非表示にする
+                    // 検索中はカテゴリ見出しと追加情報エリアを非表示にする
                     categoryHeaders.forEach(header => {
                         header.style.display = term ? 'none' : '';
                     });
+                    
+                    if (additionalInfo) {
+                        additionalInfo.style.display = term ? 'none' : '';
+                    }
 
                     errorItems.forEach(item => {
                         // 各アイテムのコードと説明文を取得して正規化
