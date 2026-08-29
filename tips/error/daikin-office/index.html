@@ -889,15 +889,12 @@
 
         <!-- 👇👇 追加コンテンツ：室外機｜基板LED診断 👇👇 -->
         <div class="max-w-3xl mx-auto px-4 mt-12 mb-8">
-            <!-- 修正：文字を微小に小さくし、whitespace-nowrapで改行を防止 -->
             <h2 class="text-xl sm:text-[22px] md:text-3xl font-impact tracking-wider text-slate-900 mb-4 border-b-[3px] border-neon pb-2 flex items-end whitespace-nowrap">
                 LED DIAGNOSIS 
-                <!-- 修正：ml-2をml-1にして少し左に寄せ、サイズも微調整 -->
                 <span class="text-[13px] sm:text-sm md:text-base font-sans font-black text-slate-600 ml-1 md:ml-2 tracking-normal mb-[1px] md:mb-0.5">室外機｜基板LED診断</span>
             </h2>
             
             <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-5 md:p-6 mb-6">
-                <!-- 修正箇所：スマホ用の改行を追加 -->
                 <p class="text-sm md:text-[15px] font-bold text-slate-700 leading-relaxed mb-5">
                     一部の室外機では、<br class="md:hidden">
                     基板上のLEDから<br class="md:hidden">
@@ -922,9 +919,10 @@
                             <span class="text-slate-300 mx-2 md:mx-4">|</span>
                             <span>電源・基板・通信系異常</span>
                         </li>
-                        <li class="flex items-start md:items-center text-sm md:text-[15px] font-bold text-slate-800 bg-amber-50 p-3 rounded-xl border border-amber-100 shadow-sm flex-col md:flex-row">
-                            <span class="w-auto md:w-32 flex-shrink-0 text-amber-600 font-black mb-1 md:mb-0">HAP点滅＋H1P点灯</span>
-                            <span class="hidden md:inline text-slate-300 mx-4">|</span>
+                        <!-- 修正箇所：他の項目と同じように横並びにし、左側の文字だけ上下2段に -->
+                        <li class="flex items-center text-sm md:text-[15px] font-bold text-slate-800 bg-amber-50 p-3 rounded-xl border border-amber-100 shadow-sm">
+                            <span class="w-24 md:w-32 flex-shrink-0 text-amber-600 font-black leading-tight">HAP点滅＋<br>H1P点灯</span>
+                            <span class="text-slate-300 mx-2 md:mx-4">|</span>
                             <span>保護装置作動</span>
                         </li>
                     </ul>
@@ -936,15 +934,12 @@
                 </p>
             </div>
 
-            <!-- 修正：文字を微小に小さくし、whitespace-nowrapで改行を防止 -->
             <h2 class="text-xl sm:text-[22px] md:text-3xl font-impact tracking-wider text-slate-900 mb-4 border-b-[3px] border-neon pb-2 mt-14 flex items-end whitespace-nowrap">
                 SERVICE MONITOR
-                <!-- 修正：ml-2をml-1にして少し左に寄せ、サイズも微調整 -->
                 <span class="text-[13px] sm:text-sm md:text-base font-sans font-black text-slate-600 ml-1 md:ml-2 tracking-normal mb-[1px] md:mb-0.5">室外機｜サービスモニター</span>
             </h2>
             
             <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-5 md:p-6">
-                <!-- 修正箇所：スマホ用の改行を追加 -->
                 <p class="text-sm md:text-[15px] font-bold text-slate-700 leading-relaxed mb-6">
                     一部のスカイエアでは、<br class="md:hidden">
                     室外基板のH1P～H7Pと<br class="md:hidden">
@@ -1001,7 +996,6 @@
 
                 <!-- 注意書き -->
                 <div class="bg-slate-50 border border-slate-200 rounded-xl p-4 text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed shadow-inner">
-                    <!-- 修正箇所：スマホ用の改行とアイコンの微調整を追加 -->
                     <p class="mb-3 flex items-start">
                         <svg class="w-5 h-5 text-blue-500 mr-1.5 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                         <span>
