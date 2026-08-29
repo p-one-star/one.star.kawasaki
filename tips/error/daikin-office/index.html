@@ -140,7 +140,6 @@
     </div>
 
     <!-- MAIN (ERROR CODE CONTENTS) -->
-    <!-- ヘッダー(56px) ＋ 検索窓(約70px) の高さを考慮して pt-[140px] に設定 -->
     <main class="pt-[140px] pb-28 md:pb-20">
         
         <!-- ページタイトル -->
@@ -155,8 +154,8 @@
                 <span class="bg-slate-900 text-neon font-black text-[11px] px-2 py-0.5 rounded mr-3 uppercase tracking-wider">Daikin</span>
                 <h2 class="text-xl md:text-2xl font-black text-slate-900 leading-none flex items-end">
                     ダイキン
-                    <!-- ここを「業務用」に変更 -->
-                    <span class="text-[13px] md:text-sm text-slate-500 font-bold ml-2 mb-0.5">[業務用]</span>
+                    <!-- 「業務用・SkyAir」に変更 -->
+                    <span class="text-[13px] md:text-sm text-slate-500 font-bold ml-2 mb-0.5">［業務用・SkyAir］</span>
                 </h2>
             </div>
         </div>
@@ -887,6 +886,140 @@
             </div>
 
         </div>
+
+        <!-- 👇👇 追加コンテンツ：室外機｜基板LED診断 👇👇 -->
+        <div class="max-w-3xl mx-auto px-4 mt-12 mb-8">
+            <!-- 修正：文字を微小に小さくし、whitespace-nowrapで改行を防止 -->
+            <h2 class="text-xl sm:text-[22px] md:text-3xl font-impact tracking-wider text-slate-900 mb-4 border-b-[3px] border-neon pb-2 flex items-end whitespace-nowrap">
+                LED DIAGNOSIS 
+                <!-- 修正：ml-2をml-1にして少し左に寄せ、サイズも微調整 -->
+                <span class="text-[13px] sm:text-sm md:text-base font-sans font-black text-slate-600 ml-1 md:ml-2 tracking-normal mb-[1px] md:mb-0.5">室外機｜基板LED診断</span>
+            </h2>
+            
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-5 md:p-6 mb-6">
+                <!-- 修正箇所：スマホ用の改行を追加 -->
+                <p class="text-sm md:text-[15px] font-bold text-slate-700 leading-relaxed mb-5">
+                    一部の室外機では、<br class="md:hidden">
+                    基板上のLEDから<br class="md:hidden">
+                    異常状態を確認できます。
+                </p>
+
+                <div class="mb-5">
+                    <span class="inline-block bg-emerald-500 text-white text-xs font-black px-2.5 py-1 rounded mb-3 tracking-wider">HAP｜緑色サービスモニター</span>
+                    <ul class="space-y-2">
+                        <li class="flex items-center text-sm md:text-[15px] font-bold text-slate-800 bg-slate-50 p-3 rounded-xl border border-slate-100 shadow-sm">
+                            <span class="w-24 md:w-32 flex-shrink-0 text-emerald-600 font-black">HAP点滅</span>
+                            <span class="text-slate-300 mx-2 md:mx-4">|</span>
+                            <span>正常</span>
+                        </li>
+                        <li class="flex items-center text-sm md:text-[15px] font-bold text-slate-800 bg-rose-50 p-3 rounded-xl border border-rose-100 shadow-sm">
+                            <span class="w-24 md:w-32 flex-shrink-0 text-rose-600 font-black">HAP点灯</span>
+                            <span class="text-slate-300 mx-2 md:mx-4">|</span>
+                            <span>室外基板異常</span>
+                        </li>
+                        <li class="flex items-center text-sm md:text-[15px] font-bold text-slate-800 bg-slate-100 p-3 rounded-xl border border-slate-200 shadow-sm">
+                            <span class="w-24 md:w-32 flex-shrink-0 text-slate-500 font-black">HAP消灯</span>
+                            <span class="text-slate-300 mx-2 md:mx-4">|</span>
+                            <span>電源・基板・通信系異常</span>
+                        </li>
+                        <li class="flex items-start md:items-center text-sm md:text-[15px] font-bold text-slate-800 bg-amber-50 p-3 rounded-xl border border-amber-100 shadow-sm flex-col md:flex-row">
+                            <span class="w-auto md:w-32 flex-shrink-0 text-amber-600 font-black mb-1 md:mb-0">HAP点滅＋H1P点灯</span>
+                            <span class="hidden md:inline text-slate-300 mx-4">|</span>
+                            <span>保護装置作動</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <p class="text-[11px] text-slate-500 font-bold leading-relaxed flex items-start">
+                    <span class="text-neon text-lg leading-none mr-1">※</span>
+                    LED表示は機種・シリーズにより異なる場合があります。
+                </p>
+            </div>
+
+            <!-- 修正：文字を微小に小さくし、whitespace-nowrapで改行を防止 -->
+            <h2 class="text-xl sm:text-[22px] md:text-3xl font-impact tracking-wider text-slate-900 mb-4 border-b-[3px] border-neon pb-2 mt-14 flex items-end whitespace-nowrap">
+                SERVICE MONITOR
+                <!-- 修正：ml-2をml-1にして少し左に寄せ、サイズも微調整 -->
+                <span class="text-[13px] sm:text-sm md:text-base font-sans font-black text-slate-600 ml-1 md:ml-2 tracking-normal mb-[1px] md:mb-0.5">室外機｜サービスモニター</span>
+            </h2>
+            
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-5 md:p-6">
+                <!-- 修正箇所：スマホ用の改行を追加 -->
+                <p class="text-sm md:text-[15px] font-bold text-slate-700 leading-relaxed mb-6">
+                    一部のスカイエアでは、<br class="md:hidden">
+                    室外基板のH1P～H7Pと<br class="md:hidden">
+                    操作ボタンを使用して、<br class="md:hidden">
+                    運転状態や異常履歴を<br class="md:hidden">
+                    確認できます。
+                </p>
+
+                <!-- 操作ボタン群 -->
+                <div class="grid grid-cols-2 md:grid-cols-5 gap-2.5 mb-8">
+                    <div class="bg-slate-900 text-white rounded-xl p-2.5 text-center flex flex-col justify-center shadow-md border-b-4 border-slate-700">
+                        <span class="text-neon font-black text-[10px] mb-0.5">BS1</span>
+                        <span class="font-bold text-sm tracking-widest">MODE</span>
+                    </div>
+                    <div class="bg-slate-900 text-white rounded-xl p-2.5 text-center flex flex-col justify-center shadow-md border-b-4 border-slate-700">
+                        <span class="text-neon font-black text-[10px] mb-0.5">BS2</span>
+                        <span class="font-bold text-sm tracking-widest">SET</span>
+                    </div>
+                    <div class="bg-slate-900 text-white rounded-xl p-2.5 text-center flex flex-col justify-center shadow-md border-b-4 border-slate-700">
+                        <span class="text-neon font-black text-[10px] mb-0.5">BS3</span>
+                        <span class="font-bold text-sm tracking-widest">RETURN</span>
+                    </div>
+                    <div class="bg-slate-900 text-white rounded-xl p-2.5 text-center flex flex-col justify-center shadow-md border-b-4 border-slate-700">
+                        <span class="text-neon font-black text-[10px] mb-0.5">BS4</span>
+                        <span class="font-bold text-sm tracking-widest">TEST</span>
+                    </div>
+                    <div class="bg-slate-900 text-white rounded-xl p-2.5 text-center flex flex-col justify-center shadow-md border-b-4 border-slate-700 col-span-2 md:col-span-1">
+                        <span class="text-neon font-black text-[10px] mb-0.5">BS5</span>
+                        <span class="font-bold text-sm tracking-widest">RESET</span>
+                    </div>
+                </div>
+
+                <!-- 確認できる主な情報 -->
+                <div class="mb-6">
+                    <h3 class="text-[15px] font-black text-slate-900 mb-3 flex items-center bg-slate-100 p-2 rounded-lg inline-flex pr-4">
+                        <span class="bg-slate-900 text-neon w-6 h-6 rounded flex items-center justify-center mr-2 text-sm">i</span>
+                        確認できる主な情報
+                    </h3>
+                    <ul class="grid grid-cols-1 md:grid-cols-2 gap-2 mt-2">
+                        <li class="flex items-center text-sm md:text-[15px] font-bold text-slate-700 bg-white border-2 border-slate-100 rounded-lg px-3 py-2.5 shadow-sm">
+                            <span class="text-neon mr-2 text-xl leading-none">★</span>接続室内機台数
+                        </li>
+                        <li class="flex items-center text-sm md:text-[15px] font-bold text-slate-700 bg-white border-2 border-slate-100 rounded-lg px-3 py-2.5 shadow-sm">
+                            <span class="text-neon mr-2 text-xl leading-none">★</span>最新の異常内容
+                        </li>
+                        <li class="flex items-center text-sm md:text-[15px] font-bold text-slate-700 bg-white border-2 border-slate-100 rounded-lg px-3 py-2.5 shadow-sm">
+                            <span class="text-neon mr-2 text-xl leading-none">★</span>1回前の異常内容
+                        </li>
+                        <li class="flex items-center text-sm md:text-[15px] font-bold text-slate-700 bg-white border-2 border-slate-100 rounded-lg px-3 py-2.5 shadow-sm">
+                            <span class="text-neon mr-2 text-xl leading-none">★</span>2回前の異常内容
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- 注意書き -->
+                <div class="bg-slate-50 border border-slate-200 rounded-xl p-4 text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed shadow-inner">
+                    <!-- 修正箇所：スマホ用の改行とアイコンの微調整を追加 -->
+                    <p class="mb-3 flex items-start">
+                        <svg class="w-5 h-5 text-blue-500 mr-1.5 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        <span>
+                            対応機種では、<br class="md:hidden">
+                            H1P～H7Pの点灯状態から<br class="md:hidden">
+                            エラーコードを確認できます。
+                        </span>
+                    </p>
+                    <p class="text-[11px] md:text-xs text-slate-500 pt-3 border-t border-slate-200 leading-relaxed">
+                        基板LEDやサービスモニターの<br class="md:hidden">
+                        表示・操作方法は、<br class="md:hidden">
+                        機種やシリーズによって異なります。
+                    </p>
+                </div>
+
+            </div>
+        </div>
+        <!-- 👆👆 追加コンテンツ ここまで 👆👆 -->
 
         <!-- 検索結果が0件だった場合のメッセージ -->
         <div id="no-result" class="hidden text-center py-12 px-4">
