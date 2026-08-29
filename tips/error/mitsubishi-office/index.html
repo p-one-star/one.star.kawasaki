@@ -140,7 +140,6 @@
     </div>
 
     <!-- MAIN (ERROR CODE CONTENTS) -->
-    <!-- ヘッダー(56px) ＋ 検索窓(約70px) の高さを考慮して pt-[140px] に設定 -->
     <main class="pt-[140px] pb-28 md:pb-20">
         
         <!-- ページタイトル -->
@@ -162,7 +161,6 @@
 
         <!-- ⚠️ 注意書き（免責事項） -->
         <div class="max-w-3xl mx-auto px-4 mb-6 space-y-3">
-            <!-- 共通注意書き -->
             <div class="bg-slate-100/80 border border-slate-200 rounded-xl p-3.5 text-[11px] md:text-xs text-slate-600 font-bold flex items-start shadow-sm">
                 <svg class="w-4 h-4 text-slate-400 mr-2 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                 <div class="leading-[1.7]">
@@ -172,7 +170,6 @@
                     メーカー公式情報をご確認ください。
                 </div>
             </div>
-            <!-- 三菱電機特有の注意書き -->
             <div class="bg-slate-100/80 border border-slate-200 rounded-xl p-3.5 text-[11px] md:text-xs text-slate-600 font-bold flex items-start shadow-sm">
                 <svg class="w-4 h-4 text-slate-400 mr-2 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
                 <div class="leading-[1.7]">
@@ -212,7 +209,6 @@
             <!-- ==============================================
                  【01｜一般業務用・現行系】
             =============================================== -->
-            <!-- 固定ヘッダーの高さ分、アンカーリンク位置をずらす調整 -->
             <div id="cat-general-new" class="pt-[140px] -mt-[130px] mb-4">
                 <h3 class="text-lg md:text-xl font-black text-slate-900 border-l-[4px] border-neon pl-3 mb-1">
                     一般業務用 <span class="text-[13px] text-slate-500 ml-1">現行系</span>
@@ -220,15 +216,9 @@
                 <p class="text-[11px] md:text-xs text-slate-500 font-bold ml-4">Mr.SLIM スリムエアコンなど</p>
             </div>
 
-            <!-- コードリスト -->
             <div class="error-item bg-white rounded-2xl shadow-sm border border-slate-200 mb-3 overflow-hidden flex items-stretch transition-all" data-code="P1" data-desc="吸込温度センサー異常">
-                <div class="w-20 bg-slate-100 flex flex-col items-center justify-center border-r border-slate-200 py-3 flex-shrink-0">
-                    <span class="text-[10px] font-black text-slate-400 mb-0.5">CODE</span>
-                    <span class="font-impact text-2xl text-slate-900 leading-none">P1</span>
-                </div>
-                <div class="p-4 flex-1 flex flex-col justify-center">
-                    <p class="font-bold text-slate-800 text-sm md:text-[15px] leading-relaxed">吸込温度センサー異常</p>
-                </div>
+                <div class="w-20 bg-slate-100 flex flex-col items-center justify-center border-r border-slate-200 py-3 flex-shrink-0"><span class="text-[10px] font-black text-slate-400 mb-0.5">CODE</span><span class="font-impact text-2xl text-slate-900 leading-none">P1</span></div>
+                <div class="p-4 flex-1 flex flex-col justify-center"><p class="font-bold text-slate-800 text-sm md:text-[15px] leading-relaxed">吸込温度センサー異常</p></div>
             </div>
             
             <div class="error-item bg-white rounded-2xl shadow-sm border border-slate-200 mb-3 overflow-hidden flex items-stretch transition-all" data-code="P2" data-desc="液管温度センサー異常">
@@ -988,6 +978,120 @@
             </div>
 
         </div>
+
+        <!-- ▼▼▼ 追加：室外機・基板からの情報確認 ▼▼▼ -->
+        <div class="max-w-3xl mx-auto px-4 mt-12 mb-8" id="extra-info">
+            <h3 class="text-lg md:text-xl font-black text-slate-900 border-l-[4px] border-neon pl-3 mb-5">
+                室外機・基板からの情報確認
+            </h3>
+            
+            <div class="space-y-6">
+                <!-- 1: 室外機｜運転モニター -->
+                <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+                    <div class="bg-slate-900 text-neon font-black p-3 text-sm md:text-base flex items-center">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                        室外機｜運転モニター
+                    </div>
+                    <div class="p-4 md:p-5 space-y-4">
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">
+                            <span class="inline-block">一部のMr.SLIMでは、</span><span class="inline-block">室外機の基板や</span><span class="inline-block">サービス点検機能から、</span><span class="inline-block">運転状態や異常履歴を</span><span class="inline-block">確認できます。</span>
+                        </p>
+                        <div class="bg-slate-50 border border-slate-100 rounded-xl p-3.5">
+                            <p class="text-[11px] font-black text-slate-500 mb-2.5 tracking-wider">確認できる主な情報</p>
+                            <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs md:text-[13px] font-bold text-slate-700">
+                                <li class="flex items-center"><span class="w-1.5 h-1.5 bg-neon rounded-full mr-2 flex-shrink-0"></span>室外配管温度</li>
+                                <li class="flex items-center"><span class="w-1.5 h-1.5 bg-neon rounded-full mr-2 flex-shrink-0"></span>吐出管温度</li>
+                                <li class="flex items-center"><span class="w-1.5 h-1.5 bg-neon rounded-full mr-2 flex-shrink-0"></span>室外ファン出力</li>
+                                <li class="flex items-center"><span class="w-1.5 h-1.5 bg-neon rounded-full mr-2 flex-shrink-0"></span>圧縮機運転電流</li>
+                                <li class="flex items-center"><span class="w-1.5 h-1.5 bg-neon rounded-full mr-2 flex-shrink-0"></span>圧縮機運転周波数</li>
+                                <li class="flex items-center"><span class="w-1.5 h-1.5 bg-neon rounded-full mr-2 flex-shrink-0"></span>圧縮機ON／OFF回数</li>
+                                <li class="flex items-center"><span class="w-1.5 h-1.5 bg-neon rounded-full mr-2 flex-shrink-0"></span>圧縮機積算運転時間</li>
+                                <li class="flex items-center"><span class="w-1.5 h-1.5 bg-neon rounded-full mr-2 flex-shrink-0"></span>異常履歴</li>
+                                <li class="flex items-center"><span class="w-1.5 h-1.5 bg-neon rounded-full mr-2 flex-shrink-0"></span>異常発生時の運転データ</li>
+                            </ul>
+                        </div>
+                        <div class="text-[11px] md:text-xs text-slate-500 font-bold leading-relaxed space-y-1.5 bg-slate-100/50 p-3 rounded-lg">
+                            <p class="flex items-start">
+                                <svg class="w-3.5 h-3.5 mr-1.5 flex-shrink-0 mt-0.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                <span><span class="inline-block">機種によっては、</span><span class="inline-block">室外制御基板のCNMに</span><span class="inline-block">サービス点検機器を接続して</span><span class="inline-block">運転状態やエラーコードを</span><span class="inline-block">確認します。</span></span>
+                            </p>
+                            <p class="flex items-start">
+                                <svg class="w-3.5 h-3.5 mr-1.5 flex-shrink-0 mt-0.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                <span><span class="inline-block">表示内容や確認方法は、</span><span class="inline-block">機種・シリーズによって</span><span class="inline-block">異なります。</span></span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2: 旧型室外機｜LED診断 -->
+                <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+                    <div class="bg-slate-900 text-white font-black p-3 text-sm md:text-base flex items-center">
+                        <svg class="w-5 h-5 mr-2 text-neon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"></path></svg>
+                        旧型室外機｜LED診断
+                    </div>
+                    <div class="p-4 md:p-5 space-y-4">
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">
+                            <span class="inline-block">旧型のMr.SLIMには、</span><span class="inline-block">室外基板上の</span><span class="inline-block">LD1～LD8を使用して</span><span class="inline-block">運転状態や過去の異常を</span><span class="inline-block">確認できる機種があります。</span>
+                        </p>
+                        <div class="bg-slate-50 border border-slate-100 rounded-xl p-3.5">
+                            <p class="text-[11px] font-black text-slate-500 mb-2.5 tracking-wider">確認できる主な情報</p>
+                            <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs md:text-[13px] font-bold text-slate-700">
+                                <li class="flex items-center"><span class="w-1.5 h-1.5 bg-slate-800 rounded-full mr-2 flex-shrink-0"></span>圧縮機運転状態</li>
+                                <li class="flex items-center"><span class="w-1.5 h-1.5 bg-slate-800 rounded-full mr-2 flex-shrink-0"></span>室外ファン運転状態</li>
+                                <li class="flex items-center"><span class="w-1.5 h-1.5 bg-slate-800 rounded-full mr-2 flex-shrink-0"></span>四方弁動作状態</li>
+                                <li class="flex items-center"><span class="w-1.5 h-1.5 bg-slate-800 rounded-full mr-2 flex-shrink-0"></span>高圧スイッチ作動状態</li>
+                                <li class="flex items-center"><span class="w-1.5 h-1.5 bg-slate-800 rounded-full mr-2 flex-shrink-0"></span>室外熱交換器温度</li>
+                                <li class="flex items-center"><span class="w-1.5 h-1.5 bg-slate-800 rounded-full mr-2 flex-shrink-0"></span>ファン出力</li>
+                                <li class="flex items-center"><span class="w-1.5 h-1.5 bg-slate-800 rounded-full mr-2 flex-shrink-0"></span>圧縮機積算運転時間</li>
+                                <li class="flex items-center"><span class="w-1.5 h-1.5 bg-slate-800 rounded-full mr-2 flex-shrink-0"></span>過去の点検内容</li>
+                            </ul>
+                        </div>
+                        <div class="text-[11px] md:text-xs text-slate-500 font-bold leading-relaxed space-y-1.5 bg-slate-100/50 p-3 rounded-lg">
+                            <p class="flex items-start">
+                                <svg class="w-3.5 h-3.5 mr-1.5 flex-shrink-0 mt-0.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                <span><span class="inline-block">LEDの点灯・点滅状態や</span><span class="inline-block">スイッチ操作によって</span><span class="inline-block">表示内容を切り替えます。</span></span>
+                            </p>
+                            <p class="flex items-start">
+                                <svg class="w-3.5 h-3.5 mr-1.5 flex-shrink-0 mt-0.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                <span><span class="inline-block">診断方法は</span><span class="inline-block">機種によって</span><span class="inline-block">異なります。</span></span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3: CITY MULTI｜サービスモニター -->
+                <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+                    <div class="bg-slate-900 text-neon font-black p-3 text-sm md:text-base flex items-center">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                        CITY MULTI｜サービスモニター
+                    </div>
+                    <div class="p-4 md:p-5 space-y-4">
+                        <p class="text-[13px] md:text-sm font-bold text-slate-700 leading-relaxed">
+                            <span class="inline-block">一部のCITY MULTIでは、</span><span class="inline-block">室外機基板の</span><span class="inline-block">サービスモニターから</span><span class="inline-block">詳細な運転データを</span><span class="inline-block">確認できます。</span><br>
+                            <span class="text-xs text-slate-500 mt-1 block"><span class="inline-block">※4桁の</span><span class="inline-block">7セグメントLEDを</span><span class="inline-block">使用する機種もあります。</span></span>
+                        </p>
+                        <div class="bg-slate-50 border border-slate-100 rounded-xl p-3.5">
+                            <p class="text-[11px] font-black text-slate-500 mb-2.5 tracking-wider">確認できる主な情報</p>
+                            <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs md:text-[13px] font-bold text-slate-700">
+                                <li class="flex items-center"><span class="w-1.5 h-1.5 bg-neon rounded-full mr-2 flex-shrink-0"></span>圧縮機運転周波数</li>
+                                <li class="flex items-center"><span class="w-1.5 h-1.5 bg-neon rounded-full mr-2 flex-shrink-0"></span>冷媒圧力</li>
+                                <li class="flex items-center"><span class="w-1.5 h-1.5 bg-neon rounded-full mr-2 flex-shrink-0"></span>各部温度</li>
+                                <li class="flex items-center"><span class="w-1.5 h-1.5 bg-neon rounded-full mr-2 flex-shrink-0"></span>運転状態</li>
+                                <li class="flex items-center"><span class="w-1.5 h-1.5 bg-neon rounded-full mr-2 flex-shrink-0"></span>電磁弁動作状態</li>
+                                <li class="flex items-center"><span class="w-1.5 h-1.5 bg-neon rounded-full mr-2 flex-shrink-0"></span>異常履歴</li>
+                            </ul>
+                        </div>
+                        <div class="text-[11px] md:text-xs text-slate-500 font-bold leading-relaxed space-y-1.5 bg-slate-100/50 p-3 rounded-lg">
+                            <p class="flex items-start">
+                                <svg class="w-3.5 h-3.5 mr-1.5 flex-shrink-0 mt-0.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                <span><span class="inline-block">サービスモニターの</span><span class="inline-block">表示内容や操作方法は、</span><span class="inline-block">機種・シリーズによって</span><span class="inline-block">異なります。</span></span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ▲▲▲ 追加ここまで ▲▲▲ -->
 
         <!-- 検索結果が0件だった場合のメッセージ -->
         <div id="no-result" class="hidden text-center py-12 px-4">
