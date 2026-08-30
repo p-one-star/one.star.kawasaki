@@ -1,0 +1,1245 @@
+<!DOCTYPE html>
+<html lang="ja" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>エアコンのランプが点滅してる！ | ONE★STAR</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        neon: '#EFFF00' // トレードカラー：蛍光イエロー
+                    },
+                    fontFamily: {
+                        sans: ['"Noto Sans JP"', 'sans-serif'],
+                        impact: ['"Black Ops One"', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        /* ドロワーメニュー用 */
+        #drawer-menu { transition: transform 0.3s ease-in-out; }
+        .drawer-closed { transform: translateX(-100%); }
+        .drawer-open { transform: translateX(0); }
+    </style>
+</head>
+<body class="font-sans text-slate-800 bg-slate-50 antialiased overflow-x-hidden pb-[60px]">
+
+    <!-- HEADER -->
+    <header class="fixed top-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md shadow-sm border-b border-slate-100 h-14 flex items-center justify-between px-4">
+        <button id="menu-open-btn" class="p-2 hover:bg-slate-100 rounded-lg" aria-label="メニュー">
+            <svg class="w-6 h-6 text-slate-800" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+
+        <div class="absolute left-1/2 -translate-x-1/2 flex items-center justify-center mt-1">
+            <a href="/" class="text-2xl md:text-3xl tracking-widest text-slate-900 leading-none flex items-center font-impact">
+                ONE
+                <img src="ONESTAR.PNG" alt="ロゴ" class="w-[45px] h-[45px] md:w-[55px] md:h-[55px] mx-[-4px] md:mx-[-6px] object-contain -translate-y-[4px]" onerror="this.style.display='none'">
+                STAR
+            </a>
+        </div>
+
+        <div class="hidden md:flex items-center space-x-3">
+            <a href="tel:08000807788" class="js-phone-modal-trigger bg-slate-900 hover:bg-slate-800 text-neon px-4 py-1.5 rounded-full text-xs font-black border border-slate-700 flex items-center space-x-1 transition-all">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                <span>電話相談</span>
+            </a>
+        </div>
+        <div class="w-10 md:hidden"></div>
+    </header>
+
+    <!-- DRAWER MENU -->
+    <div id="drawer-container" class="fixed inset-0 z-50 overflow-hidden hidden">
+        <div id="drawer-backdrop" class="absolute inset-0 bg-slate-900/60 opacity-0 transition-opacity duration-300"></div>
+        <div class="pointer-events-none fixed inset-y-0 left-0 flex max-w-full">
+            <div id="drawer-menu" class="pointer-events-auto w-64 drawer-closed bg-white shadow-2xl flex flex-col h-full">
+                
+                <div class="p-3 bg-white flex justify-end">
+                    <button id="menu-close-btn" class="p-2 hover:bg-slate-100 rounded-lg">
+                        <svg class="w-6 h-6 text-slate-500" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+                    </button>
+                </div>
+
+                <div class="bg-blue-600 py-3 px-6">
+                    <h2 class="text-white font-black tracking-wider text-sm">MENU</h2>
+                </div>
+
+                <nav class="flex-1 px-4 py-2 overflow-y-auto">
+                    <div class="space-y-1">
+                        <a href="/" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>トップページ
+                        </a>
+                        <a href="/price" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>料金プラン
+                        </a>
+                        <a href="/works" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>施工事例
+                        </a>
+                        <a href="/mind" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>ONE★STARの想い
+                        </a>
+                        <a href="/pride" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>プロとしての拘り
+                        </a>
+                        <a href="/trash" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>ここだけの話
+                        </a>
+                        <a href="/before" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>ご予約の前に
+                        </a>
+                        <a href="/faq" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>よくある質問
+                        </a>
+                        <a href="/tips" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-blue-600">
+                            <span class="mr-2 text-blue-600">＞</span>お役立ち情報
+                        </a>
+                        <a href="/products" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-[#06C755]">
+                            <span class="mr-2 text-slate-400">＞</span>オリジナルLINEスタンプ
+                        </a>
+                    </div>
+                    
+                    <hr class="border-slate-300 border-dashed my-4">
+                    <a href="https://www.edge-cleanservice.com" target="_blank" rel="noopener noreferrer" class="menu-link flex items-center py-2 text-sm font-black text-slate-900 hover:text-blue-600 transition-colors">
+                        株式会社ECS公式サイト
+                        <svg class="w-3.5 h-3.5 ml-1.5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                    </a>
+                </nav>
+
+                <div class="p-4 bg-slate-50 border-t border-slate-100 text-center mt-auto">
+                    <p class="text-[9px] text-slate-500 font-bold leading-relaxed mb-2">
+                        株式会社ECS EDGE CLEAN SERVICE<br>専属プロスタッフとして<br>愛知県全域で毎日奮闘中❣️
+                    </p>
+                    <a href="tel:08000807788" class="js-phone-modal-trigger block w-full py-3 bg-emerald-500 text-white font-bold rounded-lg text-sm shadow">直接電話する</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN (お役立ち情報：ランプ点滅) -->
+    <main class="pt-24 pb-12 px-4 max-w-3xl mx-auto">
+
+        <!-- 白いメインカード -->
+        <div class="bg-white rounded-[24px] border-2 border-slate-900 overflow-hidden shadow-sm mb-10">
+            <!-- 上部の黄色いライン -->
+            <div class="h-3 w-full bg-neon"></div>
+
+            <div class="p-6 md:p-8">
+                
+                <!-- バッジ -->
+                <div class="flex justify-center mb-8 text-center">
+                    <span class="inline-block bg-slate-900 text-neon text-xs md:text-sm font-black px-5 py-2 rounded shadow-sm tracking-wider">
+                        プロが教えるエアコンの真実
+                    </span>
+                </div>
+
+                <!-- タイトル -->
+                <h1 class="text-[24px] md:text-[32px] font-black text-slate-900 mb-12 leading-relaxed tracking-wide text-center">
+                    エアコンのランプが<br>
+                    点滅してる！
+                </h1>
+
+                <!-- リード文 -->
+                <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose text-center mb-10">
+                    エアコンを使おうと思ったら、<br><br>
+                    
+                    運転ランプが点滅している。<br><br>
+                    
+                    タイマーランプが点滅している。<br><br>
+                    
+                    見たことのないマークが<br>
+                    ピカピカしている。<br><br>
+                    
+                    <span class="bg-slate-100 px-3 py-2 rounded-lg border border-slate-200 inline-block mb-2">
+                        「故障した？」<br>
+                        「もう使えない？」
+                    </span><br><br>
+                    
+                    と、不安になりますよね。<br><br>
+
+                    でも、<br><br>
+
+                    ランプが点滅しているからといって、<br>
+                    必ずしも故障とは限りません。<br><br>
+                    
+                    エアコンは異常だけでなく、<br><br>
+                    
+                    正常な動作中や、<br>
+                    お手入れのお知らせ、<br>
+                    部品の取り付け状態なども、<br><br>
+                    
+                    ランプの点滅で<br>
+                    教えてくれることがあります。<br><br>
+
+                    そして、<br><br>
+
+                    同じメーカーでも<br>
+                    機種や製造された年代によって、<br><br>
+                    
+                    ランプの種類や<br>
+                    点滅の意味が異なります。<br><br>
+
+                    まずは慌てて電源を切る前に、<br>
+                    何が点滅しているのか<br>
+                    確認してみましょう。
+                </p>
+
+                <!-- 電源を切る前に！ ブロック -->
+                <div class="mb-16 relative mt-20 text-center">
+                    
+                    <!-- 上部の赤いバッジ -->
+                    <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-red-600 text-white font-black text-sm px-5 py-1.5 rounded-full shadow-md whitespace-nowrap">
+                        電源を切る前に！
+                    </div>
+
+                    <div class="bg-red-50 border border-red-200 rounded-[20px] px-4 md:px-8 py-8 md:py-10 pt-12 mt-6 mb-2">
+                        <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
+                            点滅しているランプは、<br><br>
+                            
+                            スマートフォンで<br>
+                            動画を撮っておくことを<br>
+                            おすすめします。<br><br>
+                            
+                            確認したいのは、<br><br>
+                            
+                            <span class="inline-block text-left bg-white p-4 md:p-5 rounded-xl border border-red-200 shadow-sm mb-4">
+                                ・どのランプ？<br>
+                                ・何色？<br>
+                                ・何回点滅する？<br>
+                                ・速い？遅い？<br>
+                                ・同時に点滅している？<br>
+                                ・交互に点滅している？
+                            </span><br><br>
+                            
+                            そして、<br><br>
+                            
+                            リモコンに文字や記号が<br>
+                            表示されている場合は、<br><br>
+                            
+                            そちらも一緒に<br>
+                            撮影しておきましょう。<br><br>
+                            
+                            電源を切ったことで<br>
+                            表示が消えてしまうと、<br><br>
+                            
+                            「どこかのランプが<br>
+                            点滅していたんだけど…」<br><br>
+                            
+                            では、<br><br>
+                            
+                            故障診断に必要な情報が<br>
+                            分からなくなってしまいます。
+                        </p>
+                    </div>
+                </div>
+
+                <!-- ＝＝＝ ダイキン ＝＝＝ -->
+                <div class="mb-16 mt-16">
+                    <div class="flex flex-col items-center justify-center mb-6 text-center">
+                        <span class="w-10 h-[3px] bg-slate-800 mb-4 rounded-full"></span>
+                        <h2 class="text-xl md:text-2xl font-black text-slate-900 tracking-wider leading-relaxed">
+                            ダイキン
+                        </h2>
+                    </div>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-800 leading-loose text-center mb-8">
+                        ダイキンのエアコンでは、<br><br>
+                        運転ランプだけでなく、<br><br>
+                        タイマーランプや<br>
+                        ストリーマランプ、<br>
+                        内部クリーンランプなどが<br><br>
+                        点滅する機種があります。
+                    </p>
+
+                    <h3 class="text-[17px] md:text-lg font-black text-slate-900 mb-4 bg-slate-100 py-2 px-4 rounded-lg inline-block text-center w-full max-w-[280px] mx-auto block">【ストリーマランプが点滅】</h3>
+                    <p class="text-[15px] md:text-base font-bold text-slate-800 leading-loose text-center mb-8">
+                        ストリーマランプの点滅は、<br><br>
+                        ストリーマユニットの<br>
+                        お手入れ時期を知らせている<br>
+                        場合があります。<br><br>
+                        お手入れ後は、<br><br>
+                        対応する機種であれば<br>
+                        リモコンの「サインリセット」から<br>
+                        表示を消すことができます。<br><br>
+                        機種によっては、<br><br>
+                        ストリーマランプではなく<br>
+                        タイマーランプや<br>
+                        内部クリーンランプなどで、<br><br>
+                        お手入れ時期を<br>
+                        知らせるものもあります。<br><br>
+                        点滅しているランプだけで<br>
+                        故障と判断しないことが大切です。
+                    </p>
+
+                    <h3 class="text-[17px] md:text-lg font-black text-slate-900 mb-4 bg-slate-100 py-2 px-4 rounded-lg inline-block text-center w-full max-w-[280px] mx-auto block mt-8">【運転ランプが点滅】</h3>
+                    <p class="text-[15px] md:text-base font-bold text-slate-800 leading-loose text-center mb-8">
+                        運転ランプの点滅は、<br><br>
+                        エアコンが異常を<br>
+                        検知している可能性があります。<br><br>
+                        リモコンから<br>
+                        エラーコードを確認できる<br>
+                        機種があります。
+                    </p>
+
+                    <!-- リンクボタン群 -->
+                    <div class="flex flex-col gap-3 max-w-sm mx-auto">
+                        <a href="/tips/error/daikin-room/" class="flex items-center justify-between bg-white hover:bg-slate-50 border border-slate-200 p-4 rounded-xl transition-all shadow-sm active:scale-95 group">
+                            <div class="text-left">
+                                <span class="text-[11px] font-black text-slate-500 block mb-0.5">ダイキン｜家庭用</span>
+                                <span class="font-black text-slate-900 text-[15px] group-hover:text-blue-600 transition-colors">エラーコード早見表</span>
+                            </div>
+                            <div class="w-8 h-8 rounded-full bg-slate-900 flex items-center justify-center flex-shrink-0">
+                                <svg class="w-4 h-4 text-neon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
+                            </div>
+                        </a>
+                        <a href="/tips/error/daikin-office/" class="flex items-center justify-between bg-white hover:bg-slate-50 border border-slate-200 p-4 rounded-xl transition-all shadow-sm active:scale-95 group">
+                            <div class="text-left">
+                                <span class="text-[11px] font-black text-slate-500 block mb-0.5">ダイキン｜業務用</span>
+                                <span class="font-black text-slate-900 text-[15px] group-hover:text-blue-600 transition-colors">エラーコード早見表</span>
+                            </div>
+                            <div class="w-8 h-8 rounded-full bg-slate-900 flex items-center justify-center flex-shrink-0">
+                                <svg class="w-4 h-4 text-neon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- ＝＝＝ 三菱電機 霧ヶ峰 ＝＝＝ -->
+                <div class="mb-16 mt-20">
+                    <div class="flex flex-col items-center justify-center mb-6 text-center">
+                        <span class="w-10 h-[3px] bg-slate-800 mb-4 rounded-full"></span>
+                        <h2 class="text-xl md:text-2xl font-black text-slate-900 tracking-wider leading-relaxed">
+                            三菱電機 霧ヶ峰
+                        </h2>
+                    </div>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-800 leading-loose text-center mb-8">
+                        霧ヶ峰にも、<br><br>
+                        故障ではないのに<br>
+                        見慣れない表示が出ることがあります。
+                    </p>
+
+                    <h3 class="text-[17px] md:text-lg font-black text-slate-900 mb-4 bg-slate-100 py-2 px-4 rounded-lg inline-block text-center w-full max-w-[280px] mx-auto block">【葉っぱが3つ点滅？】</h3>
+                    <p class="text-[15px] md:text-base font-bold text-slate-800 leading-loose text-center mb-8">
+                        フィルターおそうじメカを<br>
+                        搭載した一部の機種では、<br><br>
+                        ECOモニターの<br>
+                        3つの葉っぱが同時に点滅して、<br><br>
+                        フィルターや<br>
+                        ダストボックスの取り付け状態を<br>
+                        知らせるものがあります。<br><br>
+                        クリーニングや<br>
+                        フィルター掃除をした後に、<br><br>
+                        突然、<br><br>
+                        「葉っぱが3つ点滅してる？」<br><br>
+                        となった場合は、<br><br>
+                        まずフィルターや<br>
+                        ダストボックスが<br><br>
+                        正しく取り付けられているか<br>
+                        確認してみましょう。
+                    </p>
+
+                    <h3 class="text-[17px] md:text-lg font-black text-slate-900 mb-4 bg-slate-100 py-2 px-4 rounded-lg inline-block text-center w-full max-w-[280px] mx-auto block mt-8">【「FL」と表示される】</h3>
+                    <p class="text-[15px] md:text-base font-bold text-slate-800 leading-loose text-center mb-8">
+                        一部の機種では、<br><br>
+                        上下風向フラップが<br>
+                        正しく取り付けられていない場合に、<br><br>
+                        「FL」と表示されることがあります。<br><br>
+                        これも、<br><br>
+                        必ずしもエアコン本体の<br>
+                        故障とは限りません。<br><br>
+                        フラップを取り外して<br>
+                        お手入れした直後などであれば、<br><br>
+                        取り付け状態を<br>
+                        確認してみましょう。
+                    </p>
+
+                    <div class="flex flex-col gap-3 max-w-sm mx-auto">
+                        <a href="/tips/error/mitsubishi-room/" class="flex items-center justify-between bg-white hover:bg-slate-50 border border-slate-200 p-4 rounded-xl transition-all shadow-sm active:scale-95 group">
+                            <div class="text-left">
+                                <span class="text-[11px] font-black text-slate-500 block mb-0.5">三菱電機｜家庭用</span>
+                                <span class="font-black text-slate-900 text-[15px] group-hover:text-blue-600 transition-colors">エラーコード早見表</span>
+                            </div>
+                            <div class="w-8 h-8 rounded-full bg-slate-900 flex items-center justify-center flex-shrink-0">
+                                <svg class="w-4 h-4 text-neon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- ＝＝＝ 三菱電機 業務用 ＝＝＝ -->
+                <div class="mb-16 mt-20">
+                    <div class="flex flex-col items-center justify-center mb-6 text-center">
+                        <span class="w-10 h-[3px] bg-slate-800 mb-4 rounded-full"></span>
+                        <h2 class="text-xl md:text-2xl font-black text-slate-900 tracking-wider leading-relaxed">
+                            三菱電機 業務用
+                        </h2>
+                    </div>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-800 leading-loose text-center mb-8">
+                        業務用エアコンでは、<br><br>
+                        ランプだけではなく<br>
+                        壁に取り付けられたリモコンに、<br><br>
+                        見慣れない文字が<br>
+                        表示されることもあります。
+                    </p>
+
+                    <h3 class="text-[17px] md:text-lg font-black text-slate-900 mb-4 bg-slate-100 py-2 px-4 rounded-lg inline-block text-center w-full max-w-[280px] mx-auto block">【「冷房」「暖房」が点滅】</h3>
+                    <p class="text-[15px] md:text-base font-bold text-slate-800 leading-loose text-center mb-8">
+                        ビル用マルチエアコンでは、<br><br>
+                        同じ室外機につながっている<br>
+                        他の室内機との関係で、<br><br>
+                        冷房と暖房を<br>
+                        同時に使用できない場合があります。<br><br>
+                        このような場合にも、<br><br>
+                        「冷房」や「暖房」の表示が<br>
+                        点滅することがあります。<br><br>
+                        エアコンの故障ではなく、<br><br>
+                        運転モードの組み合わせが<br>
+                        原因の場合もあります。
+                    </p>
+
+                    <div class="flex flex-col gap-3 max-w-sm mx-auto">
+                        <a href="/tips/error/mitsubishi-office/" class="flex items-center justify-between bg-white hover:bg-slate-50 border border-slate-200 p-4 rounded-xl transition-all shadow-sm active:scale-95 group">
+                            <div class="text-left">
+                                <span class="text-[11px] font-black text-slate-500 block mb-0.5">三菱電機｜業務用</span>
+                                <span class="font-black text-slate-900 text-[15px] group-hover:text-blue-600 transition-colors">エラーコード早見表</span>
+                            </div>
+                            <div class="w-8 h-8 rounded-full bg-slate-900 flex items-center justify-center flex-shrink-0">
+                                <svg class="w-4 h-4 text-neon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- ＝＝＝ 日立 ＝＝＝ -->
+                <div class="mb-16 mt-20">
+                    <div class="flex flex-col items-center justify-center mb-6 text-center">
+                        <span class="w-10 h-[3px] bg-slate-800 mb-4 rounded-full"></span>
+                        <h2 class="text-xl md:text-2xl font-black text-slate-900 tracking-wider leading-relaxed">
+                            日立
+                        </h2>
+                    </div>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-800 leading-loose text-center mb-8">
+                        日立のエアコンは、<br><br>
+                        どのランプが<br>
+                        どのように点滅しているか<br><br>
+                        が、とても重要です。
+                    </p>
+
+                    <h3 class="text-[17px] md:text-lg font-black text-slate-900 mb-4 bg-slate-100 py-2 px-4 rounded-lg inline-block text-center w-full max-w-[280px] mx-auto block leading-relaxed">【運転ランプが暗くなったり<br>明るくなったりする】</h3>
+                    <p class="text-[15px] md:text-base font-bold text-slate-800 leading-loose text-center mb-8">
+                        暖房を開始した直後や<br>
+                        暖房運転中に、<br><br>
+                        運転ランプが<br><br>
+                        <span class="inline-block bg-white px-4 py-2 rounded-lg border border-slate-200">
+                            点灯<br>↓<br>減光<br>↓<br>点灯
+                        </span><br><br>
+                        を繰り返すことがあります。<br><br>
+                        これは、<br><br>
+                        暖房開始時の予熱や<br>
+                        室外機の霜取り運転によるもので、<br><br>
+                        故障ではありません。<br><br>
+                        しばらく待つことで<br>
+                        通常の暖房運転に戻ります。
+                    </p>
+
+                    <h3 class="text-[17px] md:text-lg font-black text-slate-900 mb-4 bg-slate-100 py-2 px-4 rounded-lg inline-block text-center w-full max-w-[280px] mx-auto block mt-8">【タイマーランプなどが点滅】</h3>
+                    <p class="text-[15px] md:text-base font-bold text-slate-800 leading-loose text-center mb-8">
+                        日立の一部機種では、<br><br>
+                        タイマーランプや<br>
+                        その他のランプの<br><br>
+                        点滅回数によって<br>
+                        異常内容を知らせています。<br><br>
+                        この場合は、<br><br>
+                        電源を切る前に<br>
+                        何回点滅しているのか数えるか、<br><br>
+                        動画を撮影しておきましょう。
+                    </p>
+
+                    <div class="flex flex-col gap-3 max-w-sm mx-auto">
+                        <a href="/tips/error/hitachi-room/" class="flex items-center justify-between bg-white hover:bg-slate-50 border border-slate-200 p-4 rounded-xl transition-all shadow-sm active:scale-95 group">
+                            <div class="text-left">
+                                <span class="text-[11px] font-black text-slate-500 block mb-0.5">日立｜家庭用</span>
+                                <span class="font-black text-slate-900 text-[15px] group-hover:text-blue-600 transition-colors">エラーコード早見表</span>
+                            </div>
+                            <div class="w-8 h-8 rounded-full bg-slate-900 flex items-center justify-center flex-shrink-0">
+                                <svg class="w-4 h-4 text-neon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
+                            </div>
+                        </a>
+                        <a href="/tips/error/hitachi-office/" class="flex items-center justify-between bg-white hover:bg-slate-50 border border-slate-200 p-4 rounded-xl transition-all shadow-sm active:scale-95 group">
+                            <div class="text-left">
+                                <span class="text-[11px] font-black text-slate-500 block mb-0.5">日立｜業務用</span>
+                                <span class="font-black text-slate-900 text-[15px] group-hover:text-blue-600 transition-colors">エラーコード早見表</span>
+                            </div>
+                            <div class="w-8 h-8 rounded-full bg-slate-900 flex items-center justify-center flex-shrink-0">
+                                <svg class="w-4 h-4 text-neon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- ＝＝＝ 東芝 ＝＝＝ -->
+                <div class="mb-16 mt-20">
+                    <div class="flex flex-col items-center justify-center mb-6 text-center">
+                        <span class="w-10 h-[3px] bg-slate-800 mb-4 rounded-full"></span>
+                        <h2 class="text-xl md:text-2xl font-black text-slate-900 tracking-wider leading-relaxed">
+                            東芝
+                        </h2>
+                    </div>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-800 leading-loose text-center mb-8">
+                        東芝では、<br><br>
+                        「クリーン」<br>
+                        「クリーニング」<br><br>
+                        など、<br><br>
+                        お掃除機能に関係するランプが<br>
+                        点滅する機種があります。
+                    </p>
+
+                    <h3 class="text-[17px] md:text-lg font-black text-slate-900 mb-4 bg-slate-100 py-2 px-4 rounded-lg inline-block text-center w-full max-w-[280px] mx-auto block">【クリーンランプが点滅】</h3>
+                    <p class="text-[15px] md:text-base font-bold text-slate-800 leading-loose text-center mb-8">
+                        機種によっては、<br><br>
+                        ダストボックスの<br>
+                        お手入れ時期や、<br><br>
+                        フィルター・ダストボックスの<br>
+                        取り付け状態などを<br><br>
+                        点滅で知らせるものがあります。<br><br>
+                        また、<br><br>
+                        お掃除機能に異常が<br>
+                        発生している場合にも、<br><br>
+                        クリーン系のランプが<br>
+                        点滅することがあります。<br><br>
+                        そのため、<br><br>
+                        「クリーンランプが点滅した」<br><br>
+                        という情報だけでは<br>
+                        原因を判断できません。<br><br>
+                        機種によっては<br>
+                        点滅の速さや、<br><br>
+                        他のランプも<br>
+                        一緒に点滅しているかによって、<br><br>
+                        意味が異なります。<br><br>
+                        フィルターや<br>
+                        ダストボックスを確認しても<br>
+                        点滅が続く場合は、<br><br>
+                        点検が必要な可能性があります。
+                    </p>
+
+                    <div class="flex flex-col gap-3 max-w-sm mx-auto">
+                        <a href="/tips/error/toshiba-room/" class="flex items-center justify-between bg-white hover:bg-slate-50 border border-slate-200 p-4 rounded-xl transition-all shadow-sm active:scale-95 group">
+                            <div class="text-left">
+                                <span class="text-[11px] font-black text-slate-500 block mb-0.5">東芝｜家庭用</span>
+                                <span class="font-black text-slate-900 text-[15px] group-hover:text-blue-600 transition-colors">エラーコード早見表</span>
+                            </div>
+                            <div class="w-8 h-8 rounded-full bg-slate-900 flex items-center justify-center flex-shrink-0">
+                                <svg class="w-4 h-4 text-neon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
+                            </div>
+                        </a>
+                        <a href="/tips/error/toshiba-office/" class="flex items-center justify-between bg-white hover:bg-slate-50 border border-slate-200 p-4 rounded-xl transition-all shadow-sm active:scale-95 group">
+                            <div class="text-left">
+                                <span class="text-[11px] font-black text-slate-500 block mb-0.5">東芝｜業務用</span>
+                                <span class="font-black text-slate-900 text-[15px] group-hover:text-blue-600 transition-colors">エラーコード早見表</span>
+                            </div>
+                            <div class="w-8 h-8 rounded-full bg-slate-900 flex items-center justify-center flex-shrink-0">
+                                <svg class="w-4 h-4 text-neon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- ＝＝＝ パナソニック ＝＝＝ -->
+                <div class="mb-16 mt-20">
+                    <div class="flex flex-col items-center justify-center mb-6 text-center">
+                        <span class="w-10 h-[3px] bg-slate-800 mb-4 rounded-full"></span>
+                        <h2 class="text-xl md:text-2xl font-black text-slate-900 tracking-wider leading-relaxed">
+                            パナソニック
+                        </h2>
+                    </div>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-800 leading-loose text-center mb-8">
+                        パナソニックでは、<br><br>
+                        タイマーランプの点滅から<br>
+                        異常に気付くケースがあります。
+                    </p>
+
+                    <h3 class="text-[17px] md:text-lg font-black text-slate-900 mb-4 bg-slate-100 py-2 px-4 rounded-lg inline-block text-center w-full max-w-[280px] mx-auto block">【タイマーランプが点滅】</h3>
+                    <p class="text-[15px] md:text-base font-bold text-slate-800 leading-loose text-center mb-8">
+                        対応している機種では、<br><br>
+                        リモコンから<br>
+                        診断コードを確認できます。<br><br>
+                        リモコンに<br>
+                        「お知らせ」ボタンがある場合は、<br><br>
+                        エアコン本体へ向けて<br>
+                        ボタンを押すことで、<br><br>
+                        「H○○」<br>
+                        「F○○」<br><br>
+                        などのコードを<br>
+                        確認できる機種があります。<br><br>
+                        機種や年代によって<br>
+                        確認方法が異なるため、<br><br>
+                        表示されたコードを確認したら<br>
+                        エラーコード早見表をご覧ください。
+                    </p>
+
+                    <div class="flex flex-col gap-3 max-w-sm mx-auto">
+                        <a href="/tips/error/panasonic-room/" class="flex items-center justify-between bg-white hover:bg-slate-50 border border-slate-200 p-4 rounded-xl transition-all shadow-sm active:scale-95 group">
+                            <div class="text-left">
+                                <span class="text-[11px] font-black text-slate-500 block mb-0.5">パナソニック｜家庭用</span>
+                                <span class="font-black text-slate-900 text-[15px] group-hover:text-blue-600 transition-colors">エラーコード早見表</span>
+                            </div>
+                            <div class="w-8 h-8 rounded-full bg-slate-900 flex items-center justify-center flex-shrink-0">
+                                <svg class="w-4 h-4 text-neon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
+                            </div>
+                        </a>
+                        <a href="/tips/error/panasonic-office/" class="flex items-center justify-between bg-white hover:bg-slate-50 border border-slate-200 p-4 rounded-xl transition-all shadow-sm active:scale-95 group">
+                            <div class="text-left">
+                                <span class="text-[11px] font-black text-slate-500 block mb-0.5">パナソニック｜業務用</span>
+                                <span class="font-black text-slate-900 text-[15px] group-hover:text-blue-600 transition-colors">エラーコード早見表</span>
+                            </div>
+                            <div class="w-8 h-8 rounded-full bg-slate-900 flex items-center justify-center flex-shrink-0">
+                                <svg class="w-4 h-4 text-neon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- ＝＝＝ シャープ ＝＝＝ -->
+                <div class="mb-16 mt-20">
+                    <div class="flex flex-col items-center justify-center mb-6 text-center">
+                        <span class="w-10 h-[3px] bg-slate-800 mb-4 rounded-full"></span>
+                        <h2 class="text-xl md:text-2xl font-black text-slate-900 tracking-wider leading-relaxed">
+                            シャープ
+                        </h2>
+                    </div>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-800 leading-loose text-center mb-8">
+                        シャープは、<br><br>
+                        運転ランプ、<br>
+                        タイマーランプ、<br><br>
+                        おそうじ、<br>
+                        プラズマクラスター、<br><br>
+                        クリーン、<br>
+                        パトロールなど、<br><br>
+                        機種や年代によって<br>
+                        さまざまなランプがあります。<br><br>
+                        そして重要なのが、<br><br>
+                        どのランプが<br>
+                        一緒に点滅しているのか。<br><br>
+                        単独で点滅している場合と、<br><br>
+                        複数のランプが<br>
+                        同時に点滅している場合、<br><br>
+                        順番に点滅している場合では、<br><br>
+                        意味が異なることがあります。<br><br>
+                        フィルターや<br>
+                        ダストボックスの取り付けを<br>
+                        知らせている場合もあれば、<br><br>
+                        異常を知らせている場合もあります。<br><br>
+                        シャープの場合は特に、<br><br>
+                        <span class="font-black text-slate-900 underline decoration-neon decoration-4 underline-offset-4">点滅しているランプを</span><br>
+                        <span class="font-black text-slate-900 underline decoration-neon decoration-4 underline-offset-4">まとめて動画に撮っておく</span><br><br>
+                        ことをおすすめします。
+                    </p>
+
+                    <div class="flex flex-col gap-3 max-w-sm mx-auto">
+                        <a href="/tips/error/sharp-room/" class="flex items-center justify-between bg-white hover:bg-slate-50 border border-slate-200 p-4 rounded-xl transition-all shadow-sm active:scale-95 group">
+                            <div class="text-left">
+                                <span class="text-[11px] font-black text-slate-500 block mb-0.5">シャープ｜家庭用</span>
+                                <span class="font-black text-slate-900 text-[15px] group-hover:text-blue-600 transition-colors">エラーコード早見表</span>
+                            </div>
+                            <div class="w-8 h-8 rounded-full bg-slate-900 flex items-center justify-center flex-shrink-0">
+                                <svg class="w-4 h-4 text-neon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- ＝＝＝ 富士通 ＝＝＝ -->
+                <div class="mb-16 mt-20">
+                    <div class="flex flex-col items-center justify-center mb-6 text-center">
+                        <span class="w-10 h-[3px] bg-slate-800 mb-4 rounded-full"></span>
+                        <h2 class="text-xl md:text-2xl font-black text-slate-900 tracking-wider leading-relaxed">
+                            富士通
+                        </h2>
+                    </div>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-800 leading-loose text-center mb-8">
+                        富士通も、<br><br>
+                        点滅の仕方によって<br>
+                        意味が大きく変わります。
+                    </p>
+
+                    <h3 class="text-[17px] md:text-lg font-black text-slate-900 mb-4 bg-slate-100 py-2 px-4 rounded-lg inline-block text-center w-full max-w-[280px] mx-auto block">【運転ランプがゆっくり点滅】</h3>
+                    <p class="text-[15px] md:text-base font-bold text-slate-800 leading-loose text-center mb-8">
+                        暖房中の霜取りや<br>
+                        内部クリーンなど、<br><br>
+                        正常な動作によって<br>
+                        点滅している場合があります。
+                    </p>
+
+                    <h3 class="text-[17px] md:text-lg font-black text-slate-900 mb-4 bg-slate-100 py-2 px-4 rounded-lg inline-block text-center w-full max-w-[280px] mx-auto block mt-8 leading-relaxed">【運転・タイマーランプが<br>交互に点滅】</h3>
+                    <p class="text-[15px] md:text-base font-bold text-slate-800 leading-loose text-center mb-8">
+                        運転中に、<br><br>
+                        停電やブレーカーOFFなどで<br>
+                        電源が切れたことを<br><br>
+                        知らせている場合があります。
+                    </p>
+
+                    <h3 class="text-[17px] md:text-lg font-black text-slate-900 mb-4 bg-slate-100 py-2 px-4 rounded-lg inline-block text-center w-full max-w-[280px] mx-auto block mt-8">【おそうじ系ランプが点滅】</h3>
+                    <p class="text-[15px] md:text-base font-bold text-slate-800 leading-loose text-center mb-8">
+                        ダストボックスの<br>
+                        お手入れ時期や、<br><br>
+                        取り付け状態を<br>
+                        知らせている場合があります。<br><br>
+                        同じランプでも、<br><br>
+                        ゆっくりなのか、<br>
+                        通常の速さなのか<br><br>
+                        によって意味が違う機種があります。
+                    </p>
+
+                    <div class="flex flex-col gap-3 max-w-sm mx-auto">
+                        <a href="/tips/error/fujitsu-room/" class="flex items-center justify-between bg-white hover:bg-slate-50 border border-slate-200 p-4 rounded-xl transition-all shadow-sm active:scale-95 group">
+                            <div class="text-left">
+                                <span class="text-[11px] font-black text-slate-500 block mb-0.5">富士通｜家庭用</span>
+                                <span class="font-black text-slate-900 text-[15px] group-hover:text-blue-600 transition-colors">エラーコード早見表</span>
+                            </div>
+                            <div class="w-8 h-8 rounded-full bg-slate-900 flex items-center justify-center flex-shrink-0">
+                                <svg class="w-4 h-4 text-neon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
+                            </div>
+                        </a>
+                        <a href="/tips/error/fujitsu-office/" class="flex items-center justify-between bg-white hover:bg-slate-50 border border-slate-200 p-4 rounded-xl transition-all shadow-sm active:scale-95 group">
+                            <div class="text-left">
+                                <span class="text-[11px] font-black text-slate-500 block mb-0.5">富士通｜業務用</span>
+                                <span class="font-black text-slate-900 text-[15px] group-hover:text-blue-600 transition-colors">エラーコード早見表</span>
+                            </div>
+                            <div class="w-8 h-8 rounded-full bg-slate-900 flex items-center justify-center flex-shrink-0">
+                                <svg class="w-4 h-4 text-neon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- ＝＝＝ 三菱重工 ビーバーエアコン ＝＝＝ -->
+                <div class="mb-16 mt-20">
+                    <div class="flex flex-col items-center justify-center mb-6 text-center">
+                        <span class="w-10 h-[3px] bg-slate-800 mb-4 rounded-full"></span>
+                        <h2 class="text-xl md:text-2xl font-black text-slate-900 tracking-wider leading-relaxed">
+                            三菱重工<br>ビーバーエアコン
+                        </h2>
+                    </div>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-800 leading-loose text-center mb-8">
+                        三菱重工でも、<br><br>
+                        正常な暖房運転中に<br>
+                        運転ランプが点滅することがあります。<br><br>
+                        暖房開始直後なら<br>
+                        室内機を暖めている途中。<br><br>
+                        暖房運転中なら<br>
+                        室外機の霜取り中。<br><br>
+                        このような場合は、<br><br>
+                        しばらく待つことで<br>
+                        通常運転に戻ります。
+                    </p>
+
+                    <h3 class="text-[17px] md:text-lg font-black text-slate-900 mb-4 bg-slate-100 py-2 px-4 rounded-lg inline-block text-center w-full max-w-[280px] mx-auto block mt-8">【フィルターランプが点滅】</h3>
+                    <p class="text-[15px] md:text-base font-bold text-slate-800 leading-loose text-center mb-8">
+                        一部の機種では、<br><br>
+                        実際のフィルターの汚れを<br>
+                        検知しているのではなく、<br><br>
+                        一定の運転時間によって<br>
+                        お手入れ時期を知らせています。<br><br>
+                        フィルターを掃除したのに<br>
+                        ランプが点滅している場合でも、<br><br>
+                        「まだ汚れている」<br><br>
+                        とは限りません。<br><br>
+                        機種に合った方法で<br>
+                        フィルターサインを<br>
+                        リセットしてください。
+                    </p>
+
+                    <div class="flex flex-col gap-3 max-w-sm mx-auto">
+                        <a href="/tips/error/beaver-room/" class="flex items-center justify-between bg-white hover:bg-slate-50 border border-slate-200 p-4 rounded-xl transition-all shadow-sm active:scale-95 group">
+                            <div class="text-left">
+                                <span class="text-[11px] font-black text-slate-500 block mb-0.5">三菱重工｜家庭用</span>
+                                <span class="font-black text-slate-900 text-[15px] group-hover:text-blue-600 transition-colors">エラーコード早見表</span>
+                            </div>
+                            <div class="w-8 h-8 rounded-full bg-slate-900 flex items-center justify-center flex-shrink-0">
+                                <svg class="w-4 h-4 text-neon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
+                            </div>
+                        </a>
+                        <a href="/tips/error/beaver-office/" class="flex items-center justify-between bg-white hover:bg-slate-50 border border-slate-200 p-4 rounded-xl transition-all shadow-sm active:scale-95 group">
+                            <div class="text-left">
+                                <span class="text-[11px] font-black text-slate-500 block mb-0.5">三菱重工｜業務用</span>
+                                <span class="font-black text-slate-900 text-[15px] group-hover:text-blue-600 transition-colors">エラーコード早見表</span>
+                            </div>
+                            <div class="w-8 h-8 rounded-full bg-slate-900 flex items-center justify-center flex-shrink-0">
+                                <svg class="w-4 h-4 text-neon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- ＝＝＝ その他メーカー ＝＝＝ -->
+                <div class="mb-16 mt-20">
+                    <div class="flex flex-col items-center justify-center mb-6 text-center">
+                        <span class="w-10 h-[3px] bg-slate-800 mb-4 rounded-full"></span>
+                        <h2 class="text-xl md:text-2xl font-black text-slate-900 tracking-wider leading-relaxed">
+                            その他メーカー
+                        </h2>
+                    </div>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-800 leading-loose text-center mb-8">
+                        ハイセンス、コロナ、長府、<br>
+                        アイリスオーヤマなども、<br><br>
+                        機種によって<br>
+                        ランプの点滅や、<br><br>
+                        リモコンに表示される<br>
+                        エラーコードから<br><br>
+                        異常内容を確認できる場合があります。
+                    </p>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-md mx-auto">
+                        <a href="/tips/error/hisense-room/" class="flex items-center justify-between bg-white hover:bg-slate-50 border border-slate-200 p-4 rounded-xl transition-all shadow-sm active:scale-95 group">
+                            <div class="text-left">
+                                <span class="text-[11px] font-black text-slate-500 block mb-0.5">ハイセンス</span>
+                                <span class="font-black text-slate-900 text-[14px] group-hover:text-blue-600 transition-colors">エラーコード早見表</span>
+                            </div>
+                        </a>
+                        <a href="/tips/error/corona-room/" class="flex items-center justify-between bg-white hover:bg-slate-50 border border-slate-200 p-4 rounded-xl transition-all shadow-sm active:scale-95 group">
+                            <div class="text-left">
+                                <span class="text-[11px] font-black text-slate-500 block mb-0.5">コロナ</span>
+                                <span class="font-black text-slate-900 text-[14px] group-hover:text-blue-600 transition-colors">エラーコード早見表</span>
+                            </div>
+                        </a>
+                        <a href="/tips/error/chofu-room/" class="flex items-center justify-between bg-white hover:bg-slate-50 border border-slate-200 p-4 rounded-xl transition-all shadow-sm active:scale-95 group">
+                            <div class="text-left">
+                                <span class="text-[11px] font-black text-slate-500 block mb-0.5">長府</span>
+                                <span class="font-black text-slate-900 text-[14px] group-hover:text-blue-600 transition-colors">エラーコード早見表</span>
+                            </div>
+                        </a>
+                        <a href="/tips/error/iris-room/" class="flex items-center justify-between bg-white hover:bg-slate-50 border border-slate-200 p-4 rounded-xl transition-all shadow-sm active:scale-95 group">
+                            <div class="text-left">
+                                <span class="text-[11px] font-black text-slate-500 block mb-0.5">アイリスオーヤマ</span>
+                                <span class="font-black text-slate-900 text-[14px] group-hover:text-blue-600 transition-colors">エラーコード早見表</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- ＝＝＝ 業務用エアコンの場合 ＝＝＝ -->
+                <div class="mb-16 mt-20">
+                    <div class="flex flex-col items-center justify-center mb-6 text-center">
+                        <span class="w-10 h-[3px] bg-slate-800 mb-4 rounded-full"></span>
+                        <h2 class="text-xl md:text-2xl font-black text-slate-900 tracking-wider leading-relaxed">
+                            業務用エアコンの場合
+                        </h2>
+                    </div>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-800 leading-loose text-center">
+                        業務用エアコンでは、<br><br>
+                        室内機本体のランプよりも、<br><br>
+                        壁リモコンの表示から<br>
+                        異常に気付くことが多くあります。<br><br>
+                        
+                        <span class="bg-slate-100 px-3 py-2 rounded-lg border border-slate-200 inline-block mb-1">「点検」</span><br>
+                        <span class="bg-slate-100 px-3 py-2 rounded-lg border border-slate-200 inline-block mb-1">「設定中」</span><br>
+                        <span class="bg-slate-100 px-3 py-2 rounded-lg border border-slate-200 inline-block mb-1">「PLEASE WAIT」</span><br>
+                        <span class="bg-slate-100 px-3 py-2 rounded-lg border border-slate-200 inline-block mb-2">「フィルター」</span><br><br>
+                        
+                        など、<br><br>
+                        普段見ない文字が<br>
+                        突然表示されることがあります。<br><br>
+                        しかし、<br><br>
+                        これらもすべてが<br>
+                        故障を意味するわけではありません。<br><br>
+                        電源投入直後の<br>
+                        正常な表示だったり、<br><br>
+                        フィルター清掃時期の<br>
+                        お知らせだったり、<br><br>
+                        運転モードの制限を<br>
+                        知らせている場合もあります。<br><br>
+                        一方で、<br><br>
+                        エラーコードや<br>
+                        点検表示が出ている場合は、<br><br>
+                        修理や点検が必要な<br>
+                        可能性があります。<br><br>
+                        <span class="font-black text-slate-900 underline decoration-neon decoration-4 underline-offset-4">表示を消す前に、</span><br>
+                        <span class="font-black text-slate-900 underline decoration-neon decoration-4 underline-offset-4">リモコン画面を</span><br>
+                        <span class="font-black text-slate-900 underline decoration-neon decoration-4 underline-offset-4">写真に残しておきましょう。</span>
+                    </p>
+                </div>
+
+                <!-- ＝＝＝ 点滅しているから、とりあえず電源リセット？ ＝＝＝ -->
+                <div class="mb-16 mt-20">
+                    <div class="flex flex-col items-center justify-center mb-6 text-center">
+                        <span class="w-10 h-[3px] bg-slate-800 mb-4 rounded-full"></span>
+                        <h2 class="text-xl md:text-2xl font-black text-slate-900 leading-relaxed">
+                            点滅しているから、<br>
+                            とりあえず電源リセット？
+                        </h2>
+                    </div>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-800 leading-loose text-center">
+                        エアコンの調子が悪いと、<br><br>
+                        「とりあえず<br>コンセントを抜いてみよう」<br><br>
+                        「ブレーカーを<br>落としてみよう」<br><br>
+                        と思うかもしれません。<br><br>
+                        電源リセットによって<br>
+                        一時的に復帰するケースもあります。<br><br>
+                        しかし、<br><br>
+                        <span class="text-red-600 font-black">異常を知らせる表示まで</span><br>
+                        <span class="text-red-600 font-black">消えてしまうことがあります。</span><br><br>
+                        まずは、<br><br>
+                        ランプの点滅や<br>
+                        エラーコードを記録してから。<br><br>
+                        その後、<br><br>
+                        取扱説明書や<br>
+                        メーカーの案内に従って、<br><br>
+                        必要であれば<br>
+                        電源リセットを行いましょう。<br><br>
+                        何度も異常が出る場合に、<br><br>
+                        電源リセットを繰り返して<br>
+                        無理に運転させることは<br>
+                        おすすめしません。
+                    </p>
+                </div>
+
+                <!-- ＝＝＝ エラーコードが確認できたら ＝＝＝ -->
+                <div class="mb-8 mt-20">
+                    <div class="flex flex-col items-center justify-center mb-6 text-center">
+                        <span class="w-10 h-[3px] bg-slate-800 mb-4 rounded-full"></span>
+                        <h2 class="text-xl md:text-2xl font-black text-slate-900 tracking-wider leading-relaxed">
+                            エラーコードが<br>
+                            確認できたら
+                        </h2>
+                    </div>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-800 leading-loose text-center">
+                        ランプの点滅から、<br><br>
+                        リモコンなどで<br>
+                        エラーコードを確認できた場合は、<br><br>
+                        ONE★STARの<br><br>
+                        <span class="font-black text-slate-900 bg-neon px-2">「エアコン</span><br>
+                        <span class="font-black text-slate-900 bg-neon px-2">エラーコード早見表」</span><br><br>
+                        をご利用ください。<br><br>
+                        家庭用・業務用に分けて、<br><br>
+                        メーカー別の<br>
+                        エラーコードを掲載しています。<br><br>
+                        エラーコードは、<br><br>
+                        「どこに異常がある可能性があるのか」<br><br>
+                        を知るための<br>
+                        大切な手掛かりになります。<br><br>
+                        ただし、<br><br>
+                        エラーコードだけで<br>
+                        故障箇所を断定できるとは限りません。<br><br>
+                        同じコードでも、<br><br>
+                        配線、センサー、基板、<br>
+                        モーター、冷媒系など、<br><br>
+                        実際の原因を確認するには<br>
+                        点検が必要な場合があります。
+                    </p>
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- ネイビーのカード (エアコンクリーニングで直る？) -->
+        <div class="bg-slate-900 rounded-[24px] border-l-[12px] border-neon p-8 md:p-10 text-center shadow-md mb-10">
+            
+            <h2 class="text-white font-black text-xl md:text-2xl leading-relaxed mb-10 tracking-wider">
+                エアコンクリーニングで<br>
+                直る？
+            </h2>
+
+            <p class="text-slate-100 font-bold text-[15px] md:text-base leading-loose mb-10">
+                ランプが点滅しているからといって、<br><br>
+                
+                エアコンクリーニングをすれば<br>
+                直るとは限りません。<br><br>
+                
+                汚れや排水不良が<br>
+                原因となっているケースもありますが、<br><br>
+                
+                基板やセンサー、<br>
+                モーターなどの故障であれば、<br><br>
+                
+                <span class="text-neon font-black text-[17px]">クリーニングでは直せません。</span>
+            </p>
+
+            <!-- 区切り線 -->
+            <div class="w-16 h-[1px] bg-slate-600 mx-auto mb-10"></div>
+
+            <p class="text-slate-100 font-bold text-[15px] md:text-base leading-loose">
+                ONE★STARは<br>
+                エアコンクリーニングの職人です。<br><br>
+                
+                修理が必要と思われる場合には、<br><br>
+                
+                メーカーや販売店、<br>
+                修理業者へのご相談を<br>
+                おすすめすることがあります。<br><br>
+                
+                <span class="text-white font-black text-base underline decoration-neon decoration-4 underline-offset-4">洗えば直るものなのか。</span><br><br>
+                
+                <span class="text-white font-black text-base underline decoration-neon decoration-4 underline-offset-4">修理が必要なのか。</span><br><br>
+                
+                そこを混同しないことも<br>
+                大切だと考えています。
+            </p>
+        </div>
+
+
+        <!-- ご相談誘導ブロック -->
+        <div class="bg-white rounded-2xl border border-slate-200 p-8 text-center shadow-sm mb-12">
+            <h2 class="text-xl md:text-2xl font-black text-slate-900 mb-8 leading-relaxed">
+                こんな症状があったら<br>
+                ご相談ください
+            </h2>
+            
+            <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose mb-10">
+                冷房運転中に、<br><br>
+                
+                <span class="text-slate-900 font-black">「室内機から水が漏れてきた」</span><br><br>
+                
+                <span class="text-slate-900 font-black">「ドレンホースから<br>水が出ていない」</span><br><br>
+                
+                <span class="text-slate-900 font-black">「ポコポコと変な音がする」</span><br><br>
+                
+                <span class="text-slate-900 font-black">「原因が分からないけど、<br>いつもと様子が違う」</span><br><br>
+                
+                そんな場合は、<br><br>
+                
+                無理にご自身で分解せず<br>
+                ご相談ください。<br><br>
+                
+                <span class="inline-block text-left">
+                    ✅汚れなのか<br>
+                    ✅詰まりなのか<br>
+                    ✅破損なのか<br>
+                    ✅設置状況なのか
+                </span><br><br>
+                
+                原因を確認したうえで、<br>
+                必要な対処をご案内します。
+            </p>
+            
+            <a href="tel:08000807788" class="js-phone-modal-trigger inline-flex items-center justify-center bg-slate-900 hover:bg-slate-800 text-neon px-8 py-4 rounded-full text-base font-black shadow-md transition-all active:scale-95">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                <span>電話で相談する</span>
+            </a>
+        </div>
+
+        <!-- 関連するお役立ち情報へのリンク -->
+        <div class="mt-16 text-center">
+            <div class="flex flex-col items-center justify-center mb-6">
+                <span class="w-10 h-[3px] bg-slate-800 mb-4 rounded-full"></span>
+                <h2 class="text-xl md:text-2xl font-black text-slate-900 tracking-wider leading-relaxed">
+                    あわせて読みたい
+                </h2>
+            </div>
+            
+            <a href="/tips/error/" class="block bg-white rounded-2xl border-2 border-slate-900 p-6 md:p-8 shadow-sm hover:shadow-md transition-all active:scale-95 group relative overflow-hidden text-center">
+                <!-- 装飾 -->
+                <div class="absolute top-0 left-0 w-full h-2 bg-neon"></div>
+                
+                <p class="text-[11px] md:text-sm font-black text-slate-500 mb-3 tracking-widest">
+                    関連するお役立ち情報
+                </p>
+                
+                <h3 class="text-[17px] md:text-xl font-black text-slate-900 mb-8 leading-relaxed">
+                    「メーカー別<br>エラーコード早見表まとめ」
+                </h3>
+                
+                <div class="inline-flex items-center justify-center bg-slate-900 text-neon px-6 py-3.5 rounded-full text-[15px] font-black group-hover:bg-slate-800 transition-colors w-full md:w-auto shadow-md">
+                    ▶ もっと詳しく見る
+                </div>
+            </a>
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-900 text-white pt-12 pb-24 md:pb-12 border-t-[6px] border-neon text-center mt-12">
+        <div class="mb-6 flex flex-col items-center justify-center">
+            <span class="text-4xl md:text-5xl tracking-widest text-white flex items-center justify-center font-impact mt-1">
+                ONE
+                <img src="ONESTAR.PNG" alt="ロゴ" class="w-[80px] h-[80px] md:w-[100px] md:h-[100px] mx-[-10px] md:mx-[-16px] object-contain -translate-y-2" onerror="this.style.display='none'">
+                STAR
+            </span>
+            <p class="text-xs text-neon font-black mt-2 tracking-widest">株式会社ECS専属プロスタッフ</p>
+        </div>
+        
+        <p class="text-[11px] text-slate-400 font-bold mb-3">
+            <a href="/products" class="hover:text-white transition-colors underline underline-offset-4">オリジナルLINEスタンプ販売中</a>
+        </p>
+        <p class="text-[10px] text-slate-500 font-bold mb-4">
+            <a href="/privacy" class="hover:text-white transition-colors">プライバシーポリシー</a>
+        </p>
+        <p class="text-[10px] text-slate-500 font-bold tracking-wider">© 2026 ONE★STAR. All Rights Reserved.</p>
+    </footer>
+
+    <!-- MOBILE BOTTOM NAVIGATION -->
+    <div class="fixed bottom-0 left-0 right-0 z-45 bg-slate-900 md:hidden h-[60px] flex items-stretch text-white shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.3)] border-t border-slate-800">
+        
+        <a href="/price" class="flex flex-col items-center justify-center w-[20%] border-r border-slate-700 active:bg-slate-800">
+            <svg class="w-5 h-5 mb-1 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <span class="text-[9px] font-black">料金</span>
+        </a>
+        
+        <a href="/mind" class="flex flex-col items-center justify-center w-[20%] border-r border-slate-700 active:bg-slate-800">
+            <svg class="w-5 h-5 mb-1 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+            <span class="text-[9px] font-black">想い</span>
+        </a>
+
+        <a href="/pride" class="flex flex-col items-center justify-center w-[20%] active:bg-slate-800">
+            <svg class="w-5 h-5 mb-1 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+            <span class="text-[9px] font-black">拘り</span>
+        </a>
+        
+        <a href="tel:08000807788" class="js-phone-modal-trigger flex items-center justify-center bg-neon text-slate-900 w-[40%] font-black text-base active:bg-yellow-400 transition-colors">
+            <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+            電話する
+        </a>
+        
+    </div>
+
+    <!-- 🌟 ご予約・お問い合わせ前のワンクッションモーダル 🌟 -->
+    <div id="phone-modal" class="fixed inset-0 z-[100] hidden flex items-center justify-center px-4">
+        <div id="phone-modal-backdrop" class="absolute inset-0 bg-slate-900/80 backdrop-blur-sm opacity-0 transition-opacity duration-300"></div>
+        
+        <div id="phone-modal-content" class="relative bg-white rounded-3xl shadow-2xl w-full max-w-sm overflow-hidden transform scale-95 opacity-0 transition-all duration-300 border border-slate-100">
+            
+            <button id="phone-modal-close" class="absolute top-4 right-4 p-2 text-slate-400 hover:text-slate-700 bg-slate-100 hover:bg-slate-200 rounded-full transition-colors z-10">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+            
+            <div class="p-6 md:p-8 text-center pt-10">
+                
+                <h3 class="text-xl font-black text-slate-900 mb-6 border-b-4 border-[#EFFF00] inline-block pb-1">
+                    ご予約・お問い合わせの前に
+                </h3>
+                
+                <div class="text-[13px] text-slate-700 font-bold leading-relaxed mb-8 space-y-4 text-left bg-slate-50 p-5 rounded-2xl border border-slate-100 shadow-inner">
+                    <p>
+                        <span class="text-slate-900 font-black text-sm">ONE★STAR</span>は<br>
+                        株式会社ECS（エッジクリーンサービス）の専属プロスタッフとして活動しています。
+                    </p>
+                    <p class="pt-2 border-t border-slate-200">
+                        お電話は<br>
+                        <span class="text-slate-900 font-black">株式会社ECSの予約受付</span>につながります。
+                    </p>
+                    
+                    <div class="bg-rose-50 border border-rose-200 p-3 rounded-xl text-center shadow-sm">
+                        <p class="text-rose-600 font-black text-[13px] leading-tight">
+                            ご予約の際は<br>
+                            <span class="text-base">「ONE★STAR（川崎）を指名」</span>と<br>
+                            お伝えください。
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="space-y-3">
+                    <a href="tel:08000807788" class="flex items-center justify-center w-full py-4 bg-slate-900 text-[#EFFF00] font-black rounded-2xl shadow-md active:scale-95 transition-transform text-sm sm:text-base border border-slate-800">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                        株式会社ECSへ電話する
+                    </a>
+                    
+                    <a href="https://www.instagram.com/one.star.kawasaki?igsh=anZpYnpxcDdqOXRh&utm_source=qr" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center w-full py-4 bg-gradient-to-r from-pink-500 to-rose-500 text-white font-black rounded-2xl shadow-md active:scale-95 transition-transform text-sm sm:text-base">
+                        <svg class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                        </svg>
+                        Instagramで本人に相談する
+                    </a>
+                </div>
+                
+                <p class="text-[10px] text-slate-500 mt-4 font-bold leading-relaxed">
+                    直接のご質問・お問い合わせは<br>本人直通のInstagram DMからお気軽にどうぞ。
+                </p>
+                
+                <button id="phone-modal-cancel" class="mt-6 text-[11px] text-slate-400 font-bold underline underline-offset-4 hover:text-slate-600 transition-colors">
+                    キャンセルして戻る
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // === メニュー開閉用 ===
+            const drawerContainer = document.getElementById('drawer-container');
+            const drawerMenu = document.getElementById('drawer-menu');
+            const drawerBackdrop = document.getElementById('drawer-backdrop');
+            
+            const toggleMenu = (show) => {
+                if (show) {
+                    drawerContainer.classList.remove('hidden');
+                    setTimeout(() => {
+                        drawerBackdrop.classList.remove('opacity-0');
+                        drawerBackdrop.classList.add('opacity-100');
+                        drawerMenu.classList.remove('drawer-closed');
+                        drawerMenu.classList.add('drawer-open');
+                    }, 10);
+                } else {
+                    drawerBackdrop.classList.remove('opacity-100');
+                    drawerBackdrop.classList.add('opacity-0');
+                    drawerMenu.classList.remove('drawer-open');
+                    drawerMenu.classList.add('drawer-closed');
+                    setTimeout(() => drawerContainer.classList.add('hidden'), 300);
+                }
+            };
+
+            document.getElementById('menu-open-btn').addEventListener('click', () => toggleMenu(true));
+            document.getElementById('menu-close-btn').addEventListener('click', () => toggleMenu(false));
+            document.getElementById('drawer-backdrop').addEventListener('click', () => toggleMenu(false));
+            document.querySelectorAll('.menu-link').forEach(link => link.addEventListener('click', () => toggleMenu(false)));
+
+            // === 電話モーダル ===
+            const phoneModal = document.getElementById('phone-modal');
+            const phoneModalBackdrop = document.getElementById('phone-modal-backdrop');
+            const phoneModalContent = document.getElementById('phone-modal-content');
+            const phoneModalCloseBtn = document.getElementById('phone-modal-close');
+            const phoneModalCancelBtn = document.getElementById('phone-modal-cancel');
+            const phoneTriggerBtns = document.querySelectorAll('.js-phone-modal-trigger');
+
+            if (phoneModal && phoneTriggerBtns.length > 0) {
+                const openPhoneModal = (e) => {
+                    e.preventDefault(); 
+                    if (typeof toggleMenu === 'function') toggleMenu(false);
+
+                    phoneModal.classList.remove('hidden');
+                    requestAnimationFrame(() => {
+                        phoneModalBackdrop.classList.remove('opacity-0');
+                        phoneModalBackdrop.classList.add('opacity-100');
+                        phoneModalContent.classList.remove('opacity-0', 'scale-95');
+                        phoneModalContent.classList.add('opacity-100', 'scale-100');
+                    });
+                };
+
+                const closePhoneModal = () => {
+                    phoneModalBackdrop.classList.remove('opacity-100');
+                    phoneModalBackdrop.classList.add('opacity-0');
+                    phoneModalContent.classList.remove('opacity-100', 'scale-100');
+                    phoneModalContent.classList.add('opacity-0', 'scale-95');
+                    setTimeout(() => phoneModal.classList.add('hidden'), 300);
+                };
+
+                phoneTriggerBtns.forEach(btn => btn.addEventListener('click', openPhoneModal));
+                phoneModalCloseBtn.addEventListener('click', closePhoneModal);
+                phoneModalCancelBtn.addEventListener('click', closePhoneModal);
+                phoneModalBackdrop.addEventListener('click', closePhoneModal);
+            }
+        });
+    </script>
+</body>
+</html>
