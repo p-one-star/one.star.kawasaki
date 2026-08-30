@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="ja" class="scroll-smooth">
 <head>
@@ -170,12 +169,11 @@
                     </div>
                 </section>
 
-                <!-- 16:9 画像スペース (全体の様子などのプレースホルダー) -->
+                <!-- 16:9 画像スペース (全体の様子) -->
                 <section>
                     <div class="w-full aspect-video relative rounded-xl overflow-hidden shadow-sm bg-slate-100 border border-slate-200">
                         <div class="absolute inset-0 flex items-center justify-center text-slate-400 text-xs font-bold bg-slate-200/50">画像追加予定（16:9）</div>
-                        <!-- 後から画像を追加してください -->
-                        <img src="dummy-16x9.jpg" alt="エアコン全体の様子" class="w-full h-full object-cover absolute inset-0" onerror="this.style.opacity='0'">
+                        <img src="IMG_7682.jpeg" alt="エアコン全体の様子" class="w-full h-full object-cover absolute inset-0" onerror="this.style.opacity='0'">
                     </div>
                 </section>
 
@@ -225,6 +223,69 @@
                     </div>
                 </section>
 
+                <!-- 作業前に発見した不具合 -->
+                <section>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg>
+                        <h2 class="text-lg font-black text-slate-900 border-b-2 border-neon pb-1">作業前に発見した不具合</h2>
+                    </div>
+                    
+                    <div class="grid grid-cols-2 gap-3 md:gap-6 mb-4">
+                        <!-- 画像 左 -->
+                        <div class="flex flex-col items-center">
+                            <div class="w-full aspect-square relative rounded-xl overflow-hidden shadow-sm bg-slate-100 border border-slate-200">
+                                <div class="absolute inset-0 flex items-center justify-center text-slate-400 text-xs font-bold bg-slate-200/50">画像追加予定（1:1）</div>
+                                <!-- プレースホルダー画像。後で実際の画像名に変更してください -->
+                                <img src="dummy-new-1.jpg" alt="停止動作の確認時" class="w-full h-full object-cover absolute inset-0" onerror="this.style.opacity='0'">
+                            </div>
+                        </div>
+                        <!-- 画像 右 -->
+                        <div class="flex flex-col items-center">
+                            <div class="w-full aspect-square relative rounded-xl overflow-hidden shadow-sm bg-slate-100 border border-slate-200">
+                                <div class="absolute inset-0 flex items-center justify-center text-slate-400 text-xs font-bold bg-slate-200/50">画像追加予定（1:1）</div>
+                                <!-- プレースホルダー画像。後で実際の画像名に変更してください -->
+                                <img src="dummy-new-2.jpg" alt="途中まで分解した状態" class="w-full h-full object-cover absolute inset-0" onerror="this.style.opacity='0'">
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-sm md:text-base font-medium leading-loose text-slate-700">
+                        作業前には必ず動作確認を行います。<br>
+                        <br>
+                        今回の症状に関しては、<br>
+                        何度も経験しているので、<br>
+                        見てすぐに気づきました。<br>
+                        <br>
+                        写真左、停止動作の確認時。<br>
+                        下の大きなルーバーが<br>
+                        最後まで閉じきらないで止まります。<br>
+                        <br>
+                        作動時も＂ギィーギィー＂と<br>
+                        擦れるような音が鳴っていました。<br>
+                        <br>
+                        写真右、途中まで分解しました。<br>
+                        画像の中央付近、<br>
+                        吹き出し口の下端の白い部品が<br>
+                        湾曲しているのが、<br>
+                        お分かりいただけるかと思います。<br>
+                        <br>
+                        この部品は、真ん中と左右の3箇所<br>
+                        とても硬いツメで固定されます。<br>
+                        <br>
+                        分解は簡単でも組み付けは…<br>
+                        不慣れな人では頑張っても頑張っても<br>
+                        ツメが入ってくれない…<br>
+                        <br>
+                        ツメが入ってない事に気づいていない…<br>
+                        <br>
+                        よくある事なのです。<br>
+                        私自身が失敗した経験があるので、<br>
+                        よく分かっています。<br>
+                        <br>
+                        正しく組み付けることで解決し、<br>
+                        正常に閉じるようになりました。
+                    </p>
+                </section>
+
                 <!-- 上部: お掃除ロボ分解 -->
                 <section>
                     <div class="flex items-center space-x-2 mb-4">
@@ -233,18 +294,18 @@
                     </div>
                     
                     <div class="grid grid-cols-2 gap-3 md:gap-6 mb-4">
-                        <!-- 画像プレースホルダー1 -->
+                        <!-- 画像 2枚目 -->
                         <div class="flex flex-col items-center">
                             <div class="w-full aspect-square relative rounded-xl overflow-hidden shadow-sm bg-slate-100 border border-slate-200">
                                 <div class="absolute inset-0 flex items-center justify-center text-slate-400 text-xs font-bold bg-slate-200/50">画像追加予定（1:1）</div>
-                                <img src="dummy-sq-1.jpg" alt="お掃除ロボ分解 画像1" class="w-full h-full object-cover absolute inset-0" onerror="this.style.opacity='0'">
+                                <img src="IMG_7689.jpeg" alt="お掃除ロボ分解 画像1" class="w-full h-full object-cover absolute inset-0" onerror="this.style.opacity='0'">
                             </div>
                         </div>
-                        <!-- 画像プレースホルダー2 -->
+                        <!-- 画像 3枚目 -->
                         <div class="flex flex-col items-center">
                             <div class="w-full aspect-square relative rounded-xl overflow-hidden shadow-sm bg-slate-100 border border-slate-200">
                                 <div class="absolute inset-0 flex items-center justify-center text-slate-400 text-xs font-bold bg-slate-200/50">画像追加予定（1:1）</div>
-                                <img src="dummy-sq-2.jpg" alt="お掃除ロボ分解 画像2" class="w-full h-full object-cover absolute inset-0" onerror="this.style.opacity='0'">
+                                <img src="IMG_7690.jpeg" alt="お掃除ロボ分解 画像2" class="w-full h-full object-cover absolute inset-0" onerror="this.style.opacity='0'">
                             </div>
                         </div>
                     </div>
@@ -271,19 +332,19 @@
                     </div>
                     
                     <div class="grid grid-cols-2 gap-3 md:gap-6 mb-4">
-                        <!-- 画像プレースホルダー3 -->
+                        <!-- 画像 4枚目 -->
                         <div class="flex flex-col items-center">
                             <div class="w-full aspect-square relative rounded-xl overflow-hidden shadow-sm bg-slate-100 border border-slate-200">
                                 <div class="absolute inset-0 flex items-center justify-center text-slate-400 text-xs font-bold bg-slate-200/50">画像追加予定（1:1）</div>
-                                <img src="dummy-sq-3.jpg" alt="吹き出し口周辺 施工前" class="w-full h-full object-cover absolute inset-0" onerror="this.style.opacity='0'">
+                                <img src="IMG_7692.jpeg" alt="吹き出し口周辺 施工前" class="w-full h-full object-cover absolute inset-0" onerror="this.style.opacity='0'">
                             </div>
                             <span class="text-xs font-bold text-slate-500 mt-2 tracking-wider">BEFORE</span>
                         </div>
-                        <!-- 画像プレースホルダー4 -->
+                        <!-- 画像 5枚目 -->
                         <div class="flex flex-col items-center">
                             <div class="w-full aspect-square relative rounded-xl overflow-hidden shadow-sm bg-slate-100 border border-slate-200">
                                 <div class="absolute inset-0 flex items-center justify-center text-slate-400 text-xs font-bold bg-slate-200/50">画像追加予定（1:1）</div>
-                                <img src="dummy-sq-4.jpg" alt="吹き出し口周辺 施工後" class="w-full h-full object-cover absolute inset-0" onerror="this.style.opacity='0'">
+                                <img src="IMG_7693.jpeg" alt="吹き出し口周辺 施工後" class="w-full h-full object-cover absolute inset-0" onerror="this.style.opacity='0'">
                             </div>
                             <span class="relative inline-block mt-2">
                                 <span class="text-xs font-black text-slate-900 tracking-wider relative z-10 px-0.5">AFTER</span>
@@ -627,5 +688,3 @@
     </script>
 </body>
 </html>
-
-```
