@@ -1,0 +1,1709 @@
+<!DOCTYPE html>
+<html lang="ja" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>全館空調ってどうなの？ | ONE★STAR</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        neon: '#EFFF00' // トレードカラー：蛍光イエロー
+                    },
+                    fontFamily: {
+                        sans: ['"Noto Sans JP"', 'sans-serif'],
+                        impact: ['"Black Ops One"', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        /* ドロワーメニュー用 */
+        #drawer-menu { transition: transform 0.3s ease-in-out; }
+        .drawer-closed { transform: translateX(-100%); }
+        .drawer-open { transform: translateX(0); }
+    </style>
+</head>
+<body class="font-sans text-slate-800 bg-slate-50 antialiased overflow-x-hidden pb-[60px]">
+
+    <!-- HEADER -->
+    <header class="fixed top-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md shadow-sm border-b border-slate-100 h-14 flex items-center justify-between px-4">
+        <button id="menu-open-btn" class="p-2 hover:bg-slate-100 rounded-lg" aria-label="メニュー">
+            <svg class="w-6 h-6 text-slate-800" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+
+        <div class="absolute left-1/2 -translate-x-1/2 flex items-center justify-center mt-1">
+            <a href="/" class="text-2xl md:text-3xl tracking-widest text-slate-900 leading-none flex items-center font-impact">
+                ONE
+                <img src="ONESTAR.PNG" alt="ロゴ" class="w-[45px] h-[45px] md:w-[55px] md:h-[55px] mx-[-4px] md:mx-[-6px] object-contain -translate-y-[4px]" onerror="this.style.display='none'">
+                STAR
+            </a>
+        </div>
+
+        <div class="hidden md:flex items-center space-x-3">
+            <a href="tel:08000807788" class="js-phone-modal-trigger bg-slate-900 hover:bg-slate-800 text-neon px-4 py-1.5 rounded-full text-xs font-black border border-slate-700 flex items-center space-x-1 transition-all">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                <span>電話相談</span>
+            </a>
+        </div>
+        <div class="w-10 md:hidden"></div>
+    </header>
+
+    <!-- DRAWER MENU -->
+    <div id="drawer-container" class="fixed inset-0 z-50 overflow-hidden hidden">
+        <div id="drawer-backdrop" class="absolute inset-0 bg-slate-900/60 opacity-0 transition-opacity duration-300"></div>
+        <div class="pointer-events-none fixed inset-y-0 left-0 flex max-w-full">
+            <div id="drawer-menu" class="pointer-events-auto w-64 drawer-closed bg-white shadow-2xl flex flex-col h-full">
+                
+                <div class="p-3 bg-white flex justify-end">
+                    <button id="menu-close-btn" class="p-2 hover:bg-slate-100 rounded-lg">
+                        <svg class="w-6 h-6 text-slate-500" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+                    </button>
+                </div>
+
+                <div class="bg-blue-600 py-3 px-6">
+                    <h2 class="text-white font-black tracking-wider text-sm">MENU</h2>
+                </div>
+
+                <nav class="flex-1 px-4 py-2 overflow-y-auto">
+                    <div class="space-y-1">
+                        <a href="/" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>トップページ
+                        </a>
+                        <a href="/price" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>料金プラン
+                        </a>
+                        <a href="/works" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>施工事例
+                        </a>
+                        <a href="/mind" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>ONE★STARの想い
+                        </a>
+                        <a href="/pride" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>プロとしての拘り
+                        </a>
+                        <a href="/trash" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>ここだけの話
+                        </a>
+                        <a href="/before" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>ご予約の前に
+                        </a>
+                        <a href="/faq" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>よくある質問
+                        </a>
+                        <a href="/tips" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-blue-600">
+                            <span class="mr-2 text-blue-600">＞</span>お役立ち情報
+                        </a>
+                        <a href="/products" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-[#06C755]">
+                            <span class="mr-2 text-slate-400">＞</span>オリジナルLINEスタンプ
+                        </a>
+                    </div>
+                    
+                    <hr class="border-slate-300 border-dashed my-4">
+                    <a href="https://www.edge-cleanservice.com" target="_blank" rel="noopener noreferrer" class="menu-link flex items-center py-2 text-sm font-black text-slate-900 hover:text-blue-600 transition-colors">
+                        株式会社ECS公式サイト
+                        <svg class="w-3.5 h-3.5 ml-1.5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                    </a>
+                </nav>
+
+                <div class="p-4 bg-slate-50 border-t border-slate-100 text-center mt-auto">
+                    <p class="text-[9px] text-slate-500 font-bold leading-relaxed mb-2">
+                        株式会社ECS EDGE CLEAN SERVICE<br>専属プロスタッフとして<br>愛知県全域で毎日奮闘中❣️
+                    </p>
+                    <a href="tel:08000807788" class="js-phone-modal-trigger block w-full py-3 bg-emerald-500 text-white font-bold rounded-lg text-sm shadow">直接電話する</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN (お役立ち情報：全館空調) -->
+    <main class="pt-24 pb-12 px-4 max-w-3xl mx-auto">
+
+        <!-- 白いメインカード -->
+        <div class="bg-white rounded-[24px] border-2 border-slate-900 overflow-hidden shadow-sm mb-10">
+            <!-- 上部の黄色いライン -->
+            <div class="h-3 w-full bg-neon"></div>
+
+            <div class="p-6 md:p-8">
+                
+                <!-- バッジ -->
+                <div class="flex justify-center mb-8 text-center">
+                    <span class="inline-block bg-slate-900 text-neon text-xs md:text-sm font-black px-5 py-2 rounded shadow-sm tracking-wider">
+                        プロが教えるエアコンの真実
+                    </span>
+                </div>
+
+                <!-- タイトル -->
+                <h1 class="text-[26px] md:text-[32px] font-black text-slate-900 mb-12 leading-relaxed tracking-wide text-center">
+                    全館空調って<br>どうなの？
+                </h1>
+
+                <!-- リード文 -->
+                <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose text-center mb-10">
+                    <span class="inline-block">家中どこにいても</span><br>
+                    <span class="inline-block">快適な温度。</span><br><br>
+                    
+                    <span class="inline-block">廊下や脱衣所まで</span><br>
+                    <span class="inline-block">温度差が少ない。</span><br><br>
+                    
+                    <span class="inline-block">各部屋にエアコンを</span><br>
+                    <span class="inline-block">取り付ける必要がなく、</span><br><br>
+                    
+                    <span class="inline-block">見た目もスッキリ。</span><br><br>
+                    
+                    <span class="inline-block">新築や注文住宅で</span><br>
+                    <span class="inline-block">全館空調を検討している方なら、</span><br><br>
+                    
+                    <span class="inline-block">とても魅力的に</span><br>
+                    <span class="inline-block">感じると思います。</span><br><br>
+                    
+                    <span class="inline-block">実際、</span><br><br>
+                    
+                    <span class="inline-block">全館空調には</span><br>
+                    <span class="inline-block">たくさんのメリットがあります。</span><br><br>
+                    
+                    <span class="inline-block">でも、</span><br><br>
+                    
+                    <span class="inline-block">エアコンを日々分解し、</span><br>
+                    <span class="inline-block">内部を洗っている職人として、</span><br><br>
+                    
+                    <span class="inline-block">導入する前に</span><br>
+                    <span class="inline-block">考えてほしいことがあります。</span><br><br>
+                    
+                    <span class="bg-slate-100 px-4 py-3 rounded-xl border border-slate-200 inline-block mt-4 mb-2 shadow-sm font-black text-slate-900">
+                        「その全館空調、<br><br>
+                        10年後、20年後まで<br>
+                        考えて選んでいますか？」
+                    </span>
+                </p>
+
+                <!-- ＝＝＝ 見出しブロック ＝＝＝ -->
+                <div class="mb-16 mt-20">
+                    <div class="flex flex-col items-center justify-center mb-6 text-center">
+                        <span class="w-10 h-[3px] bg-neon mb-4 rounded-full"></span>
+                        <h2 class="text-xl md:text-2xl font-black text-slate-900 tracking-wider leading-relaxed">
+                            全館空調が<br>
+                            悪いわけではありません
+                        </h2>
+                    </div>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-800 leading-loose text-center">
+                        <span class="inline-block">最初にお伝えします。</span><br><br>
+                        
+                        <span class="inline-block">ONE★STARは、</span><br><br>
+                        
+                        <span class="inline-block">全館空調そのものを</span><br>
+                        <span class="inline-block">否定したいわけではありません。</span><br><br>
+                        
+                        <span class="inline-block">家全体の温度を</span><br>
+                        <span class="inline-block">管理しやすい。</span><br><br>
+                        
+                        <span class="inline-block">部屋ごとの</span><br>
+                        <span class="inline-block">温度差を抑えやすい。</span><br><br>
+                        
+                        <span class="inline-block">壁掛けエアコンが減り、</span><br>
+                        <span class="inline-block">室内もスッキリする。</span><br><br>
+                        
+                        <span class="inline-block">全館空調だからこそ得られる</span><br>
+                        <span class="inline-block">快適性があります。</span><br><br>
+                        
+                        <span class="inline-block">その快適性を</span><br>
+                        <span class="inline-block">何より優先したい。</span><br><br>
+                        
+                        <span class="inline-block">それなら、</span><br><br>
+                        
+                        <span class="inline-block">全館空調という選択も</span><br>
+                        <span class="inline-block">ひとつの正解だと思います。</span><br><br>
+                        
+                        <span class="inline-block font-black text-lg mt-4 mb-2">大切なのは、</span><br><br>
+                        
+                        <span class="inline-block font-black text-slate-900 underline decoration-neon decoration-4 underline-offset-4 mb-4">
+                            「何を優先したいのか？」
+                        </span><br><br>
+                        
+                        <span class="inline-block">メリットだけではなく、</span><br><br>
+                        
+                        <span class="inline-block">その裏側にある</span><br>
+                        <span class="inline-block">デメリットまで知った上で、</span><br><br>
+                        
+                        <span class="inline-block">天秤にかけて</span><br>
+                        <span class="inline-block">選ぶことだと思っています。</span>
+                    </p>
+                </div>
+
+
+                <!-- ＝＝＝ 見出しブロック ＝＝＝ -->
+                <div class="mb-16 mt-20">
+                    <div class="flex flex-col items-center justify-center mb-6 text-center">
+                        <span class="w-10 h-[3px] bg-slate-800 mb-4 rounded-full"></span>
+                        <h2 class="text-xl md:text-2xl font-black text-slate-900 tracking-wider leading-relaxed">
+                            そもそも<br>
+                            全館空調とは？
+                        </h2>
+                    </div>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-800 leading-loose text-center">
+                        <span class="inline-block">「全館空調」といっても、</span><br><br>
+                        
+                        <span class="inline-block">すべてが同じ構造では</span><br>
+                        <span class="inline-block">ありません。</span><br><br>
+                        
+                        <span class="inline-block">専用の空調室を</span><br>
+                        <span class="inline-block">設けるもの。</span><br><br>
+                        
+                        <span class="inline-block">天井裏や床下を</span><br>
+                        <span class="inline-block">利用するもの。</span><br><br>
+                        
+                        <span class="inline-block">ダクトを使って</span><br>
+                        <span class="inline-block">各部屋へ空気を送るもの。</span><br><br>
+                        
+                        <span class="inline-block">換気システムと</span><br>
+                        <span class="inline-block">組み合わせたもの。</span><br><br>
+                        
+                        <span class="inline-block">メーカーや</span><br>
+                        <span class="inline-block">ハウスメーカーによって、</span><br><br>
+                        
+                        <span class="inline-block">構造や仕組みは</span><br>
+                        <span class="inline-block">大きく異なります。</span><br><br>
+                        
+                        <span class="inline-block">そのため、</span><br><br>
+                        
+                        <span class="inline-block">この記事の内容が</span><br>
+                        <span class="inline-block">すべての全館空調に</span><br><br>
+                        
+                        <span class="inline-block">そのまま当てはまる</span><br>
+                        <span class="inline-block">わけではありません。</span><br><br>
+                        
+                        <span class="inline-block">ここでは主に、</span><br><br>
+                        
+                        <span class="inline-block font-black text-slate-900 bg-neon px-2">空調機からダクトを通して</span><br>
+                        <span class="inline-block font-black text-slate-900 bg-neon px-2">各部屋へ空気を送るタイプを、</span><br><br>
+                        
+                        <span class="inline-block">エアコンクリーニング職人の</span><br>
+                        <span class="inline-block">目線から考えてみます。</span>
+                    </p>
+                </div>
+
+
+                <!-- ＝＝＝ 見出しブロック ＝＝＝ -->
+                <div class="mb-16 mt-20 relative text-center">
+                    <h2 class="text-xl md:text-2xl font-black text-slate-900 mb-8 pt-4 leading-relaxed">
+                        全館空調でも<br>
+                        <span class="text-red-600">エアコンは汚れます</span>
+                    </h2>
+                    
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
+                        <span class="inline-block">全館空調でも、</span><br><br>
+                        
+                        <span class="inline-block">空気を吸い込み、</span><br><br>
+                        
+                        <span class="inline-block">冷やしたり</span><br>
+                        <span class="inline-block">暖めたりして、</span><br><br>
+                        
+                        <span class="inline-block">再び室内へ</span><br>
+                        <span class="inline-block">送り出しています。</span><br><br>
+                        
+                        <span class="inline-block">冷房や除湿では、</span><br><br>
+                        
+                        <span class="inline-block">熱交換器が冷えることで</span><br>
+                        <span class="inline-block">結露水も発生します。</span><br><br>
+                        
+                        <span class="inline-block">ホコリ。</span><br><br>
+                        
+                        <span class="inline-block">水分。</span><br><br>
+                        
+                        <span class="inline-block">湿度。</span><br><br>
+                        
+                        <span class="inline-block">使用環境。</span><br><br>
+                        
+                        <span class="inline-block">さまざまな条件が重なれば、</span><br><br>
+                        
+                        <span class="inline-block font-black text-red-600 underline decoration-red-200 decoration-4 underline-offset-4">内部に汚れやカビが</span><br>
+                        <span class="inline-block font-black text-red-600 underline decoration-red-200 decoration-4 underline-offset-4">発生することがあります。</span><br><br>
+                        
+                        <span class="inline-block mt-4">これは、</span><br><br>
+                        
+                        <span class="inline-block">一般的な壁掛けエアコンでも</span><br>
+                        <span class="inline-block">同じです。</span><br><br>
+                        
+                        <span class="inline-block">新品だから。</span><br><br>
+                        
+                        <span class="inline-block">高級なエアコンだから。</span><br><br>
+                        
+                        <span class="inline-block">全館空調だから。</span><br><br>
+                        
+                        <span class="inline-block font-black text-slate-900 text-lg">汚れないわけでは</span><br>
+                        <span class="inline-block font-black text-slate-900 text-lg">ありません。</span>
+                    </p>
+
+                    <!-- 関連記事リンク 1 -->
+                    <a href="/tips/new/" class="block bg-slate-50 border border-slate-200 rounded-2xl p-5 mt-10 hover:shadow-md transition-all group max-w-sm mx-auto">
+                        <p class="text-[11px] font-black text-slate-500 mb-2 tracking-widest group-hover:text-blue-600 transition-colors">▶ 関連記事</p>
+                        <p class="text-[15px] md:text-[17px] font-black text-slate-900 leading-relaxed">
+                            「新しいエアコンなら<br>汚れないって本当？」
+                        </p>
+                        <div class="mt-4">
+                            <span class="inline-flex items-center justify-center bg-slate-900 text-neon px-5 py-2 rounded-full text-xs font-black group-hover:bg-slate-800 transition-colors">
+                                コチラから読む ↗️
+                            </span>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- 続き -->
+                <div class="mb-16 mt-12 text-center">
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
+                        <span class="inline-block">だからこそ、</span><br><br>
+                        
+                        <span class="inline-block">ONE★STARが</span><br>
+                        <span class="inline-block">気になるのは、</span><br><br>
+                        
+                        <span class="inline-block font-black text-slate-900">「汚れること」</span><br><br>
+                        
+                        <span class="inline-block">ではありません。</span><br><br>
+                        
+                        <span class="inline-block mt-6">汚れたあと、</span><br><br>
+                        
+                        <span class="inline-block font-black text-slate-900 text-lg underline decoration-neon decoration-4 underline-offset-4">「どうやって</span><br>
+                        <span class="inline-block font-black text-slate-900 text-lg underline decoration-neon decoration-4 underline-offset-4">キレイにするのか？」</span><br><br>
+                        
+                        <span class="inline-block font-black text-slate-900">そこです。</span>
+                    </p>
+                </div>
+
+
+                <!-- ＝＝＝ 見出しブロック ＝＝＝ -->
+                <div class="mb-16 mt-20">
+                    <div class="flex flex-col items-center justify-center mb-6 text-center">
+                        <span class="w-10 h-[3px] bg-neon mb-4 rounded-full"></span>
+                        <h2 class="text-xl md:text-2xl font-black text-slate-900 tracking-wider leading-relaxed">
+                            エアコン本体は<br>
+                            洗える場合があります
+                        </h2>
+                    </div>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-800 leading-loose text-center">
+                        <span class="inline-block">全館空調でも、</span><br><br>
+                        
+                        <span class="inline-block">空調室などに設置された</span><br>
+                        <span class="inline-block">エアコン本体を</span><br><br>
+                        
+                        <span class="inline-block">分解洗浄している</span><br>
+                        <span class="inline-block">業者さんはあります。</span><br><br>
+                        
+                        <span class="inline-block">フィルター。</span><br><br>
+                        
+                        <span class="inline-block">熱交換器。</span><br><br>
+                        
+                        <span class="inline-block">送風ファン。</span><br><br>
+                        
+                        <span class="inline-block">ドレンパン。</span><br><br>
+                        
+                        <span class="inline-block">機種や構造によって</span><br>
+                        <span class="inline-block">対応できる範囲は違いますが、</span><br><br>
+                        
+                        <span class="inline-block font-black text-slate-900">空調機本体だけなら、</span><br><br>
+                        
+                        <span class="inline-block font-black text-slate-900">クリーニングできる場合も</span><br>
+                        <span class="inline-block font-black text-slate-900">あります。</span><br><br>
+                        
+                        <span class="inline-block mt-4">では、</span><br><br>
+                        
+                        <span class="inline-block font-black text-red-600 text-lg">その先は？</span>
+                    </p>
+                </div>
+
+
+                <!-- ＝＝＝ 見出しブロック ＝＝＝ -->
+                <div class="mb-16 mt-20">
+                    <div class="flex flex-col items-center justify-center mb-6 text-center">
+                        <span class="w-10 h-[3px] bg-slate-800 mb-4 rounded-full"></span>
+                        <h2 class="text-xl md:text-2xl font-black text-slate-900 tracking-wider leading-relaxed">
+                            各部屋へ続く<br>
+                            ダクトの内部は？
+                        </h2>
+                    </div>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-800 leading-loose text-center">
+                        <span class="inline-block">全館空調には、</span><br><br>
+                        
+                        <span class="inline-block">空調機から各部屋へ</span><br>
+                        <span class="inline-block">空気を送るため、</span><br><br>
+                        
+                        <span class="inline-block">天井裏などに</span><br>
+                        <span class="inline-block">ダクトが張り巡らされた</span><br><br>
+                        
+                        <span class="inline-block">システムがあります。</span><br><br>
+                        
+                        <span class="inline-block">そのダクトを通った空気が、</span><br><br>
+                        
+                        <span class="inline-block">各部屋の吹出口から</span><br>
+                        <span class="inline-block">出てきます。</span><br><br>
+                        
+                        <span class="inline-block mt-6">では、</span><br><br>
+                        
+                        <span class="inline-block font-black text-slate-900 bg-red-100 px-2">そのダクト内部が</span><br>
+                        <span class="inline-block font-black text-slate-900 bg-red-100 px-2">汚れたら？</span><br><br>
+                        
+                        <span class="inline-block font-black text-slate-900 bg-red-100 px-2">ホコリが溜まったら？</span><br><br>
+                        
+                        <span class="inline-block font-black text-slate-900 bg-red-100 px-2">カビが発生したら？</span><br><br>
+                        
+                        <span class="inline-block mt-6">どうやって</span><br>
+                        <span class="inline-block">キレイにするのでしょうか。</span>
+                    </p>
+                </div>
+
+
+                <!-- ＝＝＝ 見出しブロック ＝＝＝ -->
+                <div class="mb-16 mt-20 relative text-center">
+                    <h2 class="text-xl md:text-2xl font-black text-slate-900 mb-8 pt-4 leading-relaxed">
+                        本体だけ洗えば<br>
+                        本当にキレイ？
+                    </h2>
+                    
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
+                        <span class="inline-block">毎年、</span><br><br>
+                        
+                        <span class="inline-block">エアコン本体を</span><br>
+                        <span class="inline-block">クリーニングする。</span><br><br>
+                        
+                        <span class="inline-block">それ自体は、</span><br><br>
+                        
+                        <span class="inline-block">設備を清潔に保つために</span><br>
+                        <span class="inline-block">大切なことだと思います。</span><br><br>
+                        
+                        <span class="inline-block mt-4">でも、</span><br><br>
+                        
+                        <span class="inline-block">本体を毎年洗えば、</span><br><br>
+                        
+                        <span class="inline-block font-black text-slate-900">全館空調システム全体が</span><br>
+                        <span class="inline-block font-black text-slate-900">キレイになるのでしょうか？</span><br><br>
+                        
+                        <span class="inline-block mt-4">空調機本体の先には、</span><br><br>
+                        
+                        <span class="inline-block">各部屋まで続く</span><br>
+                        <span class="inline-block">空気の通り道があります。</span><br><br>
+                        
+                        <span class="inline-block">本体をキレイにしても、</span><br><br>
+                        
+                        <span class="inline-block font-black text-slate-900 underline decoration-red-200 decoration-4 underline-offset-4">その先のダクト内部まで</span><br>
+                        <span class="inline-block font-black text-slate-900 underline decoration-red-200 decoration-4 underline-offset-4">同時にキレイになるわけではありません。</span><br><br>
+                        
+                        <span class="inline-block mt-8 font-black text-slate-900 text-lg">「本体はキレイ。」</span><br><br>
+                        
+                        <span class="inline-block">でも、</span><br><br>
+                        
+                        <span class="inline-block font-black text-slate-900 text-lg">「ダクト内部は？」</span><br><br>
+                        
+                        <span class="inline-block mt-6">ONE★STARが</span><br>
+                        <span class="inline-block">全館空調を見るとき、</span><br><br>
+                        
+                        <span class="inline-block font-black text-slate-900">最も気になる部分の</span><br>
+                        <span class="inline-block font-black text-slate-900">ひとつです。</span>
+                    </p>
+
+                    <!-- 関連記事リンク 2 -->
+                    <a href="/tips/clean/" class="block bg-slate-50 border border-slate-200 rounded-2xl p-5 mt-10 hover:shadow-md transition-all group max-w-sm mx-auto">
+                        <p class="text-[11px] font-black text-slate-500 mb-2 tracking-widest group-hover:text-blue-600 transition-colors">▶ 関連記事</p>
+                        <p class="text-[15px] md:text-[17px] font-black text-slate-900 leading-relaxed">
+                            「エアコンクリーニングって<br>本当に必要なの？」
+                        </p>
+                        <div class="mt-4">
+                            <span class="inline-flex items-center justify-center bg-slate-900 text-neon px-5 py-2 rounded-full text-xs font-black group-hover:bg-slate-800 transition-colors">
+                                コチラから読む ↗️
+                            </span>
+                        </div>
+                    </a>
+                </div>
+
+
+                <!-- ＝＝＝ 見出しブロック ＝＝＝ -->
+                <div class="mb-16 mt-20">
+                    <div class="flex flex-col items-center justify-center mb-6 text-center">
+                        <span class="w-10 h-[3px] bg-neon mb-4 rounded-full"></span>
+                        <h2 class="text-xl md:text-2xl font-black text-slate-900 tracking-wider leading-relaxed">
+                            じゃあダクトを<br>
+                            洗えばいい？
+                        </h2>
+                    </div>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-800 leading-loose text-center">
+                        <span class="inline-block">では、</span><br><br>
+                        
+                        <span class="inline-block">ダクト内部まで</span><br>
+                        <span class="inline-block">洗浄すればいいのでしょうか。</span><br><br>
+                        
+                        <span class="inline-block">ダクト清掃を行う業者や、</span><br><br>
+                        
+                        <span class="inline-block">水を使わない清掃方法なども</span><br>
+                        <span class="inline-block">存在します。</span><br><br>
+                        
+                        <span class="inline-block">しかし、</span><br><br>
+                        
+                        <span class="inline-block">もし水を使って</span><br>
+                        <span class="inline-block">ダクト内部を洗浄するなら、</span><br><br>
+                        
+                        <span class="inline-block">別の疑問が出てきます。</span><br><br>
+                        
+                        <span class="inline-block font-black text-slate-900 bg-slate-100 px-3 py-2 rounded-lg border border-slate-200 mt-4">
+                            「その水、<br>
+                            どこへ流しますか？」
+                        </span><br><br>
+                        
+                        <span class="inline-block mt-4">各部屋の吹出口まで</span><br>
+                        <span class="inline-block">流すのでしょうか。</span><br><br>
+                        
+                        <span class="inline-block">吹出口の下で、</span><br><br>
+                        
+                        <span class="inline-block">バケツを置いて</span><br>
+                        <span class="inline-block">受けるのでしょうか。</span><br><br>
+                        
+                        <span class="inline-block mt-6">さらに、</span><br><br>
+                        
+                        <span class="inline-block">もっと気になることがあります。</span><br><br>
+                        
+                        <span class="inline-block font-black text-red-600 bg-red-50 border border-red-100 px-4 py-3 rounded-xl shadow-sm mt-4">
+                            「ダクト内部に、<br><br>
+                            水が残らない<br>
+                            保証はありますか？」
+                        </span>
+                    </p>
+                </div>
+
+
+                <!-- ＝＝＝ 見出しブロック ＝＝＝ -->
+                <div class="mb-16 mt-20 relative text-center">
+                    <h2 class="text-xl md:text-2xl font-black text-slate-900 mb-8 pt-4 leading-relaxed">
+                        空調ダクトは<br>
+                        排水管ではありません
+                    </h2>
+                    
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
+                        <span class="inline-block">エアコンには、</span><br><br>
+                        
+                        <span class="inline-block">冷房時に発生した</span><br>
+                        <span class="inline-block">結露水を排出するため、</span><br><br>
+                        
+                        <span class="inline-block">ドレン配管があります。</span><br><br>
+                        
+                        <span class="inline-block font-black text-slate-900">水を排出するための</span><br>
+                        <span class="inline-block font-black text-slate-900">配管です。</span><br><br>
+                        
+                        <span class="inline-block mt-4">でも、</span><br><br>
+                        
+                        <span class="inline-block">空調ダクトは違います。</span><br><br>
+                        
+                        <span class="inline-block">ダクトの目的は、</span><br><br>
+                        
+                        <span class="inline-block font-black text-lg text-slate-900 underline decoration-neon decoration-4 underline-offset-4">「空気を運ぶこと。」</span><br><br>
+                        
+                        <span class="inline-block mt-4">洗浄水を排出するための</span><br>
+                        <span class="inline-block">配管ではありません。</span><br><br>
+                        
+                        <span class="inline-block">天井裏などに</span><br>
+                        <span class="inline-block">張り巡らされたダクトが、</span><br><br>
+                        
+                        <span class="inline-block">洗浄水を流すことまで考えて、</span><br><br>
+                        
+                        <span class="inline-block font-black text-slate-900">すべて適切な勾配で</span><br>
+                        <span class="inline-block font-black text-slate-900">施工されているとは限りません。</span><br><br>
+                        
+                        <span class="inline-block mt-4">もし、</span><br><br>
+                        
+                        <span class="inline-block">途中に低くなった部分が</span><br>
+                        <span class="inline-block">あったら？</span><br><br>
+                        
+                        <span class="inline-block font-black text-slate-900 bg-red-100 px-2">そこへ洗浄水が</span><br>
+                        <span class="inline-block font-black text-slate-900 bg-red-100 px-2">残ったら？</span><br><br>
+                        
+                        <span class="inline-block mt-4">キレイにするために</span><br>
+                        <span class="inline-block">水を入れたのに、</span><br><br>
+                        
+                        <span class="inline-block">内部に水分が残り、</span><br><br>
+                        
+                        <span class="inline-block font-black text-red-600">それが新たなカビの原因に</span><br>
+                        <span class="inline-block font-black text-red-600">なってしまったら？</span><br><br>
+                        
+                        <span class="inline-block mt-6">だからONE★STARでは、</span><br><br>
+                        
+                        <span class="inline-block">単純に、</span><br><br>
+                        
+                        <span class="inline-block font-black text-slate-900">「汚れたら洗えばいい」</span><br><br>
+                        
+                        <span class="inline-block">では済まない設備だと</span><br>
+                        <span class="inline-block">考えています。</span>
+                    </p>
+
+                    <!-- 関連記事リンク 3 -->
+                    <a href="/tips/drain/" class="block bg-slate-50 border border-slate-200 rounded-2xl p-5 mt-10 hover:shadow-md transition-all group max-w-sm mx-auto">
+                        <p class="text-[11px] font-black text-slate-500 mb-2 tracking-widest group-hover:text-blue-600 transition-colors">▶ 関連記事</p>
+                        <p class="text-[15px] md:text-[17px] font-black text-slate-900 leading-relaxed">
+                            「ドレンホースの<br>正しい排水について」
+                        </p>
+                        <div class="mt-4">
+                            <span class="inline-flex items-center justify-center bg-slate-900 text-neon px-5 py-2 rounded-full text-xs font-black group-hover:bg-slate-800 transition-colors">
+                                コチラから読む ↗️
+                            </span>
+                        </div>
+                    </a>
+                </div>
+
+
+                <!-- ＝＝＝ 見出しブロック ＝＝＝ -->
+                <div class="mb-16 mt-20">
+                    <div class="flex flex-col items-center justify-center mb-6 text-center">
+                        <span class="w-10 h-[3px] bg-slate-800 mb-4 rounded-full"></span>
+                        <h2 class="text-xl md:text-2xl font-black text-slate-900 tracking-wider leading-relaxed">
+                            見えない場所だから<br>
+                            難しい
+                        </h2>
+                    </div>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-800 leading-loose text-center">
+                        <span class="inline-block">一般的な壁掛けエアコンなら、</span><br><br>
+                        
+                        <span class="inline-block">分解することで、</span><br><br>
+                        
+                        <span class="inline-block">熱交換器。</span><br><br>
+                        
+                        <span class="inline-block">送風ファン。</span><br><br>
+                        
+                        <span class="inline-block">ドレンパン。</span><br><br>
+                        
+                        <span class="inline-block">吹出口。</span><br><br>
+                        
+                        <span class="inline-block font-black text-slate-900">内部の状態を</span><br>
+                        <span class="inline-block font-black text-slate-900">直接確認できます。</span><br><br>
+                        
+                        <span class="inline-block mt-4">汚れていれば、</span><br><br>
+                        
+                        <span class="inline-block">必要なところまで分解して</span><br>
+                        <span class="inline-block">洗浄することもできます。</span><br><br>
+                        
+                        <span class="inline-block mt-4">しかし、</span><br><br>
+                        
+                        <span class="inline-block">天井裏などを通る</span><br>
+                        <span class="inline-block">長いダクトは、</span><br><br>
+                        
+                        <span class="inline-block font-black text-red-600 underline decoration-red-200 decoration-4 underline-offset-4">簡単に取り外して</span><br>
+                        <span class="inline-block font-black text-red-600 underline decoration-red-200 decoration-4 underline-offset-4">内部全体を見ることができません。</span><br><br>
+                        
+                        <span class="inline-block mt-4">途中で枝分かれしている</span><br>
+                        <span class="inline-block">場合もあります。</span><br><br>
+                        
+                        <span class="inline-block mt-4">家が完成したあとでは、</span><br><br>
+                        
+                        <span class="inline-block">簡単にアクセスできない場所も</span><br>
+                        <span class="inline-block">出てきます。</span><br><br>
+                        
+                        <span class="inline-block mt-6 font-black text-slate-900 text-lg">見えない。</span><br><br>
+                        
+                        <span class="inline-block font-black text-slate-900 text-lg">簡単には触れない。</span><br><br>
+                        
+                        <span class="inline-block font-black text-slate-900 text-lg">簡単には洗えない。</span><br><br>
+                        
+                        <span class="inline-block mt-6">家を建てる前に、</span><br><br>
+                        
+                        <span class="inline-block font-black text-slate-900">この「清掃性」についても</span><br>
+                        <span class="inline-block font-black text-slate-900">考えてほしいと思います。</span>
+                    </p>
+                </div>
+
+
+                <!-- ＝＝＝ 見出しブロック ＝＝＝ -->
+                <div class="mb-16 mt-20 relative text-center">
+                    <h2 class="text-xl md:text-2xl font-black text-slate-900 mb-8 pt-4 leading-relaxed">
+                        お掃除機能付きなら<br>
+                        安心？
+                    </h2>
+                    
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
+                        <span class="inline-block">全館空調に使用される</span><br>
+                        <span class="inline-block">エアコン本体にも、</span><br><br>
+                        
+                        <span class="inline-block">お掃除機能付きや</span><br>
+                        <span class="inline-block">多機能モデルが</span><br><br>
+                        
+                        <span class="inline-block">採用される場合があります。</span><br><br>
+                        
+                        <span class="inline-block">フィルターを</span><br>
+                        <span class="inline-block">自動で掃除してくれる。</span><br><br>
+                        
+                        <span class="inline-block">さまざまなセンサーや</span><br>
+                        <span class="inline-block">便利な機能が付いている。</span><br><br>
+                        
+                        <span class="inline-block mt-4">もちろん、</span><br><br>
+                        
+                        <span class="inline-block">それらの機能に</span><br>
+                        <span class="inline-block">メリットを感じる方もいます。</span><br><br>
+                        
+                        <span class="inline-block mt-4">でも、</span><br><br>
+                        
+                        <span class="inline-block font-black text-slate-900 bg-neon px-2">「多機能であること」と、</span><br><br>
+                        
+                        <span class="inline-block font-black text-slate-900 bg-neon px-2">「清掃しやすいこと」は、</span><br><br>
+                        
+                        <span class="inline-block font-black text-slate-900 text-lg mt-2">まったく別の話です。</span><br><br>
+                        
+                        <span class="inline-block mt-4">フィルターを</span><br>
+                        <span class="inline-block">自動で掃除しても、</span><br><br>
+                        
+                        <span class="inline-block">熱交換器。</span><br><br>
+                        
+                        <span class="inline-block">送風ファン。</span><br><br>
+                        
+                        <span class="inline-block">ドレンパン。</span><br><br>
+                        
+                        <span class="inline-block">そして、</span><br><br>
+                        
+                        <span class="inline-block font-black text-slate-900">各部屋へ続く</span><br>
+                        <span class="inline-block font-black text-slate-900">ダクト内部まで、</span><br><br>
+                        
+                        <span class="inline-block font-black text-slate-900">すべてキレイにしてくれる</span><br>
+                        <span class="inline-block font-black text-slate-900">わけではありません。</span><br><br>
+                        
+                        <span class="inline-block mt-6">さらに、</span><br><br>
+                        
+                        <span class="inline-block">機能が増えれば、</span><br><br>
+                        
+                        <span class="inline-block">構造や部品も</span><br>
+                        <span class="inline-block">複雑になる場合があります。</span><br><br>
+                        
+                        <span class="inline-block mt-4">そのエアコンを、</span><br><br>
+                        
+                        <span class="inline-block font-black text-red-600">限られたスペースしかない</span><br>
+                        <span class="inline-block font-black text-red-600">空調室の中で、</span><br><br>
+                        
+                        <span class="inline-block">将来、</span><br><br>
+                        
+                        <span class="inline-block font-black text-slate-900">分解する。</span><br><br>
+                        
+                        <span class="inline-block font-black text-slate-900">修理する。</span><br><br>
+                        
+                        <span class="inline-block font-black text-slate-900">部品を交換する。</span><br><br>
+                        
+                        <span class="inline-block">そして、</span><br><br>
+                        
+                        <span class="inline-block font-black text-slate-900">本体そのものを</span><br>
+                        <span class="inline-block font-black text-slate-900">交換する。</span><br><br>
+                        
+                        <span class="inline-block mt-6">そこまで考えてみてください。</span><br><br>
+                        
+                        <span class="inline-block font-black text-slate-900 bg-slate-100 px-4 py-3 rounded-xl border border-slate-200 mt-2 shadow-sm">
+                            「その便利な機能は、<br><br>
+                            10年後にも<br>
+                            メリットでしょうか？」
+                        </span>
+                    </p>
+
+                    <!-- 関連記事リンク 4, 5 -->
+                    <div class="space-y-4 mt-10">
+                        <a href="/tips/robot/" class="block bg-slate-50 border border-slate-200 rounded-2xl p-4 hover:shadow-md transition-all group max-w-sm mx-auto">
+                            <p class="text-[11px] font-black text-slate-500 mb-1 tracking-widest group-hover:text-blue-600 transition-colors">▶ 関連記事</p>
+                            <p class="text-[14px] md:text-[15px] font-black text-slate-900 leading-relaxed">
+                                「お掃除機能付きエアコンを<br>おすすめしない理由」
+                            </p>
+                            <div class="mt-2">
+                                <span class="inline-flex items-center justify-center text-blue-600 text-[11px] font-black group-hover:underline underline-offset-2">
+                                    コチラから読む ↗️
+                                </span>
+                            </div>
+                        </a>
+                        
+                        <a href="/tips/2027/" class="block bg-slate-50 border border-slate-200 rounded-2xl p-4 hover:shadow-md transition-all group max-w-sm mx-auto">
+                            <p class="text-[11px] font-black text-slate-500 mb-1 tracking-widest group-hover:text-blue-600 transition-colors">▶ 関連記事</p>
+                            <p class="text-[14px] md:text-[15px] font-black text-slate-900 leading-relaxed">
+                                「2027年問題<br>省エネモデルって本当にお得？」
+                            </p>
+                            <div class="mt-2">
+                                <span class="inline-flex items-center justify-center text-blue-600 text-[11px] font-black group-hover:underline underline-offset-2">
+                                    コチラから読む ↗️
+                                </span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+
+                <!-- ＝＝＝ 見出しブロック ＝＝＝ -->
+                <div class="mb-16 mt-20">
+                    <div class="flex flex-col items-center justify-center mb-6 text-center">
+                        <span class="w-10 h-[3px] bg-neon mb-4 rounded-full"></span>
+                        <h2 class="text-xl md:text-2xl font-black text-slate-900 tracking-wider leading-relaxed">
+                            分解できることと<br>
+                            洗いやすいことも別
+                        </h2>
+                    </div>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-800 leading-loose text-center">
+                        <span class="inline-block">エアコンは、</span><br><br>
+                        
+                        <span class="inline-block">たくさん分解すれば</span><br>
+                        <span class="inline-block">偉いわけではありません。</span><br><br>
+                        
+                        <span class="inline-block font-black text-slate-900 underline decoration-neon decoration-4 underline-offset-4 mt-4 mb-2">大切なのは、</span><br><br>
+                        
+                        <span class="inline-block">汚れている場所へ</span><br>
+                        <span class="inline-block">きちんとアクセスできること。</span><br><br>
+                        
+                        <span class="inline-block">そして、</span><br><br>
+                        
+                        <span class="inline-block font-black text-slate-900">必要な部分を</span><br>
+                        <span class="inline-block font-black text-slate-900">きちんと洗えることです。</span><br><br>
+                        
+                        <span class="inline-block mt-6">一般的な壁掛けエアコンでも、</span><br><br>
+                        
+                        <span class="inline-block">機種によって、</span><br><br>
+                        
+                        <span class="inline-block">構造。</span><br><br>
+                        
+                        <span class="inline-block">分解方法。</span><br><br>
+                        
+                        <span class="inline-block">清掃性。</span><br><br>
+                        
+                        <span class="inline-block font-black text-slate-900">メンテナンス性は</span><br>
+                        <span class="inline-block font-black text-slate-900">大きく違います。</span><br><br>
+                        
+                        <span class="inline-block mt-4">それが、</span><br><br>
+                        
+                        <span class="inline-block font-black text-red-600">住宅そのものに組み込まれた</span><br>
+                        <span class="inline-block font-black text-red-600">全館空調になれば、</span><br><br>
+                        
+                        <span class="inline-block font-black text-red-600 text-lg">さらに条件は</span><br>
+                        <span class="inline-block font-black text-red-600 text-lg">複雑になります。</span>
+                    </p>
+
+                    <!-- 関連記事リンク 6 -->
+                    <a href="/tips/full/" class="block bg-slate-50 border border-slate-200 rounded-2xl p-5 mt-10 hover:shadow-md transition-all group max-w-sm mx-auto text-center">
+                        <p class="text-[11px] font-black text-slate-500 mb-2 tracking-widest group-hover:text-blue-600 transition-colors">▶ 関連記事</p>
+                        <p class="text-[15px] md:text-[17px] font-black text-slate-900 leading-relaxed">
+                            「完全分解って<br>本当に必要？」
+                        </p>
+                        <div class="mt-4">
+                            <span class="inline-flex items-center justify-center bg-slate-900 text-neon px-5 py-2 rounded-full text-xs font-black group-hover:bg-slate-800 transition-colors">
+                                コチラから読む ↗️
+                            </span>
+                        </div>
+                    </a>
+                </div>
+
+
+                <!-- ＝＝＝ 見出しブロック ＝＝＝ -->
+                <div class="mb-16 mt-20 relative text-center">
+                    <h2 class="text-xl md:text-2xl font-black text-slate-900 mb-8 pt-4 leading-relaxed">
+                        エアコンは<br>
+                        いつか交換します
+                    </h2>
+                    
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
+                        <span class="inline-block">家は、</span><br><br>
+                        
+                        <span class="inline-block">何十年と</span><br>
+                        <span class="inline-block">住み続けるものです。</span><br><br>
+                        
+                        <span class="inline-block mt-4">でも、</span><br><br>
+                        
+                        <span class="inline-block">その中にある空調設備まで、</span><br><br>
+                        
+                        <span class="inline-block font-black text-slate-900">永久に使えるわけでは</span><br>
+                        <span class="inline-block font-black text-slate-900">ありません。</span><br><br>
+                        
+                        <span class="inline-block mt-4">故障することもあります。</span><br><br>
+                        
+                        <span class="inline-block">部品がなくなり、</span><br><br>
+                        
+                        <span class="inline-block">修理できなくなることも</span><br>
+                        <span class="inline-block">あります。</span><br><br>
+                        
+                        <span class="inline-block mt-4">そしていつか、</span><br><br>
+                        
+                        <span class="inline-block font-black text-slate-900 text-lg underline decoration-neon decoration-4 underline-offset-4">本体を交換する日が</span><br>
+                        <span class="inline-block font-black text-slate-900 text-lg underline decoration-neon decoration-4 underline-offset-4">やってきます。</span><br><br>
+                        
+                        <span class="inline-block mt-6">ここでも、</span><br><br>
+                        
+                        <span class="inline-block">全館空調ならではの</span><br>
+                        <span class="inline-block">問題が出てきます。</span>
+                    </p>
+                </div>
+
+
+                <!-- ＝＝＝ 見出しブロック ＝＝＝ -->
+                <div class="mb-16 mt-20">
+                    <div class="flex flex-col items-center justify-center mb-6 text-center">
+                        <span class="w-10 h-[3px] bg-slate-800 mb-4 rounded-full"></span>
+                        <h2 class="text-xl md:text-2xl font-black text-slate-900 tracking-wider leading-relaxed">
+                            10年後、<br>
+                            誰が交換しますか？
+                        </h2>
+                    </div>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-800 leading-loose text-center">
+                        <span class="inline-block">一般的な壁掛けエアコンなら、</span><br><br>
+                        
+                        <span class="inline-block">家電量販店。</span><br><br>
+                        
+                        <span class="inline-block">街の電気屋さん。</span><br><br>
+                        
+                        <span class="inline-block">エアコン工事業者。</span><br><br>
+                        
+                        <span class="inline-block">空調設備業者など、</span><br><br>
+                        
+                        <span class="inline-block font-black text-slate-900">交換を相談できる</span><br>
+                        <span class="inline-block font-black text-slate-900">選択肢があります。</span><br><br>
+                        
+                        <span class="inline-block mt-6">でも、</span><br><br>
+                        
+                        <span class="inline-block">全館空調では</span><br>
+                        <span class="inline-block">同じようにいくとは限りません。</span><br><br>
+                        
+                        <span class="inline-block font-black text-red-600 bg-red-50 px-2 mt-4">狭い空調室。</span><br><br>
+                        
+                        <span class="inline-block font-black text-red-600 bg-red-50 px-2">天井裏。</span><br><br>
+                        
+                        <span class="inline-block font-black text-red-600 bg-red-50 px-2">壁の中。</span><br><br>
+                        
+                        <span class="inline-block font-black text-red-600 bg-red-50 px-2">隠蔽配管。</span><br><br>
+                        
+                        <span class="inline-block font-black text-red-600 bg-red-50 px-2">特殊な設置環境。</span><br><br>
+                        
+                        <span class="inline-block mt-4">脚立をまともに</span><br>
+                        <span class="inline-block">立てられないような、</span><br><br>
+                        
+                        <span class="inline-block">限られた作業スペース。</span><br><br>
+                        
+                        <span class="inline-block mt-6">一般的なルームエアコンの</span><br>
+                        <span class="inline-block">標準工事とは、</span><br><br>
+                        
+                        <span class="inline-block font-black text-slate-900">条件が大きく異なることも</span><br>
+                        <span class="inline-block font-black text-slate-900">あります。</span><br><br>
+                        
+                        <span class="inline-block mt-4">特に、</span><br><br>
+                        
+                        <span class="inline-block font-black text-slate-900">隠蔽配管を使用した</span><br>
+                        <span class="inline-block font-black text-slate-900">エアコン交換は、</span><br><br>
+                        
+                        <span class="inline-block">一般的な露出配管の</span><br>
+                        <span class="inline-block">交換工事とは違います。</span><br><br>
+                        
+                        <span class="inline-block mt-4">設置状況によっては、</span><br><br>
+                        
+                        <span class="inline-block font-black text-red-600">家電量販店や施工業者から</span><br><br>
+                        
+                        <span class="inline-block font-black text-red-600 underline decoration-red-200 decoration-4 underline-offset-4">対応が難しいと</span><br>
+                        <span class="inline-block font-black text-red-600 underline decoration-red-200 decoration-4 underline-offset-4">判断される場合もあります。</span><br><br>
+                        
+                        <span class="inline-block mt-6">では、</span><br><br>
+                        
+                        <span class="inline-block font-black text-slate-900 text-lg">「そのとき誰に頼みますか？」</span>
+                    </p>
+                </div>
+
+
+                <!-- ＝＝＝ 見出しブロック ＝＝＝ -->
+                <div class="mb-16 mt-20 relative text-center">
+                    <h2 class="text-xl md:text-2xl font-black text-slate-900 mb-8 pt-4 leading-relaxed">
+                        交換できる業者を<br>
+                        探すところから<br>
+                        始まるかもしれません
+                    </h2>
+                    
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
+                        <span class="inline-block">技術的には、</span><br><br>
+                        
+                        <span class="inline-block">交換できる設備だったとしても、</span><br><br>
+                        
+                        <span class="inline-block font-black text-slate-900">実際にその工事を</span><br>
+                        <span class="inline-block font-black text-slate-900">引き受けてくれる業者が、</span><br><br>
+                        
+                        <span class="inline-block font-black text-slate-900">簡単に見つかるとは</span><br>
+                        <span class="inline-block font-black text-slate-900">限りません。</span><br><br>
+                        
+                        <span class="inline-block mt-6">現地調査をしてもらう。</span><br><br>
+                        
+                        <span class="inline-block">設置状況を確認する。</span><br><br>
+                        
+                        <span class="inline-block">隠蔽配管が</span><br>
+                        <span class="inline-block">再利用できるのか確認する。</span><br><br>
+                        
+                        <span class="inline-block">新しい機種を</span><br>
+                        <span class="inline-block">搬入できるのか確認する。</span><br><br>
+                        
+                        <span class="inline-block">古い機種を</span><br>
+                        <span class="inline-block">搬出できるのか確認する。</span><br><br>
+                        
+                        <span class="inline-block">作業スペースが</span><br>
+                        <span class="inline-block">確保できるのか確認する。</span><br><br>
+                        
+                        <span class="inline-block mt-6">そして、</span><br><br>
+                        
+                        <span class="inline-block">ようやく、</span><br><br>
+                        
+                        <span class="inline-block font-black text-slate-900">施工できるかどうかを</span><br>
+                        <span class="inline-block font-black text-slate-900">判断してもらう。</span><br><br>
+                        
+                        <span class="inline-block mt-6">せっかく見つけた業者から、</span><br><br>
+                        
+                        <span class="inline-block font-black text-red-600 bg-red-50 border border-red-100 px-3 py-2 rounded-lg mt-2">
+                            「この工事は<br>
+                            対応できません。」
+                        </span><br><br>
+                        
+                        <span class="inline-block mt-4">と言われる可能性も</span><br>
+                        <span class="inline-block">考えておく必要があります。</span>
+                    </p>
+                </div>
+
+
+                <!-- ＝＝＝ 見出しブロック ＝＝＝ -->
+                <div class="mb-16 mt-20">
+                    <div class="flex flex-col items-center justify-center mb-6 text-center">
+                        <span class="w-10 h-[3px] bg-neon mb-4 rounded-full"></span>
+                        <h2 class="text-xl md:text-2xl font-black text-slate-900 tracking-wider leading-relaxed">
+                            見つからなかったら？
+                        </h2>
+                    </div>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-800 leading-loose text-center">
+                        <span class="inline-block">他に対応してくれる業者が</span><br>
+                        <span class="inline-block">見つからなければ、</span><br><br>
+                        
+                        <span class="inline-block">最終的には、</span><br><br>
+                        
+                        <span class="inline-block font-black text-slate-900">家を建てた</span><br>
+                        <span class="inline-block font-black text-slate-900">ハウスメーカー。</span><br><br>
+                        
+                        <span class="inline-block font-black text-slate-900">工務店。</span><br><br>
+                        
+                        <span class="inline-block font-black text-slate-900">指定された空調業者などへ、</span><br><br>
+                        
+                        <span class="inline-block mt-2">再び相談することに</span><br>
+                        <span class="inline-block">なるかもしれません。</span><br><br>
+                        
+                        <span class="inline-block mt-6">ここで問題になるのが、</span><br><br>
+                        
+                        <span class="inline-block font-black text-red-600 text-lg underline decoration-red-200 decoration-4 underline-offset-4">「選択肢の少なさ」です。</span><br><br>
+                        
+                        <span class="inline-block mt-6">一般的なエアコンなら、</span><br><br>
+                        
+                        <span class="inline-block">複数のお店から</span><br>
+                        <span class="inline-block">見積もりを取り、</span><br><br>
+                        
+                        <span class="inline-block">機種。</span><br><br>
+                        
+                        <span class="inline-block">工事内容。</span><br><br>
+                        
+                        <span class="inline-block">価格。</span><br><br>
+                        
+                        <span class="inline-block">それぞれを比較することも</span><br>
+                        <span class="inline-block">できます。</span><br><br>
+                        
+                        <span class="inline-block mt-6">でも、</span><br><br>
+                        
+                        <span class="inline-block font-black text-slate-900">特殊な設備で、</span><br><br>
+                        
+                        <span class="inline-block font-black text-slate-900">対応できる業者そのものが</span><br>
+                        <span class="inline-block font-black text-slate-900">限られてしまえば、</span><br><br>
+                        
+                        <span class="inline-block">比較したくても</span><br>
+                        <span class="inline-block">比較できないかもしれません。</span><br><br>
+                        
+                        <span class="inline-block mt-8">ONE★STARが心配なのは、</span><br><br>
+                        
+                        <span class="inline-block">単純に、</span><br><br>
+                        
+                        <span class="inline-block font-black text-slate-900">「交換費用が高い」</span><br><br>
+                        
+                        <span class="inline-block">ということだけではありません。</span><br><br>
+                        
+                        <span class="inline-block font-black text-slate-900 bg-neon px-3 py-1 mt-4 text-lg">
+                            「自分で選べる選択肢が<br>
+                            少なくなること。」
+                        </span><br><br>
+                        
+                        <span class="inline-block mt-4">ここも、</span><br><br>
+                        
+                        <span class="inline-block">導入する前に</span><br>
+                        <span class="inline-block">知っておいてほしいことです。</span>
+                    </p>
+                </div>
+
+
+                <!-- ＝＝＝ 見出しブロック ＝＝＝ -->
+                <div class="mb-16 mt-20 relative text-center">
+                    <h2 class="text-xl md:text-2xl font-black text-slate-900 mb-8 pt-4 leading-relaxed">
+                        初期費用と<br>
+                        電気代だけで考えない
+                    </h2>
+                    
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
+                        <span class="inline-block">全館空調を比較するとき、</span><br><br>
+                        
+                        <span class="inline-block">導入費用。</span><br><br>
+                        
+                        <span class="inline-block">電気代。</span><br><br>
+                        
+                        <span class="inline-block">省エネ性能。</span><br><br>
+                        
+                        <span class="inline-block">快適性。</span><br><br>
+                        
+                        <span class="inline-block mt-4">こうした部分は、</span><br><br>
+                        
+                        <span class="inline-block font-black text-slate-900">とても分かりやすい</span><br>
+                        <span class="inline-block font-black text-slate-900">比較材料です。</span><br><br>
+                        
+                        <span class="inline-block mt-4">でも、</span><br><br>
+                        
+                        <span class="inline-block font-black text-slate-900">住宅と空調設備を</span><br>
+                        <span class="inline-block font-black text-slate-900">10年、20年使うなら、</span><br><br>
+                        
+                        <span class="inline-block">それだけではありません。</span><br><br>
+                        
+                        <span class="inline-block mt-4">定期的なメンテナンス。</span><br><br>
+                        
+                        <span class="inline-block">クリーニング。</span><br><br>
+                        
+                        <span class="inline-block">修理。</span><br><br>
+                        
+                        <span class="inline-block">部品交換。</span><br><br>
+                        
+                        <span class="inline-block">本体交換。</span><br><br>
+                        
+                        <span class="inline-block mt-4">そして、</span><br><br>
+                        
+                        <span class="inline-block font-black text-slate-900">その作業に対応できる業者が</span><br>
+                        <span class="inline-block font-black text-slate-900">どれだけいるのか。</span><br><br>
+                        
+                        <span class="inline-block font-black text-slate-900 bg-slate-100 border border-slate-200 px-4 py-3 rounded-xl mt-6 shadow-sm">
+                            「導入したあとに必要になる<br>
+                            維持管理まで含めて考える。」
+                        </span><br><br>
+                        
+                        <span class="inline-block mt-4">これは、</span><br><br>
+                        
+                        <span class="inline-block">全館空調だけではなく、</span><br><br>
+                        
+                        <span class="inline-block">高機能なエアコンを選ぶときにも</span><br>
+                        <span class="inline-block">大切な考え方だと思います。</span>
+                    </p>
+
+                    <!-- 関連記事リンク 7 -->
+                    <a href="/tips/2027/" class="block bg-slate-50 border border-slate-200 rounded-2xl p-5 mt-10 hover:shadow-md transition-all group max-w-sm mx-auto text-center">
+                        <p class="text-[11px] font-black text-slate-500 mb-2 tracking-widest group-hover:text-blue-600 transition-colors">▶ 関連記事</p>
+                        <p class="text-[15px] md:text-[17px] font-black text-slate-900 leading-relaxed">
+                            「2027年問題<br>省エネモデルって本当にお得？」
+                        </p>
+                        <div class="mt-4">
+                            <span class="inline-flex items-center justify-center bg-slate-900 text-neon px-5 py-2 rounded-full text-xs font-black group-hover:bg-slate-800 transition-colors">
+                                コチラから読む ↗️
+                            </span>
+                        </div>
+                    </a>
+                </div>
+
+
+                <!-- ＝＝＝ 契約する前に聞いてください (カード風) ＝＝＝ -->
+                <div class="bg-blue-50/50 rounded-[24px] border border-blue-100 p-6 md:p-10 mt-20 mb-16 text-center shadow-sm">
+                    
+                    <h2 class="text-xl md:text-2xl font-black text-blue-900 mb-8 leading-relaxed">
+                        契約する前に<br>
+                        聞いてください
+                    </h2>
+                    
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
+                        <span class="inline-block">全館空調を</span><br>
+                        <span class="inline-block">検討しているなら、</span><br><br>
+                        
+                        <span class="inline-block">ハウスメーカーや</span><br>
+                        <span class="inline-block">工務店、</span><br><br>
+                        
+                        <span class="inline-block">空調メーカーの担当者へ、</span><br><br>
+                        
+                        <span class="inline-block font-black text-slate-900 text-lg underline decoration-blue-300 decoration-4 underline-offset-4">契約する前に</span><br>
+                        <span class="inline-block font-black text-slate-900 text-lg underline decoration-blue-300 decoration-4 underline-offset-4">聞いてみてください。</span>
+                    </p>
+
+                    <!-- 質問リスト -->
+                    <div class="bg-white border border-blue-200 rounded-2xl p-5 mt-8 mb-8 shadow-sm space-y-6 text-left max-w-md mx-auto">
+                        <p class="font-black text-[15px] text-slate-800">
+                            「ダクト内部が<br>汚れたらどうしますか？」
+                        </p>
+                        <p class="font-black text-[15px] text-slate-800 border-t border-slate-100 pt-5">
+                            「カビが発生した場合、<br>内部全体を<br>清掃できますか？」
+                        </p>
+                        <p class="font-black text-[15px] text-slate-800 border-t border-slate-100 pt-5">
+                            「どのような方法で<br>清掃しますか？」
+                        </p>
+                        <p class="font-black text-[15px] text-slate-800 border-t border-slate-100 pt-5">
+                            「清掃後は、<br>どうやって<br>乾燥させますか？」
+                        </p>
+                    </div>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose mt-10">
+                        <span class="inline-block font-black text-slate-900">そして、</span><br><br>
+                        
+                        <span class="inline-block font-black text-slate-900">将来についても</span><br>
+                        <span class="inline-block font-black text-slate-900">聞いてください。</span>
+                    </p>
+
+                    <!-- 質問リスト2 -->
+                    <div class="bg-white border border-blue-200 rounded-2xl p-5 mt-8 mb-8 shadow-sm space-y-6 text-left max-w-md mx-auto">
+                        <p class="font-black text-[15px] text-slate-800">
+                            「10年後に本体交換が<br>必要になったら？」
+                        </p>
+                        <p class="font-black text-[15px] text-slate-800 border-t border-slate-100 pt-5">
+                            「御社以外の業者でも<br>交換できますか？」
+                        </p>
+                        <p class="font-black text-[15px] text-slate-800 border-t border-slate-100 pt-5">
+                            「隠蔽配管は<br>再利用できますか？」
+                        </p>
+                        <p class="font-black text-[15px] text-slate-800 border-t border-slate-100 pt-5">
+                            「現在の機種が<br>廃番になった場合は？」
+                        </p>
+                        <p class="font-black text-[15px] text-slate-800 border-t border-slate-100 pt-5">
+                            「交換するための<br>作業スペースはありますか？」
+                        </p>
+                        <p class="font-black text-[15px] text-slate-800 border-t border-slate-100 pt-5">
+                            「古い本体を搬出して、<br>新しい本体を<br>搬入できますか？」
+                        </p>
+                        <p class="font-black text-[15px] text-slate-800 border-t border-slate-100 pt-5">
+                            「交換には、<br>どれくらいの費用が<br>想定されていますか？」
+                        </p>
+                    </div>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
+                        <span class="inline-block">今すぐ交換するわけでは</span><br>
+                        <span class="inline-block">ありません。</span><br><br>
+                        
+                        <span class="inline-block mt-4">でも、</span><br><br>
+                        
+                        <span class="inline-block font-black text-slate-900 text-lg underline decoration-blue-300 decoration-4 underline-offset-4">家を建てる前だからこそ</span><br>
+                        <span class="inline-block font-black text-slate-900 text-lg underline decoration-blue-300 decoration-4 underline-offset-4">聞けることです。</span>
+                    </p>
+                </div>
+
+
+                <!-- ＝＝＝ 見出しブロック ＝＝＝ -->
+                <div class="mb-16 mt-20 relative text-center">
+                    <h2 class="text-xl md:text-2xl font-black text-slate-900 mb-8 pt-4 leading-relaxed">
+                        全館空調で<br>
+                        後悔しないために
+                    </h2>
+                    
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
+                        <span class="inline-block">ONE★STARが伝えたいのは、</span><br><br>
+                        
+                        <span class="inline-block font-black text-slate-900 text-lg">「全館空調は</span><br>
+                        <span class="inline-block font-black text-slate-900 text-lg">やめた方がいい。」</span><br><br>
+                        
+                        <span class="inline-block">という話ではありません。</span><br><br>
+                        
+                        <span class="inline-block mt-6">快適性。</span><br><br>
+                        
+                        <span class="inline-block">デザイン性。</span><br><br>
+                        
+                        <span class="inline-block">家中の温度差。</span><br><br>
+                        
+                        <span class="inline-block">省スペース。</span><br><br>
+                        
+                        <span class="inline-block">初期費用。</span><br><br>
+                        
+                        <span class="inline-block">電気代。</span><br><br>
+                        
+                        <span class="inline-block">省エネ性能。</span><br><br>
+                        
+                        <span class="inline-block">清掃性。</span><br><br>
+                        
+                        <span class="inline-block">メンテナンス性。</span><br><br>
+                        
+                        <span class="inline-block">修理のしやすさ。</span><br><br>
+                        
+                        <span class="inline-block">交換のしやすさ。</span><br><br>
+                        
+                        <span class="inline-block">将来の維持費。</span><br><br>
+                        
+                        <span class="inline-block">そして、</span><br><br>
+                        
+                        <span class="inline-block font-black text-slate-900">業者を自由に</span><br>
+                        <span class="inline-block font-black text-slate-900">選べるかどうか。</span><br><br>
+                        
+                        <span class="inline-block mt-6">全部を100点にする設備は</span><br>
+                        <span class="inline-block">なかなかありません。</span><br><br>
+                        
+                        <span class="inline-block mt-4">だからこそ、</span><br><br>
+                        
+                        <span class="inline-block font-black text-slate-900 text-lg underline decoration-neon decoration-4 underline-offset-4">「何を優先したいのか？」</span><br><br>
+                        
+                        <span class="inline-block mt-4">それを考えてほしいんです。</span>
+                    </p>
+                </div>
+
+
+                <!-- ＝＝＝ 見出しブロック ＝＝＝ -->
+                <div class="mb-8 mt-20">
+                    <div class="flex flex-col items-center justify-center mb-6 text-center">
+                        <span class="w-10 h-[3px] bg-slate-800 mb-4 rounded-full"></span>
+                        <h2 class="text-xl md:text-2xl font-black text-slate-900 tracking-wider leading-relaxed">
+                            天秤に乗せて<br>
+                            考えてください
+                        </h2>
+                    </div>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-800 leading-loose text-center">
+                        <span class="inline-block">全館空調によって得られる、</span><br><br>
+                        
+                        <span class="inline-block font-black text-slate-900">毎日の快適な暮らし。</span><br><br>
+                        
+                        <span class="inline-block mt-4">それには、</span><br><br>
+                        
+                        <span class="inline-block font-black text-slate-900">大きな価値があります。</span><br><br>
+                        
+                        <span class="inline-block mt-6">一方で、</span><br><br>
+                        
+                        <span class="inline-block font-black text-red-600">10年後。</span><br><br>
+                        
+                        <span class="inline-block font-black text-red-600">20年後。</span><br><br>
+                        
+                        <span class="inline-block mt-4">汚れたとき。</span><br><br>
+                        
+                        <span class="inline-block">カビが発生したとき。</span><br><br>
+                        
+                        <span class="inline-block">故障したとき。</span><br><br>
+                        
+                        <span class="inline-block">修理するとき。</span><br><br>
+                        
+                        <span class="inline-block">そして、</span><br><br>
+                        
+                        <span class="inline-block">交換するとき。</span><br><br>
+                        
+                        <span class="inline-block mt-6">その未来まで、</span><br><br>
+                        
+                        <span class="inline-block font-black text-slate-900">同じ天秤に</span><br>
+                        <span class="inline-block font-black text-slate-900">乗せてみてください。</span><br><br>
+                        
+                        <span class="inline-block font-black text-slate-900 bg-neon px-3 py-1 mt-6">「快適性を</span><br>
+                        <span class="inline-block font-black text-slate-900 bg-neon px-3 py-1">優先するのか。」</span><br><br>
+                        
+                        <span class="inline-block font-black text-slate-900 bg-neon px-3 py-1 mt-4">「清掃性を</span><br>
+                        <span class="inline-block font-black text-slate-900 bg-neon px-3 py-1">優先するのか。」</span><br><br>
+                        
+                        <span class="inline-block font-black text-slate-900 bg-neon px-3 py-1 mt-4">「将来の維持管理の</span><br>
+                        <span class="inline-block font-black text-slate-900 bg-neon px-3 py-1">しやすさを優先するのか。」</span><br><br>
+                        
+                        <span class="inline-block mt-8">正解は、</span><br><br>
+                        
+                        <span class="inline-block">人によって違います。</span><br><br>
+                        
+                        <span class="inline-block mt-4">だからこそ、</span><br><br>
+                        
+                        <span class="inline-block font-black text-slate-900 underline decoration-slate-300 decoration-4 underline-offset-4">メリットだけで決めず、</span><br><br>
+                        
+                        <span class="inline-block font-black text-slate-900 underline decoration-slate-300 decoration-4 underline-offset-4">デメリットまで知った上で</span><br>
+                        <span class="inline-block font-black text-slate-900 underline decoration-slate-300 decoration-4 underline-offset-4">選んでほしいと思います。</span>
+                    </p>
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- 🌟 ONE★STARからのお知らせ (ダークカード) 🌟 -->
+        <div class="bg-slate-900 rounded-[24px] border-l-[12px] border-neon p-8 md:p-10 text-center shadow-md mb-10 mt-16 relative overflow-hidden">
+            
+            <div class="absolute top-0 right-0 w-32 h-32 bg-neon/10 rounded-full blur-3xl"></div>
+
+            <div class="inline-block bg-neon text-slate-900 font-black text-[11px] md:text-xs px-4 py-1.5 rounded-full mb-8 shadow-sm tracking-widest">
+                最後にお伝えしたいこと
+            </div>
+
+            <h2 class="text-white font-black text-xl md:text-2xl leading-relaxed mb-10 tracking-wider">
+                ONE★STARでは<br>
+                全館空調のクリーニングを<br>
+                <span class="text-neon">承っておりません</span>
+            </h2>
+
+            <p class="text-slate-100 font-bold text-[15px] md:text-base leading-loose mb-10">
+                <span class="inline-block">この記事は、</span><br><br>
+                
+                <span class="inline-block">全館空調クリーニングの</span><br>
+                <span class="inline-block">ご依頼をいただくために</span><br><br>
+                
+                <span class="inline-block">書いたものではありません。</span><br><br>
+                
+                <span class="inline-block mt-4">日々、</span><br><br>
+                
+                <span class="inline-block">エアコンを分解して、</span><br><br>
+                
+                <span class="inline-block">内部のホコリや</span><br>
+                <span class="inline-block">カビと向き合っている</span><br><br>
+                
+                <span class="inline-block">職人だからこそ、</span><br><br>
+                
+                <span class="inline-block mt-4">家を建てる前に、</span><br><br>
+                
+                <span class="inline-block font-black text-white text-lg underline decoration-neon decoration-4 underline-offset-4">「清掃する未来」</span><br><br>
+                
+                <span class="inline-block mt-2">まで考えてほしい。</span><br><br>
+                
+                <span class="inline-block mt-6">そして、</span><br><br>
+                
+                <span class="inline-block">空調設備を長く使うなら、</span><br><br>
+                
+                <span class="inline-block font-black text-white text-lg underline decoration-neon decoration-4 underline-offset-4">「交換する未来」</span><br><br>
+                
+                <span class="inline-block mt-2">まで考えてほしい。</span><br><br>
+                
+                <span class="inline-block mt-6">そのことを</span><br>
+                <span class="inline-block">お伝えしたくて書いています。</span>
+            </p>
+
+            <!-- 区切り線 -->
+            <div class="w-16 h-[1px] bg-slate-700 mx-auto mb-10"></div>
+
+            <p class="text-slate-100 font-bold text-[15px] md:text-base leading-loose">
+                <span class="inline-block">全館空調には、</span><br>
+                <span class="inline-block">全館空調の良さがあります。</span><br><br>
+                
+                <span class="inline-block">一般的な壁掛けエアコンには、</span><br>
+                <span class="inline-block">壁掛けエアコンの</span><br>
+                <span class="inline-block">良さがあります。</span><br><br>
+                
+                <span class="inline-block mt-4">どちらが正解かを、</span><br><br>
+                
+                <span class="inline-block">ONE★STARが</span><br>
+                <span class="inline-block">決めることではありません。</span><br><br>
+                
+                <span class="inline-block font-black text-neon text-lg mt-6 mb-2">「何を優先したいのか？」</span><br><br>
+                
+                <span class="inline-block mt-4">今日の快適性だけではなく、</span><br><br>
+                
+                <span class="inline-block font-black text-white">10年後。</span><br><br>
+                
+                <span class="inline-block font-black text-white">20年後。</span><br><br>
+                
+                <span class="inline-block mt-4">その家で暮らす未来まで</span><br>
+                <span class="inline-block">天秤に乗せて、</span><br><br>
+                
+                <span class="inline-block font-black text-neon underline decoration-slate-600 decoration-2 underline-offset-4">自分に合った空調設備を</span><br>
+                <span class="inline-block font-black text-neon underline decoration-slate-600 decoration-2 underline-offset-4">選んでください。</span>
+            </p>
+        </div>
+
+
+        <!-- ご相談誘導ブロック -->
+        <div class="bg-white rounded-2xl border border-slate-200 p-8 text-center shadow-sm mb-12">
+            <h2 class="text-xl md:text-2xl font-black text-slate-900 mb-8 leading-relaxed">
+                壁掛けエアコンの<br>
+                ご相談はこちらから
+            </h2>
+            
+            <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose mb-10">
+                <span class="inline-block">全館空調のクリーニングは</span><br>
+                <span class="inline-block">承っておりませんが、</span><br><br>
+                
+                <span class="inline-block font-black text-slate-900">一般的な壁掛けエアコンや</span><br>
+                <span class="inline-block font-black text-slate-900">お掃除機能付きエアコンの</span><br>
+                <span class="inline-block font-black text-slate-900">分解クリーニングは、</span><br><br>
+                
+                <span class="inline-block">ONE★STARが</span><br>
+                <span class="inline-block">責任を持って対応いたします。</span><br><br>
+                
+                <span class="inline-block">汚れが気になる方、</span><br>
+                <span class="inline-block">長く大切に使いたい方は、</span><br><br>
+                
+                <span class="inline-block">ぜひお気軽にご相談ください。</span>
+            </p>
+            
+            <a href="tel:08000807788" class="js-phone-modal-trigger inline-flex items-center justify-center bg-slate-900 hover:bg-slate-800 text-neon px-8 py-4 rounded-full text-base font-black shadow-md transition-all active:scale-95">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                <span>電話で相談する</span>
+            </a>
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-900 text-white pt-12 pb-24 md:pb-12 border-t-[6px] border-neon text-center mt-12">
+        <div class="mb-6 flex flex-col items-center justify-center">
+            <span class="text-4xl md:text-5xl tracking-widest text-white flex items-center justify-center font-impact mt-1">
+                ONE
+                <img src="ONESTAR.PNG" alt="ロゴ" class="w-[80px] h-[80px] md:w-[100px] md:h-[100px] mx-[-10px] md:mx-[-16px] object-contain -translate-y-2" onerror="this.style.display='none'">
+                STAR
+            </span>
+            <p class="text-xs text-neon font-black mt-2 tracking-widest">株式会社ECS専属プロスタッフ</p>
+        </div>
+        
+        <p class="text-[11px] text-slate-400 font-bold mb-3">
+            <a href="/products" class="hover:text-white transition-colors underline underline-offset-4">オリジナルLINEスタンプ販売中</a>
+        </p>
+        <p class="text-[10px] text-slate-500 font-bold mb-4">
+            <a href="/privacy" class="hover:text-white transition-colors">プライバシーポリシー</a>
+        </p>
+        <p class="text-[10px] text-slate-500 font-bold tracking-wider">© 2026 ONE★STAR. All Rights Reserved.</p>
+    </footer>
+
+    <!-- MOBILE BOTTOM NAVIGATION -->
+    <div class="fixed bottom-0 left-0 right-0 z-45 bg-slate-900 md:hidden h-[60px] flex items-stretch text-white shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.3)] border-t border-slate-800">
+        
+        <a href="/price" class="flex flex-col items-center justify-center w-[20%] border-r border-slate-700 active:bg-slate-800">
+            <svg class="w-5 h-5 mb-1 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <span class="text-[9px] font-black">料金</span>
+        </a>
+        
+        <a href="/mind" class="flex flex-col items-center justify-center w-[20%] border-r border-slate-700 active:bg-slate-800">
+            <svg class="w-5 h-5 mb-1 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+            <span class="text-[9px] font-black">想い</span>
+        </a>
+
+        <a href="/pride" class="flex flex-col items-center justify-center w-[20%] active:bg-slate-800">
+            <svg class="w-5 h-5 mb-1 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+            <span class="text-[9px] font-black">拘り</span>
+        </a>
+        
+        <a href="tel:08000807788" class="js-phone-modal-trigger flex items-center justify-center bg-neon text-slate-900 w-[40%] font-black text-base active:bg-yellow-400 transition-colors">
+            <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+            電話する
+        </a>
+        
+    </div>
+
+    <!-- 🌟 ご予約・お問い合わせ前のワンクッションモーダル 🌟 -->
+    <div id="phone-modal" class="fixed inset-0 z-[100] hidden flex items-center justify-center px-4">
+        <div id="phone-modal-backdrop" class="absolute inset-0 bg-slate-900/80 backdrop-blur-sm opacity-0 transition-opacity duration-300"></div>
+        
+        <div id="phone-modal-content" class="relative bg-white rounded-3xl shadow-2xl w-full max-w-sm overflow-hidden transform scale-95 opacity-0 transition-all duration-300 border border-slate-100">
+            
+            <button id="phone-modal-close" class="absolute top-4 right-4 p-2 text-slate-400 hover:text-slate-700 bg-slate-100 hover:bg-slate-200 rounded-full transition-colors z-10">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+            
+            <div class="p-6 md:p-8 text-center pt-10">
+                
+                <h3 class="text-xl font-black text-slate-900 mb-6 border-b-4 border-[#EFFF00] inline-block pb-1">
+                    ご予約・お問い合わせの前に
+                </h3>
+                
+                <div class="text-[13px] text-slate-700 font-bold leading-relaxed mb-8 space-y-4 text-left bg-slate-50 p-5 rounded-2xl border border-slate-100 shadow-inner">
+                    <p>
+                        <span class="text-slate-900 font-black text-sm">ONE★STAR</span>は<br>
+                        株式会社ECS（エッジクリーンサービス）の専属プロスタッフとして活動しています。
+                    </p>
+                    <p class="pt-2 border-t border-slate-200">
+                        お電話は<br>
+                        <span class="text-slate-900 font-black">株式会社ECSの予約受付</span>につながります。
+                    </p>
+                    
+                    <div class="bg-rose-50 border border-rose-200 p-3 rounded-xl text-center shadow-sm">
+                        <p class="text-rose-600 font-black text-[13px] leading-tight">
+                            ご予約の際は<br>
+                            <span class="text-base">「ONE★STAR（川崎）を指名」</span>と<br>
+                            お伝えください。
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="space-y-3">
+                    <a href="tel:08000807788" class="flex items-center justify-center w-full py-4 bg-slate-900 text-[#EFFF00] font-black rounded-2xl shadow-md active:scale-95 transition-transform text-sm sm:text-base border border-slate-800">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                        株式会社ECSへ電話する
+                    </a>
+                    
+                    <a href="https://www.instagram.com/one.star.kawasaki?igsh=anZpYnpxcDdqOXRh&utm_source=qr" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center w-full py-4 bg-gradient-to-r from-pink-500 to-rose-500 text-white font-black rounded-2xl shadow-md active:scale-95 transition-transform text-sm sm:text-base">
+                        <svg class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                        </svg>
+                        Instagramで本人に相談する
+                    </a>
+                </div>
+                
+                <p class="text-[10px] text-slate-500 mt-4 font-bold leading-relaxed">
+                    直接のご質問・お問い合わせは<br>本人直通のInstagram DMからお気軽にどうぞ。
+                </p>
+                
+                <button id="phone-modal-cancel" class="mt-6 text-[11px] text-slate-400 font-bold underline underline-offset-4 hover:text-slate-600 transition-colors">
+                    キャンセルして戻る
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // === メニュー開閉用 ===
+            const drawerContainer = document.getElementById('drawer-container');
+            const drawerMenu = document.getElementById('drawer-menu');
+            const drawerBackdrop = document.getElementById('drawer-backdrop');
+            
+            const toggleMenu = (show) => {
+                if (show) {
+                    drawerContainer.classList.remove('hidden');
+                    setTimeout(() => {
+                        drawerBackdrop.classList.remove('opacity-0');
+                        drawerBackdrop.classList.add('opacity-100');
+                        drawerMenu.classList.remove('drawer-closed');
+                        drawerMenu.classList.add('drawer-open');
+                    }, 10);
+                } else {
+                    drawerBackdrop.classList.remove('opacity-100');
+                    drawerBackdrop.classList.add('opacity-0');
+                    drawerMenu.classList.remove('drawer-open');
+                    drawerMenu.classList.add('drawer-closed');
+                    setTimeout(() => drawerContainer.classList.add('hidden'), 300);
+                }
+            };
+
+            document.getElementById('menu-open-btn').addEventListener('click', () => toggleMenu(true));
+            document.getElementById('menu-close-btn').addEventListener('click', () => toggleMenu(false));
+            document.getElementById('drawer-backdrop').addEventListener('click', () => toggleMenu(false));
+            document.querySelectorAll('.menu-link').forEach(link => link.addEventListener('click', () => toggleMenu(false)));
+
+            // === 電話モーダル ===
+            const phoneModal = document.getElementById('phone-modal');
+            const phoneModalBackdrop = document.getElementById('phone-modal-backdrop');
+            const phoneModalContent = document.getElementById('phone-modal-content');
+            const phoneModalCloseBtn = document.getElementById('phone-modal-close');
+            const phoneModalCancelBtn = document.getElementById('phone-modal-cancel');
+            const phoneTriggerBtns = document.querySelectorAll('.js-phone-modal-trigger');
+
+            if (phoneModal && phoneTriggerBtns.length > 0) {
+                const openPhoneModal = (e) => {
+                    e.preventDefault(); 
+                    if (typeof toggleMenu === 'function') toggleMenu(false);
+
+                    phoneModal.classList.remove('hidden');
+                    requestAnimationFrame(() => {
+                        phoneModalBackdrop.classList.remove('opacity-0');
+                        phoneModalBackdrop.classList.add('opacity-100');
+                        phoneModalContent.classList.remove('opacity-0', 'scale-95');
+                        phoneModalContent.classList.add('opacity-100', 'scale-100');
+                    });
+                };
+
+                const closePhoneModal = () => {
+                    phoneModalBackdrop.classList.remove('opacity-100');
+                    phoneModalBackdrop.classList.add('opacity-0');
+                    phoneModalContent.classList.remove('opacity-100', 'scale-100');
+                    phoneModalContent.classList.add('opacity-0', 'scale-95');
+                    setTimeout(() => phoneModal.classList.add('hidden'), 300);
+                };
+
+                phoneTriggerBtns.forEach(btn => btn.addEventListener('click', openPhoneModal));
+                phoneModalCloseBtn.addEventListener('click', closePhoneModal);
+                phoneModalCancelBtn.addEventListener('click', closePhoneModal);
+                phoneModalBackdrop.addEventListener('click', closePhoneModal);
+            }
+        });
+    </script>
+</body>
+</html>
