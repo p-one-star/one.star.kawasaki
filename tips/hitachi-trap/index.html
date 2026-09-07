@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="ja" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ブレーカーを戻したのにエアコンが動かない？ | ONE★STAR</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        neon: '#EFFF00' // トレードカラー：蛍光イエロー
+                    },
+                    fontFamily: {
+                        sans: ['"Noto Sans JP"', 'sans-serif'],
+                        impact: ['"Black Ops One"', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        /* ドロワーメニュー用 */
+        #drawer-menu { transition: transform 0.3s ease-in-out; }
+        .drawer-closed { transform: translateX(-100%); }
+        .drawer-open { transform: translateX(0); }
+    </style>
+</head>
+<body class="font-sans text-slate-800 bg-slate-50 antialiased overflow-x-hidden pb-[60px]">
+
+    <!-- HEADER -->
+    <header class="fixed top-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md shadow-sm border-b border-slate-100 h-14 flex items-center justify-between px-4">
+        <button id="menu-open-btn" class="p-2 hover:bg-slate-100 rounded-lg" aria-label="メニュー">
+            <svg class="w-6 h-6 text-slate-800" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+
+        <div class="absolute left-1/2 -translate-x-1/2 flex items-center justify-center mt-1">
+            <a href="/" class="text-2xl md:text-3xl tracking-widest text-slate-900 leading-none flex items-center font-impact">
+                ONE
+                <img src="ONESTAR.PNG" alt="ロゴ" class="w-[45px] h-[45px] md:w-[55px] md:h-[55px] mx-[-4px] md:mx-[-6px] object-contain -translate-y-[4px]" onerror="this.style.display='none'">
+                STAR
+            </a>
+        </div>
+
+        <div class="hidden md:flex items-center space-x-3">
+            <a href="tel:08000807788" class="js-phone-modal-trigger bg-slate-900 hover:bg-slate-800 text-neon px-4 py-1.5 rounded-full text-xs font-black border border-slate-700 flex items-center space-x-1 transition-all">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                <span>電話相談</span>
+            </a>
+        </div>
+        <div class="w-10 md:hidden"></div>
+    </header>
+
+    <!-- DRAWER MENU -->
+    <div id="drawer-container" class="fixed inset-0 z-50 overflow-hidden hidden">
+        <div id="drawer-backdrop" class="absolute inset-0 bg-slate-900/60 opacity-0 transition-opacity duration-300"></div>
+        <div class="pointer-events-none fixed inset-y-0 left-0 flex max-w-full">
+            <div id="drawer-menu" class="pointer-events-auto w-64 drawer-closed bg-white shadow-2xl flex flex-col h-full">
+                
+                <div class="p-3 bg-white flex justify-end">
+                    <button id="menu-close-btn" class="p-2 hover:bg-slate-100 rounded-lg">
+                        <svg class="w-6 h-6 text-slate-500" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+                    </button>
+                </div>
+
+                <div class="bg-blue-600 py-3 px-6">
+                    <h2 class="text-white font-black tracking-wider text-sm">MENU</h2>
+                </div>
+
+                <nav class="flex-1 px-4 py-2 overflow-y-auto">
+                    <div class="space-y-1">
+                        <a href="/" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>トップページ
+                        </a>
+                        <a href="/price" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>料金プラン
+                        </a>
+                        <a href="/works" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>施工事例
+                        </a>
+                        <a href="/mind" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>ONE★STARの想い
+                        </a>
+                        <a href="/pride" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>プロとしての拘り
+                        </a>
+                        <a href="/trash" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>ここだけの話
+                        </a>
+                        <a href="/before" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>ご予約の前に
+                        </a>
+                        <a href="/faq" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>よくある質問
+                        </a>
+                        <a href="/tips" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-blue-600">
+                            <span class="mr-2 text-blue-600">＞</span>お役立ち情報
+                        </a>
+                        <a href="/products" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-[#06C755]">
+                            <span class="mr-2 text-slate-400">＞</span>オリジナルLINEスタンプ
+                        </a>
+                    </div>
+                    
+                    <hr class="border-slate-300 border-dashed my-4">
+                    <a href="https://www.edge-cleanservice.com" target="_blank" rel="noopener noreferrer" class="menu-link flex items-center py-2 text-sm font-black text-slate-900 hover:text-blue-600 transition-colors">
+                        株式会社ECS公式サイト
+                        <svg class="w-3.5 h-3.5 ml-1.5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                    </a>
+                </nav>
+
+                <div class="p-4 bg-slate-50 border-t border-slate-100 text-center mt-auto">
+                    <p class="text-[9px] text-slate-500 font-bold leading-relaxed mb-2">
+                        株式会社ECS EDGE CLEAN SERVICE<br>専属プロスタッフとして<br>愛知県全域で毎日奮闘中❣️
+                    </p>
+                    <a href="tel:08000807788" class="js-phone-modal-trigger block w-full py-3 bg-emerald-500 text-white font-bold rounded-lg text-sm shadow">直接電話する</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN (お役立ち情報：ブレーカーと日立エアコン) -->
+    <main class="pt-24 pb-12 px-4 max-w-3xl mx-auto">
+
+        <!-- 白いメインカード -->
+        <div class="bg-white rounded-[24px] border-2 border-slate-900 overflow-hidden shadow-sm mb-10">
+            <!-- 上部の黄色いライン -->
+            <div class="h-3 w-full bg-neon"></div>
+
+            <div class="p-6 md:p-8">
+                
+                <!-- バッジ -->
+                <div class="flex justify-center mb-8 text-center">
+                    <span class="inline-block bg-slate-900 text-neon text-xs md:text-sm font-black px-5 py-2 rounded shadow-sm tracking-wider">
+                        プロが教えるエアコンの真実
+                    </span>
+                </div>
+
+                <!-- タイトル -->
+                <h1 class="text-[26px] md:text-[32px] font-black text-slate-900 mb-12 leading-relaxed tracking-wide text-center">
+                    ブレーカーを戻したのに<br>
+                    エアコンが動かない？
+                </h1>
+
+                <!-- リード文 -->
+                <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose text-center mb-10">
+                    <span class="inline-block">エアコンを</span><br>
+                    <span class="inline-block">クリーニングするときは、</span><br><br>
+                    
+                    <span class="inline-block">安全のために</span><br>
+                    <span class="inline-block">ブレーカーを落として</span><br>
+                    <span class="inline-block">作業を行います。</span><br><br>
+                    
+                    <span class="inline-block">分解して、</span><br><br>
+                    
+                    <span class="inline-block">洗浄して、</span><br><br>
+                    
+                    <span class="inline-block">キレイに組み付ける。</span><br><br>
+                    
+                    <span class="inline-block">そして最後に</span><br>
+                    <span class="inline-block">ブレーカーを戻して、</span><br><br>
+                    
+                    <span class="inline-block">試運転。</span><br><br>
+                    
+                    <span class="inline-block">普通なら、</span><br><br>
+                    
+                    <span class="inline-block">ここでエアコンが</span><br>
+                    <span class="inline-block">動き始めます。</span><br><br>
+                    
+                    <span class="inline-block">ところが、</span><br><br>
+                    
+                    <span class="inline-block">日立の業務用エアコンには、</span><br><br>
+
+                    <span class="text-red-600 font-black text-[17px] underline decoration-red-600 decoration-2 underline-offset-4 inline-block mb-1">ブレーカーを戻しても</span><br>
+                    <span class="text-red-600 font-black text-[17px] underline decoration-red-600 decoration-2 underline-offset-4 inline-block mb-1">すぐに運転できない機種が</span><br>
+                    <span class="text-red-600 font-black text-[17px] underline decoration-red-600 decoration-2 underline-offset-4 inline-block">あります。</span><br><br>
+
+                    <span class="inline-block">故障した？</span><br><br>
+                    
+                    <span class="inline-block">洗浄で壊した？</span><br><br>
+                    
+                    <span class="inline-block">そう思ってしまいそうですが、</span><br><br>
+                    
+                    <span class="inline-block">故障とは限りません。</span>
+                </p>
+
+                <!-- ＝＝＝ 日立には予熱制御があります ＝＝＝ -->
+                <div class="mb-16 mt-16">
+                    <div class="flex flex-col items-center justify-center mb-6 text-center">
+                        <span class="w-10 h-[3px] bg-neon mb-4 rounded-full"></span>
+                        <h2 class="text-xl md:text-2xl font-black text-slate-900 tracking-wider leading-relaxed">
+                            <span class="inline-block">日立には</span><br>
+                            <span class="inline-block">予熱制御があります</span>
+                        </h2>
+                    </div>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-800 leading-loose text-center">
+                        <span class="inline-block">日立の業務用エアコンには、</span><br><br>
+                        
+                        <span class="inline-block">機種によって、</span><br><br>
+                        
+                        <span class="bg-slate-100 px-4 py-2.5 rounded-lg font-black text-slate-900 border border-slate-200 inline-block mb-2 mt-2">
+                            「圧縮機予熱制御」
+                        </span><br><br>
+                        
+                        <span class="inline-block">と呼ばれる</span><br>
+                        <span class="inline-block">保護制御があります。</span><br><br>
+                        
+                        <span class="inline-block">また日立の資料では、</span><br><br>
+                        
+                        <span class="bg-slate-100 px-4 py-2.5 rounded-lg font-black text-slate-900 border border-slate-200 inline-block mb-2 mt-2">
+                            「圧縮機ホットスタート制御」
+                        </span><br><br>
+                        
+                        <span class="inline-block">という名称も</span><br>
+                        <span class="inline-block">確認できます。</span><br><br>
+                        
+                        <span class="inline-block">これは、</span><br><br>
+                        
+                        <span class="inline-block">電源を入れたあと、</span><br><br>
+                        
+                        <span class="inline-block">すぐに圧縮機を</span><br>
+                        <span class="inline-block">運転させるのではなく、</span><br><br>
+                        
+                        <span class="text-[15.5px] font-black text-slate-900 bg-neon px-2 inline-block mb-1">一定時間通電してから</span><br>
+                        <span class="text-[15.5px] font-black text-slate-900 bg-neon px-2 inline-block">運転させるための制御です。</span><br><br>
+                        
+                        <span class="inline-block">すべての日立製</span><br>
+                        <span class="inline-block">業務用エアコンが</span><br><br>
+                        
+                        <span class="inline-block">同じ制御ではありません。</span><br><br>
+                        
+                        <span class="inline-block">機種や条件によって</span><br>
+                        <span class="inline-block">動作は異なります。</span>
+                    </p>
+                </div>
+
+                <!-- ＝＝＝ なぜすぐに動かさないの？ ＝＝＝ -->
+                <div class="mb-16 mt-16 text-center">
+                    <div class="flex flex-col items-center justify-center mb-6 text-center">
+                        <span class="w-10 h-[3px] bg-slate-800 mb-4 rounded-full"></span>
+                        <h2 class="text-xl md:text-2xl font-black text-slate-900 leading-relaxed">
+                            <span class="inline-block">なぜすぐに</span><br>
+                            <span class="inline-block">動かさないの？</span>
+                        </h2>
+                    </div>
+                    
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
+                        <span class="inline-block">理由は、</span><br><br>
+                        
+                        <span class="text-[16px] font-black text-slate-900 underline decoration-neon decoration-4 underline-offset-4 inline-block mb-2">圧縮機を守るため。</span><br><br>
+                        
+                        <span class="inline-block">業務用エアコンの</span><br>
+                        <span class="inline-block">室外機には、</span><br><br>
+                        
+                        <span class="inline-block">冷媒を圧縮する</span><br>
+                        <span class="inline-block">圧縮機があります。</span><br><br>
+                        
+                        <span class="inline-block">長時間、</span><br><br>
+                        
+                        <span class="inline-block">元電源が切られていると、</span><br><br>
+                        
+                        <span class="inline-block">圧縮機内部に</span><br>
+                        <span class="inline-block">冷媒が溜まり込むことが</span><br>
+                        <span class="inline-block">あります。</span><br><br>
+                        
+                        <span class="inline-block">そのような状態から、</span><br><br>
+                        
+                        <span class="inline-block">いきなり圧縮機を</span><br>
+                        <span class="inline-block">運転させるのではなく、</span><br><br>
+                        
+                        <span class="text-base font-black text-slate-900 bg-neon px-2 inline-block mb-1">クランクケースヒーターで</span><br>
+                        <span class="text-base font-black text-slate-900 bg-neon px-2 inline-block">圧縮機を温める。</span><br><br>
+                        
+                        <span class="inline-block">そのための</span><br>
+                        <span class="inline-block">予熱制御です。</span><br><br>
+                        
+                        <span class="inline-block">つまり、</span><br><br>
+                        
+                        <span class="inline-block">エアコンが</span><br>
+                        <span class="inline-block">言うことを聞かないのでは</span><br>
+                        <span class="inline-block">ありません。</span><br><br>
+                        
+                        <span class="font-black text-slate-900 inline-block mb-1">エアコン自身を守るために</span><br>
+                        <span class="font-black text-slate-900 inline-block">動かさない。</span><br><br>
+                        
+                        <span class="inline-block">ということです。</span>
+                    </p>
+                </div>
+
+                <!-- ＝＝＝ 最大4時間動かない場合も (グレー枠) ＝＝＝ -->
+                <div class="bg-slate-50 border border-slate-200 rounded-[16px] px-4 md:px-6 py-8 mt-12 mb-16 text-center shadow-sm">
+                    
+                    <h3 class="text-lg md:text-xl font-black text-slate-900 mb-8 border-b-2 border-slate-200 pb-3 inline-block leading-relaxed">
+                        <span class="inline-block">最大4時間</span><br>
+                        <span class="inline-block">動かない場合も</span>
+                    </h3>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
+                        <span class="inline-block">ここが、</span><br><br>
+                        
+                        <span class="inline-block">エアコンクリーニングでは</span><br>
+                        <span class="inline-block">困るところです。</span><br><br>
+                        
+                        <span class="inline-block">日立の公式資料には、</span><br><br>
+                        
+                        <span class="inline-block">クランクケースヒーターへの</span><br>
+                        <span class="inline-block">事前通電がない場合、</span><br><br>
+                        
+                        <span class="inline-block">機種によっては、</span><br><br>
+                        
+                        <span class="text-red-600 font-black text-[17px] underline decoration-red-200 decoration-4 underline-offset-4 inline-block mb-1">最大4時間、</span><br>
+                        <span class="text-red-600 font-black text-[17px] underline decoration-red-200 decoration-4 underline-offset-4 inline-block mb-1">圧縮機を運転できない</span><br>
+                        <span class="text-red-600 font-black text-[17px] underline decoration-red-200 decoration-4 underline-offset-4 inline-block">場合がある</span><br><br>
+                        
+                        <span class="inline-block">とされています。</span><br><br>
+                        
+                        <span class="inline-block">また、</span><br><br>
+                        
+                        <span class="inline-block">運転する</span><br>
+                        <span class="inline-block">12時間以上前から</span><br><br>
+                        
+                        <span class="inline-block">電源を入れておくよう</span><br>
+                        <span class="inline-block">案内されている資料もあります。</span><br><br>
+                        
+                        <span class="inline-block">ここで注意したいのは、</span><br><br>
+                        
+                        <span class="font-black text-slate-900 inline-block">12時間動かない</span><br><br>
+                        
+                        <span class="inline-block">という意味では</span><br>
+                        <span class="inline-block">ありません。</span><br><br>
+                        
+                        <span class="inline-block">また、</span><br><br>
+                        
+                        <span class="inline-block">ブレーカーを落とせば</span><br>
+                        <span class="inline-block">必ず4時間動かない、</span><br><br>
+                        
+                        <span class="inline-block">という意味でも</span><br>
+                        <span class="inline-block">ありません。</span><br><br>
+                        
+                        <span class="inline-block">機種や条件によって、</span><br><br>
+                        
+                        <span class="inline-block">すぐ運転できることも</span><br>
+                        <span class="inline-block">あります。</span><br><br>
+                        
+                        <span class="inline-block">反対に、</span><br><br>
+                        
+                        <span class="inline-block">ブレーカーを戻しても、</span><br><br>
+                        
+                        <span class="inline-block">しばらく運転できない</span><br>
+                        <span class="inline-block">場合もあります。</span>
+                    </p>
+                </div>
+
+                <!-- ＝＝＝ 私自身、何度も経験しています ＝＝＝ -->
+                <div class="mb-16 mt-16 text-center">
+                    <div class="flex flex-col items-center justify-center mb-6 text-center">
+                        <span class="w-10 h-[3px] bg-slate-800 mb-4 rounded-full"></span>
+                        <h2 class="text-xl md:text-2xl font-black text-slate-900 leading-relaxed">
+                            <span class="inline-block">私自身、何度も</span><br>
+                            <span class="inline-block">経験しています</span>
+                        </h2>
+                    </div>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose text-center">
+                        <span class="inline-block">ここからは、</span><br><br>
+                        
+                        <span class="inline-block">メーカー資料ではなく、</span><br><br>
+                        
+                        <span class="inline-block">私自身が</span><br>
+                        <span class="inline-block">エアコンクリーニングの</span><br>
+                        <span class="inline-block">現場で経験してきた話です。</span><br><br>
+                        
+                        <span class="inline-block">日立の業務用エアコンの</span><br>
+                        <span class="inline-block">ブレーカーを落としたあと、</span><br><br>
+                        
+                        <span class="inline-block">電源を戻しても、</span><br><br>
+                        
+                        <span class="inline-block">すぐに運転できない。</span><br><br>
+                        
+                        <span class="inline-block">この状況を、</span><br><br>
+                        
+                        <span class="inline-block">私はこれまで</span><br>
+                        <span class="inline-block">何度も経験しています。</span><br><br>
+                        
+                        <span class="inline-block">初めて遭遇したら、</span><br><br>
+                        
+                        <span class="inline-block">「壊してしまった？」</span><br><br>
+                        
+                        <span class="inline-block">と思っても</span><br>
+                        <span class="inline-block">不思議ではありません。</span><br><br>
+                        
+                        <span class="inline-block">でも、</span><br><br>
+                        
+                        <span class="inline-block">しばらく時間を置くことで</span><br>
+                        <span class="inline-block">通常通り運転する。</span><br><br>
+                        
+                        <span class="inline-block">そんなケースがあります。</span>
+                    </p>
+                </div>
+
+                <!-- ＝＝＝ 洗わない日立でも注意が必要です ＝＝＝ -->
+                <div class="mb-16 relative mt-20 text-center">
+                    
+                    <!-- 上部の赤いバッジ -->
+                    <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-red-600 text-white font-black text-sm px-5 py-1.5 rounded-full shadow-md whitespace-nowrap">
+                        見落としがちな落とし穴
+                    </div>
+
+                    <h2 class="text-xl md:text-2xl font-black text-slate-900 mb-8 pt-8 leading-relaxed">
+                        <span class="inline-block text-red-600">洗わない日立でも</span><br>
+                        <span class="inline-block text-red-600">注意が必要です</span>
+                    </h2>
+                    
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
+                        <span class="inline-block">実は、</span><br><br>
+                        
+                        <span class="inline-block">私が一番怖いと思うのは</span><br>
+                        <span class="inline-block">ここです。</span><br><br>
+                        
+                        <span class="inline-block">日立のエアコンを</span><br>
+                        <span class="inline-block">洗うときだけの話では</span><br>
+                        <span class="inline-block">ありません。</span><br><br>
+                        
+                        <span class="inline-block">例えば、</span><br><br>
+                        
+                        <span class="inline-block">工場の事務所にある</span><br>
+                        <span class="inline-block">ダイキンの天井カセットを</span><br><br>
+                        
+                        <span class="inline-block">クリーニングするとします。</span><br><br>
+                        
+                        <span class="inline-block">洗いたいのは、</span><br><br>
+                        
+                        <span class="inline-block font-black text-slate-900">ダイキンです。</span><br><br>
+                        
+                        <span class="inline-block">ところが、</span><br><br>
+                        
+                        <span class="inline-block">分電盤を見ても、</span><br><br>
+                        
+                        <span class="inline-block">どのブレーカーが</span><br>
+                        <span class="inline-block">そのエアコンなのか</span><br><br>
+                        
+                        <span class="inline-block">記載されていない。</span><br><br>
+                        
+                        <span class="inline-block">こうした現場は</span><br>
+                        <span class="inline-block">珍しくありません。</span><br><br>
+                        
+                        <span class="inline-block">そんなときは、</span><br><br>
+                        
+                        <span class="inline-block">室内側と</span><br>
+                        <span class="inline-block">ブレーカー側に分かれて、</span><br><br>
+                        
+                        <span class="inline-block">連絡を取りながら、</span><br><br>
+                        
+                        <span class="inline-block">ブレーカーを</span><br>
+                        <span class="inline-block">順番に落として</span><br><br>
+                        
+                        <span class="inline-block">対象のエアコンを</span><br>
+                        <span class="inline-block">探すことがあります。</span><br><br>
+                        
+                        <span class="inline-block">「落ちた？」</span><br><br>
+                        
+                        <span class="inline-block">「まだ動いてる。」</span><br><br>
+                        
+                        <span class="inline-block">「じゃあ違う。」</span><br><br>
+                        
+                        <span class="inline-block">「戻して。」</span><br><br>
+                        
+                        <span class="inline-block">こんな感じです。</span>
+                    </p>
+                </div>
+
+                <!-- ＝＝＝ 「戻したから大丈夫」とは限りません ＝＝＝ -->
+                <div class="mb-16 mt-16 text-center">
+                    <div class="flex flex-col items-center justify-center mb-6 text-center">
+                        <span class="w-10 h-[3px] bg-slate-800 mb-4 rounded-full"></span>
+                        <h2 class="text-xl md:text-2xl font-black text-slate-900 leading-relaxed">
+                            <span class="inline-block">「戻したから大丈夫」</span><br>
+                            <span class="inline-block">とは限りません</span>
+                        </h2>
+                    </div>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose text-center">
+                        <span class="inline-block">間違えて落とした</span><br>
+                        <span class="inline-block">ブレーカーが、</span><br><br>
+                        
+                        <span class="inline-block">工場で稼働している</span><br><br>
+                        
+                        <span class="text-[17px] font-black text-slate-900 bg-red-100 px-3 py-1 inline-block mb-1 mt-1 rounded">日立の業務用エアコン</span><br><br>
+                        
+                        <span class="inline-block">だったら？</span><br><br>
+                        
+                        <span class="inline-block">すぐにブレーカーを</span><br>
+                        <span class="inline-block">戻したとしても、</span><br><br>
+                        
+                        <span class="inline-block">機種や状態によっては、</span><br><br>
+                        
+                        <span class="inline-block">そのまますぐに</span><br>
+                        <span class="inline-block">運転できるとは限りません。</span><br><br>
+                        
+                        <span class="inline-block">洗っていない。</span><br><br>
+                        
+                        <span class="inline-block">分解もしていない。</span><br><br>
+                        
+                        <span class="inline-block">触ってすらいない。</span><br><br>
+                        
+                        <span class="inline-block">ただ、</span><br><br>
+                        
+                        <span class="inline-block font-black text-slate-900">ブレーカーを</span><br>
+                        <span class="inline-block font-black text-slate-900">落としてしまった。</span><br><br>
+                        
+                        <span class="inline-block">それだけで、</span><br><br>
+                        
+                        <span class="inline-block">使いたいエアコンが</span><br>
+                        <span class="inline-block">すぐ使えなくなる可能性が</span><br>
+                        <span class="inline-block">あります。</span><br><br>
+                        
+                        <span class="inline-block">これが、</span><br><br>
+                        
+                        <span class="inline-block">エアコンクリーニングの</span><br>
+                        <span class="inline-block">現場で困る</span><br><br>
+                        
+                        <span class="text-red-600 font-black text-[18px] md:text-xl underline decoration-red-200 decoration-4 underline-offset-4 inline-block">「日立トラップ」</span><br><br>
+                        
+                        <span class="inline-block">です。</span>
+                    </p>
+                </div>
+
+                <!-- ＝＝＝ 真夏の工場だったら？ (青背景カード) ＝＝＝ -->
+                <div class="bg-blue-50/50 rounded-[20px] border border-blue-100 p-6 md:p-8 mt-16 mb-16 text-center">
+                    <h3 class="text-xl font-black text-slate-900 text-blue-900 mb-8 leading-relaxed">
+                        <span class="inline-block">真夏の</span><br>
+                        <span class="inline-block">工場だったら？</span>
+                    </h3>
+                    
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose">
+                        <span class="inline-block">私たち作業員は、</span><br><br>
+                        
+                        <span class="inline-block">エアコンが止まっていても、</span><br><br>
+                        
+                        <span class="inline-block">作業が終われば</span><br>
+                        <span class="inline-block">帰ることができます。</span><br><br>
+                        
+                        <span class="inline-block">でも、</span><br><br>
+                        
+                        <span class="inline-block">そこで働いている方は</span><br>
+                        <span class="inline-block">そうはいきません。</span><br><br>
+                        
+                        <span class="inline-block">例えば、</span><br><br>
+                        
+                        <span class="inline-block font-black text-slate-900">真夏の工場。</span><br><br>
+                        
+                        <span class="inline-block">外は猛暑。</span><br><br>
+                        
+                        <span class="inline-block">工場の中では</span><br>
+                        <span class="inline-block">たくさんの人が</span><br><br>
+                        
+                        <span class="inline-block">仕事をしています。</span><br><br>
+                        
+                        <span class="inline-block">そこで、</span><br><br>
+                        
+                        <span class="font-black text-slate-900 inline-block mb-1">「間違えて</span><br>
+                        <span class="font-black text-slate-900 inline-block">ブレーカーを落としました。」</span><br><br>
+                        
+                        <span class="font-black text-slate-900 inline-block mb-1">「戻しましたが、</span><br>
+                        <span class="font-black text-slate-900 inline-block mb-1">数時間動かないかも</span><br>
+                        <span class="font-black text-slate-900 inline-block">しれません。」</span><br><br>
+                        
+                        <span class="inline-block">では、</span><br><br>
+                        
+                        <span class="inline-block">困りますよね。</span><br><br>
+                        
+                        <span class="inline-block">冬なら、</span><br><br>
+                        
+                        <span class="inline-block">暖房が使えなくなる</span><br>
+                        <span class="inline-block">可能性もあります。</span><br><br>
+                        
+                        <span class="inline-block">だから私は、</span><br><br>
+                        
+                        <span class="inline-block">日立の業務用エアコンでは、</span><br><br>
+                        
+                        <span class="text-[15.5px] font-black text-slate-900 bg-neon px-2 inline-block mb-1">ブレーカーを落とす</span><br>
+                        <span class="text-[15.5px] font-black text-slate-900 bg-neon px-2 inline-block">という行為そのものに</span><br><br>
+                        
+                        <span class="inline-block">注意が必要だと</span><br>
+                        <span class="inline-block">考えています。</span>
+                    </p>
+                </div>
+
+
+                <!-- ＝＝＝ 強制的に解除できる機種もあります ＝＝＝ -->
+                <div class="mb-12 mt-16 text-center">
+                    <div class="flex flex-col items-center justify-center mb-6 text-center">
+                        <span class="w-10 h-[3px] bg-slate-800 mb-4 rounded-full"></span>
+                        <h2 class="text-xl md:text-2xl font-black text-slate-900 leading-relaxed">
+                            <span class="inline-block">強制的に解除できる</span><br>
+                            <span class="inline-block">機種もあります</span>
+                        </h2>
+                    </div>
+
+                    <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose text-center">
+                        <span class="inline-block">ちなみに、</span><br><br>
+                        
+                        <span class="inline-block">日立の業務用エアコンには、</span><br><br>
+                        
+                        <span class="inline-block">機種によって、</span><br><br>
+                        
+                        <span class="inline-block font-black text-slate-900">圧縮機予熱制御を</span><br>
+                        <span class="inline-block font-black text-slate-900">強制的に解除する操作</span><br><br>
+                        
+                        <span class="inline-block">が用意されています。</span><br><br>
+                        
+                        <span class="inline-block">つまり、</span><br><br>
+                        
+                        <span class="inline-block">技術的には、</span><br><br>
+                        
+                        <span class="inline-block">待たずに運転できる場合も</span><br>
+                        <span class="inline-block">あります。</span><br><br>
+                        
+                        <span class="inline-block">ただし、</span><br><br>
+                        
+                        <span class="inline-block">ここで考えてほしいことが</span><br>
+                        <span class="inline-block">あります。</span><br><br>
+                        
+                        <span class="inline-block">そもそも、</span><br><br>
+                        
+                        <span class="inline-block">なぜメーカーは</span><br><br>
+                        
+                        <span class="inline-block">わざわざ</span><br>
+                        <span class="inline-block">すぐ運転できない制御を</span><br><br>
+                        
+                        <span class="inline-block">搭載しているのでしょうか。</span><br><br>
+                        
+                        <span class="inline-block">それは、</span><br><br>
+                        
+                        <span class="inline-block font-black text-slate-900 underline decoration-slate-300 decoration-2 underline-offset-4">圧縮機を保護するため。</span><br><br>
+                        
+                        <span class="inline-block">その保護制御を</span><br>
+                        <span class="inline-block">強制的に解除する以上、</span><br><br>
+                        
+                        <span class="inline-block">「動かないなら</span><br>
+                        <span class="inline-block">解除すればいい。」</span><br><br>
+                        
+                        <span class="inline-block">という単純な話では</span><br>
+                        <span class="inline-block">ありません。</span><br><br>
+                        
+                        <span class="inline-block">機種によって</span><br>
+                        <span class="inline-block">操作方法も異なります。</span><br><br>
+                        
+                        <span class="inline-block">そのため、</span><br><br>
+                        
+                        <span class="inline-block">このページでは</span><br>
+                        <span class="inline-block">解除方法については</span><br><br>
+                        
+                        <span class="inline-block">ご紹介しません。</span>
+                    </p>
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- ネイビーのカード (ONE★STARの考え：最初から困らない時期に洗う) -->
+        <div class="bg-slate-900 rounded-[24px] border-l-[12px] border-neon p-8 md:p-10 text-center shadow-md mb-10">
+            
+            <h2 class="text-white font-black text-xl md:text-2xl leading-relaxed mb-10 tracking-wider">
+                <span class="inline-block">最初から</span><br>
+                <span class="inline-block">困らない時期に洗う</span>
+            </h2>
+
+            <p class="text-slate-100 font-bold text-[15px] md:text-base leading-loose mb-10">
+                <span class="inline-block">予熱制御を</span><br>
+                <span class="inline-block">強制解除する。</span><br><br>
+                
+                <span class="inline-block">真夏に数時間待つ。</span><br><br>
+                
+                <span class="inline-block">そんな方法を</span><br>
+                <span class="inline-block">考えるよりも、</span><br><br>
+                
+                <span class="inline-block">もっと簡単な</span><br>
+                <span class="inline-block">対策があります。</span><br><br>
+                
+                <span class="text-neon font-black text-[15.5px] inline-block mb-1">エアコンを使わない</span><br>
+                <span class="text-neon font-black text-[15.5px] inline-block">季節に洗う。</span><br><br>
+                
+                <span class="inline-block">これです。</span><br><br>
+                
+                <span class="inline-block">春や秋なら、</span><br><br>
+                
+                <span class="inline-block">クリーニング後に</span><br><br>
+                
+                <span class="inline-block">すぐ冷暖房が</span><br>
+                <span class="inline-block">使えなかったとしても、</span><br><br>
+                
+                <span class="inline-block">真夏や真冬ほど</span><br>
+                <span class="inline-block">困りません。</span><br><br>
+                
+                <span class="inline-block">特に、</span><br><br>
+                
+                <span class="inline-block">工場。</span><br><br>
+                
+                <span class="inline-block">店舗。</span><br><br>
+                
+                <span class="inline-block">事務所。</span><br><br>
+                
+                <span class="inline-block">施設。</span><br><br>
+                
+                <span class="inline-block">たくさんの人が</span><br>
+                <span class="inline-block">エアコンを必要とする場所では、</span><br><br>
+                
+                <span class="text-white font-black text-[15.5px] underline decoration-neon decoration-4 underline-offset-4 inline-block mb-1">「洗える日」だけではなく、</span><br>
+                <span class="text-white font-black text-[15.5px] underline decoration-neon decoration-4 underline-offset-4 inline-block">「止めても困らない日」</span><br><br>
+                
+                <span class="inline-block">を選ぶことが</span><br>
+                <span class="inline-block">とても大切です。</span>
+            </p>
+
+            <!-- 区切り線 -->
+            <div class="w-16 h-[1px] bg-slate-600 mx-auto mb-10"></div>
+
+            <h2 class="text-white font-black text-xl md:text-2xl leading-relaxed mb-10 tracking-wider">
+                <span class="inline-block">日立の業務用は</span><br>
+                <span class="inline-block">春か秋がおすすめ</span>
+            </h2>
+
+            <p class="text-slate-100 font-bold text-[15px] md:text-base leading-loose">
+                <span class="inline-block">エアコンクリーニングは、</span><br><br>
+                
+                <span class="inline-block">汚れたから洗う。</span><br><br>
+                
+                <span class="inline-block">もちろん、</span><br><br>
+                
+                <span class="inline-block">それも大切です。</span><br><br>
+                
+                <span class="inline-block">でも、</span><br><br>
+                
+                <span class="inline-block">業務用エアコンでは、</span><br><br>
+                
+                <span class="inline-block">作業中に</span><br>
+                <span class="inline-block">電源を止めることまで</span><br><br>
+                
+                <span class="inline-block">考える必要があります。</span><br><br>
+                
+                <span class="inline-block">日立の業務用エアコンには、</span><br><br>
+                
+                <span class="inline-block">電源を戻しても、</span><br><br>
+                
+                <span class="inline-block">すぐに運転できない</span><br>
+                <span class="inline-block">機種があります。</span><br><br>
+                
+                <span class="inline-block">だから私は、</span><br><br>
+                
+                <span class="inline-block">可能であれば、</span><br><br>
+                
+                <span class="text-white font-black text-[15.5px] inline-block mb-1">冷房も暖房も</span><br>
+                <span class="text-white font-black text-[15.5px] inline-block mb-1">必要としない春や秋に</span><br><br>
+                
+                <span class="inline-block">クリーニングすることを</span><br>
+                <span class="inline-block">おすすめします。</span><br><br>
+                
+                <span class="inline-block">エアコンを</span><br>
+                <span class="inline-block">キレイにすること。</span><br><br>
+                
+                <span class="inline-block">そして、</span><br><br>
+                
+                <span class="inline-block">そこで働く人を</span><br>
+                <span class="inline-block">困らせないこと。</span><br><br>
+                
+                <span class="inline-block">どちらも、</span><br><br>
+                
+                <span class="inline-block">大切なことだと</span><br>
+                <span class="inline-block">考えています。</span>
+            </p>
+        </div>
+
+
+        <!-- エラーコードへの誘導ブロック (日立) -->
+        <div class="bg-white rounded-2xl border border-slate-200 p-8 text-center shadow-sm mb-12">
+            <h2 class="text-xl md:text-2xl font-black text-slate-900 mb-8 leading-relaxed">
+                <span class="inline-block">日立のエアコンで</span><br>
+                <span class="inline-block">トラブル発生？</span>
+            </h2>
+            
+            <p class="text-[15px] md:text-base font-bold text-slate-700 leading-loose mb-10">
+                <span class="inline-block">エラーコードが</span><br>
+                <span class="inline-block">表示されている場合は、</span><br><br>
+                
+                <span class="inline-block">こちらから</span><br>
+                <span class="inline-block">確認できます。</span><br><br>
+                
+                <span class="text-slate-900 font-black inline-block">日立｜業務用エアコン</span><br>
+                <span class="text-slate-900 font-black inline-block">エラーコード早見表</span>
+            </p>
+            
+            <a href="/tips/error/hitachi-office/" class="inline-flex items-center justify-center bg-slate-900 hover:bg-slate-800 text-neon px-8 py-4 rounded-full text-[15px] font-black shadow-md transition-all active:scale-95 w-full md:w-auto">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                <span>▶︎エラーコードを確認する</span>
+            </a>
+        </div>
+
+        <!-- 関連リンク (他メーカー) -->
+        <div class="mt-16 text-center">
+            <div class="flex flex-col items-center justify-center mb-6">
+                <span class="w-10 h-[3px] bg-slate-800 mb-4 rounded-full"></span>
+                <h2 class="text-xl md:text-2xl font-black text-slate-900 tracking-wider leading-relaxed">
+                    <span class="inline-block">他メーカーも</span><br>
+                    <span class="inline-block">調べられます</span>
+                </h2>
+            </div>
+            
+            <a href="/tips/error/" class="block bg-white rounded-2xl border-2 border-slate-900 p-6 md:p-8 shadow-sm hover:shadow-md transition-all active:scale-95 group relative overflow-hidden text-center">
+                <!-- 装飾 -->
+                <div class="absolute top-0 left-0 w-full h-2 bg-neon"></div>
+                
+                <p class="text-[13px] md:text-[15px] font-bold text-slate-700 mb-6 leading-loose">
+                    <span class="inline-block">ダイキン・三菱電機・</span><br>
+                    <span class="inline-block">パナソニック・東芝など、</span><br><br>
+                    
+                    <span class="inline-block">各メーカーの</span><br>
+                    <span class="inline-block">エラーコードはこちら。</span>
+                </p>
+                
+                <h3 class="text-[17px] md:text-xl font-black text-slate-900 mb-8 leading-relaxed">
+                    <span class="inline-block">各メーカー</span><br>
+                    <span class="inline-block">エラーコード早見表</span>
+                </h3>
+                
+                <div class="inline-flex items-center justify-center bg-slate-900 text-neon px-6 py-3.5 rounded-full text-[15px] font-black group-hover:bg-slate-800 transition-colors w-full md:w-auto shadow-md">
+                    ▶ メーカー一覧を見る
+                </div>
+            </a>
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-900 text-white pt-12 pb-24 md:pb-12 border-t-[6px] border-neon text-center mt-12">
+        <div class="mb-6 flex flex-col items-center justify-center">
+            <span class="text-4xl md:text-5xl tracking-widest text-white flex items-center justify-center font-impact mt-1">
+                ONE
+                <img src="ONESTAR.PNG" alt="ロゴ" class="w-[80px] h-[80px] md:w-[100px] md:h-[100px] mx-[-10px] md:mx-[-16px] object-contain -translate-y-2" onerror="this.style.display='none'">
+                STAR
+            </span>
+            <p class="text-xs text-neon font-black mt-2 tracking-widest">株式会社ECS専属プロスタッフ</p>
+        </div>
+        
+        <p class="text-[11px] text-slate-400 font-bold mb-3">
+            <a href="/products" class="hover:text-white transition-colors underline underline-offset-4">オリジナルLINEスタンプ販売中</a>
+        </p>
+        <p class="text-[10px] text-slate-500 font-bold mb-4">
+            <a href="/privacy" class="hover:text-white transition-colors">プライバシーポリシー</a>
+        </p>
+        <p class="text-[10px] text-slate-500 font-bold tracking-wider">© 2026 ONE★STAR. All Rights Reserved.</p>
+    </footer>
+
+    <!-- MOBILE BOTTOM NAVIGATION -->
+    <div class="fixed bottom-0 left-0 right-0 z-45 bg-slate-900 md:hidden h-[60px] flex items-stretch text-white shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.3)] border-t border-slate-800">
+        
+        <a href="/price" class="flex flex-col items-center justify-center w-[20%] border-r border-slate-700 active:bg-slate-800">
+            <svg class="w-5 h-5 mb-1 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <span class="text-[9px] font-black">料金</span>
+        </a>
+        
+        <a href="/mind" class="flex flex-col items-center justify-center w-[20%] border-r border-slate-700 active:bg-slate-800">
+            <svg class="w-5 h-5 mb-1 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+            <span class="text-[9px] font-black">想い</span>
+        </a>
+
+        <a href="/pride" class="flex flex-col items-center justify-center w-[20%] active:bg-slate-800">
+            <svg class="w-5 h-5 mb-1 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+            <span class="text-[9px] font-black">拘り</span>
+        </a>
+        
+        <a href="tel:08000807788" class="js-phone-modal-trigger flex items-center justify-center bg-neon text-slate-900 w-[40%] font-black text-base active:bg-yellow-400 transition-colors">
+            <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+            電話する
+        </a>
+        
+    </div>
+
+    <!-- 🌟 ご予約・お問い合わせ前のワンクッションモーダル 🌟 -->
+    <div id="phone-modal" class="fixed inset-0 z-[100] hidden flex items-center justify-center px-4">
+        <div id="phone-modal-backdrop" class="absolute inset-0 bg-slate-900/80 backdrop-blur-sm opacity-0 transition-opacity duration-300"></div>
+        
+        <div id="phone-modal-content" class="relative bg-white rounded-3xl shadow-2xl w-full max-w-sm overflow-hidden transform scale-95 opacity-0 transition-all duration-300 border border-slate-100">
+            
+            <button id="phone-modal-close" class="absolute top-4 right-4 p-2 text-slate-400 hover:text-slate-700 bg-slate-100 hover:bg-slate-200 rounded-full transition-colors z-10">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+            
+            <div class="p-6 md:p-8 text-center pt-10">
+                
+                <h3 class="text-xl font-black text-slate-900 mb-6 border-b-4 border-[#EFFF00] inline-block pb-1">
+                    ご予約・お問い合わせの前に
+                </h3>
+                
+                <div class="text-[13px] text-slate-700 font-bold leading-relaxed mb-8 space-y-4 text-left bg-slate-50 p-5 rounded-2xl border border-slate-100 shadow-inner">
+                    <p>
+                        <span class="text-slate-900 font-black text-sm">ONE★STAR</span>は<br>
+                        株式会社ECS（エッジクリーンサービス）の専属プロスタッフとして活動しています。
+                    </p>
+                    <p class="pt-2 border-t border-slate-200">
+                        お電話は<br>
+                        <span class="text-slate-900 font-black">株式会社ECSの予約受付</span>につながります。
+                    </p>
+                    
+                    <div class="bg-rose-50 border border-rose-200 p-3 rounded-xl text-center shadow-sm">
+                        <p class="text-rose-600 font-black text-[13px] leading-tight">
+                            ご予約の際は<br>
+                            <span class="text-base">「ONE★STAR（川崎）を指名」</span>と<br>
+                            お伝えください。
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="space-y-3">
+                    <a href="tel:08000807788" class="flex items-center justify-center w-full py-4 bg-slate-900 text-[#EFFF00] font-black rounded-2xl shadow-md active:scale-95 transition-transform text-sm sm:text-base border border-slate-800">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                        株式会社ECSへ電話する
+                    </a>
+                    
+                    <a href="https://www.instagram.com/one.star.kawasaki?igsh=anZpYnpxcDdqOXRh&utm_source=qr" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center w-full py-4 bg-gradient-to-r from-pink-500 to-rose-500 text-white font-black rounded-2xl shadow-md active:scale-95 transition-transform text-sm sm:text-base">
+                        <svg class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                        </svg>
+                        Instagramで本人に相談する
+                    </a>
+                </div>
+                
+                <p class="text-[10px] text-slate-500 mt-4 font-bold leading-relaxed">
+                    直接のご質問・お問い合わせは<br>本人直通のInstagram DMからお気軽にどうぞ。
+                </p>
+                
+                <button id="phone-modal-cancel" class="mt-6 text-[11px] text-slate-400 font-bold underline underline-offset-4 hover:text-slate-600 transition-colors">
+                    キャンセルして戻る
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // === メニュー開閉用 ===
+            const drawerContainer = document.getElementById('drawer-container');
+            const drawerMenu = document.getElementById('drawer-menu');
+            const drawerBackdrop = document.getElementById('drawer-backdrop');
+            
+            const toggleMenu = (show) => {
+                if (show) {
+                    drawerContainer.classList.remove('hidden');
+                    setTimeout(() => {
+                        drawerBackdrop.classList.remove('opacity-0');
+                        drawerBackdrop.classList.add('opacity-100');
+                        drawerMenu.classList.remove('drawer-closed');
+                        drawerMenu.classList.add('drawer-open');
+                    }, 10);
+                } else {
+                    drawerBackdrop.classList.remove('opacity-100');
+                    drawerBackdrop.classList.add('opacity-0');
+                    drawerMenu.classList.remove('drawer-open');
+                    drawerMenu.classList.add('drawer-closed');
+                    setTimeout(() => drawerContainer.classList.add('hidden'), 300);
+                }
+            };
+
+            document.getElementById('menu-open-btn').addEventListener('click', () => toggleMenu(true));
+            document.getElementById('menu-close-btn').addEventListener('click', () => toggleMenu(false));
+            document.getElementById('drawer-backdrop').addEventListener('click', () => toggleMenu(false));
+            document.querySelectorAll('.menu-link').forEach(link => link.addEventListener('click', () => toggleMenu(false)));
+
+            // === 電話モーダル ===
+            const phoneModal = document.getElementById('phone-modal');
+            const phoneModalBackdrop = document.getElementById('phone-modal-backdrop');
+            const phoneModalContent = document.getElementById('phone-modal-content');
+            const phoneModalCloseBtn = document.getElementById('phone-modal-close');
+            const phoneModalCancelBtn = document.getElementById('phone-modal-cancel');
+            const phoneTriggerBtns = document.querySelectorAll('.js-phone-modal-trigger');
+
+            if (phoneModal && phoneTriggerBtns.length > 0) {
+                const openPhoneModal = (e) => {
+                    e.preventDefault(); 
+                    if (typeof toggleMenu === 'function') toggleMenu(false);
+
+                    phoneModal.classList.remove('hidden');
+                    requestAnimationFrame(() => {
+                        phoneModalBackdrop.classList.remove('opacity-0');
+                        phoneModalBackdrop.classList.add('opacity-100');
+                        phoneModalContent.classList.remove('opacity-0', 'scale-95');
+                        phoneModalContent.classList.add('opacity-100', 'scale-100');
+                    });
+                };
+
+                const closePhoneModal = () => {
+                    phoneModalBackdrop.classList.remove('opacity-100');
+                    phoneModalBackdrop.classList.add('opacity-0');
+                    phoneModalContent.classList.remove('opacity-100', 'scale-100');
+                    phoneModalContent.classList.add('opacity-0', 'scale-95');
+                    setTimeout(() => phoneModal.classList.add('hidden'), 300);
+                };
+
+                phoneTriggerBtns.forEach(btn => btn.addEventListener('click', openPhoneModal));
+                phoneModalCloseBtn.addEventListener('click', closePhoneModal);
+                phoneModalCancelBtn.addEventListener('click', closePhoneModal);
+                phoneModalBackdrop.addEventListener('click', closePhoneModal);
+            }
+        });
+    </script>
+</body>
+</html>
