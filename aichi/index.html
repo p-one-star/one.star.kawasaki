@@ -140,14 +140,13 @@
         <!-- イントロダクション -->
         <div class="max-w-3xl mx-auto px-4 mb-10">
             <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 relative overflow-hidden">
-                <!-- 左側のネオンライン装飾 -->
                 <div class="absolute top-0 left-0 w-2 h-full bg-neon"></div>
                 
                 <p class="text-[15px] md:text-base font-bold text-slate-700 leading-relaxed mb-4 text-center">
                     愛知県でエアコンクリーニング業者を<br class="sm:hidden">お探しの方へ。
                 </p>
                 <p class="text-[15px] md:text-base font-bold text-slate-700 leading-relaxed mb-6 text-center">
-                    実際に現場で施工する<br>
+                    実際に施工する<br>
                     <span class="text-slate-900 font-black text-lg border-b-2 border-neon">ONE★STAR</span>が、<br>
                     愛知県内の業者情報をまとめています。
                 </p>
@@ -161,13 +160,19 @@
             </div>
         </div>
 
-        <!-- 検索エリア（市町村検索窓を中央配置） -->
+        <!-- ★修正ポイント★ 検索エリア（市町村検索窓を中央配置） -->
+        <!-- action="#" を入れることで、スマホのキーボード右下が「検索」ボタンになります -->
         <div class="max-w-3xl mx-auto px-4 mb-10">
-            <form id="city-search-form" class="relative group max-w-sm mx-auto">
-                <!-- 検索アイコン -->
-                <div class="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none">
-                    <svg class="w-5 h-5 text-slate-400 group-focus-within:text-slate-900 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
-                </div>
+            <form id="city-search-form" action="#" class="relative max-w-sm mx-auto">
+                
+                <!-- 検索ボタン（アイコン） -->
+                <!-- button type="submit" に変更し、タップで発火するようにしました -->
+                <button type="submit" class="absolute inset-y-0 left-0 flex items-center justify-center w-14 text-slate-400 hover:text-slate-900 transition-colors z-10 focus:outline-none">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                    </svg>
+                </button>
+                
                 <!-- 検索入力フィールド -->
                 <input type="search" id="city-search-input" 
                     class="block w-full py-4 pl-12 pr-4 text-[15px] text-slate-900 bg-white border-2 border-slate-200 hover:border-slate-300 focus:border-slate-900 rounded-2xl shadow-sm focus:ring-0 focus:outline-none transition-all placeholder-slate-400 font-bold" 
@@ -193,7 +198,7 @@
                             <p class="text-[11px] md:text-xs text-slate-400 font-bold mt-0.5">岡崎市・豊田市・刈谷市・安城市 など</p>
                         </div>
                     </div>
-                    <svg class="w-6 h-6 text-slate-400 group-hover:text-neon group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
+                    <svg class="w-6 h-6 text-slate-300 group-hover:text-neon group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
                 </div>
             </a>
 
@@ -209,7 +214,7 @@
                             <p class="text-[11px] md:text-xs text-slate-400 font-bold mt-0.5">豊橋市・豊川市・蒲郡市・新城市 など</p>
                         </div>
                     </div>
-                    <svg class="w-6 h-6 text-slate-400 group-hover:text-neon group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
+                    <svg class="w-6 h-6 text-slate-300 group-hover:text-neon group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
                 </div>
             </a>
 
@@ -225,7 +230,7 @@
                             <p class="text-[11px] md:text-xs text-slate-400 font-bold mt-0.5">名古屋市全域（16区）</p>
                         </div>
                     </div>
-                    <svg class="w-6 h-6 text-slate-400 group-hover:text-neon group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
+                    <svg class="w-6 h-6 text-slate-300 group-hover:text-neon group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
                 </div>
             </a>
 
@@ -241,7 +246,7 @@
                             <p class="text-[11px] md:text-xs text-slate-400 font-bold mt-0.5">一宮市・春日井市・犬山市・津島市 など</p>
                         </div>
                     </div>
-                    <svg class="w-6 h-6 text-slate-400 group-hover:text-neon group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
+                    <svg class="w-6 h-6 text-slate-300 group-hover:text-neon group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
                 </div>
             </a>
 
@@ -257,7 +262,7 @@
                             <p class="text-[11px] md:text-xs text-slate-400 font-bold mt-0.5">半田市・東海市・大府市・常滑市 など</p>
                         </div>
                     </div>
-                    <svg class="w-6 h-6 text-slate-400 group-hover:text-neon group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
+                    <svg class="w-6 h-6 text-slate-300 group-hover:text-neon group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
                 </div>
             </a>
 
@@ -267,7 +272,6 @@
     <!-- FOOTER -->
     <footer class="bg-slate-900 text-white pt-12 pb-24 md:pb-12 border-t-[6px] border-neon text-center">
         <div class="mb-6 flex flex-col items-center justify-center">
-            <!-- フッターロゴ -->
             <span class="text-4xl md:text-5xl tracking-widest text-white flex items-center justify-center font-impact mt-1">
                 ONE
                 <img src="ONESTAR.PNG" alt="ロゴ画像" class="w-[80px] h-[80px] md:w-[100px] md:h-[100px] mx-[-10px] md:mx-[-16px] object-contain -translate-y-2" onerror="this.style.display='none'">
@@ -287,79 +291,45 @@
 
     <!-- MOBILE BOTTOM NAVIGATION -->
     <div class="fixed bottom-0 left-0 right-0 z-45 bg-slate-900 md:hidden h-[60px] flex items-stretch text-white shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.3)] border-t border-slate-800">
-        
-        <!-- 料金 (黒) -->
         <a href="/price" class="flex flex-col items-center justify-center w-[20%] border-r border-slate-700 active:bg-slate-800">
             <svg class="w-5 h-5 mb-1 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
             <span class="text-[9px] font-black">料金</span>
         </a>
-        
-        <!-- 想い (黒) -->
         <a href="/mind" class="flex flex-col items-center justify-center w-[20%] border-r border-slate-700 active:bg-slate-800">
             <svg class="w-5 h-5 mb-1 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
             <span class="text-[9px] font-black">想い</span>
         </a>
-
-        <!-- 拘り (黒) -->
         <a href="/pride" class="flex flex-col items-center justify-center w-[20%] active:bg-slate-800">
             <svg class="w-5 h-5 mb-1 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
             <span class="text-[9px] font-black">拘り</span>
         </a>
-        
-        <!-- 電話する (蛍光イエロー) -->
         <a href="tel:08000807788" class="js-phone-modal-trigger flex items-center justify-center bg-neon text-slate-900 w-[40%] font-black text-base active:bg-yellow-400 transition-colors">
             <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
             電話する
         </a>
-        
     </div>
 
-    <!-- 🌟 ご予約・お問い合わせ前のワンクッションモーダル 🌟 -->
+    <!-- 電話モーダル -->
     <div id="phone-modal" class="fixed inset-0 z-[100] hidden flex items-center justify-center px-4">
-        <!-- 背景のオーバーレイ (クリックで閉じる) -->
         <div id="phone-modal-backdrop" class="absolute inset-0 bg-slate-900/80 backdrop-blur-sm opacity-0 transition-opacity duration-300"></div>
-        
-        <!-- モーダル本体 -->
         <div id="phone-modal-content" class="relative bg-white rounded-3xl shadow-2xl w-full max-w-sm overflow-hidden transform scale-95 opacity-0 transition-all duration-300 border border-slate-100">
-            
-            <!-- 閉じるボタン -->
             <button id="phone-modal-close" class="absolute top-4 right-4 p-2 text-slate-400 hover:text-slate-700 bg-slate-100 hover:bg-slate-200 rounded-full transition-colors z-10">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
             </button>
-            
             <div class="p-6 md:p-8 text-center pt-10">
-                
-                <h3 class="text-xl font-black text-slate-900 mb-6 border-b-4 border-[#EFFF00] inline-block pb-1">
-                    ご予約・お問い合わせの前に
-                </h3>
-                
-                <!-- 説明テキストエリア -->
+                <h3 class="text-xl font-black text-slate-900 mb-6 border-b-4 border-[#EFFF00] inline-block pb-1">ご予約・お問い合わせの前に</h3>
                 <div class="text-[13px] text-slate-700 font-bold leading-relaxed mb-8 space-y-4 text-left bg-slate-50 p-5 rounded-2xl border border-slate-100 shadow-inner">
-                    <p>
-                        <span class="text-slate-900 font-black text-sm">ONE★STAR</span>は<br>
-                        株式会社ECS（エッジクリーンサービス）の専属プロスタッフとして活動しています。
-                    </p>
-                    <p class="pt-2 border-t border-slate-200">
-                        お電話は<br>
-                        <span class="text-slate-900 font-black">株式会社ECSの予約受付</span>につながります。
-                    </p>
-                    
+                    <p><span class="text-slate-900 font-black text-sm">ONE★STAR</span>は<br>株式会社ECS（エッジクリーンサービス）の専属プロスタッフとして活動しています。</p>
+                    <p class="pt-2 border-t border-slate-200">お電話は<br><span class="text-slate-900 font-black">株式会社ECSの予約受付</span>につながります。</p>
                     <div class="bg-rose-50 border border-rose-200 p-3 rounded-xl text-center shadow-sm">
-                        <p class="text-rose-600 font-black text-[13px] leading-tight">
-                            ご予約の際は<br>
-                            <span class="text-base">「ONE★STAR（川崎）を指名」</span>と<br>
-                            お伝えください。
-                        </p>
+                        <p class="text-rose-600 font-black text-[13px] leading-tight">ご予約の際は<br><span class="text-base">「ONE★STAR（川崎）を指名」</span>と<br>お伝えください。</p>
                     </div>
                 </div>
-                
-                <!-- アクションボタン -->
                 <div class="space-y-3">
                     <a href="tel:08000807788" class="flex items-center justify-center w-full py-4 bg-slate-900 text-[#EFFF00] font-black rounded-2xl shadow-md active:scale-95 transition-transform text-sm sm:text-base border border-slate-800">
                         <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
                         株式会社ECSへ電話する
                     </a>
-                    
                     <a href="https://www.instagram.com/one.star.kawasaki?igsh=anZpYnpxcDdqOXRh&utm_source=qr" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center w-full py-4 bg-gradient-to-r from-pink-500 to-rose-500 text-white font-black rounded-2xl shadow-md active:scale-95 transition-transform text-sm sm:text-base">
                         <svg class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
@@ -369,15 +339,8 @@
                         Instagramで本人に相談する
                     </a>
                 </div>
-                
-                <p class="text-[10px] text-slate-500 mt-4 font-bold leading-relaxed">
-                    直接のご質問・お問い合わせは<br>本人直通のInstagram DMからお気軽にどうぞ。
-                </p>
-                
-                <!-- キャンセルテキスト -->
-                <button id="phone-modal-cancel" class="mt-6 text-[11px] text-slate-400 font-bold underline underline-offset-4 hover:text-slate-600 transition-colors">
-                    キャンセルして戻る
-                </button>
+                <p class="text-[10px] text-slate-500 mt-4 font-bold leading-relaxed">直接のご質問・お問い合わせは<br>本人直通のInstagram DMからお気軽にどうぞ。</p>
+                <button id="phone-modal-cancel" class="mt-6 text-[11px] text-slate-400 font-bold underline underline-offset-4 hover:text-slate-600 transition-colors">キャンセルして戻る</button>
             </div>
         </div>
     </div>
@@ -386,11 +349,10 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
 
-            // メニュー開閉
+            // メニュー制御
             const drawerContainer = document.getElementById('drawer-container');
             const drawerMenu = document.getElementById('drawer-menu');
             const drawerBackdrop = document.getElementById('drawer-backdrop');
-            
             const toggleMenu = (show) => {
                 if (show) {
                     drawerContainer.classList.remove('hidden');
@@ -408,93 +370,62 @@
                     setTimeout(() => drawerContainer.classList.add('hidden'), 300);
                 }
             };
-
             document.getElementById('menu-open-btn').addEventListener('click', () => toggleMenu(true));
             document.getElementById('menu-close-btn').addEventListener('click', () => toggleMenu(false));
             document.getElementById('drawer-backdrop').addEventListener('click', () => toggleMenu(false));
-            
-            // 下層ページへのリンククリック時にもメニューを閉じる
             document.querySelectorAll('.menu-link').forEach(link => link.addEventListener('click', () => toggleMenu(false)));
 
-            // ==========================================
-            // 電話ワンクッションモーダル制御
-            // ==========================================
+            // 電話モーダル制御
             const phoneModal = document.getElementById('phone-modal');
             const phoneModalBackdrop = document.getElementById('phone-modal-backdrop');
             const phoneModalContent = document.getElementById('phone-modal-content');
-            const phoneModalCloseBtn = document.getElementById('phone-modal-close');
-            const phoneModalCancelBtn = document.getElementById('phone-modal-cancel');
-
-            // ページ内の電話トリガーボタンをすべて取得
             const phoneTriggerBtns = document.querySelectorAll('.js-phone-modal-trigger');
-
             if (phoneModal && phoneTriggerBtns.length > 0) {
-                // モーダルを開く関数
                 const openPhoneModal = (e) => {
-                    // デフォルトの tel: リンク発信をキャンセル
                     e.preventDefault(); 
-                    
-                    // ドロワーメニューが開いていたら閉じる（toggleMenu関数が存在する場合）
-                    if (typeof toggleMenu === 'function') {
-                        toggleMenu(false);
-                    }
-
-                    // モーダルを表示
+                    toggleMenu(false);
                     phoneModal.classList.remove('hidden');
-                    
-                    // アニメーション用に少し遅延
                     requestAnimationFrame(() => {
                         phoneModalBackdrop.classList.remove('opacity-0');
                         phoneModalBackdrop.classList.add('opacity-100');
-                        
                         phoneModalContent.classList.remove('opacity-0', 'scale-95');
                         phoneModalContent.classList.add('opacity-100', 'scale-100');
                     });
                 };
-
-                // モーダルを閉じる関数
                 const closePhoneModal = () => {
                     phoneModalBackdrop.classList.remove('opacity-100');
                     phoneModalBackdrop.classList.add('opacity-0');
-                    
                     phoneModalContent.classList.remove('opacity-100', 'scale-100');
                     phoneModalContent.classList.add('opacity-0', 'scale-95');
-                    
-                    // CSSのtransition(300ms)が終わったら完全に隠す
-                    setTimeout(() => {
-                        phoneModal.classList.add('hidden');
-                    }, 300);
+                    setTimeout(() => { phoneModal.classList.add('hidden'); }, 300);
                 };
-
-                // 全てのトリガーボタンにクリックイベントを紐付け
-                phoneTriggerBtns.forEach(btn => {
-                    btn.addEventListener('click', openPhoneModal);
-                });
-
-                // 閉じるアクション
-                phoneModalCloseBtn.addEventListener('click', closePhoneModal);
-                phoneModalCancelBtn.addEventListener('click', closePhoneModal);
+                phoneTriggerBtns.forEach(btn => btn.addEventListener('click', openPhoneModal));
+                document.getElementById('phone-modal-close').addEventListener('click', closePhoneModal);
+                document.getElementById('phone-modal-cancel').addEventListener('click', closePhoneModal);
                 phoneModalBackdrop.addEventListener('click', closePhoneModal);
             }
 
             // ==========================================
-            // 市町村検索ロジック (全69市区町村対応・揺らぎ吸収)
+            // ★検索ロジック (全69市区町村対応・揺らぎ吸収)
             // ==========================================
             const searchForm = document.getElementById('city-search-form');
             const searchInput = document.getElementById('city-search-input');
             const searchError = document.getElementById('city-search-error');
 
             if (searchForm && searchInput) {
-                // 文字列の正規化（小文字化、全角英数を半角に、カタカナをひらがなに変換）
+                
+                // 入力された文字を正規化する関数
                 const normalizeString = (str) => {
                     return str
-                        .trim()
-                        .toLowerCase()
+                        .trim() // 前後の空白を削除
+                        .toLowerCase() // 大文字を小文字に (OKAZAKI -> okazaki)
+                        // 全角英数字を半角に (ＯＫＡＺＡＫＩ -> okazaki)
                         .replace(/[Ａ-Ｚａ-ｚ０-９]/g, (s) => String.fromCharCode(s.charCodeAt(0) - 0xFEE0))
-                        .replace(/[\u30a1-\u30f6]/g, (match) => String.fromCharCode(match.charCodeAt(0) - 0x60));
+                        // カタカナをひらがなに (オカザキ -> おかざき)
+                        .replace(/[\u30A1-\u30F6]/g, (match) => String.fromCharCode(match.charCodeAt(0) - 0x60));
                 };
 
-                // 愛知県全市区町村のデータ辞書
+                // 愛知県全市区町村データ (ご指定のURLに設定済み)
                 const cityData = [
                     // --- 西三河 ---
                     { url: '/aichi/nishimikawa/okazaki/', keys: ['岡崎', '岡崎市', 'おかざき', 'okazaki'] },
@@ -576,16 +507,17 @@
                 ];
 
                 searchForm.addEventListener('submit', (e) => {
-                    e.preventDefault(); // デフォルトのフォーム送信を防ぐ
-                    searchError.classList.add('hidden'); // エラーを隠す
+                    // form の標準遷移をストップ
+                    e.preventDefault(); 
+                    searchError.classList.add('hidden');
                     
                     const rawValue = searchInput.value;
                     if (!rawValue) return;
 
+                    // 入力文字を全て 小文字・ひらがな・半角 に変換して照合しやすくする
                     const normalizedValue = normalizeString(rawValue);
                     let targetUrl = null;
 
-                    // 辞書から一致するキーワードを検索
                     for (const city of cityData) {
                         if (city.keys.includes(normalizedValue)) {
                             targetUrl = city.url;
@@ -594,18 +526,16 @@
                     }
 
                     if (targetUrl) {
-                        // 見つかった場合は指定のURLへ遷移
-                        // ※プレビュー環境では遷移エラーになる可能性がありますが、本番環境では動作します。
+                        // 見つかったら指定URLへジャンプ
                         window.location.href = targetUrl;
                     } else {
-                        // 見つからなかった場合はエラーメッセージを表示し、枠を赤くする
+                        // 見つからなかった場合の赤枠＆エラー表示
                         searchError.textContent = "指定された市町村が見つかりませんでした。";
                         searchError.classList.remove('hidden');
                         
                         searchInput.classList.remove('border-slate-200', 'focus:border-slate-900');
                         searchInput.classList.add('border-rose-500', 'focus:border-rose-500');
                         
-                        // 3秒後に元に戻す
                         setTimeout(() => {
                             searchError.classList.add('hidden');
                             searchInput.classList.add('border-slate-200', 'focus:border-slate-900');
