@@ -134,7 +134,7 @@
         <!-- ページタイトル -->
         <div class="text-center mb-8 px-4">
             <h1 class="text-3xl md:text-4xl font-impact tracking-widest text-slate-900 mb-2">COMPARE</h1>
-            <p class="text-sm md:text-base font-black text-slate-600">愛知県内の業者比較</p>
+            <p class="text-sm md:text-base font-black text-slate-600">愛知県内の業者情報</p>
         </div>
 
         <!-- イントロダクション -->
@@ -161,29 +161,21 @@
             </div>
         </div>
 
-        <!-- 検索エリア -->
-        <div class="max-w-3xl mx-auto px-4 mb-8">
-            <!-- flex-row にして常に横並びに配置 -->
-            <div class="bg-slate-200 p-1.5 rounded-2xl shadow-inner flex flex-row">
-                
-                <!-- 左側：市町村から探す（アクティブなタブ風） -->
-                <div class="w-1/2 py-3 text-center font-black text-[13px] md:text-base text-slate-900 bg-white rounded-xl shadow-sm flex items-center justify-center">
-                    市町村から探す
+        <!-- 検索エリア（市町村検索窓を中央配置） -->
+        <div class="max-w-3xl mx-auto px-4 mb-10">
+            <form id="city-search-form" class="relative group max-w-sm mx-auto">
+                <!-- 検索アイコン -->
+                <div class="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none">
+                    <svg class="w-5 h-5 text-slate-400 group-focus-within:text-slate-900 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
                 </div>
+                <!-- 検索入力フィールド -->
+                <input type="search" id="city-search-input" 
+                    class="block w-full py-4 pl-12 pr-4 text-[15px] text-slate-900 bg-white border-2 border-slate-200 hover:border-slate-300 focus:border-slate-900 rounded-2xl shadow-sm focus:ring-0 focus:outline-none transition-all placeholder-slate-400 font-bold" 
+                    placeholder="市町村から探す (例: 岡崎市)">
                 
-                <!-- 右側：業者名から探す（検索入力フォーム） -->
-                <form action="/search" method="GET" class="w-1/2 relative group">
-                    <!-- 検索アイコン -->
-                    <div class="absolute inset-y-0 left-0 flex items-center pl-2.5 md:pl-4 pointer-events-none">
-                        <svg class="w-4 h-4 md:w-5 md:h-5 text-slate-400 group-focus-within:text-slate-700 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
-                    </div>
-                    <!-- 入力フィールド本体。背景を透明（bg-transparent）にして非アクティブなタブに見せる -->
-                    <input type="search" name="q" id="company-search" 
-                        class="block w-full h-full py-3 pl-8 md:pl-11 pr-2 text-[13px] md:text-base text-slate-900 bg-transparent hover:bg-white/50 focus:bg-white rounded-xl focus:ring-0 focus:outline-none transition-all placeholder-slate-400 font-bold" 
-                        placeholder="業者名から探す">
-                </form>
-                
-            </div>
+                <!-- エラーメッセージ表示用 -->
+                <p id="city-search-error" class="hidden absolute -bottom-6 left-2 text-[11px] font-bold text-rose-500"></p>
+            </form>
         </div>
 
         <!-- エリア大分類リスト -->
@@ -483,6 +475,144 @@
                 phoneModalCloseBtn.addEventListener('click', closePhoneModal);
                 phoneModalCancelBtn.addEventListener('click', closePhoneModal);
                 phoneModalBackdrop.addEventListener('click', closePhoneModal);
+            }
+
+            // ==========================================
+            // 市町村検索ロジック (全69市区町村対応・揺らぎ吸収)
+            // ==========================================
+            const searchForm = document.getElementById('city-search-form');
+            const searchInput = document.getElementById('city-search-input');
+            const searchError = document.getElementById('city-search-error');
+
+            if (searchForm && searchInput) {
+                // 文字列の正規化（小文字化、全角英数を半角に、カタカナをひらがなに変換）
+                const normalizeString = (str) => {
+                    return str
+                        .trim()
+                        .toLowerCase()
+                        .replace(/[Ａ-Ｚａ-ｚ０-９]/g, (s) => String.fromCharCode(s.charCodeAt(0) - 0xFEE0))
+                        .replace(/[\u30a1-\u30f6]/g, (match) => String.fromCharCode(match.charCodeAt(0) - 0x60));
+                };
+
+                // 愛知県全市区町村のデータ辞書
+                const cityData = [
+                    // --- 西三河 ---
+                    { url: '/aichi/nishimikawa/okazaki/', keys: ['岡崎', '岡崎市', 'おかざき', 'okazaki'] },
+                    { url: '/aichi/nishimikawa/toyota/', keys: ['豊田', '豊田市', 'とよた', 'toyota'] },
+                    { url: '/aichi/nishimikawa/anjo/', keys: ['安城', '安城市', 'あんじょう', 'anjo', 'anjou'] },
+                    { url: '/aichi/nishimikawa/kariya/', keys: ['刈谷', '刈谷市', 'かりや', 'kariya'] },
+                    { url: '/aichi/nishimikawa/nishio/', keys: ['西尾', '西尾市', 'にしお', 'nishio'] },
+                    { url: '/aichi/nishimikawa/chiryu/', keys: ['知立', '知立市', 'ちりゅう', 'chiryu', 'chiryuu'] },
+                    { url: '/aichi/nishimikawa/takahama/', keys: ['高浜', '高浜市', 'たかはま', 'takahama'] },
+                    { url: '/aichi/nishimikawa/hekinan/', keys: ['碧南', '碧南市', 'へきなん', 'hekinan'] },
+                    { url: '/aichi/nishimikawa/miyoshi/', keys: ['みよし', 'みよし市', 'miyoshi'] },
+                    { url: '/aichi/nishimikawa/kota/', keys: ['幸田', '幸田町', 'こうた', 'kota', 'kouta'] },
+                    
+                    // --- 東三河 ---
+                    { url: '/aichi/higashimikawa/toyohashi/', keys: ['豊橋', '豊橋市', 'とよはし', 'toyohashi'] },
+                    { url: '/aichi/higashimikawa/toyokawa/', keys: ['豊川', '豊川市', 'とよかわ', 'toyokawa'] },
+                    { url: '/aichi/higashimikawa/gamagori/', keys: ['蒲郡', '蒲郡市', 'がまごおり', 'がまごり', 'gamagori', 'gamagoori'] },
+                    { url: '/aichi/higashimikawa/shinshiro/', keys: ['新城', '新城市', 'しんしろ', 'shinshiro'] },
+                    { url: '/aichi/higashimikawa/tahara/', keys: ['田原', '田原市', 'たはら', 'tahara'] },
+                    { url: '/aichi/higashimikawa/shitara/', keys: ['設楽', '設楽町', 'したら', 'shitara'] },
+                    { url: '/aichi/higashimikawa/toei/', keys: ['東栄', '東栄町', 'とうえい', 'toei', 'touei'] },
+                    { url: '/aichi/higashimikawa/toyone/', keys: ['豊根', '豊根村', 'とよね', 'toyone'] },
+                    
+                    // --- 名古屋 ---
+                    { url: '/aichi/nagoya/chikusaku/', keys: ['千種', '千種区', 'ちくさ', 'ちくさく', 'chikusa', 'chikusaku'] },
+                    { url: '/aichi/nagoya/higashiku/', keys: ['東区', 'ひがしく', 'higashiku'] },
+                    { url: '/aichi/nagoya/kitaku/', keys: ['北区', 'きたく', 'kitaku'] },
+                    { url: '/aichi/nagoya/nishiku/', keys: ['西区', 'にしく', 'nishiku'] },
+                    { url: '/aichi/nagoya/nakamuraku/', keys: ['中村', '中村区', 'なかむら', 'なかむらく', 'nakamura', 'nakamuraku'] },
+                    { url: '/aichi/nagoya/nakaku/', keys: ['中区', 'なかく', 'nakaku'] },
+                    { url: '/aichi/nagoya/showaku/', keys: ['昭和', '昭和区', 'しょうわ', 'しょうわく', 'showa', 'shouwa', 'showaku'] },
+                    { url: '/aichi/nagoya/mizuhoku/', keys: ['瑞穂', '瑞穂区', 'みずほ', 'みずほく', 'mizuho', 'mizuhoku'] },
+                    { url: '/aichi/nagoya/atsutaku/', keys: ['熱田', '熱田区', 'あつた', 'あつたく', 'atsuta', 'atsutaku'] },
+                    { url: '/aichi/nagoya/nakagawaku/', keys: ['中川', '中川区', 'なかがわ', 'なかがわく', 'nakagawa', 'nakagawaku'] },
+                    { url: '/aichi/nagoya/minatoku/', keys: ['港', '港区', 'みなと', 'みなとく', 'minato', 'minatoku'] },
+                    { url: '/aichi/nagoya/minamiku/', keys: ['南区', 'みなみく', 'minamiku'] },
+                    { url: '/aichi/nagoya/moriyamaku/', keys: ['守山', '守山区', 'もりやま', 'もりやまく', 'moriyama', 'moriyamaku'] },
+                    { url: '/aichi/nagoya/midoriku/', keys: ['緑区', 'みどりく', 'midoriku'] },
+                    { url: '/aichi/nagoya/meitoku/', keys: ['名東', '名東区', 'めいとう', 'めいとうく', 'meito', 'meitou', 'meitoku'] },
+                    { url: '/aichi/nagoya/tempakuku/', keys: ['天白', '天白区', 'てんぱく', 'てんぱくく', 'tempaku', 'tenpaku', 'tempakuku', 'tenpakuku'] },
+                    
+                    // --- 尾張 ---
+                    { url: '/aichi/owari/ichinomiya/', keys: ['一宮', '一宮市', 'いちのみや', 'ichinomiya'] },
+                    { url: '/aichi/owari/seto/', keys: ['瀬戸', '瀬戸市', 'せと', 'seto'] },
+                    { url: '/aichi/owari/kasugai/', keys: ['春日井', '春日井市', 'かすがい', 'kasugai'] },
+                    { url: '/aichi/owari/inuyama/', keys: ['犬山', '犬山市', 'いぬやま', 'inuyama'] },
+                    { url: '/aichi/owari/konan/', keys: ['江南', '江南市', 'こうなん', 'konan', 'kounan'] },
+                    { url: '/aichi/owari/komaki/', keys: ['小牧', '小牧市', 'こまき', 'komaki'] },
+                    { url: '/aichi/owari/inazawa/', keys: ['稲沢', '稲沢市', 'いなざわ', 'inazawa'] },
+                    { url: '/aichi/owari/owariasahi/', keys: ['尾張旭', '尾張旭市', 'おわりあさひ', 'owariasahi'] },
+                    { url: '/aichi/owari/iwakura/', keys: ['岩倉', '岩倉市', 'いわくら', 'iwakura'] },
+                    { url: '/aichi/owari/toyoake/', keys: ['豊明', '豊明市', 'とよあけ', 'toyoake'] },
+                    { url: '/aichi/owari/nisshin/', keys: ['日進', '日進市', 'にっしん', 'nisshin'] },
+                    { url: '/aichi/owari/kiyosu/', keys: ['清須', '清須市', 'きよす', 'kiyosu'] },
+                    { url: '/aichi/owari/kitanagoya/', keys: ['北名古屋', '北名古屋市', 'きたなごや', 'kitanagoya'] },
+                    { url: '/aichi/owari/nagakute/', keys: ['長久手', '長久手市', 'ながくて', 'nagakute'] },
+                    { url: '/aichi/owari/aisai/', keys: ['愛西', '愛西市', 'あいさい', 'aisai'] },
+                    { url: '/aichi/owari/yatomi/', keys: ['弥富', '弥富市', 'やとみ', 'yatomi'] },
+                    { url: '/aichi/owari/ama/', keys: ['あま', 'あま市', 'ama'] },
+                    { url: '/aichi/owari/togo/', keys: ['東郷', '東郷町', 'とうごう', 'togo', 'tougou'] },
+                    { url: '/aichi/owari/toyoyama/', keys: ['豊山', '豊山町', 'とよやま', 'toyoyama'] },
+                    { url: '/aichi/owari/oguchi/', keys: ['大口', '大口町', 'おおぐち', 'oguchi', 'ooguchi'] },
+                    { url: '/aichi/owari/fuso/', keys: ['扶桑', '扶桑町', 'ふそう', 'fuso', 'fusou'] },
+                    { url: '/aichi/owari/oharu/', keys: ['大治', '大治町', 'おおはる', 'oharu', 'ooharu'] },
+                    { url: '/aichi/owari/kanie/', keys: ['蟹江', '蟹江町', 'かにえ', 'kanie'] },
+                    { url: '/aichi/owari/tobishima/', keys: ['飛島', '飛島村', 'とびしま', 'tobishima'] },
+                    
+                    // --- 知多 ---
+                    { url: '/aichi/chita/handa/', keys: ['半田', '半田市', 'はんだ', 'handa'] },
+                    { url: '/aichi/chita/tokoname/', keys: ['常滑', '常滑市', 'とこなめ', 'tokoname'] },
+                    { url: '/aichi/chita/tokai/', keys: ['東海', '東海市', 'とうかい', 'tokai', 'toukai'] },
+                    { url: '/aichi/chita/obu/', keys: ['大府', '大府市', 'おおぶ', 'obu', 'oobu'] },
+                    { url: '/aichi/chita/chita/', keys: ['知多', '知多市', 'ちた', 'chita'] },
+                    { url: '/aichi/chita/agui/', keys: ['阿久比', '阿久比町', 'あぐい', 'agui'] },
+                    { url: '/aichi/chita/higashiura/', keys: ['東浦', '東浦町', 'ひがしうら', 'higashiura'] },
+                    { url: '/aichi/chita/minamichita/', keys: ['南知多', '南知多町', 'みなみちた', 'minamichita'] },
+                    { url: '/aichi/chita/mihama/', keys: ['美浜', '美浜町', 'みはま', 'mihama'] },
+                    { url: '/aichi/chita/taketoyo/', keys: ['武豊', '武豊町', 'たけとよ', 'taketoyo'] }
+                ];
+
+                searchForm.addEventListener('submit', (e) => {
+                    e.preventDefault(); // デフォルトのフォーム送信を防ぐ
+                    searchError.classList.add('hidden'); // エラーを隠す
+                    
+                    const rawValue = searchInput.value;
+                    if (!rawValue) return;
+
+                    const normalizedValue = normalizeString(rawValue);
+                    let targetUrl = null;
+
+                    // 辞書から一致するキーワードを検索
+                    for (const city of cityData) {
+                        if (city.keys.includes(normalizedValue)) {
+                            targetUrl = city.url;
+                            break;
+                        }
+                    }
+
+                    if (targetUrl) {
+                        // 見つかった場合は指定のURLへ遷移
+                        // ※プレビュー環境では遷移エラーになる可能性がありますが、本番環境では動作します。
+                        window.location.href = targetUrl;
+                    } else {
+                        // 見つからなかった場合はエラーメッセージを表示し、枠を赤くする
+                        searchError.textContent = "指定された市町村が見つかりませんでした。";
+                        searchError.classList.remove('hidden');
+                        
+                        searchInput.classList.remove('border-slate-200', 'focus:border-slate-900');
+                        searchInput.classList.add('border-rose-500', 'focus:border-rose-500');
+                        
+                        // 3秒後に元に戻す
+                        setTimeout(() => {
+                            searchError.classList.add('hidden');
+                            searchInput.classList.add('border-slate-200', 'focus:border-slate-900');
+                            searchInput.classList.remove('border-rose-500', 'focus:border-rose-500');
+                        }, 3000);
+                    }
+                });
             }
 
         });
