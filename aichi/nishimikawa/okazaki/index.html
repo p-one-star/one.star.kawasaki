@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>岡崎市の業者情報 | ONE★STAR</title>
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -20,14 +21,40 @@
             }
         }
     </script>
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
+        /* ドロワーメニュー用 */
         #drawer-menu { transition: transform 0.3s ease-in-out; }
         .drawer-closed { transform: translateX(-100%); }
         .drawer-open { transform: translateX(0); }
-        /* カードのホバーエフェクト用 */
-        .provider-card { transition: all 0.2s ease; }
-        .provider-card:hover { transform: translateY(-2px); border-color: #EFFF00; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); }
+        
+        /* アコーディオン（詳細）展開用アニメーション */
+        .card-details {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease-out;
+            opacity: 0;
+        }
+        .card-details.open {
+            max-height: 2000px; /* 内容が収まる十分な高さ */
+            opacity: 1;
+        }
+
+        /* 詳細開閉ボタンのアイコン回転 */
+        .icon-rotate { transition: transform 0.3s ease; }
+        .open .icon-rotate { transform: rotate(45deg); } /* + から × へ */
+
+        /* ONE★STAR VIEW の背景用斜めストライプ */
+        .bg-stripes {
+            background-image: repeating-linear-gradient(
+                -45deg,
+                transparent,
+                transparent 10px,
+                rgba(239, 255, 0, 0.1) 10px,
+                rgba(239, 255, 0, 0.1) 20px
+            );
+        }
     </style>
 </head>
 <body class="font-sans text-slate-800 bg-slate-50 antialiased overflow-x-hidden">
@@ -55,7 +82,7 @@
         <div class="w-10 md:hidden"></div>
     </header>
 
-    <!-- DRAWER MENU -->
+    <!-- DRAWER MENU (変更なし) -->
     <div id="drawer-container" class="fixed inset-0 z-50 overflow-hidden hidden">
         <div id="drawer-backdrop" class="absolute inset-0 bg-slate-900/60 opacity-0 transition-opacity duration-300"></div>
         <div class="pointer-events-none fixed inset-y-0 left-0 flex max-w-full">
@@ -167,288 +194,404 @@
             </div>
         </div>
 
-        <!-- 業者リスト（ダミーカード 30個） -->
-        <div class="max-w-3xl mx-auto px-4">
-            <div class="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
-                
-                <!-- カード 1 -->
-                <a href="#" class="provider-card block bg-white rounded-xl border border-slate-200 p-3 relative overflow-hidden">
-                    <div class="w-full aspect-video bg-slate-100 rounded-lg mb-3 flex flex-col items-center justify-center text-slate-300">
-                        <svg class="w-6 h-6 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-                        <span class="text-[8px] font-bold tracking-wider">NO IMAGE</span>
-                    </div>
-                    <span class="inline-block px-1.5 py-0.5 bg-blue-50 text-blue-600 border border-blue-100 text-[9px] font-black rounded mb-1.5">岡崎市拠点</span>
-                    <h3 class="text-[13px] md:text-sm font-black text-slate-800 leading-tight mb-1 line-clamp-2">エアコンクリーニング ダミー業者名</h3>
-                </a>
+        <!-- 業者リスト（画面いっぱい幅の縦積みカード） -->
+        <div class="max-w-3xl mx-auto px-4 space-y-6">
+            
+            <!-- カード 1: 株式会社ECS -->
+            <article class="bg-white rounded-2xl shadow-md border-2 border-slate-100 overflow-hidden relative">
+                <!-- 装飾ライン -->
+                <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-neon via-slate-900 to-neon opacity-80"></div>
 
-                <!-- カード 2 -->
-                <a href="#" class="provider-card block bg-white rounded-xl border border-slate-200 p-3 relative overflow-hidden">
-                    <div class="w-full aspect-video bg-slate-100 rounded-lg mb-3 flex flex-col items-center justify-center text-slate-300">
-                        <svg class="w-6 h-6 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-                        <span class="text-[8px] font-bold tracking-wider">NO IMAGE</span>
+                <!-- 【コンパクト表示部分】 -->
+                <div class="p-5 md:p-6 pb-4">
+                    <div class="flex items-start justify-between mb-4">
+                        <div>
+                            <!-- 業者名 -->
+                            <h2 class="text-lg md:text-xl font-black text-slate-900 leading-tight">株式会社ECS</h2>
+                            <!-- 所在地バッジ -->
+                            <div class="inline-flex items-center mt-2 px-2 py-0.5 bg-slate-100 rounded text-[11px] font-bold text-slate-600 border border-slate-200">
+                                <svg class="w-3 h-3 mr-1 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                岡崎市
+                            </div>
+                        </div>
                     </div>
-                    <span class="inline-block px-1.5 py-0.5 bg-slate-50 text-slate-600 border border-slate-200 text-[9px] font-black rounded mb-1.5">対応エリア</span>
-                    <h3 class="text-[13px] md:text-sm font-black text-slate-800 leading-tight mb-1 line-clamp-2">株式会社 ダミーサービス</h3>
-                </a>
 
-                <!-- カード 3 -->
-                <a href="#" class="provider-card block bg-white rounded-xl border border-slate-200 p-3 relative overflow-hidden">
-                    <div class="w-full aspect-video bg-slate-100 rounded-lg mb-3 flex flex-col items-center justify-center text-slate-300">
-                        <svg class="w-6 h-6 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-                        <span class="text-[8px] font-bold tracking-wider">NO IMAGE</span>
+                    <!-- 料金サマリー -->
+                    <div class="flex flex-wrap gap-4 border-l-2 border-neon pl-3 mb-4">
+                        <div>
+                            <p class="text-[10px] text-slate-500 font-bold mb-0.5">通常</p>
+                            <p class="text-base font-black text-slate-900">8,400<span class="text-xs font-bold ml-0.5">円〜</span></p>
+                        </div>
+                        <div>
+                            <p class="text-[10px] text-slate-500 font-bold mb-0.5">お掃除機能付き</p>
+                            <p class="text-base font-black text-slate-900">14,800<span class="text-xs font-bold ml-0.5">円〜</span></p>
+                        </div>
+                        <div>
+                            <p class="text-[10px] text-slate-500 font-bold mb-0.5">業務用</p>
+                            <p class="text-base font-black text-slate-900">18,000<span class="text-xs font-bold ml-0.5">円〜</span></p>
+                        </div>
                     </div>
-                    <span class="inline-block px-1.5 py-0.5 bg-blue-50 text-blue-600 border border-blue-100 text-[9px] font-black rounded mb-1.5">岡崎市拠点</span>
-                    <h3 class="text-[13px] md:text-sm font-black text-slate-800 leading-tight mb-1 line-clamp-2">ダミー・クリーン岡崎</h3>
-                </a>
+                </div>
 
-                <!-- カード 4 -->
-                <a href="#" class="provider-card block bg-white rounded-xl border border-slate-200 p-3 relative overflow-hidden">
-                    <div class="w-full aspect-video bg-slate-100 rounded-lg mb-3 flex flex-col items-center justify-center text-slate-300">
-                        <span class="text-[8px] font-bold tracking-wider">NO IMAGE</span>
+                <!-- 開閉ボタン (コンパクト表示領域内) -->
+                <button class="js-toggle-btn w-full bg-slate-900 text-neon py-3 text-xs font-black tracking-widest flex items-center justify-center transition-colors hover:bg-slate-800">
+                    <span class="btn-text">詳しく見る</span>
+                    <svg class="w-4 h-4 ml-2 icon-rotate" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M12 4v16m8-8H4"></path></svg>
+                </button>
+
+                <!-- 【展開される詳細部分】 -->
+                <div class="card-details bg-slate-50">
+                    <div class="p-5 md:p-6 space-y-8 border-t-2 border-slate-200">
+                        
+                        <!-- ★ ONE★STAR VIEW ★ -->
+                        <section class="relative bg-white border-2 border-slate-900 rounded-xl p-5 shadow-[4px_4px_0_0_#0f172a]">
+                            <div class="absolute -top-3.5 left-4 bg-neon border-2 border-slate-900 px-3 py-0.5 rounded-full shadow-sm">
+                                <span class="font-impact text-sm tracking-wider text-slate-900">ONE★STAR VIEW</span>
+                            </div>
+                            <div class="pt-2">
+                                <p class="text-[13px] md:text-sm font-bold text-slate-800 leading-relaxed">
+                                    エアコンクリーニング専門店です。<br>
+                                    作業は24時間対応しています。<br>
+                                    夜間の追加料金もありません。<br>
+                                    家庭用はもちろんのこと、<br>
+                                    業務用エアコンも得意としています。<br>
+                                    定休日のない飲食店など、<br>
+                                    営業時間外に作業したい店舗にも<br>
+                                    向いていると思います。
+                                </p>
+                            </div>
+                        </section>
+
+                        <!-- ABOUT (基本情報) -->
+                        <section>
+                            <h3 class="text-xs font-black text-slate-400 tracking-widest mb-3 flex items-center">
+                                <span class="w-4 h-0.5 bg-slate-300 mr-2"></span>ABOUT
+                            </h3>
+                            <div class="space-y-3 bg-white p-4 rounded-xl border border-slate-200 text-[13px] font-bold text-slate-700">
+                                <div class="flex">
+                                    <span class="w-20 text-slate-400 shrink-0">屋号</span>
+                                    <span>エッジクリーンサービス</span>
+                                </div>
+                                <div class="flex">
+                                    <span class="w-20 text-slate-400 shrink-0">代表</span>
+                                    <span>長谷川 寿</span>
+                                </div>
+                                <div class="flex">
+                                    <span class="w-20 text-slate-400 shrink-0">所在地</span>
+                                    <span>愛知県岡崎市田口町字若草1-170</span>
+                                </div>
+                                <div class="flex">
+                                    <span class="w-20 text-slate-400 shrink-0">電話受付</span>
+                                    <span>8:00〜21:00</span>
+                                </div>
+                                <div class="flex">
+                                    <span class="w-20 text-slate-400 shrink-0">作業対応</span>
+                                    <span>24時間</span>
+                                </div>
+                                <div class="flex">
+                                    <span class="w-20 text-slate-400 shrink-0">電話番号</span>
+                                    <span class="text-slate-900 font-black tracking-wider">0800-080-7788</span>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- STYLE (対応・特徴) -->
+                        <section>
+                            <h3 class="text-xs font-black text-slate-400 tracking-widest mb-3 flex items-center">
+                                <span class="w-4 h-0.5 bg-slate-300 mr-2"></span>STYLE
+                            </h3>
+                            <div class="bg-white p-4 rounded-xl border border-slate-200">
+                                <div class="flex flex-wrap gap-1.5 mb-3">
+                                    <span class="px-2 py-1 bg-amber-50 text-amber-700 border border-amber-200 rounded text-[10px] font-black">24時間対応</span>
+                                    <span class="px-2 py-1 bg-blue-50 text-blue-700 border border-blue-200 rounded text-[10px] font-black">出張料無料</span>
+                                </div>
+                                <p class="text-[11px] text-slate-400 mb-2 font-bold">対応エリア</p>
+                                <div class="flex flex-wrap gap-1.5">
+                                    <span class="px-2 py-1 bg-slate-100 rounded text-[11px] text-slate-600 font-bold">愛知県内</span>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- PRICE (詳細料金) -->
+                        <section>
+                            <h3 class="text-xs font-black text-slate-400 tracking-widest mb-3 flex items-center">
+                                <span class="w-4 h-0.5 bg-slate-300 mr-2"></span>PRICE
+                            </h3>
+                            <div class="bg-white p-4 rounded-xl border border-slate-200 space-y-2">
+                                <div class="flex justify-between items-end border-b border-slate-100 pb-2">
+                                    <span class="text-[13px] font-bold text-slate-700">通常タイプ</span>
+                                    <div class="text-right">
+                                        <span class="text-lg font-black text-rose-600">¥8,400</span>
+                                        <span class="text-[10px] font-bold text-slate-400">/台〜</span>
+                                    </div>
+                                </div>
+                                <div class="flex justify-between items-end border-b border-slate-100 pb-2">
+                                    <span class="text-[13px] font-bold text-slate-700">お掃除機能付き</span>
+                                    <div class="text-right">
+                                        <span class="text-lg font-black text-rose-600">¥14,800</span>
+                                        <span class="text-[10px] font-bold text-slate-400">/台〜</span>
+                                    </div>
+                                </div>
+                                <div class="flex justify-between items-end border-b border-slate-100 pb-2">
+                                    <span class="text-[13px] font-bold text-slate-700">業務用</span>
+                                    <div class="text-right">
+                                        <span class="text-lg font-black text-rose-600">¥18,000</span>
+                                        <span class="text-[10px] font-bold text-slate-400">/台〜</span>
+                                    </div>
+                                </div>
+                                <p class="text-[10px] text-slate-400 font-bold mt-2 pt-1">
+                                    ※料金は変動する場合があります。最新情報は公式サイトをご確認ください。
+                                </p>
+                            </div>
+                        </section>
+
+                        <!-- LINK -->
+                        <section>
+                            <h3 class="text-xs font-black text-slate-400 tracking-widest mb-3 flex items-center">
+                                <span class="w-4 h-0.5 bg-slate-300 mr-2"></span>LINK
+                            </h3>
+                            <a href="https://www.edge-cleanservice.com" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between bg-white p-4 rounded-xl border border-slate-200 hover:border-blue-400 transition-colors group">
+                                <div class="flex items-center text-[13px] font-bold text-blue-600">
+                                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path></svg>
+                                    公式サイト・関連ページ
+                                </div>
+                                <svg class="w-4 h-4 text-slate-300 group-hover:text-blue-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"></path></svg>
+                            </a>
+                        </section>
+
                     </div>
-                    <span class="inline-block px-1.5 py-0.5 bg-slate-50 text-slate-600 border border-slate-200 text-[9px] font-black rounded mb-1.5">対応エリア</span>
-                    <h3 class="text-[13px] md:text-sm font-black text-slate-800 leading-tight mb-1 line-clamp-2">ダミーのおそうじ屋さん</h3>
-                </a>
+                </div>
+            </article>
 
-                <!-- カード 5 -->
-                <a href="#" class="provider-card block bg-white rounded-xl border border-slate-200 p-3 relative overflow-hidden">
-                    <div class="w-full aspect-video bg-slate-100 rounded-lg mb-3 flex flex-col items-center justify-center text-slate-300">
-                        <span class="text-[8px] font-bold tracking-wider">NO IMAGE</span>
+            <!-- カード 2: なんでもやります！ 便利館 -->
+            <article class="bg-white rounded-2xl shadow-md border-2 border-slate-100 overflow-hidden relative">
+                <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-neon via-slate-900 to-neon opacity-80"></div>
+                <div class="p-5 md:p-6 pb-4">
+                    <div class="flex items-start justify-between mb-4">
+                        <div>
+                            <h2 class="text-lg md:text-xl font-black text-slate-900 leading-tight">なんでもやります！ 便利館</h2>
+                            <div class="inline-flex items-center mt-2 px-2 py-0.5 bg-slate-100 rounded text-[11px] font-bold text-slate-600 border border-slate-200">
+                                <svg class="w-3 h-3 mr-1 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                岡崎市
+                            </div>
+                        </div>
                     </div>
-                    <span class="inline-block px-1.5 py-0.5 bg-blue-50 text-blue-600 border border-blue-100 text-[9px] font-black rounded mb-1.5">岡崎市拠点</span>
-                    <h3 class="text-[13px] md:text-sm font-black text-slate-800 leading-tight mb-1 line-clamp-2">ダミーエアコン本舗</h3>
-                </a>
-
-                <!-- カード 6 -->
-                <a href="#" class="provider-card block bg-white rounded-xl border border-slate-200 p-3 relative overflow-hidden">
-                    <div class="w-full aspect-video bg-slate-100 rounded-lg mb-3 flex flex-col items-center justify-center text-slate-300">
-                        <span class="text-[8px] font-bold tracking-wider">NO IMAGE</span>
+                    <div class="flex gap-4 border-l-2 border-neon pl-3 mb-4">
+                        <div>
+                            <p class="text-[10px] text-slate-500 font-bold mb-0.5">通常</p>
+                            <p class="text-base font-black text-slate-900">6,000<span class="text-xs font-bold ml-0.5">円〜</span></p>
+                        </div>
+                        <div>
+                            <p class="text-[10px] text-slate-500 font-bold mb-0.5">お掃除機能付き</p>
+                            <p class="text-base font-black text-slate-900">22,000<span class="text-xs font-bold ml-0.5">円〜</span></p>
+                        </div>
                     </div>
-                    <span class="inline-block px-1.5 py-0.5 bg-slate-50 text-slate-600 border border-slate-200 text-[9px] font-black rounded mb-1.5">対応エリア</span>
-                    <h3 class="text-[13px] md:text-sm font-black text-slate-800 leading-tight mb-1 line-clamp-2">ハウスクリーニング ダミー</h3>
-                </a>
-
-                <!-- カード 7 -->
-                <a href="#" class="provider-card block bg-white rounded-xl border border-slate-200 p-3 relative overflow-hidden">
-                    <div class="w-full aspect-video bg-slate-100 rounded-lg mb-3 flex flex-col items-center justify-center text-slate-300">
-                        <span class="text-[8px] font-bold tracking-wider">NO IMAGE</span>
+                </div>
+                <button class="js-toggle-btn w-full bg-slate-900 text-neon py-3 text-xs font-black tracking-widest flex items-center justify-center transition-colors hover:bg-slate-800">
+                    <span class="btn-text">詳しく見る</span>
+                    <svg class="w-4 h-4 ml-2 icon-rotate" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M12 4v16m8-8H4"></path></svg>
+                </button>
+                <div class="card-details bg-slate-50">
+                    <div class="p-5 md:p-6 space-y-8 border-t-2 border-slate-200">
+                        <section class="relative bg-white border-2 border-slate-900 rounded-xl p-5 shadow-[4px_4px_0_0_#0f172a]">
+                            <div class="absolute -top-3.5 left-4 bg-neon border-2 border-slate-900 px-3 py-0.5 rounded-full shadow-sm">
+                                <span class="font-impact text-sm tracking-wider text-slate-900">ONE★STAR VIEW</span>
+                            </div>
+                            <div class="pt-2">
+                                <p class="text-[13px] md:text-sm font-bold text-slate-800 leading-relaxed">
+                                    女性スタッフ在籍、24時間365日対応という柔軟性が魅力です。<br>
+                                    基本料金が安く設定されているため、通常タイプのエアコンを頼みたい方には良い選択肢になりそうです。
+                                </p>
+                            </div>
+                        </section>
+                        <section>
+                            <h3 class="text-xs font-black text-slate-400 tracking-widest mb-3 flex items-center">
+                                <span class="w-4 h-0.5 bg-slate-300 mr-2"></span>ABOUT
+                            </h3>
+                            <div class="space-y-3 bg-white p-4 rounded-xl border border-slate-200 text-[13px] font-bold text-slate-700">
+                                <div class="flex"><span class="w-20 text-slate-400 shrink-0">代表者</span><span>明保 克弥</span></div>
+                                <div class="flex"><span class="w-20 text-slate-400 shrink-0">所在地</span><span>愛知県岡崎市福岡町</span></div>
+                                <div class="flex"><span class="w-20 text-slate-400 shrink-0">営業時間</span><span>24時間営業</span></div>
+                            </div>
+                        </section>
+                        <section>
+                            <h3 class="text-xs font-black text-slate-400 tracking-widest mb-3 flex items-center">
+                                <span class="w-4 h-0.5 bg-slate-300 mr-2"></span>STYLE
+                            </h3>
+                            <div class="bg-white p-4 rounded-xl border border-slate-200">
+                                <div class="flex flex-wrap gap-1.5 mb-3">
+                                    <span class="px-2 py-1 bg-amber-50 text-amber-700 border border-amber-200 rounded text-[10px] font-black">24時間対応</span>
+                                    <span class="px-2 py-1 bg-pink-50 text-pink-700 border border-pink-200 rounded text-[10px] font-black">女性スタッフ在籍</span>
+                                </div>
+                                <p class="text-[11px] text-slate-400 mb-2 font-bold">対応エリア</p>
+                                <div class="flex flex-wrap gap-1.5">
+                                    <span class="px-2 py-1 bg-slate-100 rounded text-[11px] text-slate-600 font-bold">岡崎市</span>
+                                    <span class="px-2 py-1 bg-slate-100 rounded text-[11px] text-slate-600 font-bold">刈谷市</span>
+                                    <span class="px-2 py-1 bg-slate-100 rounded text-[11px] text-slate-600 font-bold">豊田市</span>
+                                </div>
+                            </div>
+                        </section>
                     </div>
-                    <span class="inline-block px-1.5 py-0.5 bg-blue-50 text-blue-600 border border-blue-100 text-[9px] font-black rounded mb-1.5">岡崎市拠点</span>
-                    <h3 class="text-[13px] md:text-sm font-black text-slate-800 leading-tight mb-1 line-clamp-2">ダミーピカピカ隊</h3>
-                </a>
+                </div>
+            </article>
 
-                <!-- カード 8 -->
-                <a href="#" class="provider-card block bg-white rounded-xl border border-slate-200 p-3 relative overflow-hidden">
-                    <div class="w-full aspect-video bg-slate-100 rounded-lg mb-3 flex flex-col items-center justify-center text-slate-300">
-                        <span class="text-[8px] font-bold tracking-wider">NO IMAGE</span>
+            <!-- カード 3: LUMIC -->
+            <article class="bg-white rounded-2xl shadow-md border-2 border-slate-100 overflow-hidden relative">
+                <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-neon via-slate-900 to-neon opacity-80"></div>
+                <div class="p-5 md:p-6 pb-4">
+                    <div class="flex items-start justify-between mb-4">
+                        <div>
+                            <h2 class="text-lg md:text-xl font-black text-slate-900 leading-tight">LUMIC</h2>
+                            <div class="inline-flex items-center mt-2 px-2 py-0.5 bg-slate-100 rounded text-[11px] font-bold text-slate-600 border border-slate-200">
+                                <svg class="w-3 h-3 mr-1 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                岡崎市
+                            </div>
+                        </div>
                     </div>
-                    <span class="inline-block px-1.5 py-0.5 bg-slate-50 text-slate-600 border border-slate-200 text-[9px] font-black rounded mb-1.5">対応エリア</span>
-                    <h3 class="text-[13px] md:text-sm font-black text-slate-800 leading-tight mb-1 line-clamp-2">ダミーウォッシュ</h3>
-                </a>
-
-                <!-- カード 9 -->
-                <a href="#" class="provider-card block bg-white rounded-xl border border-slate-200 p-3 relative overflow-hidden">
-                    <div class="w-full aspect-video bg-slate-100 rounded-lg mb-3 flex flex-col items-center justify-center text-slate-300">
-                        <span class="text-[8px] font-bold tracking-wider">NO IMAGE</span>
+                    <div class="flex gap-4 border-l-2 border-neon pl-3 mb-4">
+                        <div>
+                            <p class="text-[10px] text-slate-500 font-bold mb-0.5">通常</p>
+                            <p class="text-base font-black text-slate-900">9,000<span class="text-xs font-bold ml-0.5">円〜</span></p>
+                        </div>
+                        <div>
+                            <p class="text-[10px] text-slate-500 font-bold mb-0.5">お掃除機能付き</p>
+                            <p class="text-base font-black text-slate-900">15,000<span class="text-xs font-bold ml-0.5">円〜</span></p>
+                        </div>
                     </div>
-                    <span class="inline-block px-1.5 py-0.5 bg-blue-50 text-blue-600 border border-blue-100 text-[9px] font-black rounded mb-1.5">岡崎市拠点</span>
-                    <h3 class="text-[13px] md:text-sm font-black text-slate-800 leading-tight mb-1 line-clamp-2">おそうじダミー 岡崎店</h3>
-                </a>
-
-                <!-- カード 10 -->
-                <a href="#" class="provider-card block bg-white rounded-xl border border-slate-200 p-3 relative overflow-hidden">
-                    <div class="w-full aspect-video bg-slate-100 rounded-lg mb-3 flex flex-col items-center justify-center text-slate-300">
-                        <span class="text-[8px] font-bold tracking-wider">NO IMAGE</span>
+                </div>
+                <button class="js-toggle-btn w-full bg-slate-900 text-neon py-3 text-xs font-black tracking-widest flex items-center justify-center transition-colors hover:bg-slate-800">
+                    <span class="btn-text">詳しく見る</span>
+                    <svg class="w-4 h-4 ml-2 icon-rotate" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M12 4v16m8-8H4"></path></svg>
+                </button>
+                <div class="card-details bg-slate-50">
+                    <div class="p-5 md:p-6 space-y-8 border-t-2 border-slate-200">
+                        <section class="relative bg-white border-2 border-slate-900 rounded-xl p-5 shadow-[4px_4px_0_0_#0f172a]">
+                            <div class="absolute -top-3.5 left-4 bg-neon border-2 border-slate-900 px-3 py-0.5 rounded-full shadow-sm">
+                                <span class="font-impact text-sm tracking-wider text-slate-900">ONE★STAR VIEW</span>
+                            </div>
+                            <div class="pt-2">
+                                <p class="text-[13px] md:text-sm font-bold text-slate-800 leading-relaxed">
+                                    一般家庭はもちろん、賃貸や店舗向けの空室クリーニングも得意としている業者です。<br>
+                                    幅広い清掃実績と、良心的な価格設定が魅力です。
+                                </p>
+                            </div>
+                        </section>
+                        <section>
+                            <h3 class="text-xs font-black text-slate-400 tracking-widest mb-3 flex items-center">
+                                <span class="w-4 h-0.5 bg-slate-300 mr-2"></span>ABOUT
+                            </h3>
+                            <div class="space-y-3 bg-white p-4 rounded-xl border border-slate-200 text-[13px] font-bold text-slate-700">
+                                <div class="flex"><span class="w-20 text-slate-400 shrink-0">代表者</span><span>石原 翔太</span></div>
+                                <div class="flex"><span class="w-20 text-slate-400 shrink-0">所在地</span><span>愛知県岡崎市美合町</span></div>
+                                <div class="flex"><span class="w-20 text-slate-400 shrink-0">営業時間</span><span>8:00〜19:00</span></div>
+                            </div>
+                        </section>
                     </div>
-                    <span class="inline-block px-1.5 py-0.5 bg-slate-50 text-slate-600 border border-slate-200 text-[9px] font-black rounded mb-1.5">対応エリア</span>
-                    <h3 class="text-[13px] md:text-sm font-black text-slate-800 leading-tight mb-1 line-clamp-2">ダミーサービス プロ</h3>
-                </a>
+                </div>
+            </article>
 
-                <!-- カード 11 -->
-                <a href="#" class="provider-card block bg-white rounded-xl border border-slate-200 p-3 relative overflow-hidden">
-                    <div class="w-full aspect-video bg-slate-100 rounded-lg mb-3 flex flex-col items-center justify-center text-slate-300">
-                        <span class="text-[8px] font-bold tracking-wider">NO IMAGE</span>
+            <!-- カード 4: ダミー業者 -->
+            <article class="bg-white rounded-2xl shadow-md border-2 border-slate-100 overflow-hidden relative">
+                <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-neon via-slate-900 to-neon opacity-80"></div>
+                <div class="p-5 md:p-6 pb-4">
+                    <div class="flex items-start justify-between mb-4">
+                        <div>
+                            <h2 class="text-lg md:text-xl font-black text-slate-900 leading-tight">ダミークリーンサービス</h2>
+                            <div class="inline-flex items-center mt-2 px-2 py-0.5 bg-slate-100 rounded text-[11px] font-bold text-slate-600 border border-slate-200">
+                                <svg class="w-3 h-3 mr-1 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                岡崎市
+                            </div>
+                        </div>
                     </div>
-                    <span class="inline-block px-1.5 py-0.5 bg-blue-50 text-blue-600 border border-blue-100 text-[9px] font-black rounded mb-1.5">岡崎市拠点</span>
-                    <h3 class="text-[13px] md:text-sm font-black text-slate-800 leading-tight mb-1 line-clamp-2">ダミーエア・サポート</h3>
-                </a>
-
-                <!-- カード 12 -->
-                <a href="#" class="provider-card block bg-white rounded-xl border border-slate-200 p-3 relative overflow-hidden">
-                    <div class="w-full aspect-video bg-slate-100 rounded-lg mb-3 flex flex-col items-center justify-center text-slate-300">
-                        <span class="text-[8px] font-bold tracking-wider">NO IMAGE</span>
+                    <div class="flex gap-4 border-l-2 border-neon pl-3 mb-4">
+                        <div>
+                            <p class="text-[10px] text-slate-500 font-bold mb-0.5">通常</p>
+                            <p class="text-base font-black text-slate-900">11,000<span class="text-xs font-bold ml-0.5">円〜</span></p>
+                        </div>
+                        <div>
+                            <p class="text-[10px] text-slate-500 font-bold mb-0.5">お掃除機能付き</p>
+                            <p class="text-base font-black text-slate-900">19,800<span class="text-xs font-bold ml-0.5">円〜</span></p>
+                        </div>
                     </div>
-                    <span class="inline-block px-1.5 py-0.5 bg-slate-50 text-slate-600 border border-slate-200 text-[9px] font-black rounded mb-1.5">対応エリア</span>
-                    <h3 class="text-[13px] md:text-sm font-black text-slate-800 leading-tight mb-1 line-clamp-2">ダミークリーン 愛知</h3>
-                </a>
-
-                <!-- カード 13 -->
-                <a href="#" class="provider-card block bg-white rounded-xl border border-slate-200 p-3 relative overflow-hidden">
-                    <div class="w-full aspect-video bg-slate-100 rounded-lg mb-3 flex flex-col items-center justify-center text-slate-300">
-                        <span class="text-[8px] font-bold tracking-wider">NO IMAGE</span>
+                </div>
+                <button class="js-toggle-btn w-full bg-slate-900 text-neon py-3 text-xs font-black tracking-widest flex items-center justify-center transition-colors hover:bg-slate-800">
+                    <span class="btn-text">詳しく見る</span>
+                    <svg class="w-4 h-4 ml-2 icon-rotate" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M12 4v16m8-8H4"></path></svg>
+                </button>
+                <div class="card-details bg-slate-50">
+                    <div class="p-5 md:p-6 space-y-8 border-t-2 border-slate-200">
+                        <section class="relative bg-white border-2 border-slate-900 rounded-xl p-5 shadow-[4px_4px_0_0_#0f172a]">
+                            <div class="absolute -top-3.5 left-4 bg-neon border-2 border-slate-900 px-3 py-0.5 rounded-full shadow-sm">
+                                <span class="font-impact text-sm tracking-wider text-slate-900">ONE★STAR VIEW</span>
+                            </div>
+                            <div class="pt-2">
+                                <p class="text-[13px] md:text-sm font-bold text-slate-800 leading-relaxed">
+                                    ダミーテキストです。業者の特徴や強みをここに記載します。
+                                </p>
+                            </div>
+                        </section>
+                        <section>
+                            <h3 class="text-xs font-black text-slate-400 tracking-widest mb-3 flex items-center">
+                                <span class="w-4 h-0.5 bg-slate-300 mr-2"></span>ABOUT
+                            </h3>
+                            <div class="space-y-3 bg-white p-4 rounded-xl border border-slate-200 text-[13px] font-bold text-slate-700">
+                                <div class="flex"><span class="w-20 text-slate-400 shrink-0">所在地</span><span>愛知県岡崎市ダミー町</span></div>
+                            </div>
+                        </section>
                     </div>
-                    <span class="inline-block px-1.5 py-0.5 bg-blue-50 text-blue-600 border border-blue-100 text-[9px] font-black rounded mb-1.5">岡崎市拠点</span>
-                    <h3 class="text-[13px] md:text-sm font-black text-slate-800 leading-tight mb-1 line-clamp-2">ダミー美装</h3>
-                </a>
+                </div>
+            </article>
 
-                <!-- カード 14 -->
-                <a href="#" class="provider-card block bg-white rounded-xl border border-slate-200 p-3 relative overflow-hidden">
-                    <div class="w-full aspect-video bg-slate-100 rounded-lg mb-3 flex flex-col items-center justify-center text-slate-300">
-                        <span class="text-[8px] font-bold tracking-wider">NO IMAGE</span>
+            <!-- カード 5: ダミー業者 -->
+            <article class="bg-white rounded-2xl shadow-md border-2 border-slate-100 overflow-hidden relative">
+                <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-neon via-slate-900 to-neon opacity-80"></div>
+                <div class="p-5 md:p-6 pb-4">
+                    <div class="flex items-start justify-between mb-4">
+                        <div>
+                            <h2 class="text-lg md:text-xl font-black text-slate-900 leading-tight">エアコンおそうじ本舗 岡崎店（ダミー）</h2>
+                            <div class="inline-flex items-center mt-2 px-2 py-0.5 bg-slate-100 rounded text-[11px] font-bold text-slate-600 border border-slate-200">
+                                <svg class="w-3 h-3 mr-1 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                                出張エリア
+                            </div>
+                        </div>
                     </div>
-                    <span class="inline-block px-1.5 py-0.5 bg-slate-50 text-slate-600 border border-slate-200 text-[9px] font-black rounded mb-1.5">対応エリア</span>
-                    <h3 class="text-[13px] md:text-sm font-black text-slate-800 leading-tight mb-1 line-clamp-2">クリーンファースト・ダミー</h3>
-                </a>
-
-                <!-- カード 15 -->
-                <a href="#" class="provider-card block bg-white rounded-xl border border-slate-200 p-3 relative overflow-hidden">
-                    <div class="w-full aspect-video bg-slate-100 rounded-lg mb-3 flex flex-col items-center justify-center text-slate-300">
-                        <span class="text-[8px] font-bold tracking-wider">NO IMAGE</span>
+                    <div class="flex gap-4 border-l-2 border-neon pl-3 mb-4">
+                        <div>
+                            <p class="text-[10px] text-slate-500 font-bold mb-0.5">通常</p>
+                            <p class="text-base font-black text-slate-900">12,000<span class="text-xs font-bold ml-0.5">円〜</span></p>
+                        </div>
+                        <div>
+                            <p class="text-[10px] text-slate-500 font-bold mb-0.5">お掃除機能付き</p>
+                            <p class="text-base font-black text-slate-900">21,000<span class="text-xs font-bold ml-0.5">円〜</span></p>
+                        </div>
                     </div>
-                    <span class="inline-block px-1.5 py-0.5 bg-blue-50 text-blue-600 border border-blue-100 text-[9px] font-black rounded mb-1.5">岡崎市拠点</span>
-                    <h3 class="text-[13px] md:text-sm font-black text-slate-800 leading-tight mb-1 line-clamp-2">ダミー・マイスター</h3>
-                </a>
-
-                <!-- カード 16 -->
-                <a href="#" class="provider-card block bg-white rounded-xl border border-slate-200 p-3 relative overflow-hidden">
-                    <div class="w-full aspect-video bg-slate-100 rounded-lg mb-3 flex flex-col items-center justify-center text-slate-300">
-                        <span class="text-[8px] font-bold tracking-wider">NO IMAGE</span>
+                </div>
+                <button class="js-toggle-btn w-full bg-slate-900 text-neon py-3 text-xs font-black tracking-widest flex items-center justify-center transition-colors hover:bg-slate-800">
+                    <span class="btn-text">詳しく見る</span>
+                    <svg class="w-4 h-4 ml-2 icon-rotate" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M12 4v16m8-8H4"></path></svg>
+                </button>
+                <div class="card-details bg-slate-50">
+                    <div class="p-5 md:p-6 space-y-8 border-t-2 border-slate-200">
+                        <section class="relative bg-white border-2 border-slate-900 rounded-xl p-5 shadow-[4px_4px_0_0_#0f172a]">
+                            <div class="absolute -top-3.5 left-4 bg-neon border-2 border-slate-900 px-3 py-0.5 rounded-full shadow-sm">
+                                <span class="font-impact text-sm tracking-wider text-slate-900">ONE★STAR VIEW</span>
+                            </div>
+                            <div class="pt-2">
+                                <p class="text-[13px] md:text-sm font-bold text-slate-800 leading-relaxed">
+                                    ダミーテキストです。
+                                </p>
+                            </div>
+                        </section>
                     </div>
-                    <span class="inline-block px-1.5 py-0.5 bg-slate-50 text-slate-600 border border-slate-200 text-[9px] font-black rounded mb-1.5">対応エリア</span>
-                    <h3 class="text-[13px] md:text-sm font-black text-slate-800 leading-tight mb-1 line-clamp-2">ダミー住設</h3>
-                </a>
+                </div>
+            </article>
+            
+            <!-- ※ 動作確認のため一旦5個としています。実際はこれを複製して30個まで増やせます -->
 
-                <!-- カード 17 -->
-                <a href="#" class="provider-card block bg-white rounded-xl border border-slate-200 p-3 relative overflow-hidden">
-                    <div class="w-full aspect-video bg-slate-100 rounded-lg mb-3 flex flex-col items-center justify-center text-slate-300">
-                        <span class="text-[8px] font-bold tracking-wider">NO IMAGE</span>
-                    </div>
-                    <span class="inline-block px-1.5 py-0.5 bg-blue-50 text-blue-600 border border-blue-100 text-[9px] font-black rounded mb-1.5">岡崎市拠点</span>
-                    <h3 class="text-[13px] md:text-sm font-black text-slate-800 leading-tight mb-1 line-clamp-2">エアコン・ダミー職人</h3>
-                </a>
-
-                <!-- カード 18 -->
-                <a href="#" class="provider-card block bg-white rounded-xl border border-slate-200 p-3 relative overflow-hidden">
-                    <div class="w-full aspect-video bg-slate-100 rounded-lg mb-3 flex flex-col items-center justify-center text-slate-300">
-                        <span class="text-[8px] font-bold tracking-wider">NO IMAGE</span>
-                    </div>
-                    <span class="inline-block px-1.5 py-0.5 bg-slate-50 text-slate-600 border border-slate-200 text-[9px] font-black rounded mb-1.5">対応エリア</span>
-                    <h3 class="text-[13px] md:text-sm font-black text-slate-800 leading-tight mb-1 line-clamp-2">ダミークリア</h3>
-                </a>
-
-                <!-- カード 19 -->
-                <a href="#" class="provider-card block bg-white rounded-xl border border-slate-200 p-3 relative overflow-hidden">
-                    <div class="w-full aspect-video bg-slate-100 rounded-lg mb-3 flex flex-col items-center justify-center text-slate-300">
-                        <span class="text-[8px] font-bold tracking-wider">NO IMAGE</span>
-                    </div>
-                    <span class="inline-block px-1.5 py-0.5 bg-blue-50 text-blue-600 border border-blue-100 text-[9px] font-black rounded mb-1.5">岡崎市拠点</span>
-                    <h3 class="text-[13px] md:text-sm font-black text-slate-800 leading-tight mb-1 line-clamp-2">ダミーホームサービス</h3>
-                </a>
-
-                <!-- カード 20 -->
-                <a href="#" class="provider-card block bg-white rounded-xl border border-slate-200 p-3 relative overflow-hidden">
-                    <div class="w-full aspect-video bg-slate-100 rounded-lg mb-3 flex flex-col items-center justify-center text-slate-300">
-                        <span class="text-[8px] font-bold tracking-wider">NO IMAGE</span>
-                    </div>
-                    <span class="inline-block px-1.5 py-0.5 bg-slate-50 text-slate-600 border border-slate-200 text-[9px] font-black rounded mb-1.5">対応エリア</span>
-                    <h3 class="text-[13px] md:text-sm font-black text-slate-800 leading-tight mb-1 line-clamp-2">ピュアダミー</h3>
-                </a>
-
-                <!-- カード 21 -->
-                <a href="#" class="provider-card block bg-white rounded-xl border border-slate-200 p-3 relative overflow-hidden">
-                    <div class="w-full aspect-video bg-slate-100 rounded-lg mb-3 flex flex-col items-center justify-center text-slate-300">
-                        <span class="text-[8px] font-bold tracking-wider">NO IMAGE</span>
-                    </div>
-                    <span class="inline-block px-1.5 py-0.5 bg-blue-50 text-blue-600 border border-blue-100 text-[9px] font-black rounded mb-1.5">岡崎市拠点</span>
-                    <h3 class="text-[13px] md:text-sm font-black text-slate-800 leading-tight mb-1 line-clamp-2">ダミー空調設備</h3>
-                </a>
-
-                <!-- カード 22 -->
-                <a href="#" class="provider-card block bg-white rounded-xl border border-slate-200 p-3 relative overflow-hidden">
-                    <div class="w-full aspect-video bg-slate-100 rounded-lg mb-3 flex flex-col items-center justify-center text-slate-300">
-                        <span class="text-[8px] font-bold tracking-wider">NO IMAGE</span>
-                    </div>
-                    <span class="inline-block px-1.5 py-0.5 bg-slate-50 text-slate-600 border border-slate-200 text-[9px] font-black rounded mb-1.5">対応エリア</span>
-                    <h3 class="text-[13px] md:text-sm font-black text-slate-800 leading-tight mb-1 line-clamp-2">ダミーエンタープライズ</h3>
-                </a>
-
-                <!-- カード 23 -->
-                <a href="#" class="provider-card block bg-white rounded-xl border border-slate-200 p-3 relative overflow-hidden">
-                    <div class="w-full aspect-video bg-slate-100 rounded-lg mb-3 flex flex-col items-center justify-center text-slate-300">
-                        <span class="text-[8px] font-bold tracking-wider">NO IMAGE</span>
-                    </div>
-                    <span class="inline-block px-1.5 py-0.5 bg-blue-50 text-blue-600 border border-blue-100 text-[9px] font-black rounded mb-1.5">岡崎市拠点</span>
-                    <h3 class="text-[13px] md:text-sm font-black text-slate-800 leading-tight mb-1 line-clamp-2">ダミー・プロフェッショナル</h3>
-                </a>
-
-                <!-- カード 24 -->
-                <a href="#" class="provider-card block bg-white rounded-xl border border-slate-200 p-3 relative overflow-hidden">
-                    <div class="w-full aspect-video bg-slate-100 rounded-lg mb-3 flex flex-col items-center justify-center text-slate-300">
-                        <span class="text-[8px] font-bold tracking-wider">NO IMAGE</span>
-                    </div>
-                    <span class="inline-block px-1.5 py-0.5 bg-slate-50 text-slate-600 border border-slate-200 text-[9px] font-black rounded mb-1.5">対応エリア</span>
-                    <h3 class="text-[13px] md:text-sm font-black text-slate-800 leading-tight mb-1 line-clamp-2">ダミークリーン・ネクスト</h3>
-                </a>
-
-                <!-- カード 25 -->
-                <a href="#" class="provider-card block bg-white rounded-xl border border-slate-200 p-3 relative overflow-hidden">
-                    <div class="w-full aspect-video bg-slate-100 rounded-lg mb-3 flex flex-col items-center justify-center text-slate-300">
-                        <span class="text-[8px] font-bold tracking-wider">NO IMAGE</span>
-                    </div>
-                    <span class="inline-block px-1.5 py-0.5 bg-blue-50 text-blue-600 border border-blue-100 text-[9px] font-black rounded mb-1.5">岡崎市拠点</span>
-                    <h3 class="text-[13px] md:text-sm font-black text-slate-800 leading-tight mb-1 line-clamp-2">ダミー・ライフケア</h3>
-                </a>
-
-                <!-- カード 26 -->
-                <a href="#" class="provider-card block bg-white rounded-xl border border-slate-200 p-3 relative overflow-hidden">
-                    <div class="w-full aspect-video bg-slate-100 rounded-lg mb-3 flex flex-col items-center justify-center text-slate-300">
-                        <span class="text-[8px] font-bold tracking-wider">NO IMAGE</span>
-                    </div>
-                    <span class="inline-block px-1.5 py-0.5 bg-slate-50 text-slate-600 border border-slate-200 text-[9px] font-black rounded mb-1.5">対応エリア</span>
-                    <h3 class="text-[13px] md:text-sm font-black text-slate-800 leading-tight mb-1 line-clamp-2">ダミー清掃社</h3>
-                </a>
-
-                <!-- カード 27 -->
-                <a href="#" class="provider-card block bg-white rounded-xl border border-slate-200 p-3 relative overflow-hidden">
-                    <div class="w-full aspect-video bg-slate-100 rounded-lg mb-3 flex flex-col items-center justify-center text-slate-300">
-                        <span class="text-[8px] font-bold tracking-wider">NO IMAGE</span>
-                    </div>
-                    <span class="inline-block px-1.5 py-0.5 bg-blue-50 text-blue-600 border border-blue-100 text-[9px] font-black rounded mb-1.5">岡崎市拠点</span>
-                    <h3 class="text-[13px] md:text-sm font-black text-slate-800 leading-tight mb-1 line-clamp-2">ダミー・スマイル</h3>
-                </a>
-
-                <!-- カード 28 -->
-                <a href="#" class="provider-card block bg-white rounded-xl border border-slate-200 p-3 relative overflow-hidden">
-                    <div class="w-full aspect-video bg-slate-100 rounded-lg mb-3 flex flex-col items-center justify-center text-slate-300">
-                        <span class="text-[8px] font-bold tracking-wider">NO IMAGE</span>
-                    </div>
-                    <span class="inline-block px-1.5 py-0.5 bg-slate-50 text-slate-600 border border-slate-200 text-[9px] font-black rounded mb-1.5">対応エリア</span>
-                    <h3 class="text-[13px] md:text-sm font-black text-slate-800 leading-tight mb-1 line-clamp-2">ダミー・アシスト</h3>
-                </a>
-
-                <!-- カード 29 -->
-                <a href="#" class="provider-card block bg-white rounded-xl border border-slate-200 p-3 relative overflow-hidden">
-                    <div class="w-full aspect-video bg-slate-100 rounded-lg mb-3 flex flex-col items-center justify-center text-slate-300">
-                        <span class="text-[8px] font-bold tracking-wider">NO IMAGE</span>
-                    </div>
-                    <span class="inline-block px-1.5 py-0.5 bg-blue-50 text-blue-600 border border-blue-100 text-[9px] font-black rounded mb-1.5">岡崎市拠点</span>
-                    <h3 class="text-[13px] md:text-sm font-black text-slate-800 leading-tight mb-1 line-clamp-2">ダミー・フレッシュ</h3>
-                </a>
-
-                <!-- カード 30 -->
-                <a href="#" class="provider-card block bg-white rounded-xl border border-slate-200 p-3 relative overflow-hidden">
-                    <div class="w-full aspect-video bg-slate-100 rounded-lg mb-3 flex flex-col items-center justify-center text-slate-300">
-                        <span class="text-[8px] font-bold tracking-wider">NO IMAGE</span>
-                    </div>
-                    <span class="inline-block px-1.5 py-0.5 bg-slate-50 text-slate-600 border border-slate-200 text-[9px] font-black rounded mb-1.5">対応エリア</span>
-                    <h3 class="text-[13px] md:text-sm font-black text-slate-800 leading-tight mb-1 line-clamp-2">ダミー・トータルサービス</h3>
-                </a>
-
-            </div>
         </div>
     </main>
 
-    <!-- FOOTER -->
+    <!-- FOOTER (変更なし) -->
     <footer class="bg-slate-900 text-white pt-12 pb-24 md:pb-12 border-t-[6px] border-neon text-center">
         <div class="mb-6 flex flex-col items-center justify-center">
             <span class="text-4xl md:text-5xl tracking-widest text-white flex items-center justify-center font-impact mt-1">
@@ -468,7 +611,7 @@
         <p class="text-[10px] text-slate-500 font-bold tracking-wider">© 2026 ONE★STAR. All Rights Reserved.</p>
     </footer>
 
-    <!-- MOBILE BOTTOM NAVIGATION -->
+    <!-- MOBILE BOTTOM NAVIGATION (変更なし) -->
     <div class="fixed bottom-0 left-0 right-0 z-45 bg-slate-900 md:hidden h-[60px] flex items-stretch text-white shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.3)] border-t border-slate-800">
         <a href="/price" class="flex flex-col items-center justify-center w-[20%] border-r border-slate-700 active:bg-slate-800">
             <svg class="w-5 h-5 mb-1 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
@@ -488,7 +631,7 @@
         </a>
     </div>
 
-    <!-- 電話モーダル -->
+    <!-- 電話モーダル (変更なし) -->
     <div id="phone-modal" class="fixed inset-0 z-[100] hidden flex items-center justify-center px-4">
         <div id="phone-modal-backdrop" class="absolute inset-0 bg-slate-900/80 backdrop-blur-sm opacity-0 transition-opacity duration-300"></div>
         <div id="phone-modal-content" class="relative bg-white rounded-3xl shadow-2xl w-full max-w-sm overflow-hidden transform scale-95 opacity-0 transition-all duration-300 border border-slate-100">
@@ -583,6 +726,36 @@
                 document.getElementById('phone-modal-cancel').addEventListener('click', closePhoneModal);
                 phoneModalBackdrop.addEventListener('click', closePhoneModal);
             }
+
+            // 【新規】カード詳細のアコーディオン制御
+            document.querySelectorAll('.js-toggle-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    // 他の開いているカードを閉じる処理（アコーディオン式にしたい場合）
+                    // 複数のカードを同時に開きたい場合は以下のブロックをコメントアウトしてください
+                    /*
+                    document.querySelectorAll('.card-details.open').forEach(openDetails => {
+                        if (openDetails !== e.currentTarget.nextElementSibling) {
+                            openDetails.classList.remove('open');
+                            const otherBtn = openDetails.previousElementSibling;
+                            otherBtn.querySelector('.btn-text').textContent = '詳しく見る';
+                            otherBtn.classList.remove('open');
+                        }
+                    });
+                    */
+
+                    const details = e.currentTarget.nextElementSibling;
+                    const textSpan = e.currentTarget.querySelector('.btn-text');
+                    
+                    e.currentTarget.classList.toggle('open');
+                    details.classList.toggle('open');
+                    
+                    if (details.classList.contains('open')) {
+                        textSpan.textContent = '閉じる';
+                    } else {
+                        textSpan.textContent = '詳しく見る';
+                    }
+                });
+            });
         });
     </script>
 </body>
