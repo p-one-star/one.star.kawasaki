@@ -58,7 +58,6 @@
     </style>
 </head>
 <body class="font-sans text-slate-800 bg-slate-50 antialiased overflow-x-hidden">
-
     <!-- HEADER -->
     <header class="fixed top-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md shadow-sm border-b border-slate-100 h-14 flex items-center justify-between px-4">
         <button id="menu-open-btn" class="p-2 hover:bg-slate-100 rounded-lg" aria-label="メニュー">
@@ -82,7 +81,7 @@
         <div class="w-10 md:hidden"></div>
     </header>
 
-    <!-- DRAWER MENU (変更なし) -->
+    <!-- DRAWER MENU -->
     <div id="drawer-container" class="fixed inset-0 z-50 overflow-hidden hidden">
         <div id="drawer-backdrop" class="absolute inset-0 bg-slate-900/60 opacity-0 transition-opacity duration-300"></div>
         <div class="pointer-events-none fixed inset-y-0 left-0 flex max-w-full">
@@ -207,7 +206,10 @@
                     <div class="flex items-start justify-between mb-4">
                         <div>
                             <!-- 業者名 -->
-                            <h2 class="text-lg md:text-xl font-black text-slate-900 leading-tight">株式会社ECS</h2>
+                            <h2 class="text-lg md:text-xl font-black text-slate-900 leading-tight">
+                                株式会社ECS<br>
+                                <span class="text-xs md:text-sm text-slate-600 block mt-0.5">エッジクリーンサービス</span>
+                            </h2>
                             <!-- 所在地バッジ -->
                             <div class="inline-flex items-center mt-2 px-2 py-0.5 bg-slate-100 rounded text-[11px] font-bold text-slate-600 border border-slate-200">
                                 <svg class="w-3 h-3 mr-1 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
@@ -313,32 +315,49 @@
                             <h3 class="text-xs font-black text-slate-400 tracking-widest mb-3 flex items-center">
                                 <span class="w-4 h-0.5 bg-slate-300 mr-2"></span>PRICE
                             </h3>
-                            <div class="bg-white p-4 rounded-xl border border-slate-200 space-y-2">
-                                <div class="flex justify-between items-end border-b border-slate-100 pb-2">
-                                    <span class="text-[13px] font-bold text-slate-700">通常タイプ</span>
-                                    <div class="text-right">
-                                        <span class="text-lg font-black text-rose-600">¥8,400</span>
-                                        <span class="text-[10px] font-bold text-slate-400">/台〜</span>
-                                    </div>
-                                </div>
-                                <div class="flex justify-between items-end border-b border-slate-100 pb-2">
-                                    <span class="text-[13px] font-bold text-slate-700">お掃除機能付き</span>
-                                    <div class="text-right">
-                                        <span class="text-lg font-black text-rose-600">¥14,800</span>
-                                        <span class="text-[10px] font-bold text-slate-400">/台〜</span>
-                                    </div>
-                                </div>
-                                <div class="flex justify-between items-end border-b border-slate-100 pb-2">
-                                    <span class="text-[13px] font-bold text-slate-700">業務用</span>
-                                    <div class="text-right">
-                                        <span class="text-lg font-black text-rose-600">¥18,000</span>
-                                        <span class="text-[10px] font-bold text-slate-400">/台〜</span>
-                                    </div>
-                                </div>
-                                <p class="text-[10px] text-slate-400 font-bold mt-2 pt-1">
-                                    ※料金は変動する場合があります。最新情報は公式サイトをご確認ください。
-                                </p>
+                            <div class="bg-white rounded-xl border border-slate-200 overflow-hidden">
+                                <table class="w-full text-left border-collapse">
+                                    <thead>
+                                        <tr class="bg-slate-50 border-b border-slate-200">
+                                            <th class="py-2 px-3 text-[11px] font-black text-slate-500 w-1/3"></th>
+                                            <th class="py-2 px-3 text-[12px] font-black text-slate-700 text-center w-1/3 border-l border-slate-100">1台</th>
+                                            <th class="py-2 px-3 text-[12px] font-black text-slate-700 text-center w-1/3 border-l border-slate-100">2台以上</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="text-[13px] font-bold">
+                                        <tr class="border-b border-slate-100">
+                                            <td class="py-3 px-3 text-slate-700 align-middle">通常タイプ</td>
+                                            <td class="py-3 px-3 text-center align-middle border-l border-slate-100">
+                                                <span class="text-slate-900 font-black whitespace-nowrap">9,500<span class="text-[10px] ml-0.5">円</span></span>
+                                            </td>
+                                            <td class="py-3 px-3 text-center align-middle border-l border-slate-100">
+                                                <span class="text-rose-600 font-black whitespace-nowrap">8,400<span class="text-[10px] ml-0.5">円/台</span></span>
+                                            </td>
+                                        </tr>
+                                        <tr class="border-b border-slate-100 bg-slate-50/50">
+                                            <td class="py-3 px-3 text-slate-700 align-middle whitespace-nowrap">お掃除機能付き</td>
+                                            <td class="py-3 px-3 text-center align-middle border-l border-slate-100">
+                                                <span class="text-slate-900 font-black whitespace-nowrap">15,800<span class="text-[10px] ml-0.5">円</span></span>
+                                            </td>
+                                            <td class="py-3 px-3 text-center align-middle border-l border-slate-100">
+                                                <span class="text-rose-600 font-black whitespace-nowrap">14,800<span class="text-[10px] ml-0.5">円/台</span></span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="py-3 px-3 text-slate-700 align-middle">業務用</td>
+                                            <td class="py-3 px-3 text-center align-middle border-l border-slate-100">
+                                                <span class="text-slate-900 font-black whitespace-nowrap">20,400<span class="text-[10px] ml-0.5">円〜</span></span>
+                                            </td>
+                                            <td class="py-3 px-3 text-center align-middle border-l border-slate-100">
+                                                <span class="text-rose-600 font-black whitespace-nowrap">18,000<span class="text-[10px] ml-0.5">円〜/台</span></span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
+                            <p class="text-[10px] text-slate-400 font-bold mt-2 px-1">
+                                ※料金は変動する場合があります。最新情報は公式サイトをご確認ください。
+                            </p>
                         </section>
 
                         <!-- LINK -->
@@ -582,12 +601,10 @@
                 </div>
             </article>
             
-            <!-- ※ 動作確認のため一旦5個としています。実際はこれを複製して30個まで増やせます -->
-
         </div>
     </main>
 
-    <!-- FOOTER (変更なし) -->
+    <!-- FOOTER -->
     <footer class="bg-slate-900 text-white pt-12 pb-24 md:pb-12 border-t-[6px] border-neon text-center">
         <div class="mb-6 flex flex-col items-center justify-center">
             <span class="text-4xl md:text-5xl tracking-widest text-white flex items-center justify-center font-impact mt-1">
@@ -607,7 +624,7 @@
         <p class="text-[10px] text-slate-500 font-bold tracking-wider">© 2026 ONE★STAR. All Rights Reserved.</p>
     </footer>
 
-    <!-- MOBILE BOTTOM NAVIGATION (変更なし) -->
+    <!-- MOBILE BOTTOM NAVIGATION -->
     <div class="fixed bottom-0 left-0 right-0 z-45 bg-slate-900 md:hidden h-[60px] flex items-stretch text-white shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.3)] border-t border-slate-800">
         <a href="/price" class="flex flex-col items-center justify-center w-[20%] border-r border-slate-700 active:bg-slate-800">
             <svg class="w-5 h-5 mb-1 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
@@ -627,7 +644,7 @@
         </a>
     </div>
 
-    <!-- 電話モーダル (変更なし) -->
+    <!-- 電話モーダル -->
     <div id="phone-modal" class="fixed inset-0 z-[100] hidden flex items-center justify-center px-4">
         <div id="phone-modal-backdrop" class="absolute inset-0 bg-slate-900/80 backdrop-blur-sm opacity-0 transition-opacity duration-300"></div>
         <div id="phone-modal-content" class="relative bg-white rounded-3xl shadow-2xl w-full max-w-sm overflow-hidden transform scale-95 opacity-0 transition-all duration-300 border border-slate-100">
