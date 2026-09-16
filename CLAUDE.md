@@ -101,7 +101,7 @@
 
 **東三河（`aichi/higashimikawa/`）** — 8市町
 - ✅ 豊橋市（21社）／豊川市（11社）／蒲郡市（6社）／新城市（5社）／田原市（4社）※いずれもフェーズ1軽量調査
-- ⬜ 設楽町(shitara)／東栄町(toei)／豊根村(toyone)
+- ⬜ 設楽町(shitara)／東栄町(toei)／豊根村(toyone) — 2026年9月16日に軽量調査を実施したが、町村内に拠点を置きエアコンクリーニング提供が確認できる業者が1件も見つからなかった（山間部の小規模町村で、地域サービスサイトも周辺市からの出張業者しか表示されない）。ページは未作成のまま保留。今後、電話帳や現地情報等で新たな候補が見つかり次第、着手する。
 
 **名古屋（`aichi/nagoya/`）** — 16区：⬜ 千種区(chikusaku)／東区(higashiku)／北区(kitaku)／西区(nishiku)／中村区(nakamuraku)／中区(nakaku)／昭和区(showaku)／瑞穂区(mizuhoku)／熱田区(atsutaku)／中川区(nakagawaku)／港区(minatoku)／南区(minamiku)／守山区(moriyamaku)／緑区(midoriku)／名東区(meitoku)／天白区(tempakuku)
 
