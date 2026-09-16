@@ -97,8 +97,8 @@
 進捗状況（2026年9月15日時点）：
 
 **西三河（`aichi/nishimikawa/`）** — 10市町
-- ✅ 岡崎市（28社）／豊田市（22社）／安城市（12社）／刈谷市（7社）／西尾市（14社）
-- ⬜ 知立市 (chiryu) ／高浜市 (takahama) ／碧南市 (hekinan) ／みよし市 (miyoshi) ／幸田町 (kota)
+- ✅ 岡崎市（28社）／豊田市（22社）／安城市（12社）／刈谷市（7社）／西尾市（14社）／知立市（7社）／高浜市（8社）／碧南市（11社）／みよし市（5社）
+- ⬜ 幸田町 (kota)
 
 **東三河（`aichi/higashimikawa/`）** — 8市町：⬜ 豊橋市(toyohashi)／豊川市(toyokawa)／蒲郡市(gamagori)／新城市(shinshiro)／田原市(tahara)／設楽町(shitara)／東栄町(toei)／豊根村(toyone)
 
