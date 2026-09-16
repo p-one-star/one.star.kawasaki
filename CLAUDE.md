@@ -104,8 +104,8 @@
 - ⬜ 設楽町(shitara)／東栄町(toei)／豊根村(toyone) — 2026年9月16日に軽量調査を実施したが、町村内に拠点を置きエアコンクリーニング提供が確認できる業者が1件も見つからなかった（山間部の小規模町村で、地域サービスサイトも周辺市からの出張業者しか表示されない）。ページは未作成のまま保留。今後、電話帳や現地情報等で新たな候補が見つかり次第、着手する。
 
 **名古屋（`aichi/nagoya/`）** — 16区
-- ✅ 千種区（14社）／東区（9社）※いずれもフェーズ1軽量調査
-- ⬜ 北区(kitaku)／西区(nishiku)／中村区(nakamuraku)／中区(nakaku)／昭和区(showaku)／瑞穂区(mizuhoku)／熱田区(atsutaku)／中川区(nakagawaku)／港区(minatoku)／南区(minamiku)／守山区(moriyamaku)／緑区(midoriku)／名東区(meitoku)／天白区(tempakuku)
+- ✅ 千種区（14社）／東区（9社）／北区（16社）※いずれもフェーズ1軽量調査
+- ⬜ 西区(nishiku)／中村区(nakamuraku)／中区(nakaku)／昭和区(showaku)／瑞穂区(mizuhoku)／熱田区(atsutaku)／中川区(nakagawaku)／港区(minatoku)／南区(minamiku)／守山区(moriyamaku)／緑区(midoriku)／名東区(meitoku)／天白区(tempakuku)
 - 【ノウハウ】air-takumi.co.jpは名古屋市の区ごとに個別ページを持つ（例: `.../nagoyashi/nagoyashi_higashiku/`）。区スラッグ（`chikusaku`, `higashiku`, `meitoku`等）をそのままURLの末尾に使うと、その区に拠点がある業者一覧が効率よく取得できる。名古屋16区の調査で毎回使うこと。
 
 **尾張（`aichi/owari/`）** — 24市町村：⬜ 一宮市(ichinomiya)／瀬戸市(seto)／春日井市(kasugai)／犬山市(inuyama)／江南市(konan)／小牧市(komaki)／稲沢市(inazawa)／尾張旭市(owariasahi)／岩倉市(iwakura)／豊明市(toyoake)／日進市(nisshin)／清須市(kiyosu)／北名古屋市(kitanagoya)／長久手市(nagakute)／東郷町(togo)／豊山町(toyoyama)／大口町(oguchi)／扶桑町(fuso)／愛西市(aisai)／弥富市(yatomi)／あま市(ama)／大治町(oharu)／蟹江町(kanie)／飛島村(tobishima)
