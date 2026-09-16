@@ -100,8 +100,8 @@
 - 岡崎市（28社）／豊田市（22社）／安城市（12社）／刈谷市（7社）／西尾市（14社）／知立市（7社）／高浜市（8社）／碧南市（11社）／みよし市（5社）／幸田町（4社）
 
 **東三河（`aichi/higashimikawa/`）** — 8市町
-- ✅ 豊橋市（21社）／豊川市（11社）／蒲郡市（6社）※いずれもフェーズ1軽量調査
-- ⬜ 新城市(shinshiro)／田原市(tahara)／設楽町(shitara)／東栄町(toei)／豊根村(toyone)
+- ✅ 豊橋市（21社）／豊川市（11社）／蒲郡市（6社）／新城市（5社）※いずれもフェーズ1軽量調査
+- ⬜ 田原市(tahara)／設楽町(shitara)／東栄町(toei)／豊根村(toyone)
 
 **名古屋（`aichi/nagoya/`）** — 16区：⬜ 千種区(chikusaku)／東区(higashiku)／北区(kitaku)／西区(nishiku)／中村区(nakamuraku)／中区(nakaku)／昭和区(showaku)／瑞穂区(mizuhoku)／熱田区(atsutaku)／中川区(nakagawaku)／港区(minatoku)／南区(minamiku)／守山区(moriyamaku)／緑区(midoriku)／名東区(meitoku)／天白区(tempakuku)
 
