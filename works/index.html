@@ -41,7 +41,7 @@
         <div class="absolute left-1/2 -translate-x-1/2 flex items-center justify-center mt-1">
             <a href="/" class="text-2xl md:text-3xl tracking-widest text-slate-900 leading-none flex items-center font-impact">
                 ONE
-                <img src="ONESTAR.PNG" alt="ロゴ" class="w-[45px] h-[45px] md:w-[55px] md:h-[55px] mx-[-4px] md:mx-[-6px] object-contain -translate-y-[4px]" onerror="this.style.display='none'">
+                <img src="https://placehold.co/100x100/eeeeee/cccccc?text=Logo" alt="ロゴ" class="w-[45px] h-[45px] md:w-[55px] md:h-[55px] mx-[-4px] md:mx-[-6px] object-contain -translate-y-[4px]" onerror="this.style.display='none'">
                 STAR
             </a>
         </div>
@@ -169,52 +169,47 @@
         <!-- 施工事例カードリスト (グリッドレイアウト・20件固定) -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <!-- カード 1 (最新・NEWバッジ付き) -->
-            <article class="bg-white rounded-2xl border-2 border-slate-200 overflow-hidden shadow-sm hover:border-blue-400 hover:shadow-md transition-all flex flex-col relative group">
-                <!-- NEWバッジ -->
-                <div class="absolute top-0 right-0 bg-rose-500 text-white text-[10px] font-black px-3 py-1 rounded-bl-lg z-20 shadow-sm flex items-center space-x-1">
-                    <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg>
-                    <span>NEW</span>
-                </div>
-
-                <a href="/works/anjo-06/" class="block flex-grow relative">
-                    <!-- 画像エリア（アスペクト比 16:9 + Before/Afterバッジ） -->
-                    <div class="aspect-[16/9] w-full grid grid-cols-2 relative bg-slate-100 overflow-hidden">
-                        <!-- Before画像 -->
-                        <div class="relative overflow-hidden group/before">
-                            <div class="absolute inset-0 bg-slate-200 animate-pulse"></div>
-                            <div class="w-full h-full relative">
+            <article class="bg-white rounded-[24px] shadow-sm border border-slate-200 overflow-hidden flex flex-col hover:shadow-md transition-shadow">
+                <div class="relative bg-slate-50/50 border-b border-slate-100 p-3 md:p-4">
+                    <div class="absolute top-3 left-3 z-20 bg-slate-900/95 text-neon text-[10px] md:text-xs font-black px-3 py-1.5 rounded-full shadow-md backdrop-blur-sm">
+                        📍 安城市
+                    </div>
+                    <!-- NEW バッジ -->
+                    <div class="absolute top-3 right-3 z-20 bg-rose-500 text-white text-[10px] md:text-xs font-black px-3 py-1.5 rounded-full shadow-md animate-pulse">
+                        NEW!
+                    </div>
+                    <div class="grid grid-cols-2 gap-1.5 md:gap-2 mt-7">
+                        <div class="flex flex-col items-center">
+                            <div class="w-full aspect-square relative rounded-xl overflow-hidden shadow-sm group bg-slate-100 border border-slate-200/50">
                                 <img src="/works/anjo-06/IMG_8598.jpeg" alt="施工前" class="w-full h-full object-cover absolute inset-0 group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='/works/anjo-06/IMG_8598.jpeg'; this.onerror=function(){this.style.display='none';};">
                             </div>
-                            <div class="absolute top-2 left-2 bg-slate-900/80 text-white text-[10px] font-bold px-2 py-0.5 rounded backdrop-blur-sm z-10">洗浄前</div>
+                            <span class="text-[10px] md:text-xs font-bold text-slate-400 mt-2 tracking-wider">BEFORE</span>
                         </div>
-                        <!-- After画像 -->
-                        <div class="relative overflow-hidden group/after">
-                            <div class="absolute inset-0 bg-slate-200 animate-pulse"></div>
-                            <div class="w-full h-full relative">
+                        <div class="flex flex-col items-center">
+                            <div class="w-full aspect-square relative rounded-xl overflow-hidden shadow-sm group bg-slate-100 border border-slate-200/50">
                                 <img src="/works/anjo-06/IMG_8599.jpeg" alt="施工後" class="w-full h-full object-cover absolute inset-0 group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='/works/anjo-06/IMG_8599.jpeg'; this.onerror=function(){this.style.display='none';};">
                             </div>
-                            <div class="absolute top-2 right-2 bg-blue-600/90 text-white text-[10px] font-bold px-2 py-0.5 rounded backdrop-blur-sm shadow-sm z-10">洗浄後</div>
+                            <span class="relative inline-block mt-2">
+                                <span class="text-[10px] md:text-xs font-black text-slate-900 tracking-wider relative z-10 px-0.5">AFTER</span>
+                                <span class="absolute bottom-[2px] left-0 w-full h-[6px] bg-neon z-0 rounded-sm"></span>
+                            </span>
                         </div>
-                        <!-- 中央の境界線 -->
-                        <div class="absolute inset-y-0 left-1/2 w-0.5 bg-white z-10 shadow-[0_0_5px_rgba(0,0,0,0.3)]"></div>
                     </div>
-                </a>
-
-                <div class="p-4 flex flex-col flex-grow">
-                    <h3 class="text-sm font-black text-slate-800 leading-tight mb-3">愛知県安城市<br>パナソニック エアコンクリーニング</h3>
-
-                    <div class="flex flex-wrap gap-1.5 mb-4">
-                        <span class="inline-block px-2 py-0.5 bg-slate-100 text-slate-600 text-[10px] font-bold rounded">安城市</span>
-                        <span class="inline-block px-2 py-0.5 bg-slate-100 text-slate-600 text-[10px] font-bold rounded">パナソニック</span>
-                        <span class="inline-block px-2 py-0.5 bg-slate-100 text-slate-600 text-[10px] font-bold rounded">スタンダード</span>
+                </div>
+                <div class="p-5 flex-1 flex flex-col">
+                    <div class="flex flex-wrap gap-2 mb-3">
+                        <span class="bg-blue-50 text-blue-600 text-[10px] md:text-xs font-bold px-2.5 py-1 rounded border border-blue-100">パナソニック</span>
+                        <span class="bg-slate-50 text-slate-600 text-[10px] md:text-xs font-bold px-2.5 py-1 rounded border border-slate-200">スタンダード</span>
                     </div>
-
-                    <div class="mt-auto border-t border-slate-100 pt-3">
+                    <h2 class="font-bold text-slate-900 text-sm md:text-base mb-4 leading-relaxed">
+                        愛知県安城市<br>パナソニック エアコンクリーニング
+                    </h2>
+                    <div class="mt-auto pt-4 border-t border-slate-100">
                         <a href="/works/anjo-06/" class="flex items-center justify-between group py-1">
-                            <span class="text-xs font-bold text-slate-500 group-hover:text-blue-600 transition-colors">施工事例を見る</span>
-                            <div class="w-6 h-6 rounded-full bg-slate-50 flex items-center justify-center group-hover:bg-blue-50 transition-colors">
-                                <svg class="w-3 h-3 text-slate-400 group-hover:text-blue-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
-                            </div>
+                            <span class="text-[13px] md:text-sm font-black text-slate-700 group-hover:text-blue-600 transition-colors">詳しく見る</span>
+                            <span class="bg-slate-900 text-neon w-8 h-8 rounded-full flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition-all transform group-hover:translate-x-1">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7"/></svg>
+                            </span>
                         </a>
                     </div>
                 </div>
@@ -226,497 +221,16 @@
                     <div class="absolute top-3 left-3 z-20 bg-slate-900/95 text-neon text-[10px] md:text-xs font-black px-3 py-1.5 rounded-full shadow-md backdrop-blur-sm">
                         📍 豊田市
                     </div>
-                    <!-- NEW バッジ -->
-                    <div class="absolute top-3 right-3 z-20 bg-rose-500 text-white text-[10px] md:text-xs font-black px-3 py-1.5 rounded-full shadow-md animate-pulse">
-                        NEW!
-                    </div>
                     <div class="grid grid-cols-2 gap-1.5 md:gap-2 mt-7">
                         <div class="flex flex-col items-center">
                             <div class="w-full aspect-square relative rounded-xl overflow-hidden shadow-sm group bg-slate-100 border border-slate-200/50">
-                                <img src="toyota-03/IMG_8658.jpeg" alt="施工前" class="w-full h-full object-cover absolute inset-0 group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='/works/toyota-03/IMG_8658.jpeg'; this.onerror=function(){this.style.display='none';};">
+                                <img src="https://placehold.co/400x400/e2e8f0/64748b?text=Before" alt="施工前" class="w-full h-full object-cover absolute inset-0 group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='works/IMG_5887.jpeg?v=5'; this.onerror=function(){this.style.display='none';};">
                             </div>
                             <span class="text-[10px] md:text-xs font-bold text-slate-400 mt-2 tracking-wider">BEFORE</span>
                         </div>
                         <div class="flex flex-col items-center">
                             <div class="w-full aspect-square relative rounded-xl overflow-hidden shadow-sm group bg-slate-100 border border-slate-200/50">
-                                <img src="toyota-03/IMG_8659.jpeg" alt="施工後" class="w-full h-full object-cover absolute inset-0 group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='/works/toyota-03/IMG_8659.jpeg'; this.onerror=function(){this.style.display='none';};">
-                            </div>
-                            <span class="relative inline-block mt-2">
-                                <span class="text-[10px] md:text-xs font-black text-slate-900 tracking-wider relative z-10 px-0.5">AFTER</span>
-                                <span class="absolute bottom-[2px] left-0 w-full h-[6px] bg-neon z-0 rounded-sm"></span>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                <div class="p-5 flex-1 flex flex-col">
-                    <div class="flex flex-wrap gap-2 mb-3">
-                        <span class="bg-blue-50 text-blue-600 text-[10px] md:text-xs font-bold px-2.5 py-1 rounded border border-blue-100">ダイキン</span>
-                        <span class="bg-emerald-50 text-emerald-600 text-[10px] md:text-xs font-bold px-2.5 py-1 rounded border border-emerald-100">お掃除機能付き</span>
-                    </div>
-                    <h2 class="font-bold text-slate-900 text-sm md:text-base mb-4 leading-relaxed">
-                        豊田市｜ダイキン<br>エアコンクリーニング施工事例
-                    </h2>
-                    <div class="mt-auto pt-4 border-t border-slate-100">
-                        <a href="/works/toyota-03/" class="flex items-center justify-between group py-1">
-                            <span class="text-[13px] md:text-sm font-black text-slate-700 group-hover:text-blue-600 transition-colors">詳しく見る</span>
-                            <span class="bg-slate-900 text-neon w-8 h-8 rounded-full flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition-all transform group-hover:translate-x-1">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7"/></svg>
-                            </span>
-                        </a>
-                    </div>
-                </div>
-            </article>
-
-            <!-- 🌟PickUp: カード 22 (刈谷市) 🌟 -->
-            <article class="bg-white rounded-[24px] shadow-sm border border-slate-200 overflow-hidden flex flex-col hover:shadow-md transition-shadow">
-                <div class="relative bg-slate-50/50 border-b border-slate-100 p-3 md:p-4">
-                    <div class="absolute top-3 left-3 z-20 bg-slate-900/95 text-neon text-[10px] md:text-xs font-black px-3 py-1.5 rounded-full shadow-md backdrop-blur-sm">
-                        📍 刈谷市
-                    </div>
-                    <div class="grid grid-cols-2 gap-1.5 md:gap-2 mt-7">
-                        <div class="flex flex-col items-center">
-                            <div class="w-full aspect-square relative rounded-xl overflow-hidden shadow-sm group bg-slate-100 border border-slate-200/50">
-                                <img src="IMG_8389.jpeg?v=5" alt="施工前" class="w-full h-full object-cover absolute inset-0 group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='works/IMG_8389.jpeg?v=5'; this.onerror=function(){this.style.display='none';};">
-                            </div>
-                            <span class="text-[10px] md:text-xs font-bold text-slate-400 mt-2 tracking-wider">BEFORE</span>
-                        </div>
-                        <div class="flex flex-col items-center">
-                            <div class="w-full aspect-square relative rounded-xl overflow-hidden shadow-sm group bg-slate-100 border border-slate-200/50">
-                                <img src="IMG_8390.jpeg?v=5" alt="施工後" class="w-full h-full object-cover absolute inset-0 group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='works/IMG_8390.jpeg?v=5'; this.onerror=function(){this.style.display='none';};">
-                            </div>
-                            <span class="relative inline-block mt-2">
-                                <span class="text-[10px] md:text-xs font-black text-slate-900 tracking-wider relative z-10 px-0.5">AFTER</span>
-                                <span class="absolute bottom-[2px] left-0 w-full h-[6px] bg-neon z-0 rounded-sm"></span>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                <div class="p-5 flex-1 flex flex-col">
-                    <div class="flex flex-wrap gap-2 mb-3">
-                        <span class="bg-blue-50 text-blue-600 text-[10px] md:text-xs font-bold px-2.5 py-1 rounded border border-blue-100">パナソニック</span>
-                        <span class="bg-emerald-50 text-emerald-600 text-[10px] md:text-xs font-bold px-2.5 py-1 rounded border border-emerald-100">お掃除機能付き</span>
-                    </div>
-                    <h2 class="font-bold text-slate-900 text-sm md:text-base mb-4 leading-relaxed">
-                        ドレンパンまでの分解洗浄！
-                    </h2>
-                    <div class="mt-auto pt-4 border-t border-slate-100">
-                        <a href="/works/kariya-02" class="flex items-center justify-between group py-1">
-                            <span class="text-[13px] md:text-sm font-black text-slate-700 group-hover:text-blue-600 transition-colors">詳しく見る</span>
-                            <span class="bg-slate-900 text-neon w-8 h-8 rounded-full flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition-all transform group-hover:translate-x-1">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7"/></svg>
-                            </span>
-                        </a>
-                    </div>
-                </div>
-            </article>
-
-            <!-- 🌟PickUp: カード 21 (豊田市) 🌟 -->
-            <article class="bg-white rounded-[24px] shadow-sm border border-slate-200 overflow-hidden flex flex-col hover:shadow-md transition-shadow">
-                <div class="relative bg-slate-50/50 border-b border-slate-100 p-3 md:p-4">
-                    <div class="absolute top-3 left-3 z-20 bg-slate-900/95 text-neon text-[10px] md:text-xs font-black px-3 py-1.5 rounded-full shadow-md backdrop-blur-sm">
-                        📍 豊田市
-                    </div>
-                    <!-- PickUp バッジ -->
-                    <div class="absolute top-3 right-3 z-20 bg-orange-500 text-white text-[10px] md:text-xs font-black px-3 py-1.5 rounded-full shadow-md animate-pulse">
-                        PickUp!
-                    </div>
-                    <div class="grid grid-cols-2 gap-1.5 md:gap-2 mt-7">
-                        <div class="flex flex-col items-center">
-                            <div class="w-full aspect-square relative rounded-xl overflow-hidden shadow-sm group bg-slate-100 border border-slate-200/50">
-                                <img src="IMG_7689.jpeg?v=5" alt="施工前" class="w-full h-full object-cover absolute inset-0 group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='works/IMG_7689.jpeg?v=5'; this.onerror=function(){this.style.display='none';};">
-                            </div>
-                            <span class="text-[10px] md:text-xs font-bold text-slate-400 mt-2 tracking-wider">BEFORE</span>
-                        </div>
-                        <div class="flex flex-col items-center">
-                            <div class="w-full aspect-square relative rounded-xl overflow-hidden shadow-sm group bg-slate-100 border border-slate-200/50">
-                                <img src="IMG_7690.jpeg?v=5" alt="施工後" class="w-full h-full object-cover absolute inset-0 group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='works/IMG_7690.jpeg?v=5'; this.onerror=function(){this.style.display='none';};">
-                            </div>
-                            <span class="relative inline-block mt-2">
-                                <span class="text-[10px] md:text-xs font-black text-slate-900 tracking-wider relative z-10 px-0.5">AFTER</span>
-                                <span class="absolute bottom-[2px] left-0 w-full h-[6px] bg-neon z-0 rounded-sm"></span>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                <div class="p-5 flex-1 flex flex-col">
-                    <div class="flex flex-wrap gap-2 mb-3">
-                        <span class="bg-blue-50 text-blue-600 text-[10px] md:text-xs font-bold px-2.5 py-1 rounded border border-blue-100">ダイキン</span>
-                        <span class="bg-emerald-50 text-emerald-600 text-[10px] md:text-xs font-bold px-2.5 py-1 rounded border border-emerald-100">お掃除機能付き</span>
-                    </div>
-                    <h2 class="font-bold text-slate-900 text-sm md:text-base mb-4 leading-relaxed">
-                        天井との隙間が狭くても正しく分解！
-                    </h2>
-                    <div class="mt-auto pt-4 border-t border-slate-100">
-                        <a href="/works/toyota-02" class="flex items-center justify-between group py-1">
-                            <span class="text-[13px] md:text-sm font-black text-slate-700 group-hover:text-blue-600 transition-colors">詳しく見る</span>
-                            <span class="bg-slate-900 text-neon w-8 h-8 rounded-full flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition-all transform group-hover:translate-x-1">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7"/></svg>
-                            </span>
-                        </a>
-                    </div>
-                </div>
-            </article>
-
-            <!-- カード 20 (知立市) -->
-            <article class="bg-white rounded-[24px] shadow-sm border border-slate-200 overflow-hidden flex flex-col hover:shadow-md transition-shadow">
-                <div class="relative bg-slate-50/50 border-b border-slate-100 p-3 md:p-4">
-                    <div class="absolute top-3 left-3 z-20 bg-slate-900/95 text-neon text-[10px] md:text-xs font-black px-3 py-1.5 rounded-full shadow-md backdrop-blur-sm">
-                        📍 知立市
-                    </div>
-                    <div class="grid grid-cols-2 gap-1.5 md:gap-2 mt-7">
-                        <div class="flex flex-col items-center">
-                            <div class="w-full aspect-square relative rounded-xl overflow-hidden shadow-sm group bg-slate-100 border border-slate-200/50">
-                                <img src="IMG_7339.jpeg?v=5" alt="施工前" class="w-full h-full object-cover absolute inset-0 group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='works/IMG_7339.jpeg?v=5'; this.onerror=function(){this.style.display='none';};">
-                            </div>
-                            <span class="text-[10px] md:text-xs font-bold text-slate-400 mt-2 tracking-wider">BEFORE</span>
-                        </div>
-                        <div class="flex flex-col items-center">
-                            <div class="w-full aspect-square relative rounded-xl overflow-hidden shadow-sm group bg-slate-100 border border-slate-200/50">
-                                <img src="IMG_7340.jpeg?v=5" alt="施工後" class="w-full h-full object-cover absolute inset-0 group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='works/IMG_7340.jpeg?v=5'; this.onerror=function(){this.style.display='none';};">
-                            </div>
-                            <span class="relative inline-block mt-2">
-                                <span class="text-[10px] md:text-xs font-black text-slate-900 tracking-wider relative z-10 px-0.5">AFTER</span>
-                                <span class="absolute bottom-[2px] left-0 w-full h-[6px] bg-neon z-0 rounded-sm"></span>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                <div class="p-5 flex-1 flex flex-col">
-                    <div class="flex flex-wrap gap-2 mb-3">
-                        <span class="bg-blue-50 text-blue-600 text-[10px] md:text-xs font-bold px-2.5 py-1 rounded border border-blue-100">三菱電機</span>
-                        <span class="bg-slate-50 text-slate-600 text-[10px] md:text-xs font-bold px-2.5 py-1 rounded border border-slate-200">スタンダード</span>
-                    </div>
-                    <h2 class="font-bold text-slate-900 text-sm md:text-base mb-4 leading-relaxed">
-                        ドレンホースから水が出なくなった？
-                    </h2>
-                    <div class="mt-auto pt-4 border-t border-slate-100">
-                        <a href="/works/chiryu-02" class="flex items-center justify-between group py-1">
-                            <span class="text-[13px] md:text-sm font-black text-slate-700 group-hover:text-blue-600 transition-colors">詳しく見る</span>
-                            <span class="bg-slate-900 text-neon w-8 h-8 rounded-full flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition-all transform group-hover:translate-x-1">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7"/></svg>
-                            </span>
-                        </a>
-                    </div>
-                </div>
-            </article>
-
-            <!-- カード 19 (名古屋市名東区) -->
-            <article class="bg-white rounded-[24px] shadow-sm border border-slate-200 overflow-hidden flex flex-col hover:shadow-md transition-shadow">
-                <div class="relative bg-slate-50/50 border-b border-slate-100 p-3 md:p-4">
-                    <div class="absolute top-3 left-3 z-20 bg-slate-900/95 text-neon text-[10px] md:text-xs font-black px-3 py-1.5 rounded-full shadow-md backdrop-blur-sm">
-                        📍 名古屋市名東区
-                    </div>
-                    <div class="grid grid-cols-2 gap-1.5 md:gap-2 mt-7">
-                        <div class="flex flex-col items-center">
-                            <div class="w-full aspect-square relative rounded-xl overflow-hidden shadow-sm group bg-slate-100 border border-slate-200/50">
-                                <img src="IMG_7547.jpeg?v=5" alt="施工前" class="w-full h-full object-cover absolute inset-0 group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='works/IMG_7547.jpeg?v=5'; this.onerror=function(){this.style.display='none';};">
-                            </div>
-                            <span class="text-[10px] md:text-xs font-bold text-slate-400 mt-2 tracking-wider">BEFORE</span>
-                        </div>
-                        <div class="flex flex-col items-center">
-                            <div class="w-full aspect-square relative rounded-xl overflow-hidden shadow-sm group bg-slate-100 border border-slate-200/50">
-                                <img src="IMG_7548.jpeg?v=5" alt="施工後" class="w-full h-full object-cover absolute inset-0 group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='works/IMG_7548.jpeg?v=5'; this.onerror=function(){this.style.display='none';};">
-                            </div>
-                            <span class="relative inline-block mt-2">
-                                <span class="text-[10px] md:text-xs font-black text-slate-900 tracking-wider relative z-10 px-0.5">AFTER</span>
-                                <span class="absolute bottom-[2px] left-0 w-full h-[6px] bg-neon z-0 rounded-sm"></span>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                <div class="p-5 flex-1 flex flex-col">
-                    <div class="flex flex-wrap gap-2 mb-3">
-                        <span class="bg-blue-50 text-blue-600 text-[10px] md:text-xs font-bold px-2.5 py-1 rounded border border-blue-100">ダイキン</span>
-                        <span class="bg-purple-50 text-purple-600 text-[10px] md:text-xs font-bold px-2.5 py-1 rounded border border-purple-100">天井カセット型 2方向</span>
-                    </div>
-                    <h2 class="font-bold text-slate-900 text-sm md:text-base mb-4 leading-relaxed">
-                        飲食店の業務用エアコンから水漏れ…？
-                    </h2>
-                    <div class="mt-auto pt-4 border-t border-slate-100">
-                        <a href="/works/meitoku-01" class="flex items-center justify-between group py-1">
-                            <span class="text-[13px] md:text-sm font-black text-slate-700 group-hover:text-blue-600 transition-colors">詳しく見る</span>
-                            <span class="bg-slate-900 text-neon w-8 h-8 rounded-full flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition-all transform group-hover:translate-x-1">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7"/></svg>
-                            </span>
-                        </a>
-                    </div>
-                </div>
-            </article>
-
-            <!-- カード 18 (高浜市) -->
-            <article class="bg-white rounded-[24px] shadow-sm border border-slate-200 overflow-hidden flex flex-col hover:shadow-md transition-shadow">
-                <div class="relative bg-slate-50/50 border-b border-slate-100 p-3 md:p-4">
-                    <div class="absolute top-3 left-3 z-20 bg-slate-900/95 text-neon text-[10px] md:text-xs font-black px-3 py-1.5 rounded-full shadow-md backdrop-blur-sm">
-                        📍 高浜市
-                    </div>
-                    <div class="grid grid-cols-2 gap-1.5 md:gap-2 mt-7">
-                        <div class="flex flex-col items-center">
-                            <div class="w-full aspect-square relative rounded-xl overflow-hidden shadow-sm group bg-slate-100 border border-slate-200/50">
-                                <img src="IMG_7333.jpeg?v=5" alt="施工前" class="w-full h-full object-cover absolute inset-0 group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='works/IMG_7333.jpeg?v=5'; this.onerror=function(){this.style.display='none';};">
-                            </div>
-                            <span class="text-[10px] md:text-xs font-bold text-slate-400 mt-2 tracking-wider">BEFORE</span>
-                        </div>
-                        <div class="flex flex-col items-center">
-                            <div class="w-full aspect-square relative rounded-xl overflow-hidden shadow-sm group bg-slate-100 border border-slate-200/50">
-                                <img src="IMG_7334.jpeg?v=5" alt="施工後" class="w-full h-full object-cover absolute inset-0 group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='works/IMG_7334.jpeg?v=5'; this.onerror=function(){this.style.display='none';};">
-                            </div>
-                            <span class="relative inline-block mt-2">
-                                <span class="text-[10px] md:text-xs font-black text-slate-900 tracking-wider relative z-10 px-0.5">AFTER</span>
-                                <span class="absolute bottom-[2px] left-0 w-full h-[6px] bg-neon z-0 rounded-sm"></span>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                <div class="p-5 flex-1 flex flex-col">
-                    <div class="flex flex-wrap gap-2 mb-3">
-                        <span class="bg-blue-50 text-blue-600 text-[10px] md:text-xs font-bold px-2.5 py-1 rounded border border-blue-100">パナソニック</span>
-                        <span class="bg-emerald-50 text-emerald-600 text-[10px] md:text-xs font-bold px-2.5 py-1 rounded border border-emerald-100">お掃除機能付き</span>
-                    </div>
-                    <h2 class="font-bold text-slate-900 text-sm md:text-base mb-4 leading-relaxed">
-                        新品から5年。ドレンパンにはスライム…
-                    </h2>
-                    <div class="mt-auto pt-4 border-t border-slate-100">
-                        <a href="/works/takahama-02" class="flex items-center justify-between group py-1">
-                            <span class="text-[13px] md:text-sm font-black text-slate-700 group-hover:text-blue-600 transition-colors">詳しく見る</span>
-                            <span class="bg-slate-900 text-neon w-8 h-8 rounded-full flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition-all transform group-hover:translate-x-1">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7"/></svg>
-                            </span>
-                        </a>
-                    </div>
-                </div>
-            </article>
-
-            <!-- カード 17 (安城市) -->
-            <article class="bg-white rounded-[24px] shadow-sm border border-slate-200 overflow-hidden flex flex-col hover:shadow-md transition-shadow">
-                <div class="relative bg-slate-50/50 border-b border-slate-100 p-3 md:p-4">
-                    <div class="absolute top-3 left-3 z-20 bg-slate-900/95 text-neon text-[10px] md:text-xs font-black px-3 py-1.5 rounded-full shadow-md backdrop-blur-sm">
-                        📍 安城市
-                    </div>
-                    <div class="grid grid-cols-2 gap-1.5 md:gap-2 mt-7">
-                        <div class="flex flex-col items-center">
-                            <div class="w-full aspect-square relative rounded-xl overflow-hidden shadow-sm group bg-slate-100 border border-slate-200/50">
-                                <img src="IMG_6912.jpeg?v=5" alt="施工前" class="w-full h-full object-cover absolute inset-0 group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='works/IMG_6912.jpeg?v=5'; this.onerror=function(){this.style.display='none';};">
-                            </div>
-                            <span class="text-[10px] md:text-xs font-bold text-slate-400 mt-2 tracking-wider">BEFORE</span>
-                        </div>
-                        <div class="flex flex-col items-center">
-                            <div class="w-full aspect-square relative rounded-xl overflow-hidden shadow-sm group bg-slate-100 border border-slate-200/50">
-                                <img src="IMG_6913.jpeg?v=5" alt="施工後" class="w-full h-full object-cover absolute inset-0 group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='works/IMG_6913.jpeg?v=5'; this.onerror=function(){this.style.display='none';};">
-                            </div>
-                            <span class="relative inline-block mt-2">
-                                <span class="text-[10px] md:text-xs font-black text-slate-900 tracking-wider relative z-10 px-0.5">AFTER</span>
-                                <span class="absolute bottom-[2px] left-0 w-full h-[6px] bg-neon z-0 rounded-sm"></span>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                <div class="p-5 flex-1 flex flex-col">
-                    <div class="flex flex-wrap gap-2 mb-3">
-                        <span class="bg-blue-50 text-blue-600 text-[10px] md:text-xs font-bold px-2.5 py-1 rounded border border-blue-100">パナソニック</span>
-                        <span class="bg-slate-50 text-slate-600 text-[10px] md:text-xs font-bold px-2.5 py-1 rounded border border-slate-200">スタンダード</span>
-                    </div>
-                    <h2 class="font-bold text-slate-900 text-sm md:text-base mb-4 leading-relaxed">
-                        珍しい＂住宅設備用＂モデル
-                    </h2>
-                    <div class="mt-auto pt-4 border-t border-slate-100">
-                        <a href="/works/anjo-03" class="flex items-center justify-between group py-1">
-                            <span class="text-[13px] md:text-sm font-black text-slate-700 group-hover:text-blue-600 transition-colors">詳しく見る</span>
-                            <span class="bg-slate-900 text-neon w-8 h-8 rounded-full flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition-all transform group-hover:translate-x-1">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7"/></svg>
-                            </span>
-                        </a>
-                    </div>
-                </div>
-            </article>
-
-            <!-- カード 16 (岡崎市) -->
-            <article class="bg-white rounded-[24px] shadow-sm border border-slate-200 overflow-hidden flex flex-col hover:shadow-md transition-shadow">
-                <div class="relative bg-slate-50/50 border-b border-slate-100 p-3 md:p-4">
-                    <div class="absolute top-3 left-3 z-20 bg-slate-900/95 text-neon text-[10px] md:text-xs font-black px-3 py-1.5 rounded-full shadow-md backdrop-blur-sm">
-                        📍 岡崎市
-                    </div>
-                    <div class="grid grid-cols-2 gap-1.5 md:gap-2 mt-7">
-                        <div class="flex flex-col items-center">
-                            <div class="w-full aspect-square relative rounded-xl overflow-hidden shadow-sm group bg-slate-100 border border-slate-200/50">
-                                <img src="IMG_7326.jpeg?v=5" alt="施工前" class="w-full h-full object-cover absolute inset-0 group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='works/IMG_7326.jpeg?v=5'; this.onerror=function(){this.style.display='none';};">
-                            </div>
-                            <span class="text-[10px] md:text-xs font-bold text-slate-400 mt-2 tracking-wider">BEFORE</span>
-                        </div>
-                        <div class="flex flex-col items-center">
-                            <div class="w-full aspect-square relative rounded-xl overflow-hidden shadow-sm group bg-slate-100 border border-slate-200/50">
-                                <img src="IMG_7327.jpeg?v=5" alt="施工後" class="w-full h-full object-cover absolute inset-0 group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='works/IMG_7327.jpeg?v=5'; this.onerror=function(){this.style.display='none';};">
-                            </div>
-                            <span class="relative inline-block mt-2">
-                                <span class="text-[10px] md:text-xs font-black text-slate-900 tracking-wider relative z-10 px-0.5">AFTER</span>
-                                <span class="absolute bottom-[2px] left-0 w-full h-[6px] bg-neon z-0 rounded-sm"></span>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                <div class="p-5 flex-1 flex flex-col">
-                    <div class="flex flex-wrap gap-2 mb-3">
-                        <span class="bg-blue-50 text-blue-600 text-[10px] md:text-xs font-bold px-2.5 py-1 rounded border border-blue-100">パナソニック</span>
-                        <span class="bg-emerald-50 text-emerald-600 text-[10px] md:text-xs font-bold px-2.5 py-1 rounded border border-emerald-100">お掃除機能付き</span>
-                    </div>
-                    <h2 class="font-bold text-slate-900 text-sm md:text-base mb-4 leading-relaxed">
-                        一見キレイに見えるけど…
-                    </h2>
-                    <div class="mt-auto pt-4 border-t border-slate-100">
-                        <a href="/works/okazaki-03" class="flex items-center justify-between group py-1">
-                            <span class="text-[13px] md:text-sm font-black text-slate-700 group-hover:text-blue-600 transition-colors">詳しく見る</span>
-                            <span class="bg-slate-900 text-neon w-8 h-8 rounded-full flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition-all transform group-hover:translate-x-1">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7"/></svg>
-                            </span>
-                        </a>
-                    </div>
-                </div>
-            </article>
-
-            <!-- カード 15 (名古屋市天白区) -->
-            <article class="bg-white rounded-[24px] shadow-sm border border-slate-200 overflow-hidden flex flex-col hover:shadow-md transition-shadow">
-                <div class="relative bg-slate-50/50 border-b border-slate-100 p-3 md:p-4">
-                    <div class="absolute top-3 left-3 z-20 bg-slate-900/95 text-neon text-[10px] md:text-xs font-black px-3 py-1.5 rounded-full shadow-md backdrop-blur-sm">
-                        📍 名古屋市天白区
-                    </div>
-                    <div class="grid grid-cols-2 gap-1.5 md:gap-2 mt-7">
-                        <div class="flex flex-col items-center">
-                            <div class="w-full aspect-square relative rounded-xl overflow-hidden shadow-sm group bg-slate-100 border border-slate-200/50">
-                                <img src="IMG_6956.png?v=5" alt="施工前" class="w-full h-full object-cover absolute inset-0 group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='works/IMG_6956.png?v=5'; this.onerror=function(){this.style.display='none';};">
-                            </div>
-                            <span class="text-[10px] md:text-xs font-bold text-slate-400 mt-2 tracking-wider">BEFORE</span>
-                        </div>
-                        <div class="flex flex-col items-center">
-                            <div class="w-full aspect-square relative rounded-xl overflow-hidden shadow-sm group bg-slate-100 border border-slate-200/50">
-                                <img src="IMG_6957.png?v=5" alt="施工後" class="w-full h-full object-cover absolute inset-0 group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='works/IMG_6957.png?v=5'; this.onerror=function(){this.style.display='none';};">
-                            </div>
-                            <span class="relative inline-block mt-2">
-                                <span class="text-[10px] md:text-xs font-black text-slate-900 tracking-wider relative z-10 px-0.5">AFTER</span>
-                                <span class="absolute bottom-[2px] left-0 w-full h-[6px] bg-neon z-0 rounded-sm"></span>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                <div class="p-5 flex-1 flex flex-col">
-                    <div class="flex flex-wrap gap-2 mb-3">
-                        <span class="bg-blue-50 text-blue-600 text-[10px] md:text-xs font-bold px-2.5 py-1 rounded border border-blue-100">三菱電機</span>
-                        <span class="bg-slate-50 text-slate-600 text-[10px] md:text-xs font-bold px-2.5 py-1 rounded border border-slate-200">スタンダード</span>
-                    </div>
-                    <h2 class="font-bold text-slate-900 text-sm md:text-base mb-4 leading-relaxed">
-                        これが市販スプレーを使い続けた末路か…
-                    </h2>
-                    <div class="mt-auto pt-4 border-t border-slate-100">
-                        <a href="/works/tenpakuku-01" class="flex items-center justify-between group py-1">
-                            <span class="text-[13px] md:text-sm font-black text-slate-700 group-hover:text-blue-600 transition-colors">詳しく見る</span>
-                            <span class="bg-slate-900 text-neon w-8 h-8 rounded-full flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition-all transform group-hover:translate-x-1">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7"/></svg>
-                            </span>
-                        </a>
-                    </div>
-                </div>
-            </article>
-
-            <!-- カード 1 (岡崎市) -->
-            <article class="bg-white rounded-[24px] shadow-sm border border-slate-200 overflow-hidden flex flex-col hover:shadow-md transition-shadow">
-                <div class="relative bg-slate-50/50 border-b border-slate-100 p-3 md:p-4">
-                    <div class="absolute top-3 left-3 z-20 bg-slate-900/95 text-neon text-[10px] md:text-xs font-black px-3 py-1.5 rounded-full shadow-md backdrop-blur-sm">
-                        📍 岡崎市
-                    </div>
-                    <div class="grid grid-cols-2 gap-1.5 md:gap-2 mt-7">
-                        <div class="flex flex-col items-center">
-                            <div class="w-full aspect-square relative rounded-xl overflow-hidden shadow-sm group bg-slate-100 border border-slate-200/50">
-                                <img src="IMG_5873.jpeg?v=5" alt="施工前" class="w-full h-full object-cover absolute inset-0 group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='works/IMG_5873.jpeg?v=5'; this.onerror=function(){this.style.display='none';};">
-                            </div>
-                            <span class="text-[10px] md:text-xs font-bold text-slate-400 mt-2 tracking-wider">BEFORE</span>
-                        </div>
-                        <div class="flex flex-col items-center">
-                            <div class="w-full aspect-square relative rounded-xl overflow-hidden shadow-sm group bg-slate-100 border border-slate-200/50">
-                                <img src="IMG_5874.jpeg?v=5" alt="施工後" class="w-full h-full object-cover absolute inset-0 group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='works/IMG_5874.jpeg?v=5'; this.onerror=function(){this.style.display='none';};">
-                            </div>
-                            <span class="relative inline-block mt-2">
-                                <span class="text-[10px] md:text-xs font-black text-slate-900 tracking-wider relative z-10 px-0.5">AFTER</span>
-                                <span class="absolute bottom-[2px] left-0 w-full h-[6px] bg-neon z-0 rounded-sm"></span>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                <div class="p-5 flex-1 flex flex-col">
-                    <div class="flex flex-wrap gap-2 mb-3">
-                        <span class="bg-blue-50 text-blue-600 text-[10px] md:text-xs font-bold px-2.5 py-1 rounded border border-blue-100">ダイキン</span>
-                        <span class="bg-slate-50 text-slate-600 text-[10px] md:text-xs font-bold px-2.5 py-1 rounded border border-slate-200">スタンダード</span>
-                    </div>
-                    <h2 class="font-bold text-slate-900 text-sm md:text-base mb-4 leading-relaxed">
-                        新築から5年分の汚れを徹底洗浄！
-                    </h2>
-                    <div class="mt-auto pt-4 border-t border-slate-100">
-                        <a href="/works/okazaki-01" class="flex items-center justify-between group py-1">
-                            <span class="text-[13px] md:text-sm font-black text-slate-700 group-hover:text-blue-600 transition-colors">詳しく見る</span>
-                            <span class="bg-slate-900 text-neon w-8 h-8 rounded-full flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition-all transform group-hover:translate-x-1">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7"/></svg>
-                            </span>
-                        </a>
-                    </div>
-                </div>
-            </article>
-
-            <!-- カード 2 (刈谷市) -->
-            <article class="bg-white rounded-[24px] shadow-sm border border-slate-200 overflow-hidden flex flex-col hover:shadow-md transition-shadow">
-                <div class="relative bg-slate-50/50 border-b border-slate-100 p-3 md:p-4">
-                    <div class="absolute top-3 left-3 z-20 bg-slate-900/95 text-neon text-[10px] md:text-xs font-black px-3 py-1.5 rounded-full shadow-md backdrop-blur-sm">
-                        📍 刈谷市
-                    </div>
-                    <div class="grid grid-cols-2 gap-1.5 md:gap-2 mt-7">
-                        <div class="flex flex-col items-center">
-                            <div class="w-full aspect-square relative rounded-xl overflow-hidden shadow-sm group bg-slate-100 border border-slate-200/50">
-                                <img src="IMG_5880.jpeg?v=5" alt="施工前" class="w-full h-full object-cover absolute inset-0 group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='works/IMG_5880.jpeg?v=5'; this.onerror=function(){this.style.display='none';};">
-                            </div>
-                            <span class="text-[10px] md:text-xs font-bold text-slate-400 mt-2 tracking-wider">BEFORE</span>
-                        </div>
-                        <div class="flex flex-col items-center">
-                            <div class="w-full aspect-square relative rounded-xl overflow-hidden shadow-sm group bg-slate-100 border border-slate-200/50">
-                                <img src="IMG_5881.jpeg?v=5" alt="施工後" class="w-full h-full object-cover absolute inset-0 group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='works/IMG_5881.jpeg?v=5'; this.onerror=function(){this.style.display='none';};">
-                            </div>
-                            <span class="relative inline-block mt-2">
-                                <span class="text-[10px] md:text-xs font-black text-slate-900 tracking-wider relative z-10 px-0.5">AFTER</span>
-                                <span class="absolute bottom-[2px] left-0 w-full h-[6px] bg-neon z-0 rounded-sm"></span>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                <div class="p-5 flex-1 flex flex-col">
-                    <div class="flex flex-wrap gap-2 mb-3">
-                        <span class="bg-blue-50 text-blue-600 text-[10px] md:text-xs font-bold px-2.5 py-1 rounded border border-blue-100">三菱電機</span>
-                        <span class="bg-emerald-50 text-emerald-600 text-[10px] md:text-xs font-bold px-2.5 py-1 rounded border border-emerald-100">お掃除機能付き</span>
-                    </div>
-                    <h2 class="font-bold text-slate-900 text-sm md:text-base mb-4 leading-relaxed">
-                        送風ファンのカビも徹底的に洗浄！
-                    </h2>
-                    <div class="mt-auto pt-4 border-t border-slate-100">
-                        <a href="/works/kariya-01" class="flex items-center justify-between group py-1">
-                            <span class="text-[13px] md:text-sm font-black text-slate-700 group-hover:text-blue-600 transition-colors">詳しく見る</span>
-                            <span class="bg-slate-900 text-neon w-8 h-8 rounded-full flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition-all transform group-hover:translate-x-1">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7"/></svg>
-                            </span>
-                        </a>
-                    </div>
-                </div>
-            </article>
-
-            <!-- カード 3 (豊田市) -->
-            <article class="bg-white rounded-[24px] shadow-sm border border-slate-200 overflow-hidden flex flex-col hover:shadow-md transition-shadow">
-                <div class="relative bg-slate-50/50 border-b border-slate-100 p-3 md:p-4">
-                    <div class="absolute top-3 left-3 z-20 bg-slate-900/95 text-neon text-[10px] md:text-xs font-black px-3 py-1.5 rounded-full shadow-md backdrop-blur-sm">
-                        📍 豊田市
-                    </div>
-                    <div class="grid grid-cols-2 gap-1.5 md:gap-2 mt-7">
-                        <div class="flex flex-col items-center">
-                            <div class="w-full aspect-square relative rounded-xl overflow-hidden shadow-sm group bg-slate-100 border border-slate-200/50">
-                                <img src="IMG_5887.jpeg?v=5" alt="施工前" class="w-full h-full object-cover absolute inset-0 group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='works/IMG_5887.jpeg?v=5'; this.onerror=function(){this.style.display='none';};">
-                            </div>
-                            <span class="text-[10px] md:text-xs font-bold text-slate-400 mt-2 tracking-wider">BEFORE</span>
-                        </div>
-                        <div class="flex flex-col items-center">
-                            <div class="w-full aspect-square relative rounded-xl overflow-hidden shadow-sm group bg-slate-100 border border-slate-200/50">
-                                <img src="IMG_5888.jpeg?v=5" alt="施工後" class="w-full h-full object-cover absolute inset-0 group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='works/IMG_5888.jpeg?v=5'; this.onerror=function(){this.style.display='none';};">
+                                <img src="https://placehold.co/400x400/f1f5f9/94a3b8?text=After" alt="施工後" class="w-full h-full object-cover absolute inset-0 group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='works/IMG_5888.jpeg?v=5'; this.onerror=function(){this.style.display='none';};">
                             </div>
                             <span class="relative inline-block mt-2">
                                 <span class="text-[10px] md:text-xs font-black text-slate-900 tracking-wider relative z-10 px-0.5">AFTER</span>
@@ -753,13 +267,13 @@
                     <div class="grid grid-cols-2 gap-1.5 md:gap-2 mt-7">
                         <div class="flex flex-col items-center">
                             <div class="w-full aspect-square relative rounded-xl overflow-hidden shadow-sm group bg-slate-100 border border-slate-200/50">
-                                <img src="IMG_5853.jpeg?v=5" alt="施工前" class="w-full h-full object-cover absolute inset-0 group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='works/IMG_5853.jpeg?v=5'; this.onerror=function(){this.style.display='none';};">
+                                <img src="https://placehold.co/400x400/e2e8f0/64748b?text=Before" alt="施工前" class="w-full h-full object-cover absolute inset-0 group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='works/IMG_5853.jpeg?v=5'; this.onerror=function(){this.style.display='none';};">
                             </div>
                             <span class="text-[10px] md:text-xs font-bold text-slate-400 mt-2 tracking-wider">BEFORE</span>
                         </div>
                         <div class="flex flex-col items-center">
                             <div class="w-full aspect-square relative rounded-xl overflow-hidden shadow-sm group bg-slate-100 border border-slate-200/50">
-                                <img src="IMG_5855.jpeg?v=5" alt="施工後" class="w-full h-full object-cover absolute inset-0 group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='works/IMG_5855.jpeg?v=5'; this.onerror=function(){this.style.display='none';};">
+                                <img src="https://placehold.co/400x400/f1f5f9/94a3b8?text=After" alt="施工後" class="w-full h-full object-cover absolute inset-0 group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='works/IMG_5855.jpeg?v=5'; this.onerror=function(){this.style.display='none';};">
                             </div>
                             <span class="relative inline-block mt-2">
                                 <span class="text-[10px] md:text-xs font-black text-slate-900 tracking-wider relative z-10 px-0.5">AFTER</span>
@@ -796,13 +310,13 @@
                     <div class="grid grid-cols-2 gap-1.5 md:gap-2 mt-7">
                         <div class="flex flex-col items-center">
                             <div class="w-full aspect-square relative rounded-xl overflow-hidden shadow-sm group bg-slate-100 border border-slate-200/50">
-                                <img src="IMG_5932.jpeg?v=5" alt="施工前" class="w-full h-full object-cover absolute inset-0 group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='works/IMG_5932.jpeg?v=5'; this.onerror=function(){this.style.display='none';};">
+                                <img src="https://placehold.co/400x400/e2e8f0/64748b?text=Before" alt="施工前" class="w-full h-full object-cover absolute inset-0 group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='works/IMG_5932.jpeg?v=5'; this.onerror=function(){this.style.display='none';};">
                             </div>
                             <span class="text-[10px] md:text-xs font-bold text-slate-400 mt-2 tracking-wider">BEFORE</span>
                         </div>
                         <div class="flex flex-col items-center">
                             <div class="w-full aspect-square relative rounded-xl overflow-hidden shadow-sm group bg-slate-100 border border-slate-200/50">
-                                <img src="IMG_5933.jpeg?v=5" alt="施工後" class="w-full h-full object-cover absolute inset-0 group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='works/IMG_5933.jpeg?v=5'; this.onerror=function(){this.style.display='none';};">
+                                <img src="https://placehold.co/400x400/f1f5f9/94a3b8?text=After" alt="施工後" class="w-full h-full object-cover absolute inset-0 group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='works/IMG_5933.jpeg?v=5'; this.onerror=function(){this.style.display='none';};">
                             </div>
                             <span class="relative inline-block mt-2">
                                 <span class="text-[10px] md:text-xs font-black text-slate-900 tracking-wider relative z-10 px-0.5">AFTER</span>
@@ -839,13 +353,13 @@
                     <div class="grid grid-cols-2 gap-1.5 md:gap-2 mt-7">
                         <div class="flex flex-col items-center">
                             <div class="w-full aspect-square relative rounded-xl overflow-hidden shadow-sm group bg-slate-100 border border-slate-200/50">
-                                <img src="IMG_6118.jpeg?v=5" alt="施工前" class="w-full h-full object-cover absolute inset-0 group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='works/IMG_6118.jpeg?v=5'; this.onerror=function(){this.style.display='none';};">
+                                <img src="https://placehold.co/400x400/e2e8f0/64748b?text=Before" alt="施工前" class="w-full h-full object-cover absolute inset-0 group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='works/IMG_6118.jpeg?v=5'; this.onerror=function(){this.style.display='none';};">
                             </div>
                             <span class="text-[10px] md:text-xs font-bold text-slate-400 mt-2 tracking-wider">BEFORE</span>
                         </div>
                         <div class="flex flex-col items-center">
                             <div class="w-full aspect-square relative rounded-xl overflow-hidden shadow-sm group bg-slate-100 border border-slate-200/50">
-                                <img src="IMG_6119.jpeg?v=5" alt="施工後" class="w-full h-full object-cover absolute inset-0 group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='works/IMG_6119.jpeg?v=5'; this.onerror=function(){this.style.display='none';};">
+                                <img src="https://placehold.co/400x400/f1f5f9/94a3b8?text=After" alt="施工後" class="w-full h-full object-cover absolute inset-0 group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='works/IMG_6119.jpeg?v=5'; this.onerror=function(){this.style.display='none';};">
                             </div>
                             <span class="relative inline-block mt-2">
                                 <span class="text-[10px] md:text-xs font-black text-slate-900 tracking-wider relative z-10 px-0.5">AFTER</span>
@@ -882,13 +396,13 @@
                     <div class="grid grid-cols-2 gap-1.5 md:gap-2 mt-7">
                         <div class="flex flex-col items-center">
                             <div class="w-full aspect-square relative rounded-xl overflow-hidden shadow-sm group bg-slate-100 border border-slate-200/50">
-                                <img src="IMG_6135.jpeg?v=5" alt="施工前" class="w-full h-full object-cover absolute inset-0 group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='works/IMG_6135.jpeg?v=5'; this.onerror=function(){this.style.display='none';};">
+                                <img src="https://placehold.co/400x400/e2e8f0/64748b?text=Before" alt="施工前" class="w-full h-full object-cover absolute inset-0 group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='works/IMG_6135.jpeg?v=5'; this.onerror=function(){this.style.display='none';};">
                             </div>
                             <span class="text-[10px] md:text-xs font-bold text-slate-400 mt-2 tracking-wider">BEFORE</span>
                         </div>
                         <div class="flex flex-col items-center">
                             <div class="w-full aspect-square relative rounded-xl overflow-hidden shadow-sm group bg-slate-100 border border-slate-200/50">
-                                <img src="IMG_6136.jpeg?v=5" alt="施工後" class="w-full h-full object-cover absolute inset-0 group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='works/IMG_6136.jpeg?v=5'; this.onerror=function(){this.style.display='none';};">
+                                <img src="https://placehold.co/400x400/f1f5f9/94a3b8?text=After" alt="施工後" class="w-full h-full object-cover absolute inset-0 group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='works/IMG_6136.jpeg?v=5'; this.onerror=function(){this.style.display='none';};">
                             </div>
                             <span class="relative inline-block mt-2">
                                 <span class="text-[10px] md:text-xs font-black text-slate-900 tracking-wider relative z-10 px-0.5">AFTER</span>
@@ -925,13 +439,13 @@
                     <div class="grid grid-cols-2 gap-1.5 md:gap-2 mt-7">
                         <div class="flex flex-col items-center">
                             <div class="w-full aspect-square relative rounded-xl overflow-hidden shadow-sm group bg-slate-100 border border-slate-200/50">
-                                <img src="IMG_6252.jpeg?v=5" alt="施工前" class="w-full h-full object-cover absolute inset-0 group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='works/IMG_6252.jpeg?v=5'; this.onerror=function(){this.style.display='none';};">
+                                <img src="https://placehold.co/400x400/e2e8f0/64748b?text=Before" alt="施工前" class="w-full h-full object-cover absolute inset-0 group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='works/IMG_6252.jpeg?v=5'; this.onerror=function(){this.style.display='none';};">
                             </div>
                             <span class="text-[10px] md:text-xs font-bold text-slate-400 mt-2 tracking-wider">BEFORE</span>
                         </div>
                         <div class="flex flex-col items-center">
                             <div class="w-full aspect-square relative rounded-xl overflow-hidden shadow-sm group bg-slate-100 border border-slate-200/50">
-                                <img src="IMG_6253.jpeg?v=5" alt="施工後" class="w-full h-full object-cover absolute inset-0 group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='works/IMG_6253.jpeg?v=5'; this.onerror=function(){this.style.display='none';};">
+                                <img src="https://placehold.co/400x400/f1f5f9/94a3b8?text=After" alt="施工後" class="w-full h-full object-cover absolute inset-0 group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='works/IMG_6253.jpeg?v=5'; this.onerror=function(){this.style.display='none';};">
                             </div>
                             <span class="relative inline-block mt-2">
                                 <span class="text-[10px] md:text-xs font-black text-slate-900 tracking-wider relative z-10 px-0.5">AFTER</span>
@@ -968,13 +482,13 @@
                     <div class="grid grid-cols-2 gap-1.5 md:gap-2 mt-7">
                         <div class="flex flex-col items-center">
                             <div class="w-full aspect-square relative rounded-xl overflow-hidden shadow-sm group bg-slate-100 border border-slate-200/50">
-                                <img src="IMG_6291.jpeg?v=5" alt="施工前" class="w-full h-full object-cover absolute inset-0 group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='works/IMG_6291.jpeg?v=5'; this.onerror=function(){this.style.display='none';};">
+                                <img src="https://placehold.co/400x400/e2e8f0/64748b?text=Before" alt="施工前" class="w-full h-full object-cover absolute inset-0 group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='works/IMG_6291.jpeg?v=5'; this.onerror=function(){this.style.display='none';};">
                             </div>
                             <span class="text-[10px] md:text-xs font-bold text-slate-400 mt-2 tracking-wider">BEFORE</span>
                         </div>
                         <div class="flex flex-col items-center">
                             <div class="w-full aspect-square relative rounded-xl overflow-hidden shadow-sm group bg-slate-100 border border-slate-200/50">
-                                <img src="IMG_6292.jpeg?v=5" alt="施工後" class="w-full h-full object-cover absolute inset-0 group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='works/IMG_6292.jpeg?v=5'; this.onerror=function(){this.style.display='none';};">
+                                <img src="https://placehold.co/400x400/f1f5f9/94a3b8?text=After" alt="施工後" class="w-full h-full object-cover absolute inset-0 group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='works/IMG_6292.jpeg?v=5'; this.onerror=function(){this.style.display='none';};">
                             </div>
                             <span class="relative inline-block mt-2">
                                 <span class="text-[10px] md:text-xs font-black text-slate-900 tracking-wider relative z-10 px-0.5">AFTER</span>
@@ -1011,13 +525,13 @@
                     <div class="grid grid-cols-2 gap-1.5 md:gap-2 mt-7">
                         <div class="flex flex-col items-center">
                             <div class="w-full aspect-square relative rounded-xl overflow-hidden shadow-sm group bg-slate-100 border border-slate-200/50">
-                                <img src="IMG_6429.jpeg?v=5" alt="施工前" class="w-full h-full object-cover absolute inset-0 group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='works/IMG_6429.jpeg?v=5'; this.onerror=function(){this.style.display='none';};">
+                                <img src="https://placehold.co/400x400/e2e8f0/64748b?text=Before" alt="施工前" class="w-full h-full object-cover absolute inset-0 group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='works/IMG_6429.jpeg?v=5'; this.onerror=function(){this.style.display='none';};">
                             </div>
                             <span class="text-[10px] md:text-xs font-bold text-slate-400 mt-2 tracking-wider">BEFORE</span>
                         </div>
                         <div class="flex flex-col items-center">
                             <div class="w-full aspect-square relative rounded-xl overflow-hidden shadow-sm group bg-slate-100 border border-slate-200/50">
-                                <img src="IMG_6430.jpeg?v=5" alt="施工後" class="w-full h-full object-cover absolute inset-0 group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='works/IMG_6430.jpeg?v=5'; this.onerror=function(){this.style.display='none';};">
+                                <img src="https://placehold.co/400x400/f1f5f9/94a3b8?text=After" alt="施工後" class="w-full h-full object-cover absolute inset-0 group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='works/IMG_6430.jpeg?v=5'; this.onerror=function(){this.style.display='none';};">
                             </div>
                             <span class="relative inline-block mt-2">
                                 <span class="text-[10px] md:text-xs font-black text-slate-900 tracking-wider relative z-10 px-0.5">AFTER</span>
@@ -1054,13 +568,13 @@
                     <div class="grid grid-cols-2 gap-1.5 md:gap-2 mt-7">
                         <div class="flex flex-col items-center">
                             <div class="w-full aspect-square relative rounded-xl overflow-hidden shadow-sm group bg-slate-100 border border-slate-200/50">
-                                <img src="IMG_6440.jpeg?v=5" alt="施工前" class="w-full h-full object-cover absolute inset-0 group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='works/IMG_6440.jpeg?v=5'; this.onerror=function(){this.style.display='none';};">
+                                <img src="https://placehold.co/400x400/e2e8f0/64748b?text=Before" alt="施工前" class="w-full h-full object-cover absolute inset-0 group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='works/IMG_6440.jpeg?v=5'; this.onerror=function(){this.style.display='none';};">
                             </div>
                             <span class="text-[10px] md:text-xs font-bold text-slate-400 mt-2 tracking-wider">BEFORE</span>
                         </div>
                         <div class="flex flex-col items-center">
                             <div class="w-full aspect-square relative rounded-xl overflow-hidden shadow-sm group bg-slate-100 border border-slate-200/50">
-                                <img src="IMG_6441.jpeg?v=5" alt="施工後" class="w-full h-full object-cover absolute inset-0 group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='works/IMG_6441.jpeg?v=5'; this.onerror=function(){this.style.display='none';};">
+                                <img src="https://placehold.co/400x400/f1f5f9/94a3b8?text=After" alt="施工後" class="w-full h-full object-cover absolute inset-0 group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='works/IMG_6441.jpeg?v=5'; this.onerror=function(){this.style.display='none';};">
                             </div>
                             <span class="relative inline-block mt-2">
                                 <span class="text-[10px] md:text-xs font-black text-slate-900 tracking-wider relative z-10 px-0.5">AFTER</span>
@@ -1097,13 +611,13 @@
                     <div class="grid grid-cols-2 gap-1.5 md:gap-2 mt-7">
                         <div class="flex flex-col items-center">
                             <div class="w-full aspect-square relative rounded-xl overflow-hidden shadow-sm group bg-slate-100 border border-slate-200/50">
-                                <img src="IMG_6515.jpeg?v=5" alt="施工前" class="w-full h-full object-cover absolute inset-0 group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='works/IMG_6515.jpeg?v=5'; this.onerror=function(){this.style.display='none';};">
+                                <img src="https://placehold.co/400x400/e2e8f0/64748b?text=Before" alt="施工前" class="w-full h-full object-cover absolute inset-0 group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='works/IMG_6515.jpeg?v=5'; this.onerror=function(){this.style.display='none';};">
                             </div>
                             <span class="text-[10px] md:text-xs font-bold text-slate-400 mt-2 tracking-wider">BEFORE</span>
                         </div>
                         <div class="flex flex-col items-center">
                             <div class="w-full aspect-square relative rounded-xl overflow-hidden shadow-sm group bg-slate-100 border border-slate-200/50">
-                                <img src="IMG_6516.jpeg?v=5" alt="施工後" class="w-full h-full object-cover absolute inset-0 group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='works/IMG_6516.jpeg?v=5'; this.onerror=function(){this.style.display='none';};">
+                                <img src="https://placehold.co/400x400/f1f5f9/94a3b8?text=After" alt="施工後" class="w-full h-full object-cover absolute inset-0 group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='works/IMG_6516.jpeg?v=5'; this.onerror=function(){this.style.display='none';};">
                             </div>
                             <span class="relative inline-block mt-2">
                                 <span class="text-[10px] md:text-xs font-black text-slate-900 tracking-wider relative z-10 px-0.5">AFTER</span>
@@ -1140,13 +654,13 @@
                     <div class="grid grid-cols-2 gap-1.5 md:gap-2 mt-7">
                         <div class="flex flex-col items-center">
                             <div class="w-full aspect-square relative rounded-xl overflow-hidden shadow-sm group bg-slate-100 border border-slate-200/50">
-                                <img src="IMG_6589.jpeg?v=5" alt="施工前" class="w-full h-full object-cover absolute inset-0 group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='works/IMG_6589.jpeg?v=5'; this.onerror=function(){this.style.display='none';};">
+                                <img src="https://placehold.co/400x400/e2e8f0/64748b?text=Before" alt="施工前" class="w-full h-full object-cover absolute inset-0 group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='works/IMG_6589.jpeg?v=5'; this.onerror=function(){this.style.display='none';};">
                             </div>
                             <span class="text-[10px] md:text-xs font-bold text-slate-400 mt-2 tracking-wider">BEFORE</span>
                         </div>
                         <div class="flex flex-col items-center">
                             <div class="w-full aspect-square relative rounded-xl overflow-hidden shadow-sm group bg-slate-100 border border-slate-200/50">
-                                <img src="IMG_6590.jpeg?v=5" alt="施工後" class="w-full h-full object-cover absolute inset-0 group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='works/IMG_6590.jpeg?v=5'; this.onerror=function(){this.style.display='none';};">
+                                <img src="https://placehold.co/400x400/f1f5f9/94a3b8?text=After" alt="施工後" class="w-full h-full object-cover absolute inset-0 group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='works/IMG_6590.jpeg?v=5'; this.onerror=function(){this.style.display='none';};">
                             </div>
                             <span class="relative inline-block mt-2">
                                 <span class="text-[10px] md:text-xs font-black text-slate-900 tracking-wider relative z-10 px-0.5">AFTER</span>
@@ -1182,7 +696,7 @@
         <div class="mb-6 flex flex-col items-center justify-center">
             <span class="text-4xl md:text-5xl tracking-widest text-white flex items-center justify-center font-impact mt-1">
                 ONE
-                <img src="ONESTAR.PNG" alt="ロゴ" class="w-[80px] h-[80px] md:w-[100px] md:h-[100px] mx-[-10px] md:mx-[-16px] object-contain -translate-y-2" onerror="this.style.display='none'">
+                <img src="https://placehold.co/100x100/eeeeee/cccccc?text=Logo" alt="ロゴ" class="w-[80px] h-[80px] md:w-[100px] md:h-[100px] mx-[-10px] md:mx-[-16px] object-contain -translate-y-2" onerror="this.style.display='none'">
                 STAR
             </span>
             <p class="text-xs text-neon font-black mt-2 tracking-widest">株式会社ECS専属プロスタッフ</p>
