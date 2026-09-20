@@ -168,6 +168,57 @@
 
         <!-- 施工事例カードリスト (グリッドレイアウト・20件固定) -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- カード 1 (最新・NEWバッジ付き) -->
+            <article class="bg-white rounded-2xl border-2 border-slate-200 overflow-hidden shadow-sm hover:border-blue-400 hover:shadow-md transition-all flex flex-col relative group">
+                <!-- NEWバッジ -->
+                <div class="absolute top-0 right-0 bg-rose-500 text-white text-[10px] font-black px-3 py-1 rounded-bl-lg z-20 shadow-sm flex items-center space-x-1">
+                    <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg>
+                    <span>NEW</span>
+                </div>
+
+                <a href="/works/anjo-06/" class="block flex-grow relative">
+                    <!-- 画像エリア（アスペクト比 16:9 + Before/Afterバッジ） -->
+                    <div class="aspect-[16/9] w-full grid grid-cols-2 relative bg-slate-100 overflow-hidden">
+                        <!-- Before画像 -->
+                        <div class="relative overflow-hidden group/before">
+                            <div class="absolute inset-0 bg-slate-200 animate-pulse"></div>
+                            <div class="w-full h-full relative">
+                                <img src="/works/anjo-06/IMG_8598.jpeg" alt="施工前" class="w-full h-full object-cover absolute inset-0 group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='/works/anjo-06/IMG_8598.jpeg'; this.onerror=function(){this.style.display='none';};">
+                            </div>
+                            <div class="absolute top-2 left-2 bg-slate-900/80 text-white text-[10px] font-bold px-2 py-0.5 rounded backdrop-blur-sm z-10">洗浄前</div>
+                        </div>
+                        <!-- After画像 -->
+                        <div class="relative overflow-hidden group/after">
+                            <div class="absolute inset-0 bg-slate-200 animate-pulse"></div>
+                            <div class="w-full h-full relative">
+                                <img src="/works/anjo-06/IMG_8599.jpeg" alt="施工後" class="w-full h-full object-cover absolute inset-0 group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='/works/anjo-06/IMG_8599.jpeg'; this.onerror=function(){this.style.display='none';};">
+                            </div>
+                            <div class="absolute top-2 right-2 bg-blue-600/90 text-white text-[10px] font-bold px-2 py-0.5 rounded backdrop-blur-sm shadow-sm z-10">洗浄後</div>
+                        </div>
+                        <!-- 中央の境界線 -->
+                        <div class="absolute inset-y-0 left-1/2 w-0.5 bg-white z-10 shadow-[0_0_5px_rgba(0,0,0,0.3)]"></div>
+                    </div>
+                </a>
+
+                <div class="p-4 flex flex-col flex-grow">
+                    <h3 class="text-sm font-black text-slate-800 leading-tight mb-3">愛知県安城市<br>パナソニック エアコンクリーニング</h3>
+
+                    <div class="flex flex-wrap gap-1.5 mb-4">
+                        <span class="inline-block px-2 py-0.5 bg-slate-100 text-slate-600 text-[10px] font-bold rounded">安城市</span>
+                        <span class="inline-block px-2 py-0.5 bg-slate-100 text-slate-600 text-[10px] font-bold rounded">パナソニック</span>
+                        <span class="inline-block px-2 py-0.5 bg-slate-100 text-slate-600 text-[10px] font-bold rounded">スタンダード</span>
+                    </div>
+
+                    <div class="mt-auto border-t border-slate-100 pt-3">
+                        <a href="/works/anjo-06/" class="flex items-center justify-between group py-1">
+                            <span class="text-xs font-bold text-slate-500 group-hover:text-blue-600 transition-colors">施工事例を見る</span>
+                            <div class="w-6 h-6 rounded-full bg-slate-50 flex items-center justify-center group-hover:bg-blue-50 transition-colors">
+                                <svg class="w-3 h-3 text-slate-400 group-hover:text-blue-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </article>
 
                         <!-- 🌟NEW: カード 23 (豊田市) 🌟 -->
             <article class="bg-white rounded-[24px] shadow-sm border border-slate-200 overflow-hidden flex flex-col hover:shadow-md transition-shadow">
