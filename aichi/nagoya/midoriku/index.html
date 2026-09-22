@@ -1,0 +1,2085 @@
+<!DOCTYPE html>
+<html lang="ja" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>緑区の業者情報 | ONE★STAR</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        neon: '#EFFF00' // トレードカラー：蛍光イエロー
+                    },
+                    fontFamily: {
+                        sans: ['"Noto Sans JP"', 'sans-serif'],
+                        impact: ['"Black Ops One"', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        /* ドロワーメニュー用 */
+        #drawer-menu { transition: transform 0.3s ease-in-out; }
+        .drawer-closed { transform: translateX(-100%); }
+        .drawer-open { transform: translateX(0); }
+
+        /* アコーディオン（詳細）展開用アニメーション */
+        .card-details {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease-out;
+            opacity: 0;
+        }
+        .card-details.open {
+            max-height: 2000px; /* 内容が収まる十分な高さ */
+            opacity: 1;
+        }
+
+        /* 詳細開閉ボタンのアイコン回転 */
+        .icon-rotate { transition: transform 0.3s ease; }
+        .open .icon-rotate { transform: rotate(45deg); } /* + から × へ */
+
+        /* ONE★STAR VIEW の背景用斜めストライプ */
+        .bg-stripes {
+            background-image: repeating-linear-gradient(
+                -45deg,
+                transparent,
+                transparent 10px,
+                rgba(239, 255, 0, 0.1) 10px,
+                rgba(239, 255, 0, 0.1) 20px
+            );
+        }
+    </style>
+</head>
+<body class="font-sans text-slate-800 bg-slate-50 antialiased overflow-x-hidden">
+    <!-- HEADER -->
+    <header class="fixed top-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md shadow-sm border-b border-slate-100 h-14 flex items-center justify-between px-4">
+        <button id="menu-open-btn" class="p-2 hover:bg-slate-100 rounded-lg" aria-label="メニュー">
+            <svg class="w-6 h-6 text-slate-800" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+
+        <div class="absolute left-1/2 -translate-x-1/2 flex items-center justify-center mt-1">
+            <a href="/" class="text-2xl md:text-3xl tracking-widest text-slate-900 leading-none flex items-center font-impact">
+                ONE
+                <img src="/ONESTAR.PNG" alt="ロゴ画像" class="w-[45px] h-[45px] md:w-[55px] md:h-[55px] mx-[-4px] md:mx-[-6px] object-contain -translate-y-[4px]" onerror="this.style.display='none'">
+                STAR
+            </a>
+        </div>
+
+        <div class="hidden md:flex items-center space-x-3">
+            <a href="tel:08000807788" class="js-phone-modal-trigger bg-slate-900 hover:bg-slate-800 text-neon px-4 py-1.5 rounded-full text-xs font-black border border-slate-700 flex items-center space-x-1 transition-all">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                <span>電話相談</span>
+            </a>
+        </div>
+        <div class="w-10 md:hidden"></div>
+    </header>
+
+    <!-- DRAWER MENU -->
+    <div id="drawer-container" class="fixed inset-0 z-50 overflow-hidden hidden">
+        <div id="drawer-backdrop" class="absolute inset-0 bg-slate-900/60 opacity-0 transition-opacity duration-300"></div>
+        <div class="pointer-events-none fixed inset-y-0 left-0 flex max-w-full">
+            <div id="drawer-menu" class="pointer-events-auto w-64 drawer-closed bg-white shadow-2xl flex flex-col h-full">
+
+                <div class="p-3 bg-white flex justify-end">
+                    <button id="menu-close-btn" class="p-2 hover:bg-slate-100 rounded-lg">
+                        <svg class="w-6 h-6 text-slate-500" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+                    </button>
+                </div>
+
+                <div class="bg-blue-600 py-3 px-6">
+                    <h2 class="text-white font-black tracking-wider text-sm">MENU</h2>
+                </div>
+
+                <nav class="flex-1 px-4 py-2 overflow-y-auto">
+                    <div class="space-y-1">
+                        <a href="/" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>トップページ
+                        </a>
+                        <a href="/price" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>料金プラン
+                        </a>
+                        <a href="/works" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>施工事例
+                        </a>
+                        <a href="/mind" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>ONE★STARの想い
+                        </a>
+                        <a href="/pride" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>プロとしての拘り
+                        </a>
+                        <a href="/trash" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>ここだけの話
+                        </a>
+                        <a href="/before" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>ご予約の前に
+                        </a>
+                        <a href="/faq" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>よくある質問
+                        </a>
+                        <a href="/tips" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
+                            <span class="mr-2 text-slate-400">＞</span>お役立ち情報
+                        </a>
+                        <a href="/compare" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-blue-600">
+                            <span class="mr-2 text-blue-600">＞</span>愛知の業者情報
+                        </a>
+                        <a href="/products" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-[#06C755]">
+                            <span class="mr-2 text-slate-400">＞</span>オリジナルLINEスタンプ
+                        </a>
+                    </div>
+
+                    <hr class="border-slate-300 border-dashed my-4">
+                    <a href="https://www.edge-cleanservice.com" target="_blank" rel="noopener noreferrer" class="menu-link flex items-center py-2 text-sm font-black text-slate-900 hover:text-blue-600 transition-colors">
+                        株式会社ECS公式サイト
+                        <svg class="w-3.5 h-3.5 ml-1.5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                    </a>
+                </nav>
+
+                <div class="p-4 bg-slate-50 border-t border-slate-100 text-center mt-auto">
+                    <p class="text-[9px] text-slate-500 font-bold leading-relaxed mb-2">
+                        株式会社ECS EDGE CLEAN SERVICE<br>専属プロスタッフとして<br>愛知県全域で毎日奮闘中❣️
+                    </p>
+                    <a href="tel:08000807788" class="js-phone-modal-trigger block w-full py-3 bg-emerald-500 text-white font-bold rounded-lg text-sm shadow">直接電話する</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN (緑区 コンテンツ) -->
+    <main class="pt-20 pb-28 md:pb-20">
+
+        <!-- ページタイトル -->
+        <div class="text-center mb-6 px-4">
+            <h1 class="text-3xl md:text-4xl font-impact tracking-widest text-slate-900 mb-2">MIDORI</h1>
+            <p class="text-sm md:text-base font-black text-slate-600">緑区のエアコンクリーニング業者</p>
+        </div>
+
+        <!-- 戻るボタン -->
+        <div class="max-w-3xl mx-auto px-4 mb-6">
+            <a href="/aichi/nagoya/" class="inline-flex items-center text-sm font-bold text-slate-500 hover:text-slate-900 transition-colors">
+                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
+                名古屋市エリアの業者情報へ戻る
+            </a>
+        </div>
+
+        <!-- イントロダクション -->
+        <div class="max-w-3xl mx-auto px-4 mb-10">
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-5 md:p-8 relative overflow-hidden text-center">
+                <div class="absolute top-0 left-0 w-2 h-full bg-neon"></div>
+
+                <p class="text-[14px] md:text-base font-bold text-slate-700 leading-loose">
+                    緑区に拠点を置く業者と、<br>
+                    緑区を出張エリアとして<br>
+                    対応している業者を掲載しています。
+                </p>
+
+                <div class="mt-5 inline-block bg-slate-50 border border-slate-100 px-5 py-2.5 rounded-xl shadow-inner">
+                    <p class="text-sm md:text-base font-black text-slate-800 tracking-wide">
+                        2026年現在、<br class="sm:hidden">ONE★STAR調べ <span class="text-blue-600 text-lg mx-1">全21社</span>
+                    </p>
+                </div>
+
+                <p class="text-[11px] md:text-xs font-bold text-slate-500 mt-5 leading-relaxed bg-slate-50 p-3 rounded-lg inline-block">
+                    ※掲載順はランキングではありません。<br>
+                    業者名のあいうえお順で掲載しています。
+                </p>
+            </div>
+        </div>
+
+        <!-- 業者リスト（画面いっぱい幅の縦積みカード） -->
+        <div class="max-w-3xl mx-auto px-4 space-y-6">
+
+            <!-- カード1: アサヒサンクリーン ハウスクリーニング名古屋 -->
+            <article class="bg-white rounded-2xl shadow-md border-2 border-slate-100 overflow-hidden relative">
+                <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-neon via-slate-900 to-neon opacity-80"></div>
+                <div class="p-5 md:p-6 pb-4">
+                    <div class="flex items-start justify-between mb-4">
+                        <div>
+                            <h2 class="text-lg md:text-xl font-black text-slate-900 leading-tight">アサヒサンクリーン ハウスクリーニング名古屋</h2>
+                            <div class="inline-flex items-center mt-2 px-2 py-0.5 bg-slate-100 rounded text-[11px] font-bold text-slate-600 border border-slate-200">
+                                <svg class="w-3 h-3 mr-1 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                緑区
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex gap-4 border-l-2 border-neon pl-3 mb-4">
+                        <div>
+                            <p class="text-[10px] text-slate-500 font-bold mb-0.5">壁掛けタイプ</p>
+                            <p class="text-base font-black text-slate-900">9,000<span class="text-xs font-bold ml-0.5">円〜</span></p>
+                        </div>
+                    </div>
+                </div>
+                <button class="js-toggle-btn w-full bg-slate-900 text-neon py-3 text-xs font-black tracking-widest flex items-center justify-center transition-colors hover:bg-slate-800">
+                    <span class="btn-text">詳しく見る</span>
+                    <svg class="w-4 h-4 ml-2 icon-rotate" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M12 4v16m8-8H4"></path></svg>
+                </button>
+                <div class="card-details bg-slate-50">
+                    <div class="p-5 md:p-6 space-y-8 border-t-2 border-slate-200">
+                        <section class="relative bg-white border-2 border-slate-900 rounded-xl p-5 shadow-[4px_4px_0_0_#0f172a]">
+                            <div class="absolute -top-3.5 left-4 bg-neon border-2 border-slate-900 px-3 py-0.5 rounded-full shadow-sm">
+                                <span class="font-impact text-sm tracking-wider text-slate-900">ONE★STAR VIEW</span>
+                            </div>
+                            <div class="pt-2 text-center md:text-left">
+                                <p class="text-[13px] md:text-sm font-bold text-slate-800 leading-relaxed md:leading-loose inline-block text-left">
+                                    緑区鳴海町に拠点を置く「アサヒサンクリーン株式会社」が運営するハウスクリーニング名古屋です。介護事業を50年続けてきた会社が運営し、介護経験のあるスタッフも在籍しているのが特徴。家庭用・業務用・お掃除機能付きいずれのエアコンにも対応し、有料駐車場代は店舗負担、仕上がりに満足いただけない場合の無料再対応保証も用意しています。独立した公式サイトは確認できず、エアタクミ等の紹介サイトでの掲載を確認しています。
+                                </p>
+                            </div>
+                        </section>
+                        <section>
+                            <h3 class="text-xs font-black text-slate-400 tracking-widest mb-3 flex items-center">
+                                <span class="w-4 h-0.5 bg-slate-300 mr-2"></span>ABOUT
+                            </h3>
+                            <div class="space-y-3 bg-white p-4 rounded-xl border border-slate-200 text-[13px] font-bold text-slate-700">
+                                <div class="flex"><span class="w-20 text-slate-400 shrink-0">屋号</span><span>アサヒサンクリーン ハウスクリーニング名古屋（アサヒサンクリーン株式会社）</span></div>
+                                <div class="flex"><span class="w-20 text-slate-400 shrink-0">所在地</span><span>愛知県名古屋市緑区鳴海町字三高根55-1</span></div>
+                                <div class="flex"><span class="w-20 text-slate-400 shrink-0">事業形態</span><span>株式会社（担当：木村）</span></div>
+                                <div class="flex"><span class="w-20 text-slate-400 shrink-0">電話番号</span><span>要問い合わせ（電話・Web予約）</span></div>
+                            </div>
+                        </section>
+                        <section>
+                            <h3 class="text-xs font-black text-slate-400 tracking-widest mb-3 flex items-center">
+                                <span class="w-4 h-0.5 bg-slate-300 mr-2"></span>PRICE
+                            </h3>
+                            <div class="space-y-3 bg-white p-4 rounded-xl border border-slate-200 text-[13px] font-bold text-slate-700">
+                                <div class="flex justify-between"><span>基本料金（1台）</span><span class="text-slate-900 font-black">9,000円</span></div>
+                                <div class="flex justify-between"><span>3〜4台</span><span class="text-slate-900 font-black">8,000円/台</span></div>
+                                <div class="flex justify-between"><span>5台以上</span><span class="text-slate-900 font-black">8,000円/台</span></div>
+                                <div class="flex justify-between"><span>お掃除機能付き</span><span class="text-slate-900 font-black">+6,000円</span></div>
+                                <div class="flex justify-between"><span>消臭抗菌コート</span><span class="text-slate-900 font-black">1,000円</span></div>
+                                <div class="flex justify-between"><span>室外機</span><span class="text-slate-900 font-black">3,000円</span></div>
+                            </div>
+                        </section>
+                        <section>
+                            <h3 class="text-xs font-black text-slate-400 tracking-widest mb-3 flex items-center">
+                                <span class="w-4 h-0.5 bg-slate-300 mr-2"></span>STYLE
+                            </h3>
+                            <div class="bg-white p-4 rounded-xl border border-slate-200">
+                                <p class="text-[11px] text-slate-400 mb-2 font-bold">対応・特徴</p>
+                                <div class="flex flex-wrap gap-1.5">
+                                    <span class="px-2 py-1 bg-slate-100 rounded text-[11px] text-slate-600 font-bold">家庭用・業務用・お掃除機能付きいずれも対応</span>
+                                    <span class="px-2 py-1 bg-slate-100 rounded text-[11px] text-slate-600 font-bold">通常分解洗浄</span>
+                                    <span class="px-2 py-1 bg-slate-100 rounded text-[11px] text-slate-600 font-bold">介護事業50年運営、介護経験スタッフ在籍</span>
+                                    <span class="px-2 py-1 bg-slate-100 rounded text-[11px] text-slate-600 font-bold">有料駐車場代は店舗負担、無料再対応保証</span>
+                                    <span class="px-2 py-1 bg-slate-100 rounded text-[11px] text-slate-600 font-bold">対応エリア：名古屋市全16区、一宮市、春日井市、大府市等</span>
+                                </div>
+                            </div>
+                        </section>
+                        <section>
+                            <h3 class="text-xs font-black text-slate-400 tracking-widest mb-3 flex items-center">
+                                <span class="w-4 h-0.5 bg-slate-300 mr-2"></span>LINK
+                            </h3>
+                            <div class="flex items-center bg-white p-4 rounded-xl border border-slate-200 text-[13px] font-bold text-slate-400">
+                                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path></svg>
+                                公式サイトなし
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </article>
+
+            <!-- カード2: 株式会社イチデン -->
+            <article class="bg-white rounded-2xl shadow-md border-2 border-slate-100 overflow-hidden relative">
+                <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-neon via-slate-900 to-neon opacity-80"></div>
+                <div class="p-5 md:p-6 pb-4">
+                    <div class="flex items-start justify-between mb-4">
+                        <div>
+                            <h2 class="text-lg md:text-xl font-black text-slate-900 leading-tight">株式会社イチデン</h2>
+                            <div class="inline-flex items-center mt-2 px-2 py-0.5 bg-slate-100 rounded text-[11px] font-bold text-slate-600 border border-slate-200">
+                                <svg class="w-3 h-3 mr-1 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                緑区
+                            </div>
+                        </div>
+                    </div>
+                    <div class="border-l-2 border-neon pl-3 mb-4">
+                        <p class="text-sm font-black text-slate-700">料金：要問い合わせ</p>
+                        <p class="text-[10px] text-slate-400 font-bold mt-0.5">具体的な料金はWebフォームまたは電話で要問い合わせです</p>
+                    </div>
+                </div>
+                <button class="js-toggle-btn w-full bg-slate-900 text-neon py-3 text-xs font-black tracking-widest flex items-center justify-center transition-colors hover:bg-slate-800">
+                    <span class="btn-text">詳しく見る</span>
+                    <svg class="w-4 h-4 ml-2 icon-rotate" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M12 4v16m8-8H4"></path></svg>
+                </button>
+                <div class="card-details bg-slate-50">
+                    <div class="p-5 md:p-6 space-y-8 border-t-2 border-slate-200">
+                        <section class="relative bg-white border-2 border-slate-900 rounded-xl p-5 shadow-[4px_4px_0_0_#0f172a]">
+                            <div class="absolute -top-3.5 left-4 bg-neon border-2 border-slate-900 px-3 py-0.5 rounded-full shadow-sm">
+                                <span class="font-impact text-sm tracking-wider text-slate-900">ONE★STAR VIEW</span>
+                            </div>
+                            <div class="pt-2 text-center md:text-left">
+                                <p class="text-[13px] md:text-sm font-bold text-slate-800 leading-relaxed md:leading-loose inline-block text-left">
+                                    緑区大高町に拠点を置く「株式会社イチデン」です。大手家電量販店のエアコン取付・クリーニング請負工事を手がける会社で、第一種フロン類充填回収業者登録・第二種電気工事士資格を保有しています。家庭用・業務用・お掃除機能付きいずれのエアコンにも対応します。
+                                </p>
+                            </div>
+                        </section>
+                        <section>
+                            <h3 class="text-xs font-black text-slate-400 tracking-widest mb-3 flex items-center">
+                                <span class="w-4 h-0.5 bg-slate-300 mr-2"></span>ABOUT
+                            </h3>
+                            <div class="space-y-3 bg-white p-4 rounded-xl border border-slate-200 text-[13px] font-bold text-slate-700">
+                                <div class="flex"><span class="w-20 text-slate-400 shrink-0">屋号</span><span>株式会社イチデン</span></div>
+                                <div class="flex"><span class="w-20 text-slate-400 shrink-0">所在地</span><span>愛知県名古屋市緑区大高町字一色山45-1</span></div>
+                                <div class="flex"><span class="w-20 text-slate-400 shrink-0">事業形態</span><span>株式会社（代表：市橋由規）</span></div>
+                                <div class="flex"><span class="w-20 text-slate-400 shrink-0">電話番号</span><span>要問い合わせ（Webフォーム・電話）</span></div>
+                            </div>
+                        </section>
+                        <section>
+                            <h3 class="text-xs font-black text-slate-400 tracking-widest mb-3 flex items-center">
+                                <span class="w-4 h-0.5 bg-slate-300 mr-2"></span>STYLE
+                            </h3>
+                            <div class="bg-white p-4 rounded-xl border border-slate-200">
+                                <p class="text-[11px] text-slate-400 mb-2 font-bold">対応・特徴</p>
+                                <div class="flex flex-wrap gap-1.5">
+                                    <span class="px-2 py-1 bg-slate-100 rounded text-[11px] text-slate-600 font-bold">家庭用・業務用・お掃除機能付きいずれも対応</span>
+                                    <span class="px-2 py-1 bg-slate-100 rounded text-[11px] text-slate-600 font-bold">通常分解洗浄</span>
+                                    <span class="px-2 py-1 bg-slate-100 rounded text-[11px] text-slate-600 font-bold">大手家電量販店のエアコン請負工事実績</span>
+                                    <span class="px-2 py-1 bg-slate-100 rounded text-[11px] text-slate-600 font-bold">第一種フロン類充填回収業者登録、第二種電気工事士</span>
+                                    <span class="px-2 py-1 bg-slate-100 rounded text-[11px] text-slate-600 font-bold">対応エリア：緑区、愛知県内等</span>
+                                </div>
+                            </div>
+                        </section>
+                        <section>
+                            <h3 class="text-xs font-black text-slate-400 tracking-widest mb-3 flex items-center">
+                                <span class="w-4 h-0.5 bg-slate-300 mr-2"></span>LINK
+                            </h3>
+                            <a href="https://aircon-nipponichi.com/company/" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between bg-white p-4 rounded-xl border border-slate-200 hover:border-blue-400 transition-colors group">
+                                <div class="flex items-center text-[13px] font-bold text-blue-600">
+                                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path></svg>
+                                    公式サイト
+                                </div>
+                                <svg class="w-4 h-4 text-slate-300 group-hover:text-blue-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"></path></svg>
+                            </a>
+                        </section>
+                    </div>
+                </div>
+            </article>
+
+            <!-- カード3: おそうじ革命 名古屋緑区大高店 -->
+            <article class="bg-white rounded-2xl shadow-md border-2 border-slate-100 overflow-hidden relative">
+                <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-neon via-slate-900 to-neon opacity-80"></div>
+                <div class="p-5 md:p-6 pb-4">
+                    <div class="flex items-start justify-between mb-4">
+                        <div>
+                            <h2 class="text-lg md:text-xl font-black text-slate-900 leading-tight">おそうじ革命 名古屋緑区大高店</h2>
+                            <div class="inline-flex items-center mt-2 px-2 py-0.5 bg-slate-100 rounded text-[11px] font-bold text-slate-600 border border-slate-200">
+                                <svg class="w-3 h-3 mr-1 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                緑区
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex gap-4 border-l-2 border-neon pl-3 mb-4">
+                        <div>
+                            <p class="text-[10px] text-slate-500 font-bold mb-0.5">壁掛けタイプ</p>
+                            <p class="text-base font-black text-slate-900">9,980<span class="text-xs font-bold ml-0.5">円〜</span></p>
+                        </div>
+                    </div>
+                </div>
+                <button class="js-toggle-btn w-full bg-slate-900 text-neon py-3 text-xs font-black tracking-widest flex items-center justify-center transition-colors hover:bg-slate-800">
+                    <span class="btn-text">詳しく見る</span>
+                    <svg class="w-4 h-4 ml-2 icon-rotate" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M12 4v16m8-8H4"></path></svg>
+                </button>
+                <div class="card-details bg-slate-50">
+                    <div class="p-5 md:p-6 space-y-8 border-t-2 border-slate-200">
+                        <section class="relative bg-white border-2 border-slate-900 rounded-xl p-5 shadow-[4px_4px_0_0_#0f172a]">
+                            <div class="absolute -top-3.5 left-4 bg-neon border-2 border-slate-900 px-3 py-0.5 rounded-full shadow-sm">
+                                <span class="font-impact text-sm tracking-wider text-slate-900">ONE★STAR VIEW</span>
+                            </div>
+                            <div class="pt-2 text-center md:text-left">
+                                <p class="text-[13px] md:text-sm font-bold text-slate-800 leading-relaxed md:leading-loose inline-block text-left">
+                                    緑区大根山に店舗を置く「おそうじ革命 名古屋緑区大高店」です（責任者：伊豆本真哉）。独自の高圧洗浄とエコ洗剤で家庭用・業務用（天カセ・天吊り・床置等）・お掃除機能付きいずれのエアコンにも対応し、事前に料金を提示する明朗会計と仕上がり完全保証を掲げています。口コミは20件以上確認でき、高評価が多く寄せられています。
+                                </p>
+                            </div>
+                        </section>
+                        <section>
+                            <h3 class="text-xs font-black text-slate-400 tracking-widest mb-3 flex items-center">
+                                <span class="w-4 h-0.5 bg-slate-300 mr-2"></span>ABOUT
+                            </h3>
+                            <div class="space-y-3 bg-white p-4 rounded-xl border border-slate-200 text-[13px] font-bold text-slate-700">
+                                <div class="flex"><span class="w-20 text-slate-400 shrink-0">屋号</span><span>おそうじ革命 名古屋緑区大高店</span></div>
+                                <div class="flex"><span class="w-20 text-slate-400 shrink-0">所在地</span><span>愛知県名古屋市緑区大根山1-1208-1</span></div>
+                                <div class="flex"><span class="w-20 text-slate-400 shrink-0">事業形態</span><span>法人（FC、責任者：伊豆本真哉）</span></div>
+                                <div class="flex"><span class="w-20 text-slate-400 shrink-0">電話番号</span><span>フリーダイヤル・Web予約フォーム</span></div>
+                            </div>
+                        </section>
+                        <section>
+                            <h3 class="text-xs font-black text-slate-400 tracking-widest mb-3 flex items-center">
+                                <span class="w-4 h-0.5 bg-slate-300 mr-2"></span>PRICE
+                            </h3>
+                            <div class="space-y-3 bg-white p-4 rounded-xl border border-slate-200 text-[13px] font-bold text-slate-700">
+                                <div class="flex justify-between"><span>壁掛けタイプ</span><span class="text-slate-900 font-black">9,980円〜</span></div>
+                                <div class="flex justify-between"><span>お掃除機能付き</span><span class="text-slate-900 font-black">+8,720円</span></div>
+                                <div class="flex justify-between"><span>防カビ抗菌コート</span><span class="text-slate-900 font-black">2,750円</span></div>
+                                <div class="flex justify-between"><span>室外機</span><span class="text-slate-900 font-black">3,300円</span></div>
+                            </div>
+                        </section>
+                        <section>
+                            <h3 class="text-xs font-black text-slate-400 tracking-widest mb-3 flex items-center">
+                                <span class="w-4 h-0.5 bg-slate-300 mr-2"></span>STYLE
+                            </h3>
+                            <div class="bg-white p-4 rounded-xl border border-slate-200">
+                                <p class="text-[11px] text-slate-400 mb-2 font-bold">対応・特徴</p>
+                                <div class="flex flex-wrap gap-1.5">
+                                    <span class="px-2 py-1 bg-slate-100 rounded text-[11px] text-slate-600 font-bold">家庭用・業務用（天カセ・天吊り・床置等）・お掃除機能付きいずれも対応</span>
+                                    <span class="px-2 py-1 bg-slate-100 rounded text-[11px] text-slate-600 font-bold">高圧洗浄・エコ洗剤による通常分解</span>
+                                    <span class="px-2 py-1 bg-slate-100 rounded text-[11px] text-slate-600 font-bold">事前提示の明朗会計、追加料金なし、仕上がり完全保証</span>
+                                    <span class="px-2 py-1 bg-slate-100 rounded text-[11px] text-slate-600 font-bold">口コミ20件以上（高評価多数）</span>
+                                    <span class="px-2 py-1 bg-slate-100 rounded text-[11px] text-slate-600 font-bold">対応エリア：緑区、東海市、阿久比町、名古屋市内全域</span>
+                                </div>
+                            </div>
+                        </section>
+                        <section>
+                            <h3 class="text-xs font-black text-slate-400 tracking-widest mb-3 flex items-center">
+                                <span class="w-4 h-0.5 bg-slate-300 mr-2"></span>LINK
+                            </h3>
+                            <a href="https://www.osoujikakumei.jp/nagoya_midorikuodaka/" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between bg-white p-4 rounded-xl border border-slate-200 hover:border-blue-400 transition-colors group">
+                                <div class="flex items-center text-[13px] font-bold text-blue-600">
+                                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path></svg>
+                                    公式サイト
+                                </div>
+                                <svg class="w-4 h-4 text-slate-300 group-hover:text-blue-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"></path></svg>
+                            </a>
+                        </section>
+                    </div>
+                </div>
+            </article>
+
+            <!-- カード4: おそうじ本舗 鳴海店 -->
+            <article class="bg-white rounded-2xl shadow-md border-2 border-slate-100 overflow-hidden relative">
+                <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-neon via-slate-900 to-neon opacity-80"></div>
+                <div class="p-5 md:p-6 pb-4">
+                    <div class="flex items-start justify-between mb-4">
+                        <div>
+                            <h2 class="text-lg md:text-xl font-black text-slate-900 leading-tight">おそうじ本舗 鳴海店</h2>
+                            <div class="inline-flex items-center mt-2 px-2 py-0.5 bg-slate-100 rounded text-[11px] font-bold text-slate-600 border border-slate-200">
+                                <svg class="w-3 h-3 mr-1 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                緑区
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex gap-4 border-l-2 border-neon pl-3 mb-4">
+                        <div>
+                            <p class="text-[10px] text-slate-500 font-bold mb-0.5">壁掛けタイプ</p>
+                            <p class="text-base font-black text-slate-900">14,300<span class="text-xs font-bold ml-0.5">円</span></p>
+                        </div>
+                    </div>
+                </div>
+                <button class="js-toggle-btn w-full bg-slate-900 text-neon py-3 text-xs font-black tracking-widest flex items-center justify-center transition-colors hover:bg-slate-800">
+                    <span class="btn-text">詳しく見る</span>
+                    <svg class="w-4 h-4 ml-2 icon-rotate" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M12 4v16m8-8H4"></path></svg>
+                </button>
+                <div class="card-details bg-slate-50">
+                    <div class="p-5 md:p-6 space-y-8 border-t-2 border-slate-200">
+                        <section class="relative bg-white border-2 border-slate-900 rounded-xl p-5 shadow-[4px_4px_0_0_#0f172a]">
+                            <div class="absolute -top-3.5 left-4 bg-neon border-2 border-slate-900 px-3 py-0.5 rounded-full shadow-sm">
+                                <span class="font-impact text-sm tracking-wider text-slate-900">ONE★STAR VIEW</span>
+                            </div>
+                            <div class="pt-2 text-center md:text-left">
+                                <p class="text-[13px] md:text-sm font-bold text-slate-800 leading-relaxed md:leading-loose inline-block text-left">
+                                    緑区鳴子町に店舗を置く「おそうじ本舗 鳴海店」です。全国チェーンの技術認定スタッフが、家庭用・業務用・お掃除機能付きいずれのエアコンにも対応します（通常分解・完全分解いずれも可）。地域密着で緑区全域をカバーしています。
+                                </p>
+                            </div>
+                        </section>
+                        <section>
+                            <h3 class="text-xs font-black text-slate-400 tracking-widest mb-3 flex items-center">
+                                <span class="w-4 h-0.5 bg-slate-300 mr-2"></span>ABOUT
+                            </h3>
+                            <div class="space-y-3 bg-white p-4 rounded-xl border border-slate-200 text-[13px] font-bold text-slate-700">
+                                <div class="flex"><span class="w-20 text-slate-400 shrink-0">屋号</span><span>おそうじ本舗 鳴海店</span></div>
+                                <div class="flex"><span class="w-20 text-slate-400 shrink-0">所在地</span><span>愛知県名古屋市緑区鳴子町5-9-2</span></div>
+                                <div class="flex"><span class="w-20 text-slate-400 shrink-0">事業形態</span><span>FC店舗</span></div>
+                                <div class="flex"><span class="w-20 text-slate-400 shrink-0">営業時間</span><span>8:00〜21:00</span></div>
+                            </div>
+                        </section>
+                        <section>
+                            <h3 class="text-xs font-black text-slate-400 tracking-widest mb-3 flex items-center">
+                                <span class="w-4 h-0.5 bg-slate-300 mr-2"></span>PRICE
+                            </h3>
+                            <div class="space-y-3 bg-white p-4 rounded-xl border border-slate-200 text-[13px] font-bold text-slate-700">
+                                <div class="flex justify-between"><span>壁掛けタイプ</span><span class="text-slate-900 font-black">14,300円</span></div>
+                                <div class="flex justify-between"><span>2台以上（1台あたり）</span><span class="text-slate-900 font-black">2,200円引</span></div>
+                            </div>
+                        </section>
+                        <section>
+                            <h3 class="text-xs font-black text-slate-400 tracking-widest mb-3 flex items-center">
+                                <span class="w-4 h-0.5 bg-slate-300 mr-2"></span>STYLE
+                            </h3>
+                            <div class="bg-white p-4 rounded-xl border border-slate-200">
+                                <p class="text-[11px] text-slate-400 mb-2 font-bold">対応・特徴</p>
+                                <div class="flex flex-wrap gap-1.5">
+                                    <span class="px-2 py-1 bg-slate-100 rounded text-[11px] text-slate-600 font-bold">家庭用・業務用・お掃除機能付きいずれも対応</span>
+                                    <span class="px-2 py-1 bg-slate-100 rounded text-[11px] text-slate-600 font-bold">通常分解・完全分解対応</span>
+                                    <span class="px-2 py-1 bg-slate-100 rounded text-[11px] text-slate-600 font-bold">地域密着でおそうじ本舗の高品質サービスを提供</span>
+                                    <span class="px-2 py-1 bg-slate-100 rounded text-[11px] text-slate-600 font-bold">対応エリア：緑区全域</span>
+                                </div>
+                            </div>
+                        </section>
+                        <section>
+                            <h3 class="text-xs font-black text-slate-400 tracking-widest mb-3 flex items-center">
+                                <span class="w-4 h-0.5 bg-slate-300 mr-2"></span>LINK
+                            </h3>
+                            <a href="https://www.osoujihonpo.com/shop/detail/11435/" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between bg-white p-4 rounded-xl border border-slate-200 hover:border-blue-400 transition-colors group">
+                                <div class="flex items-center text-[13px] font-bold text-blue-600">
+                                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path></svg>
+                                    公式サイト
+                                </div>
+                                <svg class="w-4 h-4 text-slate-300 group-hover:text-blue-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"></path></svg>
+                            </a>
+                        </section>
+                    </div>
+                </div>
+            </article>
+
+            <!-- カード5: おそうじ本舗 緑神の倉店 -->
+            <article class="bg-white rounded-2xl shadow-md border-2 border-slate-100 overflow-hidden relative">
+                <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-neon via-slate-900 to-neon opacity-80"></div>
+                <div class="p-5 md:p-6 pb-4">
+                    <div class="flex items-start justify-between mb-4">
+                        <div>
+                            <h2 class="text-lg md:text-xl font-black text-slate-900 leading-tight">おそうじ本舗 緑神の倉店</h2>
+                            <div class="inline-flex items-center mt-2 px-2 py-0.5 bg-slate-100 rounded text-[11px] font-bold text-slate-600 border border-slate-200">
+                                <svg class="w-3 h-3 mr-1 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                緑区
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex gap-4 border-l-2 border-neon pl-3 mb-4">
+                        <div>
+                            <p class="text-[10px] text-slate-500 font-bold mb-0.5">壁掛けタイプ</p>
+                            <p class="text-base font-black text-slate-900">14,300<span class="text-xs font-bold ml-0.5">円</span></p>
+                        </div>
+                    </div>
+                </div>
+                <button class="js-toggle-btn w-full bg-slate-900 text-neon py-3 text-xs font-black tracking-widest flex items-center justify-center transition-colors hover:bg-slate-800">
+                    <span class="btn-text">詳しく見る</span>
+                    <svg class="w-4 h-4 ml-2 icon-rotate" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M12 4v16m8-8H4"></path></svg>
+                </button>
+                <div class="card-details bg-slate-50">
+                    <div class="p-5 md:p-6 space-y-8 border-t-2 border-slate-200">
+                        <section class="relative bg-white border-2 border-slate-900 rounded-xl p-5 shadow-[4px_4px_0_0_#0f172a]">
+                            <div class="absolute -top-3.5 left-4 bg-neon border-2 border-slate-900 px-3 py-0.5 rounded-full shadow-sm">
+                                <span class="font-impact text-sm tracking-wider text-slate-900">ONE★STAR VIEW</span>
+                            </div>
+                            <div class="pt-2 text-center md:text-left">
+                                <p class="text-[13px] md:text-sm font-bold text-slate-800 leading-relaxed md:leading-loose inline-block text-left">
+                                    緑区乗鞍に店舗を置く「おそうじ本舗 緑神の倉店」です（責任者：奈良一久）。家庭用・業務用・お掃除機能付きいずれのエアコンにも通常分解・完全分解で対応し、口コミ評価4.75（12件／全87件掲載）と実績が確認できます。
+                                </p>
+                            </div>
+                        </section>
+                        <section>
+                            <h3 class="text-xs font-black text-slate-400 tracking-widest mb-3 flex items-center">
+                                <span class="w-4 h-0.5 bg-slate-300 mr-2"></span>ABOUT
+                            </h3>
+                            <div class="space-y-3 bg-white p-4 rounded-xl border border-slate-200 text-[13px] font-bold text-slate-700">
+                                <div class="flex"><span class="w-20 text-slate-400 shrink-0">屋号</span><span>おそうじ本舗 緑神の倉店</span></div>
+                                <div class="flex"><span class="w-20 text-slate-400 shrink-0">所在地</span><span>愛知県名古屋市緑区乗鞍2-801-1</span></div>
+                                <div class="flex"><span class="w-20 text-slate-400 shrink-0">事業形態</span><span>FC店舗（責任者：奈良一久）</span></div>
+                                <div class="flex"><span class="w-20 text-slate-400 shrink-0">営業時間</span><span>9:30〜18:30</span></div>
+                                <div class="flex"><span class="w-20 text-slate-400 shrink-0">電話番号</span><span>フリーダイヤル・携帯電話・Web予約</span></div>
+                            </div>
+                        </section>
+                        <section>
+                            <h3 class="text-xs font-black text-slate-400 tracking-widest mb-3 flex items-center">
+                                <span class="w-4 h-0.5 bg-slate-300 mr-2"></span>PRICE
+                            </h3>
+                            <div class="space-y-3 bg-white p-4 rounded-xl border border-slate-200 text-[13px] font-bold text-slate-700">
+                                <div class="flex justify-between"><span>壁掛けタイプ</span><span class="text-slate-900 font-black">14,300円</span></div>
+                                <div class="flex justify-between"><span>2台以上（1台あたり）</span><span class="text-slate-900 font-black">2,200円引</span></div>
+                            </div>
+                        </section>
+                        <section>
+                            <h3 class="text-xs font-black text-slate-400 tracking-widest mb-3 flex items-center">
+                                <span class="w-4 h-0.5 bg-slate-300 mr-2"></span>STYLE
+                            </h3>
+                            <div class="bg-white p-4 rounded-xl border border-slate-200">
+                                <p class="text-[11px] text-slate-400 mb-2 font-bold">対応・特徴</p>
+                                <div class="flex flex-wrap gap-1.5">
+                                    <span class="px-2 py-1 bg-slate-100 rounded text-[11px] text-slate-600 font-bold">家庭用・業務用・お掃除機能付きいずれも対応</span>
+                                    <span class="px-2 py-1 bg-slate-100 rounded text-[11px] text-slate-600 font-bold">通常分解・完全分解対応</span>
+                                    <span class="px-2 py-1 bg-slate-100 rounded text-[11px] text-slate-600 font-bold">口コミ評価4.75（12件／全87件掲載）</span>
+                                    <span class="px-2 py-1 bg-slate-100 rounded text-[11px] text-slate-600 font-bold">対応エリア：緑区周辺</span>
+                                </div>
+                            </div>
+                        </section>
+                        <section>
+                            <h3 class="text-xs font-black text-slate-400 tracking-widest mb-3 flex items-center">
+                                <span class="w-4 h-0.5 bg-slate-300 mr-2"></span>LINK
+                            </h3>
+                            <a href="https://www.osoujihonpo.com/shop/detail/17821/" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between bg-white p-4 rounded-xl border border-slate-200 hover:border-blue-400 transition-colors group">
+                                <div class="flex items-center text-[13px] font-bold text-blue-600">
+                                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path></svg>
+                                    公式サイト
+                                </div>
+                                <svg class="w-4 h-4 text-slate-300 group-hover:text-blue-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"></path></svg>
+                            </a>
+                        </section>
+                    </div>
+                </div>
+            </article>
+
+            <!-- カード6: おそうじ本舗 緑徳重店 -->
+            <article class="bg-white rounded-2xl shadow-md border-2 border-slate-100 overflow-hidden relative">
+                <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-neon via-slate-900 to-neon opacity-80"></div>
+                <div class="p-5 md:p-6 pb-4">
+                    <div class="flex items-start justify-between mb-4">
+                        <div>
+                            <h2 class="text-lg md:text-xl font-black text-slate-900 leading-tight">おそうじ本舗 緑徳重店</h2>
+                            <div class="inline-flex items-center mt-2 px-2 py-0.5 bg-slate-100 rounded text-[11px] font-bold text-slate-600 border border-slate-200">
+                                <svg class="w-3 h-3 mr-1 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                緑区
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex gap-4 border-l-2 border-neon pl-3 mb-4">
+                        <div>
+                            <p class="text-[10px] text-slate-500 font-bold mb-0.5">壁掛けタイプ</p>
+                            <p class="text-base font-black text-slate-900">14,300<span class="text-xs font-bold ml-0.5">円</span></p>
+                        </div>
+                    </div>
+                </div>
+                <button class="js-toggle-btn w-full bg-slate-900 text-neon py-3 text-xs font-black tracking-widest flex items-center justify-center transition-colors hover:bg-slate-800">
+                    <span class="btn-text">詳しく見る</span>
+                    <svg class="w-4 h-4 ml-2 icon-rotate" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M12 4v16m8-8H4"></path></svg>
+                </button>
+                <div class="card-details bg-slate-50">
+                    <div class="p-5 md:p-6 space-y-8 border-t-2 border-slate-200">
+                        <section class="relative bg-white border-2 border-slate-900 rounded-xl p-5 shadow-[4px_4px_0_0_#0f172a]">
+                            <div class="absolute -top-3.5 left-4 bg-neon border-2 border-slate-900 px-3 py-0.5 rounded-full shadow-sm">
+                                <span class="font-impact text-sm tracking-wider text-slate-900">ONE★STAR VIEW</span>
+                            </div>
+                            <div class="pt-2 text-center md:text-left">
+                                <p class="text-[13px] md:text-sm font-bold text-slate-800 leading-relaxed md:leading-loose inline-block text-left">
+                                    緑区徳重に店舗を置く「おそうじ本舗 緑徳重店」です。家庭用・業務用・お掃除機能付きいずれのエアコンにも通常分解・完全分解で対応し、口コミ評価4.93（14件／40件掲載）と高い評価を得ています。なお、掲載媒体上の店舗詳細URLが近隣の緑西店と重複しており、正確なリンク先が特定できないため、LINK欄は「公式サイトなし」としています。
+                                </p>
+                            </div>
+                        </section>
+                        <section>
+                            <h3 class="text-xs font-black text-slate-400 tracking-widest mb-3 flex items-center">
+                                <span class="w-4 h-0.5 bg-slate-300 mr-2"></span>ABOUT
+                            </h3>
+                            <div class="space-y-3 bg-white p-4 rounded-xl border border-slate-200 text-[13px] font-bold text-slate-700">
+                                <div class="flex"><span class="w-20 text-slate-400 shrink-0">屋号</span><span>おそうじ本舗 緑徳重店</span></div>
+                                <div class="flex"><span class="w-20 text-slate-400 shrink-0">所在地</span><span>愛知県名古屋市緑区徳重（番地非公開）</span></div>
+                                <div class="flex"><span class="w-20 text-slate-400 shrink-0">事業形態</span><span>FC店舗</span></div>
+                                <div class="flex"><span class="w-20 text-slate-400 shrink-0">電話番号</span><span>要問い合わせ</span></div>
+                            </div>
+                        </section>
+                        <section>
+                            <h3 class="text-xs font-black text-slate-400 tracking-widest mb-3 flex items-center">
+                                <span class="w-4 h-0.5 bg-slate-300 mr-2"></span>PRICE
+                            </h3>
+                            <div class="space-y-3 bg-white p-4 rounded-xl border border-slate-200 text-[13px] font-bold text-slate-700">
+                                <div class="flex justify-between"><span>壁掛けタイプ</span><span class="text-slate-900 font-black">14,300円</span></div>
+                                <div class="flex justify-between"><span>2台以上（1台あたり）</span><span class="text-slate-900 font-black">2,200円引</span></div>
+                            </div>
+                        </section>
+                        <section>
+                            <h3 class="text-xs font-black text-slate-400 tracking-widest mb-3 flex items-center">
+                                <span class="w-4 h-0.5 bg-slate-300 mr-2"></span>STYLE
+                            </h3>
+                            <div class="bg-white p-4 rounded-xl border border-slate-200">
+                                <p class="text-[11px] text-slate-400 mb-2 font-bold">対応・特徴</p>
+                                <div class="flex flex-wrap gap-1.5">
+                                    <span class="px-2 py-1 bg-slate-100 rounded text-[11px] text-slate-600 font-bold">家庭用・業務用・お掃除機能付きいずれも対応</span>
+                                    <span class="px-2 py-1 bg-slate-100 rounded text-[11px] text-slate-600 font-bold">通常分解・完全分解対応</span>
+                                    <span class="px-2 py-1 bg-slate-100 rounded text-[11px] text-slate-600 font-bold">口コミ評価4.93（14件／40件掲載）</span>
+                                    <span class="px-2 py-1 bg-slate-100 rounded text-[11px] text-slate-600 font-bold">対応エリア：緑区徳重周辺</span>
+                                </div>
+                            </div>
+                        </section>
+                        <section>
+                            <h3 class="text-xs font-black text-slate-400 tracking-widest mb-3 flex items-center">
+                                <span class="w-4 h-0.5 bg-slate-300 mr-2"></span>LINK
+                            </h3>
+                            <div class="flex items-center bg-white p-4 rounded-xl border border-slate-200 text-[13px] font-bold text-slate-400">
+                                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path></svg>
+                                公式サイトなし
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </article>
+
+            <!-- カード7: おそうじ本舗 緑西店 -->
+            <article class="bg-white rounded-2xl shadow-md border-2 border-slate-100 overflow-hidden relative">
+                <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-neon via-slate-900 to-neon opacity-80"></div>
+                <div class="p-5 md:p-6 pb-4">
+                    <div class="flex items-start justify-between mb-4">
+                        <div>
+                            <h2 class="text-lg md:text-xl font-black text-slate-900 leading-tight">おそうじ本舗 緑西店</h2>
+                            <div class="inline-flex items-center mt-2 px-2 py-0.5 bg-slate-100 rounded text-[11px] font-bold text-slate-600 border border-slate-200">
+                                <svg class="w-3 h-3 mr-1 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                緑区
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex gap-4 border-l-2 border-neon pl-3 mb-4">
+                        <div>
+                            <p class="text-[10px] text-slate-500 font-bold mb-0.5">壁掛けタイプ</p>
+                            <p class="text-base font-black text-slate-900">14,300<span class="text-xs font-bold ml-0.5">円</span></p>
+                        </div>
+                    </div>
+                </div>
+                <button class="js-toggle-btn w-full bg-slate-900 text-neon py-3 text-xs font-black tracking-widest flex items-center justify-center transition-colors hover:bg-slate-800">
+                    <span class="btn-text">詳しく見る</span>
+                    <svg class="w-4 h-4 ml-2 icon-rotate" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M12 4v16m8-8H4"></path></svg>
+                </button>
+                <div class="card-details bg-slate-50">
+                    <div class="p-5 md:p-6 space-y-8 border-t-2 border-slate-200">
+                        <section class="relative bg-white border-2 border-slate-900 rounded-xl p-5 shadow-[4px_4px_0_0_#0f172a]">
+                            <div class="absolute -top-3.5 left-4 bg-neon border-2 border-slate-900 px-3 py-0.5 rounded-full shadow-sm">
+                                <span class="font-impact text-sm tracking-wider text-slate-900">ONE★STAR VIEW</span>
+                            </div>
+                            <div class="pt-2 text-center md:text-left">
+                                <p class="text-[13px] md:text-sm font-bold text-slate-800 leading-relaxed md:leading-loose inline-block text-left">
+                                    緑区大高台エリアを中心に細やかな清掃を行う「おそうじ本舗 緑西店」です。家庭用・業務用・お掃除機能付きいずれのエアコンにも通常分解で対応します。口コミは4件確認できています。掲載媒体上の店舗詳細URLが緑徳重店と重複しており正確なリンク先が特定できないため、LINK欄は「公式サイトなし」としています。
+                                </p>
+                            </div>
+                        </section>
+                        <section>
+                            <h3 class="text-xs font-black text-slate-400 tracking-widest mb-3 flex items-center">
+                                <span class="w-4 h-0.5 bg-slate-300 mr-2"></span>ABOUT
+                            </h3>
+                            <div class="space-y-3 bg-white p-4 rounded-xl border border-slate-200 text-[13px] font-bold text-slate-700">
+                                <div class="flex"><span class="w-20 text-slate-400 shrink-0">屋号</span><span>おそうじ本舗 緑西店</span></div>
+                                <div class="flex"><span class="w-20 text-slate-400 shrink-0">所在地</span><span>愛知県名古屋市緑区大高台（番地非公開）</span></div>
+                                <div class="flex"><span class="w-20 text-slate-400 shrink-0">事業形態</span><span>FC店舗</span></div>
+                                <div class="flex"><span class="w-20 text-slate-400 shrink-0">電話番号</span><span>要問い合わせ</span></div>
+                            </div>
+                        </section>
+                        <section>
+                            <h3 class="text-xs font-black text-slate-400 tracking-widest mb-3 flex items-center">
+                                <span class="w-4 h-0.5 bg-slate-300 mr-2"></span>PRICE
+                            </h3>
+                            <div class="space-y-3 bg-white p-4 rounded-xl border border-slate-200 text-[13px] font-bold text-slate-700">
+                                <div class="flex justify-between"><span>壁掛けタイプ</span><span class="text-slate-900 font-black">14,300円</span></div>
+                                <div class="flex justify-between"><span>2台以上（1台あたり）</span><span class="text-slate-900 font-black">2,200円引</span></div>
+                            </div>
+                        </section>
+                        <section>
+                            <h3 class="text-xs font-black text-slate-400 tracking-widest mb-3 flex items-center">
+                                <span class="w-4 h-0.5 bg-slate-300 mr-2"></span>STYLE
+                            </h3>
+                            <div class="bg-white p-4 rounded-xl border border-slate-200">
+                                <p class="text-[11px] text-slate-400 mb-2 font-bold">対応・特徴</p>
+                                <div class="flex flex-wrap gap-1.5">
+                                    <span class="px-2 py-1 bg-slate-100 rounded text-[11px] text-slate-600 font-bold">家庭用・業務用・お掃除機能付きいずれも対応</span>
+                                    <span class="px-2 py-1 bg-slate-100 rounded text-[11px] text-slate-600 font-bold">通常分解対応</span>
+                                    <span class="px-2 py-1 bg-slate-100 rounded text-[11px] text-slate-600 font-bold">口コミ4件掲載</span>
+                                    <span class="px-2 py-1 bg-slate-100 rounded text-[11px] text-slate-600 font-bold">対応エリア：緑区大高台周辺</span>
+                                </div>
+                            </div>
+                        </section>
+                        <section>
+                            <h3 class="text-xs font-black text-slate-400 tracking-widest mb-3 flex items-center">
+                                <span class="w-4 h-0.5 bg-slate-300 mr-2"></span>LINK
+                            </h3>
+                            <div class="flex items-center bg-white p-4 rounded-xl border border-slate-200 text-[13px] font-bold text-slate-400">
+                                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path></svg>
+                                公式サイトなし
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </article>
+
+            <!-- カード8: オフタイム -->
+            <article class="bg-white rounded-2xl shadow-md border-2 border-slate-100 overflow-hidden relative">
+                <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-neon via-slate-900 to-neon opacity-80"></div>
+                <div class="p-5 md:p-6 pb-4">
+                    <div class="flex items-start justify-between mb-4">
+                        <div>
+                            <h2 class="text-lg md:text-xl font-black text-slate-900 leading-tight">オフタイム</h2>
+                            <div class="inline-flex items-center mt-2 px-2 py-0.5 bg-slate-100 rounded text-[11px] font-bold text-slate-600 border border-slate-200">
+                                <svg class="w-3 h-3 mr-1 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                緑区
+                            </div>
+                        </div>
+                    </div>
+                    <div class="border-l-2 border-neon pl-3 mb-4">
+                        <p class="text-sm font-black text-slate-700">料金：8,000円〜9,000円</p>
+                        <p class="text-[10px] text-slate-400 font-bold mt-0.5">台数・機種により変動、複数台は割引あり</p>
+                    </div>
+                </div>
+                <button class="js-toggle-btn w-full bg-slate-900 text-neon py-3 text-xs font-black tracking-widest flex items-center justify-center transition-colors hover:bg-slate-800">
+                    <span class="btn-text">詳しく見る</span>
+                    <svg class="w-4 h-4 ml-2 icon-rotate" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M12 4v16m8-8H4"></path></svg>
+                </button>
+                <div class="card-details bg-slate-50">
+                    <div class="p-5 md:p-6 space-y-8 border-t-2 border-slate-200">
+                        <section class="relative bg-white border-2 border-slate-900 rounded-xl p-5 shadow-[4px_4px_0_0_#0f172a]">
+                            <div class="absolute -top-3.5 left-4 bg-neon border-2 border-slate-900 px-3 py-0.5 rounded-full shadow-sm">
+                                <span class="font-impact text-sm tracking-wider text-slate-900">ONE★STAR VIEW</span>
+                            </div>
+                            <div class="pt-2 text-center md:text-left">
+                                <p class="text-[13px] md:text-sm font-bold text-slate-800 leading-relaxed md:leading-loose inline-block text-left">
+                                    緑区水広を拠点とする個人事業主「オフタイム」（代表：西村伸宏）です。ドレンパンやパーツを取り外して洗う完全分解洗浄を基本とし、養生を徹底した丁寧な作業と、清掃後のメンテナンス指導を行っています。有料駐車場代は実費負担となりますが、くらしのマーケット・エアタクミ・e-necoでの口コミ評価は4.89〜4.92、790件以上と、非常に多くの実績が確認できます。独立した公式サイトは確認できませんでした。
+                                </p>
+                            </div>
+                        </section>
+                        <section>
+                            <h3 class="text-xs font-black text-slate-400 tracking-widest mb-3 flex items-center">
+                                <span class="w-4 h-0.5 bg-slate-300 mr-2"></span>ABOUT
+                            </h3>
+                            <div class="space-y-3 bg-white p-4 rounded-xl border border-slate-200 text-[13px] font-bold text-slate-700">
+                                <div class="flex"><span class="w-20 text-slate-400 shrink-0">屋号</span><span>オフタイム</span></div>
+                                <div class="flex"><span class="w-20 text-slate-400 shrink-0">所在地</span><span>愛知県名古屋市緑区水広1-1021</span></div>
+                                <div class="flex"><span class="w-20 text-slate-400 shrink-0">事業形態</span><span>個人事業主（代表：西村伸宏）</span></div>
+                                <div class="flex"><span class="w-20 text-slate-400 shrink-0">営業時間</span><span>9:00〜18:00（不定休）</span></div>
+                                <div class="flex"><span class="w-20 text-slate-400 shrink-0">電話番号</span><span>電話・くらしのマーケット等Web予約</span></div>
+                            </div>
+                        </section>
+                        <section>
+                            <h3 class="text-xs font-black text-slate-400 tracking-widest mb-3 flex items-center">
+                                <span class="w-4 h-0.5 bg-slate-300 mr-2"></span>PRICE
+                            </h3>
+                            <div class="space-y-3 bg-white p-4 rounded-xl border border-slate-200 text-[13px] font-bold text-slate-700">
+                                <div class="flex justify-between"><span>基本料金（1〜2台）</span><span class="text-slate-900 font-black">8,000〜9,000円</span></div>
+                                <div class="flex justify-between"><span>3〜4台（1台あたり）</span><span class="text-slate-900 font-black">7,000円</span></div>
+                                <div class="flex justify-between"><span>業務用（天井埋込）</span><span class="text-slate-900 font-black">21,000円</span></div>
+                                <div class="flex justify-between"><span>お掃除機能付き</span><span class="text-slate-900 font-black">+6,000円</span></div>
+                                <div class="flex justify-between"><span>消臭抗菌コート</span><span class="text-slate-900 font-black">1,000円</span></div>
+                                <div class="flex justify-between"><span>室外機</span><span class="text-slate-900 font-black">3,000円</span></div>
+                            </div>
+                        </section>
+                        <section>
+                            <h3 class="text-xs font-black text-slate-400 tracking-widest mb-3 flex items-center">
+                                <span class="w-4 h-0.5 bg-slate-300 mr-2"></span>STYLE
+                            </h3>
+                            <div class="bg-white p-4 rounded-xl border border-slate-200">
+                                <p class="text-[11px] text-slate-400 mb-2 font-bold">対応・特徴</p>
+                                <div class="flex flex-wrap gap-1.5">
+                                    <span class="px-2 py-1 bg-slate-100 rounded text-[11px] text-slate-600 font-bold">家庭用・業務用（天井埋込）・お掃除機能付きいずれも対応</span>
+                                    <span class="px-2 py-1 bg-slate-100 rounded text-[11px] text-slate-600 font-bold">完全分解洗浄（パーツ・ドレンパン脱着）</span>
+                                    <span class="px-2 py-1 bg-slate-100 rounded text-[11px] text-slate-600 font-bold">養生徹底、親切・丁寧・笑顔の対応、メンテナンス指導</span>
+                                    <span class="px-2 py-1 bg-slate-100 rounded text-[11px] text-slate-600 font-bold">くらしのマーケット・エアタクミ・e-neco掲載、口コミ評価4.89〜4.92（790件以上）</span>
+                                    <span class="px-2 py-1 bg-slate-100 rounded text-[11px] text-slate-600 font-bold">対応エリア：名古屋市16区全域、あま市、岡崎市、知多市、大府市等</span>
+                                </div>
+                            </div>
+                        </section>
+                        <section>
+                            <h3 class="text-xs font-black text-slate-400 tracking-widest mb-3 flex items-center">
+                                <span class="w-4 h-0.5 bg-slate-300 mr-2"></span>LINK
+                            </h3>
+                            <div class="flex items-center bg-white p-4 rounded-xl border border-slate-200 text-[13px] font-bold text-slate-400">
+                                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path></svg>
+                                公式サイトなし
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </article>
+
+            <!-- カード9: 京屋サービス -->
+            <article class="bg-white rounded-2xl shadow-md border-2 border-slate-100 overflow-hidden relative">
+                <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-neon via-slate-900 to-neon opacity-80"></div>
+                <div class="p-5 md:p-6 pb-4">
+                    <div class="flex items-start justify-between mb-4">
+                        <div>
+                            <h2 class="text-lg md:text-xl font-black text-slate-900 leading-tight">京屋サービス</h2>
+                            <div class="inline-flex items-center mt-2 px-2 py-0.5 bg-slate-100 rounded text-[11px] font-bold text-slate-600 border border-slate-200">
+                                <svg class="w-3 h-3 mr-1 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                緑区
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex gap-4 border-l-2 border-neon pl-3 mb-4">
+                        <div>
+                            <p class="text-[10px] text-slate-500 font-bold mb-0.5">家庭用（1台）</p>
+                            <p class="text-base font-black text-slate-900">6,600<span class="text-xs font-bold ml-0.5">円</span></p>
+                        </div>
+                    </div>
+                </div>
+                <button class="js-toggle-btn w-full bg-slate-900 text-neon py-3 text-xs font-black tracking-widest flex items-center justify-center transition-colors hover:bg-slate-800">
+                    <span class="btn-text">詳しく見る</span>
+                    <svg class="w-4 h-4 ml-2 icon-rotate" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M12 4v16m8-8H4"></path></svg>
+                </button>
+                <div class="card-details bg-slate-50">
+                    <div class="p-5 md:p-6 space-y-8 border-t-2 border-slate-200">
+                        <section class="relative bg-white border-2 border-slate-900 rounded-xl p-5 shadow-[4px_4px_0_0_#0f172a]">
+                            <div class="absolute -top-3.5 left-4 bg-neon border-2 border-slate-900 px-3 py-0.5 rounded-full shadow-sm">
+                                <span class="font-impact text-sm tracking-wider text-slate-900">ONE★STAR VIEW</span>
+                            </div>
+                            <div class="pt-2 text-center md:text-left">
+                                <p class="text-[13px] md:text-sm font-bold text-slate-800 leading-relaxed md:leading-loose inline-block text-left">
+                                    緑区鳴子町を拠点とする個人事業主「京屋サービス」（店長：池田清高）です。自社スタッフによる丁寧な施工を掲げ、仕上がりにご満足いただけない場合は無料で再対応する保証を用意しています。年中無休で9:00〜17:00営業。掲載はエアタクミのみで確認しており、独立した公式サイトは見当たりませんでした。
+                                </p>
+                            </div>
+                        </section>
+                        <section>
+                            <h3 class="text-xs font-black text-slate-400 tracking-widest mb-3 flex items-center">
+                                <span class="w-4 h-0.5 bg-slate-300 mr-2"></span>ABOUT
+                            </h3>
+                            <div class="space-y-3 bg-white p-4 rounded-xl border border-slate-200 text-[13px] font-bold text-slate-700">
+                                <div class="flex"><span class="w-20 text-slate-400 shrink-0">屋号</span><span>京屋サービス</span></div>
+                                <div class="flex"><span class="w-20 text-slate-400 shrink-0">所在地</span><span>愛知県名古屋市緑区鳴子町2-49-3</span></div>
+                                <div class="flex"><span class="w-20 text-slate-400 shrink-0">事業形態</span><span>個人事業主（店長：池田清高）</span></div>
+                                <div class="flex"><span class="w-20 text-slate-400 shrink-0">営業時間</span><span>9:00〜17:00（年中無休）</span></div>
+                                <div class="flex"><span class="w-20 text-slate-400 shrink-0">電話番号</span><span>電話・Web予約</span></div>
+                            </div>
+                        </section>
+                        <section>
+                            <h3 class="text-xs font-black text-slate-400 tracking-widest mb-3 flex items-center">
+                                <span class="w-4 h-0.5 bg-slate-300 mr-2"></span>PRICE
+                            </h3>
+                            <div class="space-y-3 bg-white p-4 rounded-xl border border-slate-200 text-[13px] font-bold text-slate-700">
+                                <div class="flex justify-between"><span>家庭用（1台）</span><span class="text-slate-900 font-black">6,600円</span></div>
+                                <div class="flex justify-between"><span>2台目以降（1台あたり）</span><span class="text-slate-900 font-black">6,600円</span></div>
+                                <div class="flex justify-between"><span>お掃除機能付き</span><span class="text-slate-900 font-black">+8,800円</span></div>
+                                <div class="flex justify-between"><span>消臭抗菌コート</span><span class="text-slate-900 font-black">2,200円</span></div>
+                                <div class="flex justify-between"><span>室外機</span><span class="text-slate-900 font-black">3,300円</span></div>
+                            </div>
+                        </section>
+                        <section>
+                            <h3 class="text-xs font-black text-slate-400 tracking-widest mb-3 flex items-center">
+                                <span class="w-4 h-0.5 bg-slate-300 mr-2"></span>STYLE
+                            </h3>
+                            <div class="bg-white p-4 rounded-xl border border-slate-200">
+                                <p class="text-[11px] text-slate-400 mb-2 font-bold">対応・特徴</p>
+                                <div class="flex flex-wrap gap-1.5">
+                                    <span class="px-2 py-1 bg-slate-100 rounded text-[11px] text-slate-600 font-bold">家庭用・お掃除機能付き対応（業務用は未確認）</span>
+                                    <span class="px-2 py-1 bg-slate-100 rounded text-[11px] text-slate-600 font-bold">通常分解洗浄</span>
+                                    <span class="px-2 py-1 bg-slate-100 rounded text-[11px] text-slate-600 font-bold">自社対応による丁寧な施工、仕上がり不満時の無料再対応保証</span>
+                                    <span class="px-2 py-1 bg-slate-100 rounded text-[11px] text-slate-600 font-bold">エアタクミ掲載</span>
+                                    <span class="px-2 py-1 bg-slate-100 rounded text-[11px] text-slate-600 font-bold">対応エリア：名古屋市16区全域、あま市、みよし市等</span>
+                                </div>
+                            </div>
+                        </section>
+                        <section>
+                            <h3 class="text-xs font-black text-slate-400 tracking-widest mb-3 flex items-center">
+                                <span class="w-4 h-0.5 bg-slate-300 mr-2"></span>LINK
+                            </h3>
+                            <div class="flex items-center bg-white p-4 rounded-xl border border-slate-200 text-[13px] font-bold text-slate-400">
+                                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path></svg>
+                                公式サイトなし
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </article>
+
+            <!-- カード10: クリーニングステーション -->
+            <article class="bg-white rounded-2xl shadow-md border-2 border-slate-100 overflow-hidden relative">
+                <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-neon via-slate-900 to-neon opacity-80"></div>
+                <div class="p-5 md:p-6 pb-4">
+                    <div class="flex items-start justify-between mb-4">
+                        <div>
+                            <h2 class="text-lg md:text-xl font-black text-slate-900 leading-tight">クリーニングステーション</h2>
+                            <div class="inline-flex items-center mt-2 px-2 py-0.5 bg-slate-100 rounded text-[11px] font-bold text-slate-600 border border-slate-200">
+                                <svg class="w-3 h-3 mr-1 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                緑区
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex gap-4 border-l-2 border-neon pl-3 mb-4">
+                        <div>
+                            <p class="text-[10px] text-slate-500 font-bold mb-0.5">家庭用</p>
+                            <p class="text-base font-black text-slate-900">9,000<span class="text-xs font-bold ml-0.5">円〜</span></p>
+                        </div>
+                    </div>
+                </div>
+                <button class="js-toggle-btn w-full bg-slate-900 text-neon py-3 text-xs font-black tracking-widest flex items-center justify-center transition-colors hover:bg-slate-800">
+                    <span class="btn-text">詳しく見る</span>
+                    <svg class="w-4 h-4 ml-2 icon-rotate" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M12 4v16m8-8H4"></path></svg>
+                </button>
+                <div class="card-details bg-slate-50">
+                    <div class="p-5 md:p-6 space-y-8 border-t-2 border-slate-200">
+                        <section class="relative bg-white border-2 border-slate-900 rounded-xl p-5 shadow-[4px_4px_0_0_#0f172a]">
+                            <div class="absolute -top-3.5 left-4 bg-neon border-2 border-slate-900 px-3 py-0.5 rounded-full shadow-sm">
+                                <span class="font-impact text-sm tracking-wider text-slate-900">ONE★STAR VIEW</span>
+                            </div>
+                            <div class="pt-2 text-center md:text-left">
+                                <p class="text-[13px] md:text-sm font-bold text-slate-800 leading-relaxed md:leading-loose inline-block text-left">
+                                    緑区万場山を拠点とする個人事業主「クリーニングステーション」（代表：村田／店長：大野）です。経験豊富な大野店長が丁寧な作業と柔軟な対応を行い、防カビ・抗菌コーティングにも対応しています。東海圏を対応地域としています。掲載はエアタクミのみで確認しており、独立した公式サイトは見当たりませんでした。
+                                </p>
+                            </div>
+                        </section>
+                        <section>
+                            <h3 class="text-xs font-black text-slate-400 tracking-widest mb-3 flex items-center">
+                                <span class="w-4 h-0.5 bg-slate-300 mr-2"></span>ABOUT
+                            </h3>
+                            <div class="space-y-3 bg-white p-4 rounded-xl border border-slate-200 text-[13px] font-bold text-slate-700">
+                                <div class="flex"><span class="w-20 text-slate-400 shrink-0">屋号</span><span>クリーニングステーション</span></div>
+                                <div class="flex"><span class="w-20 text-slate-400 shrink-0">所在地</span><span>愛知県名古屋市緑区万場山1-1702-3</span></div>
+                                <div class="flex"><span class="w-20 text-slate-400 shrink-0">事業形態</span><span>個人事業主（代表：村田／店長：大野）</span></div>
+                                <div class="flex"><span class="w-20 text-slate-400 shrink-0">電話番号</span><span>Web予約（エアタクミ経由）</span></div>
+                            </div>
+                        </section>
+                        <section>
+                            <h3 class="text-xs font-black text-slate-400 tracking-widest mb-3 flex items-center">
+                                <span class="w-4 h-0.5 bg-slate-300 mr-2"></span>PRICE
+                            </h3>
+                            <div class="space-y-3 bg-white p-4 rounded-xl border border-slate-200 text-[13px] font-bold text-slate-700">
+                                <div class="flex justify-between"><span>家庭用（1台）</span><span class="text-slate-900 font-black">9,000円〜</span></div>
+                            </div>
+                        </section>
+                        <section>
+                            <h3 class="text-xs font-black text-slate-400 tracking-widest mb-3 flex items-center">
+                                <span class="w-4 h-0.5 bg-slate-300 mr-2"></span>STYLE
+                            </h3>
+                            <div class="bg-white p-4 rounded-xl border border-slate-200">
+                                <p class="text-[11px] text-slate-400 mb-2 font-bold">対応・特徴</p>
+                                <div class="flex flex-wrap gap-1.5">
+                                    <span class="px-2 py-1 bg-slate-100 rounded text-[11px] text-slate-600 font-bold">家庭用・お掃除機能付き対応（業務用は未確認）</span>
+                                    <span class="px-2 py-1 bg-slate-100 rounded text-[11px] text-slate-600 font-bold">通常分解洗浄</span>
+                                    <span class="px-2 py-1 bg-slate-100 rounded text-[11px] text-slate-600 font-bold">防カビ・抗菌コーティング対応</span>
+                                    <span class="px-2 py-1 bg-slate-100 rounded text-[11px] text-slate-600 font-bold">経験豊富な大野店長による丁寧な作業、柔軟な対応</span>
+                                    <span class="px-2 py-1 bg-slate-100 rounded text-[11px] text-slate-600 font-bold">エアタクミ掲載、対応エリア：緑区を拠点に東海圏</span>
+                                </div>
+                            </div>
+                        </section>
+                        <section>
+                            <h3 class="text-xs font-black text-slate-400 tracking-widest mb-3 flex items-center">
+                                <span class="w-4 h-0.5 bg-slate-300 mr-2"></span>LINK
+                            </h3>
+                            <div class="flex items-center bg-white p-4 rounded-xl border border-slate-200 text-[13px] font-bold text-slate-400">
+                                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path></svg>
+                                公式サイトなし
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </article>
+
+            <!-- カード11: Clean Serviceありんくりん -->
+            <article class="bg-white rounded-2xl shadow-md border-2 border-slate-100 overflow-hidden relative">
+                <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-neon via-slate-900 to-neon opacity-80"></div>
+                <div class="p-5 md:p-6 pb-4">
+                    <div class="flex items-start justify-between mb-4">
+                        <div>
+                            <h2 class="text-lg md:text-xl font-black text-slate-900 leading-tight">Clean Serviceありんくりん</h2>
+                            <div class="inline-flex items-center mt-2 px-2 py-0.5 bg-slate-100 rounded text-[11px] font-bold text-slate-600 border border-slate-200">
+                                <svg class="w-3 h-3 mr-1 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                緑区
+                            </div>
+                        </div>
+                    </div>
+                    <div class="border-l-2 border-neon pl-3 mb-4">
+                        <p class="text-sm font-black text-slate-700">料金：要問い合わせ</p>
+                        <p class="text-[10px] text-slate-400 font-bold mt-0.5">具体的な料金は電話・LINE等で要問い合わせです</p>
+                    </div>
+                </div>
+                <button class="js-toggle-btn w-full bg-slate-900 text-neon py-3 text-xs font-black tracking-widest flex items-center justify-center transition-colors hover:bg-slate-800">
+                    <span class="btn-text">詳しく見る</span>
+                    <svg class="w-4 h-4 ml-2 icon-rotate" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M12 4v16m8-8H4"></path></svg>
+                </button>
+                <div class="card-details bg-slate-50">
+                    <div class="p-5 md:p-6 space-y-8 border-t-2 border-slate-200">
+                        <section class="relative bg-white border-2 border-slate-900 rounded-xl p-5 shadow-[4px_4px_0_0_#0f172a]">
+                            <div class="absolute -top-3.5 left-4 bg-neon border-2 border-slate-900 px-3 py-0.5 rounded-full shadow-sm">
+                                <span class="font-impact text-sm tracking-wider text-slate-900">ONE★STAR VIEW</span>
+                            </div>
+                            <div class="pt-2 text-center md:text-left">
+                                <p class="text-[13px] md:text-sm font-bold text-slate-800 leading-relaxed md:leading-loose inline-block text-left">
+                                    緑区左京山を拠点とする個人事業主「Clean Serviceありんくりん」（代表：長嶺響）です。屋号の「ありんくりん」は沖縄方言に由来し、空室クリーニングや修繕リペアと合わせてエアコンクリーニングを主要メニューの一つとしています。大手ポータルを介さない直請け施工が特徴で、電話・FAX・メール・LINEと複数の連絡手段に対応しています。
+                                </p>
+                            </div>
+                        </section>
+                        <section>
+                            <h3 class="text-xs font-black text-slate-400 tracking-widest mb-3 flex items-center">
+                                <span class="w-4 h-0.5 bg-slate-300 mr-2"></span>ABOUT
+                            </h3>
+                            <div class="space-y-3 bg-white p-4 rounded-xl border border-slate-200 text-[13px] font-bold text-slate-700">
+                                <div class="flex"><span class="w-20 text-slate-400 shrink-0">屋号</span><span>Clean Serviceありんくりん</span></div>
+                                <div class="flex"><span class="w-20 text-slate-400 shrink-0">所在地</span><span>愛知県名古屋市緑区左京山304 キングスハイツ左京山101号</span></div>
+                                <div class="flex"><span class="w-20 text-slate-400 shrink-0">事業形態</span><span>個人事業主（代表：長嶺響）</span></div>
+                                <div class="flex"><span class="w-20 text-slate-400 shrink-0">営業時間</span><span>9:00〜19:00</span></div>
+                                <div class="flex"><span class="w-20 text-slate-400 shrink-0">電話番号</span><span>電話・FAX・メール・LINE</span></div>
+                            </div>
+                        </section>
+                        <section>
+                            <h3 class="text-xs font-black text-slate-400 tracking-widest mb-3 flex items-center">
+                                <span class="w-4 h-0.5 bg-slate-300 mr-2"></span>STYLE
+                            </h3>
+                            <div class="bg-white p-4 rounded-xl border border-slate-200">
+                                <p class="text-[11px] text-slate-400 mb-2 font-bold">対応・特徴</p>
+                                <div class="flex flex-wrap gap-1.5">
+                                    <span class="px-2 py-1 bg-slate-100 rounded text-[11px] text-slate-600 font-bold">家庭用・業務用いずれも対応（お掃除機能付きは未確認）</span>
+                                    <span class="px-2 py-1 bg-slate-100 rounded text-[11px] text-slate-600 font-bold">通常分解洗浄</span>
+                                    <span class="px-2 py-1 bg-slate-100 rounded text-[11px] text-slate-600 font-bold">空室クリーニング・修繕リペアも手がける直請け施工</span>
+                                    <span class="px-2 py-1 bg-slate-100 rounded text-[11px] text-slate-600 font-bold">対応エリア：名古屋市16区、豊明市、大府市、刈谷市、岡崎市、東海市等</span>
+                                </div>
+                            </div>
+                        </section>
+                        <section>
+                            <h3 class="text-xs font-black text-slate-400 tracking-widest mb-3 flex items-center">
+                                <span class="w-4 h-0.5 bg-slate-300 mr-2"></span>LINK
+                            </h3>
+                            <a href="https://alean-clean.com/" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between bg-white p-4 rounded-xl border border-slate-200 hover:border-blue-400 transition-colors group">
+                                <div class="flex items-center text-[13px] font-bold text-blue-600">
+                                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path></svg>
+                                    公式サイト
+                                </div>
+                                <svg class="w-4 h-4 text-slate-300 group-hover:text-blue-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"></path></svg>
+                            </a>
+                        </section>
+                    </div>
+                </div>
+            </article>
+
+            <!-- カード12: sunrise（サンライズ） -->
+            <article class="bg-white rounded-2xl shadow-md border-2 border-slate-100 overflow-hidden relative">
+                <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-neon via-slate-900 to-neon opacity-80"></div>
+                <div class="p-5 md:p-6 pb-4">
+                    <div class="flex items-start justify-between mb-4">
+                        <div>
+                            <h2 class="text-lg md:text-xl font-black text-slate-900 leading-tight">sunrise（サンライズ）</h2>
+                            <div class="inline-flex items-center mt-2 px-2 py-0.5 bg-slate-100 rounded text-[11px] font-bold text-slate-600 border border-slate-200">
+                                <svg class="w-3 h-3 mr-1 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                緑区
+                            </div>
+                        </div>
+                    </div>
+                    <div class="border-l-2 border-neon pl-3 mb-4">
+                        <p class="text-sm font-black text-slate-700">料金：要問い合わせ</p>
+                        <p class="text-[10px] text-slate-400 font-bold mt-0.5">具体的な料金はミツモア・ゼヒトモ経由で要問い合わせです</p>
+                    </div>
+                </div>
+                <button class="js-toggle-btn w-full bg-slate-900 text-neon py-3 text-xs font-black tracking-widest flex items-center justify-center transition-colors hover:bg-slate-800">
+                    <span class="btn-text">詳しく見る</span>
+                    <svg class="w-4 h-4 ml-2 icon-rotate" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M12 4v16m8-8H4"></path></svg>
+                </button>
+                <div class="card-details bg-slate-50">
+                    <div class="p-5 md:p-6 space-y-8 border-t-2 border-slate-200">
+                        <section class="relative bg-white border-2 border-slate-900 rounded-xl p-5 shadow-[4px_4px_0_0_#0f172a]">
+                            <div class="absolute -top-3.5 left-4 bg-neon border-2 border-slate-900 px-3 py-0.5 rounded-full shadow-sm">
+                                <span class="font-impact text-sm tracking-wider text-slate-900">ONE★STAR VIEW</span>
+                            </div>
+                            <div class="pt-2 text-center md:text-left">
+                                <p class="text-[13px] md:text-sm font-bold text-slate-800 leading-relaxed md:leading-loose inline-block text-left">
+                                    緑区を拠点とする個人事業主「sunrise（サンライズ）」（代表：中村）です。施工歴10年以上を掲げ、道具・資材を個別管理することで高い衛生基準を維持しているとのこと。ミツモア・ゼヒトモに掲載があり、ゼヒトモではブロンズランクを取得しています。独立した公式サイトは確認できませんでした。
+                                </p>
+                            </div>
+                        </section>
+                        <section>
+                            <h3 class="text-xs font-black text-slate-400 tracking-widest mb-3 flex items-center">
+                                <span class="w-4 h-0.5 bg-slate-300 mr-2"></span>ABOUT
+                            </h3>
+                            <div class="space-y-3 bg-white p-4 rounded-xl border border-slate-200 text-[13px] font-bold text-slate-700">
+                                <div class="flex"><span class="w-20 text-slate-400 shrink-0">屋号</span><span>sunrise（サンライズ）</span></div>
+                                <div class="flex"><span class="w-20 text-slate-400 shrink-0">所在地</span><span>愛知県名古屋市緑区（番地非公開）</span></div>
+                                <div class="flex"><span class="w-20 text-slate-400 shrink-0">事業形態</span><span>個人事業主（代表：中村）</span></div>
+                                <div class="flex"><span class="w-20 text-slate-400 shrink-0">電話番号</span><span>ミツモア・ゼヒトモチャット予約</span></div>
+                            </div>
+                        </section>
+                        <section>
+                            <h3 class="text-xs font-black text-slate-400 tracking-widest mb-3 flex items-center">
+                                <span class="w-4 h-0.5 bg-slate-300 mr-2"></span>STYLE
+                            </h3>
+                            <div class="bg-white p-4 rounded-xl border border-slate-200">
+                                <p class="text-[11px] text-slate-400 mb-2 font-bold">対応・特徴</p>
+                                <div class="flex flex-wrap gap-1.5">
+                                    <span class="px-2 py-1 bg-slate-100 rounded text-[11px] text-slate-600 font-bold">家庭用・業務用・お掃除機能付きいずれも対応</span>
+                                    <span class="px-2 py-1 bg-slate-100 rounded text-[11px] text-slate-600 font-bold">通常分解洗浄</span>
+                                    <span class="px-2 py-1 bg-slate-100 rounded text-[11px] text-slate-600 font-bold">施工歴10年以上、道具・資材の個別管理による高い衛生基準</span>
+                                    <span class="px-2 py-1 bg-slate-100 rounded text-[11px] text-slate-600 font-bold">ミツモア・ゼヒトモ掲載、ゼヒトモブロンズランク</span>
+                                    <span class="px-2 py-1 bg-slate-100 rounded text-[11px] text-slate-600 font-bold">対応エリア：緑区、愛知・岐阜・三重の東海3県</span>
+                                </div>
+                            </div>
+                        </section>
+                        <section>
+                            <h3 class="text-xs font-black text-slate-400 tracking-widest mb-3 flex items-center">
+                                <span class="w-4 h-0.5 bg-slate-300 mr-2"></span>LINK
+                            </h3>
+                            <div class="flex items-center bg-white p-4 rounded-xl border border-slate-200 text-[13px] font-bold text-slate-400">
+                                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path></svg>
+                                公式サイトなし
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </article>
+
+            <!-- カード13: スィパーズインク -->
+            <article class="bg-white rounded-2xl shadow-md border-2 border-slate-100 overflow-hidden relative">
+                <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-neon via-slate-900 to-neon opacity-80"></div>
+                <div class="p-5 md:p-6 pb-4">
+                    <div class="flex items-start justify-between mb-4">
+                        <div>
+                            <h2 class="text-lg md:text-xl font-black text-slate-900 leading-tight">スィパーズインク</h2>
+                            <div class="inline-flex items-center mt-2 px-2 py-0.5 bg-slate-100 rounded text-[11px] font-bold text-slate-600 border border-slate-200">
+                                <svg class="w-3 h-3 mr-1 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                緑区
+                            </div>
+                        </div>
+                    </div>
+                    <div class="border-l-2 border-neon pl-3 mb-4">
+                        <p class="text-sm font-black text-slate-700">料金：要問い合わせ</p>
+                        <p class="text-[10px] text-slate-400 font-bold mt-0.5">具体的な料金はゼヒトモ経由で要問い合わせです</p>
+                    </div>
+                </div>
+                <button class="js-toggle-btn w-full bg-slate-900 text-neon py-3 text-xs font-black tracking-widest flex items-center justify-center transition-colors hover:bg-slate-800">
+                    <span class="btn-text">詳しく見る</span>
+                    <svg class="w-4 h-4 ml-2 icon-rotate" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M12 4v16m8-8H4"></path></svg>
+                </button>
+                <div class="card-details bg-slate-50">
+                    <div class="p-5 md:p-6 space-y-8 border-t-2 border-slate-200">
+                        <section class="relative bg-white border-2 border-slate-900 rounded-xl p-5 shadow-[4px_4px_0_0_#0f172a]">
+                            <div class="absolute -top-3.5 left-4 bg-neon border-2 border-slate-900 px-3 py-0.5 rounded-full shadow-sm">
+                                <span class="font-impact text-sm tracking-wider text-slate-900">ONE★STAR VIEW</span>
+                            </div>
+                            <div class="pt-2 text-center md:text-left">
+                                <p class="text-[13px] md:text-sm font-bold text-slate-800 leading-relaxed md:leading-loose inline-block text-left">
+                                    緑区を拠点とする「スィパーズインク」です。年間100件以上のプロジェクトを実施しているとのことで、高品質サービスと迅速な対応を掲げています。掲載はゼヒトモのみで確認しており（ニューユーザーランク）、独立した公式サイトは見当たりませんでした。業務用・お掃除機能付きへの対応は未確認です。
+                                </p>
+                            </div>
+                        </section>
+                        <section>
+                            <h3 class="text-xs font-black text-slate-400 tracking-widest mb-3 flex items-center">
+                                <span class="w-4 h-0.5 bg-slate-300 mr-2"></span>ABOUT
+                            </h3>
+                            <div class="space-y-3 bg-white p-4 rounded-xl border border-slate-200 text-[13px] font-bold text-slate-700">
+                                <div class="flex"><span class="w-20 text-slate-400 shrink-0">屋号</span><span>スィパーズインク</span></div>
+                                <div class="flex"><span class="w-20 text-slate-400 shrink-0">所在地</span><span>愛知県名古屋市緑区（番地非公開）</span></div>
+                                <div class="flex"><span class="w-20 text-slate-400 shrink-0">事業形態</span><span>事業体</span></div>
+                                <div class="flex"><span class="w-20 text-slate-400 shrink-0">電話番号</span><span>ゼヒトモWeb問い合わせ</span></div>
+                            </div>
+                        </section>
+                        <section>
+                            <h3 class="text-xs font-black text-slate-400 tracking-widest mb-3 flex items-center">
+                                <span class="w-4 h-0.5 bg-slate-300 mr-2"></span>STYLE
+                            </h3>
+                            <div class="bg-white p-4 rounded-xl border border-slate-200">
+                                <p class="text-[11px] text-slate-400 mb-2 font-bold">対応・特徴</p>
+                                <div class="flex flex-wrap gap-1.5">
+                                    <span class="px-2 py-1 bg-slate-100 rounded text-[11px] text-slate-600 font-bold">家庭用対応（業務用・お掃除機能付きは未確認）</span>
+                                    <span class="px-2 py-1 bg-slate-100 rounded text-[11px] text-slate-600 font-bold">通常分解洗浄</span>
+                                    <span class="px-2 py-1 bg-slate-100 rounded text-[11px] text-slate-600 font-bold">年間100件以上のプロジェクト実施</span>
+                                    <span class="px-2 py-1 bg-slate-100 rounded text-[11px] text-slate-600 font-bold">ゼヒトモ掲載（ニューユーザーランク）</span>
+                                    <span class="px-2 py-1 bg-slate-100 rounded text-[11px] text-slate-600 font-bold">対応エリア：愛知県全域・緑区</span>
+                                </div>
+                            </div>
+                        </section>
+                        <section>
+                            <h3 class="text-xs font-black text-slate-400 tracking-widest mb-3 flex items-center">
+                                <span class="w-4 h-0.5 bg-slate-300 mr-2"></span>LINK
+                            </h3>
+                            <div class="flex items-center bg-white p-4 rounded-xl border border-slate-200 text-[13px] font-bold text-slate-400">
+                                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path></svg>
+                                公式サイトなし
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </article>
+
+            <!-- カード14: ダスキン サービスマスターハピネス店 -->
+            <article class="bg-white rounded-2xl shadow-md border-2 border-slate-100 overflow-hidden relative">
+                <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-neon via-slate-900 to-neon opacity-80"></div>
+                <div class="p-5 md:p-6 pb-4">
+                    <div class="flex items-start justify-between mb-4">
+                        <div>
+                            <h2 class="text-lg md:text-xl font-black text-slate-900 leading-tight">ダスキン サービスマスターハピネス店</h2>
+                            <div class="inline-flex items-center mt-2 px-2 py-0.5 bg-slate-100 rounded text-[11px] font-bold text-slate-600 border border-slate-200">
+                                <svg class="w-3 h-3 mr-1 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                緑区
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex gap-4 border-l-2 border-neon pl-3 mb-4">
+                        <div>
+                            <p class="text-[10px] text-slate-500 font-bold mb-0.5">壁掛けタイプ</p>
+                            <p class="text-base font-black text-slate-900">15,400<span class="text-xs font-bold ml-0.5">円</span></p>
+                        </div>
+                    </div>
+                </div>
+                <button class="js-toggle-btn w-full bg-slate-900 text-neon py-3 text-xs font-black tracking-widest flex items-center justify-center transition-colors hover:bg-slate-800">
+                    <span class="btn-text">詳しく見る</span>
+                    <svg class="w-4 h-4 ml-2 icon-rotate" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M12 4v16m8-8H4"></path></svg>
+                </button>
+                <div class="card-details bg-slate-50">
+                    <div class="p-5 md:p-6 space-y-8 border-t-2 border-slate-200">
+                        <section class="relative bg-white border-2 border-slate-900 rounded-xl p-5 shadow-[4px_4px_0_0_#0f172a]">
+                            <div class="absolute -top-3.5 left-4 bg-neon border-2 border-slate-900 px-3 py-0.5 rounded-full shadow-sm">
+                                <span class="font-impact text-sm tracking-wider text-slate-900">ONE★STAR VIEW</span>
+                            </div>
+                            <div class="pt-2 text-center md:text-left">
+                                <p class="text-[13px] md:text-sm font-bold text-slate-800 leading-relaxed md:leading-loose inline-block text-left">
+                                    緑区桃山に店舗を置く、ダスキンのハウスクリーニング専門店「サービスマスターハピネス店」です。ダスキン共通の技術基準で、家庭用・業務用・お掃除機能付きいずれのエアコンにも対応します。
+                                </p>
+                            </div>
+                        </section>
+                        <section>
+                            <h3 class="text-xs font-black text-slate-400 tracking-widest mb-3 flex items-center">
+                                <span class="w-4 h-0.5 bg-slate-300 mr-2"></span>ABOUT
+                            </h3>
+                            <div class="space-y-3 bg-white p-4 rounded-xl border border-slate-200 text-[13px] font-bold text-slate-700">
+                                <div class="flex"><span class="w-20 text-slate-400 shrink-0">屋号</span><span>ダスキン サービスマスターハピネス店</span></div>
+                                <div class="flex"><span class="w-20 text-slate-400 shrink-0">所在地</span><span>愛知県名古屋市緑区桃山2-120</span></div>
+                                <div class="flex"><span class="w-20 text-slate-400 shrink-0">事業形態</span><span>フランチャイズ加盟店</span></div>
+                                <div class="flex"><span class="w-20 text-slate-400 shrink-0">電話番号</span><span>要問い合わせ</span></div>
+                            </div>
+                        </section>
+                        <section>
+                            <h3 class="text-xs font-black text-slate-400 tracking-widest mb-3 flex items-center">
+                                <span class="w-4 h-0.5 bg-slate-300 mr-2"></span>PRICE
+                            </h3>
+                            <div class="space-y-3 bg-white p-4 rounded-xl border border-slate-200 text-[13px] font-bold text-slate-700">
+                                <div class="flex justify-between"><span>壁掛けタイプ</span><span class="text-slate-900 font-black">15,400円</span></div>
+                                <div class="flex justify-between"><span>2台セット</span><span class="text-slate-900 font-black">25,300円</span></div>
+                                <div class="flex justify-between"><span>お掃除機能付き</span><span class="text-slate-900 font-black">26,400円</span></div>
+                                <div class="flex justify-between"><span>抗菌コート</span><span class="text-slate-900 font-black">2,750円</span></div>
+                            </div>
+                        </section>
+                        <section>
+                            <h3 class="text-xs font-black text-slate-400 tracking-widest mb-3 flex items-center">
+                                <span class="w-4 h-0.5 bg-slate-300 mr-2"></span>STYLE
+                            </h3>
+                            <div class="bg-white p-4 rounded-xl border border-slate-200">
+                                <p class="text-[11px] text-slate-400 mb-2 font-bold">対応・特徴</p>
+                                <div class="flex flex-wrap gap-1.5">
+                                    <span class="px-2 py-1 bg-slate-100 rounded text-[11px] text-slate-600 font-bold">家庭用・業務用・お掃除機能付きいずれも対応</span>
+                                    <span class="px-2 py-1 bg-slate-100 rounded text-[11px] text-slate-600 font-bold">ダスキンSM専門店</span>
+                                    <span class="px-2 py-1 bg-slate-100 rounded text-[11px] text-slate-600 font-bold">対応エリア：緑区周辺</span>
+                                </div>
+                            </div>
+                        </section>
+                        <section>
+                            <h3 class="text-xs font-black text-slate-400 tracking-widest mb-3 flex items-center">
+                                <span class="w-4 h-0.5 bg-slate-300 mr-2"></span>LINK
+                            </h3>
+                            <a href="https://www.duskin.jp/store/aichi/nagoya_midori/1581471/" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between bg-white p-4 rounded-xl border border-slate-200 hover:border-blue-400 transition-colors group">
+                                <div class="flex items-center text-[13px] font-bold text-blue-600">
+                                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path></svg>
+                                    公式サイト
+                                </div>
+                                <svg class="w-4 h-4 text-slate-300 group-hover:text-blue-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"></path></svg>
+                            </a>
+                        </section>
+                    </div>
+                </div>
+            </article>
+
+            <!-- カード15: ダスキン 鳴海支店 -->
+            <article class="bg-white rounded-2xl shadow-md border-2 border-slate-100 overflow-hidden relative">
+                <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-neon via-slate-900 to-neon opacity-80"></div>
+                <div class="p-5 md:p-6 pb-4">
+                    <div class="flex items-start justify-between mb-4">
+                        <div>
+                            <h2 class="text-lg md:text-xl font-black text-slate-900 leading-tight">ダスキン 鳴海支店</h2>
+                            <div class="inline-flex items-center mt-2 px-2 py-0.5 bg-slate-100 rounded text-[11px] font-bold text-slate-600 border border-slate-200">
+                                <svg class="w-3 h-3 mr-1 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                緑区
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex gap-4 border-l-2 border-neon pl-3 mb-4">
+                        <div>
+                            <p class="text-[10px] text-slate-500 font-bold mb-0.5">壁掛けタイプ</p>
+                            <p class="text-base font-black text-slate-900">15,400<span class="text-xs font-bold ml-0.5">円</span></p>
+                        </div>
+                    </div>
+                </div>
+                <button class="js-toggle-btn w-full bg-slate-900 text-neon py-3 text-xs font-black tracking-widest flex items-center justify-center transition-colors hover:bg-slate-800">
+                    <span class="btn-text">詳しく見る</span>
+                    <svg class="w-4 h-4 ml-2 icon-rotate" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M12 4v16m8-8H4"></path></svg>
+                </button>
+                <div class="card-details bg-slate-50">
+                    <div class="p-5 md:p-6 space-y-8 border-t-2 border-slate-200">
+                        <section class="relative bg-white border-2 border-slate-900 rounded-xl p-5 shadow-[4px_4px_0_0_#0f172a]">
+                            <div class="absolute -top-3.5 left-4 bg-neon border-2 border-slate-900 px-3 py-0.5 rounded-full shadow-sm">
+                                <span class="font-impact text-sm tracking-wider text-slate-900">ONE★STAR VIEW</span>
+                            </div>
+                            <div class="pt-2 text-center md:text-left">
+                                <p class="text-[13px] md:text-sm font-bold text-slate-800 leading-relaxed md:leading-loose inline-block text-left">
+                                    緑区砂田に拠点を置く「ダスキン鳴海支店」（ダスキン100%子会社）です。東海・北陸エリアの旗艦店舗の一つとされ、自社開発の高圧洗浄機と安全性に配慮した薬剤を使い、汚水はすべて回収して処理します。家庭用・業務用・お掃除機能付きいずれのエアコンにも対応し、条件により夜間対応も可能です。
+                                </p>
+                            </div>
+                        </section>
+                        <section>
+                            <h3 class="text-xs font-black text-slate-400 tracking-widest mb-3 flex items-center">
+                                <span class="w-4 h-0.5 bg-slate-300 mr-2"></span>ABOUT
+                            </h3>
+                            <div class="space-y-3 bg-white p-4 rounded-xl border border-slate-200 text-[13px] font-bold text-slate-700">
+                                <div class="flex"><span class="w-20 text-slate-400 shrink-0">屋号</span><span>ダスキン 鳴海支店</span></div>
+                                <div class="flex"><span class="w-20 text-slate-400 shrink-0">所在地</span><span>愛知県名古屋市緑区砂田2-907</span></div>
+                                <div class="flex"><span class="w-20 text-slate-400 shrink-0">事業形態</span><span>法人（ダスキン100%子会社）</span></div>
+                                <div class="flex"><span class="w-20 text-slate-400 shrink-0">営業時間</span><span>月〜金 8:30〜17:00</span></div>
+                                <div class="flex"><span class="w-20 text-slate-400 shrink-0">夜間対応</span><span>条件により対応可能</span></div>
+                                <div class="flex"><span class="w-20 text-slate-400 shrink-0">電話番号</span><span>フリーダイヤル・電話・Web見積り</span></div>
+                            </div>
+                        </section>
+                        <section>
+                            <h3 class="text-xs font-black text-slate-400 tracking-widest mb-3 flex items-center">
+                                <span class="w-4 h-0.5 bg-slate-300 mr-2"></span>PRICE
+                            </h3>
+                            <div class="space-y-3 bg-white p-4 rounded-xl border border-slate-200 text-[13px] font-bold text-slate-700">
+                                <div class="flex justify-between"><span>壁掛けタイプ</span><span class="text-slate-900 font-black">15,400円</span></div>
+                                <div class="flex justify-between"><span>2台セット</span><span class="text-slate-900 font-black">25,300円</span></div>
+                                <div class="flex justify-between"><span>お掃除機能付き</span><span class="text-slate-900 font-black">+11,000円</span></div>
+                                <div class="flex justify-between"><span>抗菌コート</span><span class="text-slate-900 font-black">2,750円</span></div>
+                            </div>
+                        </section>
+                        <section>
+                            <h3 class="text-xs font-black text-slate-400 tracking-widest mb-3 flex items-center">
+                                <span class="w-4 h-0.5 bg-slate-300 mr-2"></span>STYLE
+                            </h3>
+                            <div class="bg-white p-4 rounded-xl border border-slate-200">
+                                <p class="text-[11px] text-slate-400 mb-2 font-bold">対応・特徴</p>
+                                <div class="flex flex-wrap gap-1.5">
+                                    <span class="px-2 py-1 bg-slate-100 rounded text-[11px] text-slate-600 font-bold">家庭用・業務用・お掃除機能付きいずれも対応</span>
+                                    <span class="px-2 py-1 bg-slate-100 rounded text-[11px] text-slate-600 font-bold">独自高圧洗浄（通常分解）</span>
+                                    <span class="px-2 py-1 bg-slate-100 rounded text-[11px] text-slate-600 font-bold">東海・北陸エリアの旗艦店舗、自社開発高圧洗浄機と安全薬剤、汚水回収</span>
+                                    <span class="px-2 py-1 bg-slate-100 rounded text-[11px] text-slate-600 font-bold">対応エリア：名古屋市（緑・昭和・瑞穂・熱田・南・天白）、東海市、大府市、豊明市</span>
+                                </div>
+                            </div>
+                        </section>
+                        <section>
+                            <h3 class="text-xs font-black text-slate-400 tracking-widest mb-3 flex items-center">
+                                <span class="w-4 h-0.5 bg-slate-300 mr-2"></span>LINK
+                            </h3>
+                            <a href="https://www.duskin.jp/store/aichi/nagoya_midori/8000242/" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between bg-white p-4 rounded-xl border border-slate-200 hover:border-blue-400 transition-colors group">
+                                <div class="flex items-center text-[13px] font-bold text-blue-600">
+                                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path></svg>
+                                    公式サイト
+                                </div>
+                                <svg class="w-4 h-4 text-slate-300 group-hover:text-blue-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"></path></svg>
+                            </a>
+                        </section>
+                    </div>
+                </div>
+            </article>
+
+            <!-- カード16: 日本おそうじ代行 神沢店 -->
+            <article class="bg-white rounded-2xl shadow-md border-2 border-slate-100 overflow-hidden relative">
+                <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-neon via-slate-900 to-neon opacity-80"></div>
+                <div class="p-5 md:p-6 pb-4">
+                    <div class="flex items-start justify-between mb-4">
+                        <div>
+                            <h2 class="text-lg md:text-xl font-black text-slate-900 leading-tight">日本おそうじ代行 神沢店</h2>
+                            <div class="inline-flex items-center mt-2 px-2 py-0.5 bg-slate-100 rounded text-[11px] font-bold text-slate-600 border border-slate-200">
+                                <svg class="w-3 h-3 mr-1 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                緑区
+                            </div>
+                        </div>
+                    </div>
+                    <div class="border-l-2 border-neon pl-3 mb-4">
+                        <p class="text-sm font-black text-slate-700">料金：7,000円〜10,350円</p>
+                        <p class="text-[10px] text-slate-400 font-bold mt-0.5">機種・台数により変動</p>
+                    </div>
+                </div>
+                <button class="js-toggle-btn w-full bg-slate-900 text-neon py-3 text-xs font-black tracking-widest flex items-center justify-center transition-colors hover:bg-slate-800">
+                    <span class="btn-text">詳しく見る</span>
+                    <svg class="w-4 h-4 ml-2 icon-rotate" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M12 4v16m8-8H4"></path></svg>
+                </button>
+                <div class="card-details bg-slate-50">
+                    <div class="p-5 md:p-6 space-y-8 border-t-2 border-slate-200">
+                        <section class="relative bg-white border-2 border-slate-900 rounded-xl p-5 shadow-[4px_4px_0_0_#0f172a]">
+                            <div class="absolute -top-3.5 left-4 bg-neon border-2 border-slate-900 px-3 py-0.5 rounded-full shadow-sm">
+                                <span class="font-impact text-sm tracking-wider text-slate-900">ONE★STAR VIEW</span>
+                            </div>
+                            <div class="pt-2 text-center md:text-left">
+                                <p class="text-[13px] md:text-sm font-bold text-slate-800 leading-relaxed md:leading-loose inline-block text-left">
+                                    緑区相川に店舗を置く「日本おそうじ代行 神沢店」（店長：福谷）です。500件以上の施工実績を掲げ、エコ洗剤の使用と徹底した養生、迅速かつ親切な対応を特徴としています。早朝・夜間スタートにも対応可能。ユアマイスターでの口コミ評価は4.57（65件）です。独立した公式サイトは確認できず、ユアマイスター・エアタクミでの掲載を確認しています。
+                                </p>
+                            </div>
+                        </section>
+                        <section>
+                            <h3 class="text-xs font-black text-slate-400 tracking-widest mb-3 flex items-center">
+                                <span class="w-4 h-0.5 bg-slate-300 mr-2"></span>ABOUT
+                            </h3>
+                            <div class="space-y-3 bg-white p-4 rounded-xl border border-slate-200 text-[13px] font-bold text-slate-700">
+                                <div class="flex"><span class="w-20 text-slate-400 shrink-0">屋号</span><span>日本おそうじ代行 神沢店</span></div>
+                                <div class="flex"><span class="w-20 text-slate-400 shrink-0">所在地</span><span>愛知県名古屋市緑区相川3-70</span></div>
+                                <div class="flex"><span class="w-20 text-slate-400 shrink-0">事業形態</span><span>フランチャイズ加盟店・個人事業主（店長：福谷）</span></div>
+                                <div class="flex"><span class="w-20 text-slate-400 shrink-0">夜間対応</span><span>早朝・夜間スタート可能</span></div>
+                                <div class="flex"><span class="w-20 text-slate-400 shrink-0">電話番号</span><span>ユアマイスターWeb予約</span></div>
+                            </div>
+                        </section>
+                        <section>
+                            <h3 class="text-xs font-black text-slate-400 tracking-widest mb-3 flex items-center">
+                                <span class="w-4 h-0.5 bg-slate-300 mr-2"></span>PRICE
+                            </h3>
+                            <div class="space-y-3 bg-white p-4 rounded-xl border border-slate-200 text-[13px] font-bold text-slate-700">
+                                <div class="flex justify-between"><span>基本料金</span><span class="text-slate-900 font-black">7,000円〜10,350円</span></div>
+                            </div>
+                        </section>
+                        <section>
+                            <h3 class="text-xs font-black text-slate-400 tracking-widest mb-3 flex items-center">
+                                <span class="w-4 h-0.5 bg-slate-300 mr-2"></span>STYLE
+                            </h3>
+                            <div class="bg-white p-4 rounded-xl border border-slate-200">
+                                <p class="text-[11px] text-slate-400 mb-2 font-bold">対応・特徴</p>
+                                <div class="flex flex-wrap gap-1.5">
+                                    <span class="px-2 py-1 bg-slate-100 rounded text-[11px] text-slate-600 font-bold">家庭用・お掃除機能付き対応（業務用は未確認）</span>
+                                    <span class="px-2 py-1 bg-slate-100 rounded text-[11px] text-slate-600 font-bold">通常分解洗浄</span>
+                                    <span class="px-2 py-1 bg-slate-100 rounded text-[11px] text-slate-600 font-bold">500件以上実績、エコ洗剤使用、徹底養生、迅速親切対応</span>
+                                    <span class="px-2 py-1 bg-slate-100 rounded text-[11px] text-slate-600 font-bold">ユアマイスター・エアタクミ掲載、口コミ評価4.57（65件）</span>
+                                    <span class="px-2 py-1 bg-slate-100 rounded text-[11px] text-slate-600 font-bold">対応エリア：緑区、千種区等東海近県</span>
+                                </div>
+                            </div>
+                        </section>
+                        <section>
+                            <h3 class="text-xs font-black text-slate-400 tracking-widest mb-3 flex items-center">
+                                <span class="w-4 h-0.5 bg-slate-300 mr-2"></span>LINK
+                            </h3>
+                            <div class="flex items-center bg-white p-4 rounded-xl border border-slate-200 text-[13px] font-bold text-slate-400">
+                                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path></svg>
+                                公式サイトなし
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </article>
+
+            <!-- カード17: プペルクリーン -->
+            <article class="bg-white rounded-2xl shadow-md border-2 border-slate-100 overflow-hidden relative">
+                <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-neon via-slate-900 to-neon opacity-80"></div>
+                <div class="p-5 md:p-6 pb-4">
+                    <div class="flex items-start justify-between mb-4">
+                        <div>
+                            <h2 class="text-lg md:text-xl font-black text-slate-900 leading-tight">プペルクリーン</h2>
+                            <div class="inline-flex items-center mt-2 px-2 py-0.5 bg-slate-100 rounded text-[11px] font-bold text-slate-600 border border-slate-200">
+                                <svg class="w-3 h-3 mr-1 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                緑区
+                            </div>
+                        </div>
+                    </div>
+                    <div class="border-l-2 border-neon pl-3 mb-4">
+                        <p class="text-sm font-black text-slate-700">料金：要問い合わせ</p>
+                        <p class="text-[10px] text-slate-400 font-bold mt-0.5">具体的な料金はエアタクミ経由で要問い合わせです</p>
+                    </div>
+                </div>
+                <button class="js-toggle-btn w-full bg-slate-900 text-neon py-3 text-xs font-black tracking-widest flex items-center justify-center transition-colors hover:bg-slate-800">
+                    <span class="btn-text">詳しく見る</span>
+                    <svg class="w-4 h-4 ml-2 icon-rotate" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M12 4v16m8-8H4"></path></svg>
+                </button>
+                <div class="card-details bg-slate-50">
+                    <div class="p-5 md:p-6 space-y-8 border-t-2 border-slate-200">
+                        <section class="relative bg-white border-2 border-slate-900 rounded-xl p-5 shadow-[4px_4px_0_0_#0f172a]">
+                            <div class="absolute -top-3.5 left-4 bg-neon border-2 border-slate-900 px-3 py-0.5 rounded-full shadow-sm">
+                                <span class="font-impact text-sm tracking-wider text-slate-900">ONE★STAR VIEW</span>
+                            </div>
+                            <div class="pt-2 text-center md:text-left">
+                                <p class="text-[13px] md:text-sm font-bold text-slate-800 leading-relaxed md:leading-loose inline-block text-left">
+                                    緑区を拠点とする個人事業主「プペルクリーン」です。大手業者での業務経験を持ち、水洗いによる分解洗浄に強みがあるとのこと。掲載はエアタクミのみで確認しており、独立した公式サイトは見当たりませんでした。業務用・お掃除機能付きへの対応は未確認です。
+                                </p>
+                            </div>
+                        </section>
+                        <section>
+                            <h3 class="text-xs font-black text-slate-400 tracking-widest mb-3 flex items-center">
+                                <span class="w-4 h-0.5 bg-slate-300 mr-2"></span>ABOUT
+                            </h3>
+                            <div class="space-y-3 bg-white p-4 rounded-xl border border-slate-200 text-[13px] font-bold text-slate-700">
+                                <div class="flex"><span class="w-20 text-slate-400 shrink-0">屋号</span><span>プペルクリーン</span></div>
+                                <div class="flex"><span class="w-20 text-slate-400 shrink-0">所在地</span><span>愛知県名古屋市緑区（番地非公開）</span></div>
+                                <div class="flex"><span class="w-20 text-slate-400 shrink-0">事業形態</span><span>個人事業主</span></div>
+                                <div class="flex"><span class="w-20 text-slate-400 shrink-0">電話番号</span><span>エアタクミWeb予約</span></div>
+                            </div>
+                        </section>
+                        <section>
+                            <h3 class="text-xs font-black text-slate-400 tracking-widest mb-3 flex items-center">
+                                <span class="w-4 h-0.5 bg-slate-300 mr-2"></span>STYLE
+                            </h3>
+                            <div class="bg-white p-4 rounded-xl border border-slate-200">
+                                <p class="text-[11px] text-slate-400 mb-2 font-bold">対応・特徴</p>
+                                <div class="flex flex-wrap gap-1.5">
+                                    <span class="px-2 py-1 bg-slate-100 rounded text-[11px] text-slate-600 font-bold">家庭用対応（業務用・お掃除機能付きは未確認）</span>
+                                    <span class="px-2 py-1 bg-slate-100 rounded text-[11px] text-slate-600 font-bold">水洗い分解洗浄</span>
+                                    <span class="px-2 py-1 bg-slate-100 rounded text-[11px] text-slate-600 font-bold">大手業務経験保有</span>
+                                    <span class="px-2 py-1 bg-slate-100 rounded text-[11px] text-slate-600 font-bold">エアタクミ掲載</span>
+                                    <span class="px-2 py-1 bg-slate-100 rounded text-[11px] text-slate-600 font-bold">対応エリア：緑区中心</span>
+                                </div>
+                            </div>
+                        </section>
+                        <section>
+                            <h3 class="text-xs font-black text-slate-400 tracking-widest mb-3 flex items-center">
+                                <span class="w-4 h-0.5 bg-slate-300 mr-2"></span>LINK
+                            </h3>
+                            <div class="flex items-center bg-white p-4 rounded-xl border border-slate-200 text-[13px] font-bold text-slate-400">
+                                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path></svg>
+                                公式サイトなし
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </article>
+
+            <!-- カード18: 株式会社松本サービス -->
+            <article class="bg-white rounded-2xl shadow-md border-2 border-slate-100 overflow-hidden relative">
+                <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-neon via-slate-900 to-neon opacity-80"></div>
+                <div class="p-5 md:p-6 pb-4">
+                    <div class="flex items-start justify-between mb-4">
+                        <div>
+                            <h2 class="text-lg md:text-xl font-black text-slate-900 leading-tight">株式会社松本サービス</h2>
+                            <div class="inline-flex items-center mt-2 px-2 py-0.5 bg-slate-100 rounded text-[11px] font-bold text-slate-600 border border-slate-200">
+                                <svg class="w-3 h-3 mr-1 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                緑区
+                            </div>
+                        </div>
+                    </div>
+                    <div class="border-l-2 border-neon pl-3 mb-4">
+                        <p class="text-sm font-black text-slate-700">料金：要問い合わせ</p>
+                        <p class="text-[10px] text-slate-400 font-bold mt-0.5">具体的な料金はお問い合わせください</p>
+                    </div>
+                </div>
+                <button class="js-toggle-btn w-full bg-slate-900 text-neon py-3 text-xs font-black tracking-widest flex items-center justify-center transition-colors hover:bg-slate-800">
+                    <span class="btn-text">詳しく見る</span>
+                    <svg class="w-4 h-4 ml-2 icon-rotate" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M12 4v16m8-8H4"></path></svg>
+                </button>
+                <div class="card-details bg-slate-50">
+                    <div class="p-5 md:p-6 space-y-8 border-t-2 border-slate-200">
+                        <section class="relative bg-white border-2 border-slate-900 rounded-xl p-5 shadow-[4px_4px_0_0_#0f172a]">
+                            <div class="absolute -top-3.5 left-4 bg-neon border-2 border-slate-900 px-3 py-0.5 rounded-full shadow-sm">
+                                <span class="font-impact text-sm tracking-wider text-slate-900">ONE★STAR VIEW</span>
+                            </div>
+                            <div class="pt-2 text-center md:text-left">
+                                <p class="text-[13px] md:text-sm font-bold text-slate-800 leading-relaxed md:leading-loose inline-block text-left">
+                                    緑区浦里に拠点を置く「株式会社松本サービス」（資本金500万円）です。空調設備工事・給排水設備工事・電気工事・防水工事部門を併設する総合ビルメンテナンス企業で、エアコンクリーニングは徹底分解洗浄で対応しています。家庭用・業務用・お掃除機能付きいずれのエアコンにも対応します。
+                                </p>
+                            </div>
+                        </section>
+                        <section>
+                            <h3 class="text-xs font-black text-slate-400 tracking-widest mb-3 flex items-center">
+                                <span class="w-4 h-0.5 bg-slate-300 mr-2"></span>ABOUT
+                            </h3>
+                            <div class="space-y-3 bg-white p-4 rounded-xl border border-slate-200 text-[13px] font-bold text-slate-700">
+                                <div class="flex"><span class="w-20 text-slate-400 shrink-0">屋号</span><span>株式会社松本サービス</span></div>
+                                <div class="flex"><span class="w-20 text-slate-400 shrink-0">所在地</span><span>愛知県名古屋市緑区浦里5-8</span></div>
+                                <div class="flex"><span class="w-20 text-slate-400 shrink-0">事業形態</span><span>株式会社（資本金500万円）</span></div>
+                                <div class="flex"><span class="w-20 text-slate-400 shrink-0">営業時間</span><span>9:00〜17:00</span></div>
+                                <div class="flex"><span class="w-20 text-slate-400 shrink-0">電話番号</span><span>電話・FAX・Webフォーム</span></div>
+                            </div>
+                        </section>
+                        <section>
+                            <h3 class="text-xs font-black text-slate-400 tracking-widest mb-3 flex items-center">
+                                <span class="w-4 h-0.5 bg-slate-300 mr-2"></span>STYLE
+                            </h3>
+                            <div class="bg-white p-4 rounded-xl border border-slate-200">
+                                <p class="text-[11px] text-slate-400 mb-2 font-bold">対応・特徴</p>
+                                <div class="flex flex-wrap gap-1.5">
+                                    <span class="px-2 py-1 bg-slate-100 rounded text-[11px] text-slate-600 font-bold">家庭用・業務用・お掃除機能付きいずれも対応</span>
+                                    <span class="px-2 py-1 bg-slate-100 rounded text-[11px] text-slate-600 font-bold">徹底分解洗浄（通常分解）</span>
+                                    <span class="px-2 py-1 bg-slate-100 rounded text-[11px] text-slate-600 font-bold">総合ビルメンテナンス企業、空調・給排水・電気・防水工事部門併設</span>
+                                    <span class="px-2 py-1 bg-slate-100 rounded text-[11px] text-slate-600 font-bold">対応エリア：緑区を中心に愛知県全域・東海3県</span>
+                                </div>
+                            </div>
+                        </section>
+                        <section>
+                            <h3 class="text-xs font-black text-slate-400 tracking-widest mb-3 flex items-center">
+                                <span class="w-4 h-0.5 bg-slate-300 mr-2"></span>LINK
+                            </h3>
+                            <a href="https://www.matsumoto-service.com/" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between bg-white p-4 rounded-xl border border-slate-200 hover:border-blue-400 transition-colors group">
+                                <div class="flex items-center text-[13px] font-bold text-blue-600">
+                                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path></svg>
+                                    公式サイト
+                                </div>
+                                <svg class="w-4 h-4 text-slate-300 group-hover:text-blue-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"></path></svg>
+                            </a>
+                        </section>
+                    </div>
+                </div>
+            </article>
+
+            <!-- カード19: 株式会社みやかわ 名古屋営業所 -->
+            <article class="bg-white rounded-2xl shadow-md border-2 border-slate-100 overflow-hidden relative">
+                <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-neon via-slate-900 to-neon opacity-80"></div>
+                <div class="p-5 md:p-6 pb-4">
+                    <div class="flex items-start justify-between mb-4">
+                        <div>
+                            <h2 class="text-lg md:text-xl font-black text-slate-900 leading-tight">株式会社みやかわ 名古屋営業所</h2>
+                            <div class="inline-flex items-center mt-2 px-2 py-0.5 bg-slate-100 rounded text-[11px] font-bold text-slate-600 border border-slate-200">
+                                <svg class="w-3 h-3 mr-1 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                緑区
+                            </div>
+                        </div>
+                    </div>
+                    <div class="border-l-2 border-neon pl-3 mb-4">
+                        <p class="text-sm font-black text-slate-700">料金：要問い合わせ</p>
+                        <p class="text-[10px] text-slate-400 font-bold mt-0.5">具体的な料金はフリーダイヤル等で要問い合わせです</p>
+                    </div>
+                </div>
+                <button class="js-toggle-btn w-full bg-slate-900 text-neon py-3 text-xs font-black tracking-widest flex items-center justify-center transition-colors hover:bg-slate-800">
+                    <span class="btn-text">詳しく見る</span>
+                    <svg class="w-4 h-4 ml-2 icon-rotate" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M12 4v16m8-8H4"></path></svg>
+                </button>
+                <div class="card-details bg-slate-50">
+                    <div class="p-5 md:p-6 space-y-8 border-t-2 border-slate-200">
+                        <section class="relative bg-white border-2 border-slate-900 rounded-xl p-5 shadow-[4px_4px_0_0_#0f172a]">
+                            <div class="absolute -top-3.5 left-4 bg-neon border-2 border-slate-900 px-3 py-0.5 rounded-full shadow-sm">
+                                <span class="font-impact text-sm tracking-wider text-slate-900">ONE★STAR VIEW</span>
+                            </div>
+                            <div class="pt-2 text-center md:text-left">
+                                <p class="text-[13px] md:text-sm font-bold text-slate-800 leading-relaxed md:leading-loose inline-block text-left">
+                                    緑区鳴海町に営業所を置く「株式会社みやかわ 名古屋営業所」です（本社：東京都墨田区）。総合ビルメンテナンス・清掃サービスを手がける企業の名古屋拠点で、フリーダイヤル・FAX・Webフォームで問い合わせを受け付けています。家庭用・業務用・お掃除機能付きへの対応状況はレポート上に明記がなく、未確認です。
+                                </p>
+                            </div>
+                        </section>
+                        <section>
+                            <h3 class="text-xs font-black text-slate-400 tracking-widest mb-3 flex items-center">
+                                <span class="w-4 h-0.5 bg-slate-300 mr-2"></span>ABOUT
+                            </h3>
+                            <div class="space-y-3 bg-white p-4 rounded-xl border border-slate-200 text-[13px] font-bold text-slate-700">
+                                <div class="flex"><span class="w-20 text-slate-400 shrink-0">屋号</span><span>株式会社みやかわ 名古屋営業所</span></div>
+                                <div class="flex"><span class="w-20 text-slate-400 shrink-0">所在地</span><span>愛知県名古屋市緑区鳴海町字京田105 メゾン白木103号</span></div>
+                                <div class="flex"><span class="w-20 text-slate-400 shrink-0">事業形態</span><span>法人営業所（本社：東京都墨田区）</span></div>
+                                <div class="flex"><span class="w-20 text-slate-400 shrink-0">電話番号</span><span>フリーダイヤル・FAX・Webフォーム</span></div>
+                            </div>
+                        </section>
+                        <section>
+                            <h3 class="text-xs font-black text-slate-400 tracking-widest mb-3 flex items-center">
+                                <span class="w-4 h-0.5 bg-slate-300 mr-2"></span>STYLE
+                            </h3>
+                            <div class="bg-white p-4 rounded-xl border border-slate-200">
+                                <p class="text-[11px] text-slate-400 mb-2 font-bold">対応・特徴</p>
+                                <div class="flex flex-wrap gap-1.5">
+                                    <span class="px-2 py-1 bg-slate-100 rounded text-[11px] text-slate-600 font-bold">家庭用・業務用・お掃除機能付きへの対応状況：未確認</span>
+                                    <span class="px-2 py-1 bg-slate-100 rounded text-[11px] text-slate-600 font-bold">総合ビルメンテナンス・清掃サービス企業</span>
+                                    <span class="px-2 py-1 bg-slate-100 rounded text-[11px] text-slate-600 font-bold">対応エリア：緑区、愛知県内等</span>
+                                </div>
+                            </div>
+                        </section>
+                        <section>
+                            <h3 class="text-xs font-black text-slate-400 tracking-widest mb-3 flex items-center">
+                                <span class="w-4 h-0.5 bg-slate-300 mr-2"></span>LINK
+                            </h3>
+                            <a href="https://www.miyakawa-sps.com/index.html" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between bg-white p-4 rounded-xl border border-slate-200 hover:border-blue-400 transition-colors group">
+                                <div class="flex items-center text-[13px] font-bold text-blue-600">
+                                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path></svg>
+                                    公式サイト
+                                </div>
+                                <svg class="w-4 h-4 text-slate-300 group-hover:text-blue-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"></path></svg>
+                            </a>
+                        </section>
+                    </div>
+                </div>
+            </article>
+
+            <!-- カード20: らいふサポート 愛知 -->
+            <article class="bg-white rounded-2xl shadow-md border-2 border-slate-100 overflow-hidden relative">
+                <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-neon via-slate-900 to-neon opacity-80"></div>
+                <div class="p-5 md:p-6 pb-4">
+                    <div class="flex items-start justify-between mb-4">
+                        <div>
+                            <h2 class="text-lg md:text-xl font-black text-slate-900 leading-tight">らいふサポート 愛知</h2>
+                            <div class="inline-flex items-center mt-2 px-2 py-0.5 bg-slate-100 rounded text-[11px] font-bold text-slate-600 border border-slate-200">
+                                <svg class="w-3 h-3 mr-1 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                緑区
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex gap-4 border-l-2 border-neon pl-3 mb-4">
+                        <div>
+                            <p class="text-[10px] text-slate-500 font-bold mb-0.5">家庭用（1台）</p>
+                            <p class="text-base font-black text-slate-900">9,900<span class="text-xs font-bold ml-0.5">円</span></p>
+                        </div>
+                    </div>
+                </div>
+                <button class="js-toggle-btn w-full bg-slate-900 text-neon py-3 text-xs font-black tracking-widest flex items-center justify-center transition-colors hover:bg-slate-800">
+                    <span class="btn-text">詳しく見る</span>
+                    <svg class="w-4 h-4 ml-2 icon-rotate" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M12 4v16m8-8H4"></path></svg>
+                </button>
+                <div class="card-details bg-slate-50">
+                    <div class="p-5 md:p-6 space-y-8 border-t-2 border-slate-200">
+                        <section class="relative bg-white border-2 border-slate-900 rounded-xl p-5 shadow-[4px_4px_0_0_#0f172a]">
+                            <div class="absolute -top-3.5 left-4 bg-neon border-2 border-slate-900 px-3 py-0.5 rounded-full shadow-sm">
+                                <span class="font-impact text-sm tracking-wider text-slate-900">ONE★STAR VIEW</span>
+                            </div>
+                            <div class="pt-2 text-center md:text-left">
+                                <p class="text-[13px] md:text-sm font-bold text-slate-800 leading-relaxed md:leading-loose inline-block text-left">
+                                    緑区黒沢台を拠点とする個人事業主「らいふサポート 愛知」（代表：宮﨑晃一）です。高圧洗浄による通常分解で1台1台丁寧な作業を行い、リピーターも多数抱えているとのこと。愛知県内20エリアに対応地域を広げています。掲載はゼヒトモ・エアタクミ・SNSで確認しており、独立した公式サイトは見当たりませんでした。
+                                </p>
+                            </div>
+                        </section>
+                        <section>
+                            <h3 class="text-xs font-black text-slate-400 tracking-widest mb-3 flex items-center">
+                                <span class="w-4 h-0.5 bg-slate-300 mr-2"></span>ABOUT
+                            </h3>
+                            <div class="space-y-3 bg-white p-4 rounded-xl border border-slate-200 text-[13px] font-bold text-slate-700">
+                                <div class="flex"><span class="w-20 text-slate-400 shrink-0">屋号</span><span>らいふサポート 愛知</span></div>
+                                <div class="flex"><span class="w-20 text-slate-400 shrink-0">所在地</span><span>愛知県名古屋市緑区黒沢台5-1207</span></div>
+                                <div class="flex"><span class="w-20 text-slate-400 shrink-0">事業形態</span><span>個人事業主（代表：宮﨑晃一）</span></div>
+                                <div class="flex"><span class="w-20 text-slate-400 shrink-0">電話番号</span><span>ゼヒトモ等Web問い合わせ</span></div>
+                            </div>
+                        </section>
+                        <section>
+                            <h3 class="text-xs font-black text-slate-400 tracking-widest mb-3 flex items-center">
+                                <span class="w-4 h-0.5 bg-slate-300 mr-2"></span>PRICE
+                            </h3>
+                            <div class="space-y-3 bg-white p-4 rounded-xl border border-slate-200 text-[13px] font-bold text-slate-700">
+                                <div class="flex justify-between"><span>家庭用（1台）</span><span class="text-slate-900 font-black">9,900円</span></div>
+                                <div class="flex justify-between"><span>2台目以降（1台あたり）</span><span class="text-slate-900 font-black">8,900円</span></div>
+                                <div class="flex justify-between"><span>お掃除機能付き</span><span class="text-slate-900 font-black">14,300円</span></div>
+                            </div>
+                        </section>
+                        <section>
+                            <h3 class="text-xs font-black text-slate-400 tracking-widest mb-3 flex items-center">
+                                <span class="w-4 h-0.5 bg-slate-300 mr-2"></span>STYLE
+                            </h3>
+                            <div class="bg-white p-4 rounded-xl border border-slate-200">
+                                <p class="text-[11px] text-slate-400 mb-2 font-bold">対応・特徴</p>
+                                <div class="flex flex-wrap gap-1.5">
+                                    <span class="px-2 py-1 bg-slate-100 rounded text-[11px] text-slate-600 font-bold">家庭用・お掃除機能付き対応（業務用は未確認）</span>
+                                    <span class="px-2 py-1 bg-slate-100 rounded text-[11px] text-slate-600 font-bold">高圧洗浄による通常分解</span>
+                                    <span class="px-2 py-1 bg-slate-100 rounded text-[11px] text-slate-600 font-bold">防カビ・抗菌コーティング等オプションあり</span>
+                                    <span class="px-2 py-1 bg-slate-100 rounded text-[11px] text-slate-600 font-bold">1台1台丁寧な作業、リピーター多数保有</span>
+                                    <span class="px-2 py-1 bg-slate-100 rounded text-[11px] text-slate-600 font-bold">ゼヒトモ・エアタクミ・SNS掲載</span>
+                                    <span class="px-2 py-1 bg-slate-100 rounded text-[11px] text-slate-600 font-bold">対応エリア：緑区中心・愛知県内20エリア</span>
+                                </div>
+                            </div>
+                        </section>
+                        <section>
+                            <h3 class="text-xs font-black text-slate-400 tracking-widest mb-3 flex items-center">
+                                <span class="w-4 h-0.5 bg-slate-300 mr-2"></span>LINK
+                            </h3>
+                            <div class="flex items-center bg-white p-4 rounded-xl border border-slate-200 text-[13px] font-bold text-slate-400">
+                                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path></svg>
+                                公式サイトなし
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </article>
+
+            <!-- カード21: レベルズ（LEVELS） -->
+            <article class="bg-white rounded-2xl shadow-md border-2 border-slate-100 overflow-hidden relative">
+                <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-neon via-slate-900 to-neon opacity-80"></div>
+                <div class="p-5 md:p-6 pb-4">
+                    <div class="flex items-start justify-between mb-4">
+                        <div>
+                            <h2 class="text-lg md:text-xl font-black text-slate-900 leading-tight">レベルズ（LEVELS）</h2>
+                            <div class="inline-flex items-center mt-2 px-2 py-0.5 bg-slate-100 rounded text-[11px] font-bold text-slate-600 border border-slate-200">
+                                <svg class="w-3 h-3 mr-1 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                緑区
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex gap-4 border-l-2 border-neon pl-3 mb-4">
+                        <div>
+                            <p class="text-[10px] text-slate-500 font-bold mb-0.5">壁掛けタイプ</p>
+                            <p class="text-base font-black text-slate-900">12,100<span class="text-xs font-bold ml-0.5">円</span></p>
+                        </div>
+                    </div>
+                </div>
+                <button class="js-toggle-btn w-full bg-slate-900 text-neon py-3 text-xs font-black tracking-widest flex items-center justify-center transition-colors hover:bg-slate-800">
+                    <span class="btn-text">詳しく見る</span>
+                    <svg class="w-4 h-4 ml-2 icon-rotate" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M12 4v16m8-8H4"></path></svg>
+                </button>
+                <div class="card-details bg-slate-50">
+                    <div class="p-5 md:p-6 space-y-8 border-t-2 border-slate-200">
+                        <section class="relative bg-white border-2 border-slate-900 rounded-xl p-5 shadow-[4px_4px_0_0_#0f172a]">
+                            <div class="absolute -top-3.5 left-4 bg-neon border-2 border-slate-900 px-3 py-0.5 rounded-full shadow-sm">
+                                <span class="font-impact text-sm tracking-wider text-slate-900">ONE★STAR VIEW</span>
+                            </div>
+                            <div class="pt-2 text-center md:text-left">
+                                <p class="text-[13px] md:text-sm font-bold text-slate-800 leading-relaxed md:leading-loose inline-block text-left">
+                                    緑区を拠点とする個人事業主「レベルズ（LEVELS）」です。大手量販店2社の満足度調査で1位に表彰された実績を持ち、年間1,000台以上の施工実績があるとのこと。清潔感を重視した作業を掲げ、駐車場代は店舗側が負担します。深夜施工の相談も可能。くらしのマーケットでの口コミ評価は4.91〜4.95（44件）です。独立した公式サイトは確認できませんでした。
+                                </p>
+                            </div>
+                        </section>
+                        <section>
+                            <h3 class="text-xs font-black text-slate-400 tracking-widest mb-3 flex items-center">
+                                <span class="w-4 h-0.5 bg-slate-300 mr-2"></span>ABOUT
+                            </h3>
+                            <div class="space-y-3 bg-white p-4 rounded-xl border border-slate-200 text-[13px] font-bold text-slate-700">
+                                <div class="flex"><span class="w-20 text-slate-400 shrink-0">屋号</span><span>レベルズ（LEVELS）</span></div>
+                                <div class="flex"><span class="w-20 text-slate-400 shrink-0">所在地</span><span>愛知県名古屋市緑区（番地非公開）</span></div>
+                                <div class="flex"><span class="w-20 text-slate-400 shrink-0">事業形態</span><span>個人事業主</span></div>
+                                <div class="flex"><span class="w-20 text-slate-400 shrink-0">営業時間</span><span>8:00〜19:00（年中無休）</span></div>
+                                <div class="flex"><span class="w-20 text-slate-400 shrink-0">夜間対応</span><span>深夜施工相談可能</span></div>
+                                <div class="flex"><span class="w-20 text-slate-400 shrink-0">電話番号</span><span>くらしのマーケットWeb予約</span></div>
+                            </div>
+                        </section>
+                        <section>
+                            <h3 class="text-xs font-black text-slate-400 tracking-widest mb-3 flex items-center">
+                                <span class="w-4 h-0.5 bg-slate-300 mr-2"></span>PRICE
+                            </h3>
+                            <div class="space-y-3 bg-white p-4 rounded-xl border border-slate-200 text-[13px] font-bold text-slate-700">
+                                <div class="flex justify-between"><span>壁掛けタイプ</span><span class="text-slate-900 font-black">12,100円</span></div>
+                                <div class="flex justify-between"><span>業務用（天井埋込）</span><span class="text-slate-900 font-black">30,000円</span></div>
+                            </div>
+                        </section>
+                        <section>
+                            <h3 class="text-xs font-black text-slate-400 tracking-widest mb-3 flex items-center">
+                                <span class="w-4 h-0.5 bg-slate-300 mr-2"></span>STYLE
+                            </h3>
+                            <div class="bg-white p-4 rounded-xl border border-slate-200">
+                                <p class="text-[11px] text-slate-400 mb-2 font-bold">対応・特徴</p>
+                                <div class="flex flex-wrap gap-1.5">
+                                    <span class="px-2 py-1 bg-slate-100 rounded text-[11px] text-slate-600 font-bold">家庭用・業務用・お掃除機能付きいずれも対応</span>
+                                    <span class="px-2 py-1 bg-slate-100 rounded text-[11px] text-slate-600 font-bold">通常分解洗浄</span>
+                                    <span class="px-2 py-1 bg-slate-100 rounded text-[11px] text-slate-600 font-bold">大手量販店2社満足度1位表彰、年間1,000台以上実績</span>
+                                    <span class="px-2 py-1 bg-slate-100 rounded text-[11px] text-slate-600 font-bold">清潔感重視、駐車場代は店舗負担</span>
+                                    <span class="px-2 py-1 bg-slate-100 rounded text-[11px] text-slate-600 font-bold">くらしのマーケット掲載、口コミ評価4.91〜4.95（44件）</span>
+                                    <span class="px-2 py-1 bg-slate-100 rounded text-[11px] text-slate-600 font-bold">対応エリア：緑区および周辺エリア</span>
+                                </div>
+                            </div>
+                        </section>
+                        <section>
+                            <h3 class="text-xs font-black text-slate-400 tracking-widest mb-3 flex items-center">
+                                <span class="w-4 h-0.5 bg-slate-300 mr-2"></span>LINK
+                            </h3>
+                            <div class="flex items-center bg-white p-4 rounded-xl border border-slate-200 text-[13px] font-bold text-slate-400">
+                                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path></svg>
+                                公式サイトなし
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </article>
+
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-900 text-white pt-12 pb-24 md:pb-12 border-t-[6px] border-neon text-center">
+        <div class="mb-6 flex flex-col items-center justify-center">
+            <span class="text-4xl md:text-5xl tracking-widest text-white flex items-center justify-center font-impact mt-1">
+                ONE
+                <img src="/ONESTAR.PNG" alt="ロゴ画像" class="w-[80px] h-[80px] md:w-[100px] md:h-[100px] mx-[-10px] md:mx-[-16px] object-contain -translate-y-2" onerror="this.style.display='none'">
+                STAR
+            </span>
+            <p class="text-xs text-neon font-black mt-2 tracking-widest">株式会社ECS専属プロスタッフ</p>
+        </div>
+
+        <p class="text-[11px] text-slate-400 font-bold mb-3">
+            <a href="/products" class="hover:text-white transition-colors underline underline-offset-4">オリジナルLINEスタンプ販売中</a>
+        </p>
+        <p class="text-[10px] text-slate-500 font-bold mb-4">
+            <a href="/privacy" class="hover:text-white transition-colors">プライバシーポリシー</a>
+        </p>
+        <p class="text-[10px] text-slate-500 font-bold tracking-wider">© 2026 ONE★STAR. All Rights Reserved.</p>
+    </footer>
+
+    <!-- MOBILE BOTTOM NAVIGATION -->
+    <div class="fixed bottom-0 left-0 right-0 z-45 bg-slate-900 md:hidden h-[60px] flex items-stretch text-white shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.3)] border-t border-slate-800">
+        <a href="/price" class="flex flex-col items-center justify-center w-[20%] border-r border-slate-700 active:bg-slate-800">
+            <svg class="w-5 h-5 mb-1 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <span class="text-[9px] font-black">料金</span>
+        </a>
+        <a href="/mind" class="flex flex-col items-center justify-center w-[20%] border-r border-slate-700 active:bg-slate-800">
+            <svg class="w-5 h-5 mb-1 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+            <span class="text-[9px] font-black">想い</span>
+        </a>
+        <a href="/pride" class="flex flex-col items-center justify-center w-[20%] active:bg-slate-800">
+            <svg class="w-5 h-5 mb-1 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+            <span class="text-[9px] font-black">拘り</span>
+        </a>
+        <a href="tel:08000807788" class="js-phone-modal-trigger flex items-center justify-center bg-neon text-slate-900 w-[40%] font-black text-base active:bg-yellow-400 transition-colors">
+            <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+            電話する
+        </a>
+    </div>
+
+    <!-- 電話モーダル -->
+    <div id="phone-modal" class="fixed inset-0 z-[100] hidden flex items-center justify-center px-4">
+        <div id="phone-modal-backdrop" class="absolute inset-0 bg-slate-900/80 backdrop-blur-sm opacity-0 transition-opacity duration-300"></div>
+        <div id="phone-modal-content" class="relative bg-white rounded-3xl shadow-2xl w-full max-w-sm overflow-hidden transform scale-95 opacity-0 transition-all duration-300 border border-slate-100">
+            <button id="phone-modal-close" class="absolute top-4 right-4 p-2 text-slate-400 hover:text-slate-700 bg-slate-100 hover:bg-slate-200 rounded-full transition-colors z-10">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+            <div class="p-6 md:p-8 text-center pt-10">
+                <h3 class="text-xl font-black text-slate-900 mb-6 border-b-4 border-[#EFFF00] inline-block pb-1">ご予約・お問い合わせの前に</h3>
+                <div class="text-[13px] text-slate-700 font-bold leading-relaxed mb-8 space-y-4 text-left bg-slate-50 p-5 rounded-2xl border border-slate-100 shadow-inner">
+                    <p><span class="text-slate-900 font-black text-sm">ONE★STAR</span>は<br>株式会社ECS（エッジクリーンサービス）の専属プロスタッフとして活動しています。</p>
+                    <p class="pt-2 border-t border-slate-200">お電話は<br><span class="text-slate-900 font-black">株式会社ECSの予約受付</span>につながります。</p>
+                    <div class="bg-rose-50 border border-rose-200 p-3 rounded-xl text-center shadow-sm">
+                        <p class="text-rose-600 font-black text-[13px] leading-tight">ご予約の際は<br><span class="text-base">「ONE★STAR（川崎）を指名」</span>と<br>お伝えください。</p>
+                    </div>
+                </div>
+                <div class="space-y-3">
+                    <a href="tel:08000807788" class="flex items-center justify-center w-full py-4 bg-slate-900 text-[#EFFF00] font-black rounded-2xl shadow-md active:scale-95 transition-transform text-sm sm:text-base border border-slate-800">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                        株式会社ECSへ電話する
+                    </a>
+                    <a href="https://www.instagram.com/one.star.kawasaki?igsh=anZpYnpxcDdqOXRh&utm_source=qr" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center w-full py-4 bg-gradient-to-r from-pink-500 to-rose-500 text-white font-black rounded-2xl shadow-md active:scale-95 transition-transform text-sm sm:text-base">
+                        <svg class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                        </svg>
+                        Instagramで本人に相談する
+                    </a>
+                </div>
+                <p class="text-[10px] text-slate-500 mt-4 font-bold leading-relaxed">直接のご質問・お問い合わせは<br>本人直通のInstagram DMからお気軽にどうぞ。</p>
+                <button id="phone-modal-cancel" class="mt-6 text-[11px] text-slate-400 font-bold underline underline-offset-4 hover:text-slate-600 transition-colors">キャンセルして戻る</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // メニュー制御
+            const drawerContainer = document.getElementById('drawer-container');
+            const drawerMenu = document.getElementById('drawer-menu');
+            const drawerBackdrop = document.getElementById('drawer-backdrop');
+            const toggleMenu = (show) => {
+                if (show) {
+                    drawerContainer.classList.remove('hidden');
+                    setTimeout(() => {
+                        drawerBackdrop.classList.remove('opacity-0');
+                        drawerBackdrop.classList.add('opacity-100');
+                        drawerMenu.classList.remove('drawer-closed');
+                        drawerMenu.classList.add('drawer-open');
+                    }, 10);
+                } else {
+                    drawerBackdrop.classList.remove('opacity-100');
+                    drawerBackdrop.classList.add('opacity-0');
+                    drawerMenu.classList.remove('drawer-open');
+                    drawerMenu.classList.add('drawer-closed');
+                    setTimeout(() => drawerContainer.classList.add('hidden'), 300);
+                }
+            };
+            document.getElementById('menu-open-btn').addEventListener('click', () => toggleMenu(true));
+            document.getElementById('menu-close-btn').addEventListener('click', () => toggleMenu(false));
+            document.getElementById('drawer-backdrop').addEventListener('click', () => toggleMenu(false));
+            document.querySelectorAll('.menu-link').forEach(link => link.addEventListener('click', () => toggleMenu(false)));
+
+            // 電話モーダル制御
+            const phoneModal = document.getElementById('phone-modal');
+            const phoneModalBackdrop = document.getElementById('phone-modal-backdrop');
+            const phoneModalContent = document.getElementById('phone-modal-content');
+            const phoneTriggerBtns = document.querySelectorAll('.js-phone-modal-trigger');
+            if (phoneModal && phoneTriggerBtns.length > 0) {
+                const openPhoneModal = (e) => {
+                    e.preventDefault();
+                    toggleMenu(false);
+                    phoneModal.classList.remove('hidden');
+                    requestAnimationFrame(() => {
+                        phoneModalBackdrop.classList.remove('opacity-0');
+                        phoneModalBackdrop.classList.add('opacity-100');
+                        phoneModalContent.classList.remove('opacity-0', 'scale-95');
+                        phoneModalContent.classList.add('opacity-100', 'scale-100');
+                    });
+                };
+                const closePhoneModal = () => {
+                    phoneModalBackdrop.classList.remove('opacity-100');
+                    phoneModalBackdrop.classList.add('opacity-0');
+                    phoneModalContent.classList.remove('opacity-100', 'scale-100');
+                    phoneModalContent.classList.add('opacity-0', 'scale-95');
+                    setTimeout(() => { phoneModal.classList.add('hidden'); }, 300);
+                };
+                phoneTriggerBtns.forEach(btn => btn.addEventListener('click', openPhoneModal));
+                document.getElementById('phone-modal-close').addEventListener('click', closePhoneModal);
+                document.getElementById('phone-modal-cancel').addEventListener('click', closePhoneModal);
+                phoneModalBackdrop.addEventListener('click', closePhoneModal);
+            }
+
+            // カード詳細のアコーディオン制御
+            document.querySelectorAll('.js-toggle-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const details = e.currentTarget.nextElementSibling;
+                    const textSpan = e.currentTarget.querySelector('.btn-text');
+
+                    e.currentTarget.classList.toggle('open');
+                    details.classList.toggle('open');
+
+                    if (details.classList.contains('open')) {
+                        textSpan.textContent = '閉じる';
+                    } else {
+                        textSpan.textContent = '詳しく見る';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+
