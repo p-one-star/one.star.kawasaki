@@ -89,10 +89,6 @@
                         <a href="/pride" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
                             <span class="mr-2 text-slate-400">＞</span>プロとしての拘り
                         </a>
-                        <!-- 追加: 業者情報リンク -->
-                        <a href="/compare" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-blue-600">
-                            <span class="mr-2 text-blue-600">＞</span>愛知の業者情報
-                        </a>
                         <a href="/trash" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
                             <span class="mr-2 text-slate-400">＞</span>ここだけの話
                         </a>
@@ -104,6 +100,9 @@
                         </a>
                         <a href="/tips" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
                             <span class="mr-2 text-slate-400">＞</span>お役立ち情報
+                        </a>
+                        <a href="/aichi/" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-blue-600">
+                            <span class="mr-2 text-blue-600">＞</span>愛知の業者情報
                         </a>
                         <a href="/products" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-[#06C755]">
                             <span class="mr-2 text-slate-400">＞</span>オリジナルLINEスタンプ
@@ -345,6 +344,11 @@
         </div>
     </div>
 
+    <!-- 該当業者なしトースト -->
+    <div id="no-data-toast" class="fixed bottom-24 md:bottom-8 left-1/2 -translate-x-1/2 z-[110] px-5 py-3 bg-slate-900 text-white text-sm font-bold rounded-full shadow-lg opacity-0 pointer-events-none transition-opacity duration-300 whitespace-nowrap">
+        該当する業者がありません
+    </div>
+
     <!-- SCRIPTS -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -404,6 +408,27 @@
                 document.getElementById('phone-modal-cancel').addEventListener('click', closePhoneModal);
                 phoneModalBackdrop.addEventListener('click', closePhoneModal);
             }
+
+            // 該当業者なしトースト制御（未作成4エリア用）
+            const noDataToast = document.getElementById('no-data-toast');
+            let noDataToastTimer = null;
+            const showNoDataToast = () => {
+                if (!noDataToast) return;
+                clearTimeout(noDataToastTimer);
+                noDataToast.classList.remove('opacity-0');
+                noDataToast.classList.add('opacity-100');
+                noDataToastTimer = setTimeout(() => {
+                    noDataToast.classList.remove('opacity-100');
+                    noDataToast.classList.add('opacity-0');
+                }, 2500);
+            };
+            // 業者0件のため未作成のページのURL（設楽町・東栄町・豊根村・飛島村）
+            const noDataUrls = [
+                '/aichi/higashimikawa/shitara/',
+                '/aichi/higashimikawa/toei/',
+                '/aichi/higashimikawa/toyone/',
+                '/aichi/owari/tobishima/'
+            ];
 
             // ==========================================
             // ★検索ロジック (全69市区町村対応・揺らぎ吸収)
@@ -525,7 +550,10 @@
                         }
                     }
 
-                    if (targetUrl) {
+                    if (targetUrl && noDataUrls.includes(targetUrl)) {
+                        // 業者0件エリア: ページ遷移せずトースト表示のみ
+                        showNoDataToast();
+                    } else if (targetUrl) {
                         // 見つかったら指定URLへジャンプ
                         window.location.href = targetUrl;
                     } else {

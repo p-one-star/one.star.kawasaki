@@ -101,7 +101,7 @@
                         <a href="/tips" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-slate-700">
                             <span class="mr-2 text-slate-400">＞</span>お役立ち情報
                         </a>
-                        <a href="/compare" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-blue-600">
+                        <a href="/aichi/" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-blue-600">
                             <span class="mr-2 text-blue-600">＞</span>愛知の業者情報
                         </a>
                         <a href="/products" class="menu-link flex items-center py-3 border-b border-slate-100 text-sm font-black text-[#06C755]">
@@ -273,7 +273,7 @@
                 <svg class="w-5 h-5 text-slate-300 group-hover:text-neon group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
             </a>
 
-            <a href="/aichi/owari/tobishima/" class="flex items-center justify-between bg-white rounded-xl shadow-sm border border-slate-200 p-4 hover:border-slate-300 hover:shadow-md transition-all group">
+            <a href="/aichi/owari/tobishima/" class="js-no-data-toast flex items-center justify-between bg-white rounded-xl shadow-sm border border-slate-200 p-4 hover:border-slate-300 hover:shadow-md transition-all group">
                 <span class="text-base md:text-lg font-black text-slate-800 tracking-wide">飛島村</span>
                 <svg class="w-5 h-5 text-slate-300 group-hover:text-neon group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
             </a>
@@ -357,6 +357,11 @@
         </div>
     </div>
 
+    <!-- 該当業者なしトースト -->
+    <div id="no-data-toast" class="fixed bottom-24 md:bottom-8 left-1/2 -translate-x-1/2 z-[110] px-5 py-3 bg-slate-900 text-white text-sm font-bold rounded-full shadow-lg opacity-0 pointer-events-none transition-opacity duration-300 whitespace-nowrap">
+        該当する業者がありません
+    </div>
+
     <!-- SCRIPTS -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -415,6 +420,24 @@
                 document.getElementById('phone-modal-close').addEventListener('click', closePhoneModal);
                 document.getElementById('phone-modal-cancel').addEventListener('click', closePhoneModal);
                 phoneModalBackdrop.addEventListener('click', closePhoneModal);
+            }
+
+            // 該当業者なしトースト制御（飛島村など未作成エリア用）
+            const noDataToast = document.getElementById('no-data-toast');
+            let noDataToastTimer = null;
+            if (noDataToast) {
+                document.querySelectorAll('.js-no-data-toast').forEach(link => {
+                    link.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        clearTimeout(noDataToastTimer);
+                        noDataToast.classList.remove('opacity-0');
+                        noDataToast.classList.add('opacity-100');
+                        noDataToastTimer = setTimeout(() => {
+                            noDataToast.classList.remove('opacity-100');
+                            noDataToast.classList.add('opacity-0');
+                        }, 2500);
+                    });
+                });
             }
         });
     </script>
