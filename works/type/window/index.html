@@ -1,9 +1,10 @@
+```html
 <!DOCTYPE html>
 <html lang="ja" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>タイプ別施工事例 | ONE★STAR</title>
+    <title>窓用エアコンの施工事例 | ONE★STAR</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -41,8 +42,7 @@
         <div class="absolute left-1/2 -translate-x-1/2 flex items-center justify-center mt-1">
             <a href="/" class="text-2xl md:text-3xl tracking-widest text-slate-900 leading-none flex items-center font-impact">
                 ONE
-                <!-- 🌟 修正箇所: src="/ONESTAR.PNG" に変更 🌟 -->
-                <img src="/ONESTAR.PNG" alt="ロゴ" class="w-[45px] h-[45px] md:w-[55px] md:h-[55px] mx-[-4px] md:mx-[-6px] object-contain -translate-y-[4px]" onerror="this.style.display='none'">
+                <img src="ONESTAR.PNG" alt="ロゴ" class="w-[45px] h-[45px] md:w-[55px] md:h-[55px] mx-[-4px] md:mx-[-6px] object-contain -translate-y-[4px]" onerror="this.style.display='none'">
                 STAR
             </a>
         </div>
@@ -128,7 +128,7 @@
         </div>
     </div>
 
-    <!-- MAIN (タイプ別施工事例) -->
+    <!-- MAIN (窓用エアコンの施工事例) -->
     <main class="pt-14 pb-16 px-4 max-w-5xl mx-auto">
 
         <!-- パンくずリスト -->
@@ -142,43 +142,36 @@
                     <a href="/works" class="hover:text-blue-600 transition-colors">施工事例</a>
                 </li>
                 <li class="text-slate-300">＞</li>
-                <li class="text-slate-800 font-black">タイプ別一覧</li>
+                <li>
+                    <a href="/works/type" class="hover:text-blue-600 transition-colors">タイプ別一覧</a>
+                </li>
+                <li class="text-slate-300">＞</li>
+                <li class="text-slate-800 font-black">窓用エアコン</li>
             </ol>
         </nav>
 
         <!-- ヒーローセクション -->
         <div class="text-center mt-6 mb-10">
             <h1 class="text-2xl md:text-3xl font-black text-slate-900 mb-6 tracking-wider">
-                タイプ別施工事例
+                窓用エアコンの施工事例
             </h1>
-
-            <!-- 🌟 総件数テキスト 🌟 -->
-            <p class="text-slate-900 font-bold text-sm md:text-base mb-6 tracking-wider">
-                施工事例
-                <span class="relative inline-block font-impact text-xl md:text-2xl mx-1 z-10 translate-y-[1px]">
-                    39
-                    <span class="absolute bottom-[2px] left-[-2px] right-[-2px] h-[8px] bg-neon -z-10"></span>
-                </span>
-                件掲載中
-            </p>
-
             <p class="text-[13px] md:text-base text-slate-900 font-bold leading-loose max-w-2xl mx-auto bg-white p-5 md:p-6 rounded-2xl shadow-sm border border-slate-200">
                 
                 <!-- 📱 スマホ用表示（キリの良いところで改行） -->
                 <span class="md:hidden block">
-                    愛知県内で実際に施工した<br>
-                    エアコンクリーニング事例を<br>
-                    タイプ（機種）ごとにまとめています。<br>
+                    窓用エアコンの<br>
+                    実際のクリーニング事例を<br>
+                    まとめています。<br>
                     <span class="block h-2"></span>
-                    ご家庭用から業務用まで、様々な機種の<br>
-                    施工実績をご依頼前の参考としてご覧ください。
+                    ご依頼前の参考として<br>
+                    ぜひご覧ください。
                 </span>
                 
                 <!-- 💻 PC・タブレット用表示（ゆったりとした改行） -->
                 <span class="hidden md:block">
-                    愛知県内で実際に施工したエアコンクリーニング事例を<br>
-                    タイプ（機種）ごとにまとめています。<br>
-                    ご家庭用から業務用まで、様々な機種の施工実績をご依頼前の参考としてご覧ください。
+                    窓用エアコンの<br>
+                    実際のクリーニング事例をまとめています。<br>
+                    ご依頼前の参考としてぜひご覧ください。
                 </span>
 
             </p>
@@ -186,34 +179,31 @@
 
         <div class="max-w-4xl mx-auto bg-white rounded-[24px] shadow-sm border border-slate-200 p-6 md:p-10">
             
-            <!-- 家庭用エアコン -->
-            <section class="mb-12">
-                <h2 class="text-lg md:text-xl font-black text-slate-900 mb-5 border-l-[6px] border-neon pl-3 flex items-center">
-                    家庭用エアコン
-                </h2>
-                <ul class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-1">
-                    <li><a href="/works/type/standard" class="flex items-center justify-between py-3 border-b border-slate-100 group"><span class="text-[15px] font-bold text-slate-700 group-hover:text-blue-600 transition-colors">スタンダード <span class="text-xs font-normal text-slate-400 ml-1">(14)</span></span><svg class="w-4 h-4 text-slate-300 group-hover:text-blue-600 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7"/></svg></a></li>
-                    <li><a href="/works/type/robot" class="flex items-center justify-between py-3 border-b border-slate-100 group"><span class="text-[15px] font-bold text-slate-700 group-hover:text-blue-600 transition-colors">お掃除機能付き <span class="text-xs font-normal text-slate-400 ml-1">(18)</span></span><svg class="w-4 h-4 text-slate-300 group-hover:text-blue-600 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7"/></svg></a></li>
-                    <li><a href="/works/type/wall" class="flex items-center justify-between py-3 border-b border-slate-100 group"><span class="text-[15px] font-bold text-slate-700 group-hover:text-blue-600 transition-colors">壁面埋め込み <span class="text-xs font-normal text-slate-400 ml-1">(0)</span></span><svg class="w-4 h-4 text-slate-300 group-hover:text-blue-600 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7"/></svg></a></li>
-                    <li><a href="/works/type/window" class="flex items-center justify-between py-3 border-b border-slate-100 group"><span class="text-[15px] font-bold text-slate-700 group-hover:text-blue-600 transition-colors">窓用エアコン <span class="text-xs font-normal text-slate-400 ml-1">(0)</span></span><svg class="w-4 h-4 text-slate-300 group-hover:text-blue-600 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7"/></svg></a></li>
-                    <li><a href="/works/type/complex" class="flex items-center justify-between py-3 border-b border-slate-100 group"><span class="text-[15px] font-bold text-slate-700 group-hover:text-blue-600 transition-colors">高難度機種 <span class="text-xs font-normal text-slate-400 ml-1">(1)</span></span><svg class="w-4 h-4 text-slate-300 group-hover:text-blue-600 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7"/></svg></a></li>
-                </ul>
-            </section>
-
-            <!-- 業務用エアコン -->
+            <!-- 施工事例リスト -->
             <section>
-                <h2 class="text-lg md:text-xl font-black text-slate-900 mb-5 border-l-[6px] border-neon pl-3 flex items-center">
-                    業務用エアコン
+                <h2 class="text-lg md:text-xl font-black text-slate-900 mb-6 border-l-[6px] border-neon pl-3 flex items-center">
+                    窓用エアコンの施工事例
                 </h2>
-                <ul class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-1">
-                    <li><a href="/works/type/tenkase4" class="flex items-center justify-between py-3 border-b border-slate-100 group"><span class="text-[15px] font-bold text-slate-700 group-hover:text-blue-600 transition-colors">天カセ4方向 <span class="text-xs font-normal text-slate-400 ml-1">(3)</span></span><svg class="w-4 h-4 text-slate-300 group-hover:text-blue-600 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7"/></svg></a></li>
-                    <li><a href="/works/type/tenkase2" class="flex items-center justify-between py-3 border-b border-slate-100 group"><span class="text-[15px] font-bold text-slate-700 group-hover:text-blue-600 transition-colors">天カセ2方向 <span class="text-xs font-normal text-slate-400 ml-1">(1)</span></span><svg class="w-4 h-4 text-slate-300 group-hover:text-blue-600 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7"/></svg></a></li>
-                    <li><a href="/works/type/tenkase1" class="flex items-center justify-between py-3 border-b border-slate-100 group"><span class="text-[15px] font-bold text-slate-700 group-hover:text-blue-600 transition-colors">天カセ1方向 <span class="text-xs font-normal text-slate-400 ml-1">(1)</span></span><svg class="w-4 h-4 text-slate-300 group-hover:text-blue-600 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7"/></svg></a></li>
-                    <li><a href="/works/type/tentsuri" class="flex items-center justify-between py-3 border-b border-slate-100 group"><span class="text-[15px] font-bold text-slate-700 group-hover:text-blue-600 transition-colors">天吊り <span class="text-xs font-normal text-slate-400 ml-1">(2)</span></span><svg class="w-4 h-4 text-slate-300 group-hover:text-blue-600 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7"/></svg></a></li>
-                    <li><a href="/works/type/yukaoki" class="flex items-center justify-between py-3 border-b border-slate-100 group"><span class="text-[15px] font-bold text-slate-700 group-hover:text-blue-600 transition-colors">床置き <span class="text-xs font-normal text-slate-400 ml-1">(0)</span></span><svg class="w-4 h-4 text-slate-300 group-hover:text-blue-600 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7"/></svg></a></li>
-                    <li><a href="/works/type/builtin" class="flex items-center justify-between py-3 border-b border-slate-100 group"><span class="text-[15px] font-bold text-slate-700 group-hover:text-blue-600 transition-colors">ビルトイン <span class="text-xs font-normal text-slate-400 ml-1">(0)</span></span><svg class="w-4 h-4 text-slate-300 group-hover:text-blue-600 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7"/></svg></a></li>
-                    <li><a href="/works/type/spot" class="flex items-center justify-between py-3 border-b border-slate-100 group"><span class="text-[15px] font-bold text-slate-700 group-hover:text-blue-600 transition-colors">スポット <span class="text-xs font-normal text-slate-400 ml-1">(0)</span></span><svg class="w-4 h-4 text-slate-300 group-hover:text-blue-600 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7"/></svg></a></li>
-                    <li><a href="/works/type/fancoil" class="flex items-center justify-between py-3 border-b border-slate-100 group"><span class="text-[15px] font-bold text-slate-700 group-hover:text-blue-600 transition-colors">ファンコイル <span class="text-xs font-normal text-slate-400 ml-1">(0)</span></span><svg class="w-4 h-4 text-slate-300 group-hover:text-blue-600 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7"/></svg></a></li>
+                
+                <ul class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    
+                    <!-- 事例 00 (準備中) -->
+                    <li>
+                        <!-- href="#" と class="wip-link" を付与してトーストを表示 -->
+                        <a href="#" class="wip-link block p-4 border border-slate-100 rounded-xl bg-slate-50 hover:bg-slate-100 hover:border-slate-200 hover:shadow-sm transition-all group">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="text-[15px] font-black text-slate-800 group-hover:text-blue-600 transition-colors flex items-baseline">
+                                    施工事例 <span class="font-impact text-[18px] ml-1">00</span>
+                                </span>
+                                <svg class="w-5 h-5 text-slate-400 group-hover:text-blue-600 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7"/></svg>
+                            </div>
+                            <div class="text-[13px] font-bold text-slate-500 flex items-center">
+                                <span class="bg-white px-2 py-1 rounded border border-slate-200 mr-2 shadow-sm text-[11px]">地域</span>
+                                メーカー
+                            </div>
+                        </a>
+                    </li>
+                    
                 </ul>
             </section>
 
@@ -225,8 +215,7 @@
         <div class="mb-6 flex flex-col items-center justify-center">
             <span class="text-4xl md:text-5xl tracking-widest text-white flex items-center justify-center font-impact mt-1">
                 ONE
-                <!-- 🌟 修正箇所: src="/ONESTAR.PNG" に変更 🌟 -->
-                <img src="/ONESTAR.PNG" alt="ロゴ" class="w-[80px] h-[80px] md:w-[100px] md:h-[100px] mx-[-10px] md:mx-[-16px] object-contain -translate-y-2" onerror="this.style.display='none'">
+                <img src="ONESTAR.PNG" alt="ロゴ" class="w-[80px] h-[80px] md:w-[100px] md:h-[100px] mx-[-10px] md:mx-[-16px] object-contain -translate-y-2" onerror="this.style.display='none'">
                 STAR
             </span>
             <p class="text-xs text-neon font-black mt-2 tracking-widest">株式会社ECS専属プロスタッフ</p>
@@ -346,39 +335,43 @@
 
     <!-- SCRIPTS -->
     <script>
+        // === トースト通知用スクリプト ===
         document.addEventListener('DOMContentLoaded', () => {
-            // ==========================================
-            // 1. トースト通知用スクリプト
-            // ==========================================
             const toast = document.getElementById('toast');
             let toastTimeout;
 
             const showToast = () => {
+                // クラスを切り替えて表示（中央でフェード＆スケールイン）
                 toast.classList.remove('opacity-0', 'scale-95');
                 toast.classList.add('opacity-100', 'scale-100');
                 
+                // 既存のタイマーがあればリセット
                 clearTimeout(toastTimeout);
                 
+                // 2.5秒後に非表示にする
                 toastTimeout = setTimeout(() => {
                     toast.classList.remove('opacity-100', 'scale-100');
                     toast.classList.add('opacity-0', 'scale-95');
                 }, 2500);
             };
 
+            // wip-link クラスを持つすべてのリンクに対してクリックイベントを設定
             document.querySelectorAll('.wip-link').forEach(link => {
                 link.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    showToast();
+                    e.preventDefault(); // デフォルトのリンク遷移をキャンセル
+                    showToast();        // トーストを表示
                 });
             });
+        });
 
-            // ==========================================
-            // 2. メニュー開閉用
-            // ==========================================
+        // === メニュー開閉・モーダル制御用 ===
+        document.addEventListener('DOMContentLoaded', () => {
+            // ドロワー関連の要素
             const drawerContainer = document.getElementById('drawer-container');
             const drawerMenu = document.getElementById('drawer-menu');
             const drawerBackdrop = document.getElementById('drawer-backdrop');
             
+            // ドロワーを開閉する関数
             const toggleMenu = (show) => {
                 if (show) {
                     drawerContainer.classList.remove('hidden');
@@ -397,13 +390,14 @@
                 }
             };
 
+            // ドロワーのイベントリスナー
             document.getElementById('menu-open-btn').addEventListener('click', () => toggleMenu(true));
             document.getElementById('menu-close-btn').addEventListener('click', () => toggleMenu(false));
             document.getElementById('drawer-backdrop').addEventListener('click', () => toggleMenu(false));
             document.querySelectorAll('.menu-link').forEach(link => link.addEventListener('click', () => toggleMenu(false)));
 
             // ==========================================
-            // 3. 電話ワンクッションモーダル制御
+            // 電話ワンクッションモーダル制御
             // ==========================================
             const phoneModal = document.getElementById('phone-modal');
             const phoneModalBackdrop = document.getElementById('phone-modal-backdrop');
@@ -420,7 +414,7 @@
                     // デフォルトの tel: リンク発信をキャンセル
                     e.preventDefault(); 
                     
-                    // ドロワーメニューが開いていたら閉じる
+                    // ドロワーメニューが開いていたら閉じる（toggleMenu関数が存在する場合）
                     if (typeof toggleMenu === 'function') {
                         toggleMenu(false);
                     }
@@ -466,3 +460,5 @@
     </script>
 </body>
 </html>
+
+```
