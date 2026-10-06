@@ -103,16 +103,7 @@
     <loc>https://onestar-works.com/works/type/standard/</loc>
   </url>
   <url>
-    <loc>https://onestar-works.com/works/type/builtin/</loc>
-  </url>
-  <url>
     <loc>https://onestar-works.com/works/type/complex/</loc>
-  </url>
-  <url>
-    <loc>https://onestar-works.com/works/type/fancoil/</loc>
-  </url>
-  <url>
-    <loc>https://onestar-works.com/works/type/spot/</loc>
   </url>
   <url>
     <loc>https://onestar-works.com/works/type/tenkase1/</loc>
@@ -125,12 +116,6 @@
   </url>
   <url>
     <loc>https://onestar-works.com/works/type/tentsuri/</loc>
-  </url>
-  <url>
-    <loc>https://onestar-works.com/works/type/wall/</loc>
-  </url>
-  <url>
-    <loc>https://onestar-works.com/works/type/yukaoki/</loc>
   </url>
   <url>
     <loc>https://onestar-works.com/works/toyoake-01/</loc>
@@ -166,79 +151,10 @@
     <loc>https://onestar-works.com/works/area/nagoya/nishiku/</loc>
   </url>
   <url>
-    <loc>https://onestar-works.com/works/area/agui/</loc>
-  </url>
-  <url>
-    <loc>https://onestar-works.com/works/area/aisai/</loc>
-  </url>
-  <url>
-    <loc>https://onestar-works.com/works/area/ama/</loc>
-  </url>
-  <url>
-    <loc>https://onestar-works.com/works/area/chita/</loc>
-  </url>
-  <url>
-    <loc>https://onestar-works.com/works/area/fuso/</loc>
-  </url>
-  <url>
-    <loc>https://onestar-works.com/works/area/gamagori/</loc>
-  </url>
-  <url>
     <loc>https://onestar-works.com/works/area/handa/</loc>
   </url>
   <url>
     <loc>https://onestar-works.com/works/area/higashiura/</loc>
-  </url>
-  <url>
-    <loc>https://onestar-works.com/works/area/ichinomiya/</loc>
-  </url>
-  <url>
-    <loc>https://onestar-works.com/works/area/inazawa/</loc>
-  </url>
-  <url>
-    <loc>https://onestar-works.com/works/area/inuyama/</loc>
-  </url>
-  <url>
-    <loc>https://onestar-works.com/works/area/iwakura/</loc>
-  </url>
-  <url>
-    <loc>https://onestar-works.com/works/area/kanie/</loc>
-  </url>
-  <url>
-    <loc>https://onestar-works.com/works/area/kasugai/</loc>
-  </url>
-  <url>
-    <loc>https://onestar-works.com/works/area/kitanagoya/</loc>
-  </url>
-  <url>
-    <loc>https://onestar-works.com/works/area/kiyosu/</loc>
-  </url>
-  <url>
-    <loc>https://onestar-works.com/works/area/komaki/</loc>
-  </url>
-  <url>
-    <loc>https://onestar-works.com/works/area/konan/</loc>
-  </url>
-  <url>
-    <loc>https://onestar-works.com/works/area/kota/</loc>
-  </url>
-  <url>
-    <loc>https://onestar-works.com/works/area/mihama/</loc>
-  </url>
-  <url>
-    <loc>https://onestar-works.com/works/area/minamichita/</loc>
-  </url>
-  <url>
-    <loc>https://onestar-works.com/works/area/nagakute/</loc>
-  </url>
-  <url>
-    <loc>https://onestar-works.com/works/area/nagoya/atsutaku/</loc>
-  </url>
-  <url>
-    <loc>https://onestar-works.com/works/area/nagoya/chikusaku/</loc>
-  </url>
-  <url>
-    <loc>https://onestar-works.com/works/area/nagoya/higashiku/</loc>
   </url>
   <url>
     <loc>https://onestar-works.com/works/area/nagoya/kitaku/</loc>
@@ -247,31 +163,7 @@
     <loc>https://onestar-works.com/works/area/nagoya/meitoku/</loc>
   </url>
   <url>
-    <loc>https://onestar-works.com/works/area/nagoya/midoriku/</loc>
-  </url>
-  <url>
-    <loc>https://onestar-works.com/works/area/nagoya/minamiku/</loc>
-  </url>
-  <url>
     <loc>https://onestar-works.com/works/area/nagoya/minatoku/</loc>
-  </url>
-  <url>
-    <loc>https://onestar-works.com/works/area/nagoya/mizuhoku/</loc>
-  </url>
-  <url>
-    <loc>https://onestar-works.com/works/area/nagoya/moriyamaku/</loc>
-  </url>
-  <url>
-    <loc>https://onestar-works.com/works/area/nagoya/nakagawaku/</loc>
-  </url>
-  <url>
-    <loc>https://onestar-works.com/works/area/nagoya/nakaku/</loc>
-  </url>
-  <url>
-    <loc>https://onestar-works.com/works/area/nagoya/nakamuraku/</loc>
-  </url>
-  <url>
-    <loc>https://onestar-works.com/works/area/nagoya/showaku/</loc>
   </url>
   <url>
     <loc>https://onestar-works.com/works/area/nagoya/tenpakuku/</loc>
@@ -280,64 +172,7 @@
     <loc>https://onestar-works.com/works/area/nisshin/</loc>
   </url>
   <url>
-    <loc>https://onestar-works.com/works/area/obu/</loc>
-  </url>
-  <url>
-    <loc>https://onestar-works.com/works/area/oguchi/</loc>
-  </url>
-  <url>
-    <loc>https://onestar-works.com/works/area/oharu/</loc>
-  </url>
-  <url>
-    <loc>https://onestar-works.com/works/area/owariasahi/</loc>
-  </url>
-  <url>
-    <loc>https://onestar-works.com/works/area/seto/</loc>
-  </url>
-  <url>
-    <loc>https://onestar-works.com/works/area/shinshiro/</loc>
-  </url>
-  <url>
-    <loc>https://onestar-works.com/works/area/shitara/</loc>
-  </url>
-  <url>
-    <loc>https://onestar-works.com/works/area/tahara/</loc>
-  </url>
-  <url>
-    <loc>https://onestar-works.com/works/area/taketoyo/</loc>
-  </url>
-  <url>
-    <loc>https://onestar-works.com/works/area/tobishima/</loc>
-  </url>
-  <url>
-    <loc>https://onestar-works.com/works/area/toei/</loc>
-  </url>
-  <url>
     <loc>https://onestar-works.com/works/area/togo/</loc>
-  </url>
-  <url>
-    <loc>https://onestar-works.com/works/area/tokai/</loc>
-  </url>
-  <url>
-    <loc>https://onestar-works.com/works/area/tokoname/</loc>
-  </url>
-  <url>
-    <loc>https://onestar-works.com/works/area/toyohashi/</loc>
-  </url>
-  <url>
-    <loc>https://onestar-works.com/works/area/toyokawa/</loc>
-  </url>
-  <url>
-    <loc>https://onestar-works.com/works/area/toyone/</loc>
-  </url>
-  <url>
-    <loc>https://onestar-works.com/works/area/toyoyama/</loc>
-  </url>
-  <url>
-    <loc>https://onestar-works.com/works/area/tsushima/</loc>
-  </url>
-  <url>
-    <loc>https://onestar-works.com/works/area/yatomi/</loc>
   </url>
   <url>
     <loc>https://onestar-works.com/works/kitaku-01/</loc>
@@ -349,31 +184,10 @@
     <loc>https://onestar-works.com/works/maker/beaver/</loc>
   </url>
   <url>
-    <loc>https://onestar-works.com/works/maker/chofu/</loc>
-  </url>
-  <url>
-    <loc>https://onestar-works.com/works/maker/corona/</loc>
-  </url>
-  <url>
     <loc>https://onestar-works.com/works/maker/fujitsu/</loc>
   </url>
   <url>
-    <loc>https://onestar-works.com/works/maker/funai/</loc>
-  </url>
-  <url>
-    <loc>https://onestar-works.com/works/maker/hisense/</loc>
-  </url>
-  <url>
-    <loc>https://onestar-works.com/works/maker/hitachi/</loc>
-  </url>
-  <url>
-    <loc>https://onestar-works.com/works/maker/iris/</loc>
-  </url>
-  <url>
     <loc>https://onestar-works.com/works/maker/national/</loc>
-  </url>
-  <url>
-    <loc>https://onestar-works.com/works/maker/original/</loc>
   </url>
   <url>
     <loc>https://onestar-works.com/tips/bug/</loc>
